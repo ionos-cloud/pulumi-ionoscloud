@@ -188,58 +188,6 @@ class Distribution(pulumi.CustomResource):
         """
         Manages a **CDN Distribution** on IonosCloud.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        #optionally you can add a certificate to the distribution
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=(lambda path: open(path).read())("path_to_cert"),
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        example = ionoscloud.cdn.Distribution("example",
-            domain="example.com",
-            certificate_id=cert.id,
-            routing_rules=[
-                {
-                    "scheme": "https",
-                    "prefix": "/api",
-                    "upstream": {
-                        "host": "server.example.com",
-                        "caching": True,
-                        "waf": True,
-                        "sni_mode": "distribution",
-                        "rate_limit_class": "R500",
-                        "geo_restrictions": {
-                            "allow_lists": [
-                                "CN",
-                                "RU",
-                            ],
-                        },
-                    },
-                },
-                {
-                    "scheme": "http/https",
-                    "prefix": "/api2",
-                    "upstream": {
-                        "host": "server2.example.com",
-                        "caching": False,
-                        "waf": False,
-                        "sni_mode": "origin",
-                        "rate_limit_class": "R10",
-                        "geo_restrictions": {
-                            "block_lists": [
-                                "CN",
-                                "RU",
-                            ],
-                        },
-                    },
-                },
-            ])
-        ```
-
         ## Import
 
         Resource Distribution can be imported using the `resource id`, e.g.
@@ -262,58 +210,6 @@ class Distribution(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a **CDN Distribution** on IonosCloud.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        #optionally you can add a certificate to the distribution
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=(lambda path: open(path).read())("path_to_cert"),
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        example = ionoscloud.cdn.Distribution("example",
-            domain="example.com",
-            certificate_id=cert.id,
-            routing_rules=[
-                {
-                    "scheme": "https",
-                    "prefix": "/api",
-                    "upstream": {
-                        "host": "server.example.com",
-                        "caching": True,
-                        "waf": True,
-                        "sni_mode": "distribution",
-                        "rate_limit_class": "R500",
-                        "geo_restrictions": {
-                            "allow_lists": [
-                                "CN",
-                                "RU",
-                            ],
-                        },
-                    },
-                },
-                {
-                    "scheme": "http/https",
-                    "prefix": "/api2",
-                    "upstream": {
-                        "host": "server2.example.com",
-                        "caching": False,
-                        "waf": False,
-                        "sni_mode": "origin",
-                        "rate_limit_class": "R10",
-                        "geo_restrictions": {
-                            "block_lists": [
-                                "CN",
-                                "RU",
-                            ],
-                        },
-                    },
-                },
-            ])
-        ```
 
         ## Import
 

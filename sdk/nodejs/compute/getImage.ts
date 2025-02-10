@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const cdrom = ionoscloud.compute.getImage({
- *     cloudInit: "NONE",
  *     imageAlias: "ubuntu:latest_iso",
- *     location: "de/txl",
  *     type: "CDROM",
+ *     location: "de/txl",
+ *     cloudInit: "NONE",
  * });
  * ```
  * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
@@ -44,10 +44,10 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
  *     cloudInit: "V1",
  *     imageAlias: "ubuntu:latest",
  *     location: "us/ewr",
- *     type: "HDD",
  * });
  * ```
  * Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
@@ -201,10 +201,10 @@ export interface GetImageResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const cdrom = ionoscloud.compute.getImage({
- *     cloudInit: "NONE",
  *     imageAlias: "ubuntu:latest_iso",
- *     location: "de/txl",
  *     type: "CDROM",
+ *     location: "de/txl",
+ *     cloudInit: "NONE",
  * });
  * ```
  * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
@@ -230,10 +230,10 @@ export interface GetImageResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
  *     cloudInit: "V1",
  *     imageAlias: "ubuntu:latest",
  *     location: "us/ewr",
- *     type: "HDD",
  * });
  * ```
  * Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.

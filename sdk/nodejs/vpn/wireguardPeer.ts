@@ -17,17 +17,18 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.vpn.WireguardPeer("example", {
- *     allowedIps: [
- *         "10.0.0.0/8",
- *         "192.168.1.0/24",
- *     ],
+ *     location: "de/fra",
+ *     gatewayId: "your gateway id here",
+ *     name: "example-gateway",
  *     description: "An example WireGuard peer",
  *     endpoint: {
  *         host: "1.2.3.4",
  *         port: 51820,
  *     },
- *     gatewayId: "your gateway id here",
- *     location: "de/fra",
+ *     allowedIps: [
+ *         "10.0.0.0/8",
+ *         "192.168.1.0/24",
+ *     ],
  *     publicKey: "examplePublicKey==",
  * });
  * ```

@@ -14,31 +14,34 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleImage = ionoscloud.compute.getImage({
+ * const example = ionoscloud.compute.getImage({
  *     type: "HDD",
  *     imageAlias: "ubuntu:latest",
  *     location: "us/las",
  * });
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
  *     datacenterId: exampleDatacenter.id,
  *     cores: 1,
  *     ram: 1024,
  *     availabilityZone: "ZONE_1",
  *     cpuFamily: "INTEL_XEON",
- *     imageName: exampleImage.then(exampleImage => exampleImage.id),
+ *     imageName: example.then(example => example.id),
  *     imagePassword: serverImagePassword.result,
  *     type: "ENTERPRISE",
  *     volume: {
@@ -50,9 +53,10 @@ import * as utilities from "../utilities";
  *         availabilityZone: "ZONE_1",
  *     },
  * });
- * const testSnapshot = new ionoscloud.compute.Snapshot("testSnapshot", {
+ * const testSnapshot = new ionoscloud.compute.Snapshot("test_snapshot", {
  *     datacenterId: exampleDatacenter.id,
  *     volumeId: exampleServer.bootVolume,
+ *     name: "Snapshot Example",
  * });
  * ```
  *

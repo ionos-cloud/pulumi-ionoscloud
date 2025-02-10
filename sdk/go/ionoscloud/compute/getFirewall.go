@@ -17,6 +17,62 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupFirewall(ctx, &compute.LookupFirewallArgs{
+//				DatacenterId: "datacenter_id",
+//				ServerId:     "server_id",
+//				NicId:        "nic_id",
+//				Id:           pulumi.StringRef("firewall_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupFirewall(ctx, &compute.LookupFirewallArgs{
+//				DatacenterId: "datacenter_id",
+//				ServerId:     "server_id",
+//				NicId:        "nic_id",
+//				Name:         pulumi.StringRef("test_ds_firewall_rule"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulumi.InvokeOption) (*LookupFirewallResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallResult
@@ -51,10 +107,10 @@ type LookupFirewallResult struct {
 	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
 	IcmpType string `pulumi:"icmpType"`
 	// The id of the firewall rule.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of the firewall rule.
-	Name  *string `pulumi:"name"`
-	NicId string  `pulumi:"nicId"`
+	Name  string `pulumi:"name"`
+	NicId string `pulumi:"nicId"`
 	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
 	PortRangeEnd int `pulumi:"portRangeEnd"`
 	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen.
@@ -130,13 +186,13 @@ func (o LookupFirewallResultOutput) IcmpType() pulumi.StringOutput {
 }
 
 // The id of the firewall rule.
-func (o LookupFirewallResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupFirewallResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the firewall rule.
-func (o LookupFirewallResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupFirewallResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallResultOutput) NicId() pulumi.StringOutput {

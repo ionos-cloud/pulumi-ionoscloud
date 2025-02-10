@@ -19,7 +19,7 @@ import (
 // Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
 // ```
 type MariaDBCluster struct {
 	pulumi.CustomResourceState
@@ -34,7 +34,7 @@ type MariaDBCluster struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntOutput `pulumi:"instances"`
@@ -42,7 +42,7 @@ type MariaDBCluster struct {
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringOutput `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntOutput `pulumi:"ram"`
@@ -114,7 +114,7 @@ type mariaDBClusterState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName *string `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances *int `pulumi:"instances"`
@@ -122,7 +122,7 @@ type mariaDBClusterState struct {
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion *string `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram *int `pulumi:"ram"`
@@ -141,7 +141,7 @@ type MariaDBClusterState struct {
 	DisplayName pulumi.StringPtrInput
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringPtrInput
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntPtrInput
@@ -149,7 +149,7 @@ type MariaDBClusterState struct {
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringPtrInput
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntPtrInput
@@ -176,7 +176,7 @@ type mariaDBClusterArgs struct {
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion string `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram int `pulumi:"ram"`
@@ -200,7 +200,7 @@ type MariaDBClusterArgs struct {
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringInput
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntInput
@@ -317,7 +317,7 @@ func (o MariaDBClusterOutput) DisplayName() pulumi.StringOutput {
 
 // [string] The DNS name pointing to your cluster.
 //
-// > **⚠ WARNING:** `Location` attribute will become required in the future.
+// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o MariaDBClusterOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }
@@ -337,7 +337,7 @@ func (o MariaDBClusterOutput) MaintenanceWindow() MariaDBClusterMaintenanceWindo
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MariaDBClusterMaintenanceWindowOutput)
 }
 
-// [string] The MariaDB version of your cluster.
+// [string] The MariaDB version of your cluster. Cannot be downgraded.
 func (o MariaDBClusterOutput) MariadbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.MariadbVersion }).(pulumi.StringOutput)
 }

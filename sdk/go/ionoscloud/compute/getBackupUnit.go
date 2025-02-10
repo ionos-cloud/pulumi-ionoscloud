@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupBackupUnit(ctx, &compute.LookupBackupUnitArgs{
+//				Id: pulumi.StringRef("backup_unit_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -67,11 +92,11 @@ type LookupBackupUnitResult struct {
 	// The e-mail address you want assigned to the backup unit.
 	Email string `pulumi:"email"`
 	// The id of the Backup Unit.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The login associated with the backup unit. Derived from the contract number.
 	Login string `pulumi:"login"`
 	// The name of the Backup Unit.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 }
 
 func LookupBackupUnitOutput(ctx *pulumi.Context, args LookupBackupUnitOutputArgs, opts ...pulumi.InvokeOption) LookupBackupUnitResultOutput {
@@ -118,8 +143,8 @@ func (o LookupBackupUnitResultOutput) Email() pulumi.StringOutput {
 }
 
 // The id of the Backup Unit.
-func (o LookupBackupUnitResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupBackupUnitResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The login associated with the backup unit. Derived from the contract number.
@@ -128,8 +153,8 @@ func (o LookupBackupUnitResultOutput) Login() pulumi.StringOutput {
 }
 
 // The name of the Backup Unit.
-func (o LookupBackupUnitResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupBackupUnitResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {

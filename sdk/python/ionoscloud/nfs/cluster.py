@@ -212,14 +212,17 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
+            name="NFS Datacenter",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
             datacenter_id=nfs_dc.id,
-            public=False)
+            public=False,
+            name="Lan for NFS")
         example = ionoscloud.nfs.Cluster("example",
+            name="test",
             location="de/txl",
             size=2,
             nfs={
@@ -265,14 +268,17 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
+            name="NFS Datacenter",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
             datacenter_id=nfs_dc.id,
-            public=False)
+            public=False,
+            name="Lan for NFS")
         example = ionoscloud.nfs.Cluster("example",
+            name="test",
             location="de/txl",
             size=2,
             nfs={

@@ -31,8 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbaas.NewPSQLDatabase(ctx, "examplePgDatabase", &dbaas.PSQLDatabaseArgs{
-//				ClusterId: pulumi.Any(ionoscloud_pg_cluster.Example.Id),
+//			_, err := dbaas.NewPSQLDatabase(ctx, "example_pg_database", &dbaas.PSQLDatabaseArgs{
+//				ClusterId: pulumi.Any(example.Id),
+//				Name:      pulumi.String("exampledatabase"),
 //				Owner:     pulumi.String("exampleuser"),
 //			})
 //			if err != nil {
@@ -57,7 +58,7 @@ import (
 // The resource can be imported using the `clusterId` and the `name`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+// $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example clusterid/name
 // ```
 type PSQLDatabase struct {
 	pulumi.CustomResourceState

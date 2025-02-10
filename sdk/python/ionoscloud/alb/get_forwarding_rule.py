@@ -178,8 +178,8 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
-        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
         name="ALB FR Example")
     ```
 
@@ -188,8 +188,8 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
-        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
         name="Example",
         partial_match=True)
     ```
@@ -243,8 +243,8 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
-        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
         name="ALB FR Example")
     ```
 
@@ -253,8 +253,8 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
-        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
         name="Example",
         partial_match=True)
     ```

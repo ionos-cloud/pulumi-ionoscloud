@@ -13,6 +13,32 @@ import (
 
 // The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
 // ## Example Usage
+//
+// ### By IDs
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.GetNodePoolNodes(ctx, &k8s.GetNodePoolNodesArgs{
+//				NodePoolId:   "k8s_nodepool_id",
+//				K8sClusterId: "k8s_cluster_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetNodePoolNodes(ctx *pulumi.Context, args *GetNodePoolNodesArgs, opts ...pulumi.InvokeOption) (*GetNodePoolNodesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNodePoolNodesResult

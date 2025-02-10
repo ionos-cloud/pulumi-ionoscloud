@@ -30,7 +30,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dbaas.LookupInMemoryDBReplicaSet(ctx, &dbaas.LookupInMemoryDBReplicaSetArgs{
 //				Id:       pulumi.StringRef("example-id"),
-//				Location: "es/vit",
+//				Location: pulumi.StringRef("es/vit"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -56,7 +56,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dbaas.LookupInMemoryDBReplicaSet(ctx, &dbaas.LookupInMemoryDBReplicaSetArgs{
 //				DisplayName: pulumi.StringRef("example-id"),
-//				Location:    "us/las",
+//				Location:    pulumi.StringRef("us/las"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -85,7 +85,7 @@ type LookupInMemoryDBReplicaSetArgs struct {
 	// The location of the InMemoryDB Replica Set.
 	//
 	// > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 }
 
 // A collection of values returned by getInMemoryDBReplicaSet.
@@ -94,13 +94,13 @@ type LookupInMemoryDBReplicaSetResult struct {
 	Connections []GetInMemoryDBReplicaSetConnection `pulumi:"connections"`
 	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. It includes:
 	Credentials []GetInMemoryDBReplicaSetCredential `pulumi:"credentials"`
-	DisplayName *string                             `pulumi:"displayName"`
+	DisplayName string                              `pulumi:"displayName"`
 	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	DnsName string `pulumi:"dnsName"`
 	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy string  `pulumi:"evictionPolicy"`
-	Id             *string `pulumi:"id"`
-	Location       string  `pulumi:"location"`
+	Id             string  `pulumi:"id"`
+	Location       *string `pulumi:"location"`
 	// A weekly 4 hour-long window, during which maintenance might occur. It includes:
 	MaintenanceWindows []GetInMemoryDBReplicaSetMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] Specifies How and If data is persisted, possible values are:
@@ -135,7 +135,7 @@ type LookupInMemoryDBReplicaSetOutputArgs struct {
 	// The location of the InMemoryDB Replica Set.
 	//
 	// > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 }
 
 func (LookupInMemoryDBReplicaSetOutputArgs) ElementType() reflect.Type {
@@ -167,8 +167,8 @@ func (o LookupInMemoryDBReplicaSetResultOutput) Credentials() GetInMemoryDBRepli
 	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) []GetInMemoryDBReplicaSetCredential { return v.Credentials }).(GetInMemoryDBReplicaSetCredentialArrayOutput)
 }
 
-func (o LookupInMemoryDBReplicaSetResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o LookupInMemoryDBReplicaSetResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
 // [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
@@ -181,12 +181,12 @@ func (o LookupInMemoryDBReplicaSetResultOutput) EvictionPolicy() pulumi.StringOu
 	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) string { return v.EvictionPolicy }).(pulumi.StringOutput)
 }
 
-func (o LookupInMemoryDBReplicaSetResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupInMemoryDBReplicaSetResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupInMemoryDBReplicaSetResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupInMemoryDBReplicaSetResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupInMemoryDBReplicaSetResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // A weekly 4 hour-long window, during which maintenance might occur. It includes:

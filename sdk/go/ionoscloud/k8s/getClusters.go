@@ -11,6 +11,111 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.GetClusters(ctx, &k8s.GetClustersArgs{
+//				Filters: []k8s.GetClustersFilter{
+//					{
+//						Name:  "name",
+//						Value: "k8sClusterExample",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name and k8s version Family
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.GetClusters(ctx, &k8s.GetClustersArgs{
+//				Filters: []k8s.GetClustersFilter{
+//					{
+//						Name:  "name",
+//						Value: "k8sClusterExample",
+//					},
+//					{
+//						Name:  "k8s_version",
+//						Value: "1.27",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Retrieve private clusters only, by Name and Cluster State
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.GetServers(ctx, &compute.GetServersArgs{
+//				Filters: []compute.GetServersFilter{
+//					{
+//						Name:  "name",
+//						Value: "k8sClusterExample",
+//					},
+//					{
+//						Name:  "state",
+//						Value: "ACTIVE",
+//					},
+//					{
+//						Name:  "public",
+//						Value: "false",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetClusters(ctx *pulumi.Context, args *GetClustersArgs, opts ...pulumi.InvokeOption) (*GetClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClustersResult
@@ -23,14 +128,20 @@ func GetClusters(ctx *pulumi.Context, args *GetClustersArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getClusters.
 type GetClustersArgs struct {
+	// One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8sCluster resource **except** those containing other nested structures such as `maintenanceWindow` or `config`.
+	//
+	// **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
 	Filters []GetClustersFilter `pulumi:"filters"`
 }
 
 // A collection of values returned by getClusters.
 type GetClustersResult struct {
+	// list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
 	Clusters []GetClustersCluster `pulumi:"clusters"`
-	Entries  int                  `pulumi:"entries"`
-	Filters  []GetClustersFilter  `pulumi:"filters"`
+	// indicates the number of clusters found and added to the list after the query has been performed with the specified filters.
+	// For a full reference of all the attributes returned, check out documentation
+	Entries int                 `pulumi:"entries"`
+	Filters []GetClustersFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 }
@@ -46,6 +157,9 @@ func GetClustersOutput(ctx *pulumi.Context, args GetClustersOutputArgs, opts ...
 
 // A collection of arguments for invoking getClusters.
 type GetClustersOutputArgs struct {
+	// One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8sCluster resource **except** those containing other nested structures such as `maintenanceWindow` or `config`.
+	//
+	// **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
 	Filters GetClustersFilterArrayInput `pulumi:"filters"`
 }
 
@@ -68,10 +182,13 @@ func (o GetClustersResultOutput) ToGetClustersResultOutputWithContext(ctx contex
 	return o
 }
 
+// list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
 func (o GetClustersResultOutput) Clusters() GetClustersClusterArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersCluster { return v.Clusters }).(GetClustersClusterArrayOutput)
 }
 
+// indicates the number of clusters found and added to the list after the query has been performed with the specified filters.
+// For a full reference of all the attributes returned, check out documentation
 func (o GetClustersResultOutput) Entries() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResult) int { return v.Entries }).(pulumi.IntOutput)
 }

@@ -31,6 +31,7 @@ import (
 //			_, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
 //				Location: pulumi.String("us/las"),
 //				Size:     pulumi.Int(1),
+//				Name:     pulumi.String("IP Block Example"),
 //			})
 //			if err != nil {
 //				return err
@@ -46,7 +47,7 @@ import (
 // Resource Ipblock can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+// $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock ipblock uuid
 // ```
 type IPBlock struct {
 	pulumi.CustomResourceState

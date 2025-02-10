@@ -25,23 +25,23 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			userPassword, err := random.NewRandomPassword(ctx, "userPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			userPassword, err := random.NewPassword(ctx, "user_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewPSQLUser(ctx, "examplePgUser", &dbaas.PSQLUserArgs{
-//				ClusterId: pulumi.Any(ionoscloud_pg_cluster.Example.Id),
+//			_, err = dbaas.NewPSQLUser(ctx, "example_pg_user", &dbaas.PSQLUserArgs{
+//				ClusterId: pulumi.Any(example.Id),
 //				Username:  pulumi.String("exampleuser"),
 //				Password:  userPassword.Result,
 //			})
@@ -67,7 +67,7 @@ import (
 // The resource can be imported using the `clusterId` and the `username`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example clusterid/username
 // ```
 type PSQLUser struct {
 	pulumi.CustomResourceState

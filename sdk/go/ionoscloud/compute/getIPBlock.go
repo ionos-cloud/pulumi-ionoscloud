@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupIPBlock(ctx, &compute.LookupIPBlockArgs{
+//				Id: pulumi.StringRef("ipblock_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -83,8 +108,6 @@ func LookupIPBlock(ctx *pulumi.Context, args *LookupIPBlockArgs, opts ...pulumi.
 type LookupIPBlockArgs struct {
 	// ID of an existing Ip Block that you want to search for.
 	Id *string `pulumi:"id"`
-	// Read-Only attribute. Lists consumption detail of an individual ip
-	IpConsumers []GetIPBlockIpConsumer `pulumi:"ipConsumers"`
 	// The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
 	Location *string `pulumi:"location"`
 	// Name of an existing Ip Block that you want to search for.
@@ -96,17 +119,17 @@ type LookupIPBlockArgs struct {
 // A collection of values returned by getIPBlock.
 type LookupIPBlockResult struct {
 	// The id of Ip Block
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers []GetIPBlockIpConsumer `pulumi:"ipConsumers"`
 	// The list of IP addresses associated with this block.
 	Ips []string `pulumi:"ips"`
 	// The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location *string `pulumi:"location"`
+	Location string `pulumi:"location"`
 	// The name of Ip Block
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The number of IP addresses to reserve for this block.
-	Size *int `pulumi:"size"`
+	Size int `pulumi:"size"`
 }
 
 func LookupIPBlockOutput(ctx *pulumi.Context, args LookupIPBlockOutputArgs, opts ...pulumi.InvokeOption) LookupIPBlockResultOutput {
@@ -122,8 +145,6 @@ func LookupIPBlockOutput(ctx *pulumi.Context, args LookupIPBlockOutputArgs, opts
 type LookupIPBlockOutputArgs struct {
 	// ID of an existing Ip Block that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Read-Only attribute. Lists consumption detail of an individual ip
-	IpConsumers GetIPBlockIpConsumerArrayInput `pulumi:"ipConsumers"`
 	// The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing Ip Block that you want to search for.
@@ -152,8 +173,8 @@ func (o LookupIPBlockResultOutput) ToLookupIPBlockResultOutputWithContext(ctx co
 }
 
 // The id of Ip Block
-func (o LookupIPBlockResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupIPBlockResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupIPBlockResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIPBlockResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Read-Only attribute. Lists consumption detail of an individual ip
@@ -167,18 +188,18 @@ func (o LookupIPBlockResultOutput) Ips() pulumi.StringArrayOutput {
 }
 
 // The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-func (o LookupIPBlockResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupIPBlockResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o LookupIPBlockResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIPBlockResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // The name of Ip Block
-func (o LookupIPBlockResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupIPBlockResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupIPBlockResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIPBlockResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The number of IP addresses to reserve for this block.
-func (o LookupIPBlockResultOutput) Size() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupIPBlockResult) *int { return v.Size }).(pulumi.IntPtrOutput)
+func (o LookupIPBlockResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupIPBlockResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
 func init() {

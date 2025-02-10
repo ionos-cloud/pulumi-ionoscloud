@@ -18,6 +18,86 @@ import (
 // > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
 //
 // ## Example Usage
+//
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupRecord(ctx, &dns.LookupRecordArgs{
+//				Id:     pulumi.StringRef("record_id"),
+//				ZoneId: "zone_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupRecord(ctx, &dns.LookupRecordArgs{
+//				Name:   pulumi.StringRef("recordexample"),
+//				ZoneId: "zone_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By name with partial match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupRecord(ctx, &dns.LookupRecordArgs{
+//				Name:         pulumi.StringRef("record"),
+//				PartialMatch: pulumi.BoolRef(true),
+//				ZoneId:       "zone_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupRecord(ctx *pulumi.Context, args *LookupRecordArgs, opts ...pulumi.InvokeOption) (*LookupRecordResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRecordResult
@@ -50,10 +130,10 @@ type LookupRecordResult struct {
 	Enabled bool   `pulumi:"enabled"`
 	Fqdn    string `pulumi:"fqdn"`
 	// The UUID of the DNS Record.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of the DNS Record.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	Name         string `pulumi:"name"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
 	// The priority for the DNS Record.
 	Priority int `pulumi:"priority"`
 	// The time to live of the DNS Record.
@@ -120,13 +200,13 @@ func (o LookupRecordResultOutput) Fqdn() pulumi.StringOutput {
 }
 
 // The UUID of the DNS Record.
-func (o LookupRecordResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRecordResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupRecordResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRecordResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the DNS Record.
-func (o LookupRecordResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRecordResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupRecordResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRecordResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupRecordResultOutput) PartialMatch() pulumi.BoolPtrOutput {

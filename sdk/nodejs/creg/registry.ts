@@ -16,7 +16,6 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.creg.Registry("example", {
- *     apiSubnetAllowLists: ["1.2.3.4/32"],
  *     garbageCollectionSchedule: {
  *         days: [
  *             "Monday",
@@ -25,6 +24,8 @@ import * as utilities from "../utilities";
  *         time: "05:19:00+00:00",
  *     },
  *     location: "de/fra",
+ *     name: "container-registry-example",
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
  * });
  * ```
  *

@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.LookupNodePool(ctx, &k8s.LookupNodePoolArgs{
+//				Id:           pulumi.StringRef("k8s_nodepool_id"),
+//				K8sClusterId: "k8s_cluster_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.LookupNodePool(ctx, &k8s.LookupNodePoolArgs{
+//				Name:         pulumi.StringRef("k8s NodePool Example"),
+//				K8sClusterId: "k8s_cluster_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNodePoolResult
@@ -55,7 +107,7 @@ type LookupNodePoolResult struct {
 	// The UUID of the VDC
 	DatacenterId string `pulumi:"datacenterId"`
 	// The LAN ID of an existing LAN at the related datacenter
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// ID of the cluster this node pool is part of
 	K8sClusterId string `pulumi:"k8sClusterId"`
 	// The kubernetes version
@@ -67,7 +119,7 @@ type LookupNodePoolResult struct {
 	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 	MaintenanceWindows []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// name of the node pool
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The number of nodes in this node pool
 	NodeCount int `pulumi:"nodeCount"`
 	// The list of fixed IPs associated with this node pool
@@ -170,8 +222,8 @@ func (o LookupNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // The LAN ID of an existing LAN at the related datacenter
-func (o LookupNodePoolResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupNodePoolResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // ID of the cluster this node pool is part of
@@ -200,8 +252,8 @@ func (o LookupNodePoolResultOutput) MaintenanceWindows() GetNodePoolMaintenanceW
 }
 
 // name of the node pool
-func (o LookupNodePoolResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupNodePoolResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The number of nodes in this node pool

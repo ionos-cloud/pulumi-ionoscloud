@@ -178,18 +178,22 @@ class NatGateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=2)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_nat_gateway = ionoscloud.compute.NatGateway("exampleNatGateway",
-            datacenter_id=example_datacenter.id,
+            size=2,
+            name="IP Block Example")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_nat_gateway = ionoscloud.compute.NatGateway("example",
+            datacenter_id=example.id,
+            name="example",
             public_ips=[
                 example_ip_block.ips[0],
                 example_ip_block.ips[1],
@@ -230,18 +234,22 @@ class NatGateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=2)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_nat_gateway = ionoscloud.compute.NatGateway("exampleNatGateway",
-            datacenter_id=example_datacenter.id,
+            size=2,
+            name="IP Block Example")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_nat_gateway = ionoscloud.compute.NatGateway("example",
+            datacenter_id=example.id,
+            name="example",
             public_ips=[
                 example_ip_block.ips[0],
                 example_ip_block.ips[1],

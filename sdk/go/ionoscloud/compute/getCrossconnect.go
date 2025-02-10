@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupCrossconnect(ctx, &compute.LookupCrossconnectArgs{
+//				Id: pulumi.StringRef("private_crossconnect_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -68,11 +93,11 @@ type LookupCrossconnectResult struct {
 	// Lists datacenters that can be joined to this cross connect
 	ConnectableDatacenters []GetCrossconnectConnectableDatacenter `pulumi:"connectableDatacenters"`
 	// Description of cross connect
-	Description *string `pulumi:"description"`
+	Description string `pulumi:"description"`
 	// The UUID of the connectable datacenter
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of the connectable datacenter
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Lists LAN's joined to this cross connect
 	Peers []GetCrossconnectPeer `pulumi:"peers"`
 }
@@ -125,18 +150,18 @@ func (o LookupCrossconnectResultOutput) ConnectableDatacenters() GetCrossconnect
 }
 
 // Description of cross connect
-func (o LookupCrossconnectResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o LookupCrossconnectResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCrossconnectResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // The UUID of the connectable datacenter
-func (o LookupCrossconnectResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupCrossconnectResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCrossconnectResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the connectable datacenter
-func (o LookupCrossconnectResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupCrossconnectResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCrossconnectResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Lists LAN's joined to this cross connect

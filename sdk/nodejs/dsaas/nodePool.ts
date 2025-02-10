@@ -13,20 +13,23 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter_Example",
  *     location: "de/txl",
  *     description: "Datacenter for testing Dataplatform Cluster",
  * });
- * const exampleCluster = new ionoscloud.dsaas.Cluster("exampleCluster", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: example.id,
+ *     name: "Dataplatform_Cluster_Example",
  *     maintenanceWindows: [{
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00",
  *     }],
  *     version: "23.7",
  * });
- * const exampleNodePool = new ionoscloud.dsaas.NodePool("exampleNodePool", {
+ * const exampleNodePool = new ionoscloud.dsaas.NodePool("example", {
  *     clusterId: exampleCluster.id,
+ *     name: "Dataplatform_Node_Pool_Example",
  *     nodeCount: 1,
  *     cpuFamily: "INTEL_SKYLAKE",
  *     coresCount: 1,

@@ -18,12 +18,13 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.k8s.Cluster("example", {
- *     apiSubnetAllowLists: ["1.2.3.4/32"],
+ *     name: "k8sClusterExample",
  *     k8sVersion: "1.28.6",
  *     maintenanceWindow: {
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00Z",
  *     },
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
  *     s3Buckets: [{
  *         name: "globally_unique_bucket_name",
  *     }],
@@ -37,14 +38,17 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const testdatacenter = new ionoscloud.compute.Datacenter("testdatacenter", {
+ *     name: "example",
  *     location: "de/fra",
  *     description: "Test datacenter",
  * });
  * const k8sip = new ionoscloud.compute.IPBlock("k8sip", {
  *     location: "de/fra",
  *     size: 1,
+ *     name: "IP Block Private K8s",
  * });
  * const example = new ionoscloud.k8s.Cluster("example", {
+ *     name: "k8sClusterExample",
  *     k8sVersion: "1.28.6",
  *     maintenanceWindow: {
  *         dayOfTheWeek: "Sunday",

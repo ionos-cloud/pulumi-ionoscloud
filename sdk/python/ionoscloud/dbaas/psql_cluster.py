@@ -551,13 +551,15 @@ class PSQLCluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("examplePSQLCluster",
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
             postgres_version="12",
             instances=1,
             cores=4,
@@ -569,11 +571,11 @@ class PSQLCluster(pulumi.CustomResource):
                 "pool_mode": "session",
             },
             connections={
-                "datacenter_id": example_datacenter.id,
+                "datacenter_id": example.id,
                 "lan_id": example_lan.id,
                 "cidr": "192.168.100.1/24",
             },
-            location=example_datacenter.location,
+            location=example.location,
             display_name="PostgreSQL_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",
@@ -628,13 +630,15 @@ class PSQLCluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("examplePSQLCluster",
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
             postgres_version="12",
             instances=1,
             cores=4,
@@ -646,11 +650,11 @@ class PSQLCluster(pulumi.CustomResource):
                 "pool_mode": "session",
             },
             connections={
-                "datacenter_id": example_datacenter.id,
+                "datacenter_id": example.id,
                 "lan_id": example_lan.id,
                 "cidr": "192.168.100.1/24",
             },
-            location=example_datacenter.location,
+            location=example.location,
             display_name="PostgreSQL_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",

@@ -106,8 +106,8 @@ def get_location(feature: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_location(feature="SSD",
-        name="karlsruhe")
+    example = ionoscloud.compute.get_location(name="karlsruhe",
+        feature="SSD")
     ```
 
 
@@ -140,8 +140,8 @@ def get_location_output(feature: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_location(feature="SSD",
-        name="karlsruhe")
+    example = ionoscloud.compute.get_location(name="karlsruhe",
+        feature="SSD")
     ```
 
 

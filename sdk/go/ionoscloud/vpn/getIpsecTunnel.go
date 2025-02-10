@@ -17,6 +17,34 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpn.LookupIpsecTunnel(ctx, &vpn.LookupIpsecTunnelArgs{
+//				Id:        pulumi.StringRef("tunnel_id"),
+//				GatewayId: "gateway_id",
+//				Location:  pulumi.StringRef("gateway_location"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIpsecTunnel(ctx *pulumi.Context, args *LookupIpsecTunnelArgs, opts ...pulumi.InvokeOption) (*LookupIpsecTunnelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpsecTunnelResult
@@ -34,7 +62,7 @@ type LookupIpsecTunnelArgs struct {
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
 	Id *string `pulumi:"id"`
 	// The location of the IPSec Gateway Tunnel.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// Name of an existing IPSec Gateway Tunnel that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -48,7 +76,7 @@ type LookupIpsecTunnelResult struct {
 	GatewayId         string               `pulumi:"gatewayId"`
 	Id                string               `pulumi:"id"`
 	Ikes              []GetIpsecTunnelIke  `pulumi:"ikes"`
-	Location          string               `pulumi:"location"`
+	Location          *string              `pulumi:"location"`
 	Name              string               `pulumi:"name"`
 	PeerNetworkCidrs  []string             `pulumi:"peerNetworkCidrs"`
 	RemoteHost        string               `pulumi:"remoteHost"`
@@ -70,7 +98,7 @@ type LookupIpsecTunnelOutputArgs struct {
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The location of the IPSec Gateway Tunnel.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing IPSec Gateway Tunnel that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -122,8 +150,8 @@ func (o LookupIpsecTunnelResultOutput) Ikes() GetIpsecTunnelIkeArrayOutput {
 	return o.ApplyT(func(v LookupIpsecTunnelResult) []GetIpsecTunnelIke { return v.Ikes }).(GetIpsecTunnelIkeArrayOutput)
 }
 
-func (o LookupIpsecTunnelResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpsecTunnelResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupIpsecTunnelResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpsecTunnelResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupIpsecTunnelResultOutput) Name() pulumi.StringOutput {

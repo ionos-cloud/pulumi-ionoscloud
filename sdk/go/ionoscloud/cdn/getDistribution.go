@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cdn.LookupDistribution(ctx, &cdn.LookupDistributionArgs{
+//				Id: pulumi.StringRef("distr_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Domain
 // ```go
 // package main
@@ -96,7 +121,7 @@ type LookupDistributionResult struct {
 	CertificateId string `pulumi:"certificateId"`
 	// The domain of the distribution.
 	Domain       *string `pulumi:"domain"`
-	Id           *string `pulumi:"id"`
+	Id           string  `pulumi:"id"`
 	PartialMatch *bool   `pulumi:"partialMatch"`
 	// IP of the distribution, it has to be included on the domain DNS Zone as A record.
 	PublicEndpointV4 string `pulumi:"publicEndpointV4"`
@@ -158,8 +183,8 @@ func (o LookupDistributionResultOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDistributionResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDistributionResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDistributionResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupDistributionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDistributionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupDistributionResultOutput) PartialMatch() pulumi.BoolPtrOutput {

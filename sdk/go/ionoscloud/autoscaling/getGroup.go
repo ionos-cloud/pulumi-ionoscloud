@@ -15,6 +15,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/autoscaling"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := autoscaling.LookupGroup(ctx, &autoscaling.LookupGroupArgs{
+//				Id: pulumi.StringRef("autoscaling_group_uuid"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -63,7 +88,7 @@ type LookupGroupArgs struct {
 type LookupGroupResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Unique identifier for the resource
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Location of the datacenter. This location is the same as the one from the selected template.
 	Location string `pulumi:"location"`
 	// Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
@@ -71,7 +96,7 @@ type LookupGroupResult struct {
 	// Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
 	MinReplicaCount int `pulumi:"minReplicaCount"`
 	// The name of the Autoscaling Group.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policies              []GetGroupPolicy               `pulumi:"policies"`
 	ReplicaConfigurations []GetGroupReplicaConfiguration `pulumi:"replicaConfigurations"`
@@ -121,8 +146,8 @@ func (o LookupGroupResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // Unique identifier for the resource
-func (o LookupGroupResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Location of the datacenter. This location is the same as the one from the selected template.
@@ -141,8 +166,8 @@ func (o LookupGroupResultOutput) MinReplicaCount() pulumi.IntOutput {
 }
 
 // The name of the Autoscaling Group.
-func (o LookupGroupResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.

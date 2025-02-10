@@ -33,13 +33,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
 //				Cores:            pulumi.Int(2),
 //				Ram:              pulumi.Int(2048),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("Inline Updated"),
 //					Size:             pulumi.Int(20),
@@ -48,7 +49,7 @@ import (
 //					AvailabilityZone: pulumi.String("AUTO"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Lan:            pulumi.Any(exampleIonoscloudLan.Id),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -57,20 +58,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleVolume, err := compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//			exampleVolume, err := compute.NewVolume(ctx, "example", &compute.VolumeArgs{
 //				ServerId:         exampleServer.ID(),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:             pulumi.String("External 1"),
 //				Size:             pulumi.Int(10),
 //				DiskType:         pulumi.String("HDD"),
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				ImageName:        pulumi.String("debian:latest"),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
-//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//			_, err = compute.NewBootDeviceSelection(ctx, "example", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				ServerId:     exampleServer.ID(),
 //				BootDeviceId: exampleVolume.ID(),
 //			})
@@ -96,13 +98,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
 //				Cores:            pulumi.Int(2),
 //				Ram:              pulumi.Int(2048),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("Inline Updated"),
 //					Size:             pulumi.Int(20),
@@ -111,7 +114,7 @@ import (
 //					AvailabilityZone: pulumi.String("AUTO"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Lan:            pulumi.Any(exampleIonoscloudLan.Id),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -120,8 +123,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
-//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//			_, err = compute.NewBootDeviceSelection(ctx, "example", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				ServerId:     exampleServer.ID(),
 //				BootDeviceId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
 //					return inlineVolumeIds[0], nil
@@ -130,14 +133,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//			_, err = compute.NewVolume(ctx, "example", &compute.VolumeArgs{
 //				ServerId:         exampleServer.ID(),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:             pulumi.String("External 1"),
 //				Size:             pulumi.Int(10),
 //				DiskType:         pulumi.String("HDD"),
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				ImageName:        pulumi.String("debian:latest"),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
 //			})
 //			if err != nil {
 //				return err
@@ -161,13 +165,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
 //				Cores:            pulumi.Int(2),
 //				Ram:              pulumi.Int(2048),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("Inline Updated"),
 //					Size:             pulumi.Int(20),
@@ -176,7 +181,7 @@ import (
 //					AvailabilityZone: pulumi.String("AUTO"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Lan:            pulumi.Any(exampleIonoscloudLan.Id),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -185,7 +190,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleImage, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
 //				Name:     pulumi.StringRef("ubuntu-20.04"),
 //				Location: pulumi.StringRef("de/txl"),
 //				Type:     pulumi.StringRef("CDROM"),
@@ -193,24 +198,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
-//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//			_, err = compute.NewBootDeviceSelection(ctx, "example", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				ServerId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
 //					return inlineVolumeIds[0], nil
 //				}).(pulumi.StringOutput),
-//				BootDeviceId: pulumi.String(exampleImage.Id),
+//				BootDeviceId: pulumi.String(example.Id),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//			_, err = compute.NewVolume(ctx, "example", &compute.VolumeArgs{
 //				ServerId:         exampleServer.ID(),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:             pulumi.String("External 1"),
 //				Size:             pulumi.Int(10),
 //				DiskType:         pulumi.String("HDD"),
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				ImageName:        pulumi.String("debian:latest"),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
 //			})
 //			if err != nil {
 //				return err
@@ -234,13 +240,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
 //				Cores:            pulumi.Int(2),
 //				Ram:              pulumi.Int(2048),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("Inline volume"),
 //					Size:             pulumi.Int(20),
@@ -249,7 +256,7 @@ import (
 //					AvailabilityZone: pulumi.String("AUTO"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Lan:            pulumi.Any(exampleIonoscloudLan.Id),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -258,8 +265,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
-//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//			_, err = compute.NewBootDeviceSelection(ctx, "example", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				ServerId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
 //					return inlineVolumeIds[0], nil
 //				}).(pulumi.StringOutput),
@@ -267,14 +274,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//			_, err = compute.NewVolume(ctx, "example", &compute.VolumeArgs{
 //				ServerId:         exampleServer.ID(),
-//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				DatacenterId:     pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:             pulumi.String("External 1"),
 //				Size:             pulumi.Int(10),
 //				DiskType:         pulumi.String("HDD"),
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				ImageName:        pulumi.String("debian:latest"),
-//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				ImagePassword:    pulumi.Any(serverImagePassword.Result),
 //			})
 //			if err != nil {
 //				return err

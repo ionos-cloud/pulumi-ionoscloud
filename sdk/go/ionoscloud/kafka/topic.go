@@ -33,25 +33,28 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("example-kafka-datacenter"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example-kafka-lan"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleCluster, err := kafka.NewCluster(ctx, "exampleCluster", &kafka.ClusterArgs{
-//				Location: exampleDatacenter.Location,
+//			exampleCluster, err := kafka.NewCluster(ctx, "example", &kafka.ClusterArgs{
+//				Name:     pulumi.String("example-kafka-cluster"),
+//				Location: example.Location,
 //				Version:  pulumi.String("3.7.0"),
 //				Size:     pulumi.String("S"),
 //				Connections: &kafka.ClusterConnectionsArgs{
-//					DatacenterId: exampleDatacenter.ID(),
+//					DatacenterId: example.ID(),
 //					LanId:        exampleLan.ID(),
 //					BrokerAddresses: pulumi.StringArray{
 //						pulumi.String("192.168.1.101/24"),
@@ -63,8 +66,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = kafka.NewTopic(ctx, "exampleTopic", &kafka.TopicArgs{
+//			_, err = kafka.NewTopic(ctx, "example", &kafka.TopicArgs{
 //				ClusterId:          exampleCluster.ID(),
+//				Name:               pulumi.String("kafka-cluster-topic"),
 //				Location:           exampleCluster.Location,
 //				ReplicationFactor:  pulumi.Int(1),
 //				NumberOfPartitions: pulumi.Int(1),
@@ -85,15 +89,15 @@ import (
 // Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
 //
 // ```sh
-// $ pulumi import ionoscloud:kafka/topic:Topic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+// $ pulumi import ionoscloud:kafka/topic:Topic my_topic location:kafka cluster uuid:kafka cluster topic uuid
 // ```
 type Topic struct {
 	pulumi.CustomResourceState
 
 	// [string] ID of the Kafka Cluster that the topic belongs to.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
-	Location pulumi.StringOutput `pulumi:"location"`
+	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] The number of partitions of the topic. Partitions allow for parallel
@@ -124,9 +128,6 @@ func NewTopic(ctx *pulumi.Context,
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
 	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Topic
 	err := ctx.RegisterResource("ionoscloud:kafka/topic:Topic", name, args, &resource, opts...)
@@ -152,7 +153,7 @@ func GetTopic(ctx *pulumi.Context,
 type topicState struct {
 	// [string] ID of the Kafka Cluster that the topic belongs to.
 	ClusterId *string `pulumi:"clusterId"`
-	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
@@ -177,7 +178,7 @@ type topicState struct {
 type TopicState struct {
 	// [string] ID of the Kafka Cluster that the topic belongs to.
 	ClusterId pulumi.StringPtrInput
-	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
@@ -206,8 +207,8 @@ func (TopicState) ElementType() reflect.Type {
 type topicArgs struct {
 	// [string] ID of the Kafka Cluster that the topic belongs to.
 	ClusterId string `pulumi:"clusterId"`
-	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
-	Location string `pulumi:"location"`
+	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
 	// [int] The number of partitions of the topic. Partitions allow for parallel
@@ -232,8 +233,8 @@ type topicArgs struct {
 type TopicArgs struct {
 	// [string] ID of the Kafka Cluster that the topic belongs to.
 	ClusterId pulumi.StringInput
-	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
-	Location pulumi.StringInput
+	// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
 	// [int] The number of partitions of the topic. Partitions allow for parallel
@@ -346,9 +347,9 @@ func (o TopicOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Topic) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
-func (o TopicOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *Topic) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+// [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+func (o TopicOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] Name of the Kafka Cluster.

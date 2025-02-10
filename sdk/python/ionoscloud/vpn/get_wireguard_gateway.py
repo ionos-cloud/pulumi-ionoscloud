@@ -174,7 +174,7 @@ def get_wireguard_gateway(description: Optional[str] = None,
 
     example = ionoscloud.vpn.get_wireguard_gateway(location="de/fra",
         name="example-gateway")
-    pulumi.export("vpnWireguardGatewayPublicKey", data["vpn_wireguard_gateway"]["example"]["public_key"])
+    pulumi.export("vpnWireguardGatewayPublicKey", example_vpn_wireguard_gateway["publicKey"])
     ```
 
 
@@ -219,7 +219,7 @@ def get_wireguard_gateway_output(description: Optional[pulumi.Input[Optional[str
 
     example = ionoscloud.vpn.get_wireguard_gateway(location="de/fra",
         name="example-gateway")
-    pulumi.export("vpnWireguardGatewayPublicKey", data["vpn_wireguard_gateway"]["example"]["public_key"])
+    pulumi.export("vpnWireguardGatewayPublicKey", example_vpn_wireguard_gateway["publicKey"])
     ```
 
 

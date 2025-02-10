@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupDatacenter(ctx, &compute.LookupDatacenterArgs{
+//				Id: pulumi.StringRef("datacenter_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name & Location
 // ```go
 // package main
@@ -32,8 +57,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.LookupDatacenter(ctx, &compute.LookupDatacenterArgs{
-//				Location: pulumi.StringRef("us/las"),
 //				Name:     pulumi.StringRef("Datacenter Example"),
+//				Location: pulumi.StringRef("us/las"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -74,12 +99,12 @@ type LookupDatacenterResult struct {
 	// List of features supported by the location this data center is part of
 	Features []string `pulumi:"features"`
 	// UUID of the Virtual Data Center
-	Id            *string `pulumi:"id"`
-	Ipv6CidrBlock string  `pulumi:"ipv6CidrBlock"`
+	Id            string `pulumi:"id"`
+	Ipv6CidrBlock string `pulumi:"ipv6CidrBlock"`
 	// The regional location where the Virtual Data Center will be created
 	Location *string `pulumi:"location"`
 	// The name of the Virtual Data Center
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Boolean value representing if the data center requires extra protection e.g. two factor protection
 	SecAuthProtection bool `pulumi:"secAuthProtection"`
 	// The version of that Data Center. Gets incremented with every change
@@ -142,8 +167,8 @@ func (o LookupDatacenterResultOutput) Features() pulumi.StringArrayOutput {
 }
 
 // UUID of the Virtual Data Center
-func (o LookupDatacenterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupDatacenterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatacenterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupDatacenterResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
@@ -156,8 +181,8 @@ func (o LookupDatacenterResultOutput) Location() pulumi.StringPtrOutput {
 }
 
 // The name of the Virtual Data Center
-func (o LookupDatacenterResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupDatacenterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatacenterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Boolean value representing if the data center requires extra protection e.g. two factor protection

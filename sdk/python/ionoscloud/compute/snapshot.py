@@ -539,27 +539,30 @@ class Snapshot(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.compute.get_image(type="HDD",
+        example = ionoscloud.compute.get_image(type="HDD",
             image_alias="ubuntu:latest",
             location="us/las")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
+        example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
-            image_name=example_image.id,
-            image_password=server_image_password.result,
+            image_name=example.id,
+            image_password=server_image_password["result"],
             type="ENTERPRISE",
             volume={
                 "name": "system",
@@ -569,9 +572,10 @@ class Snapshot(pulumi.CustomResource):
                 "bus": "VIRTIO",
                 "availability_zone": "ZONE_1",
             })
-        test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
+        test_snapshot = ionoscloud.compute.Snapshot("test_snapshot",
             datacenter_id=example_datacenter.id,
-            volume_id=example_server.boot_volume)
+            volume_id=example_server.boot_volume,
+            name="Snapshot Example")
         ```
 
         ## Import
@@ -614,27 +618,30 @@ class Snapshot(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.compute.get_image(type="HDD",
+        example = ionoscloud.compute.get_image(type="HDD",
             image_alias="ubuntu:latest",
             location="us/las")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
+        example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
-            image_name=example_image.id,
-            image_password=server_image_password.result,
+            image_name=example.id,
+            image_password=server_image_password["result"],
             type="ENTERPRISE",
             volume={
                 "name": "system",
@@ -644,9 +651,10 @@ class Snapshot(pulumi.CustomResource):
                 "bus": "VIRTIO",
                 "availability_zone": "ZONE_1",
             })
-        test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
+        test_snapshot = ionoscloud.compute.Snapshot("test_snapshot",
             datacenter_id=example_datacenter.id,
-            volume_id=example_server.boot_volume)
+            volume_id=example_server.boot_volume,
+            name="Snapshot Example")
         ```
 
         ## Import

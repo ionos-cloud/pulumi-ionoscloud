@@ -349,31 +349,34 @@ class User(pulumi.CustomResource):
         import pulumi_random as random
 
         group1 = ionoscloud.compute.Group("group1",
+            name="group1",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False,
             create_k8s_cluster=True)
         group2 = ionoscloud.compute.Group("group2",
+            name="group2",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False,
             create_k8s_cluster=True)
         group3 = ionoscloud.compute.Group("group3",
+            name="group3",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False)
-        user_password = random.RandomPassword("userPassword",
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
             email="unique@email.com",
-            password=user_password.result,
+            password=user_password["result"],
             administrator=False,
             force_sec_auth=False,
             active=True,
@@ -422,31 +425,34 @@ class User(pulumi.CustomResource):
         import pulumi_random as random
 
         group1 = ionoscloud.compute.Group("group1",
+            name="group1",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False,
             create_k8s_cluster=True)
         group2 = ionoscloud.compute.Group("group2",
+            name="group2",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False,
             create_k8s_cluster=True)
         group3 = ionoscloud.compute.Group("group3",
+            name="group3",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
             access_activity_log=False)
-        user_password = random.RandomPassword("userPassword",
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
             email="unique@email.com",
-            password=user_password.result,
+            password=user_password["result"],
             administrator=False,
             force_sec_auth=False,
             active=True,

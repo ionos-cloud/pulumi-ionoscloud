@@ -14,21 +14,24 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
  *     availabilityZone: "ZONE_1",
@@ -46,9 +49,10 @@ import * as utilities from "../utilities";
  *         firewallActive: true,
  *     },
  * });
- * const exampleBalancer = new ionoscloud.compute.Balancer("exampleBalancer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleBalancer = new ionoscloud.compute.Balancer("example", {
+ *     datacenterId: example.id,
  *     nicIds: [exampleServer.primaryNic],
+ *     name: "Load Balancer Example",
  *     dhcp: true,
  * });
  * ```

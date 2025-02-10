@@ -165,6 +165,7 @@ class Zone(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
+            name="example.com",
             description="description",
             enabled=False)
         ```
@@ -209,6 +210,7 @@ class Zone(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
+            name="example.com",
             description="description",
             enabled=False)
         ```

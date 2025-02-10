@@ -20,6 +20,11 @@ func GetEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:endpoint")
 }
 
+// This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+func GetInsecure(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "ionoscloud:insecure")
+}
+
 // IonosCloud password for API operations. If token is provided, token is preferred
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:password")

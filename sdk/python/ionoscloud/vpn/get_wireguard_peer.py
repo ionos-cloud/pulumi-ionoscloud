@@ -157,7 +157,7 @@ def get_wireguard_peer(gateway_id: Optional[str] = None,
     example = ionoscloud.vpn.get_wireguard_peer(location="de/fra",
         gateway_id="example-gateway",
         name="example-peer")
-    pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
+    pulumi.export("vpnWireguardPeerPublicKey", example_vpn_wireguard_peer["publicKey"])
     ```
 
 
@@ -201,7 +201,7 @@ def get_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None,
     example = ionoscloud.vpn.get_wireguard_peer(location="de/fra",
         gateway_id="example-gateway",
         name="example-peer")
-    pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
+    pulumi.export("vpnWireguardPeerPublicKey", example_vpn_wireguard_peer["publicKey"])
     ```
 
 

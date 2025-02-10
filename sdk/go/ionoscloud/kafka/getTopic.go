@@ -17,6 +17,65 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/kafka"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kafka.LookupTopic(ctx, &kafka.LookupTopicArgs{
+//				Id:        pulumi.StringRef("your_kafka_cluster_topic_id"),
+//				ClusterId: "your_kafka_cluster_id",
+//				Location:  "your_kafka_cluster_location",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+//
+// Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+// this data source is called.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/kafka"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kafka.LookupTopic(ctx, &kafka.LookupTopicArgs{
+//				Name:      pulumi.StringRef("kafka-cluster-topic"),
+//				ClusterId: "your_kafka_cluster_id",
+//				Location:  "location_of_kafka_cluster",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupTopic(ctx *pulumi.Context, args *LookupTopicArgs, opts ...pulumi.InvokeOption) (*LookupTopicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTopicResult

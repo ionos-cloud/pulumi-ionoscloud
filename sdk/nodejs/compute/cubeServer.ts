@@ -20,22 +20,27 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleTemplate = ionoscloud.compute.getTemplate({
+ * const example = ionoscloud.compute.getTemplate({
  *     name: "CUBES XS",
  * });
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {location: "de/txl"});
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const exampleCubeServer = new ionoscloud.compute.CubeServer("exampleCubeServer", {
+ * const exampleCubeServer = new ionoscloud.compute.CubeServer("example", {
+ *     name: "Server Example",
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
- *     templateUuid: exampleTemplate.then(exampleTemplate => exampleTemplate.id),
+ *     templateUuid: example.then(example => example.id),
  *     imagePassword: serverImagePassword.result,
  *     datacenterId: exampleDatacenter.id,
  *     volume: {

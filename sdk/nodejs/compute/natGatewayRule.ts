@@ -15,21 +15,25 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("exampleIPBlock", {
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
  *     location: "us/las",
  *     size: 2,
+ *     name: "IP Block Example",
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const exampleNatGateway = new ionoscloud.compute.NatGateway("exampleNatGateway", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleNatGateway = new ionoscloud.compute.NatGateway("example", {
+ *     datacenterId: example.id,
+ *     name: "example",
  *     publicIps: [
  *         exampleIPBlock.ips[0],
  *         exampleIPBlock.ips[1],
@@ -39,9 +43,10 @@ import * as utilities from "../utilities";
  *         gatewayIps: ["10.11.2.5"],
  *     }],
  * });
- * const exampleNatGatewayRule = new ionoscloud.compute.NatGatewayRule("exampleNatGatewayRule", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleNatGatewayRule = new ionoscloud.compute.NatGatewayRule("example", {
+ *     datacenterId: example.id,
  *     natgatewayId: exampleNatGateway.id,
+ *     name: "example",
  *     type: "SNAT",
  *     protocol: "TCP",
  *     sourceSubnet: "10.0.1.0/24",

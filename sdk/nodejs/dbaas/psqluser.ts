@@ -17,13 +17,13 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const userPassword = new random.RandomPassword("userPassword", {
+ * const userPassword = new random.index.Password("user_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
  * });
- * const examplePgUser = new ionoscloud.dbaas.PSQLUser("examplePgUser", {
- *     clusterId: ionoscloud_pg_cluster.example.id,
+ * const examplePgUser = new ionoscloud.dbaas.PSQLUser("example_pg_user", {
+ *     clusterId: example.id,
  *     username: "exampleuser",
  *     password: userPassword.result,
  * });

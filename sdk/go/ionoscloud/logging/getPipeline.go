@@ -18,6 +18,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/logging"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := logging.LookupPipeline(ctx, &logging.LookupPipelineArgs{
+//				Location: pulumi.StringRef("de/txl"),
+//				Id:       pulumi.StringRef("pipeline_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By name
 // ```go
 // package main
@@ -70,7 +96,7 @@ type LookupPipelineResult struct {
 	// The address of the client's grafana instance.
 	GrafanaAddress string `pulumi:"grafanaAddress"`
 	// The UUID of the Logging pipeline.
-	Id       *string `pulumi:"id"`
+	Id       string  `pulumi:"id"`
 	Location *string `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs []GetPipelineLog `pulumi:"logs"`
@@ -124,8 +150,8 @@ func (o LookupPipelineResultOutput) GrafanaAddress() pulumi.StringOutput {
 }
 
 // The UUID of the Logging pipeline.
-func (o LookupPipelineResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPipelineResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupPipelineResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPipelineResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupPipelineResultOutput) Location() pulumi.StringPtrOutput {

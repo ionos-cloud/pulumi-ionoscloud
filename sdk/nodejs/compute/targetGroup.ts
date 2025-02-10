@@ -16,40 +16,41 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.compute.TargetGroup("example", {
+ *     name: "Target Group Example",
  *     algorithm: "ROUND_ROBIN",
- *     healthCheck: {
- *         checkInterval: 50000,
- *         checkTimeout: 5000,
- *         retries: 2,
- *     },
- *     httpHealthCheck: {
- *         matchType: "STATUS_CODE",
- *         method: "GET",
- *         negate: true,
- *         path: "/.",
- *         regex: true,
- *         response: "200",
- *     },
  *     protocol: "HTTP",
  *     protocolVersion: "HTTP1",
  *     targets: [
  *         {
- *             healthCheckEnabled: true,
  *             ip: "22.231.2.2",
- *             maintenanceEnabled: false,
  *             port: 8080,
- *             proxyProtocol: "v2ssl",
  *             weight: 1,
+ *             proxyProtocol: "v2ssl",
+ *             healthCheckEnabled: true,
+ *             maintenanceEnabled: false,
  *         },
  *         {
- *             healthCheckEnabled: false,
  *             ip: "22.231.2.3",
- *             maintenanceEnabled: false,
  *             port: 8081,
- *             proxyProtocol: "v2",
  *             weight: 124,
+ *             proxyProtocol: "v2",
+ *             healthCheckEnabled: false,
+ *             maintenanceEnabled: false,
  *         },
  *     ],
+ *     healthCheck: {
+ *         checkTimeout: 5000,
+ *         checkInterval: 50000,
+ *         retries: 2,
+ *     },
+ *     httpHealthCheck: {
+ *         path: "/.",
+ *         method: "GET",
+ *         matchType: "STATUS_CODE",
+ *         response: "200",
+ *         regex: true,
+ *         negate: true,
+ *     },
  * });
  * ```
  *

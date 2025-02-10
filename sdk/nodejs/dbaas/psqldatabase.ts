@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const examplePgDatabase = new ionoscloud.dbaas.PSQLDatabase("examplePgDatabase", {
- *     clusterId: ionoscloud_pg_cluster.example.id,
+ * const examplePgDatabase = new ionoscloud.dbaas.PSQLDatabase("example_pg_database", {
+ *     clusterId: example.id,
+ *     name: "exampledatabase",
  *     owner: "exampleuser",
  * });
  * ```

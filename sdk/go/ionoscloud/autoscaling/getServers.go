@@ -12,6 +12,32 @@ import (
 )
 
 // The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/autoscaling"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := autoscaling.GetServers(ctx, &autoscaling.GetServersArgs{
+//				GroupId: "autoscaling_group_uuid",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetServers(ctx *pulumi.Context, args *GetServersArgs, opts ...pulumi.InvokeOption) (*GetServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServersResult

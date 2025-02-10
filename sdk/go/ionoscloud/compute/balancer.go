@@ -22,14 +22,15 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -37,22 +38,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     example.ID(),
 //				Cores:            pulumi.Int(1),
 //				Ram:              pulumi.Int(1024),
 //				AvailabilityZone: pulumi.String("ZONE_1"),
@@ -73,11 +76,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewBalancer(ctx, "exampleBalancer", &compute.BalancerArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = compute.NewBalancer(ctx, "example", &compute.BalancerArgs{
+//				DatacenterId: example.ID(),
 //				NicIds: pulumi.StringArray{
 //					exampleServer.PrimaryNic,
 //				},
+//				Name: pulumi.String("Load Balancer Example"),
 //				Dhcp: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -102,7 +106,7 @@ import (
 // Resource Load Balancer can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/balancer:Balancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+// $ pulumi import ionoscloud:compute/balancer:Balancer myloadbalancer datacenter uuid/loadbalancer uuid
 // ```
 type Balancer struct {
 	pulumi.CustomResourceState

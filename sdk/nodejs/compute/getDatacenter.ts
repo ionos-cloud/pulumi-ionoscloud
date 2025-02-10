@@ -20,8 +20,8 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getDatacenter({
- *     location: "us/las",
  *     name: "Datacenter Example",
+ *     location: "us/las",
  * });
  * ```
  */
@@ -107,8 +107,8 @@ export interface GetDatacenterResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getDatacenter({
- *     location: "us/las",
  *     name: "Datacenter Example",
+ *     location: "us/las",
  * });
  * ```
  */

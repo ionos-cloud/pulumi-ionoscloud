@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := dns.NewZone(ctx, "example", &dns.ZoneArgs{
+//				Name:        pulumi.String("example.com"),
 //				Description: pulumi.String("description"),
 //				Enabled:     pulumi.Bool(false),
 //			})
@@ -39,6 +40,7 @@ import (
 //			}
 //			_, err = dns.NewRecord(ctx, "recordexample", &dns.RecordArgs{
 //				ZoneId:   example.ID(),
+//				Name:     pulumi.String("recordexample"),
 //				Type:     pulumi.String("CNAME"),
 //				Content:  pulumi.String("1.2.3.4"),
 //				Ttl:      pulumi.Int(2000),
@@ -67,7 +69,7 @@ import (
 // The resource can be imported using the `zone_id` and the `record_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
+// $ pulumi import ionoscloud:dns/record:Record example zone_id/record_id
 // ```
 type Record struct {
 	pulumi.CustomResourceState

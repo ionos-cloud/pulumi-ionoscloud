@@ -212,13 +212,14 @@ class AutoCertificateProvider(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.cert.AutoCertificateProvider("example",
+            name="Let's Encrypt",
             email="user@example.com",
+            location="de/fra",
+            server="https://acme-v02.api.letsencrypt.org/directory",
             external_account_binding={
                 "key_id": "some-key-id",
                 "key_secret": "secret",
-            },
-            location="de/fra",
-            server="https://acme-v02.api.letsencrypt.org/directory")
+            })
         ```
 
         ## Import
@@ -253,13 +254,14 @@ class AutoCertificateProvider(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.cert.AutoCertificateProvider("example",
+            name="Let's Encrypt",
             email="user@example.com",
+            location="de/fra",
+            server="https://acme-v02.api.letsencrypt.org/directory",
             external_account_binding={
                 "key_id": "some-key-id",
                 "key_secret": "secret",
-            },
-            location="de/fra",
-            server="https://acme-v02.api.letsencrypt.org/directory")
+            })
         ```
 
         ## Import

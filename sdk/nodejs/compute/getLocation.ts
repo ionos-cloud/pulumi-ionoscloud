@@ -18,8 +18,8 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getLocation({
- *     feature: "SSD",
  *     name: "karlsruhe",
+ *     feature: "SSD",
  * });
  * ```
  */
@@ -77,8 +77,8 @@ export interface GetLocationResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getLocation({
- *     feature: "SSD",
  *     name: "karlsruhe",
+ *     feature: "SSD",
  * });
  * ```
  */

@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetServers(ctx, &compute.GetServersArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Filters: []compute.GetServersFilter{
 //					{
 //						Name:  "name",
@@ -60,7 +60,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetServers(ctx, &compute.GetServersArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Filters: []compute.GetServersFilter{
 //					{
 //						Name:  "cpu_family",
@@ -91,7 +91,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetServers(ctx, &compute.GetServersArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Filters: []compute.GetServersFilter{
 //					{
 //						Name:  "name",

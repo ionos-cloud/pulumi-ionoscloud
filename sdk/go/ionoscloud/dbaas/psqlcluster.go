@@ -30,21 +30,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewPSQLCluster(ctx, "examplePSQLCluster", &dbaas.PSQLClusterArgs{
+//			_, err = dbaas.NewPSQLCluster(ctx, "example", &dbaas.PSQLClusterArgs{
 //				PostgresVersion: pulumi.String("12"),
 //				Instances:       pulumi.Int(1),
 //				Cores:           pulumi.Int(4),
@@ -56,11 +58,11 @@ import (
 //					PoolMode: pulumi.String("session"),
 //				},
 //				Connections: &dbaas.PSQLClusterConnectionsArgs{
-//					DatacenterId: exampleDatacenter.ID(),
+//					DatacenterId: example.ID(),
 //					LanId:        exampleLan.ID(),
 //					Cidr:         pulumi.String("192.168.100.1/24"),
 //				},
-//				Location:    exampleDatacenter.Location,
+//				Location:    example.Location,
 //				DisplayName: pulumi.String("PostgreSQL_cluster"),
 //				MaintenanceWindow: &dbaas.PSQLClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
@@ -86,7 +88,7 @@ import (
 // Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+// $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser cluster uuid
 // ```
 type PSQLCluster struct {
 	pulumi.CustomResourceState
@@ -111,7 +113,7 @@ type PSQLCluster struct {
 	Instances pulumi.IntOutput `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringOutput `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringOutput `pulumi:"postgresVersion"`
@@ -205,7 +207,7 @@ type psqlclusterState struct {
 	Instances *int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location *string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion *string `pulumi:"postgresVersion"`
@@ -240,7 +242,7 @@ type PSQLClusterState struct {
 	Instances pulumi.IntPtrInput
 	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringPtrInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
 	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringPtrInput
@@ -277,7 +279,7 @@ type psqlclusterArgs struct {
 	Instances int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion string `pulumi:"postgresVersion"`
@@ -311,7 +313,7 @@ type PSQLClusterArgs struct {
 	Instances pulumi.IntInput
 	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
 	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringInput
@@ -462,7 +464,7 @@ func (o PSQLClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 func (o PSQLClusterOutput) MaintenanceWindow() PSQLClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(PSQLClusterMaintenanceWindowOutput)
 }

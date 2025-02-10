@@ -257,7 +257,8 @@ class AutoCertificate(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_auto_certificate_provider = ionoscloud.cert.AutoCertificateProvider("exampleAutoCertificateProvider",
+        example = ionoscloud.cert.AutoCertificateProvider("example",
+            name="Let's Encrypt",
             email="user@example.com",
             location="de/fra",
             server="https://acme-v02.api.letsencrypt.org/directory",
@@ -265,11 +266,12 @@ class AutoCertificate(pulumi.CustomResource):
                 "key_id": "some-key-id",
                 "key_secret": "secret",
             })
-        example_auto_certificate = ionoscloud.cert.AutoCertificate("exampleAutoCertificate",
-            provider_id=example_auto_certificate_provider.id,
+        example_auto_certificate = ionoscloud.cert.AutoCertificate("example",
+            provider_id=example.id,
             common_name="www.example.com",
-            location=example_auto_certificate_provider.location,
+            location=example.location,
             key_algorithm="rsa4096",
+            name="My Auto renewed certificate",
             subject_alternative_names=["app.example.com"])
         ```
 
@@ -305,7 +307,8 @@ class AutoCertificate(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_auto_certificate_provider = ionoscloud.cert.AutoCertificateProvider("exampleAutoCertificateProvider",
+        example = ionoscloud.cert.AutoCertificateProvider("example",
+            name="Let's Encrypt",
             email="user@example.com",
             location="de/fra",
             server="https://acme-v02.api.letsencrypt.org/directory",
@@ -313,11 +316,12 @@ class AutoCertificate(pulumi.CustomResource):
                 "key_id": "some-key-id",
                 "key_secret": "secret",
             })
-        example_auto_certificate = ionoscloud.cert.AutoCertificate("exampleAutoCertificate",
-            provider_id=example_auto_certificate_provider.id,
+        example_auto_certificate = ionoscloud.cert.AutoCertificate("example",
+            provider_id=example.id,
             common_name="www.example.com",
-            location=example_auto_certificate_provider.location,
+            location=example.location,
             key_algorithm="rsa4096",
+            name="My Auto renewed certificate",
             subject_alternative_names=["app.example.com"])
         ```
 

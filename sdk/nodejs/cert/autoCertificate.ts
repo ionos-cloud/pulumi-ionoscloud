@@ -13,7 +13,8 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleAutoCertificateProvider = new ionoscloud.cert.AutoCertificateProvider("exampleAutoCertificateProvider", {
+ * const example = new ionoscloud.cert.AutoCertificateProvider("example", {
+ *     name: "Let's Encrypt",
  *     email: "user@example.com",
  *     location: "de/fra",
  *     server: "https://acme-v02.api.letsencrypt.org/directory",
@@ -22,11 +23,12 @@ import * as utilities from "../utilities";
  *         keySecret: "secret",
  *     },
  * });
- * const exampleAutoCertificate = new ionoscloud.cert.AutoCertificate("exampleAutoCertificate", {
- *     providerId: exampleAutoCertificateProvider.id,
+ * const exampleAutoCertificate = new ionoscloud.cert.AutoCertificate("example", {
+ *     providerId: example.id,
  *     commonName: "www.example.com",
- *     location: exampleAutoCertificateProvider.location,
+ *     location: example.location,
  *     keyAlgorithm: "rsa4096",
+ *     name: "My Auto renewed certificate",
  *     subjectAlternativeNames: ["app.example.com"],
  * });
  * ```

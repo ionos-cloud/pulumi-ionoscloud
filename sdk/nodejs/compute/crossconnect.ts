@@ -22,17 +22,28 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const crossConnectTestResource = new ionoscloud.compute.Crossconnect("crossConnectTestResource", {description: "CrossConnectTestResource"});
- * const dc1 = new ionoscloud.compute.Datacenter("dc1", {location: "de/txl"});
- * const dc2 = new ionoscloud.compute.Datacenter("dc2", {location: "de/txl"});
+ * const crossConnectTestResource = new ionoscloud.compute.Crossconnect("CrossConnectTestResource", {
+ *     name: "CrossConnectTestResource",
+ *     description: "CrossConnectTestResource",
+ * });
+ * const dc1 = new ionoscloud.compute.Datacenter("dc1", {
+ *     location: "de/txl",
+ *     name: "dc1",
+ * });
+ * const dc2 = new ionoscloud.compute.Datacenter("dc2", {
+ *     location: "de/txl",
+ *     name: "dc2",
+ * });
  * const dc1lan = new ionoscloud.compute.Lan("dc1lan", {
  *     datacenterId: dc1.id,
  *     "public": false,
+ *     name: "dc1lan",
  *     pcc: crossConnectTestResource.id,
  * });
  * const dc2lan = new ionoscloud.compute.Lan("dc2lan", {
  *     datacenterId: dc2.id,
  *     "public": false,
+ *     name: "dc2lan",
  *     pcc: crossConnectTestResource.id,
  * });
  * ```

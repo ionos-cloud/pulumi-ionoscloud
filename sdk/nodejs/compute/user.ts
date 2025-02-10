@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  * import * as random from "@pulumi/random";
  *
  * const group1 = new ionoscloud.compute.Group("group1", {
+ *     name: "group1",
  *     createDatacenter: true,
  *     createSnapshot: true,
  *     reserveIp: true,
@@ -22,6 +23,7 @@ import * as utilities from "../utilities";
  *     createK8sCluster: true,
  * });
  * const group2 = new ionoscloud.compute.Group("group2", {
+ *     name: "group2",
  *     createDatacenter: true,
  *     createSnapshot: true,
  *     reserveIp: true,
@@ -29,12 +31,13 @@ import * as utilities from "../utilities";
  *     createK8sCluster: true,
  * });
  * const group3 = new ionoscloud.compute.Group("group3", {
+ *     name: "group3",
  *     createDatacenter: true,
  *     createSnapshot: true,
  *     reserveIp: true,
  *     accessActivityLog: false,
  * });
- * const userPassword = new random.RandomPassword("userPassword", {
+ * const userPassword = new random.index.Password("user_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",

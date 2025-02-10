@@ -17,6 +17,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nlb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nlb.LookupBalancer(ctx, &nlb.LookupBalancerArgs{
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
+//				Id:           pulumi.StringRef("networkloadbalancer_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -31,7 +57,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nlb.LookupBalancer(ctx, &nlb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("Network Load Balancer Name"),
 //			}, nil)
 //			if err != nil {
@@ -72,7 +98,7 @@ type LookupBalancerResult struct {
 	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlogs []GetBalancerFlowlog `pulumi:"flowlogs"`
 	// Id of that Network Load Balancer
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
 	Ips []string `pulumi:"ips"`
 	// Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
@@ -81,7 +107,7 @@ type LookupBalancerResult struct {
 	ListenerLan   int    `pulumi:"listenerLan"`
 	LoggingFormat string `pulumi:"loggingFormat"`
 	// Specifies the name of the flow log.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Id of the balanced private target LAN. (outbound)
 	TargetLan int `pulumi:"targetLan"`
 }
@@ -141,8 +167,8 @@ func (o LookupBalancerResultOutput) Flowlogs() GetBalancerFlowlogArrayOutput {
 }
 
 // Id of that Network Load Balancer
-func (o LookupBalancerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupBalancerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBalancerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
@@ -165,8 +191,8 @@ func (o LookupBalancerResultOutput) LoggingFormat() pulumi.StringOutput {
 }
 
 // Specifies the name of the flow log.
-func (o LookupBalancerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupBalancerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBalancerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Id of the balanced private target LAN. (outbound)

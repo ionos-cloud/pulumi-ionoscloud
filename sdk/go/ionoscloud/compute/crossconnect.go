@@ -34,7 +34,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			crossConnectTestResource, err := compute.NewCrossconnect(ctx, "crossConnectTestResource", &compute.CrossconnectArgs{
+//			crossConnectTestResource, err := compute.NewCrossconnect(ctx, "CrossConnectTestResource", &compute.CrossconnectArgs{
+//				Name:        pulumi.String("CrossConnectTestResource"),
 //				Description: pulumi.String("CrossConnectTestResource"),
 //			})
 //			if err != nil {
@@ -42,12 +43,14 @@ import (
 //			}
 //			dc1, err := compute.NewDatacenter(ctx, "dc1", &compute.DatacenterArgs{
 //				Location: pulumi.String("de/txl"),
+//				Name:     pulumi.String("dc1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			dc2, err := compute.NewDatacenter(ctx, "dc2", &compute.DatacenterArgs{
 //				Location: pulumi.String("de/txl"),
+//				Name:     pulumi.String("dc2"),
 //			})
 //			if err != nil {
 //				return err
@@ -55,6 +58,7 @@ import (
 //			_, err = compute.NewLan(ctx, "dc1lan", &compute.LanArgs{
 //				DatacenterId: dc1.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("dc1lan"),
 //				Pcc:          crossConnectTestResource.ID(),
 //			})
 //			if err != nil {
@@ -63,6 +67,7 @@ import (
 //			_, err = compute.NewLan(ctx, "dc2lan", &compute.LanArgs{
 //				DatacenterId: dc2.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("dc2lan"),
 //				Pcc:          crossConnectTestResource.ID(),
 //			})
 //			if err != nil {
@@ -79,7 +84,7 @@ import (
 // A Cross Connect resource can be imported using its `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
+// $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
 // ```
 //
 // This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.

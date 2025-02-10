@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupCubeServer(ctx, &compute.LookupCubeServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("server_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupCubeServer(ctx, &compute.LookupCubeServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("Server Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCubeServer(ctx *pulumi.Context, args *LookupCubeServerArgs, opts ...pulumi.InvokeOption) (*LookupCubeServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCubeServerResult
@@ -53,13 +105,17 @@ type LookupCubeServerResult struct {
 	CpuFamily string               `pulumi:"cpuFamily"`
 	// The id of the datacenter
 	DatacenterId string `pulumi:"datacenterId"`
+	// The hostname of the server
+	Hostname string `pulumi:"hostname"`
 	// Id of the firewall rule
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Name of the firewall rule
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// list of
 	Nics []GetCubeServerNic `pulumi:"nics"`
 	Ram  int                `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid *string `pulumi:"templateUuid"`
 	Token        string  `pulumi:"token"`
@@ -146,14 +202,19 @@ func (o LookupCubeServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCubeServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The hostname of the server
+func (o LookupCubeServerResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCubeServerResult) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // Id of the firewall rule
-func (o LookupCubeServerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCubeServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupCubeServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCubeServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Name of the firewall rule
-func (o LookupCubeServerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCubeServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupCubeServerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCubeServerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // list of
@@ -163,6 +224,11 @@ func (o LookupCubeServerResultOutput) Nics() GetCubeServerNicArrayOutput {
 
 func (o LookupCubeServerResultOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCubeServerResult) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o LookupCubeServerResultOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupCubeServerResult) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource

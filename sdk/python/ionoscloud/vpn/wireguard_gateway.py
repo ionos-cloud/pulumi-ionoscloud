@@ -369,13 +369,19 @@ class WireguardGateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        ipblock_example = ionoscloud.compute.IPBlock("ipblockExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="datacenter_example",
+            location="de/fra")
+        ipblock_example = ionoscloud.compute.IPBlock("ipblock_example",
             location="de/fra",
-            size=1)
-        lan_example = ionoscloud.compute.Lan("lanExample", datacenter_id=datacenter_example.id)
+            size=1,
+            name="ipblock_example")
+        lan_example = ionoscloud.compute.Lan("lan_example",
+            name="lan_example",
+            datacenter_id=datacenter_example.id)
         gateway = ionoscloud.vpn.WireguardGateway("gateway",
             location="de/fra",
+            name="gateway_example",
             description="description",
             private_key="private",
             gateway_ip=ipblock_example.ips[0],
@@ -424,13 +430,19 @@ class WireguardGateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        ipblock_example = ionoscloud.compute.IPBlock("ipblockExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="datacenter_example",
+            location="de/fra")
+        ipblock_example = ionoscloud.compute.IPBlock("ipblock_example",
             location="de/fra",
-            size=1)
-        lan_example = ionoscloud.compute.Lan("lanExample", datacenter_id=datacenter_example.id)
+            size=1,
+            name="ipblock_example")
+        lan_example = ionoscloud.compute.Lan("lan_example",
+            name="lan_example",
+            datacenter_id=datacenter_example.id)
         gateway = ionoscloud.vpn.WireguardGateway("gateway",
             location="de/fra",
+            name="gateway_example",
             description="description",
             private_key="private",
             gateway_ip=ipblock_example.ips[0],

@@ -22,14 +22,15 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -37,22 +38,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
-//				Location: exampleDatacenter.Location,
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: example.Location,
 //				Size:     pulumi.Int(2),
+//				Name:     pulumi.String("IP Block Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     example.ID(),
 //				Cores:            pulumi.Int(1),
 //				Ram:              pulumi.Int(1024),
 //				AvailabilityZone: pulumi.String("ZONE_1"),
@@ -73,21 +76,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleNic, err := compute.NewNic(ctx, "exampleNic", &compute.NicArgs{
-//				DatacenterId:   exampleDatacenter.ID(),
+//			exampleNic, err := compute.NewNic(ctx, "example", &compute.NicArgs{
+//				DatacenterId:   example.ID(),
 //				ServerId:       exampleServer.ID(),
 //				Lan:            pulumi.Int(2),
 //				Dhcp:           pulumi.Bool(true),
 //				FirewallActive: pulumi.Bool(true),
+//				Name:           pulumi.String("Nic Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewFirewall(ctx, "exampleFirewall", &compute.FirewallArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = compute.NewFirewall(ctx, "example", &compute.FirewallArgs{
+//				DatacenterId: example.ID(),
 //				ServerId:     exampleServer.ID(),
 //				NicId:        exampleNic.ID(),
 //				Protocol:     pulumi.String("ICMP"),
+//				Name:         pulumi.String("Firewall Example"),
 //				SourceMac:    pulumi.String("00:0a:95:9d:68:16"),
 //				SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
 //					return ips[0], nil
@@ -113,7 +118,7 @@ import (
 // Resource Firewall can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
+// $ pulumi import ionoscloud:compute/firewall:Firewall myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
 // ```
 type Firewall struct {
 	pulumi.CustomResourceState

@@ -22,6 +22,42 @@ import * as utilities from "../utilities";
  *     name: "K8s Cluster Example",
  * });
  * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
  */
 export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     args = args || {};
@@ -174,6 +210,42 @@ export interface GetClusterResult {
  *
  * const example = ionoscloud.k8s.getCluster({
  *     name: "K8s Cluster Example",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
  * });
  * ```
  */

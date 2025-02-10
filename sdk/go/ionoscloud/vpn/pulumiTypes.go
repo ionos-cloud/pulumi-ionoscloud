@@ -143,6 +143,162 @@ func (o IpsecGatewayConnectionArrayOutput) Index(i pulumi.IntInput) IpsecGateway
 	}).(IpsecGatewayConnectionOutput)
 }
 
+type IpsecGatewayMaintenanceWindow struct {
+	// [string] The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// IpsecGatewayMaintenanceWindowInput is an input type that accepts IpsecGatewayMaintenanceWindowArgs and IpsecGatewayMaintenanceWindowOutput values.
+// You can construct a concrete instance of `IpsecGatewayMaintenanceWindowInput` via:
+//
+//	IpsecGatewayMaintenanceWindowArgs{...}
+type IpsecGatewayMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToIpsecGatewayMaintenanceWindowOutput() IpsecGatewayMaintenanceWindowOutput
+	ToIpsecGatewayMaintenanceWindowOutputWithContext(context.Context) IpsecGatewayMaintenanceWindowOutput
+}
+
+type IpsecGatewayMaintenanceWindowArgs struct {
+	// [string] The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (IpsecGatewayMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i IpsecGatewayMaintenanceWindowArgs) ToIpsecGatewayMaintenanceWindowOutput() IpsecGatewayMaintenanceWindowOutput {
+	return i.ToIpsecGatewayMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i IpsecGatewayMaintenanceWindowArgs) ToIpsecGatewayMaintenanceWindowOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpsecGatewayMaintenanceWindowOutput)
+}
+
+func (i IpsecGatewayMaintenanceWindowArgs) ToIpsecGatewayMaintenanceWindowPtrOutput() IpsecGatewayMaintenanceWindowPtrOutput {
+	return i.ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i IpsecGatewayMaintenanceWindowArgs) ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpsecGatewayMaintenanceWindowOutput).ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(ctx)
+}
+
+// IpsecGatewayMaintenanceWindowPtrInput is an input type that accepts IpsecGatewayMaintenanceWindowArgs, IpsecGatewayMaintenanceWindowPtr and IpsecGatewayMaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `IpsecGatewayMaintenanceWindowPtrInput` via:
+//
+//	        IpsecGatewayMaintenanceWindowArgs{...}
+//
+//	or:
+//
+//	        nil
+type IpsecGatewayMaintenanceWindowPtrInput interface {
+	pulumi.Input
+
+	ToIpsecGatewayMaintenanceWindowPtrOutput() IpsecGatewayMaintenanceWindowPtrOutput
+	ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(context.Context) IpsecGatewayMaintenanceWindowPtrOutput
+}
+
+type ipsecGatewayMaintenanceWindowPtrType IpsecGatewayMaintenanceWindowArgs
+
+func IpsecGatewayMaintenanceWindowPtr(v *IpsecGatewayMaintenanceWindowArgs) IpsecGatewayMaintenanceWindowPtrInput {
+	return (*ipsecGatewayMaintenanceWindowPtrType)(v)
+}
+
+func (*ipsecGatewayMaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i *ipsecGatewayMaintenanceWindowPtrType) ToIpsecGatewayMaintenanceWindowPtrOutput() IpsecGatewayMaintenanceWindowPtrOutput {
+	return i.ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i *ipsecGatewayMaintenanceWindowPtrType) ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpsecGatewayMaintenanceWindowPtrOutput)
+}
+
+type IpsecGatewayMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (IpsecGatewayMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o IpsecGatewayMaintenanceWindowOutput) ToIpsecGatewayMaintenanceWindowOutput() IpsecGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o IpsecGatewayMaintenanceWindowOutput) ToIpsecGatewayMaintenanceWindowOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o IpsecGatewayMaintenanceWindowOutput) ToIpsecGatewayMaintenanceWindowPtrOutput() IpsecGatewayMaintenanceWindowPtrOutput {
+	return o.ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (o IpsecGatewayMaintenanceWindowOutput) ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IpsecGatewayMaintenanceWindow) *IpsecGatewayMaintenanceWindow {
+		return &v
+	}).(IpsecGatewayMaintenanceWindowPtrOutput)
+}
+
+// [string] The name of the week day.
+func (o IpsecGatewayMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsecGatewayMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o IpsecGatewayMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v IpsecGatewayMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type IpsecGatewayMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+
+func (IpsecGatewayMaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o IpsecGatewayMaintenanceWindowPtrOutput) ToIpsecGatewayMaintenanceWindowPtrOutput() IpsecGatewayMaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o IpsecGatewayMaintenanceWindowPtrOutput) ToIpsecGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) IpsecGatewayMaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o IpsecGatewayMaintenanceWindowPtrOutput) Elem() IpsecGatewayMaintenanceWindowOutput {
+	return o.ApplyT(func(v *IpsecGatewayMaintenanceWindow) IpsecGatewayMaintenanceWindow {
+		if v != nil {
+			return *v
+		}
+		var ret IpsecGatewayMaintenanceWindow
+		return ret
+	}).(IpsecGatewayMaintenanceWindowOutput)
+}
+
+// [string] The name of the week day.
+func (o IpsecGatewayMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecGatewayMaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DayOfTheWeek
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o IpsecGatewayMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecGatewayMaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
 type IpsecTunnelAuth struct {
 	// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
 	// Default value: `PSK`.
@@ -791,6 +947,162 @@ func (o WireguardGatewayConnectionArrayOutput) Index(i pulumi.IntInput) Wireguar
 	}).(WireguardGatewayConnectionOutput)
 }
 
+type WireguardGatewayMaintenanceWindow struct {
+	// [string] The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// WireguardGatewayMaintenanceWindowInput is an input type that accepts WireguardGatewayMaintenanceWindowArgs and WireguardGatewayMaintenanceWindowOutput values.
+// You can construct a concrete instance of `WireguardGatewayMaintenanceWindowInput` via:
+//
+//	WireguardGatewayMaintenanceWindowArgs{...}
+type WireguardGatewayMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToWireguardGatewayMaintenanceWindowOutput() WireguardGatewayMaintenanceWindowOutput
+	ToWireguardGatewayMaintenanceWindowOutputWithContext(context.Context) WireguardGatewayMaintenanceWindowOutput
+}
+
+type WireguardGatewayMaintenanceWindowArgs struct {
+	// [string] The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (WireguardGatewayMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i WireguardGatewayMaintenanceWindowArgs) ToWireguardGatewayMaintenanceWindowOutput() WireguardGatewayMaintenanceWindowOutput {
+	return i.ToWireguardGatewayMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i WireguardGatewayMaintenanceWindowArgs) ToWireguardGatewayMaintenanceWindowOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WireguardGatewayMaintenanceWindowOutput)
+}
+
+func (i WireguardGatewayMaintenanceWindowArgs) ToWireguardGatewayMaintenanceWindowPtrOutput() WireguardGatewayMaintenanceWindowPtrOutput {
+	return i.ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i WireguardGatewayMaintenanceWindowArgs) ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WireguardGatewayMaintenanceWindowOutput).ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(ctx)
+}
+
+// WireguardGatewayMaintenanceWindowPtrInput is an input type that accepts WireguardGatewayMaintenanceWindowArgs, WireguardGatewayMaintenanceWindowPtr and WireguardGatewayMaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `WireguardGatewayMaintenanceWindowPtrInput` via:
+//
+//	        WireguardGatewayMaintenanceWindowArgs{...}
+//
+//	or:
+//
+//	        nil
+type WireguardGatewayMaintenanceWindowPtrInput interface {
+	pulumi.Input
+
+	ToWireguardGatewayMaintenanceWindowPtrOutput() WireguardGatewayMaintenanceWindowPtrOutput
+	ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(context.Context) WireguardGatewayMaintenanceWindowPtrOutput
+}
+
+type wireguardGatewayMaintenanceWindowPtrType WireguardGatewayMaintenanceWindowArgs
+
+func WireguardGatewayMaintenanceWindowPtr(v *WireguardGatewayMaintenanceWindowArgs) WireguardGatewayMaintenanceWindowPtrInput {
+	return (*wireguardGatewayMaintenanceWindowPtrType)(v)
+}
+
+func (*wireguardGatewayMaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i *wireguardGatewayMaintenanceWindowPtrType) ToWireguardGatewayMaintenanceWindowPtrOutput() WireguardGatewayMaintenanceWindowPtrOutput {
+	return i.ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i *wireguardGatewayMaintenanceWindowPtrType) ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WireguardGatewayMaintenanceWindowPtrOutput)
+}
+
+type WireguardGatewayMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (WireguardGatewayMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o WireguardGatewayMaintenanceWindowOutput) ToWireguardGatewayMaintenanceWindowOutput() WireguardGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o WireguardGatewayMaintenanceWindowOutput) ToWireguardGatewayMaintenanceWindowOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o WireguardGatewayMaintenanceWindowOutput) ToWireguardGatewayMaintenanceWindowPtrOutput() WireguardGatewayMaintenanceWindowPtrOutput {
+	return o.ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (o WireguardGatewayMaintenanceWindowOutput) ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WireguardGatewayMaintenanceWindow) *WireguardGatewayMaintenanceWindow {
+		return &v
+	}).(WireguardGatewayMaintenanceWindowPtrOutput)
+}
+
+// [string] The name of the week day.
+func (o WireguardGatewayMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v WireguardGatewayMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o WireguardGatewayMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v WireguardGatewayMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type WireguardGatewayMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+
+func (WireguardGatewayMaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o WireguardGatewayMaintenanceWindowPtrOutput) ToWireguardGatewayMaintenanceWindowPtrOutput() WireguardGatewayMaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o WireguardGatewayMaintenanceWindowPtrOutput) ToWireguardGatewayMaintenanceWindowPtrOutputWithContext(ctx context.Context) WireguardGatewayMaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o WireguardGatewayMaintenanceWindowPtrOutput) Elem() WireguardGatewayMaintenanceWindowOutput {
+	return o.ApplyT(func(v *WireguardGatewayMaintenanceWindow) WireguardGatewayMaintenanceWindow {
+		if v != nil {
+			return *v
+		}
+		var ret WireguardGatewayMaintenanceWindow
+		return ret
+	}).(WireguardGatewayMaintenanceWindowOutput)
+}
+
+// [string] The name of the week day.
+func (o WireguardGatewayMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WireguardGatewayMaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DayOfTheWeek
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o WireguardGatewayMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WireguardGatewayMaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
 type WireguardPeerEndpoint struct {
 	// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
 	Host string `pulumi:"host"`
@@ -1072,6 +1384,112 @@ func (o GetIpsecGatewayConnectionArrayOutput) Index(i pulumi.IntInput) GetIpsecG
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpsecGatewayConnection {
 		return vs[0].([]GetIpsecGatewayConnection)[vs[1].(int)]
 	}).(GetIpsecGatewayConnectionOutput)
+}
+
+type GetIpsecGatewayMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetIpsecGatewayMaintenanceWindowInput is an input type that accepts GetIpsecGatewayMaintenanceWindowArgs and GetIpsecGatewayMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetIpsecGatewayMaintenanceWindowInput` via:
+//
+//	GetIpsecGatewayMaintenanceWindowArgs{...}
+type GetIpsecGatewayMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetIpsecGatewayMaintenanceWindowOutput() GetIpsecGatewayMaintenanceWindowOutput
+	ToGetIpsecGatewayMaintenanceWindowOutputWithContext(context.Context) GetIpsecGatewayMaintenanceWindowOutput
+}
+
+type GetIpsecGatewayMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetIpsecGatewayMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetIpsecGatewayMaintenanceWindowArgs) ToGetIpsecGatewayMaintenanceWindowOutput() GetIpsecGatewayMaintenanceWindowOutput {
+	return i.ToGetIpsecGatewayMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetIpsecGatewayMaintenanceWindowArgs) ToGetIpsecGatewayMaintenanceWindowOutputWithContext(ctx context.Context) GetIpsecGatewayMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpsecGatewayMaintenanceWindowOutput)
+}
+
+// GetIpsecGatewayMaintenanceWindowArrayInput is an input type that accepts GetIpsecGatewayMaintenanceWindowArray and GetIpsecGatewayMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetIpsecGatewayMaintenanceWindowArrayInput` via:
+//
+//	GetIpsecGatewayMaintenanceWindowArray{ GetIpsecGatewayMaintenanceWindowArgs{...} }
+type GetIpsecGatewayMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetIpsecGatewayMaintenanceWindowArrayOutput() GetIpsecGatewayMaintenanceWindowArrayOutput
+	ToGetIpsecGatewayMaintenanceWindowArrayOutputWithContext(context.Context) GetIpsecGatewayMaintenanceWindowArrayOutput
+}
+
+type GetIpsecGatewayMaintenanceWindowArray []GetIpsecGatewayMaintenanceWindowInput
+
+func (GetIpsecGatewayMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetIpsecGatewayMaintenanceWindowArray) ToGetIpsecGatewayMaintenanceWindowArrayOutput() GetIpsecGatewayMaintenanceWindowArrayOutput {
+	return i.ToGetIpsecGatewayMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetIpsecGatewayMaintenanceWindowArray) ToGetIpsecGatewayMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetIpsecGatewayMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpsecGatewayMaintenanceWindowArrayOutput)
+}
+
+type GetIpsecGatewayMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetIpsecGatewayMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetIpsecGatewayMaintenanceWindowOutput) ToGetIpsecGatewayMaintenanceWindowOutput() GetIpsecGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetIpsecGatewayMaintenanceWindowOutput) ToGetIpsecGatewayMaintenanceWindowOutputWithContext(ctx context.Context) GetIpsecGatewayMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetIpsecGatewayMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsecGatewayMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetIpsecGatewayMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpsecGatewayMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetIpsecGatewayMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIpsecGatewayMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIpsecGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetIpsecGatewayMaintenanceWindowArrayOutput) ToGetIpsecGatewayMaintenanceWindowArrayOutput() GetIpsecGatewayMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetIpsecGatewayMaintenanceWindowArrayOutput) ToGetIpsecGatewayMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetIpsecGatewayMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetIpsecGatewayMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetIpsecGatewayMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpsecGatewayMaintenanceWindow {
+		return vs[0].([]GetIpsecGatewayMaintenanceWindow)[vs[1].(int)]
+	}).(GetIpsecGatewayMaintenanceWindowOutput)
 }
 
 type GetIpsecTunnelAuth struct {
@@ -1543,6 +1961,112 @@ func (o GetWireguardGatewayConnectionArrayOutput) Index(i pulumi.IntInput) GetWi
 	}).(GetWireguardGatewayConnectionOutput)
 }
 
+type GetWireguardGatewayMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetWireguardGatewayMaintenanceWindowInput is an input type that accepts GetWireguardGatewayMaintenanceWindowArgs and GetWireguardGatewayMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetWireguardGatewayMaintenanceWindowInput` via:
+//
+//	GetWireguardGatewayMaintenanceWindowArgs{...}
+type GetWireguardGatewayMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetWireguardGatewayMaintenanceWindowOutput() GetWireguardGatewayMaintenanceWindowOutput
+	ToGetWireguardGatewayMaintenanceWindowOutputWithContext(context.Context) GetWireguardGatewayMaintenanceWindowOutput
+}
+
+type GetWireguardGatewayMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetWireguardGatewayMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetWireguardGatewayMaintenanceWindowArgs) ToGetWireguardGatewayMaintenanceWindowOutput() GetWireguardGatewayMaintenanceWindowOutput {
+	return i.ToGetWireguardGatewayMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetWireguardGatewayMaintenanceWindowArgs) ToGetWireguardGatewayMaintenanceWindowOutputWithContext(ctx context.Context) GetWireguardGatewayMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWireguardGatewayMaintenanceWindowOutput)
+}
+
+// GetWireguardGatewayMaintenanceWindowArrayInput is an input type that accepts GetWireguardGatewayMaintenanceWindowArray and GetWireguardGatewayMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetWireguardGatewayMaintenanceWindowArrayInput` via:
+//
+//	GetWireguardGatewayMaintenanceWindowArray{ GetWireguardGatewayMaintenanceWindowArgs{...} }
+type GetWireguardGatewayMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetWireguardGatewayMaintenanceWindowArrayOutput() GetWireguardGatewayMaintenanceWindowArrayOutput
+	ToGetWireguardGatewayMaintenanceWindowArrayOutputWithContext(context.Context) GetWireguardGatewayMaintenanceWindowArrayOutput
+}
+
+type GetWireguardGatewayMaintenanceWindowArray []GetWireguardGatewayMaintenanceWindowInput
+
+func (GetWireguardGatewayMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetWireguardGatewayMaintenanceWindowArray) ToGetWireguardGatewayMaintenanceWindowArrayOutput() GetWireguardGatewayMaintenanceWindowArrayOutput {
+	return i.ToGetWireguardGatewayMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetWireguardGatewayMaintenanceWindowArray) ToGetWireguardGatewayMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetWireguardGatewayMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWireguardGatewayMaintenanceWindowArrayOutput)
+}
+
+type GetWireguardGatewayMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetWireguardGatewayMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetWireguardGatewayMaintenanceWindowOutput) ToGetWireguardGatewayMaintenanceWindowOutput() GetWireguardGatewayMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetWireguardGatewayMaintenanceWindowOutput) ToGetWireguardGatewayMaintenanceWindowOutputWithContext(ctx context.Context) GetWireguardGatewayMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetWireguardGatewayMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWireguardGatewayMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetWireguardGatewayMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWireguardGatewayMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetWireguardGatewayMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWireguardGatewayMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWireguardGatewayMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetWireguardGatewayMaintenanceWindowArrayOutput) ToGetWireguardGatewayMaintenanceWindowArrayOutput() GetWireguardGatewayMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetWireguardGatewayMaintenanceWindowArrayOutput) ToGetWireguardGatewayMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetWireguardGatewayMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetWireguardGatewayMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetWireguardGatewayMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWireguardGatewayMaintenanceWindow {
+		return vs[0].([]GetWireguardGatewayMaintenanceWindow)[vs[1].(int)]
+	}).(GetWireguardGatewayMaintenanceWindowOutput)
+}
+
 type GetWireguardPeerEndpoint struct {
 	// Hostname or IPV4 address that the WireGuard Server will connect to.
 	Host string `pulumi:"host"`
@@ -1652,6 +2176,8 @@ func (o GetWireguardPeerEndpointArrayOutput) Index(i pulumi.IntInput) GetWiregua
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecGatewayConnectionInput)(nil)).Elem(), IpsecGatewayConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecGatewayConnectionArrayInput)(nil)).Elem(), IpsecGatewayConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsecGatewayMaintenanceWindowInput)(nil)).Elem(), IpsecGatewayMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsecGatewayMaintenanceWindowPtrInput)(nil)).Elem(), IpsecGatewayMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecTunnelAuthInput)(nil)).Elem(), IpsecTunnelAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecTunnelAuthPtrInput)(nil)).Elem(), IpsecTunnelAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecTunnelEspInput)(nil)).Elem(), IpsecTunnelEspArgs{})
@@ -1660,10 +2186,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IpsecTunnelIkePtrInput)(nil)).Elem(), IpsecTunnelIkeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WireguardGatewayConnectionInput)(nil)).Elem(), WireguardGatewayConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WireguardGatewayConnectionArrayInput)(nil)).Elem(), WireguardGatewayConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WireguardGatewayMaintenanceWindowInput)(nil)).Elem(), WireguardGatewayMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WireguardGatewayMaintenanceWindowPtrInput)(nil)).Elem(), WireguardGatewayMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WireguardPeerEndpointInput)(nil)).Elem(), WireguardPeerEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WireguardPeerEndpointPtrInput)(nil)).Elem(), WireguardPeerEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecGatewayConnectionInput)(nil)).Elem(), GetIpsecGatewayConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecGatewayConnectionArrayInput)(nil)).Elem(), GetIpsecGatewayConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecGatewayMaintenanceWindowInput)(nil)).Elem(), GetIpsecGatewayMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecGatewayMaintenanceWindowArrayInput)(nil)).Elem(), GetIpsecGatewayMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecTunnelAuthInput)(nil)).Elem(), GetIpsecTunnelAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecTunnelAuthArrayInput)(nil)).Elem(), GetIpsecTunnelAuthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecTunnelEspInput)(nil)).Elem(), GetIpsecTunnelEspArgs{})
@@ -1672,10 +2202,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsecTunnelIkeArrayInput)(nil)).Elem(), GetIpsecTunnelIkeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardGatewayConnectionInput)(nil)).Elem(), GetWireguardGatewayConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardGatewayConnectionArrayInput)(nil)).Elem(), GetWireguardGatewayConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardGatewayMaintenanceWindowInput)(nil)).Elem(), GetWireguardGatewayMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardGatewayMaintenanceWindowArrayInput)(nil)).Elem(), GetWireguardGatewayMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardPeerEndpointInput)(nil)).Elem(), GetWireguardPeerEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWireguardPeerEndpointArrayInput)(nil)).Elem(), GetWireguardPeerEndpointArray{})
 	pulumi.RegisterOutputType(IpsecGatewayConnectionOutput{})
 	pulumi.RegisterOutputType(IpsecGatewayConnectionArrayOutput{})
+	pulumi.RegisterOutputType(IpsecGatewayMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(IpsecGatewayMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(IpsecTunnelAuthOutput{})
 	pulumi.RegisterOutputType(IpsecTunnelAuthPtrOutput{})
 	pulumi.RegisterOutputType(IpsecTunnelEspOutput{})
@@ -1684,10 +2218,14 @@ func init() {
 	pulumi.RegisterOutputType(IpsecTunnelIkePtrOutput{})
 	pulumi.RegisterOutputType(WireguardGatewayConnectionOutput{})
 	pulumi.RegisterOutputType(WireguardGatewayConnectionArrayOutput{})
+	pulumi.RegisterOutputType(WireguardGatewayMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(WireguardGatewayMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(WireguardPeerEndpointOutput{})
 	pulumi.RegisterOutputType(WireguardPeerEndpointPtrOutput{})
 	pulumi.RegisterOutputType(GetIpsecGatewayConnectionOutput{})
 	pulumi.RegisterOutputType(GetIpsecGatewayConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetIpsecGatewayMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetIpsecGatewayMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetIpsecTunnelAuthOutput{})
 	pulumi.RegisterOutputType(GetIpsecTunnelAuthArrayOutput{})
 	pulumi.RegisterOutputType(GetIpsecTunnelEspOutput{})
@@ -1696,6 +2234,8 @@ func init() {
 	pulumi.RegisterOutputType(GetIpsecTunnelIkeArrayOutput{})
 	pulumi.RegisterOutputType(GetWireguardGatewayConnectionOutput{})
 	pulumi.RegisterOutputType(GetWireguardGatewayConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetWireguardGatewayMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetWireguardGatewayMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetWireguardPeerEndpointOutput{})
 	pulumi.RegisterOutputType(GetWireguardPeerEndpointArrayOutput{})
 }

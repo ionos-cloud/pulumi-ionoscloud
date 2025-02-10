@@ -30,7 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			nfsDc, err := compute.NewDatacenter(ctx, "nfsDc", &compute.DatacenterArgs{
+//			nfsDc, err := compute.NewDatacenter(ctx, "nfs_dc", &compute.DatacenterArgs{
+//				Name:              pulumi.String("NFS Datacenter"),
 //				Location:          pulumi.String("de/txl"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -38,14 +39,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			nfsLan, err := compute.NewLan(ctx, "nfsLan", &compute.LanArgs{
+//			nfsLan, err := compute.NewLan(ctx, "nfs_lan", &compute.LanArgs{
 //				DatacenterId: nfsDc.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan for NFS"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
+//				Name:     pulumi.String("test"),
 //				Location: pulumi.String("de/txl"),
 //				Size:     pulumi.Int(2),
 //				Nfs: &nfs.ClusterNfsArgs{
@@ -71,17 +74,17 @@ import (
 // A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
 //
 // ```sh
-// $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
+// $ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState
 
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
-	Location pulumi.StringOutput `pulumi:"location"`
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// The name of the Network File Storage cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	Nfs  ClusterNfsPtrOutput `pulumi:"nfs"`
@@ -98,9 +101,6 @@ func NewCluster(ctx *pulumi.Context,
 
 	if args.Connections == nil {
 		return nil, errors.New("invalid value for required argument 'Connections'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
@@ -130,7 +130,7 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location *string `pulumi:"location"`
@@ -144,7 +144,7 @@ type clusterState struct {
 type ClusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsPtrInput
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location pulumi.StringPtrInput
@@ -162,10 +162,10 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnections `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// The name of the Network File Storage cluster.
 	Name *string     `pulumi:"name"`
 	Nfs  *ClusterNfs `pulumi:"nfs"`
@@ -177,10 +177,10 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsInput
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
-	Location pulumi.StringInput
+	Location pulumi.StringPtrInput
 	// The name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput
 	Nfs  ClusterNfsPtrInput
@@ -280,11 +280,11 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// The location where the Network File Storage cluster is located.
+// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 // - `de/fra` - Frankfurt
 // - `de/txl` - Berlin
-func (o ClusterOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+func (o ClusterOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Network File Storage cluster.

@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.compute.IPBlock("example", {
  *     location: "us/las",
  *     size: 1,
+ *     name: "IP Block Example",
  * });
  * ```
  *

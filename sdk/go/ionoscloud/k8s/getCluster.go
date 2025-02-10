@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Id: pulumi.StringRef("cluster_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -32,6 +57,78 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
 //				Name: pulumi.StringRef("K8s Cluster Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a kubernetes cluster using the user's token
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.NewCluster(ctx, "test", &k8s.ClusterArgs{
+//				Name: pulumi.String("test_cluster"),
+//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Saturday"),
+//					Time:         pulumi.String("03:58:25Z"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Name: pulumi.StringRef("test_cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a kubernetes cluster using the token from the config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.NewCluster(ctx, "test", &k8s.ClusterArgs{
+//				Name: pulumi.String("test_cluster"),
+//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Saturday"),
+//					Time:         pulumi.String("03:58:25Z"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Name: pulumi.StringRef("test_cluster"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -89,7 +186,7 @@ type LookupClusterResult struct {
 	// * token - user token used for authentication
 	Configs []GetClusterConfig `pulumi:"configs"`
 	// id of the cluster
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Kubernetes version
 	K8sVersion string `pulumi:"k8sVersion"`
 	// Kubernetes configuration
@@ -99,7 +196,7 @@ type LookupClusterResult struct {
 	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 	MaintenanceWindows []GetClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// name of the cluster
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// the NAT gateway IP of the cluster if the cluster is private.
 	NatGatewayIp string `pulumi:"natGatewayIp"`
 	// list of the IDs of the node pools in this cluster
@@ -210,8 +307,8 @@ func (o LookupClusterResultOutput) Configs() GetClusterConfigArrayOutput {
 }
 
 // id of the cluster
-func (o LookupClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Kubernetes version
@@ -235,8 +332,8 @@ func (o LookupClusterResultOutput) MaintenanceWindows() GetClusterMaintenanceWin
 }
 
 // name of the cluster
-func (o LookupClusterResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupClusterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // the NAT gateway IP of the cluster if the cluster is private.

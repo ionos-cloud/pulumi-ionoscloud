@@ -19,6 +19,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupZone(ctx, &dns.LookupZoneArgs{
+//				Id: pulumi.StringRef("zone_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By name
 // ```go
 // package main
@@ -98,9 +124,9 @@ type LookupZoneResult struct {
 	// Indicates if the DNS Zone is activated or not.
 	Enabled bool `pulumi:"enabled"`
 	// The UUID of the DNS Zone.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of the DNS Zone.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// A list of available name servers.
 	Nameservers  []string `pulumi:"nameservers"`
 	PartialMatch *bool    `pulumi:"partialMatch"`
@@ -157,13 +183,13 @@ func (o LookupZoneResultOutput) Enabled() pulumi.BoolOutput {
 }
 
 // The UUID of the DNS Zone.
-func (o LookupZoneResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupZoneResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupZoneResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupZoneResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the DNS Zone.
-func (o LookupZoneResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupZoneResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupZoneResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupZoneResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // A list of available name servers.

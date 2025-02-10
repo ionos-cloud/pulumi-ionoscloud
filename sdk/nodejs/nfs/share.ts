@@ -16,16 +16,19 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const nfsDc = new ionoscloud.compute.Datacenter("nfsDc", {
+ * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
+ *     name: "NFS Datacenter",
  *     location: "de/txl",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const nfsLan = new ionoscloud.compute.Lan("nfsLan", {
+ * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
  *     datacenterId: nfsDc.id,
  *     "public": false,
+ *     name: "Lan for NFS",
  * });
- * const exampleCluster = new ionoscloud.nfs.Cluster("exampleCluster", {
+ * const example = new ionoscloud.nfs.Cluster("example", {
+ *     name: "test",
  *     location: "de/txl",
  *     size: 2,
  *     nfs: {
@@ -37,9 +40,10 @@ import * as utilities from "../utilities";
  *         lan: nfsLan.id,
  *     },
  * });
- * const exampleShare = new ionoscloud.nfs.Share("exampleShare", {
+ * const exampleShare = new ionoscloud.nfs.Share("example", {
  *     location: "de/txl",
- *     clusterId: exampleCluster.id,
+ *     clusterId: example.id,
+ *     name: "example-share",
  *     quota: 512,
  *     gid: 512,
  *     uid: 512,

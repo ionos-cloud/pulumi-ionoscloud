@@ -15,21 +15,25 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "datacenter description",
  *     secAuthProtection: false,
  * });
- * const example1 = new ionoscloud.compute.Lan("example1", {
- *     datacenterId: exampleDatacenter.id,
+ * const example1 = new ionoscloud.compute.Lan("example_1", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const example2 = new ionoscloud.compute.Lan("example2", {
- *     datacenterId: exampleDatacenter.id,
+ * const example2 = new ionoscloud.compute.Lan("example_2", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const exampleBalancer = new ionoscloud.alb.Balancer("exampleBalancer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleBalancer = new ionoscloud.alb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "ALB Example",
  *     listenerLan: example1.id,
  *     ips: ["10.12.118.224"],
  *     targetLan: example2.id,

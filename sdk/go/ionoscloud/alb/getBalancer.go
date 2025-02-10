@@ -18,6 +18,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
+//				Id:           pulumi.StringRef("alb_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -32,7 +58,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("ALB name"),
 //			}, nil)
 //			if err != nil {
@@ -58,7 +84,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("name"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -102,7 +128,7 @@ type LookupBalancerResult struct {
 	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlogs []GetBalancerFlowlog `pulumi:"flowlogs"`
 	// Id of the application load balancer.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips []string `pulumi:"ips"`
 	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
@@ -111,8 +137,8 @@ type LookupBalancerResult struct {
 	ListenerLan   int    `pulumi:"listenerLan"`
 	LoggingFormat string `pulumi:"loggingFormat"`
 	// Specifies the name of the flow log.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	Name         string `pulumi:"name"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
 	// ID of the balanced private target LAN (outbound).
 	TargetLan int `pulumi:"targetLan"`
 }
@@ -174,8 +200,8 @@ func (o LookupBalancerResultOutput) Flowlogs() GetBalancerFlowlogArrayOutput {
 }
 
 // Id of the application load balancer.
-func (o LookupBalancerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupBalancerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBalancerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
@@ -198,8 +224,8 @@ func (o LookupBalancerResultOutput) LoggingFormat() pulumi.StringOutput {
 }
 
 // Specifies the name of the flow log.
-func (o LookupBalancerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupBalancerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBalancerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupBalancerResultOutput) PartialMatch() pulumi.BoolPtrOutput {

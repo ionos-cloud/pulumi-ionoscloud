@@ -259,23 +259,29 @@ class Group(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        lan_example1 = ionoscloud.compute.Lan("lanExample1",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="datacenter_example",
+            location="de/fra")
+        lan_example1 = ionoscloud.compute.Lan("lan_example_1",
             datacenter_id=datacenter_example.id,
-            public=False)
-        lan_example2 = ionoscloud.compute.Lan("lanExample2",
+            public=False,
+            name="lan_example_1")
+        lan_example2 = ionoscloud.compute.Lan("lan_example_2",
             datacenter_id=datacenter_example.id,
-            public=False)
-        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscalingTargetGroup",
+            public=False,
+            name="lan_example_2")
+        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscaling_target_group",
+            name="Target Group Example",
             algorithm="ROUND_ROBIN",
             protocol="HTTP")
-        server_image_password = random.RandomPassword("serverImagePassword",
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        autoscaling_group_example = ionoscloud.autoscaling.Group("autoscalingGroupExample",
+        autoscaling_group_example = ionoscloud.autoscaling.Group("autoscaling_group_example",
             datacenter_id=datacenter_example.id,
             max_replica_count=2,
             min_replica_count=1,
+            name="autoscaling_group_example",
             policy={
                 "metric": "INSTANCE_CPU_UTILIZATION_AVERAGE",
                 "range": "PT24H",
@@ -338,7 +344,7 @@ class Group(pulumi.CustomResource):
                     "size": 10,
                     "type": "HDD",
                     "user_data": "ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    "image_password": server_image_password.result,
+                    "image_password": server_image_password["result"],
                     "boot_order": "AUTO",
                 }],
             })
@@ -369,23 +375,29 @@ class Group(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        lan_example1 = ionoscloud.compute.Lan("lanExample1",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="datacenter_example",
+            location="de/fra")
+        lan_example1 = ionoscloud.compute.Lan("lan_example_1",
             datacenter_id=datacenter_example.id,
-            public=False)
-        lan_example2 = ionoscloud.compute.Lan("lanExample2",
+            public=False,
+            name="lan_example_1")
+        lan_example2 = ionoscloud.compute.Lan("lan_example_2",
             datacenter_id=datacenter_example.id,
-            public=False)
-        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscalingTargetGroup",
+            public=False,
+            name="lan_example_2")
+        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscaling_target_group",
+            name="Target Group Example",
             algorithm="ROUND_ROBIN",
             protocol="HTTP")
-        server_image_password = random.RandomPassword("serverImagePassword",
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        autoscaling_group_example = ionoscloud.autoscaling.Group("autoscalingGroupExample",
+        autoscaling_group_example = ionoscloud.autoscaling.Group("autoscaling_group_example",
             datacenter_id=datacenter_example.id,
             max_replica_count=2,
             min_replica_count=1,
+            name="autoscaling_group_example",
             policy={
                 "metric": "INSTANCE_CPU_UTILIZATION_AVERAGE",
                 "range": "PT24H",
@@ -448,7 +460,7 @@ class Group(pulumi.CustomResource):
                     "size": 10,
                     "type": "HDD",
                     "user_data": "ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    "image_password": server_image_password.result,
+                    "image_password": server_image_password["result"],
                     "boot_order": "AUTO",
                 }],
             })

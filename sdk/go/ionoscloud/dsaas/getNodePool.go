@@ -16,6 +16,87 @@ import (
 // When this happens, please refine your search and make sure that your resources have unique names.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.LookupNodePool(ctx, &dsaas.LookupNodePoolArgs{
+//				ClusterId: "cluster_id",
+//				Id:        pulumi.StringRef("node_pool_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.LookupNodePool(ctx, &dsaas.LookupNodePoolArgs{
+//				ClusterId: "cluster_id",
+//				Name:      pulumi.StringRef("Dataplatform_Node_Pool_Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.LookupNodePool(ctx, &dsaas.LookupNodePoolArgs{
+//				ClusterId:    "cluster_id",
+//				Name:         pulumi.StringRef("_Example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNodePoolResult
@@ -44,6 +125,8 @@ type LookupNodePoolArgs struct {
 type LookupNodePoolResult struct {
 	// Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations map[string]string `pulumi:"annotations"`
+	// Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScalings []GetNodePoolAutoScaling `pulumi:"autoScalings"`
 	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone string `pulumi:"availabilityZone"`
 	// ID of the cluster the searched node pool is part of.
@@ -55,13 +138,13 @@ type LookupNodePoolResult struct {
 	// The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of your node pool.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels map[string]string `pulumi:"labels"`
 	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// The name of your node pool
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The number of nodes that make up the node pool.
 	NodeCount    int   `pulumi:"nodeCount"`
 	PartialMatch *bool `pulumi:"partialMatch"`
@@ -122,6 +205,11 @@ func (o LookupNodePoolResultOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// Whether the Node Pool should autoscale. For more details, please check the API documentation
+func (o LookupNodePoolResultOutput) AutoScalings() GetNodePoolAutoScalingArrayOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolAutoScaling { return v.AutoScalings }).(GetNodePoolAutoScalingArrayOutput)
+}
+
 // The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 func (o LookupNodePoolResultOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
@@ -148,8 +236,8 @@ func (o LookupNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // ID of your node pool.
-func (o LookupNodePoolResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupNodePoolResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
@@ -163,8 +251,8 @@ func (o LookupNodePoolResultOutput) MaintenanceWindows() GetNodePoolMaintenanceW
 }
 
 // The name of your node pool
-func (o LookupNodePoolResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupNodePoolResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The number of nodes that make up the node pool.

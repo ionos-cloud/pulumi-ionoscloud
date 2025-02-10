@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
+//				Id: pulumi.StringRef("cluster_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 //
 // ```go
@@ -60,6 +85,86 @@ import (
 //			_, err := dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
 //				Name:         pulumi.StringRef("_Example"),
 //				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a Dataplatform Cluster using the user's token
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
+//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
+//					&dsaas.ClusterMaintenanceWindowArgs{
+//						DayOfTheWeek: pulumi.String("Sunday"),
+//						Time:         pulumi.String("09:00:00"),
+//					},
+//				},
+//				Version: pulumi.String("23.7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
+//				Name: pulumi.StringRef("Dataplatform_Cluster_Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a kubernetes cluster using the token from the config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
+//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
+//					&dsaas.ClusterMaintenanceWindowArgs{
+//						DayOfTheWeek: pulumi.String("Sunday"),
+//						Time:         pulumi.String("09:00:00"),
+//					},
+//				},
+//				Version: pulumi.String("23.7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
+//				Name: pulumi.StringRef("Dataplatform_Cluster_Example"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -117,7 +222,7 @@ type LookupClusterResult struct {
 	// The UUID of the virtual data center (VDC) in which the cluster is provisioned.
 	DatacenterId string `pulumi:"datacenterId"`
 	// The UUID of the cluster.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Kubernetes configuration
 	KubeConfig string `pulumi:"kubeConfig"`
 	// A list of LANs you want this node pool to be part of
@@ -125,8 +230,8 @@ type LookupClusterResult struct {
 	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []GetClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// The name of your cluster.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	Name         string `pulumi:"name"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
 	// cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
 	Server string `pulumi:"server"`
 	// a convenience map to be search the token of a specific user
@@ -210,8 +315,8 @@ func (o LookupClusterResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // The UUID of the cluster.
-func (o LookupClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Kubernetes configuration
@@ -230,8 +335,8 @@ func (o LookupClusterResultOutput) MaintenanceWindows() GetClusterMaintenanceWin
 }
 
 // The name of your cluster.
-func (o LookupClusterResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupClusterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
