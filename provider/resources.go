@@ -15,19 +15,20 @@
 package ionoscloud
 
 import (
+	"context"
 	"fmt"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"path"
 
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	"github.com/ionos-cloud/terraform-provider-ionoscloud/v6/xpprovider"
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-
-	// Replace this provider with the provider you are bridging.
-	"github.com/ionos-cloud/terraform-provider-ionoscloud/v6/ionoscloud"
 
 	"github.com/ionos-cloud/pulumi-ionoscloud/provider/pkg/version"
 )
@@ -38,23 +39,24 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "ionoscloud"
 	// modules:
-	mainMod       = "index"       // the ionoscloud module
-	computeModule = "compute"     // the compute module
-	dbaasModule   = "dbaas"       // the dbaas module
-	k8sModule     = "k8s"         // the k8s module
-	certModule    = "cert"        // the certificate manager module
-	dsaasModule   = "dsaas"       // the dataplatform module
-	nfsModule     = "nfs"         // the nfs module
-	vpnModule     = "vpn"         // the vpn module
-	cdnModule     = "cdn"         // the cdn module
-	dnsModule     = "dns"         // the dns module
-	cregModule    = "creg"        // the container registry module
-	kafkaModule   = "kafka"       // the kafka module
-	apigModule    = "apigateway"  // the apigateway module
-	autosclModule = "autoscaling" // the autoscaling module
-	loggingModule = "logging"     // the logging module
-	albModule     = "alb"         // the applicationloadblancer module
-	nlbModule     = "nlb"         // the networkloadblancer module
+	mainMod             = "index"         // the ionoscloud module
+	computeModule       = "compute"       // the compute module
+	dbaasModule         = "dbaas"         // the dbaas module
+	k8sModule           = "k8s"           // the k8s module
+	certModule          = "cert"          // the certificate manager module
+	dsaasModule         = "dsaas"         // the dataplatform module
+	nfsModule           = "nfs"           // the nfs module
+	vpnModule           = "vpn"           // the vpn module
+	cdnModule           = "cdn"           // the cdn module
+	dnsModule           = "dns"           // the dns module
+	cregModule          = "creg"          // the container registry module
+	kafkaModule         = "kafka"         // the kafka module
+	apigModule          = "apigateway"    // the apigateway module
+	autosclModule       = "autoscaling"   // the autoscaling module
+	loggingModule       = "logging"       // the logging module
+	albModule           = "alb"           // the applicationloadblancer module
+	nlbModule           = "nlb"           // the networkloadblancer module
+	objectStorageModule = "objectstorage" // the object storage module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -62,6 +64,8 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
+	frameworkProvider, sdkProvider := xpprovider.GetProvider()
+	p := pfbridge.MuxShimWithPF(context.Background(), shimv2.NewProvider(sdkProvider), frameworkProvider)
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
@@ -124,7 +128,7 @@ func Provider() tfbridge.ProviderInfo {
 		// - "github.com/hashicorp/terraform-plugin-framework/provider".Provider (for plugin-framework)
 		//
 		//nolint:lll
-		P: shimv2.NewProvider(ionoscloud.Provider()),
+		P: p,
 
 		Name:    "ionoscloud",
 		Version: version.Version,
@@ -158,7 +162,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -436,6 +440,21 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_networkloadbalancer_forwardingrule": {
 				Tok: tfbridge.MakeDataSource(mainPkg, nlbModule, "getForwardingRule"),
 			},
+			"ionoscloud_s3_object": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3Object"),
+			},
+			"ionoscloud_s3_objects": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3Objects"),
+			},
+			"ionoscloud_s3_bucket": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3Bucket"),
+			},
+			"ionoscloud_s3_bucket_object": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3BucketObject"),
+			},
+			"ionoscloud_s3_bucket_policy": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3BucketPolicy"),
+			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"ionoscloud_datacenter": {
@@ -620,6 +639,70 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_networkloadbalancer_forwardingrule": {
 				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "ForwardingRule"),
+			},
+
+			"ionoscloud_s3_bucket": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "Bucket"),
+			},
+			"ionoscloud_s3_object": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "Object"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["key"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_lifecycle_configuration": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketLifecycleConfiguration"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_object_lock_configuration": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "ObjectLockConfiguration"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_policy": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketPolicy"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_server_side_encryption_configuration": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketServerSideEncryptionConfiguration"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_versioning": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketVersioning"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_cors_configuration": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "CorsConfiguration"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_public_access_block": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "PublicAccessBlock"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_bucket_website_configuration": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "WebsiteConfiguration"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["bucket"].V.(string)), nil
+				},
+			},
+			"ionoscloud_s3_object_copy": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "ObjectCopy"),
+				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+					return resource.ID(state["key"].V.(string)), nil // state["bucket"].V.(string) + "\"" +
+				},
 			},
 		},
 	}

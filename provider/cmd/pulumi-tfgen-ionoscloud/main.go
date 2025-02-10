@@ -16,12 +16,11 @@ package main
 
 import (
 	ionoscloud "github.com/ionos-cloud/pulumi-ionoscloud/provider"
-	"github.com/ionos-cloud/pulumi-ionoscloud/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 )
 
 func main() {
 	// Modify the path to point to the new provider
 	//version.Version = "1.0.0"
-	tfgen.Main("ionoscloud", version.Version, ionoscloud.Provider())
+	tfgen.MainWithMuxer("ionoscloud", ionoscloud.Provider())
 }
