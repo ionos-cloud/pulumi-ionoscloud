@@ -15,21 +15,25 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
  * const example1 = new ionoscloud.compute.Lan("example1", {
- *     datacenterId: exampleDatacenter.id,
+ *     datacenterId: example.id,
  *     "public": false,
+ *     name: "Lan Example 1",
  * });
  * const example2 = new ionoscloud.compute.Lan("example2", {
- *     datacenterId: exampleDatacenter.id,
+ *     datacenterId: example.id,
  *     "public": false,
+ *     name: "Lan Example 2",
  * });
- * const exampleBalancer = new ionoscloud.nlb.Balancer("exampleBalancer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "example",
  *     listenerLan: example1.id,
  *     targetLan: example2.id,
  *     ips: ["10.12.118.224"],
@@ -46,9 +50,10 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.nlb.Balancer("example", {
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     listenerLan: ionoscloud_lan.example1.id,
- *     targetLan: ionoscloud_lan.example2.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "nlb with flowlog",
+ *     listenerLan: example1.id,
+ *     targetLan: example2.id,
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  *     flowlog: {

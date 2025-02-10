@@ -29,13 +29,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cert.NewAutoCertificateProvider(ctx, "example", &cert.AutoCertificateProviderArgs{
-//				Email: pulumi.String("user@example.com"),
+//				Name:     pulumi.String("Let's Encrypt"),
+//				Email:    pulumi.String("user@example.com"),
+//				Location: pulumi.String("de/fra"),
+//				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
 //				ExternalAccountBinding: &cert.AutoCertificateProviderExternalAccountBindingArgs{
 //					KeyId:     pulumi.String("some-key-id"),
 //					KeySecret: pulumi.String("secret"),
 //				},
-//				Location: pulumi.String("de/fra"),
-//				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,7 +52,7 @@ import (
 // The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+// $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example location:provider_id
 // ```
 type AutoCertificateProvider struct {
 	pulumi.CustomResourceState
@@ -61,7 +62,7 @@ type AutoCertificateProvider struct {
 	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrOutput `pulumi:"externalAccountBinding"`
 	// [string] The location of the provider.
-	Location pulumi.StringOutput `pulumi:"location"`
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the certificate provider.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] The URL of the certificate provider.
@@ -77,9 +78,6 @@ func NewAutoCertificateProvider(ctx *pulumi.Context,
 
 	if args.Email == nil {
 		return nil, errors.New("invalid value for required argument 'Email'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
@@ -142,7 +140,7 @@ type autoCertificateProviderArgs struct {
 	// [list] External account binding details.
 	ExternalAccountBinding *AutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBinding"`
 	// [string] The location of the provider.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [string] The name of the certificate provider.
 	Name *string `pulumi:"name"`
 	// [string] The URL of the certificate provider.
@@ -156,7 +154,7 @@ type AutoCertificateProviderArgs struct {
 	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrInput
 	// [string] The location of the provider.
-	Location pulumi.StringInput
+	Location pulumi.StringPtrInput
 	// [string] The name of the certificate provider.
 	Name pulumi.StringPtrInput
 	// [string] The URL of the certificate provider.
@@ -263,8 +261,8 @@ func (o AutoCertificateProviderOutput) ExternalAccountBinding() AutoCertificateP
 }
 
 // [string] The location of the provider.
-func (o AutoCertificateProviderOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+func (o AutoCertificateProviderOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the certificate provider.

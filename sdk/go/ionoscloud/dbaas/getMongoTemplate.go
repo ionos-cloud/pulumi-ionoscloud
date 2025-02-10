@@ -16,6 +16,89 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetMongoTemplate(ctx, &dbaas.GetMongoTemplateArgs{
+//				Id: pulumi.StringRef("template_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### By name
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetMongoTemplate(ctx, &dbaas.GetMongoTemplateArgs{
+//				Name: pulumi.StringRef("name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By name, using partialMatch
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetMongoTemplate(ctx, &dbaas.GetMongoTemplateArgs{
+//				Name:         pulumi.StringRef("name"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// * `name` - (Optional) The name of the template you want to search for.
+// * `id` - (Optional) ID of the template you want to search for.
+// * `partialMatch` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+//
+// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
 func GetMongoTemplate(ctx *pulumi.Context, args *GetMongoTemplateArgs, opts ...pulumi.InvokeOption) (*GetMongoTemplateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMongoTemplateResult

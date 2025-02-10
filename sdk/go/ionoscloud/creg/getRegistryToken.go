@@ -18,6 +18,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
+//				RegistryId: exampleIonoscloudContainerRegistry.Id,
+//				Id:         pulumi.StringRef("token_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -32,7 +58,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
-//				RegistryId: ionoscloud_container_registry.Example.Id,
+//				RegistryId: exampleIonoscloudContainerRegistry.Id,
 //				Name:       pulumi.StringRef("container-registry-token-example"),
 //			}, nil)
 //			if err != nil {
@@ -58,7 +84,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
-//				RegistryId:   ionoscloud_container_registry.Example.Id,
+//				RegistryId:   exampleIonoscloudContainerRegistry.Id,
 //				Name:         pulumi.StringRef("-example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -99,8 +125,8 @@ type LookupRegistryTokenResult struct {
 	Credentials []GetRegistryTokenCredential `pulumi:"credentials"`
 	ExpiryDate  string                       `pulumi:"expiryDate"`
 	// Id of the container registry token.
-	Id           *string                 `pulumi:"id"`
-	Name         *string                 `pulumi:"name"`
+	Id           string                  `pulumi:"id"`
+	Name         string                  `pulumi:"name"`
 	PartialMatch *bool                   `pulumi:"partialMatch"`
 	RegistryId   string                  `pulumi:"registryId"`
 	Scopes       []GetRegistryTokenScope `pulumi:"scopes"`
@@ -158,12 +184,12 @@ func (o LookupRegistryTokenResultOutput) ExpiryDate() pulumi.StringOutput {
 }
 
 // Id of the container registry token.
-func (o LookupRegistryTokenResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRegistryTokenResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupRegistryTokenResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryTokenResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupRegistryTokenResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRegistryTokenResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupRegistryTokenResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryTokenResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupRegistryTokenResultOutput) PartialMatch() pulumi.BoolPtrOutput {

@@ -12,22 +12,428 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Server** on IonosCloud.
+//
+// ## Example Usage
+//
+// This resource will create an operational server. After this section completes, the provisioner can be called.
+//
+// ### ENTERPRISE Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				CloudInit:  pulumi.StringRef("V1"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String(example.Name),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Firewalls: compute.ServerNicFirewallArray{
+//						&compute.ServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//				Labels: compute.ServerLabelArray{
+//					&compute.ServerLabelArgs{
+//						Key:   pulumi.String("labelkey1"),
+//						Value: pulumi.String("labelvalue1"),
+//					},
+//					&compute.ServerLabelArgs{
+//						Key:   pulumi.String("labelkey2"),
+//						Value: pulumi.String("labelvalue2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### With IPv6 Enabled
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Resource Server Test"),
+//				Location: pulumi.String("us/las"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			webserverIpblock, err := compute.NewIPBlock(ctx, "webserver_ipblock", &compute.IPBlockArgs{
+//				Location: pulumi.String("us/las"),
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("webserver_ipblock"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId:  example.ID(),
+//				Public:        pulumi.Bool(true),
+//				Name:          pulumi.String("public"),
+//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_lan"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Resource Server Test"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Dhcpv6:        pulumi.Bool(true),
+//					Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_lan"),
+//					Ipv6Ips: pulumi.StringArray{
+//						pulumi.String("ipv6_ip1"),
+//						pulumi.String("ipv6_ip2"),
+//						pulumi.String("ipv6_ip3"),
+//					},
+//					Firewalls: compute.ServerNicFirewallArray{
+//						&compute.ServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### CUBE Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetTemplate(ctx, &compute.GetTemplateArgs{
+//				Name: pulumi.StringRef("Basic Cube XS"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Datacenter Example"),
+//				Location: pulumi.String("de/txl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Type:             pulumi.String("CUBE"),
+//				TemplateUuid:     pulumi.String(example.Id),
+//				ImagePassword:    serverImagePassword.Result,
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("Volume Example"),
+//					LicenceType: pulumi.String("LINUX"),
+//					DiskType:    pulumi.String("DAS"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Server that boots from CDROM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cdromDatacenter, err := compute.NewDatacenter(ctx, "cdrom", &compute.DatacenterArgs{
+//				Name:              pulumi.String("CDROM Test"),
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("CDROM image test"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "public", &compute.LanArgs{
+//				DatacenterId: cdromDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Uplink"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.GetImage(ctx, &compute.GetImageArgs{
+//				ImageAlias: pulumi.StringRef("ubuntu:latest_iso"),
+//				Type:       pulumi.StringRef("CDROM"),
+//				Location:   pulumi.StringRef("de/txl"),
+//				CloudInit:  pulumi.StringRef("NONE"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "test", &compute.ServerArgs{
+//				DatacenterId: cdromDatacenter.ID(),
+//				Name:         pulumi.String("ubuntu_latest_from_cdrom"),
+//				Cores:        pulumi.Int(1),
+//				Ram:          pulumi.Int(1024),
+//				CpuFamily: pulumi.String(cdromDatacenter.CpuArchitectures.ApplyT(func(cpuArchitectures []compute.DatacenterCpuArchitecture) (*string, error) {
+//					return &cpuArchitectures[0].CpuFamily, nil
+//				}).(pulumi.StringPtrOutput)),
+//				Type: pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("hdd0"),
+//					DiskType:    pulumi.String("HDD"),
+//					Size:        pulumi.Int(50),
+//					LicenceType: pulumi.String("OTHER"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Notes
+//
+// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+//
+// ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+// from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+//
 // ## Import
 //
 // Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}
+// $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
 // ```
 //
-// Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+// Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+// $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id
 // ```
 type Server struct {
 	pulumi.CustomResourceState
 
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	// sshKeyPath and sshKeys fields are immutable.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+	// >
+	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+	AllowReplace pulumi.BoolPtrOutput `pulumi:"allowReplace"`
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
 	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
@@ -48,22 +454,13 @@ type Server struct {
 	FirewallruleId pulumi.StringOutput `pulumi:"firewallruleId"`
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayOutput `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringOutput `pulumi:"imageName"`
 	// [string] Required if `sshKeyPath` is not provided.
 	ImagePassword pulumi.StringOutput `pulumi:"imagePassword"`
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > Image_name under volume level is deprecated, please use imageName under server level
-	// sshKeyPath and sshKeys fields are immutable.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-	// >
-	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
 	InlineVolumeIds pulumi.StringArrayOutput `pulumi:"inlineVolumeIds"`
 	// [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels ServerLabelArrayOutput `pulumi:"labels"`
@@ -77,6 +474,8 @@ type Server struct {
 	PrimaryNic pulumi.StringOutput `pulumi:"primaryNic"`
 	// (Computed)[integer] The amount of memory for the server in MB.
 	Ram pulumi.IntOutput `pulumi:"ram"`
+	// The list of Security Group IDs for the
+	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
 	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
@@ -136,6 +535,21 @@ func GetServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Server resources.
 type serverState struct {
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	// sshKeyPath and sshKeys fields are immutable.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+	// >
+	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+	AllowReplace *bool `pulumi:"allowReplace"`
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
@@ -156,22 +570,13 @@ type serverState struct {
 	FirewallruleId *string `pulumi:"firewallruleId"`
 	// The associated firewall rules.
 	FirewallruleIds []string `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname *string `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName *string `pulumi:"imageName"`
 	// [string] Required if `sshKeyPath` is not provided.
 	ImagePassword *string `pulumi:"imagePassword"`
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > Image_name under volume level is deprecated, please use imageName under server level
-	// sshKeyPath and sshKeys fields are immutable.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-	// >
-	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
 	InlineVolumeIds []string `pulumi:"inlineVolumeIds"`
 	// [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels []ServerLabel `pulumi:"labels"`
@@ -185,6 +590,8 @@ type serverState struct {
 	PrimaryNic *string `pulumi:"primaryNic"`
 	// (Computed)[integer] The amount of memory for the server in MB.
 	Ram *int `pulumi:"ram"`
+	// The list of Security Group IDs for the
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
@@ -202,6 +609,21 @@ type serverState struct {
 }
 
 type ServerState struct {
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	// sshKeyPath and sshKeys fields are immutable.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+	// >
+	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+	AllowReplace pulumi.BoolPtrInput
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput
 	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
@@ -222,22 +644,13 @@ type ServerState struct {
 	FirewallruleId pulumi.StringPtrInput
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayInput
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringPtrInput
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringPtrInput
 	// [string] Required if `sshKeyPath` is not provided.
 	ImagePassword pulumi.StringPtrInput
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > Image_name under volume level is deprecated, please use imageName under server level
-	// sshKeyPath and sshKeys fields are immutable.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-	// >
-	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
 	InlineVolumeIds pulumi.StringArrayInput
 	// [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels ServerLabelArrayInput
@@ -251,6 +664,8 @@ type ServerState struct {
 	PrimaryNic pulumi.StringPtrInput
 	// (Computed)[integer] The amount of memory for the server in MB.
 	Ram pulumi.IntPtrInput
+	// The list of Security Group IDs for the
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
@@ -272,6 +687,21 @@ func (ServerState) ElementType() reflect.Type {
 }
 
 type serverArgs struct {
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	// sshKeyPath and sshKeys fields are immutable.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+	// >
+	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+	AllowReplace *bool `pulumi:"allowReplace"`
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
@@ -288,6 +718,8 @@ type serverArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// The associated firewall rules.
 	FirewallruleIds []string `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname *string `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName *string `pulumi:"imageName"`
 	// [string] Required if `sshKeyPath` is not provided.
@@ -300,6 +732,8 @@ type serverArgs struct {
 	Nic *ServerNic `pulumi:"nic"`
 	// (Computed)[integer] The amount of memory for the server in MB.
 	Ram *int `pulumi:"ram"`
+	// The list of Security Group IDs for the
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
@@ -318,6 +752,21 @@ type serverArgs struct {
 
 // The set of arguments for constructing a Server resource.
 type ServerArgs struct {
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	// sshKeyPath and sshKeys fields are immutable.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+	// >
+	// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+	AllowReplace pulumi.BoolPtrInput
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput
 	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
@@ -334,6 +783,8 @@ type ServerArgs struct {
 	DatacenterId pulumi.StringInput
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayInput
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringPtrInput
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringPtrInput
 	// [string] Required if `sshKeyPath` is not provided.
@@ -346,6 +797,8 @@ type ServerArgs struct {
 	Nic ServerNicPtrInput
 	// (Computed)[integer] The amount of memory for the server in MB.
 	Ram pulumi.IntPtrInput
+	// The list of Security Group IDs for the
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
@@ -449,6 +902,24 @@ func (o ServerOutput) ToServerOutputWithContext(ctx context.Context) ServerOutpu
 	return o
 }
 
+// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+//
+// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+//
+// > **⚠ WARNING**
+// >
+// > Image_name under volume level is deprecated, please use imageName under server level
+// sshKeyPath and sshKeys fields are immutable.
+//
+// > **⚠ WARNING**
+// >
+// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+// >
+// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+func (o ServerOutput) AllowReplace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
+}
+
 // [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 func (o ServerOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
@@ -496,6 +967,11 @@ func (o ServerOutput) FirewallruleIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringArrayOutput { return v.FirewallruleIds }).(pulumi.StringArrayOutput)
 }
 
+// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+func (o ServerOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 func (o ServerOutput) ImageName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.ImageName }).(pulumi.StringOutput)
@@ -507,17 +983,6 @@ func (o ServerOutput) ImagePassword() pulumi.StringOutput {
 }
 
 // A list with the IDs for the volumes that are defined inside the server resource.
-//
-// > **⚠ WARNING**
-// >
-// > Image_name under volume level is deprecated, please use imageName under server level
-// sshKeyPath and sshKeys fields are immutable.
-//
-// > **⚠ WARNING**
-// >
-// > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-// >
-// > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
 func (o ServerOutput) InlineVolumeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringArrayOutput { return v.InlineVolumeIds }).(pulumi.StringArrayOutput)
 }
@@ -550,6 +1015,11 @@ func (o ServerOutput) PrimaryNic() pulumi.StringOutput {
 // (Computed)[integer] The amount of memory for the server in MB.
 func (o ServerOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the
+func (o ServerOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.

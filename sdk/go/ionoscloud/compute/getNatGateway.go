@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNatGateway(ctx, &compute.LookupNatGatewayArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("nat_gateway_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNatGateway(ctx, &compute.LookupNatGatewayArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("NAT Gateway Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNatGateway(ctx *pulumi.Context, args *LookupNatGatewayArgs, opts ...pulumi.InvokeOption) (*LookupNatGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNatGatewayResult
@@ -42,11 +94,11 @@ type LookupNatGatewayArgs struct {
 type LookupNatGatewayResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Id for the LAN connected to the NAT gateway
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
 	Lans []GetNatGatewayLan `pulumi:"lans"`
 	// Name of that natgateway
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
 	PublicIps []string `pulumi:"publicIps"`
 }
@@ -96,8 +148,8 @@ func (o LookupNatGatewayResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // Id for the LAN connected to the NAT gateway
-func (o LookupNatGatewayResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatGatewayResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupNatGatewayResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNatGatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
@@ -106,8 +158,8 @@ func (o LookupNatGatewayResultOutput) Lans() GetNatGatewayLanArrayOutput {
 }
 
 // Name of that natgateway
-func (o LookupNatGatewayResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatGatewayResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupNatGatewayResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNatGatewayResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location

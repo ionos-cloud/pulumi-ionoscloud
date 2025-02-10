@@ -25,28 +25,30 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			_, err = dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -67,10 +69,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			_, err = random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
@@ -92,28 +94,30 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			_, err = dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -142,10 +146,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			_, err = random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
@@ -161,7 +165,7 @@ import (
 // Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+// $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
 // ```
 type MongoCluster struct {
 	pulumi.CustomResourceState
@@ -184,7 +188,7 @@ type MongoCluster struct {
 	Instances pulumi.IntOutput `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringOutput `pulumi:"mongodbVersion"`
@@ -265,7 +269,7 @@ type mongoClusterState struct {
 	Instances *int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location *string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion *string `pulumi:"mongodbVersion"`
@@ -302,7 +306,7 @@ type MongoClusterState struct {
 	Instances pulumi.IntPtrInput
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringPtrInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringPtrInput
@@ -341,7 +345,7 @@ type mongoClusterArgs struct {
 	Instances int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion string `pulumi:"mongodbVersion"`
@@ -377,7 +381,7 @@ type MongoClusterArgs struct {
 	Instances pulumi.IntInput
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringInput
@@ -527,7 +531,7 @@ func (o MongoClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) MaintenanceWindow() MongoClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MongoClusterMaintenanceWindowOutput)
 }

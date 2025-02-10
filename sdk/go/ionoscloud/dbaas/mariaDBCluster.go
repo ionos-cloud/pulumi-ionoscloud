@@ -14,12 +14,106 @@ import (
 
 // Manages a **DBaaS MariaDB Cluster**.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing DBaaS cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
+//				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("example"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(2),
+//				Ram:              pulumi.Int(2048),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
+//				ImageName:        pulumi.String("rockylinux-8-GenericCloud-20230518"),
+//				ImagePassword:    pulumi.String("password"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("example"),
+//					Size:     pulumi.Int(10),
+//					DiskType: pulumi.String("SSD Standard"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:  exampleLan.ID(),
+//					Name: pulumi.String("example"),
+//					Dhcp: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clusterPassword, err := random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewMariaDBCluster(ctx, "example", &dbaas.MariaDBClusterArgs{
+//				MariadbVersion: pulumi.String("10.6"),
+//				Location:       pulumi.String("de/txl"),
+//				Instances:      pulumi.Int(1),
+//				Cores:          pulumi.Int(4),
+//				Ram:            pulumi.Int(4),
+//				StorageSize:    pulumi.Int(10),
+//				Connections: &dbaas.MariaDBClusterConnectionsArgs{
+//					DatacenterId: example.ID(),
+//					LanId:        exampleLan.ID(),
+//					Cidr:         pulumi.String("database_ip_cidr_from_nic"),
+//				},
+//				DisplayName: pulumi.String("MariaDB_cluster"),
+//				MaintenanceWindow: &dbaas.MariaDBClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				Credentials: &dbaas.MariaDBClusterCredentialsArgs{
+//					Username: pulumi.String("username"),
+//					Password: clusterPassword.Result,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
 // ```
 type MariaDBCluster struct {
 	pulumi.CustomResourceState
@@ -34,7 +128,7 @@ type MariaDBCluster struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntOutput `pulumi:"instances"`
@@ -42,7 +136,7 @@ type MariaDBCluster struct {
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringOutput `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntOutput `pulumi:"ram"`
@@ -114,7 +208,7 @@ type mariaDBClusterState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName *string `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances *int `pulumi:"instances"`
@@ -122,7 +216,7 @@ type mariaDBClusterState struct {
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion *string `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram *int `pulumi:"ram"`
@@ -141,7 +235,7 @@ type MariaDBClusterState struct {
 	DisplayName pulumi.StringPtrInput
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringPtrInput
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntPtrInput
@@ -149,7 +243,7 @@ type MariaDBClusterState struct {
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringPtrInput
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntPtrInput
@@ -176,7 +270,7 @@ type mariaDBClusterArgs struct {
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion string `pulumi:"mariadbVersion"`
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram int `pulumi:"ram"`
@@ -200,7 +294,7 @@ type MariaDBClusterArgs struct {
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// [string] The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringInput
 	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntInput
@@ -317,7 +411,7 @@ func (o MariaDBClusterOutput) DisplayName() pulumi.StringOutput {
 
 // [string] The DNS name pointing to your cluster.
 //
-// > **⚠ WARNING:** `Location` attribute will become required in the future.
+// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o MariaDBClusterOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }
@@ -337,7 +431,7 @@ func (o MariaDBClusterOutput) MaintenanceWindow() MariaDBClusterMaintenanceWindo
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MariaDBClusterMaintenanceWindowOutput)
 }
 
-// [string] The MariaDB version of your cluster.
+// [string] The MariaDB version of your cluster. Cannot be downgraded.
 func (o MariaDBClusterOutput) MariadbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.MariadbVersion }).(pulumi.StringOutput)
 }

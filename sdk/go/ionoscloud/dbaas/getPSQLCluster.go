@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupPSQLCluster(ctx, &dbaas.LookupPSQLClusterArgs{
+//				Id: pulumi.StringRef("cluster_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 //
 // ```go
@@ -73,12 +98,12 @@ type LookupPSQLClusterResult struct {
 	// The number of CPU cores per replica.
 	Cores int `pulumi:"cores"`
 	// The friendly name of your cluster.
-	DisplayName *string `pulumi:"displayName"`
+	DisplayName string `pulumi:"displayName"`
 	// The DNS name pointing to your cluster.
 	DnsName string `pulumi:"dnsName"`
 	// The unique ID of the backup you want to restore.
 	FromBackups []GetPSQLClusterFromBackup `pulumi:"fromBackups"`
-	Id          *string                    `pulumi:"id"`
+	Id          string                     `pulumi:"id"`
 	// The total number of instances in the cluster (one master and n-1 standbys)
 	Instances int `pulumi:"instances"`
 	// The physical location where the cluster will be created. This will be where all of your instances live.
@@ -156,8 +181,8 @@ func (o LookupPSQLClusterResultOutput) Cores() pulumi.IntOutput {
 }
 
 // The friendly name of your cluster.
-func (o LookupPSQLClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPSQLClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o LookupPSQLClusterResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
 // The DNS name pointing to your cluster.
@@ -170,8 +195,8 @@ func (o LookupPSQLClusterResultOutput) FromBackups() GetPSQLClusterFromBackupArr
 	return o.ApplyT(func(v LookupPSQLClusterResult) []GetPSQLClusterFromBackup { return v.FromBackups }).(GetPSQLClusterFromBackupArrayOutput)
 }
 
-func (o LookupPSQLClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPSQLClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupPSQLClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The total number of instances in the cluster (one master and n-1 standbys)

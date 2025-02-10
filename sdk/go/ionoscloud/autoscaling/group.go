@@ -23,51 +23,56 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/autoscaling"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("datacenter_example"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample1, err := compute.NewLan(ctx, "lanExample1", &compute.LanArgs{
+//			lanExample1, err := compute.NewLan(ctx, "lan_example_1", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("lan_example_1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample2, err := compute.NewLan(ctx, "lanExample2", &compute.LanArgs{
+//			lanExample2, err := compute.NewLan(ctx, "lan_example_2", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("lan_example_2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			autoscalingTargetGroup, err := compute.NewTargetGroup(ctx, "autoscalingTargetGroup", &compute.TargetGroupArgs{
+//			autoscalingTargetGroup, err := compute.NewTargetGroup(ctx, "autoscaling_target_group", &compute.TargetGroupArgs{
+//				Name:      pulumi.String("Target Group Example"),
 //				Algorithm: pulumi.String("ROUND_ROBIN"),
 //				Protocol:  pulumi.String("HTTP"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = autoscaling.NewGroup(ctx, "autoscalingGroupExample", &autoscaling.GroupArgs{
+//			_, err = autoscaling.NewGroup(ctx, "autoscaling_group_example", &autoscaling.GroupArgs{
 //				DatacenterId:    datacenterExample.ID(),
 //				MaxReplicaCount: pulumi.Int(2),
 //				MinReplicaCount: pulumi.Int(1),
+//				Name:            pulumi.String("autoscaling_group_example"),
 //				Policy: &autoscaling.GroupPolicyArgs{
 //					Metric: pulumi.String("INSTANCE_CPU_UTILIZATION_AVERAGE"),
 //					Range:  pulumi.String("PT24H"),

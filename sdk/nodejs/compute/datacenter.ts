@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
- *     description: "datacenter description",
+ *     name: "Datacenter Example",
  *     location: "us/las",
+ *     description: "datacenter description",
  *     secAuthProtection: false,
  * });
  * ```

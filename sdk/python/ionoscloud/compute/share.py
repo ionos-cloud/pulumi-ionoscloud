@@ -197,11 +197,13 @@ class Share(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_group = ionoscloud.compute.Group("exampleGroup",
+        example_group = ionoscloud.compute.Group("example",
+            name="Group Example",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
@@ -211,9 +213,9 @@ class Share(pulumi.CustomResource):
             create_backup_unit=True,
             create_internet_access=True,
             create_k8s_cluster=True)
-        example_share = ionoscloud.compute.Share("exampleShare",
+        example_share = ionoscloud.compute.Share("example",
             group_id=example_group.id,
-            resource_id=example_datacenter.id,
+            resource_id=example.id,
             edit_privilege=True,
             share_privilege=False)
         ```
@@ -253,11 +255,13 @@ class Share(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_group = ionoscloud.compute.Group("exampleGroup",
+        example_group = ionoscloud.compute.Group("example",
+            name="Group Example",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
@@ -267,9 +271,9 @@ class Share(pulumi.CustomResource):
             create_backup_unit=True,
             create_internet_access=True,
             create_k8s_cluster=True)
-        example_share = ionoscloud.compute.Share("exampleShare",
+        example_share = ionoscloud.compute.Share("example",
             group_id=example_group.id,
-            resource_id=example_datacenter.id,
+            resource_id=example.id,
             edit_privilege=True,
             share_privilege=False)
         ```

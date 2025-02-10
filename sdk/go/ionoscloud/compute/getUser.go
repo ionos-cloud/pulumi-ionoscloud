@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupUser(ctx, &compute.LookupUserArgs{
+//				Id: pulumi.StringRef("user_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Email
 // ```go
 // package main
@@ -80,7 +105,7 @@ type LookupUserResult struct {
 	// Shows the id and name of the groups that the user is a member of
 	Groups []GetUserGroup `pulumi:"groups"`
 	// The id of the user.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The last name for the user.
 	LastName string `pulumi:"lastName"`
 	// Canonical (S3) id of the user for a given identity
@@ -158,8 +183,8 @@ func (o LookupUserResultOutput) Groups() GetUserGroupArrayOutput {
 }
 
 // The id of the user.
-func (o LookupUserResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The last name for the user.

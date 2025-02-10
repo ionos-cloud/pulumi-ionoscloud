@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupVCPUServer(ctx, &compute.LookupVCPUServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("server_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupVCPUServer(ctx, &compute.LookupVCPUServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("VCPU Server Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVCPUServer(ctx *pulumi.Context, args *LookupVCPUServerArgs, opts ...pulumi.InvokeOption) (*LookupVCPUServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVCPUServerResult
@@ -53,17 +105,21 @@ type LookupVCPUServerResult struct {
 	CpuFamily string `pulumi:"cpuFamily"`
 	// The id of the datacenter
 	DatacenterId string `pulumi:"datacenterId"`
+	// The hostname of the server
+	Hostname string `pulumi:"hostname"`
 	// The Id of the label
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// list of
 	Labels []GetVCPUServerLabel `pulumi:"labels"`
 	// Name of the firewall rule
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// list of
 	Nics []GetVCPUServerNic `pulumi:"nics"`
 	// The amount of memory for the server in MB
-	Ram   int    `pulumi:"ram"`
-	Token string `pulumi:"token"`
+	Ram int `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
+	Token             string   `pulumi:"token"`
 	// The type of firewall rule
 	Type string `pulumi:"type"`
 	// Status of the virtual Machine
@@ -149,9 +205,14 @@ func (o LookupVCPUServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The hostname of the server
+func (o LookupVCPUServerResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // The Id of the label
-func (o LookupVCPUServerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVCPUServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupVCPUServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // list of
@@ -160,8 +221,8 @@ func (o LookupVCPUServerResultOutput) Labels() GetVCPUServerLabelArrayOutput {
 }
 
 // Name of the firewall rule
-func (o LookupVCPUServerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVCPUServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupVCPUServerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // list of
@@ -172,6 +233,11 @@ func (o LookupVCPUServerResultOutput) Nics() GetVCPUServerNicArrayOutput {
 // The amount of memory for the server in MB
 func (o LookupVCPUServerResultOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o LookupVCPUServerResultOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupVCPUServerResultOutput) Token() pulumi.StringOutput {

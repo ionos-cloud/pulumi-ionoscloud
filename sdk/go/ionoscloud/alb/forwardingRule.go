@@ -21,8 +21,6 @@ import (
 //
 // import (
 //
-//	"os"
-//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
@@ -30,17 +28,10 @@ import (
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("datacenter description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -48,22 +39,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			example1, err := compute.NewLan(ctx, "example_1", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			example2, err := compute.NewLan(ctx, "example_2", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleBalancer, err := alb.NewBalancer(ctx, "exampleBalancer", &alb.BalancerArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleBalancer, err := alb.NewBalancer(ctx, "example", &alb.BalancerArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("ALB Example"),
 //				ListenerLan:  example1.ID(),
 //				Ips: pulumi.StringArray{
 //					pulumi.String("10.12.118.224"),
@@ -78,16 +72,18 @@ import (
 //			}
 //			// optionally you can add a certificate to the application load balancer
 //			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
-//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
-//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      pulumi.String("your_certificate"),
+//				CertificateChain: pulumi.String("your_certificate_chain"),
+//				PrivateKey:       pulumi.String("your_private_key"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = alb.NewForwardingRule(ctx, "exampleForwardingRule", &alb.ForwardingRuleArgs{
-//				DatacenterId:              exampleDatacenter.ID(),
+//			_, err = alb.NewForwardingRule(ctx, "example", &alb.ForwardingRuleArgs{
+//				DatacenterId:              example.ID(),
 //				ApplicationLoadbalancerId: exampleBalancer.ID(),
+//				Name:                      pulumi.String("ALB FR Example"),
 //				Protocol:                  pulumi.String("HTTP"),
 //				ListenerIp:                pulumi.String("10.12.118.224"),
 //				ListenerPort:              pulumi.Int(8080),
@@ -145,7 +141,7 @@ import (
 // Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
+// $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule datacenter uuid/application_loadbalancer uuid/application_loadbalancer_forwardingrule uuid
 // ```
 type ForwardingRule struct {
 	pulumi.CustomResourceState

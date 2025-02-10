@@ -28,14 +28,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpn.LookupWireguardPeer(ctx, &vpn.LookupWireguardPeerArgs{
-//				Location:  "de/fra",
+//				Location:  pulumi.StringRef("de/fra"),
 //				GatewayId: "example-gateway",
 //				Name:      pulumi.StringRef("example-peer"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("vpnWireguardPeerPublicKey", data.Vpn_wireguard_peer.Example.Public_key)
+//			ctx.Export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.PublicKey)
 //			return nil
 //		})
 //	}
@@ -58,7 +58,7 @@ type LookupWireguardPeerArgs struct {
 	// [String] The ID of the WireGuard Peer.
 	Id *string `pulumi:"id"`
 	// [String] The location of the WireGuard Gateway.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [String] The name of the WireGuard Peer.
 	Name *string `pulumi:"name"`
 }
@@ -73,8 +73,8 @@ type LookupWireguardPeerResult struct {
 	Endpoints []GetWireguardPeerEndpoint `pulumi:"endpoints"`
 	GatewayId string                     `pulumi:"gatewayId"`
 	// The unique ID of the WireGuard Peer.
-	Id       *string `pulumi:"id"`
-	Location string  `pulumi:"location"`
+	Id       string  `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// The name of the WireGuard Peer.
 	Name string `pulumi:"name"`
 	// WireGuard public key of the connecting peer.
@@ -99,7 +99,7 @@ type LookupWireguardPeerOutputArgs struct {
 	// [String] The ID of the WireGuard Peer.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [String] The location of the WireGuard Gateway.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [String] The name of the WireGuard Peer.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -143,12 +143,12 @@ func (o LookupWireguardPeerResultOutput) GatewayId() pulumi.StringOutput {
 }
 
 // The unique ID of the WireGuard Peer.
-func (o LookupWireguardPeerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupWireguardPeerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupWireguardPeerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWireguardPeerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupWireguardPeerResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupWireguardPeerResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupWireguardPeerResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWireguardPeerResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the WireGuard Peer.

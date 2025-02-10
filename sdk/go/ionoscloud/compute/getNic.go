@@ -16,6 +16,60 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNic(ctx, &compute.LookupNicArgs{
+//				DatacenterId: "datancenter_id",
+//				ServerId:     "server_id",
+//				Id:           pulumi.StringRef("nic_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNic(ctx, &compute.LookupNicArgs{
+//				DatacenterId: "datancenter_id",
+//				ServerId:     "server_id",
+//				Name:         pulumi.StringRef("Nic Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNic(ctx *pulumi.Context, args *LookupNicArgs, opts ...pulumi.InvokeOption) (*LookupNicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNicResult
@@ -30,24 +84,11 @@ func LookupNic(ctx *pulumi.Context, args *LookupNicArgs, opts ...pulumi.InvokeOp
 type LookupNicArgs struct {
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-	Dhcp   *bool `pulumi:"dhcp"`
-	Dhcpv6 *bool `pulumi:"dhcpv6"`
-	// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-	FirewallActive *bool `pulumi:"firewallActive"`
-	// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-	FirewallType *string `pulumi:"firewallType"`
 	// ID of the nic you want to search for.
 	//
 	// `datacenterId` and either `name` or `id` must be provided.
 	// If none, are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-	Ips           []string `pulumi:"ips"`
-	Ipv6CidrBlock *string  `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       []string `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on.
-	Lan *int `pulumi:"lan"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
 	// [string] The ID of a server.
@@ -61,28 +102,30 @@ type LookupNicResult struct {
 	// The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
 	DeviceNumber int `pulumi:"deviceNumber"`
 	// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-	Dhcp   *bool `pulumi:"dhcp"`
-	Dhcpv6 *bool `pulumi:"dhcpv6"`
+	Dhcp   bool `pulumi:"dhcp"`
+	Dhcpv6 bool `pulumi:"dhcpv6"`
 	// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-	FirewallActive *bool `pulumi:"firewallActive"`
+	FirewallActive bool `pulumi:"firewallActive"`
 	// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
 	FirewallType string `pulumi:"firewallType"`
 	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlogs []GetNicFlowlog `pulumi:"flowlogs"`
 	// The id of the NIC.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
 	Ips           []string `pulumi:"ips"`
 	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
 	Ipv6Ips       []string `pulumi:"ipv6Ips"`
 	// The LAN ID the NIC will sit on.
-	Lan *int `pulumi:"lan"`
+	Lan int `pulumi:"lan"`
 	// The MAC address of the NIC.
 	Mac string `pulumi:"mac"`
 	// Specifies the name of the flow log.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// The ID of a server.
 	ServerId string `pulumi:"serverId"`
 }
@@ -100,24 +143,11 @@ func LookupNicOutput(ctx *pulumi.Context, args LookupNicOutputArgs, opts ...pulu
 type LookupNicOutputArgs struct {
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-	Dhcp   pulumi.BoolPtrInput `pulumi:"dhcp"`
-	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
-	// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-	FirewallActive pulumi.BoolPtrInput `pulumi:"firewallActive"`
-	// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-	FirewallType pulumi.StringPtrInput `pulumi:"firewallType"`
 	// ID of the nic you want to search for.
 	//
 	// `datacenterId` and either `name` or `id` must be provided.
 	// If none, are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-	Ips           pulumi.StringArrayInput `pulumi:"ips"`
-	Ipv6CidrBlock pulumi.StringPtrInput   `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on.
-	Lan pulumi.IntPtrInput `pulumi:"lan"`
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// [string] The ID of a server.
@@ -154,17 +184,17 @@ func (o LookupNicResultOutput) DeviceNumber() pulumi.IntOutput {
 }
 
 // Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-func (o LookupNicResultOutput) Dhcp() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
+func (o LookupNicResultOutput) Dhcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupNicResult) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
 
-func (o LookupNicResultOutput) Dhcpv6() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
+func (o LookupNicResultOutput) Dhcpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupNicResult) bool { return v.Dhcpv6 }).(pulumi.BoolOutput)
 }
 
 // If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-func (o LookupNicResultOutput) FirewallActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
+func (o LookupNicResultOutput) FirewallActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupNicResult) bool { return v.FirewallActive }).(pulumi.BoolOutput)
 }
 
 // The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
@@ -178,8 +208,8 @@ func (o LookupNicResultOutput) Flowlogs() GetNicFlowlogArrayOutput {
 }
 
 // The id of the NIC.
-func (o LookupNicResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupNicResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNicResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
@@ -196,8 +226,8 @@ func (o LookupNicResultOutput) Ipv6Ips() pulumi.StringArrayOutput {
 }
 
 // The LAN ID the NIC will sit on.
-func (o LookupNicResultOutput) Lan() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *int { return v.Lan }).(pulumi.IntPtrOutput)
+func (o LookupNicResultOutput) Lan() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNicResult) int { return v.Lan }).(pulumi.IntOutput)
 }
 
 // The MAC address of the NIC.
@@ -206,13 +236,18 @@ func (o LookupNicResultOutput) Mac() pulumi.StringOutput {
 }
 
 // Specifies the name of the flow log.
-func (o LookupNicResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupNicResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNicResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The PCI slot number of the Nic.
 func (o LookupNicResultOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNicResult) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o LookupNicResultOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNicResult) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // The ID of a server.

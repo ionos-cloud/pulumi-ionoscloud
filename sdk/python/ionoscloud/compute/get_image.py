@@ -313,10 +313,10 @@ def get_image(cloud_init: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    cdrom = ionoscloud.compute.get_image(cloud_init="NONE",
-        image_alias="ubuntu:latest_iso",
+    cdrom = ionoscloud.compute.get_image(image_alias="ubuntu:latest_iso",
+        type="CDROM",
         location="de/txl",
-        type="CDROM")
+        cloud_init="NONE")
     ```
     Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
 
@@ -338,10 +338,10 @@ def get_image(cloud_init: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_image(cloud_init="V1",
+    example = ionoscloud.compute.get_image(type="HDD",
+        cloud_init="V1",
         image_alias="ubuntu:latest",
-        location="us/ewr",
-        type="HDD")
+        location="us/ewr")
     ```
     Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 
@@ -409,10 +409,10 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    cdrom = ionoscloud.compute.get_image(cloud_init="NONE",
-        image_alias="ubuntu:latest_iso",
+    cdrom = ionoscloud.compute.get_image(image_alias="ubuntu:latest_iso",
+        type="CDROM",
         location="de/txl",
-        type="CDROM")
+        cloud_init="NONE")
     ```
     Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
 
@@ -434,10 +434,10 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_image(cloud_init="V1",
+    example = ionoscloud.compute.get_image(type="HDD",
+        cloud_init="V1",
         image_alias="ubuntu:latest",
-        location="us/ewr",
-        type="HDD")
+        location="us/ewr")
     ```
     Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 

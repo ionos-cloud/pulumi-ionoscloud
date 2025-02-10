@@ -16,15 +16,17 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example",
  *     location: "de/txl",
  *     description: "Datacenter for testing dbaas cluster",
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": false,
+ *     name: "example",
  * });
- * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("examplePSQLCluster", {
+ * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("example", {
  *     postgresVersion: "12",
  *     instances: 1,
  *     cores: 4,
@@ -36,11 +38,11 @@ import * as utilities from "../utilities";
  *         poolMode: "session",
  *     },
  *     connections: {
- *         datacenterId: exampleDatacenter.id,
+ *         datacenterId: example.id,
  *         lanId: exampleLan.id,
  *         cidr: "192.168.100.1/24",
  *     },
- *     location: exampleDatacenter.location,
+ *     location: example.location,
  *     displayName: "PostgreSQL_cluster",
  *     maintenanceWindow: {
  *         dayOfTheWeek: "Sunday",

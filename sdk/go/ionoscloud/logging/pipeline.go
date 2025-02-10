@@ -12,6 +12,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Logging pipeline**.
+//
+// > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
+//
+// ## Usage example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/logging"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := logging.NewPipeline(ctx, "example", &logging.PipelineArgs{
+//				Location: pulumi.String("es/vit"),
+//				Name:     pulumi.String("pipelineexample"),
+//				Logs: logging.PipelineLogArray{
+//					&logging.PipelineLogArgs{
+//						Source:   pulumi.String("kubernetes"),
+//						Tag:      pulumi.String("tagexample"),
+//						Protocol: pulumi.String("http"),
+//						Destinations: logging.PipelineLogDestinationArray{
+//							&logging.PipelineLogDestinationArgs{
+//								Type:            pulumi.String("loki"),
+//								RetentionInDays: pulumi.Int(7),
+//							},
+//						},
+//					},
+//					&logging.PipelineLogArgs{
+//						Source:   pulumi.String("kubernetes"),
+//						Tag:      pulumi.String("anothertagexample"),
+//						Protocol: pulumi.String("tcp"),
+//						Destinations: logging.PipelineLogDestinationArray{
+//							&logging.PipelineLogDestinationArgs{
+//								Type:            pulumi.String("loki"),
+//								RetentionInDays: pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
@@ -25,14 +80,14 @@ import (
 // The resource can be imported using the `location` and `pipeline_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
+// $ pulumi import ionoscloud:logging/pipeline:Pipeline example location:pipeline_id
 // ```
 type Pipeline struct {
 	pulumi.CustomResourceState
 
 	// [string] The address of the client's grafana instance.
 	GrafanaAddress pulumi.StringOutput `pulumi:"grafanaAddress"`
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayOutput `pulumi:"logs"`
@@ -75,7 +130,7 @@ func GetPipeline(ctx *pulumi.Context,
 type pipelineState struct {
 	// [string] The address of the client's grafana instance.
 	GrafanaAddress *string `pulumi:"grafanaAddress"`
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs []PipelineLog `pulumi:"logs"`
@@ -86,7 +141,7 @@ type pipelineState struct {
 type PipelineState struct {
 	// [string] The address of the client's grafana instance.
 	GrafanaAddress pulumi.StringPtrInput
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayInput
@@ -99,7 +154,7 @@ func (PipelineState) ElementType() reflect.Type {
 }
 
 type pipelineArgs struct {
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs []PipelineLog `pulumi:"logs"`
@@ -109,7 +164,7 @@ type pipelineArgs struct {
 
 // The set of arguments for constructing a Pipeline resource.
 type PipelineArgs struct {
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayInput
@@ -209,7 +264,7 @@ func (o PipelineOutput) GrafanaAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.GrafanaAddress }).(pulumi.StringOutput)
 }
 
-// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 func (o PipelineOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

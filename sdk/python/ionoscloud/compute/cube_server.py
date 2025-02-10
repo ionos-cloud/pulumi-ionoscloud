@@ -575,19 +575,23 @@ class CubeServer(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_template = ionoscloud.compute.get_template(name="CUBES XS")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
+        example = ionoscloud.compute.get_template(name="CUBES XS")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="de/txl")
+        example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_cube_server = ionoscloud.compute.CubeServer("exampleCubeServer",
+        example_cube_server = ionoscloud.compute.CubeServer("example",
+            name="Server Example",
             availability_zone="ZONE_2",
             image_name="ubuntu:latest",
-            template_uuid=example_template.id,
-            image_password=server_image_password.result,
+            template_uuid=example.id,
+            image_password=server_image_password["result"],
             datacenter_id=example_datacenter.id,
             volume={
                 "name": "Volume Example",
@@ -656,19 +660,23 @@ class CubeServer(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_template = ionoscloud.compute.get_template(name="CUBES XS")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
+        example = ionoscloud.compute.get_template(name="CUBES XS")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="de/txl")
+        example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_cube_server = ionoscloud.compute.CubeServer("exampleCubeServer",
+        example_cube_server = ionoscloud.compute.CubeServer("example",
+            name="Server Example",
             availability_zone="ZONE_2",
             image_name="ubuntu:latest",
-            template_uuid=example_template.id,
-            image_password=server_image_password.result,
+            template_uuid=example.id,
+            image_password=server_image_password["result"],
             datacenter_id=example_datacenter.id,
             volume={
                 "name": "Volume Example",

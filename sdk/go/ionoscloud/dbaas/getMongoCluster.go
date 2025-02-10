@@ -16,6 +16,61 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupMongoCluster(ctx, &dbaas.LookupMongoClusterArgs{
+//				Id: pulumi.StringRef("cluster_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### By displayName
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupMongoCluster(ctx, &dbaas.LookupMongoClusterArgs{
+//				DisplayName: pulumi.StringRef("display_name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// * `displayName` - (Optional) Display Name of an existing cluster that you want to search for.
+// * `id` - (Optional) ID of the cluster you want to search for.
+//
+// Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 func LookupMongoCluster(ctx *pulumi.Context, args *LookupMongoClusterArgs, opts ...pulumi.InvokeOption) (*LookupMongoClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMongoClusterResult
@@ -44,10 +99,10 @@ type LookupMongoClusterResult struct {
 	// The number of CPU cores per replica. Required for enterprise edition.
 	Cores int `pulumi:"cores"`
 	// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
-	DisplayName *string `pulumi:"displayName"`
+	DisplayName string `pulumi:"displayName"`
 	// Cluster edition. Playground, business or enterprise.
-	Edition string  `pulumi:"edition"`
-	Id      *string `pulumi:"id"`
+	Edition string `pulumi:"edition"`
+	Id      string `pulumi:"id"`
 	// The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances int `pulumi:"instances"`
 	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
@@ -127,8 +182,8 @@ func (o LookupMongoClusterResultOutput) Cores() pulumi.IntOutput {
 }
 
 // The name of your cluster. Updates to the value of the field force the cluster to be re-created.
-func (o LookupMongoClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o LookupMongoClusterResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
 // Cluster edition. Playground, business or enterprise.
@@ -136,8 +191,8 @@ func (o LookupMongoClusterResultOutput) Edition() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.Edition }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupMongoClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.

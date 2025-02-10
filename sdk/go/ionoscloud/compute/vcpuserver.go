@@ -12,18 +12,151 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **VCPU Server** on IonosCloud.
+//
+// ## Example Usage
+//
+// ### VCPU Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVCPUServer(ctx, "example", &compute.VCPUServerArgs{
+//				Name:             pulumi.String("VCPU Server Example"),
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				ImageName:        pulumi.String(example.Id),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.VCPUServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.VCPUServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Firewalls: compute.VCPUServerNicFirewallArray{
+//						&compute.VCPUServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//				Labels: compute.VCPUServerLabelArray{
+//					&compute.VCPUServerLabelArgs{
+//						Key:   pulumi.String("labelkey1"),
+//						Value: pulumi.String("labelvalue1"),
+//					},
+//					&compute.VCPUServerLabelArgs{
+//						Key:   pulumi.String("labelkey2"),
+//						Value: pulumi.String("labelvalue2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Notes
+//
+// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+//
+// ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+// from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+//
 // ## Import
 //
 // Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}
+// $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid
 // ```
 //
-// Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+// Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+// $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid/primary nic id/firewall rule id
 // ```
 type VCPUServer struct {
 	pulumi.CustomResourceState
@@ -47,15 +180,13 @@ type VCPUServer struct {
 	FirewallruleId pulumi.StringOutput `pulumi:"firewallruleId"`
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayOutput `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringOutput `pulumi:"imageName"`
 	// [string] The password for the image.
 	ImagePassword pulumi.StringOutput `pulumi:"imagePassword"`
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > sshKeys field is immutable.
 	InlineVolumeIds pulumi.StringArrayOutput `pulumi:"inlineVolumeIds"`
 	// A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels VCPUServerLabelArrayOutput `pulumi:"labels"`
@@ -69,6 +200,12 @@ type VCPUServer struct {
 	PrimaryNic pulumi.StringOutput `pulumi:"primaryNic"`
 	// [integer] The amount of memory for the server in MB.
 	Ram pulumi.IntOutput `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
 	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	SshKeys pulumi.StringArrayOutput `pulumi:"sshKeys"`
 	Type    pulumi.StringOutput      `pulumi:"type"`
@@ -146,15 +283,13 @@ type vcpuserverState struct {
 	FirewallruleId *string `pulumi:"firewallruleId"`
 	// The associated firewall rules.
 	FirewallruleIds []string `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname *string `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName *string `pulumi:"imageName"`
 	// [string] The password for the image.
 	ImagePassword *string `pulumi:"imagePassword"`
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > sshKeys field is immutable.
 	InlineVolumeIds []string `pulumi:"inlineVolumeIds"`
 	// A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels []VCPUServerLabel `pulumi:"labels"`
@@ -168,6 +303,12 @@ type vcpuserverState struct {
 	PrimaryNic *string `pulumi:"primaryNic"`
 	// [integer] The amount of memory for the server in MB.
 	Ram *int `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	SshKeys []string `pulumi:"sshKeys"`
 	Type    *string  `pulumi:"type"`
@@ -197,15 +338,13 @@ type VCPUServerState struct {
 	FirewallruleId pulumi.StringPtrInput
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayInput
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringPtrInput
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringPtrInput
 	// [string] The password for the image.
 	ImagePassword pulumi.StringPtrInput
 	// A list with the IDs for the volumes that are defined inside the server resource.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > sshKeys field is immutable.
 	InlineVolumeIds pulumi.StringArrayInput
 	// A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
 	Labels VCPUServerLabelArrayInput
@@ -219,6 +358,12 @@ type VCPUServerState struct {
 	PrimaryNic pulumi.StringPtrInput
 	// [integer] The amount of memory for the server in MB.
 	Ram pulumi.IntPtrInput
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	SshKeys pulumi.StringArrayInput
 	Type    pulumi.StringPtrInput
@@ -247,6 +392,8 @@ type vcpuserverArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// The associated firewall rules.
 	FirewallruleIds []string `pulumi:"firewallruleIds"`
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname *string `pulumi:"hostname"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName *string `pulumi:"imageName"`
 	// [string] The password for the image.
@@ -259,6 +406,12 @@ type vcpuserverArgs struct {
 	Nic *VCPUServerNic `pulumi:"nic"`
 	// [integer] The amount of memory for the server in MB.
 	Ram int `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	SshKeys []string `pulumi:"sshKeys"`
 	// Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
@@ -283,6 +436,8 @@ type VCPUServerArgs struct {
 	DatacenterId pulumi.StringInput
 	// The associated firewall rules.
 	FirewallruleIds pulumi.StringArrayInput
+	// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+	Hostname pulumi.StringPtrInput
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringPtrInput
 	// [string] The password for the image.
@@ -295,6 +450,12 @@ type VCPUServerArgs struct {
 	Nic VCPUServerNicPtrInput
 	// [integer] The amount of memory for the server in MB.
 	Ram pulumi.IntInput
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	SshKeys pulumi.StringArrayInput
 	// Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
@@ -436,6 +597,11 @@ func (o VCPUServerOutput) FirewallruleIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.StringArrayOutput { return v.FirewallruleIds }).(pulumi.StringArrayOutput)
 }
 
+// (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+func (o VCPUServerOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *VCPUServer) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 func (o VCPUServerOutput) ImageName() pulumi.StringOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.StringOutput { return v.ImageName }).(pulumi.StringOutput)
@@ -447,10 +613,6 @@ func (o VCPUServerOutput) ImagePassword() pulumi.StringOutput {
 }
 
 // A list with the IDs for the volumes that are defined inside the server resource.
-//
-// > **⚠ WARNING**
-// >
-// > sshKeys field is immutable.
 func (o VCPUServerOutput) InlineVolumeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.StringArrayOutput { return v.InlineVolumeIds }).(pulumi.StringArrayOutput)
 }
@@ -483,6 +645,15 @@ func (o VCPUServerOutput) PrimaryNic() pulumi.StringOutput {
 // [integer] The amount of memory for the server in MB.
 func (o VCPUServerOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+//
+// > **⚠ WARNING**
+// >
+// > sshKeys field is immutable.
+func (o VCPUServerOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VCPUServer) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.

@@ -606,29 +606,30 @@ class Group(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        user1_password = random.RandomPassword("user1Password",
+        user1_password = random.index.Password("user1_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example1 = ionoscloud.compute.User("example1",
             first_name="user1",
             last_name="user1",
             email="unique_email.com",
-            password=user1_password.result,
+            password=user1_password["result"],
             administrator=False,
             force_sec_auth=False)
-        user2_password = random.RandomPassword("user2Password",
+        user2_password = random.index.Password("user2_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example2 = ionoscloud.compute.User("example2",
             first_name="user2",
             last_name="user2",
             email="unique_email.com",
-            password=user2_password.result,
+            password=user2_password["result"],
             administrator=False,
             force_sec_auth=False)
         example = ionoscloud.compute.Group("example",
+            name="Group Example",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,
@@ -693,29 +694,30 @@ class Group(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        user1_password = random.RandomPassword("user1Password",
+        user1_password = random.index.Password("user1_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example1 = ionoscloud.compute.User("example1",
             first_name="user1",
             last_name="user1",
             email="unique_email.com",
-            password=user1_password.result,
+            password=user1_password["result"],
             administrator=False,
             force_sec_auth=False)
-        user2_password = random.RandomPassword("user2Password",
+        user2_password = random.index.Password("user2_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
+            override_special=!#$%&*()-_=+[]{}<>:?)
         example2 = ionoscloud.compute.User("example2",
             first_name="user2",
             last_name="user2",
             email="unique_email.com",
-            password=user2_password.result,
+            password=user2_password["result"],
             administrator=False,
             force_sec_auth=False)
         example = ionoscloud.compute.Group("example",
+            name="Group Example",
             create_datacenter=True,
             create_snapshot=True,
             reserve_ip=True,

@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -36,22 +37,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
 //				Location: pulumi.String("us/las"),
 //				Size:     pulumi.Int(2),
+//				Name:     pulumi.String("IP Block Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleNatGateway, err := compute.NewNatGateway(ctx, "exampleNatGateway", &compute.NatGatewayArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleNatGateway, err := compute.NewNatGateway(ctx, "example", &compute.NatGatewayArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("example"),
 //				PublicIps: pulumi.StringArray{
 //					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
 //						return ips[0], nil
@@ -72,9 +76,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewNatGatewayRule(ctx, "exampleNatGatewayRule", &compute.NatGatewayRuleArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = compute.NewNatGatewayRule(ctx, "example", &compute.NatGatewayRuleArgs{
+//				DatacenterId: example.ID(),
 //				NatgatewayId: exampleNatGateway.ID(),
+//				Name:         pulumi.String("example"),
 //				Type:         pulumi.String("SNAT"),
 //				Protocol:     pulumi.String("TCP"),
 //				SourceSubnet: pulumi.String("10.0.1.0/24"),
@@ -101,7 +106,7 @@ import (
 // A Nat Gateway Rule resource can be imported using its `resource id`, the `datacenter id` and the `natgateway id , e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/natGatewayRule:NatGatewayRule my_natgateway_rule {datacenter uuid}/{nat gateway uuid}/{nat gateway rule uuid}
+// $ pulumi import ionoscloud:compute/natGatewayRule:NatGatewayRule my_natgateway_rule datacenter uuid/nat gateway uuid/nat gateway rule uuid
 // ```
 type NatGatewayRule struct {
 	pulumi.CustomResourceState

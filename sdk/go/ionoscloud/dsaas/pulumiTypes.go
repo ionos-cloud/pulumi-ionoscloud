@@ -340,6 +340,162 @@ func (o ClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) ClusterMai
 	}).(ClusterMaintenanceWindowOutput)
 }
 
+type NodePoolAutoScaling struct {
+	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	MaxNodeCount int `pulumi:"maxNodeCount"`
+	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	MinNodeCount int `pulumi:"minNodeCount"`
+}
+
+// NodePoolAutoScalingInput is an input type that accepts NodePoolAutoScalingArgs and NodePoolAutoScalingOutput values.
+// You can construct a concrete instance of `NodePoolAutoScalingInput` via:
+//
+//	NodePoolAutoScalingArgs{...}
+type NodePoolAutoScalingInput interface {
+	pulumi.Input
+
+	ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput
+	ToNodePoolAutoScalingOutputWithContext(context.Context) NodePoolAutoScalingOutput
+}
+
+type NodePoolAutoScalingArgs struct {
+	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
+	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
+}
+
+func (NodePoolAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolAutoScaling)(nil)).Elem()
+}
+
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput {
+	return i.ToNodePoolAutoScalingOutputWithContext(context.Background())
+}
+
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingOutputWithContext(ctx context.Context) NodePoolAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingOutput)
+}
+
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return i.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingOutput).ToNodePoolAutoScalingPtrOutputWithContext(ctx)
+}
+
+// NodePoolAutoScalingPtrInput is an input type that accepts NodePoolAutoScalingArgs, NodePoolAutoScalingPtr and NodePoolAutoScalingPtrOutput values.
+// You can construct a concrete instance of `NodePoolAutoScalingPtrInput` via:
+//
+//	        NodePoolAutoScalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolAutoScalingPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput
+	ToNodePoolAutoScalingPtrOutputWithContext(context.Context) NodePoolAutoScalingPtrOutput
+}
+
+type nodePoolAutoScalingPtrType NodePoolAutoScalingArgs
+
+func NodePoolAutoScalingPtr(v *NodePoolAutoScalingArgs) NodePoolAutoScalingPtrInput {
+	return (*nodePoolAutoScalingPtrType)(v)
+}
+
+func (*nodePoolAutoScalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolAutoScaling)(nil)).Elem()
+}
+
+func (i *nodePoolAutoScalingPtrType) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return i.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolAutoScalingPtrType) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingPtrOutput)
+}
+
+type NodePoolAutoScalingOutput struct{ *pulumi.OutputState }
+
+func (NodePoolAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolAutoScaling)(nil)).Elem()
+}
+
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput {
+	return o
+}
+
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingOutputWithContext(ctx context.Context) NodePoolAutoScalingOutput {
+	return o
+}
+
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return o.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolAutoScaling) *NodePoolAutoScaling {
+		return &v
+	}).(NodePoolAutoScalingPtrOutput)
+}
+
+// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+func (o NodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
+}
+
+// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+func (o NodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
+}
+
+type NodePoolAutoScalingPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolAutoScalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolAutoScaling)(nil)).Elem()
+}
+
+func (o NodePoolAutoScalingPtrOutput) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return o
+}
+
+func (o NodePoolAutoScalingPtrOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return o
+}
+
+func (o NodePoolAutoScalingPtrOutput) Elem() NodePoolAutoScalingOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) NodePoolAutoScaling {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolAutoScaling
+		return ret
+	}).(NodePoolAutoScalingOutput)
+}
+
+// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+func (o NodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxNodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+func (o NodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MinNodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
 type NodePoolMaintenanceWindow struct {
 	// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
@@ -1203,6 +1359,112 @@ func (o GetClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetClus
 	}).(GetClusterMaintenanceWindowOutput)
 }
 
+type GetNodePoolAutoScaling struct {
+	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	MaxNodeCount int `pulumi:"maxNodeCount"`
+	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	MinNodeCount int `pulumi:"minNodeCount"`
+}
+
+// GetNodePoolAutoScalingInput is an input type that accepts GetNodePoolAutoScalingArgs and GetNodePoolAutoScalingOutput values.
+// You can construct a concrete instance of `GetNodePoolAutoScalingInput` via:
+//
+//	GetNodePoolAutoScalingArgs{...}
+type GetNodePoolAutoScalingInput interface {
+	pulumi.Input
+
+	ToGetNodePoolAutoScalingOutput() GetNodePoolAutoScalingOutput
+	ToGetNodePoolAutoScalingOutputWithContext(context.Context) GetNodePoolAutoScalingOutput
+}
+
+type GetNodePoolAutoScalingArgs struct {
+	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
+	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
+}
+
+func (GetNodePoolAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolAutoScaling)(nil)).Elem()
+}
+
+func (i GetNodePoolAutoScalingArgs) ToGetNodePoolAutoScalingOutput() GetNodePoolAutoScalingOutput {
+	return i.ToGetNodePoolAutoScalingOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolAutoScalingArgs) ToGetNodePoolAutoScalingOutputWithContext(ctx context.Context) GetNodePoolAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolAutoScalingOutput)
+}
+
+// GetNodePoolAutoScalingArrayInput is an input type that accepts GetNodePoolAutoScalingArray and GetNodePoolAutoScalingArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolAutoScalingArrayInput` via:
+//
+//	GetNodePoolAutoScalingArray{ GetNodePoolAutoScalingArgs{...} }
+type GetNodePoolAutoScalingArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolAutoScalingArrayOutput() GetNodePoolAutoScalingArrayOutput
+	ToGetNodePoolAutoScalingArrayOutputWithContext(context.Context) GetNodePoolAutoScalingArrayOutput
+}
+
+type GetNodePoolAutoScalingArray []GetNodePoolAutoScalingInput
+
+func (GetNodePoolAutoScalingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolAutoScaling)(nil)).Elem()
+}
+
+func (i GetNodePoolAutoScalingArray) ToGetNodePoolAutoScalingArrayOutput() GetNodePoolAutoScalingArrayOutput {
+	return i.ToGetNodePoolAutoScalingArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolAutoScalingArray) ToGetNodePoolAutoScalingArrayOutputWithContext(ctx context.Context) GetNodePoolAutoScalingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolAutoScalingArrayOutput)
+}
+
+type GetNodePoolAutoScalingOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolAutoScaling)(nil)).Elem()
+}
+
+func (o GetNodePoolAutoScalingOutput) ToGetNodePoolAutoScalingOutput() GetNodePoolAutoScalingOutput {
+	return o
+}
+
+func (o GetNodePoolAutoScalingOutput) ToGetNodePoolAutoScalingOutputWithContext(ctx context.Context) GetNodePoolAutoScalingOutput {
+	return o
+}
+
+// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+func (o GetNodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
+}
+
+// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+func (o GetNodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
+}
+
+type GetNodePoolAutoScalingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolAutoScalingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolAutoScaling)(nil)).Elem()
+}
+
+func (o GetNodePoolAutoScalingArrayOutput) ToGetNodePoolAutoScalingArrayOutput() GetNodePoolAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetNodePoolAutoScalingArrayOutput) ToGetNodePoolAutoScalingArrayOutputWithContext(ctx context.Context) GetNodePoolAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetNodePoolAutoScalingArrayOutput) Index(i pulumi.IntInput) GetNodePoolAutoScalingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolAutoScaling {
+		return vs[0].([]GetNodePoolAutoScaling)[vs[1].(int)]
+	}).(GetNodePoolAutoScalingOutput)
+}
+
 type GetNodePoolMaintenanceWindow struct {
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
 	// Time at which the maintenance should start.
@@ -1627,6 +1889,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLanRouteArrayInput)(nil)).Elem(), ClusterLanRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowArrayInput)(nil)).Elem(), ClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingPtrInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowInput)(nil)).Elem(), NodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowArrayInput)(nil)).Elem(), NodePoolMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConfigInput)(nil)).Elem(), GetClusterConfigArgs{})
@@ -1643,6 +1907,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterLanRouteArrayInput)(nil)).Elem(), GetClusterLanRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMaintenanceWindowInput)(nil)).Elem(), GetClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolAutoScalingInput)(nil)).Elem(), GetNodePoolAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolAutoScalingArrayInput)(nil)).Elem(), GetNodePoolAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolInput)(nil)).Elem(), GetNodePoolsNodePoolArgs{})
@@ -1655,6 +1921,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterLanRouteArrayOutput{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolAutoScalingOutput{})
+	pulumi.RegisterOutputType(NodePoolAutoScalingPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(NodePoolMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterConfigOutput{})
@@ -1671,6 +1939,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterLanRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolAutoScalingOutput{})
+	pulumi.RegisterOutputType(GetNodePoolAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolOutput{})

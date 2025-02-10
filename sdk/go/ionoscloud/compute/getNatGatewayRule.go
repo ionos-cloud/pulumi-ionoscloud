@@ -16,6 +16,60 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNatGatewayRule(ctx, &compute.LookupNatGatewayRuleArgs{
+//				DatacenterId: "datacenter_id",
+//				NatgatewayId: "natgateway_id",
+//				Id:           pulumi.StringRef("natgateway_rule_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupNatGatewayRule(ctx, &compute.LookupNatGatewayRuleArgs{
+//				DatacenterId: "datacenter_id",
+//				NatgatewayId: "natgateway_id",
+//				Name:         pulumi.StringRef("NAT Gateway Rule Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupNatGatewayRule(ctx *pulumi.Context, args *LookupNatGatewayRuleArgs, opts ...pulumi.InvokeOption) (*LookupNatGatewayRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNatGatewayRuleResult
@@ -44,10 +98,10 @@ type LookupNatGatewayRuleArgs struct {
 type LookupNatGatewayRuleResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Id of the NAT gateway rule
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Name of the NAT gateway rule
-	Name         *string `pulumi:"name"`
-	NatgatewayId string  `pulumi:"natgatewayId"`
+	Name         string `pulumi:"name"`
+	NatgatewayId string `pulumi:"natgatewayId"`
 	// Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
 	Protocol string `pulumi:"protocol"`
 	// Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource
@@ -109,13 +163,13 @@ func (o LookupNatGatewayRuleResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // Id of the NAT gateway rule
-func (o LookupNatGatewayRuleResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatGatewayRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupNatGatewayRuleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNatGatewayRuleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Name of the NAT gateway rule
-func (o LookupNatGatewayRuleResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatGatewayRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupNatGatewayRuleResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNatGatewayRuleResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupNatGatewayRuleResultOutput) NatgatewayId() pulumi.StringOutput {

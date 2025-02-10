@@ -16,16 +16,19 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const nfsDc = new ionoscloud.compute.Datacenter("nfsDc", {
+ * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
+ *     name: "NFS Datacenter",
  *     location: "de/txl",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const nfsLan = new ionoscloud.compute.Lan("nfsLan", {
+ * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
  *     datacenterId: nfsDc.id,
  *     "public": false,
+ *     name: "Lan for NFS",
  * });
  * const example = new ionoscloud.nfs.Cluster("example", {
+ *     name: "test",
  *     location: "de/txl",
  *     size: 2,
  *     nfs: {

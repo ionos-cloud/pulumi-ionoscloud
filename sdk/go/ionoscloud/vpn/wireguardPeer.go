@@ -30,17 +30,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpn.NewWireguardPeer(ctx, "example", &vpn.WireguardPeerArgs{
-//				AllowedIps: pulumi.StringArray{
-//					pulumi.String("10.0.0.0/8"),
-//					pulumi.String("192.168.1.0/24"),
-//				},
+//				Location:    pulumi.String("de/fra"),
+//				GatewayId:   pulumi.String("your gateway id here"),
+//				Name:        pulumi.String("example-gateway"),
 //				Description: pulumi.String("An example WireGuard peer"),
 //				Endpoint: &vpn.WireguardPeerEndpointArgs{
 //					Host: pulumi.String("1.2.3.4"),
 //					Port: pulumi.Int(51820),
 //				},
-//				GatewayId: pulumi.String("your gateway id here"),
-//				Location:  pulumi.String("de/fra"),
+//				AllowedIps: pulumi.StringArray{
+//					pulumi.String("10.0.0.0/8"),
+//					pulumi.String("192.168.1.0/24"),
+//				},
 //				PublicKey: pulumi.String("examplePublicKey=="),
 //			})
 //			if err != nil {
@@ -57,7 +58,7 @@ import (
 // WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
 //
 // ```sh
-// $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example <gateway_id>:<peer_id>
+// $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example gateway_id:peer_id
 // ```
 type WireguardPeer struct {
 	pulumi.CustomResourceState
@@ -71,7 +72,7 @@ type WireguardPeer struct {
 	// [string] The ID of the WireGuard Gateway that the Peer will connect to.
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
 	// [string] The location of the WireGuard Gateway.
-	Location pulumi.StringOutput `pulumi:"location"`
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The human-readable name of the WireGuard Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] The public key for the WireGuard Gateway.
@@ -92,9 +93,6 @@ func NewWireguardPeer(ctx *pulumi.Context,
 	}
 	if args.GatewayId == nil {
 		return nil, errors.New("invalid value for required argument 'GatewayId'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
@@ -173,7 +171,7 @@ type wireguardPeerArgs struct {
 	// [string] The ID of the WireGuard Gateway that the Peer will connect to.
 	GatewayId string `pulumi:"gatewayId"`
 	// [string] The location of the WireGuard Gateway.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [string] The human-readable name of the WireGuard Gateway.
 	Name *string `pulumi:"name"`
 	// [string] The public key for the WireGuard Gateway.
@@ -191,7 +189,7 @@ type WireguardPeerArgs struct {
 	// [string] The ID of the WireGuard Gateway that the Peer will connect to.
 	GatewayId pulumi.StringInput
 	// [string] The location of the WireGuard Gateway.
-	Location pulumi.StringInput
+	Location pulumi.StringPtrInput
 	// [string] The human-readable name of the WireGuard Gateway.
 	Name pulumi.StringPtrInput
 	// [string] The public key for the WireGuard Gateway.
@@ -306,8 +304,8 @@ func (o WireguardPeerOutput) GatewayId() pulumi.StringOutput {
 }
 
 // [string] The location of the WireGuard Gateway.
-func (o WireguardPeerOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *WireguardPeer) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+func (o WireguardPeerOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WireguardPeer) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The human-readable name of the WireGuard Gateway.

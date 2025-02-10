@@ -15,7 +15,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.apigateway.Apigateway("example", {metrics: true});
+ * const example = new ionoscloud.apigateway.Apigateway("example", {
+ *     name: "example-gateway",
+ *     metrics: true,
+ * });
  * ```
  *
  * ## Import

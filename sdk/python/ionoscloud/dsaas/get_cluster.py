@@ -228,6 +228,42 @@ def get_cluster(id: Optional[str] = None,
         partial_match=True)
     ```
 
+    ## Example of accessing a Dataplatform Cluster using the user's token
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    example_cluster = ionoscloud.dsaas.Cluster("example",
+        datacenter_id=example_ionoscloud_datacenter["id"],
+        name="Dataplatform_Cluster_Example",
+        maintenance_windows=[{
+            "day_of_the_week": "Sunday",
+            "time": "09:00:00",
+        }],
+        version="23.7")
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
+    ```
+
+    ## Example of accessing a kubernetes cluster using the token from the config
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    example_cluster = ionoscloud.dsaas.Cluster("example",
+        datacenter_id=example_ionoscloud_datacenter["id"],
+        name="Dataplatform_Cluster_Example",
+        maintenance_windows=[{
+            "day_of_the_week": "Sunday",
+            "time": "09:00:00",
+        }],
+        version="23.7")
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
+    ```
+
 
     :param str id: ID of the cluster you want to search for.
     :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
@@ -283,6 +319,42 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     example = ionoscloud.dsaas.get_cluster(name="_Example",
         partial_match=True)
+    ```
+
+    ## Example of accessing a Dataplatform Cluster using the user's token
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    example_cluster = ionoscloud.dsaas.Cluster("example",
+        datacenter_id=example_ionoscloud_datacenter["id"],
+        name="Dataplatform_Cluster_Example",
+        maintenance_windows=[{
+            "day_of_the_week": "Sunday",
+            "time": "09:00:00",
+        }],
+        version="23.7")
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
+    ```
+
+    ## Example of accessing a kubernetes cluster using the token from the config
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    example_cluster = ionoscloud.dsaas.Cluster("example",
+        datacenter_id=example_ionoscloud_datacenter["id"],
+        name="Dataplatform_Cluster_Example",
+        maintenance_windows=[{
+            "day_of_the_week": "Sunday",
+            "time": "09:00:00",
+        }],
+        version="23.7")
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
     ```
 
 

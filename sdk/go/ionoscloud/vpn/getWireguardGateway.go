@@ -28,13 +28,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpn.LookupWireguardGateway(ctx, &vpn.LookupWireguardGatewayArgs{
-//				Location: "de/fra",
+//				Location: pulumi.StringRef("de/fra"),
 //				Name:     pulumi.StringRef("example-gateway"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("vpnWireguardGatewayPublicKey", data.Vpn_wireguard_gateway.Example.Public_key)
+//			ctx.Export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.PublicKey)
 //			return nil
 //		})
 //	}
@@ -57,7 +57,7 @@ type LookupWireguardGatewayArgs struct {
 	// [String] The ID of the WireGuard Gateway.
 	Id *string `pulumi:"id"`
 	// [String] The location of the WireGuard Gateway.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [String] The name of the WireGuard Gateway.
 	Name *string `pulumi:"name"`
 }
@@ -74,14 +74,18 @@ type LookupWireguardGatewayResult struct {
 	// The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr string `pulumi:"interfaceIpv4Cidr"`
 	// The IPv6 CIDR for the WireGuard Gateway interface.
-	InterfaceIpv6Cidr string `pulumi:"interfaceIpv6Cidr"`
-	ListenPort        int    `pulumi:"listenPort"`
-	Location          string `pulumi:"location"`
-	Name              string `pulumi:"name"`
+	InterfaceIpv6Cidr string  `pulumi:"interfaceIpv6Cidr"`
+	ListenPort        int     `pulumi:"listenPort"`
+	Location          *string `pulumi:"location"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindows []GetWireguardGatewayMaintenanceWindow `pulumi:"maintenanceWindows"`
+	Name               string                                 `pulumi:"name"`
 	// The public key for the WireGuard Gateway.
 	PublicKey string `pulumi:"publicKey"`
 	// The current status of the WireGuard Gateway.
 	Status string `pulumi:"status"`
+	// Gateway performance options.
+	Tier string `pulumi:"tier"`
 }
 
 func LookupWireguardGatewayOutput(ctx *pulumi.Context, args LookupWireguardGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupWireguardGatewayResultOutput {
@@ -100,7 +104,7 @@ type LookupWireguardGatewayOutputArgs struct {
 	// [String] The ID of the WireGuard Gateway.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [String] The location of the WireGuard Gateway.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [String] The name of the WireGuard Gateway.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -157,8 +161,15 @@ func (o LookupWireguardGatewayResultOutput) ListenPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) int { return v.ListenPort }).(pulumi.IntOutput)
 }
 
-func (o LookupWireguardGatewayResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupWireguardGatewayResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWireguardGatewayResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// A weekly 4 hour-long window, during which maintenance might occur.
+func (o LookupWireguardGatewayResultOutput) MaintenanceWindows() GetWireguardGatewayMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v LookupWireguardGatewayResult) []GetWireguardGatewayMaintenanceWindow {
+		return v.MaintenanceWindows
+	}).(GetWireguardGatewayMaintenanceWindowArrayOutput)
 }
 
 func (o LookupWireguardGatewayResultOutput) Name() pulumi.StringOutput {
@@ -173,6 +184,11 @@ func (o LookupWireguardGatewayResultOutput) PublicKey() pulumi.StringOutput {
 // The current status of the WireGuard Gateway.
 func (o LookupWireguardGatewayResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Gateway performance options.
+func (o LookupWireguardGatewayResultOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
 func init() {

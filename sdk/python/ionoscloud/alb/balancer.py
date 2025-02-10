@@ -343,18 +343,22 @@ class Balancer(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="datacenter description",
             sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_balancer = ionoscloud.alb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
+        example1 = ionoscloud.compute.Lan("example_1",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example2 = ionoscloud.compute.Lan("example_2",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_balancer = ionoscloud.alb.Balancer("example",
+            datacenter_id=example.id,
+            name="ALB Example",
             listener_lan=example1.id,
             ips=["10.12.118.224"],
             target_lan=example2.id,
@@ -398,18 +402,22 @@ class Balancer(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="datacenter description",
             sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_balancer = ionoscloud.alb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
+        example1 = ionoscloud.compute.Lan("example_1",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example2 = ionoscloud.compute.Lan("example_2",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_balancer = ionoscloud.alb.Balancer("example",
+            datacenter_id=example.id,
+            name="ALB Example",
             listener_lan=example1.id,
             ips=["10.12.118.224"],
             target_lan=example2.id,

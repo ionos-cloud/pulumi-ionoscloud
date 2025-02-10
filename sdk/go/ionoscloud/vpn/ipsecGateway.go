@@ -32,20 +32,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			testDatacenter, err := compute.NewDatacenter(ctx, "testDatacenter", &compute.DatacenterArgs{
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("test_vpn_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testLan, err := compute.NewLan(ctx, "testLan", &compute.LanArgs{
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:         pulumi.String("test_lan_basic"),
 //				Public:       pulumi.Bool(false),
 //				DatacenterId: testDatacenter.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testIpblock, err := compute.NewIPBlock(ctx, "testIpblock", &compute.IPBlockArgs{
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock_basic"),
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
 //			})
@@ -53,6 +56,7 @@ import (
 //				return err
 //			}
 //			_, err = vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
 //					return ips[0], nil
@@ -76,12 +80,114 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("vpn_gateway_test"),
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:          pulumi.String("test_lan"),
+//				Public:        pulumi.Bool(false),
+//				DatacenterId:  testDatacenter.ID(),
+//				Ipv6CidrBlock: pulumi.Any(lanIpv6CidrBlock),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock"),
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "test_server", &compute.ServerArgs{
+//				Name:          pulumi.String("test_server"),
+//				DatacenterId:  testDatacenter.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(2048),
+//				ImageName:     pulumi.String("ubuntu:latest"),
+//				ImagePassword: serverImagePassword.Result,
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            testLan.ID(),
+//					Name:           pulumi.String("test_nic"),
+//					Dhcp:           pulumi.Bool(true),
+//					Dhcpv6:         pulumi.Bool(false),
+//					Ipv6CidrBlock:  pulumi.Any(ipv6CidrBlock),
+//					FirewallActive: pulumi.Bool(false),
+//				},
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("test_volume"),
+//					DiskType:    pulumi.String("HDD"),
+//					Size:        pulumi.Int(10),
+//					LicenceType: pulumi.String("OTHER"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec-gateway"),
+//				Location: pulumi.String("de/fra"),
+//				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				Version:     pulumi.String("IKEv2"),
+//				Description: pulumi.String("This gateway connects site A to VDC X."),
+//				Connections: vpn.IpsecGatewayConnectionArray{
+//					&vpn.IpsecGatewayConnectionArgs{
+//						DatacenterId: testDatacenter.ID(),
+//						LanId:        testLan.ID(),
+//						Ipv4Cidr:     pulumi.String("ipv4_cidr_block_from_nic"),
+//						Ipv6Cidr:     pulumi.String("ipv6_cidr_block_from_dc"),
+//					},
+//				},
+//				MaintenanceWindow: &vpn.IpsecGatewayMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Monday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				Tier: pulumi.String("STANDARD"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // The resource can be imported using the `location` and `gateway_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
+// $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example location:gateway_id
 // ```
 type IpsecGateway struct {
 	pulumi.CustomResourceState
@@ -95,10 +201,14 @@ type IpsecGateway struct {
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
 	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringOutput `pulumi:"location"`
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow IpsecGatewayMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrOutput `pulumi:"tier"`
 	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
 	// values: `IKEv2`.
 	Version pulumi.StringPtrOutput `pulumi:"version"`
@@ -116,9 +226,6 @@ func NewIpsecGateway(ctx *pulumi.Context,
 	}
 	if args.GatewayIp == nil {
 		return nil, errors.New("invalid value for required argument 'GatewayIp'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsecGateway
@@ -152,10 +259,14 @@ type ipsecGatewayState struct {
 	// the same datacenter as the connections.
 	GatewayIp *string `pulumi:"gatewayIp"`
 	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-	// gb/lhr, us/ewr, us/las, us/mci, fr/par
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow *IpsecGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the IPSec Gateway.
 	Name *string `pulumi:"name"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier *string `pulumi:"tier"`
 	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
 	// values: `IKEv2`.
 	Version *string `pulumi:"version"`
@@ -171,10 +282,14 @@ type IpsecGatewayState struct {
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringPtrInput
 	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-	// gb/lhr, us/ewr, us/las, us/mci, fr/par
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow IpsecGatewayMaintenanceWindowPtrInput
 	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringPtrInput
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrInput
 	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
 	// values: `IKEv2`.
 	Version pulumi.StringPtrInput
@@ -194,10 +309,14 @@ type ipsecGatewayArgs struct {
 	// the same datacenter as the connections.
 	GatewayIp string `pulumi:"gatewayIp"`
 	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location string `pulumi:"location"`
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location *string `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow *IpsecGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the IPSec Gateway.
 	Name *string `pulumi:"name"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier *string `pulumi:"tier"`
 	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
 	// values: `IKEv2`.
 	Version *string `pulumi:"version"`
@@ -214,10 +333,14 @@ type IpsecGatewayArgs struct {
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringInput
 	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringInput
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location pulumi.StringPtrInput
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow IpsecGatewayMaintenanceWindowPtrInput
 	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringPtrInput
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrInput
 	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
 	// values: `IKEv2`.
 	Version pulumi.StringPtrInput
@@ -328,14 +451,24 @@ func (o IpsecGatewayOutput) GatewayIp() pulumi.StringOutput {
 }
 
 // [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-// gb/lhr, us/ewr, us/las, us/mci, fr/par
-func (o IpsecGatewayOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+func (o IpsecGatewayOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecGateway) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+func (o IpsecGatewayOutput) MaintenanceWindow() IpsecGatewayMaintenanceWindowOutput {
+	return o.ApplyT(func(v *IpsecGateway) IpsecGatewayMaintenanceWindowOutput { return v.MaintenanceWindow }).(IpsecGatewayMaintenanceWindowOutput)
 }
 
 // [string] The name of the IPSec Gateway.
 func (o IpsecGatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+func (o IpsecGatewayOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecGateway) pulumi.StringPtrOutput { return v.Tier }).(pulumi.StringPtrOutput)
 }
 
 // [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible

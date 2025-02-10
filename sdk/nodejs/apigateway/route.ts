@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.apigateway.Apigateway("example", {
+ *     name: "example-gateway",
  *     metrics: true,
  *     customDomains: [
  *         {
@@ -30,7 +31,8 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  * });
- * const apigatewayRoute = new ionoscloud.apigateway.Route("apigatewayRoute", {
+ * const apigatewayRoute = new ionoscloud.apigateway.Route("apigateway_route", {
+ *     name: "apigateway-route",
  *     type: "http",
  *     paths: [
  *         "/foo/*",

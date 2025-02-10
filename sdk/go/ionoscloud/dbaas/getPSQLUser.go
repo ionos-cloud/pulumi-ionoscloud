@@ -12,6 +12,33 @@ import (
 )
 
 // The **PgSql User data source** can be used to search for and return an existing PgSql user.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupPSQLUser(ctx, &dbaas.LookupPSQLUserArgs{
+//				ClusterId: "cluster_id",
+//				Username:  "username",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupPSQLUser(ctx *pulumi.Context, args *LookupPSQLUserArgs, opts ...pulumi.InvokeOption) (*LookupPSQLUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPSQLUserResult

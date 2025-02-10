@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := apigateway.NewApigateway(ctx, "example", &apigateway.ApigatewayArgs{
+//				Name:    pulumi.String("example-gateway"),
 //				Metrics: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -50,7 +51,7 @@ import (
 // The resource can be imported using the `gateway_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example {gateway_id}
+// $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example gateway_id
 // ```
 type Apigateway struct {
 	pulumi.CustomResourceState

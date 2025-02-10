@@ -21,65 +21,18 @@ import (
 //
 // import (
 //
-//	"os"
-//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
-//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
-//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// **NOTE**: You can also provide the values as multiline strings, as seen below:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"os"
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      pulumi.String("-----BEGIN CERTIFICATE-----\ncert_body_here\n-----END CERTIFICATE-----\n\n"),
-//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
-//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      pulumi.String("tour_certificate"),
+//				CertificateChain: pulumi.String("your_certificate_chain"),
+//				PrivateKey:       pulumi.String("your_private_key"),
 //			})
 //			if err != nil {
 //				return err
@@ -95,7 +48,7 @@ import (
 // Resource certificate can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+// $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
 // ```
 type Certificate struct {
 	pulumi.CustomResourceState

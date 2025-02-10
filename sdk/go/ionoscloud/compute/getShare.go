@@ -15,6 +15,33 @@ import (
 // You need to provide the groupId and resourceId to get the group resources for the shared resource.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 // When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupShare(ctx, &compute.LookupShareArgs{
+//				GroupId:    "group_id",
+//				ResourceId: "resource_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupShare(ctx *pulumi.Context, args *LookupShareArgs, opts ...pulumi.InvokeOption) (*LookupShareResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupShareResult
@@ -27,24 +54,18 @@ func LookupShare(ctx *pulumi.Context, args *LookupShareArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getShare.
 type LookupShareArgs struct {
-	// The flag that specifies if the group has permission to edit privileges on this resource.
-	EditPrivilege *bool `pulumi:"editPrivilege"`
 	// The ID of the specific group containing the resource to update.
 	GroupId string `pulumi:"groupId"`
-	// The uuid of the share object
-	//
-	// `id`, `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
-	Id string `pulumi:"id"`
 	// The ID of the specific resource to update.
+	//
+	// `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
 	ResourceId string `pulumi:"resourceId"`
-	// The group has permission to share this resource.
-	SharePrivilege *bool `pulumi:"sharePrivilege"`
 }
 
 // A collection of values returned by getShare.
 type LookupShareResult struct {
 	// The flag that specifies if the group has permission to edit privileges on this resource.
-	EditPrivilege *bool `pulumi:"editPrivilege"`
+	EditPrivilege bool `pulumi:"editPrivilege"`
 	// The ID of the specific group containing the resource to update.
 	GroupId string `pulumi:"groupId"`
 	// The id of the share resource.
@@ -52,7 +73,7 @@ type LookupShareResult struct {
 	// The ID of the specific resource to update.
 	ResourceId string `pulumi:"resourceId"`
 	// The group has permission to share this resource.
-	SharePrivilege *bool `pulumi:"sharePrivilege"`
+	SharePrivilege bool `pulumi:"sharePrivilege"`
 }
 
 func LookupShareOutput(ctx *pulumi.Context, args LookupShareOutputArgs, opts ...pulumi.InvokeOption) LookupShareResultOutput {
@@ -66,18 +87,12 @@ func LookupShareOutput(ctx *pulumi.Context, args LookupShareOutputArgs, opts ...
 
 // A collection of arguments for invoking getShare.
 type LookupShareOutputArgs struct {
-	// The flag that specifies if the group has permission to edit privileges on this resource.
-	EditPrivilege pulumi.BoolPtrInput `pulumi:"editPrivilege"`
 	// The ID of the specific group containing the resource to update.
 	GroupId pulumi.StringInput `pulumi:"groupId"`
-	// The uuid of the share object
-	//
-	// `id`, `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
 	// The ID of the specific resource to update.
+	//
+	// `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
 	ResourceId pulumi.StringInput `pulumi:"resourceId"`
-	// The group has permission to share this resource.
-	SharePrivilege pulumi.BoolPtrInput `pulumi:"sharePrivilege"`
 }
 
 func (LookupShareOutputArgs) ElementType() reflect.Type {
@@ -100,8 +115,8 @@ func (o LookupShareResultOutput) ToLookupShareResultOutputWithContext(ctx contex
 }
 
 // The flag that specifies if the group has permission to edit privileges on this resource.
-func (o LookupShareResultOutput) EditPrivilege() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupShareResult) *bool { return v.EditPrivilege }).(pulumi.BoolPtrOutput)
+func (o LookupShareResultOutput) EditPrivilege() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupShareResult) bool { return v.EditPrivilege }).(pulumi.BoolOutput)
 }
 
 // The ID of the specific group containing the resource to update.
@@ -120,8 +135,8 @@ func (o LookupShareResultOutput) ResourceId() pulumi.StringOutput {
 }
 
 // The group has permission to share this resource.
-func (o LookupShareResultOutput) SharePrivilege() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupShareResult) *bool { return v.SharePrivilege }).(pulumi.BoolPtrOutput)
+func (o LookupShareResultOutput) SharePrivilege() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupShareResult) bool { return v.SharePrivilege }).(pulumi.BoolOutput)
 }
 
 func init() {

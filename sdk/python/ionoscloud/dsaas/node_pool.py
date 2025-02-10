@@ -473,18 +473,21 @@ class NodePool(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter_Example",
             location="de/txl",
             description="Datacenter for testing Dataplatform Cluster")
-        example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
-            datacenter_id=example_datacenter.id,
+        example_cluster = ionoscloud.dsaas.Cluster("example",
+            datacenter_id=example.id,
+            name="Dataplatform_Cluster_Example",
             maintenance_windows=[{
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
             }],
             version="23.7")
-        example_node_pool = ionoscloud.dsaas.NodePool("exampleNodePool",
+        example_node_pool = ionoscloud.dsaas.NodePool("example",
             cluster_id=example_cluster.id,
+            name="Dataplatform_Node_Pool_Example",
             node_count=1,
             cpu_family="INTEL_SKYLAKE",
             cores_count=1,
@@ -542,18 +545,21 @@ class NodePool(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter_Example",
             location="de/txl",
             description="Datacenter for testing Dataplatform Cluster")
-        example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
-            datacenter_id=example_datacenter.id,
+        example_cluster = ionoscloud.dsaas.Cluster("example",
+            datacenter_id=example.id,
+            name="Dataplatform_Cluster_Example",
             maintenance_windows=[{
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
             }],
             version="23.7")
-        example_node_pool = ionoscloud.dsaas.NodePool("exampleNodePool",
+        example_node_pool = ionoscloud.dsaas.NodePool("example",
             cluster_id=example_cluster.id,
+            name="Dataplatform_Node_Pool_Example",
             node_count=1,
             cpu_family="INTEL_SKYLAKE",
             cores_count=1,

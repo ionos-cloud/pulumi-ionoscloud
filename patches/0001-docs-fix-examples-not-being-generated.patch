@@ -1,0 +1,955 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Radu Mocanu <radu_mocanu2000@yahoo.com>
+Date: Tue, 28 Jan 2025 10:46:47 +0200
+Subject: [PATCH] docs: fix examples not being generated
+
+
+diff --git a/docs/data-sources/dataplatform_cluster.md b/docs/data-sources/dataplatform_cluster.md
+index 24ddf9f1..1e7e6f1c 100644
+--- a/docs/data-sources/dataplatform_cluster.md
++++ b/docs/data-sources/dataplatform_cluster.md
+@@ -136,22 +136,3 @@ provider "kubernetes" {
+   token =  data.ionoscloud_dataplatform_cluster.example.config[0].users[0].user.token
+ }
+ ```
+-
+-
+-## Example of dumping the kube_config raw data into a yaml file
+-
+-**NOTE**: Dumping `kube_config` data into files poses a security risk.
+-
+-**NOTE**: Using `sensitive_content` for `local_file` does not show the data written to the file during the plan phase.
+-
+-```
+-data "ionoscloud_dataplatform_cluster" "example" {
+-  name = "Dataplatform_Cluster_Example"
+-}
+-
+-resource "local_file" "kubeconfig" {
+-    sensitive_content     = yamlencode(jsondecode(data.ionoscloud_dataplatform_cluster.example.kube_config))
+-    filename              = "kubeconfig.yaml"
+-}
+-
+-```
+\ No newline at end of file
+diff --git a/docs/data-sources/dbaas_mongo_user.md b/docs/data-sources/dbaas_mongo_user.md
+index f575621e..3097f137 100644
+--- a/docs/data-sources/dbaas_mongo_user.md
++++ b/docs/data-sources/dbaas_mongo_user.md
+@@ -15,11 +15,11 @@ When this happens, please refine your search string so that it is specific enoug
+ 
+ ## Example Usage
+ 
+-### By display_name
++### By username
+ ```hcl
+ data "ionoscloud_mongo_user" "example" {
+   cluster_id	= "cluster_id"
+-  display_name	= "display_name"
++  username	= "username"
+ }
+ ```
+ 
+diff --git a/docs/data-sources/ipfailover.md b/docs/data-sources/ipfailover.md
+index 428dc951..cf073991 100644
+--- a/docs/data-sources/ipfailover.md
++++ b/docs/data-sources/ipfailover.md
+@@ -18,7 +18,7 @@ If a single match is found, it will be returned. If your search results in multi
+ ```hcl
+ data "ionoscloud_ipfailover" "example" {
+   datacenter_id   = "datacenter_id"
+-  id              = "lan_id"
++  lan_id              = "lan_id"
+ }
+ ```
+ 
+@@ -27,7 +27,7 @@ data "ionoscloud_ipfailover" "example" {
+ The following arguments are supported:
+ 
+ * `datacenter_id` - (Required) The ID of the datacenter containing the ip failover datasource
+-* `id` - (Required) The id of the lan of which the IP failover belongs 
++* `lan_id` - (Required) The id of the lan of which the IP failover belongs
+ 
+ 
+ ## Attributes Reference
+diff --git a/docs/data-sources/k8s_cluster.md b/docs/data-sources/k8s_cluster.md
+index 7822d78c..7f909540 100644
+--- a/docs/data-sources/k8s_cluster.md
++++ b/docs/data-sources/k8s_cluster.md
+@@ -135,22 +135,3 @@ provider "kubernetes" {
+   token =  data.ionoscloud_k8s_cluster.test.config[0].users[0].user.token
+ }
+ ```
+-
+-
+-## Example of dumping the kube_config raw data into a yaml file
+-
+-**NOTE**: Dumping `kube_config` data into files poses a security risk.
+-
+-**NOTE**: Using `sensitive_content` for `local_file` does not show the data written to the file during the plan phase.
+-
+-```
+-data "ionoscloud_k8s_cluster" "k8s_cluster_example" {
+-  name     = "k8s-demo"
+-}
+-
+-resource "local_file" "kubeconfig" {
+-    sensitive_content     = yamlencode(jsondecode(data.ionoscloud_k8s_cluster.k8s_cluster_example.kube_config))
+-    filename              = "kubeconfig.yaml"
+-}
+-
+-```
+\ No newline at end of file
+diff --git a/docs/data-sources/nfs_cluster.md b/docs/data-sources/nfs_cluster.md
+index 5bd1c2fc..44aff129 100644
+--- a/docs/data-sources/nfs_cluster.md
++++ b/docs/data-sources/nfs_cluster.md
+@@ -28,14 +28,6 @@ data "ionoscloud_nfs_cluster" "example" {
+   name = "partial-name"
+   partial_match = true
+ }
+-
+-output "cluster_test_output" {
+-    value = format("%s from %s with %sTB",
+-        data.ionoscloud_nfs_cluster.example.name,
+-        data.ionoscloud_nfs_cluster.example.location,
+-        data.ionoscloud_nfs_cluster.example.nfs[0].min_version
+-    )
+-}
+ ```
+ 
+ ## Argument Reference
+diff --git a/docs/data-sources/nfs_share.md b/docs/data-sources/nfs_share.md
+index 7b297891..27654cb9 100644
+--- a/docs/data-sources/nfs_share.md
++++ b/docs/data-sources/nfs_share.md
+@@ -30,14 +30,6 @@ data "ionoscloud_nfs_share" "example" {
+   name = "partial-name"
+   partial_match = true
+ }
+-
+-output "share_test_output" {
+-    value = format("share %s quota %sMiB path '%s'",
+-        data.ionoscloud_nfs_share.example.name,
+-        data.ionoscloud_nfs_share.example.quota,
+-        data.ionoscloud_nfs_share.example.nfs_path,
+-    )
+-}
+ ```
+ 
+ ## Argument Reference
+diff --git a/docs/data-sources/share.md b/docs/data-sources/share.md
+index 5c513fe8..6ac43bdd 100644
+--- a/docs/data-sources/share.md
++++ b/docs/data-sources/share.md
+@@ -20,7 +20,6 @@ When this happens, please refine your search string so that it is specific enoug
+ data "ionoscloud_share" "example" {
+   group_id      = "group_id"
+   resource_id   = "resource_id"
+-  id			= "share_id"
+ }
+ ```
+ 
+@@ -30,10 +29,9 @@ The following arguments are supported:
+ 
+ * `group_id` - (Required)The ID of the specific group containing the resource to update.
+ * `resource_id` - (Required)The ID of the specific resource to update.
+-* `id` - (Required)The uuid of the share object
+ 
+ 
+-`id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
++`resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
+ 
+ ## Attributes Reference
+ 
+diff --git a/docs/data-sources/vpn_ipsec_tunnel.md b/docs/data-sources/vpn_ipsec_tunnel.md
+index 4d3299b2..cf5c8ab8 100644
+--- a/docs/data-sources/vpn_ipsec_tunnel.md
++++ b/docs/data-sources/vpn_ipsec_tunnel.md
+@@ -32,7 +32,7 @@ Needs to have the resource be previously created, or a depends_on clause to ensu
+ this data source is called.
+ 
+ ```hcl
+-data "ionoscloud_vpn_ipsec_gateway" "example" {
++data "ionoscloud_vpn_ipsec_tunnel" "example" {
+   name     = "ipsec-tunnel"
+   gateway_id = "gateway_id"
+   location = "gateway_location"
+diff --git a/docs/resources/application_loadbalancer_forwardingrule.md b/docs/resources/application_loadbalancer_forwardingrule.md
+index 2dd58077..b8e8afaa 100644
+--- a/docs/resources/application_loadbalancer_forwardingrule.md
++++ b/docs/resources/application_loadbalancer_forwardingrule.md
+@@ -85,9 +85,9 @@ resource "ionoscloud_application_loadbalancer_forwardingrule" "example" {
+ #optionally you can add a certificate to the application load balancer
+ resource "ionoscloud_certificate" "cert" {
+   name = "add_name_here"
+-  certificate = "${file("path_to_cert")}"
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
++  certificate = "your_certificate"
++  certificate_chain = "your_certificate_chain"
++  private_key = "your_private_key"
+ }
+ ```
+ 
+diff --git a/docs/resources/backup_unit.md b/docs/resources/backup_unit.md
+index 5d890972..137c443a 100644
+--- a/docs/resources/backup_unit.md
++++ b/docs/resources/backup_unit.md
+@@ -22,7 +22,7 @@ resource "ionoscloud_backup_unit" "example" {
+ resource "random_password" "backup_unit_password" {
+   length           = 16
+   special          = true
+-  override_special = "!#$%&*()-_=+[]{}<>:?"
++  override_special = "!#$%&*()-_=+[]{}:?"
+ }
+ ```
+ 
+@@ -43,9 +43,9 @@ A Backup Unit resource can be imported using its `resource id`, e.g.
+ terraform import ionoscloud_backup_unit.demo backup_unit_uuid
+ ```
+ 
+-This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
++This can be helpful when you want to import backup units which you have already created manually or using other means, outside of pulumi. Please note that you need to manually specify the password when first declaring the resource in pulumi, as there is no way to retrieve the password from the Cloud API.
+ 
+ ## Important Notes
+ 
+ - Please note that at the moment, Backup Units cannot be renamed
+-- Please note that the password attribute is write-only, and it cannot be retrieved from the API when importing a ionoscloud_backup_unit. The only way to keep track of it in Terraform is to specify it on the resource to be imported, thus, making it a required attribute.
+\ No newline at end of file
++- Please note that the password attribute is write-only, and it cannot be retrieved from the API when importing a ionoscloud_backup_unit. The only way to keep track of it is to specify it on the resource to be imported, thus, making it a required attribute.
+diff --git a/docs/resources/cdn_distribution.md b/docs/resources/cdn_distribution.md
+index 0c753ed7..39e507f1 100644
+--- a/docs/resources/cdn_distribution.md
++++ b/docs/resources/cdn_distribution.md
+@@ -47,14 +47,6 @@ resource "ionoscloud_cdn_distribution" "example" {
+     }
+   }
+ }
+-
+-#optionally you can add a certificate to the distribution
+-resource "ionoscloud_certificate" "cert" {
+-  name = "add_name_here"
+-  certificate = "${file("path_to_cert")}"
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
+-}
+ ```
+ 
+ ## Argument Reference
+diff --git a/docs/resources/certificate_manager_certificate.md b/docs/resources/certificate_manager_certificate.md
+index 7437965d..83dbaaae 100644
+--- a/docs/resources/certificate_manager_certificate.md
++++ b/docs/resources/certificate_manager_certificate.md
+@@ -16,24 +16,9 @@ Manages a **Certificate** on IonosCloud.
+ ```hcl
+ resource "ionoscloud_certificate" "cert" {
+   name = "add_name_here"
+-  certificate = "${file("path_to_cert")}"
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
+-}
+-```
+-
+-**NOTE**: You can also provide the values as multiline strings, as seen below:
+-
+-```hcl
+-resource "ionoscloud_certificate" "cert" {
+-  name = "add_name_here"
+-  certificate = <<EOT
+------BEGIN CERTIFICATE-----
+-cert_body_here
+------END CERTIFICATE-----
+-EOT
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
++  certificate = "tour_certificate"
++  certificate_chain = "your_certificate_chain"
++  private_key = "your_private_key"
+ }
+ ```
+ 
+diff --git a/docs/resources/cube_server.md b/docs/resources/cube_server.md
+index e835ce41..cd211e5d 100644
+--- a/docs/resources/cube_server.md
++++ b/docs/resources/cube_server.md
+@@ -77,7 +77,7 @@ resource "ionoscloud_lan" "example" {
+   datacenter_id     = ionoscloud_datacenter.example.id
+   public            = true
+   name              = "Lan Example"
+-  ipv6_cidr_block = cidrsubnet(ionoscloud_datacenter.example.ipv6_cidr_block,8,10)
++  ipv6_cidr_block   = "ipv6_cidr_block_from_dc"
+ }
+ resource "ionoscloud_cube_server" "example" {
+   name              = "Server Example"
+@@ -98,11 +98,11 @@ resource "ionoscloud_cube_server" "example" {
+     ips             = [ ionoscloud_ipblock.webserver_ipblock.ips[0], ionoscloud_ipblock.webserver_ipblock.ips[1]]
+     
+     dhcpv6          = false
+-    ipv6_cidr_block = cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5)
++    ipv6_cidr_block = "ipv6_cidr_block_from_lan"
+     ipv6_ips        = [ 
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),1),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),2),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),3)
++                        "ipv6_ip1",
++                        "ipv6_ip2",
++                        "ipv6_ip3",
+                       ]
+ 
+     firewall_active = true
+diff --git a/docs/resources/dbaas_inmemorydb_replica_set.md b/docs/resources/dbaas_inmemorydb_replica_set.md
+index 36f66c96..58c5a20b 100644
+--- a/docs/resources/dbaas_inmemorydb_replica_set.md
++++ b/docs/resources/dbaas_inmemorydb_replica_set.md
+@@ -47,12 +47,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_inmemorydb_replicaset" "example" {
+   location = ionoscloud_datacenter.example.location
+   display_name = "ExampleReplicaSet"
+@@ -67,7 +61,7 @@ resource "ionoscloud_inmemorydb_replicaset" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id
+     lan_id                =  ionoscloud_lan.example.id
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   maintenance_window {
+     day_of_the_week       = "Monday"
+diff --git a/docs/resources/dbaas_mariadb_cluster.md b/docs/resources/dbaas_mariadb_cluster.md
+index fb9ab148..582fe6cb 100644
+--- a/docs/resources/dbaas_mariadb_cluster.md
++++ b/docs/resources/dbaas_mariadb_cluster.md
+@@ -47,12 +47,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_mariadb_cluster" "example" {
+   mariadb_version         = "10.6"
+   location                = "de/txl"
+@@ -63,7 +57,7 @@ resource "ionoscloud_mariadb_cluster" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id 
+     lan_id                =  ionoscloud_lan.example.id 
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   display_name            = "MariaDB_cluster"
+   maintenance_window {
+diff --git a/docs/resources/dbaas_pgsql_cluster.md b/docs/resources/dbaas_pgsql_cluster.md
+index 759acee6..cb10b133 100644
+--- a/docs/resources/dbaas_pgsql_cluster.md
++++ b/docs/resources/dbaas_pgsql_cluster.md
+@@ -94,12 +94,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_pg_cluster" "example" {
+   postgres_version        = "12"
+   instances               = 1
+@@ -114,7 +108,7 @@ resource "ionoscloud_pg_cluster" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id 
+     lan_id                =  ionoscloud_lan.example.id 
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   location                = ionoscloud_datacenter.example.location
+   display_name            = "PostgreSQL_cluster"
+diff --git a/docs/resources/ipfailover.md b/docs/resources/ipfailover.md
+index 2297242e..ca16f096 100644
+--- a/docs/resources/ipfailover.md
++++ b/docs/resources/ipfailover.md
+@@ -75,9 +75,9 @@ resource "random_password" "server_image_password" {
+ * `lan_id` - (Required)[string] The ID of a LAN.
+ * `nicuuid` - (Required)[string] The ID of a NIC.
+ 
+-> **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
++> **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+ > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+-> an IP failover group using Terraform, please use only Terraform in order to manage the created
++> an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+ > IP failover group.
+ 
+ > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+diff --git a/docs/resources/k8s_cluster.md b/docs/resources/k8s_cluster.md
+index 61f0d71d..edc92b66 100644
+--- a/docs/resources/k8s_cluster.md
++++ b/docs/resources/k8s_cluster.md
+@@ -91,7 +91,7 @@ A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
+ terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
+ ```
+ 
+-This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
++This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+ 
+ ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+-terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+\ No newline at end of file
++pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+diff --git a/docs/resources/k8s_node_pool.md b/docs/resources/k8s_node_pool.md
+index 8371553d..1ecdc1d0 100644
+--- a/docs/resources/k8s_node_pool.md
++++ b/docs/resources/k8s_node_pool.md
+@@ -25,9 +25,6 @@ resource "ionoscloud_lan" "example" {
+   datacenter_id         = ionoscloud_datacenter.example.id
+   public                = false
+   name                  = "Lan Example"
+-  lifecycle {
+-    create_before_destroy = true
+-  }
+ }
+ 
+ resource "ionoscloud_ipblock" "example" {
+@@ -131,15 +128,8 @@ Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_siz
+ ⚠️ **Note**:
+ 
+ Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+-`terraform plan`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+-from the number of nodes set by the scheduler). To avoid that, you can use:
+-```hcl
+-lifecycle {
+-    ignore_changes = [
+-      node_count
+-    ]
+-  }
+-```
++`terraform plan`, An update will be considered required (since `node_count` from the `tf` plan will be different
++from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+ This will also ignore the manual changes for `node_count` made in the `tf` plan.
+ You can read more details about the `ignore_changes` attribute [here](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle).
+ ## Import
+@@ -150,9 +140,9 @@ A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's u
+ terraform import ionoscloud_k8s_node_pool.demo k8s_cluster_uuid/k8s_nodepool_id
+ ```
+ 
+-This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
++This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+ 
+ ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent 
+-terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
++pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+ 
+ ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
+diff --git a/docs/resources/kafka_cluster.md b/docs/resources/kafka_cluster.md
+index 174ead58..8bc4c546 100644
+--- a/docs/resources/kafka_cluster.md
++++ b/docs/resources/kafka_cluster.md
+@@ -86,15 +86,6 @@ resource "random_password" "password" {
+   special = false
+ }
+ 
+-locals {
+-  prefix = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+-  server_net_index              = split(".", ionoscloud_server.example.nic[0].ips[0])[3]
+-  kafka_cluster_broker_ips      = [
+-    for i in range(local.server_net_index + 1, local.server_net_index + 4) :cidrhost(local.prefix, i)
+-  ]
+-  kafka_cluster_broker_ips_cidr = [for ip in local.kafka_cluster_broker_ips : format("%s/%s", ip, "24")]
+-}
+-
+ resource "ionoscloud_kafka_cluster" "example" {
+   name     = "example-kafka-cluster"
+   location = ionoscloud_datacenter.example.location
+@@ -103,7 +94,7 @@ resource "ionoscloud_kafka_cluster" "example" {
+   connections {
+     datacenter_id = ionoscloud_datacenter.example.id
+     lan_id = ionoscloud_lan.example.id
+-    broker_addresses = local.kafka_cluster_broker_ips_cidr
++    broker_addresses = "kafka_cluster_broker_ips_cidr_list"
+   }
+ }
+ ```
+diff --git a/docs/resources/kafka_topic.md b/docs/resources/kafka_topic.md
+index c34e367f..2dd80040 100644
+--- a/docs/resources/kafka_topic.md
++++ b/docs/resources/kafka_topic.md
+@@ -97,15 +97,6 @@ resource "random_password" "password" {
+   special = false
+ }
+ 
+-locals {
+-  prefix = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+-  server_net_index              = split(".", ionoscloud_server.example.nic[0].ips[0])[3]
+-  kafka_cluster_broker_ips      = [
+-    for i in range(local.server_net_index + 1, local.server_net_index + 4) :cidrhost(local.prefix, i)
+-  ]
+-  kafka_cluster_broker_ips_cidr = [for ip in local.kafka_cluster_broker_ips : format("%s/%s", ip, "24")]
+-}
+-
+ resource "ionoscloud_kafka_cluster" "example" {
+   name     = "example-kafka-cluster"
+   location = ionoscloud_datacenter.example.location
+@@ -114,7 +105,7 @@ resource "ionoscloud_kafka_cluster" "example" {
+   connections {
+     datacenter_id    = ionoscloud_datacenter.example.id
+     lan_id           = ionoscloud_lan.example.id
+-    broker_addresses = local.kafka_cluster_broker_ips_cidr
++    broker_addresses = "kafka_cluster_broker_ips_cidr_list"
+   }
+ }
+ 
+diff --git a/docs/resources/logging_pipeline.md b/docs/resources/logging_pipeline.md
+index f480984b..e479b504 100644
+--- a/docs/resources/logging_pipeline.md
++++ b/docs/resources/logging_pipeline.md
+@@ -40,70 +40,6 @@ resource "ionoscloud_logging_pipeline" "example" {
+ }
+ ```
+ 
+-For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+-plan, and used as presented below:
+-
+-The content inside **vars.tfvars** file:
+-
+-```hcl
+-logs = [
+-  {
+-    source = "kubernetes"
+-    tag = "firstlog"
+-    protocol = "http"
+-    destinations = {
+-      type = "loki"
+-      retention_in_days = 7
+-    }},
+-    {
+-    source = "docker"
+-    tag = "secondlog"
+-    protocol = "tcp"
+-    destinations = {
+-      type = "loki"
+-      retention_in_days = 14
+-    }}]
+-```
+-
+-The content inside the tf plan:
+-
+-```hcl
+-variable "logs" {
+-  description = "logs"
+-  type        = list(object({
+-    source = string
+-    tag = string
+-    protocol = string
+-    destinations = object({
+-      type = string
+-      retention_in_days = number
+-    } )}))
+-}
+-
+-resource "ionoscloud_logging_pipeline" "example" {
+-  location = "es/vit"
+-  name = "examplepipeline"
+-  dynamic "log" {
+-    for_each = var.logs
+-    content {
+-      source = log.value["source"]
+-      tag = log.value["tag"]
+-      protocol = log.value["protocol"]
+-      destinations {
+-        type = log.value["destinations"]["type"]
+-        retention_in_days = log.value["destinations"]["retention_in_days"]
+-      }
+-    }
+-  }
+-}
+-```
+-The configuration can then be applied using the following commands:
+-
+-```shell
+-terraform plan -var-file="vars.tfvars"
+-terraform apply -var-file="vars.tfvars"
+-```
+-
+ ## Argument reference
+ 
+ * `location` - (Optional)[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+diff --git a/docs/resources/networkloadbalancer_forwardingrule.md b/docs/resources/networkloadbalancer_forwardingrule.md
+index 54a3faf3..02901272 100644
+--- a/docs/resources/networkloadbalancer_forwardingrule.md
++++ b/docs/resources/networkloadbalancer_forwardingrule.md
+@@ -64,65 +64,6 @@ resource "ionoscloud_networkloadbalancer_forwardingrule" "example" {
+ }
+ ```
+ 
+-### Usage with dynamic block for targets:
+-```hcl
+-resource "ionoscloud_datacenter" "example" {
+-	name                        = "Datacenter Example"
+-	location                    = "us/las"
+-	description                 = "Datacenter Description"
+-	sec_auth_protection         = false
+-}
+-
+-resource "ionoscloud_lan" "example1" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    public                      = false
+-    name                        = "Lan Example 1"
+-}
+-
+-resource "ionoscloud_lan" "example2" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    public                      = false
+-    name                        = "Lan Example 2"
+-}
+-
+-resource "ionoscloud_networkloadbalancer" "example" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    name                        = "example"
+-    listener_lan                = ionoscloud_lan.example1.id
+-    target_lan                  = ionoscloud_lan.example2.id
+-    ips                         = ["10.12.118.224"]
+-    lb_private_ips              = ["10.13.72.225/24"]
+-}
+-
+-variable IPs{
+-      type                      = list
+-      default                   = ["22.231.2.2", "22.231.2.3", "22.231.2.4"]
+-}
+-
+-resource "ionoscloud_networkloadbalancer_forwardingrule" "example" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    networkloadbalancer_id      = ionoscloud_networkloadbalancer.example.id
+-    name                        = "example"
+-    algorithm                   = "SOURCE_IP"
+-    protocol                    = "TCP"
+-    listener_ip                 = "10.12.118.224"
+-    listener_port               = "8081"
+-    dynamic "targets" {
+-        for_each                = var.IPs
+-        content {
+-            ip                  = targets.value
+-            port                = "31234"
+-            weight              = "1"
+-            health_check {
+-                check           = true
+-                check_interval  = 1000
+-                maintenance     = false
+-            }
+-     }
+-    }
+-}
+-```
+-
+ ## Argument reference
+ 
+ - `name` - (Required)[string] A name of that Network Load Balancer forwarding rule.
+diff --git a/docs/resources/nfs_cluster.md b/docs/resources/nfs_cluster.md
+index 3f6df67c..ee00d37a 100644
+--- a/docs/resources/nfs_cluster.md
++++ b/docs/resources/nfs_cluster.md
+@@ -97,12 +97,6 @@ resource "ionoscloud_server" "nfs_server" {
+   }
+ }
+ 
+-locals {
+-  nfs_server_cidr = format("%s/24", ionoscloud_server.nfs_server.nic[0].ips[0])
+-  nfs_cluster_ip = cidrhost(local.nfs_server_cidr, 10)
+-  nfs_cluster_cidr = format("%s/24", local.nfs_cluster_ip)
+-}
+-
+ resource "ionoscloud_nfs_cluster" "example" {
+   name = "test"
+   location = "de/txl"
+@@ -114,7 +108,7 @@ resource "ionoscloud_nfs_cluster" "example" {
+   
+   connections {
+     datacenter_id = ionoscloud_datacenter.nfs_dc.id
+-    ip_address    = local.nfs_cluster_cidr
++    ip_address    = "nfs_cluster_cidr_from_nic"
+     lan           = ionoscloud_lan.nfs_lan.id
+   }
+ }
+diff --git a/docs/resources/nic.md b/docs/resources/nic.md
+index 5bc778c6..27a25fdb 100644
+--- a/docs/resources/nic.md
++++ b/docs/resources/nic.md
+@@ -84,7 +84,7 @@ resource "ionoscloud_lan" "example"{
+   datacenter_id     = ionoscloud_datacenter.example.id
+   public            = true
+   name              = "IPv6 Enabled LAN"
+-  ipv6_cidr_block   = cidrsubnet(ionoscloud_datacenter.example.ipv6_cidr_block,8,2)
++  ipv6_cidr_block   = "ipv6_cidr_block_from_dc"
+ }
+ 
+ resource "ionoscloud_server" "example" {
+@@ -117,12 +117,12 @@ resource "ionoscloud_nic" "example" {
+   firewall_active       = true
+   firewall_type         = "INGRESS"
+   dhcpv6                = false
+-  ipv6_cidr_block       = cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14)
++  ipv6_cidr_block       = "ipv6_cidr_block_from_lan"
+   ipv6_ips              = [ 
+-                              cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),10),
+-                              cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),20),
+-                              cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),30)
+-                          ]
++    "ipv6_ip1",
++    "ipv6_ip2",
++    "ipv6_ip3"
++  ]
+ }
+ 
+ resource "random_password" "server_image_password" {
+@@ -133,6 +133,40 @@ resource "random_password" "server_image_password" {
+ ## Example configuring Flowlog
+ 
+ ```hcl
++resource "ionoscloud_datacenter" "example" {
++  name                = "Datacenter Example"
++  location            = "us/las"
++  description         = "Datacenter Description"
++  sec_auth_protection = false
++}
++
++resource "ionoscloud_lan" "example"{
++  datacenter_id     = ionoscloud_datacenter.example.id
++  public            = true
++  name              = "IPv6 Enabled LAN"
++  ipv6_cidr_block   = "ipv6_cidr_block_from_dc"
++}
++
++resource "ionoscloud_server" "example" {
++  name                  = "Server Example"
++  datacenter_id         = ionoscloud_datacenter.example.id
++  cores                 = 1
++  ram                   = 1024
++  availability_zone     = "ZONE_1"
++  cpu_family            = "INTEL_XEON"
++  image_name            = "Ubuntu-20.04"
++  image_password        = random_password.server_image_password.result
++  volume {
++    name                = "system"
++    size                = 14
++    disk_type           = "SSD"
++  }
++  nic {
++    lan                 = "1"
++    dhcp                = true
++    firewall_active     = true
++  }
++}
+ resource "ionoscloud_nic" "example" {
+   datacenter_id         = ionoscloud_datacenter.example.id
+   server_id             = ionoscloud_server.example.id
+@@ -142,11 +176,11 @@ resource "ionoscloud_nic" "example" {
+   firewall_active       = true
+   firewall_type         = "INGRESS"
+   dhcpv6                = false
+-  ipv6_cidr_block       = cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14)
++  ipv6_cidr_block       = "ipv6_cidr_block_from_lan"
+   ipv6_ips              = [
+-    cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),10),
+-    cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),20),
+-    cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,14),30)
++    "ipv6_ip1",
++    "ipv6_ip2",
++    "ipv6_ip3"
+   ]
+   flowlog {
+     action    = "ACCEPTED"
+@@ -155,6 +189,11 @@ resource "ionoscloud_nic" "example" {
+     name      = "flowlog"
+   }  
+ }
++
++resource "random_password" "server_image_password" {
++  length           = 16
++  special          = false
++}
+ ```
+ 
+ This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than 
+@@ -196,7 +235,7 @@ terraform import ionoscloud_nic.mynic datacenter uuid/server uuid/nic uuid
+ ## Working with load balancers
+ Please be aware that when using a NIC in a load balancer, the load balancer will
+ change the NIC's ID behind the scenes, therefore the plan will always report this change
+-trying to revert the state to the one specified by your terraform file.
++trying to revert the state to the one specified by your file.
+ In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
+ in order to ignore changes to the `lan` attribute:
+ 
+diff --git a/docs/resources/nsg.md b/docs/resources/nsg.md
+index 1f392f89..b629885e 100644
+--- a/docs/resources/nsg.md
++++ b/docs/resources/nsg.md
+@@ -42,7 +42,7 @@ Resource Server can be imported using the `resource id` and the `datacenter id`,
+ terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
+ ```
+ 
+-Or by using an `import` block. Here is an example that allows you to import the default created nsg into terraform.
++Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
+ ```hcl
+ resource "ionoscloud_datacenter" "example" {
+   name            = "Datacenter NSG Example"
+diff --git a/docs/resources/private_crossconnect.md b/docs/resources/private_crossconnect.md
+index 6657bc4f..c0239f82 100644
+--- a/docs/resources/private_crossconnect.md
++++ b/docs/resources/private_crossconnect.md
+@@ -76,4 +76,4 @@ A Cross Connect resource can be imported using its `resource id`, e.g.
+ terraform import ionoscloud_private_crossconnect.demo ionoscloud_private_crossconnect_uuid
+ ```
+ 
+-This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
++This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
+diff --git a/docs/resources/s3_key.md b/docs/resources/s3_key.md
+index d4f2efe6..c58dda10 100644
+--- a/docs/resources/s3_key.md
++++ b/docs/resources/s3_key.md
+@@ -45,4 +45,4 @@ An IONOS Object Storage Unit resource can be imported using its user id as well
+ terraform import ionoscloud_s3_key.demo userid/s3Keyid
+ ```
+ 
+-This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
++This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
+diff --git a/docs/resources/server.md b/docs/resources/server.md
+index 08232bb4..0d931832 100644
+--- a/docs/resources/server.md
++++ b/docs/resources/server.md
+@@ -111,7 +111,7 @@ resource "ionoscloud_lan" "example" {
+   datacenter_id = ionoscloud_datacenter.example.id
+   public = true
+   name = "public"
+-  ipv6_cidr_block = cidrsubnet(ionoscloud_datacenter.example.ipv6_cidr_block,8,10)
++  ipv6_cidr_block = "ipv6_cidr_block_from_lan"
+ }
+ resource "ionoscloud_server" "example" {
+   name = "Resource Server Test"
+@@ -140,11 +140,11 @@ resource "ionoscloud_server" "example" {
+     ips = [ ionoscloud_ipblock.webserver_ipblock.ips[0], ionoscloud_ipblock.webserver_ipblock.ips[1] ]
+ 
+     dhcpv6 = true
+-    ipv6_cidr_block = cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,24)
++    ipv6_cidr_block = "ipv6_cidr_block_from_lan"
+     ipv6_ips        = [ 
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,24),10),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,24),20),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,24),30)
++                        "ipv6_ip1",
++                        "ipv6_ip2",
++                        "ipv6_ip3"
+                       ]
+ 
+     firewall {
+@@ -312,7 +312,7 @@ Resource Server can be imported using the `resource id` and the `datacenter id`,
+ ```shell
+ terraform import ionoscloud_server.myserver datacenter uuid/server uuid
+ ```
+-Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
++Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
+ ```shell
+ terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
+ ```
+@@ -322,7 +322,4 @@ terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary
+ Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ 
+ ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+-from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+-More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+-that involves moving the resources in the list prior to deletion.
+-`terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
+\ No newline at end of file
++from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+diff --git a/docs/resources/vcpu_server.md b/docs/resources/vcpu_server.md
+index 60293e94..9f7dcea0 100644
+--- a/docs/resources/vcpu_server.md
++++ b/docs/resources/vcpu_server.md
+@@ -128,7 +128,7 @@ Resource VCPU Server can be imported using the `resource id` and the `datacenter
+ ```shell
+ terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid
+ ```
+-Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
++Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
+ ```shell
+ terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
+ ```
+@@ -138,7 +138,4 @@ terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/pri
+ Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ 
+ ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+-from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+-More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+-that involves moving the resources in the list prior to deletion.
+-`terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
+\ No newline at end of file
++from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+diff --git a/docs/resources/vpn_ipsec_gateway.md b/docs/resources/vpn_ipsec_gateway.md
+index 5d87e599..df0ebbc3 100644
+--- a/docs/resources/vpn_ipsec_gateway.md
++++ b/docs/resources/vpn_ipsec_gateway.md
+@@ -101,14 +101,6 @@ resource "random_password" "server_image_password" {
+   special          = false
+ }
+ 
+-locals {
+-  lan_ipv6_cidr_block_parts = split("/", ionoscloud_datacenter.test_datacenter.ipv6_cidr_block)
+-  lan_ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "64")
+-
+-  ipv4_cidr_block = format("%s/%s", ionoscloud_server.test_server.nic[0].ips[0], "24")
+-  ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "80")
+-}
+-
+ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+ 	name = "ipsec-gateway"
+ 	location = "de/fra"
+@@ -119,8 +111,8 @@ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+ 	connections {
+ 		datacenter_id = ionoscloud_datacenter.test_datacenter.id
+ 		lan_id = ionoscloud_lan.test_lan.id
+-		ipv4_cidr = local.ipv4_cidr_block
+-		ipv6_cidr = local.ipv6_cidr_block
++    ipv4_cidr = "ipv4_cidr_block_from_nic"
++    ipv6_cidr = "ipv6_cidr_block_from_dc"
+ 	}
+     maintenance_window {
+         day_of_the_week       = "Monday"
+diff --git a/docs/resources/vpn_ipsec_tunnel.md b/docs/resources/vpn_ipsec_tunnel.md
+index 88ae1692..62c1f5b9 100644
+--- a/docs/resources/vpn_ipsec_tunnel.md
++++ b/docs/resources/vpn_ipsec_tunnel.md
+@@ -137,14 +137,6 @@ resource "random_password" "server_image_password" {
+   special          = false
+ }
+ 
+-locals {
+-  lan_ipv6_cidr_block_parts = split("/", ionoscloud_datacenter.test_datacenter.ipv6_cidr_block)
+-  lan_ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "64")
+-
+-  ipv4_cidr_block = format("%s/%s", ionoscloud_server.test_server.nic[0].ips[0], "24")
+-  ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "80")
+-}
+-
+ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+   name = "ipsec-gateway"
+   location = "de/fra"
+@@ -155,8 +147,8 @@ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+   connections {
+     datacenter_id = ionoscloud_datacenter.test_datacenter.id
+     lan_id = ionoscloud_lan.test_lan.id
+-    ipv4_cidr = local.ipv4_cidr_block
+-    ipv6_cidr = local.ipv6_cidr_block
++    ipv4_cidr = "ipv4_cidr_block_from_nic"
++    ipv6_cidr = "ipv6_cidr_block_from_dc"
+   }
+ }
+ 

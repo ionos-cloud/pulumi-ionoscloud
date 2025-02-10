@@ -197,7 +197,8 @@ class IPBlock(pulumi.CustomResource):
 
         example = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=1)
+            size=1,
+            name="IP Block Example")
         ```
 
         ## Import
@@ -232,7 +233,8 @@ class IPBlock(pulumi.CustomResource):
 
         example = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=1)
+            size=1,
+            name="IP Block Example")
         ```
 
         ## Import

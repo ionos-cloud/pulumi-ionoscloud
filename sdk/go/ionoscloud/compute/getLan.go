@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupLan(ctx, &compute.LookupLanArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("lan_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupLan(ctx, &compute.LookupLanArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("Lan Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupLan(ctx *pulumi.Context, args *LookupLanArgs, opts ...pulumi.InvokeOption) (*LookupLanResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLanResult
@@ -43,12 +95,15 @@ type LookupLanResult struct {
 	// The ID of lan's Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
 	// The id of the LAN.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// list of
-	IpFailovers   []GetLanIpFailover `pulumi:"ipFailovers"`
-	Ipv6CidrBlock string             `pulumi:"ipv6CidrBlock"`
+	IpFailovers []GetLanIpFailover `pulumi:"ipFailovers"`
+	// For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+	Ipv4CidrBlock string `pulumi:"ipv4CidrBlock"`
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
+	Ipv6CidrBlock string `pulumi:"ipv6CidrBlock"`
 	// The name of the LAN.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The unique id of a `compute.Crossconnect` resource, in order.
 	Pcc string `pulumi:"pcc"`
 	// Indicates if the LAN faces the public Internet (true) or not (false).
@@ -101,8 +156,8 @@ func (o LookupLanResultOutput) DatacenterId() pulumi.StringOutput {
 }
 
 // The id of the LAN.
-func (o LookupLanResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLanResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupLanResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLanResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // list of
@@ -110,13 +165,19 @@ func (o LookupLanResultOutput) IpFailovers() GetLanIpFailoverArrayOutput {
 	return o.ApplyT(func(v LookupLanResult) []GetLanIpFailover { return v.IpFailovers }).(GetLanIpFailoverArrayOutput)
 }
 
+// For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+func (o LookupLanResultOutput) Ipv4CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv4CidrBlock }).(pulumi.StringOutput)
+}
+
+// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
 func (o LookupLanResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
 // The name of the LAN.
-func (o LookupLanResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLanResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupLanResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLanResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The unique id of a `compute.Crossconnect` resource, in order.

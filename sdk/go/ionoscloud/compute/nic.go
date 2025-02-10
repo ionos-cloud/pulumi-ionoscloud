@@ -12,12 +12,332 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **NIC** on IonosCloud.
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: example.Location,
+//				Size:     pulumi.Int(2),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("Ubuntu-20.04"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
+//				DatacenterId:   example.ID(),
+//				ServerId:       exampleServer.ID(),
+//				Lan:            exampleLan.ID(),
+//				Name:           pulumi.String("NIC"),
+//				Dhcp:           pulumi.Bool(true),
+//				FirewallActive: pulumi.Bool(true),
+//				FirewallType:   pulumi.String("INGRESS"),
+//				Ips: pulumi.StringArray{
+//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//						return ips[0], nil
+//					}).(pulumi.StringOutput),
+//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//						return ips[1], nil
+//					}).(pulumi.StringOutput),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With IPv6
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId:  example.ID(),
+//				Public:        pulumi.Bool(true),
+//				Name:          pulumi.String("IPv6 Enabled LAN"),
+//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_dc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("Ubuntu-20.04"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
+//				DatacenterId:   example.ID(),
+//				ServerId:       exampleServer.ID(),
+//				Lan:            exampleLan.ID(),
+//				Name:           pulumi.String("IPv6 Enabled NIC"),
+//				Dhcp:           pulumi.Bool(true),
+//				FirewallActive: pulumi.Bool(true),
+//				FirewallType:   pulumi.String("INGRESS"),
+//				Dhcpv6:         pulumi.Bool(false),
+//				Ipv6CidrBlock:  pulumi.String("ipv6_cidr_block_from_lan"),
+//				Ipv6Ips: pulumi.StringArray{
+//					pulumi.String("ipv6_ip1"),
+//					pulumi.String("ipv6_ip2"),
+//					pulumi.String("ipv6_ip3"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## Example configuring Flowlog
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId:  example.ID(),
+//				Public:        pulumi.Bool(true),
+//				Name:          pulumi.String("IPv6 Enabled LAN"),
+//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_dc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("Ubuntu-20.04"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
+//				DatacenterId:   example.ID(),
+//				ServerId:       exampleServer.ID(),
+//				Lan:            exampleLan.ID(),
+//				Name:           pulumi.String("IPV6 and Flowlog Enabled NIC"),
+//				Dhcp:           pulumi.Bool(true),
+//				FirewallActive: pulumi.Bool(true),
+//				FirewallType:   pulumi.String("INGRESS"),
+//				Dhcpv6:         pulumi.Bool(false),
+//				Ipv6CidrBlock:  pulumi.String("ipv6_cidr_block_from_lan"),
+//				Ipv6Ips: pulumi.StringArray{
+//					pulumi.String("ipv6_ip1"),
+//					pulumi.String("ipv6_ip2"),
+//					pulumi.String("ipv6_ip3"),
+//				},
+//				Flowlog: &compute.NicFlowlogArgs{
+//					Action:    pulumi.String("ACCEPTED"),
+//					Bucket:    pulumi.String("flowlog-bucket"),
+//					Direction: pulumi.String("INGRESS"),
+//					Name:      pulumi.String("flowlog"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than
+// `name` will. Deleting a flowlog will also force NIC re-creation.
+//
+// ## Working with load balancers
+//
+// Please be aware that when using a NIC in a load balancer, the load balancer will
+// change the NIC's ID behind the scenes, therefore the plan will always report this change
+// trying to revert the state to the one specified by your file.
+// In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
+// in order to ignore changes to the `lan` attribute:
+//
+// Here's an example:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.NewNic(ctx, "example", &compute.NicArgs{
+//				DatacenterId:   pulumi.Any(foobar.Id),
+//				ServerId:       pulumi.Any(exampleIonoscloudServer.Id),
+//				Lan:            pulumi.Int(2),
+//				Dhcp:           pulumi.Bool(true),
+//				FirewallActive: pulumi.Bool(true),
+//				Name:           pulumi.String("updated"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource **Nic** can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
+// $ pulumi import ionoscloud:compute/nic:Nic mynic datacenter uuid/server uuid/nic uuid
 // ```
 type Nic struct {
 	pulumi.CustomResourceState
@@ -44,12 +364,16 @@ type Nic struct {
 	Ipv6Ips pulumi.StringArrayOutput `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntOutput `pulumi:"lan"`
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringOutput `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntOutput `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 }
@@ -115,12 +439,16 @@ type nicState struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan *int `pulumi:"lan"`
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot *int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId *string `pulumi:"serverId"`
 }
@@ -148,12 +476,16 @@ type NicState struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntPtrInput
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntPtrInput
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringPtrInput
 }
@@ -183,8 +515,14 @@ type nicArgs struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan int `pulumi:"lan"`
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
+	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId string `pulumi:"serverId"`
 }
@@ -211,8 +549,14 @@ type NicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntInput
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
+	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringInput
 }
@@ -359,7 +703,7 @@ func (o NicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nic) pulumi.IntOutput { return v.Lan }).(pulumi.IntOutput)
 }
 
-// The MAC address of the NIC.
+// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 func (o NicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nic) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
 }
@@ -372,6 +716,13 @@ func (o NicOutput) Name() pulumi.StringOutput {
 // The PCI slot number of the Nic.
 func (o NicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nic) pulumi.IntOutput { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+func (o NicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Nic) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // [string] The ID of a server.

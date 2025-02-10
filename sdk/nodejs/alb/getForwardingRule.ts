@@ -20,8 +20,8 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getForwardingRule({
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     applicationLoadbalancerId: ionoscloud_application_loadbalancer.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
  *     name: "ALB FR Example",
  * });
  * ```
@@ -32,8 +32,8 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getForwardingRule({
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     applicationLoadbalancerId: ionoscloud_application_loadbalancer.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
  *     name: "Example",
  *     partialMatch: true,
  * });
@@ -130,8 +130,8 @@ export interface GetForwardingRuleResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getForwardingRule({
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     applicationLoadbalancerId: ionoscloud_application_loadbalancer.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
  *     name: "ALB FR Example",
  * });
  * ```
@@ -142,8 +142,8 @@ export interface GetForwardingRuleResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getForwardingRule({
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     applicationLoadbalancerId: ionoscloud_application_loadbalancer.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
  *     name: "Example",
  *     partialMatch: true,
  * });

@@ -16,27 +16,34 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenterExample", {location: "de/fra"});
- * const lanExample1 = new ionoscloud.compute.Lan("lanExample1", {
+ * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
+ *     name: "datacenter_example",
+ *     location: "de/fra",
+ * });
+ * const lanExample1 = new ionoscloud.compute.Lan("lan_example_1", {
  *     datacenterId: datacenterExample.id,
  *     "public": false,
+ *     name: "lan_example_1",
  * });
- * const lanExample2 = new ionoscloud.compute.Lan("lanExample2", {
+ * const lanExample2 = new ionoscloud.compute.Lan("lan_example_2", {
  *     datacenterId: datacenterExample.id,
  *     "public": false,
+ *     name: "lan_example_2",
  * });
- * const autoscalingTargetGroup = new ionoscloud.compute.TargetGroup("autoscalingTargetGroup", {
+ * const autoscalingTargetGroup = new ionoscloud.compute.TargetGroup("autoscaling_target_group", {
+ *     name: "Target Group Example",
  *     algorithm: "ROUND_ROBIN",
  *     protocol: "HTTP",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const autoscalingGroupExample = new ionoscloud.autoscaling.Group("autoscalingGroupExample", {
+ * const autoscalingGroupExample = new ionoscloud.autoscaling.Group("autoscaling_group_example", {
  *     datacenterId: datacenterExample.id,
  *     maxReplicaCount: 2,
  *     minReplicaCount: 1,
+ *     name: "autoscaling_group_example",
  *     policy: {
  *         metric: "INSTANCE_CPU_UTILIZATION_AVERAGE",
  *         range: "PT24H",

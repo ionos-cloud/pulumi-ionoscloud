@@ -263,14 +263,19 @@ class IpsecGateway(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
+        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
+            name="test_vpn_gateway_basic",
+            location="de/fra")
+        test_lan = ionoscloud.compute.Lan("test_lan",
+            name="test_lan_basic",
             public=False,
             datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
+        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
+            name="test_ipblock_basic",
             location="de/fra",
             size=1)
         example = ionoscloud.vpn.IpsecGateway("example",
+            name="ipsec_gateway_basic",
             location="de/fra",
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",
@@ -321,14 +326,19 @@ class IpsecGateway(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
+        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
+            name="test_vpn_gateway_basic",
+            location="de/fra")
+        test_lan = ionoscloud.compute.Lan("test_lan",
+            name="test_lan_basic",
             public=False,
             datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
+        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
+            name="test_ipblock_basic",
             location="de/fra",
             size=1)
         example = ionoscloud.vpn.IpsecGateway("example",
+            name="ipsec_gateway_basic",
             location="de/fra",
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",

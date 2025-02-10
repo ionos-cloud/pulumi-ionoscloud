@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupTargetGroup(ctx, &compute.LookupTargetGroupArgs{
+//				Id: pulumi.StringRef("target_group_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -99,10 +124,10 @@ type LookupTargetGroupResult struct {
 	// Http health check attributes for Target Group
 	HttpHealthChecks []GetTargetGroupHttpHealthCheck `pulumi:"httpHealthChecks"`
 	// The Id of that Target group
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of that Target Group.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	Name         string `pulumi:"name"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
 	// Balancing protocol.
 	Protocol string `pulumi:"protocol"`
 	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
@@ -167,13 +192,13 @@ func (o LookupTargetGroupResultOutput) HttpHealthChecks() GetTargetGroupHttpHeal
 }
 
 // The Id of that Target group
-func (o LookupTargetGroupResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupTargetGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupTargetGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTargetGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of that Target Group.
-func (o LookupTargetGroupResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupTargetGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupTargetGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTargetGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupTargetGroupResultOutput) PartialMatch() pulumi.BoolPtrOutput {

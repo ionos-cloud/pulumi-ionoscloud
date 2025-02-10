@@ -30,21 +30,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -65,7 +67,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoUser(ctx, "exampleMongoUser", &dbaas.MongoUserArgs{
+//			_, err = dbaas.NewMongoUser(ctx, "example_mongo_user", &dbaas.MongoUserArgs{
 //				ClusterId: exampleMongoCluster.ID(),
 //				Username:  pulumi.String("myUser"),
 //				Password:  pulumi.String("strongPassword"),
@@ -96,7 +98,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -104,21 +106,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Complete example
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -139,23 +143,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			_, err = random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			userPassword, err := random.NewRandomPassword(ctx, "userPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			userPassword, err := random.NewPassword(ctx, "user_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoUser(ctx, "exampleMongoUser", &dbaas.MongoUserArgs{
+//			_, err = dbaas.NewMongoUser(ctx, "example_mongo_user", &dbaas.MongoUserArgs{
 //				ClusterId: exampleMongoCluster.ID(),
 //				Username:  pulumi.String("myUser"),
 //				Password:  userPassword.Result,
@@ -194,7 +198,7 @@ import (
 // Then you can import the user using the following command:
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
 // ```
 type MongoUser struct {
 	pulumi.CustomResourceState

@@ -17,6 +17,63 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpn.LookupIpsecGateway(ctx, &vpn.LookupIpsecGatewayArgs{
+//				Id:       pulumi.StringRef("gateway_id"),
+//				Location: pulumi.StringRef("gateway_location"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+//
+// Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+// this data source is called.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpn.LookupIpsecGateway(ctx, &vpn.LookupIpsecGatewayArgs{
+//				Name:     pulumi.StringRef("ipsec-gateway"),
+//				Location: pulumi.StringRef("gateway_location"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIpsecGateway(ctx *pulumi.Context, args *LookupIpsecGatewayArgs, opts ...pulumi.InvokeOption) (*LookupIpsecGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpsecGatewayResult
@@ -32,7 +89,7 @@ type LookupIpsecGatewayArgs struct {
 	// ID of an existing IPSec Gateway that you want to search for.
 	Id *string `pulumi:"id"`
 	// The location of the IPSec Gateway.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// Name of an existing IPSec Gateway that you want to search for.
 	Name *string `pulumi:"name"`
 	// The IKE version that is permitted for the VPN tunnels.
@@ -48,10 +105,14 @@ type LookupIpsecGatewayResult struct {
 	// Public IP address to be assigned to the gateway.
 	GatewayIp string `pulumi:"gatewayIp"`
 	// The unique ID of the IPSec Gateway.
-	Id       string `pulumi:"id"`
-	Location string `pulumi:"location"`
+	Id       string  `pulumi:"id"`
+	Location *string `pulumi:"location"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindows []GetIpsecGatewayMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// The name of the IPSec Gateway.
 	Name string `pulumi:"name"`
+	// Gateway performance options.
+	Tier string `pulumi:"tier"`
 	// The IKE version that is permitted for the VPN tunnels.
 	Version string `pulumi:"version"`
 }
@@ -70,7 +131,7 @@ type LookupIpsecGatewayOutputArgs struct {
 	// ID of an existing IPSec Gateway that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The location of the IPSec Gateway.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing IPSec Gateway that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The IKE version that is permitted for the VPN tunnels.
@@ -116,13 +177,23 @@ func (o LookupIpsecGatewayResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupIpsecGatewayResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupIpsecGatewayResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpsecGatewayResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// A weekly 4 hour-long window, during which maintenance might occur.
+func (o LookupIpsecGatewayResultOutput) MaintenanceWindows() GetIpsecGatewayMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v LookupIpsecGatewayResult) []GetIpsecGatewayMaintenanceWindow { return v.MaintenanceWindows }).(GetIpsecGatewayMaintenanceWindowArrayOutput)
 }
 
 // The name of the IPSec Gateway.
 func (o LookupIpsecGatewayResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Gateway performance options.
+func (o LookupIpsecGatewayResultOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
 // The IKE version that is permitted for the VPN tunnels.

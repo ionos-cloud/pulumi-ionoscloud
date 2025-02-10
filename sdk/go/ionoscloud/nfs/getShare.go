@@ -12,6 +12,63 @@ import (
 )
 
 // Returns information about shares of Network File Storage (NFS) on IonosCloud.
+//
+// ## By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nfs.LookupShare(ctx, &nfs.LookupShareArgs{
+//				Location:  pulumi.StringRef("location"),
+//				ClusterId: "cluster-id",
+//				Id:        pulumi.StringRef("share-id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## By Name
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nfs.LookupShare(ctx, &nfs.LookupShareArgs{
+//				Location:     pulumi.StringRef("location"),
+//				ClusterId:    "cluster-id",
+//				Name:         pulumi.StringRef("partial-name"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupShare(ctx *pulumi.Context, args *LookupShareArgs, opts ...pulumi.InvokeOption) (*LookupShareResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupShareResult
@@ -33,7 +90,7 @@ type LookupShareArgs struct {
 	// ID of the Network File Storage share.
 	Id *string `pulumi:"id"`
 	// The location where the Network File Storage share is located.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// Name of the Network File Storage share.
 	Name *string `pulumi:"name"`
 	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
@@ -55,7 +112,7 @@ type LookupShareResult struct {
 	// The ID of the Network File Storage share.
 	Id string `pulumi:"id"`
 	// The location where the Network File Storage share is located.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// The name of the Network File Storage share.
 	Name string `pulumi:"name"`
 	// Path to the NFS export. The NFS path is the path to the directory being exported.
@@ -87,7 +144,7 @@ type LookupShareOutputArgs struct {
 	// ID of the Network File Storage share.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The location where the Network File Storage share is located.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of the Network File Storage share.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
@@ -138,8 +195,8 @@ func (o LookupShareResultOutput) Id() pulumi.StringOutput {
 }
 
 // The location where the Network File Storage share is located.
-func (o LookupShareResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupShareResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupShareResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupShareResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Network File Storage share.

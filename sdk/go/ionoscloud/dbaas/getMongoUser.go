@@ -16,6 +16,32 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By username
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupMongoUser(ctx, &dbaas.LookupMongoUserArgs{
+//				ClusterId: "cluster_id",
+//				Username:  "username",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pulumi.InvokeOption) (*LookupMongoUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMongoUserResult
@@ -43,7 +69,7 @@ type LookupMongoUserArgs struct {
 type LookupMongoUserResult struct {
 	ClusterId string             `pulumi:"clusterId"`
 	Database  string             `pulumi:"database"`
-	Id        *string            `pulumi:"id"`
+	Id        string             `pulumi:"id"`
 	Roles     []GetMongoUserRole `pulumi:"roles"`
 	Username  string             `pulumi:"username"`
 }
@@ -97,8 +123,8 @@ func (o LookupMongoUserResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoUserResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupMongoUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupMongoUserResultOutput) Roles() GetMongoUserRoleArrayOutput {

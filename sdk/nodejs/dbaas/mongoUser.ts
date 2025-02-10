@@ -16,15 +16,17 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenterExample", {
+ * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
+ *     name: "example",
  *     location: "de/txl",
  *     description: "Datacenter for testing dbaas cluster",
  * });
- * const lanExample = new ionoscloud.compute.Lan("lanExample", {
+ * const lanExample = new ionoscloud.compute.Lan("lan_example", {
  *     datacenterId: datacenterExample.id,
  *     "public": false,
+ *     name: "example",
  * });
- * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("exampleMongoCluster", {
+ * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("example_mongo_cluster", {
  *     maintenanceWindow: {
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00",
@@ -40,7 +42,7 @@ import * as utilities from "../utilities";
  *     },
  *     templateId: "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
  * });
- * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("exampleMongoUser", {
+ * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("example_mongo_user", {
  *     clusterId: exampleMongoCluster.id,
  *     username: "myUser",
  *     password: "strongPassword",
@@ -63,15 +65,17 @@ import * as utilities from "../utilities";
  * import * as random from "@pulumi/random";
  *
  * // Complete example
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenterExample", {
+ * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
+ *     name: "example",
  *     location: "de/txl",
  *     description: "Datacenter for testing dbaas cluster",
  * });
- * const lanExample = new ionoscloud.compute.Lan("lanExample", {
+ * const lanExample = new ionoscloud.compute.Lan("lan_example", {
  *     datacenterId: datacenterExample.id,
  *     "public": false,
+ *     name: "example",
  * });
- * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("exampleMongoCluster", {
+ * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("example_mongo_cluster", {
  *     maintenanceWindow: {
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00",
@@ -87,17 +91,17 @@ import * as utilities from "../utilities";
  *     },
  *     templateId: "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
  * });
- * const clusterPassword = new random.RandomPassword("clusterPassword", {
+ * const clusterPassword = new random.index.Password("cluster_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
  * });
- * const userPassword = new random.RandomPassword("userPassword", {
+ * const userPassword = new random.index.Password("user_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
  * });
- * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("exampleMongoUser", {
+ * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("example_mongo_user", {
  *     clusterId: exampleMongoCluster.id,
  *     username: "myUser",
  *     password: userPassword.result,

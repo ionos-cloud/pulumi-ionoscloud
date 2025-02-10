@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *     gatewayId: "example-gateway",
  *     name: "example-peer",
  * });
- * export const vpnWireguardPeerPublicKey = data.vpn_wireguard_peer.example.public_key;
+ * export const vpnWireguardPeerPublicKey = exampleVpnWireguardPeer.publicKey;
  * ```
  */
 export function getWireguardPeer(args: GetWireguardPeerArgs, opts?: pulumi.InvokeOptions): Promise<GetWireguardPeerResult> {
@@ -104,7 +104,7 @@ export interface GetWireguardPeerResult {
  *     gatewayId: "example-gateway",
  *     name: "example-peer",
  * });
- * export const vpnWireguardPeerPublicKey = data.vpn_wireguard_peer.example.public_key;
+ * export const vpnWireguardPeerPublicKey = exampleVpnWireguardPeer.publicKey;
  * ```
  */
 export function getWireguardPeerOutput(args: GetWireguardPeerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWireguardPeerResult> {

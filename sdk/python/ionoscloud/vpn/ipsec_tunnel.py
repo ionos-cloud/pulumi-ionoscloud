@@ -394,14 +394,19 @@ class IpsecTunnel(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
+        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
+            name="test_vpn_gateway_basic",
+            location="de/fra")
+        test_lan = ionoscloud.compute.Lan("test_lan",
+            name="test_lan_basic",
             public=False,
             datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
+        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
+            name="test_ipblock_basic",
             location="de/fra",
             size=1)
-        example_ipsec_gateway = ionoscloud.vpn.IpsecGateway("exampleIpsecGateway",
+        example = ionoscloud.vpn.IpsecGateway("example",
+            name="ipsec_gateway_basic",
             location="de/fra",
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",
@@ -411,9 +416,10 @@ class IpsecTunnel(pulumi.CustomResource):
                 "lan_id": test_lan.id,
                 "ipv4_cidr": "192.168.100.10/24",
             }])
-        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("exampleIpsecTunnel",
+        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("example",
             location="de/fra",
-            gateway_id=example_ipsec_gateway.id,
+            gateway_id=example.id,
+            name="example-tunnel",
             remote_host="vpn.mycompany.com",
             description="Allows local subnet X to connect to virtual network Y.",
             auth={
@@ -480,14 +486,19 @@ class IpsecTunnel(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
+        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
+            name="test_vpn_gateway_basic",
+            location="de/fra")
+        test_lan = ionoscloud.compute.Lan("test_lan",
+            name="test_lan_basic",
             public=False,
             datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
+        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
+            name="test_ipblock_basic",
             location="de/fra",
             size=1)
-        example_ipsec_gateway = ionoscloud.vpn.IpsecGateway("exampleIpsecGateway",
+        example = ionoscloud.vpn.IpsecGateway("example",
+            name="ipsec_gateway_basic",
             location="de/fra",
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",
@@ -497,9 +508,10 @@ class IpsecTunnel(pulumi.CustomResource):
                 "lan_id": test_lan.id,
                 "ipv4_cidr": "192.168.100.10/24",
             }])
-        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("exampleIpsecTunnel",
+        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("example",
             location="de/fra",
-            gateway_id=example_ipsec_gateway.id,
+            gateway_id=example.id,
+            name="example-tunnel",
             remote_host="vpn.mycompany.com",
             description="Allows local subnet X to connect to virtual network Y.",
             auth={

@@ -279,6 +279,8 @@ type CubeServerNic struct {
 	// [string] The name of the server.
 	Name    *string `pulumi:"name"`
 	PciSlot *int    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // CubeServerNicInput is an input type that accepts CubeServerNicArgs and CubeServerNicOutput values.
@@ -310,6 +312,8 @@ type CubeServerNicArgs struct {
 	// [string] The name of the server.
 	Name    pulumi.StringPtrInput `pulumi:"name"`
 	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (CubeServerNicArgs) ElementType() reflect.Type {
@@ -443,6 +447,11 @@ func (o CubeServerNicOutput) Name() pulumi.StringPtrOutput {
 
 func (o CubeServerNicOutput) PciSlot() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CubeServerNic) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o CubeServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CubeServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type CubeServerNicPtrOutput struct{ *pulumi.OutputState }
@@ -588,6 +597,16 @@ func (o CubeServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 		}
 		return v.PciSlot
 	}).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o CubeServerNicPtrOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CubeServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroupsIds
+	}).(pulumi.StringArrayOutput)
 }
 
 type CubeServerNicFirewall struct {
@@ -877,14 +896,6 @@ type CubeServerVolume struct {
 	DiskType            string  `pulumi:"diskType"`
 	// [string] Required if `sshKeyPath` is not provided.
 	//
-	// > **⚠ WARNING**
-	// >
-	// > Image_name under volume level is deprecated, please use imageName under server level
-	//
-	// > **⚠ WARNING**
-	// >
-	// > For creating a **CUBE** server, you can not set `volume.size` argument.
-	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword *string `pulumi:"imagePassword"`
 	// [string] Sets the OS type of the server.
@@ -928,14 +939,6 @@ type CubeServerVolumeArgs struct {
 	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
 	DiskType            pulumi.StringInput    `pulumi:"diskType"`
 	// [string] Required if `sshKeyPath` is not provided.
-	//
-	// > **⚠ WARNING**
-	// >
-	// > Image_name under volume level is deprecated, please use imageName under server level
-	//
-	// > **⚠ WARNING**
-	// >
-	// > For creating a **CUBE** server, you can not set `volume.size` argument.
 	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword pulumi.StringPtrInput `pulumi:"imagePassword"`
@@ -1072,14 +1075,6 @@ func (o CubeServerVolumeOutput) DiskType() pulumi.StringOutput {
 }
 
 // [string] Required if `sshKeyPath` is not provided.
-//
-// > **⚠ WARNING**
-// >
-// > Image_name under volume level is deprecated, please use imageName under server level
-//
-// > **⚠ WARNING**
-// >
-// > For creating a **CUBE** server, you can not set `volume.size` argument.
 //
 // Deprecated: Please use imagePassword under server level
 func (o CubeServerVolumeOutput) ImagePassword() pulumi.StringPtrOutput {
@@ -1233,14 +1228,6 @@ func (o CubeServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
 }
 
 // [string] Required if `sshKeyPath` is not provided.
-//
-// > **⚠ WARNING**
-// >
-// > Image_name under volume level is deprecated, please use imageName under server level
-//
-// > **⚠ WARNING**
-// >
-// > For creating a **CUBE** server, you can not set `volume.size` argument.
 //
 // Deprecated: Please use imagePassword under server level
 func (o CubeServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
@@ -2098,8 +2085,6 @@ type NicFlowlog struct {
 	// The ID of the NIC.
 	Id *string `pulumi:"id"`
 	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 	Name string `pulumi:"name"`
 }
 
@@ -2124,8 +2109,6 @@ type NicFlowlogArgs struct {
 	// The ID of the NIC.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2227,8 +2210,6 @@ func (o NicFlowlogOutput) Id() pulumi.StringPtrOutput {
 }
 
 // Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 func (o NicFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v NicFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2298,8 +2279,6 @@ func (o NicFlowlogPtrOutput) Id() pulumi.StringPtrOutput {
 }
 
 // Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 func (o NicFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2436,6 +2415,8 @@ type ServerNic struct {
 	// [string] The name of the server.
 	Name    *string `pulumi:"name"`
 	PciSlot *int    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // ServerNicInput is an input type that accepts ServerNicArgs and ServerNicOutput values.
@@ -2470,6 +2451,8 @@ type ServerNicArgs struct {
 	// [string] The name of the server.
 	Name    pulumi.StringPtrInput `pulumi:"name"`
 	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (ServerNicArgs) ElementType() reflect.Type {
@@ -2609,6 +2592,11 @@ func (o ServerNicOutput) Name() pulumi.StringPtrOutput {
 
 func (o ServerNicOutput) PciSlot() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerNic) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the
+func (o ServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type ServerNicPtrOutput struct{ *pulumi.OutputState }
@@ -2765,6 +2753,16 @@ func (o ServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 		}
 		return v.PciSlot
 	}).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the
+func (o ServerNicPtrOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroupsIds
+	}).(pulumi.StringArrayOutput)
 }
 
 type ServerNicFirewall struct {
@@ -4076,6 +4074,12 @@ type VCPUServerNic struct {
 	// [string] The name of the server.
 	Name    *string `pulumi:"name"`
 	PciSlot *int    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // VCPUServerNicInput is an input type that accepts VCPUServerNicArgs and VCPUServerNicOutput values.
@@ -4107,6 +4111,12 @@ type VCPUServerNicArgs struct {
 	// [string] The name of the server.
 	Name    pulumi.StringPtrInput `pulumi:"name"`
 	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeys field is immutable.
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (VCPUServerNicArgs) ElementType() reflect.Type {
@@ -4243,6 +4253,15 @@ func (o VCPUServerNicOutput) Name() pulumi.StringPtrOutput {
 
 func (o VCPUServerNicOutput) PciSlot() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VCPUServerNic) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the resource.
+//
+// > **⚠ WARNING**
+// >
+// > sshKeys field is immutable.
+func (o VCPUServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v VCPUServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type VCPUServerNicPtrOutput struct{ *pulumi.OutputState }
@@ -4396,6 +4415,20 @@ func (o VCPUServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 		}
 		return v.PciSlot
 	}).(pulumi.IntPtrOutput)
+}
+
+// The list of Security Group IDs for the resource.
+//
+// > **⚠ WARNING**
+// >
+// > sshKeys field is immutable.
+func (o VCPUServerNicPtrOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VCPUServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroupsIds
+	}).(pulumi.StringArrayOutput)
 }
 
 type VCPUServerNicFirewall struct {
@@ -5512,6 +5545,8 @@ type GetCubeServerNic struct {
 	Name string `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // GetCubeServerNicInput is an input type that accepts GetCubeServerNicArgs and GetCubeServerNicOutput values.
@@ -5553,6 +5588,8 @@ type GetCubeServerNicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (GetCubeServerNicArgs) ElementType() reflect.Type {
@@ -5673,6 +5710,11 @@ func (o GetCubeServerNicOutput) Name() pulumi.StringOutput {
 // The PCI slot number of the Nic
 func (o GetCubeServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o GetCubeServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCubeServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type GetCubeServerNicArrayOutput struct{ *pulumi.OutputState }
@@ -7565,6 +7607,8 @@ type GetServerNic struct {
 	Name string `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // GetServerNicInput is an input type that accepts GetServerNicArgs and GetServerNicOutput values.
@@ -7606,6 +7650,8 @@ type GetServerNicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (GetServerNicArgs) ElementType() reflect.Type {
@@ -7726,6 +7772,11 @@ func (o GetServerNicOutput) Name() pulumi.StringOutput {
 // The PCI slot number of the Nic
 func (o GetServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o GetServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type GetServerNicArrayOutput struct{ *pulumi.OutputState }
@@ -8329,6 +8380,7 @@ type GetServersServer struct {
 	Cdroms           []GetServersServerCdrom `pulumi:"cdroms"`
 	Cores            int                     `pulumi:"cores"`
 	CpuFamily        string                  `pulumi:"cpuFamily"`
+	Hostname         string                  `pulumi:"hostname"`
 	// The unique ID of the server.
 	Id           string                   `pulumi:"id"`
 	Labels       []GetServersServerLabel  `pulumi:"labels"`
@@ -8361,6 +8413,7 @@ type GetServersServerArgs struct {
 	Cdroms           GetServersServerCdromArrayInput `pulumi:"cdroms"`
 	Cores            pulumi.IntInput                 `pulumi:"cores"`
 	CpuFamily        pulumi.StringInput              `pulumi:"cpuFamily"`
+	Hostname         pulumi.StringInput              `pulumi:"hostname"`
 	// The unique ID of the server.
 	Id           pulumi.StringInput               `pulumi:"id"`
 	Labels       GetServersServerLabelArrayInput  `pulumi:"labels"`
@@ -8451,6 +8504,10 @@ func (o GetServersServerOutput) Cores() pulumi.IntOutput {
 
 func (o GetServersServerOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
 // The unique ID of the server.
@@ -8829,20 +8886,21 @@ func (o GetServersServerLabelArrayOutput) Index(i pulumi.IntInput) GetServersSer
 }
 
 type GetServersServerNic struct {
-	DeviceNumber   int                               `pulumi:"deviceNumber"`
-	Dhcp           bool                              `pulumi:"dhcp"`
-	Dhcpv6         *bool                             `pulumi:"dhcpv6"`
-	FirewallActive bool                              `pulumi:"firewallActive"`
-	FirewallRules  []GetServersServerNicFirewallRule `pulumi:"firewallRules"`
-	FirewallType   string                            `pulumi:"firewallType"`
-	Id             string                            `pulumi:"id"`
-	Ips            []string                          `pulumi:"ips"`
-	Ipv6CidrBlock  string                            `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        []string                          `pulumi:"ipv6Ips"`
-	Lan            int                               `pulumi:"lan"`
-	Mac            string                            `pulumi:"mac"`
-	Name           string                            `pulumi:"name"`
-	PciSlot        int                               `pulumi:"pciSlot"`
+	DeviceNumber      int                               `pulumi:"deviceNumber"`
+	Dhcp              bool                              `pulumi:"dhcp"`
+	Dhcpv6            *bool                             `pulumi:"dhcpv6"`
+	FirewallActive    bool                              `pulumi:"firewallActive"`
+	FirewallRules     []GetServersServerNicFirewallRule `pulumi:"firewallRules"`
+	FirewallType      string                            `pulumi:"firewallType"`
+	Id                string                            `pulumi:"id"`
+	Ips               []string                          `pulumi:"ips"`
+	Ipv6CidrBlock     string                            `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips           []string                          `pulumi:"ipv6Ips"`
+	Lan               int                               `pulumi:"lan"`
+	Mac               string                            `pulumi:"mac"`
+	Name              string                            `pulumi:"name"`
+	PciSlot           int                               `pulumi:"pciSlot"`
+	SecurityGroupsIds []string                          `pulumi:"securityGroupsIds"`
 }
 
 // GetServersServerNicInput is an input type that accepts GetServersServerNicArgs and GetServersServerNicOutput values.
@@ -8857,20 +8915,21 @@ type GetServersServerNicInput interface {
 }
 
 type GetServersServerNicArgs struct {
-	DeviceNumber   pulumi.IntInput                           `pulumi:"deviceNumber"`
-	Dhcp           pulumi.BoolInput                          `pulumi:"dhcp"`
-	Dhcpv6         pulumi.BoolPtrInput                       `pulumi:"dhcpv6"`
-	FirewallActive pulumi.BoolInput                          `pulumi:"firewallActive"`
-	FirewallRules  GetServersServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	FirewallType   pulumi.StringInput                        `pulumi:"firewallType"`
-	Id             pulumi.StringInput                        `pulumi:"id"`
-	Ips            pulumi.StringArrayInput                   `pulumi:"ips"`
-	Ipv6CidrBlock  pulumi.StringInput                        `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        pulumi.StringArrayInput                   `pulumi:"ipv6Ips"`
-	Lan            pulumi.IntInput                           `pulumi:"lan"`
-	Mac            pulumi.StringInput                        `pulumi:"mac"`
-	Name           pulumi.StringInput                        `pulumi:"name"`
-	PciSlot        pulumi.IntInput                           `pulumi:"pciSlot"`
+	DeviceNumber      pulumi.IntInput                           `pulumi:"deviceNumber"`
+	Dhcp              pulumi.BoolInput                          `pulumi:"dhcp"`
+	Dhcpv6            pulumi.BoolPtrInput                       `pulumi:"dhcpv6"`
+	FirewallActive    pulumi.BoolInput                          `pulumi:"firewallActive"`
+	FirewallRules     GetServersServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	FirewallType      pulumi.StringInput                        `pulumi:"firewallType"`
+	Id                pulumi.StringInput                        `pulumi:"id"`
+	Ips               pulumi.StringArrayInput                   `pulumi:"ips"`
+	Ipv6CidrBlock     pulumi.StringInput                        `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips           pulumi.StringArrayInput                   `pulumi:"ipv6Ips"`
+	Lan               pulumi.IntInput                           `pulumi:"lan"`
+	Mac               pulumi.StringInput                        `pulumi:"mac"`
+	Name              pulumi.StringInput                        `pulumi:"name"`
+	PciSlot           pulumi.IntInput                           `pulumi:"pciSlot"`
+	SecurityGroupsIds pulumi.StringArrayInput                   `pulumi:"securityGroupsIds"`
 }
 
 func (GetServersServerNicArgs) ElementType() reflect.Type {
@@ -8978,6 +9037,10 @@ func (o GetServersServerNicOutput) Name() pulumi.StringOutput {
 
 func (o GetServersServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServersServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type GetServersServerNicArrayOutput struct{ *pulumi.OutputState }
@@ -10293,6 +10356,8 @@ type GetVCPUServerNic struct {
 	Name string `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 }
 
 // GetVCPUServerNicInput is an input type that accepts GetVCPUServerNicArgs and GetVCPUServerNicOutput values.
@@ -10334,6 +10399,8 @@ type GetVCPUServerNicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The PCI slot number of the Nic
 	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds pulumi.StringArrayInput `pulumi:"securityGroupsIds"`
 }
 
 func (GetVCPUServerNicArgs) ElementType() reflect.Type {
@@ -10454,6 +10521,11 @@ func (o GetVCPUServerNicOutput) Name() pulumi.StringOutput {
 // The PCI slot number of the Nic
 func (o GetVCPUServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o GetVCPUServerNicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVCPUServerNic) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 type GetVCPUServerNicArrayOutput struct{ *pulumi.OutputState }

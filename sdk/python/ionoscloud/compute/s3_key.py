@@ -128,15 +128,15 @@ class S3Key(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_user = ionoscloud.compute.User("exampleUser",
+        example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
             email="unique@email.com",
             password="abc123-321CBA",
             administrator=False,
             force_sec_auth=False)
-        example_s3_key = ionoscloud.compute.S3Key("exampleS3Key",
-            user_id=example_user.id,
+        example_s3_key = ionoscloud.compute.S3Key("example",
+            user_id=example.id,
             active=True)
         ```
 
@@ -170,15 +170,15 @@ class S3Key(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_user = ionoscloud.compute.User("exampleUser",
+        example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
             email="unique@email.com",
             password="abc123-321CBA",
             administrator=False,
             force_sec_auth=False)
-        example_s3_key = ionoscloud.compute.S3Key("exampleS3Key",
-            user_id=example_user.id,
+        example_s3_key = ionoscloud.compute.S3Key("example",
+            user_id=example.id,
             active=True)
         ```
 

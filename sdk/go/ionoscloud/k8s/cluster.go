@@ -30,13 +30,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
-//				ApiSubnetAllowLists: pulumi.StringArray{
-//					pulumi.String("1.2.3.4/32"),
-//				},
-//				K8sVersion: pulumi.String("1.28.6"),
+//				Name:       pulumi.String("k8sClusterExample"),
+//				K8sVersion: pulumi.String("1.31.2"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
+//				},
+//				ApiSubnetAllowLists: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
 //				},
 //				S3Buckets: k8s.ClusterS3BucketArray{
 //					&k8s.ClusterS3BucketArgs{
@@ -69,6 +70,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.NewDatacenter(ctx, "testdatacenter", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/fra"),
 //				Description: pulumi.String("Test datacenter"),
 //			})
@@ -78,12 +80,14 @@ import (
 //			k8sip, err := compute.NewIPBlock(ctx, "k8sip", &compute.IPBlockArgs{
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
+//				Name:     pulumi.String("IP Block Private K8s"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
-//				K8sVersion: pulumi.String("1.28.6"),
+//				Name:       pulumi.String("k8sClusterExample"),
+//				K8sVersion: pulumi.String("1.31.2"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
@@ -117,14 +121,14 @@ import (
 // A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:k8s/cluster:Cluster demo {k8s_cluster uuid}
+// $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
 // ```
 //
-// This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
+// This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
 //
 // ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
 //
-// terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+// pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
 type Cluster struct {
 	pulumi.CustomResourceState
 

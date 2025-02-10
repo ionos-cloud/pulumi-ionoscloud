@@ -17,6 +17,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupGroup(ctx, &compute.LookupGroupArgs{
+//				Id: pulumi.StringRef("group_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -84,11 +109,11 @@ type LookupGroupResult struct {
 	// The group will be allowed to create snapshots.
 	CreateSnapshot bool `pulumi:"createSnapshot"`
 	// The id of the group.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas bool `pulumi:"manageDbaas"`
 	// A name for the group.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// The group will be allowed to reserve IP addresses.
 	ReserveIp bool `pulumi:"reserveIp"`
 	// The group will have S3 privilege.
@@ -186,8 +211,8 @@ func (o LookupGroupResultOutput) CreateSnapshot() pulumi.BoolOutput {
 }
 
 // The id of the group.
-func (o LookupGroupResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Privilege for a group to manage DBaaS related functionality.
@@ -196,8 +221,8 @@ func (o LookupGroupResultOutput) ManageDbaas() pulumi.BoolOutput {
 }
 
 // A name for the group.
-func (o LookupGroupResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The group will be allowed to reserve IP addresses.

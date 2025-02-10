@@ -32,27 +32,31 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			testDatacenter, err := compute.NewDatacenter(ctx, "testDatacenter", &compute.DatacenterArgs{
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("test_vpn_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testLan, err := compute.NewLan(ctx, "testLan", &compute.LanArgs{
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:         pulumi.String("test_lan_basic"),
 //				Public:       pulumi.Bool(false),
 //				DatacenterId: testDatacenter.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testIpblock, err := compute.NewIPBlock(ctx, "testIpblock", &compute.IPBlockArgs{
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock_basic"),
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleIpsecGateway, err := vpn.NewIpsecGateway(ctx, "exampleIpsecGateway", &vpn.IpsecGatewayArgs{
+//			example, err := vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
 //					return ips[0], nil
@@ -70,9 +74,141 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vpn.NewIpsecTunnel(ctx, "exampleIpsecTunnel", &vpn.IpsecTunnelArgs{
+//			_, err = vpn.NewIpsecTunnel(ctx, "example", &vpn.IpsecTunnelArgs{
 //				Location:    pulumi.String("de/fra"),
-//				GatewayId:   exampleIpsecGateway.ID(),
+//				GatewayId:   example.ID(),
+//				Name:        pulumi.String("example-tunnel"),
+//				RemoteHost:  pulumi.String("vpn.mycompany.com"),
+//				Description: pulumi.String("Allows local subnet X to connect to virtual network Y."),
+//				Auth: &vpn.IpsecTunnelAuthArgs{
+//					Method: pulumi.String("PSK"),
+//					PskKey: pulumi.String("X2wosbaw74M8hQGbK3jCCaEusR6CCFRa"),
+//				},
+//				Ike: &vpn.IpsecTunnelIkeArgs{
+//					DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//					EncryptionAlgorithm: pulumi.String("AES256"),
+//					IntegrityAlgorithm:  pulumi.String("SHA256"),
+//					Lifetime:            pulumi.Int(86400),
+//				},
+//				Esps: vpn.IpsecTunnelEspArray{
+//					&vpn.IpsecTunnelEspArgs{
+//						DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//						EncryptionAlgorithm: pulumi.String("AES256"),
+//						IntegrityAlgorithm:  pulumi.String("SHA256"),
+//						Lifetime:            pulumi.Int(3600),
+//					},
+//				},
+//				CloudNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("0.0.0.0/0"),
+//				},
+//				PeerNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("vpn_gateway_test"),
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:          pulumi.String("test_lan"),
+//				Public:        pulumi.Bool(false),
+//				DatacenterId:  testDatacenter.ID(),
+//				Ipv6CidrBlock: pulumi.Any(lanIpv6CidrBlock),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock"),
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "test_server", &compute.ServerArgs{
+//				Name:          pulumi.String("test_server"),
+//				DatacenterId:  testDatacenter.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(2048),
+//				ImageName:     pulumi.String("ubuntu:latest"),
+//				ImagePassword: serverImagePassword.Result,
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            testLan.ID(),
+//					Name:           pulumi.String("test_nic"),
+//					Dhcp:           pulumi.Bool(true),
+//					Dhcpv6:         pulumi.Bool(false),
+//					Ipv6CidrBlock:  pulumi.Any(ipv6CidrBlock),
+//					FirewallActive: pulumi.Bool(false),
+//				},
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("test_volume"),
+//					DiskType:    pulumi.String("HDD"),
+//					Size:        pulumi.Int(10),
+//					LicenceType: pulumi.String("OTHER"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec-gateway"),
+//				Location: pulumi.String("de/fra"),
+//				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				Version:     pulumi.String("IKEv2"),
+//				Description: pulumi.String("This gateway connects site A to VDC X."),
+//				Connections: vpn.IpsecGatewayConnectionArray{
+//					&vpn.IpsecGatewayConnectionArgs{
+//						DatacenterId: testDatacenter.ID(),
+//						LanId:        testLan.ID(),
+//						Ipv4Cidr:     pulumi.String("ipv4_cidr_block_from_nic"),
+//						Ipv6Cidr:     pulumi.String("ipv6_cidr_block_from_dc"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewIpsecTunnel(ctx, "example", &vpn.IpsecTunnelArgs{
+//				Location:    pulumi.String("de/fra"),
+//				GatewayId:   example.ID(),
+//				Name:        pulumi.String("example-tunnel"),
 //				RemoteHost:  pulumi.String("vpn.mycompany.com"),
 //				Description: pulumi.String("Allows local subnet X to connect to virtual network Y."),
 //				Auth: &vpn.IpsecTunnelAuthArgs{
@@ -114,7 +250,7 @@ import (
 // The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
+// $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example location:gateway_id:tunnel_id
 // ```
 type IpsecTunnel struct {
 	pulumi.CustomResourceState
@@ -136,7 +272,7 @@ type IpsecTunnel struct {
 	Ike IpsecTunnelIkeOutput `pulumi:"ike"`
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringOutput `pulumi:"location"`
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -167,9 +303,6 @@ func NewIpsecTunnel(ctx *pulumi.Context,
 	}
 	if args.Ike == nil {
 		return nil, errors.New("invalid value for required argument 'Ike'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.PeerNetworkCidrs == nil {
 		return nil, errors.New("invalid value for required argument 'PeerNetworkCidrs'")
@@ -277,7 +410,7 @@ type ipsecTunnelArgs struct {
 	Ike IpsecTunnelIke `pulumi:"ike"`
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -306,7 +439,7 @@ type IpsecTunnelArgs struct {
 	Ike IpsecTunnelIkeInput
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringInput
+	Location pulumi.StringPtrInput
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -438,8 +571,8 @@ func (o IpsecTunnelOutput) Ike() IpsecTunnelIkeOutput {
 
 // [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 // gb/lhr, us/ewr, us/las, us/mci, fr/par
-func (o IpsecTunnelOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+func (o IpsecTunnelOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the IPSec Gateway Tunnel.

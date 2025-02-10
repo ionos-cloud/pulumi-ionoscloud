@@ -179,13 +179,15 @@ class MongoUser(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        lan_example = ionoscloud.compute.Lan("lanExample",
+        lan_example = ionoscloud.compute.Lan("lan_example",
             datacenter_id=datacenter_example.id,
-            public=False)
-        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            public=False,
+            name="example")
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("example_mongo_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
@@ -200,7 +202,7 @@ class MongoUser(pulumi.CustomResource):
                 "cidr_lists": ["192.168.1.108/24"],
             },
             template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
-        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+        example_mongo_user = ionoscloud.dbaas.MongoUser("example_mongo_user",
             cluster_id=example_mongo_cluster.id,
             username="myUser",
             password="strongPassword",
@@ -222,13 +224,15 @@ class MongoUser(pulumi.CustomResource):
         import pulumi_random as random
 
         # Complete example
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        lan_example = ionoscloud.compute.Lan("lanExample",
+        lan_example = ionoscloud.compute.Lan("lan_example",
             datacenter_id=datacenter_example.id,
-            public=False)
-        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            public=False,
+            name="example")
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("example_mongo_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
@@ -243,18 +247,18 @@ class MongoUser(pulumi.CustomResource):
                 "cidr_lists": ["192.168.1.108/24"],
             },
             template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
-        cluster_password = random.RandomPassword("clusterPassword",
+        cluster_password = random.index.Password("cluster_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        user_password = random.RandomPassword("userPassword",
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_mongo_user = ionoscloud.dbaas.MongoUser("example_mongo_user",
             cluster_id=example_mongo_cluster.id,
             username="myUser",
-            password=user_password.result,
+            password=user_password["result"],
             roles=[
                 {
                     "role": "read",
@@ -308,13 +312,15 @@ class MongoUser(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        lan_example = ionoscloud.compute.Lan("lanExample",
+        lan_example = ionoscloud.compute.Lan("lan_example",
             datacenter_id=datacenter_example.id,
-            public=False)
-        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            public=False,
+            name="example")
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("example_mongo_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
@@ -329,7 +335,7 @@ class MongoUser(pulumi.CustomResource):
                 "cidr_lists": ["192.168.1.108/24"],
             },
             template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
-        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+        example_mongo_user = ionoscloud.dbaas.MongoUser("example_mongo_user",
             cluster_id=example_mongo_cluster.id,
             username="myUser",
             password="strongPassword",
@@ -351,13 +357,15 @@ class MongoUser(pulumi.CustomResource):
         import pulumi_random as random
 
         # Complete example
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+        datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
+            name="example",
             location="de/txl",
             description="Datacenter for testing dbaas cluster")
-        lan_example = ionoscloud.compute.Lan("lanExample",
+        lan_example = ionoscloud.compute.Lan("lan_example",
             datacenter_id=datacenter_example.id,
-            public=False)
-        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            public=False,
+            name="example")
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("example_mongo_cluster",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
@@ -372,18 +380,18 @@ class MongoUser(pulumi.CustomResource):
                 "cidr_lists": ["192.168.1.108/24"],
             },
             template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
-        cluster_password = random.RandomPassword("clusterPassword",
+        cluster_password = random.index.Password("cluster_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        user_password = random.RandomPassword("userPassword",
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_mongo_user = ionoscloud.dbaas.MongoUser("example_mongo_user",
             cluster_id=example_mongo_cluster.id,
             username="myUser",
-            password=user_password.result,
+            password=user_password["result"],
             roles=[
                 {
                     "role": "read",

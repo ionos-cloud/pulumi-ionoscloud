@@ -15,6 +15,33 @@ import (
 // You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 // When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupS3Key(ctx, &compute.LookupS3KeyArgs{
+//				Id:     "key_id",
+//				UserId: "user-uuid",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupS3Key(ctx *pulumi.Context, args *LookupS3KeyArgs, opts ...pulumi.InvokeOption) (*LookupS3KeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupS3KeyResult
@@ -27,10 +54,8 @@ func LookupS3Key(ctx *pulumi.Context, args *LookupS3KeyArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getS3Key.
 type LookupS3KeyArgs struct {
-	// The state of the IONOS Object Storage key
-	Active *bool `pulumi:"active"`
 	// ID of the IONOS Object Storage key you want to search for.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// [string] The UUID of the user owning the IONOS Object Storage Key.
 	UserId string `pulumi:"userId"`
 }
@@ -38,9 +63,9 @@ type LookupS3KeyArgs struct {
 // A collection of values returned by getS3Key.
 type LookupS3KeyResult struct {
 	// The state of the IONOS Object Storage key
-	Active *bool `pulumi:"active"`
+	Active bool `pulumi:"active"`
 	// The id of the IONOS Object Storage key
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// (Computed)The IONOS Object Storage Secret key.
 	SecretKey string `pulumi:"secretKey"`
 	// The ID of the user that owns the key
@@ -58,10 +83,8 @@ func LookupS3KeyOutput(ctx *pulumi.Context, args LookupS3KeyOutputArgs, opts ...
 
 // A collection of arguments for invoking getS3Key.
 type LookupS3KeyOutputArgs struct {
-	// The state of the IONOS Object Storage key
-	Active pulumi.BoolPtrInput `pulumi:"active"`
 	// ID of the IONOS Object Storage key you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
 	// [string] The UUID of the user owning the IONOS Object Storage Key.
 	UserId pulumi.StringInput `pulumi:"userId"`
 }
@@ -86,13 +109,13 @@ func (o LookupS3KeyResultOutput) ToLookupS3KeyResultOutputWithContext(ctx contex
 }
 
 // The state of the IONOS Object Storage key
-func (o LookupS3KeyResultOutput) Active() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupS3KeyResult) *bool { return v.Active }).(pulumi.BoolPtrOutput)
+func (o LookupS3KeyResultOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupS3KeyResult) bool { return v.Active }).(pulumi.BoolOutput)
 }
 
 // The id of the IONOS Object Storage key
-func (o LookupS3KeyResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupS3KeyResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupS3KeyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupS3KeyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // (Computed)The IONOS Object Storage Secret key.

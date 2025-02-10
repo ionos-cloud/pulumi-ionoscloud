@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleUser = new ionoscloud.compute.User("exampleUser", {
+ * const example = new ionoscloud.compute.User("example", {
  *     firstName: "example",
  *     lastName: "example",
  *     email: "unique@email.com",
@@ -21,8 +21,8 @@ import * as utilities from "../utilities";
  *     administrator: false,
  *     forceSecAuth: false,
  * });
- * const exampleS3Key = new ionoscloud.compute.S3Key("exampleS3Key", {
- *     userId: exampleUser.id,
+ * const exampleS3Key = new ionoscloud.compute.S3Key("example", {
+ *     userId: example.id,
  *     active: true,
  * });
  * ```

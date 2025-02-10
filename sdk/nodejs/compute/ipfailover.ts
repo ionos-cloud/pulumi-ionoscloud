@@ -14,25 +14,29 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("exampleIPBlock", {
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
  *     location: "us/las",
  *     size: 1,
+ *     name: "IP Block Example",
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan Example",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
  *     availabilityZone: "ZONE_1",
@@ -51,8 +55,8 @@ import * as utilities from "../utilities";
  *         ips: [exampleIPBlock.ips[0]],
  *     },
  * });
- * const exampleIPFailover = new ionoscloud.compute.IPFailover("exampleIPFailover", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleIPFailover = new ionoscloud.compute.IPFailover("example", {
+ *     datacenterId: example.id,
  *     lanId: exampleLan.id,
  *     ip: exampleIPBlock.ips[0],
  *     nicuuid: exampleServer.primaryNic,

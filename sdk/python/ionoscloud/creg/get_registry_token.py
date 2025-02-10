@@ -131,7 +131,7 @@ def get_registry_token(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
         name="container-registry-token-example")
     ```
 
@@ -140,7 +140,7 @@ def get_registry_token(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
         name="-example",
         partial_match=True)
     ```
@@ -188,7 +188,7 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
         name="container-registry-token-example")
     ```
 
@@ -197,7 +197,7 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
         name="-example",
         partial_match=True)
     ```

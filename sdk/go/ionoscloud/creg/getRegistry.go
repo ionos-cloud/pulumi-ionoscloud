@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistry(ctx, &creg.LookupRegistryArgs{
+//				Id: pulumi.StringRef("registry_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -99,11 +124,11 @@ type LookupRegistryResult struct {
 	GarbageCollectionSchedules []GetRegistryGarbageCollectionSchedule `pulumi:"garbageCollectionSchedules"`
 	Hostname                   string                                 `pulumi:"hostname"`
 	// Id of the container registry.
-	Id                 *string                        `pulumi:"id"`
+	Id                 string                         `pulumi:"id"`
 	Location           *string                        `pulumi:"location"`
 	MaintenanceWindows []GetRegistryMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// The name of the container registry.
-	Name          *string                   `pulumi:"name"`
+	Name          string                    `pulumi:"name"`
 	PartialMatch  *bool                     `pulumi:"partialMatch"`
 	StorageUsages []GetRegistryStorageUsage `pulumi:"storageUsages"`
 }
@@ -169,8 +194,8 @@ func (o LookupRegistryResultOutput) Hostname() pulumi.StringOutput {
 }
 
 // Id of the container registry.
-func (o LookupRegistryResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRegistryResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupRegistryResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupRegistryResultOutput) Location() pulumi.StringPtrOutput {
@@ -182,8 +207,8 @@ func (o LookupRegistryResultOutput) MaintenanceWindows() GetRegistryMaintenanceW
 }
 
 // The name of the container registry.
-func (o LookupRegistryResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupRegistryResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupRegistryResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRegistryResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupRegistryResultOutput) PartialMatch() pulumi.BoolPtrOutput {

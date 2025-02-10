@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.dns.Zone("example", {
+ *     name: "example.com",
  *     description: "description",
  *     enabled: false,
  * });

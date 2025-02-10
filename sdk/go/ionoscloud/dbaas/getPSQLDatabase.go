@@ -12,6 +12,33 @@ import (
 )
 
 // The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupPSQLDatabase(ctx, &dbaas.LookupPSQLDatabaseArgs{
+//				ClusterId: "cluster_id",
+//				Name:      "databasename",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupPSQLDatabase(ctx *pulumi.Context, args *LookupPSQLDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupPSQLDatabaseResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPSQLDatabaseResult

@@ -160,8 +160,8 @@ def get_datacenter(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_datacenter(location="us/las",
-        name="Datacenter Example")
+    example = ionoscloud.compute.get_datacenter(name="Datacenter Example",
+        location="us/las")
     ```
 
 
@@ -205,8 +205,8 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_datacenter(location="us/las",
-        name="Datacenter Example")
+    example = ionoscloud.compute.get_datacenter(name="Datacenter Example",
+        location="us/las")
     ```
 
 

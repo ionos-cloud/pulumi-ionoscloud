@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "ALB name",
  * });
  * ```
@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "name",
  *     partialMatch: true,
  * });
@@ -125,7 +125,7 @@ export interface GetBalancerResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "ALB name",
  * });
  * ```
@@ -136,7 +136,7 @@ export interface GetBalancerResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.alb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "name",
  *     partialMatch: true,
  * });

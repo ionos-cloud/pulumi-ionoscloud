@@ -29,7 +29,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("datacenter description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -37,22 +38,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
 //				Location: pulumi.String("us/las"),
 //				Size:     pulumi.Int(3),
+//				Name:     pulumi.String("IP Block Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleCluster, err := k8s.NewCluster(ctx, "exampleCluster", &k8s.ClusterArgs{
-//				K8sVersion: pulumi.String("1.28.6"),
+//			exampleCluster, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
+//				Name:       pulumi.String("k8sClusterExample"),
+//				K8sVersion: pulumi.String("1.31.2"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
@@ -69,9 +73,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = k8s.NewNodePool(ctx, "exampleNodePool", &k8s.NodePoolArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = k8s.NewNodePool(ctx, "example", &k8s.NodePoolArgs{
+//				DatacenterId: example.ID(),
 //				K8sClusterId: exampleCluster.ID(),
+//				Name:         pulumi.String("k8sNodePoolExample"),
 //				K8sVersion:   exampleCluster.K8sVersion,
 //				MaintenanceWindow: &k8s.NodePoolMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Monday"),
@@ -135,24 +140,37 @@ import (
 // A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 //
 // ```sh
-// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
 // ```
 //
-// # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+// # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
 //
 // ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
 //
-// terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+// pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
 //
 // ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 type NodePool struct {
 	pulumi.CustomResourceState
 
-	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+	// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+	//
+	// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+	//
+	// ⚠️ **Note**:
+	//
+	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+	// You can read more details about the `ignoreChanges` attribute here.
 	AllowReplace pulumi.BoolPtrOutput `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
@@ -246,11 +264,24 @@ func GetNodePool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NodePool resources.
 type nodePoolState struct {
-	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+	// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+	//
+	// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+	//
+	// ⚠️ **Note**:
+	//
+	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+	// You can read more details about the `ignoreChanges` attribute here.
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
@@ -285,11 +316,24 @@ type nodePoolState struct {
 }
 
 type NodePoolState struct {
-	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+	// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+	//
+	// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+	//
+	// ⚠️ **Note**:
+	//
+	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+	// You can read more details about the `ignoreChanges` attribute here.
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringPtrInput
@@ -328,11 +372,24 @@ func (NodePoolState) ElementType() reflect.Type {
 }
 
 type nodePoolArgs struct {
-	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+	// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+	//
+	// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+	//
+	// ⚠️ **Note**:
+	//
+	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+	// You can read more details about the `ignoreChanges` attribute here.
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone string `pulumi:"availabilityZone"`
@@ -368,11 +425,24 @@ type nodePoolArgs struct {
 
 // The set of arguments for constructing a NodePool resource.
 type NodePoolArgs struct {
-	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+	// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+	//
+	// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+	// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+	//
+	// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+	//
+	// ⚠️ **Note**:
+	//
+	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+	// You can read more details about the `ignoreChanges` attribute here.
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringInput
@@ -493,7 +563,20 @@ func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoo
 	return o
 }
 
-// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+//
+// ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+// This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+//
+// Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+//
+// ⚠️ **Note**:
+//
+// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+// You can read more details about the `ignoreChanges` attribute here.
 func (o NodePoolOutput) AllowReplace() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
 }
@@ -503,7 +586,7 @@ func (o NodePoolOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingPtrOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingPtrOutput { return v.AutoScaling }).(NodePoolAutoScalingPtrOutput)
 }

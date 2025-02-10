@@ -18,6 +18,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/apigateway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := apigateway.LookupApigateway(ctx, &apigateway.LookupApigatewayArgs{
+//				Id: pulumi.StringRef("your_apigateway_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 //
 // Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before

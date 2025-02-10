@@ -13,12 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleGroup = new ionoscloud.compute.Group("exampleGroup", {
+ * const exampleGroup = new ionoscloud.compute.Group("example", {
+ *     name: "Group Example",
  *     createDatacenter: true,
  *     createSnapshot: true,
  *     reserveIp: true,
@@ -29,9 +31,9 @@ import * as utilities from "../utilities";
  *     createInternetAccess: true,
  *     createK8sCluster: true,
  * });
- * const exampleShare = new ionoscloud.compute.Share("exampleShare", {
+ * const exampleShare = new ionoscloud.compute.Share("example", {
  *     groupId: exampleGroup.id,
- *     resourceId: exampleDatacenter.id,
+ *     resourceId: example.id,
  *     editPrivilege: true,
  *     sharePrivilege: false,
  * });

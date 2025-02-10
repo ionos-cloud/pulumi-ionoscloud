@@ -21,36 +21,16 @@ import (
 //
 // import (
 //
-//	"os"
-//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// optionally you can add a certificate to the distribution
-//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
-//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
-//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
+//			_, err := cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
 //				Domain:        pulumi.String("example.com"),
-//				CertificateId: cert.ID(),
+//				CertificateId: pulumi.Any(cert.Id),
 //				RoutingRules: cdn.DistributionRoutingRuleArray{
 //					&cdn.DistributionRoutingRuleArgs{
 //						Scheme: pulumi.String("https"),
@@ -102,7 +82,7 @@ import (
 // Resource Distribution can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution distribution uuid
 // ```
 type Distribution struct {
 	pulumi.CustomResourceState

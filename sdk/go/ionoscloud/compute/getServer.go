@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupServer(ctx, &compute.LookupServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("server_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupServer(ctx, &compute.LookupServerArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("Server Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupServer(ctx *pulumi.Context, args *LookupServerArgs, opts ...pulumi.InvokeOption) (*LookupServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupServerResult
@@ -57,16 +109,20 @@ type LookupServerResult struct {
 	CpuFamily string `pulumi:"cpuFamily"`
 	// The id of the datacenter
 	DatacenterId string `pulumi:"datacenterId"`
+	// The hostname of the resource.
+	Hostname string `pulumi:"hostname"`
 	// The Id of the label
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// list of
 	Labels []GetServerLabel `pulumi:"labels"`
 	// Name of the firewall rule
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// list of
 	Nics []GetServerNic `pulumi:"nics"`
 	// The amount of memory for the server in MB
 	Ram int `pulumi:"ram"`
+	// The list of Security Group IDs for the resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid *string `pulumi:"templateUuid"`
 	Token        string  `pulumi:"token"`
@@ -159,9 +215,14 @@ func (o LookupServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The hostname of the resource.
+func (o LookupServerResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // The Id of the label
-func (o LookupServerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // list of
@@ -170,8 +231,8 @@ func (o LookupServerResultOutput) Labels() GetServerLabelArrayOutput {
 }
 
 // Name of the firewall rule
-func (o LookupServerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupServerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // list of
@@ -182,6 +243,11 @@ func (o LookupServerResultOutput) Nics() GetServerNicArrayOutput {
 // The amount of memory for the server in MB
 func (o LookupServerResultOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerResult) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+func (o LookupServerResultOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupServerResult) []string { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource

@@ -229,16 +229,20 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+        example = ionoscloud.compute.Datacenter("example",
+            name="example-kafka-datacenter",
+            location="de/fra")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example-kafka-lan")
+        example_cluster = ionoscloud.kafka.Cluster("example",
+            name="example-kafka-cluster",
             location="de/fra",
             version="3.7.0",
             size="S",
             connections={
-                "datacenter_id": example_datacenter.id,
+                "datacenter_id": example.id,
                 "lan_id": example_lan.id,
                 "broker_addresses": [
                     "192.168.1.101/24",
@@ -282,16 +286,20 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+        example = ionoscloud.compute.Datacenter("example",
+            name="example-kafka-datacenter",
+            location="de/fra")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example-kafka-lan")
+        example_cluster = ionoscloud.kafka.Cluster("example",
+            name="example-kafka-cluster",
             location="de/fra",
             version="3.7.0",
             size="S",
             connections={
-                "datacenter_id": example_datacenter.id,
+                "datacenter_id": example.id,
                 "lan_id": example_lan.id,
                 "broker_addresses": [
                     "192.168.1.101/24",

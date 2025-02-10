@@ -294,17 +294,18 @@ class WireguardPeer(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.vpn.WireguardPeer("example",
-            allowed_ips=[
-                "10.0.0.0/8",
-                "192.168.1.0/24",
-            ],
+            location="de/fra",
+            gateway_id="your gateway id here",
+            name="example-gateway",
             description="An example WireGuard peer",
             endpoint={
                 "host": "1.2.3.4",
                 "port": 51820,
             },
-            gateway_id="your gateway id here",
-            location="de/fra",
+            allowed_ips=[
+                "10.0.0.0/8",
+                "192.168.1.0/24",
+            ],
             public_key="examplePublicKey==")
         ```
 
@@ -343,17 +344,18 @@ class WireguardPeer(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.vpn.WireguardPeer("example",
-            allowed_ips=[
-                "10.0.0.0/8",
-                "192.168.1.0/24",
-            ],
+            location="de/fra",
+            gateway_id="your gateway id here",
+            name="example-gateway",
             description="An example WireGuard peer",
             endpoint={
                 "host": "1.2.3.4",
                 "port": 51820,
             },
-            gateway_id="your gateway id here",
-            location="de/fra",
+            allowed_ips=[
+                "10.0.0.0/8",
+                "192.168.1.0/24",
+            ],
             public_key="examplePublicKey==")
         ```
 
