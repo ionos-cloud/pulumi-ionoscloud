@@ -15,10 +15,10 @@
 package main
 
 import (
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+
 	ionoscloud "github.com/ionos-cloud/pulumi-ionoscloud/provider"
 	"github.com/ionos-cloud/pulumi-ionoscloud/provider/pkg/version"
-
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
 func main() {
