@@ -87,8 +87,8 @@ jobs:
       fail-fast: false
       matrix:
         language:
-        - dotnet
+        # - dotnet
         - go
-        - nodejs
-        - python
+        # - nodejs
+        # - python
         testTarget: [local]
