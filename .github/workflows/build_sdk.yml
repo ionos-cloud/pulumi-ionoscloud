@@ -69,7 +69,7 @@ jobs:
         uses: pulumi/git-status-check-action@v1
         with:
           allowed-changes: |
-            upstream/*
+            upstream
             sdk/**/pulumi-plugin.json
             sdk/dotnet/*.csproj
             sdk/go/**/pulumiUtilities.go
