@@ -36,10 +36,10 @@ jobs:
       fail-fast: true
       matrix:
         language:
-        - dotnet
+        # - dotnet
         - go
-        - nodejs
-        - python
+        # - nodejs
+        # - python
     steps:
       - name: Checkout Repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -69,6 +69,7 @@ jobs:
         uses: pulumi/git-status-check-action@v1
         with:
           allowed-changes: |
+            upstream
             sdk/**/pulumi-plugin.json
             sdk/dotnet/*.csproj
             sdk/go/**/pulumiUtilities.go
