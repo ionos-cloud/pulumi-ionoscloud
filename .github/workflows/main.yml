@@ -41,8 +41,8 @@ jobs:
     with:
       version: ${{ needs.prerequisites.outputs.version }}
 
-  generate_coverage_data:
-    continue-on-error: true
+  # generate_coverage_data:
+  #   continue-on-error: true
     env:
       COVERAGE_OUTPUT_DIR: ${{ secrets.COVERAGE_OUTPUT_DIR }}
     name: generate_coverage_data
