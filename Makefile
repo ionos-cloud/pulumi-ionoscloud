@@ -154,6 +154,8 @@ build_python: .make/build_python
 .make/generate_python: .make/install_plugins bin/$(TFGEN)
 	$(GEN_ENVS) $(WORKING_DIR)/bin/$(TFGEN) python --out sdk/python/
 	printf "module fake_python_module // Exclude this directory from Go tools\n\ngo 1.17\n" > sdk/python/go.mod
+	@echo $(VERSION_GENERIC)
+	@echo RADU
 	cp README.md sdk/python/
 	@touch $@
 .make/build_python: .make/generate_python
@@ -165,6 +167,8 @@ build_python: .make/build_python
 		cd ./bin && \
 		../venv/bin/python -m build .
 	@touch $@
+	@echo $(VERSION_GENERIC)
+	@echo SALUT
 .PHONY: generate_python build_python
 
 clean:
