@@ -119,7 +119,7 @@ class GetMongoClusterResult:
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> str:
         """
         The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
@@ -135,7 +135,7 @@ class GetMongoClusterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -249,6 +249,27 @@ def get_mongo_cluster(display_name: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_cluster(id="cluster_id")
+    ```
+    ### By display_name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_cluster(display_name="display_name")
+    ```
+
+    * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
+    * `id` - (Optional) ID of the cluster you want to search for.
+
+    Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+
 
     :param str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.
     """
@@ -286,6 +307,27 @@ def get_mongo_cluster_output(display_name: Optional[pulumi.Input[Optional[str]]]
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_cluster(id="cluster_id")
+    ```
+    ### By display_name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_cluster(display_name="display_name")
+    ```
+
+    * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
+    * `id` - (Optional) ID of the cluster you want to search for.
+
+    Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 
 
     :param str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.

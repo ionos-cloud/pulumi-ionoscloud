@@ -52,7 +52,7 @@ class PSQLClusterArgs:
         :param pulumi.Input['PSQLClusterConnectionPoolerArgs'] connection_pooler: [object]
         :param pulumi.Input['PSQLClusterConnectionsArgs'] connections: [string] Details about the network connection for your cluster.
         :param pulumi.Input['PSQLClusterFromBackupArgs'] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "credentials", credentials)
@@ -247,7 +247,7 @@ class PSQLClusterArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -287,7 +287,7 @@ class _PSQLClusterState:
         :param pulumi.Input['PSQLClusterFromBackupArgs'] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
@@ -451,7 +451,7 @@ class _PSQLClusterState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -588,12 +588,82 @@ class PSQLCluster(pulumi.CustomResource):
             synchronization_mode="ASYNCHRONOUS")
         ```
 
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        # Complete example
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_server = ionoscloud.compute.Server("example",
+            name="example",
+            datacenter_id=example.id,
+            cores=2,
+            ram=2048,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_SKYLAKE",
+            image_name="rockylinux-8-GenericCloud-20230518",
+            image_password="password",
+            volume={
+                "name": "example",
+                "size": 6,
+                "disk_type": "SSD Standard",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "example",
+                "dhcp": True,
+            })
+        cluster_password = random.index.Password("cluster_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
+            postgres_version="12",
+            instances=1,
+            cores=4,
+            ram=2048,
+            storage_size=2048,
+            storage_type="HDD",
+            connection_pooler={
+                "enabled": True,
+                "pool_mode": "session",
+            },
+            connections={
+                "datacenter_id": example.id,
+                "lan_id": example_lan.id,
+                "cidr": "database_ip_cidr_from_nic",
+            },
+            location=example.location,
+            display_name="PostgreSQL_cluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            credentials={
+                "username": "username",
+                "password": cluster_password["result"],
+            },
+            synchronization_mode="ASYNCHRONOUS",
+            from_backup={
+                "backup_id": "backup_uuid",
+                "recovery_target_time": "2021-12-06T13:54:08Z",
+            })
+        ```
+
         ## Import
 
         Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+        $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -607,7 +677,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
@@ -667,12 +737,82 @@ class PSQLCluster(pulumi.CustomResource):
             synchronization_mode="ASYNCHRONOUS")
         ```
 
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        # Complete example
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_server = ionoscloud.compute.Server("example",
+            name="example",
+            datacenter_id=example.id,
+            cores=2,
+            ram=2048,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_SKYLAKE",
+            image_name="rockylinux-8-GenericCloud-20230518",
+            image_password="password",
+            volume={
+                "name": "example",
+                "size": 6,
+                "disk_type": "SSD Standard",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "example",
+                "dhcp": True,
+            })
+        cluster_password = random.index.Password("cluster_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
+            postgres_version="12",
+            instances=1,
+            cores=4,
+            ram=2048,
+            storage_size=2048,
+            storage_type="HDD",
+            connection_pooler={
+                "enabled": True,
+                "pool_mode": "session",
+            },
+            connections={
+                "datacenter_id": example.id,
+                "lan_id": example_lan.id,
+                "cidr": "database_ip_cidr_from_nic",
+            },
+            location=example.location,
+            display_name="PostgreSQL_cluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            credentials={
+                "username": "username",
+                "password": cluster_password["result"],
+            },
+            synchronization_mode="ASYNCHRONOUS",
+            from_backup={
+                "backup_id": "backup_uuid",
+                "recovery_target_time": "2021-12-06T13:54:08Z",
+            })
+        ```
+
         ## Import
 
         Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+        $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -793,7 +933,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
@@ -906,7 +1046,7 @@ class PSQLCluster(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.PSQLClusterMaintenanceWindow']:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 

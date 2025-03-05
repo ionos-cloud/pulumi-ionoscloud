@@ -225,7 +225,7 @@ class Share(pulumi.CustomResource):
         Resource Share can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
+        $ pulumi import ionoscloud:compute/share:Share myshare group uuid/resource uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -283,7 +283,7 @@ class Share(pulumi.CustomResource):
         Resource Share can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
+        $ pulumi import ionoscloud:compute/share:Share myshare group uuid/resource uuid
         ```
 
         :param str resource_name: The name of the resource.

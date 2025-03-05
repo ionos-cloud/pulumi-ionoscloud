@@ -126,6 +126,7 @@ class _LanState:
     def __init__(__self__, *,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
+                 ipv4_cidr_block: Optional[pulumi.Input[str]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pcc: Optional[pulumi.Input[str]] = None,
@@ -134,6 +135,7 @@ class _LanState:
         Input properties used for looking up and filtering Lan resources.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]] ip_failovers: IP failover configurations for lan
+        :param pulumi.Input[str] ipv4_cidr_block: [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
         :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
@@ -143,6 +145,8 @@ class _LanState:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
         if ip_failovers is not None:
             pulumi.set(__self__, "ip_failovers", ip_failovers)
+        if ipv4_cidr_block is not None:
+            pulumi.set(__self__, "ipv4_cidr_block", ipv4_cidr_block)
         if ipv6_cidr_block is not None:
             pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if name is not None:
@@ -175,6 +179,18 @@ class _LanState:
     @ip_failovers.setter
     def ip_failovers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]]):
         pulumi.set(self, "ip_failovers", value)
+
+    @property
+    @pulumi.getter(name="ipv4CidrBlock")
+    def ipv4_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+        """
+        return pulumi.get(self, "ipv4_cidr_block")
+
+    @ipv4_cidr_block.setter
+    def ipv4_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_cidr_block", value)
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
@@ -289,7 +305,7 @@ class Lan(pulumi.CustomResource):
         Resource Lan can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
+        $ pulumi import ionoscloud:compute/lan:Lan mylandatacenter uuid/lan id
         ```
 
         :param str resource_name: The name of the resource.
@@ -359,7 +375,7 @@ class Lan(pulumi.CustomResource):
         Resource Lan can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
+        $ pulumi import ionoscloud:compute/lan:Lan mylandatacenter uuid/lan id
         ```
 
         :param str resource_name: The name of the resource.
@@ -400,6 +416,7 @@ class Lan(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["pcc"] = pcc
             __props__.__dict__["public"] = public
+            __props__.__dict__["ipv4_cidr_block"] = None
         super(Lan, __self__).__init__(
             'ionoscloud:compute/lan:Lan',
             resource_name,
@@ -412,6 +429,7 @@ class Lan(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
             ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+            ipv4_cidr_block: Optional[pulumi.Input[str]] = None,
             ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pcc: Optional[pulumi.Input[str]] = None,
@@ -425,6 +443,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]] ip_failovers: IP failover configurations for lan
+        :param pulumi.Input[str] ipv4_cidr_block: [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
         :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
@@ -436,6 +455,7 @@ class Lan(pulumi.CustomResource):
 
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["ip_failovers"] = ip_failovers
+        __props__.__dict__["ipv4_cidr_block"] = ipv4_cidr_block
         __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
         __props__.__dict__["name"] = name
         __props__.__dict__["pcc"] = pcc
@@ -457,6 +477,14 @@ class Lan(pulumi.CustomResource):
         IP failover configurations for lan
         """
         return pulumi.get(self, "ip_failovers")
+
+    @property
+    @pulumi.getter(name="ipv4CidrBlock")
+    def ipv4_cidr_block(self) -> pulumi.Output[str]:
+        """
+        [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+        """
+        return pulumi.get(self, "ipv4_cidr_block")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")

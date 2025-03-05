@@ -286,7 +286,7 @@ class MongoUser(pulumi.CustomResource):
         Then you can import the user using the following command:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
         ```
 
         :param str resource_name: The name of the resource.
@@ -419,7 +419,7 @@ class MongoUser(pulumi.CustomResource):
         Then you can import the user using the following command:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
         ```
 
         :param str resource_name: The name of the resource.

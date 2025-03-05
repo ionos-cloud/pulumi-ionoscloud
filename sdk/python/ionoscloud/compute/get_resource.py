@@ -78,12 +78,29 @@ def get_resource(resource_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_resource(resource_id="resource_id")
+    ```
+
     ### By Type
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.compute.get_resource(resource_type="datacenter")
+    ```
+
+    ### By ID & Type
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_resource(resource_type="datacenter",
+        resource_id="resource_id")
     ```
 
 
@@ -111,12 +128,29 @@ def get_resource_output(resource_id: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_resource(resource_id="resource_id")
+    ```
+
     ### By Type
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.compute.get_resource(resource_type="datacenter")
+    ```
+
+    ### By ID & Type
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_resource(resource_type="datacenter",
+        resource_id="resource_id")
     ```
 
 

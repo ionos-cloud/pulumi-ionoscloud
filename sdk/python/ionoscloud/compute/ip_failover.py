@@ -28,7 +28,38 @@ class IPFailoverArgs:
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
         :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
-        :param pulumi.Input[str] nicuuid: The UUID of the master NIC
+        :param pulumi.Input[str] nicuuid: [string] The ID of a NIC.
+               
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > IP failover group.
+               
+               > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+               > following options:
+               1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+               of creation, for example:
+               ```example
+               resource "ionoscloud_ipfailover" "firstexample" {
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               
+               resource "ionoscloud_ipfailover" "secondexample" {
+               depends_on = [ ionoscloud_ipfailover.firstexample ]
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               ```
+               2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+               `-parallelism=1` as presented below:
+               ```shell
+               pulumi up -parallelism=1
+               ```
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "ip", ip)
@@ -75,7 +106,38 @@ class IPFailoverArgs:
     @pulumi.getter
     def nicuuid(self) -> pulumi.Input[str]:
         """
-        The UUID of the master NIC
+        [string] The ID of a NIC.
+
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > IP failover group.
+
+        > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+        > following options:
+        1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+        of creation, for example:
+        ```example
+        resource "ionoscloud_ipfailover" "firstexample" {
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+
+        resource "ionoscloud_ipfailover" "secondexample" {
+        depends_on = [ ionoscloud_ipfailover.firstexample ]
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+        ```
+        2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+        `-parallelism=1` as presented below:
+        ```shell
+        pulumi up -parallelism=1
+        ```
         """
         return pulumi.get(self, "nicuuid")
 
@@ -96,7 +158,38 @@ class _IPFailoverState:
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
         :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
-        :param pulumi.Input[str] nicuuid: The UUID of the master NIC
+        :param pulumi.Input[str] nicuuid: [string] The ID of a NIC.
+               
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > IP failover group.
+               
+               > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+               > following options:
+               1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+               of creation, for example:
+               ```example
+               resource "ionoscloud_ipfailover" "firstexample" {
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               
+               resource "ionoscloud_ipfailover" "secondexample" {
+               depends_on = [ ionoscloud_ipfailover.firstexample ]
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               ```
+               2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+               `-parallelism=1` as presented below:
+               ```shell
+               pulumi up -parallelism=1
+               ```
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -147,7 +240,38 @@ class _IPFailoverState:
     @pulumi.getter
     def nicuuid(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the master NIC
+        [string] The ID of a NIC.
+
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > IP failover group.
+
+        > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+        > following options:
+        1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+        of creation, for example:
+        ```example
+        resource "ionoscloud_ipfailover" "firstexample" {
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+
+        resource "ionoscloud_ipfailover" "secondexample" {
+        depends_on = [ ionoscloud_ipfailover.firstexample ]
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+        ```
+        2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+        `-parallelism=1` as presented below:
+        ```shell
+        pulumi up -parallelism=1
+        ```
         """
         return pulumi.get(self, "nicuuid")
 
@@ -237,7 +361,7 @@ class IPFailover(pulumi.CustomResource):
         Resource IpFailover can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -245,7 +369,38 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
         :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
-        :param pulumi.Input[str] nicuuid: The UUID of the master NIC
+        :param pulumi.Input[str] nicuuid: [string] The ID of a NIC.
+               
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > IP failover group.
+               
+               > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+               > following options:
+               1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+               of creation, for example:
+               ```example
+               resource "ionoscloud_ipfailover" "firstexample" {
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               
+               resource "ionoscloud_ipfailover" "secondexample" {
+               depends_on = [ ionoscloud_ipfailover.firstexample ]
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               ```
+               2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+               `-parallelism=1` as presented below:
+               ```shell
+               pulumi up -parallelism=1
+               ```
         """
         ...
     @overload
@@ -324,7 +479,7 @@ class IPFailover(pulumi.CustomResource):
         Resource IpFailover can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -391,7 +546,38 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
         :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
-        :param pulumi.Input[str] nicuuid: The UUID of the master NIC
+        :param pulumi.Input[str] nicuuid: [string] The ID of a NIC.
+               
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > IP failover group.
+               
+               > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+               > following options:
+               1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+               of creation, for example:
+               ```example
+               resource "ionoscloud_ipfailover" "firstexample" {
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               
+               resource "ionoscloud_ipfailover" "secondexample" {
+               depends_on = [ ionoscloud_ipfailover.firstexample ]
+               datacenter_id         = "datacenter ID"
+               lan_id                = "LAN ID"
+               ip                    = "IP address"
+               nicuuid               = "NIC UUID"
+               }
+               ```
+               2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+               `-parallelism=1` as presented below:
+               ```shell
+               pulumi up -parallelism=1
+               ```
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -431,7 +617,38 @@ class IPFailover(pulumi.CustomResource):
     @pulumi.getter
     def nicuuid(self) -> pulumi.Output[str]:
         """
-        The UUID of the master NIC
+        [string] The ID of a NIC.
+
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > IP failover group.
+
+        > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
+        > following options:
+        1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+        of creation, for example:
+        ```example
+        resource "ionoscloud_ipfailover" "firstexample" {
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+
+        resource "ionoscloud_ipfailover" "secondexample" {
+        depends_on = [ ionoscloud_ipfailover.firstexample ]
+        datacenter_id         = "datacenter ID"
+        lan_id                = "LAN ID"
+        ip                    = "IP address"
+        nicuuid               = "NIC UUID"
+        }
+        ```
+        2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+        `-parallelism=1` as presented below:
+        ```shell
+        pulumi up -parallelism=1
+        ```
         """
         return pulumi.get(self, "nicuuid")
 

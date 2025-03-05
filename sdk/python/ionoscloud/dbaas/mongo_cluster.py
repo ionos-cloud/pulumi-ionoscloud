@@ -48,7 +48,7 @@ class MongoClusterArgs:
         :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         :param pulumi.Input[int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
-        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
         :param pulumi.Input[int] storage_size: (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
@@ -196,7 +196,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -308,7 +308,7 @@ class _MongoClusterState:
         :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
-        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
@@ -464,7 +464,7 @@ class _MongoClusterState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -673,7 +673,7 @@ class MongoCluster(pulumi.CustomResource):
         Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -686,7 +686,7 @@ class MongoCluster(pulumi.CustomResource):
         :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
@@ -795,7 +795,7 @@ class MongoCluster(pulumi.CustomResource):
         Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -908,7 +908,7 @@ class MongoCluster(pulumi.CustomResource):
         :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
@@ -1016,7 +1016,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MongoClusterMaintenanceWindow']:
         """
-        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 

@@ -23,27 +23,31 @@ class WireguardGatewayArgs:
     def __init__(__self__, *,
                  connections: pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]],
                  gateway_ip: pulumi.Input[str],
-                 location: pulumi.Input[str],
                  private_key: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  interface_ipv4_cidr: Optional[pulumi.Input[str]] = None,
                  interface_ipv6_cidr: Optional[pulumi.Input[str]] = None,
                  listen_port: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WireguardGateway resource.
         :param pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
         :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
-        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
         :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         :param pulumi.Input[str] description: [String] A description of the WireGuard Gateway.
         :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input['WireguardGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "gateway_ip", gateway_ip)
-        pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "private_key", private_key)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -53,8 +57,14 @@ class WireguardGatewayArgs:
             pulumi.set(__self__, "interface_ipv6_cidr", interface_ipv6_cidr)
         if listen_port is not None:
             pulumi.set(__self__, "listen_port", listen_port)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
 
     @property
     @pulumi.getter
@@ -79,18 +89,6 @@ class WireguardGatewayArgs:
     @gateway_ip.setter
     def gateway_ip(self, value: pulumi.Input[str]):
         pulumi.set(self, "gateway_ip", value)
-
-    @property
-    @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        [String] The location of the WireGuard Gateway.
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -151,6 +149,31 @@ class WireguardGatewayArgs:
 
     @property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         [String] The name of the WireGuard Gateway.
@@ -160,6 +183,18 @@ class WireguardGatewayArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
 
 
 @pulumi.input_type
@@ -172,10 +207,12 @@ class _WireguardGatewayState:
                  interface_ipv6_cidr: Optional[pulumi.Input[str]] = None,
                  listen_port: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 status: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WireguardGateway resources.
         :param pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
@@ -183,11 +220,16 @@ class _WireguardGatewayState:
         :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input['WireguardGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         :param pulumi.Input[str] public_key: (Computed)[String] The public key for the WireGuard Gateway.
+               -
+               > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[str] status: (Computed)[String] The current status of the WireGuard Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -203,6 +245,8 @@ class _WireguardGatewayState:
             pulumi.set(__self__, "listen_port", listen_port)
         if location is not None:
             pulumi.set(__self__, "location", location)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_key is not None:
@@ -211,6 +255,8 @@ class _WireguardGatewayState:
             pulumi.set(__self__, "public_key", public_key)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
 
     @property
     @pulumi.getter
@@ -285,13 +331,26 @@ class _WireguardGatewayState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [String] The location of the WireGuard Gateway.
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
     @location.setter
     def location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
 
     @property
     @pulumi.getter
@@ -322,6 +381,8 @@ class _WireguardGatewayState:
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
         (Computed)[String] The public key for the WireGuard Gateway.
+        -
+        > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         """
         return pulumi.get(self, "public_key")
 
@@ -341,6 +402,18 @@ class _WireguardGatewayState:
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
 
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
+
 
 class WireguardGateway(pulumi.CustomResource):
     @overload
@@ -354,8 +427,10 @@ class WireguardGateway(pulumi.CustomResource):
                  interface_ipv6_cidr: Optional[pulumi.Input[str]] = None,
                  listen_port: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Overview
@@ -390,7 +465,12 @@ class WireguardGateway(pulumi.CustomResource):
                 "datacenter_id": datacenter_example.id,
                 "lan_id": lan_example.id,
                 "ipv4_cidr": "192.168.1.108/24",
-            }])
+            }],
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00",
+            },
+            tier="STANDARD")
         ```
 
         ## Import
@@ -408,9 +488,12 @@ class WireguardGateway(pulumi.CustomResource):
         :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         ...
     @overload
@@ -451,7 +534,12 @@ class WireguardGateway(pulumi.CustomResource):
                 "datacenter_id": datacenter_example.id,
                 "lan_id": lan_example.id,
                 "ipv4_cidr": "192.168.1.108/24",
-            }])
+            }],
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00",
+            },
+            tier="STANDARD")
         ```
 
         ## Import
@@ -484,8 +572,10 @@ class WireguardGateway(pulumi.CustomResource):
                  interface_ipv6_cidr: Optional[pulumi.Input[str]] = None,
                  listen_port: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -505,13 +595,13 @@ class WireguardGateway(pulumi.CustomResource):
             __props__.__dict__["interface_ipv4_cidr"] = interface_ipv4_cidr
             __props__.__dict__["interface_ipv6_cidr"] = interface_ipv6_cidr
             __props__.__dict__["listen_port"] = listen_port
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
+            __props__.__dict__["maintenance_window"] = maintenance_window
             __props__.__dict__["name"] = name
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["tier"] = tier
             __props__.__dict__["public_key"] = None
             __props__.__dict__["status"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
@@ -533,10 +623,12 @@ class WireguardGateway(pulumi.CustomResource):
             interface_ipv6_cidr: Optional[pulumi.Input[str]] = None,
             listen_port: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'WireguardGateway':
+            status: Optional[pulumi.Input[str]] = None,
+            tier: Optional[pulumi.Input[str]] = None) -> 'WireguardGateway':
         """
         Get an existing WireguardGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -549,11 +641,16 @@ class WireguardGateway(pulumi.CustomResource):
         :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         :param pulumi.Input[str] public_key: (Computed)[String] The public key for the WireGuard Gateway.
+               -
+               > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[str] status: (Computed)[String] The current status of the WireGuard Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -566,10 +663,12 @@ class WireguardGateway(pulumi.CustomResource):
         __props__.__dict__["interface_ipv6_cidr"] = interface_ipv6_cidr
         __props__.__dict__["listen_port"] = listen_port
         __props__.__dict__["location"] = location
+        __props__.__dict__["maintenance_window"] = maintenance_window
         __props__.__dict__["name"] = name
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["public_key"] = public_key
         __props__.__dict__["status"] = status
+        __props__.__dict__["tier"] = tier
         return WireguardGateway(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -619,11 +718,20 @@ class WireguardGateway(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
-        [String] The location of the WireGuard Gateway.
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> pulumi.Output['outputs.WireguardGatewayMaintenanceWindow']:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter
@@ -646,6 +754,8 @@ class WireguardGateway(pulumi.CustomResource):
     def public_key(self) -> pulumi.Output[str]:
         """
         (Computed)[String] The public key for the WireGuard Gateway.
+        -
+        > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         """
         return pulumi.get(self, "public_key")
 
@@ -656,4 +766,12 @@ class WireguardGateway(pulumi.CustomResource):
         (Computed)[String] The current status of the WireGuard Gateway.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tier(self) -> pulumi.Output[Optional[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
 

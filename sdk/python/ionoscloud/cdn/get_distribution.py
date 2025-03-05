@@ -71,7 +71,7 @@ class GetDistributionResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -140,6 +140,14 @@ def get_distribution(domain: Optional[str] = None,
 
     ## Example Usage
 
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(id="distr_id")
+    ```
+
     ### By Domain
     ```python
     import pulumi
@@ -191,6 +199,14 @@ def get_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = None
     When this happens, please refine your search and make sure that your resources have unique domains.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(id="distr_id")
+    ```
 
     ### By Domain
     ```python

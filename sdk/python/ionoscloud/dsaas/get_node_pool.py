@@ -27,10 +27,13 @@ class GetNodePoolResult:
     """
     A collection of values returned by getNodePool.
     """
-    def __init__(__self__, annotations=None, availability_zone=None, cluster_id=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, labels=None, maintenance_windows=None, name=None, node_count=None, partial_match=None, ram_size=None, storage_size=None, storage_type=None, version=None):
+    def __init__(__self__, annotations=None, auto_scalings=None, availability_zone=None, cluster_id=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, labels=None, maintenance_windows=None, name=None, node_count=None, partial_match=None, ram_size=None, storage_size=None, storage_type=None, version=None):
         if annotations and not isinstance(annotations, dict):
             raise TypeError("Expected argument 'annotations' to be a dict")
         pulumi.set(__self__, "annotations", annotations)
+        if auto_scalings and not isinstance(auto_scalings, list):
+            raise TypeError("Expected argument 'auto_scalings' to be a list")
+        pulumi.set(__self__, "auto_scalings", auto_scalings)
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -86,6 +89,14 @@ class GetNodePoolResult:
         return pulumi.get(self, "annotations")
 
     @property
+    @pulumi.getter(name="autoScalings")
+    def auto_scalings(self) -> Sequence['outputs.GetNodePoolAutoScalingResult']:
+        """
+        Whether the Node Pool should autoscale. For more details, please check the API documentation
+        """
+        return pulumi.get(self, "auto_scalings")
+
+    @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
         """
@@ -127,7 +138,7 @@ class GetNodePoolResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         ID of your node pool.
         """
@@ -151,7 +162,7 @@ class GetNodePoolResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of your node pool
         """
@@ -210,6 +221,7 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
             yield self
         return GetNodePoolResult(
             annotations=self.annotations,
+            auto_scalings=self.auto_scalings,
             availability_zone=self.availability_zone,
             cluster_id=self.cluster_id,
             cores_count=self.cores_count,
@@ -239,6 +251,36 @@ def get_node_pool(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        id="node_pool_id")
+    ```
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        name="Dataplatform_Node_Pool_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        name="_Example",
+        partial_match=True)
+    ```
+
 
     :param str cluster_id: ID of the cluster the searched node pool is part of.
     :param str id: ID of the node pool you want to search for.
@@ -257,6 +299,7 @@ def get_node_pool(cluster_id: Optional[str] = None,
 
     return AwaitableGetNodePoolResult(
         annotations=pulumi.get(__ret__, 'annotations'),
+        auto_scalings=pulumi.get(__ret__, 'auto_scalings'),
         availability_zone=pulumi.get(__ret__, 'availability_zone'),
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         cores_count=pulumi.get(__ret__, 'cores_count'),
@@ -284,6 +327,36 @@ def get_node_pool_output(cluster_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        id="node_pool_id")
+    ```
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        name="Dataplatform_Node_Pool_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pool(cluster_id="cluster_id",
+        name="_Example",
+        partial_match=True)
+    ```
+
 
     :param str cluster_id: ID of the cluster the searched node pool is part of.
     :param str id: ID of the node pool you want to search for.
@@ -301,6 +374,7 @@ def get_node_pool_output(cluster_id: Optional[pulumi.Input[str]] = None,
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dsaas/getNodePool:getNodePool', __args__, opts=opts, typ=GetNodePoolResult)
     return __ret__.apply(lambda __response__: GetNodePoolResult(
         annotations=pulumi.get(__response__, 'annotations'),
+        auto_scalings=pulumi.get(__response__, 'auto_scalings'),
         availability_zone=pulumi.get(__response__, 'availability_zone'),
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         cores_count=pulumi.get(__response__, 'cores_count'),

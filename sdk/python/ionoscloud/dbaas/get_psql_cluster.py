@@ -111,7 +111,7 @@ class GetPSQLClusterResult:
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> str:
         """
         The friendly name of your cluster.
         """
@@ -135,7 +135,7 @@ class GetPSQLClusterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -237,6 +237,14 @@ def get_psql_cluster(display_name: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_cluster(id="cluster_id")
+    ```
+
     ### By Name
 
     ```python
@@ -284,6 +292,14 @@ def get_psql_cluster_output(display_name: Optional[pulumi.Input[Optional[str]]] 
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_cluster(id="cluster_id")
+    ```
 
     ### By Name
 

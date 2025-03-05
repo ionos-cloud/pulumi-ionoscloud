@@ -103,10 +103,20 @@ def get_ip_failover(datacenter_id: Optional[str] = None,
     You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_ip_failover(datacenter_id="datacenter_id",
+        lan_id="lan_id")
+    ```
+
 
     :param str datacenter_id: The ID of the datacenter containing the ip failover datasource
     :param str ip: The reserved IP address to be used in the IP failover group.
-    :param str lan_id: The ID of a LAN.
+    :param str lan_id: The id of the lan of which the IP failover belongs
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -130,10 +140,20 @@ def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_ip_failover(datacenter_id="datacenter_id",
+        lan_id="lan_id")
+    ```
+
 
     :param str datacenter_id: The ID of the datacenter containing the ip failover datasource
     :param str ip: The reserved IP address to be used in the IP failover group.
-    :param str lan_id: The ID of a LAN.
+    :param str lan_id: The id of the lan of which the IP failover belongs
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -23,18 +23,21 @@ class ServerArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[str],
                  volume: pulumi.Input['ServerVolumeArgs'],
+                 allow_replace: Optional[pulumi.Input[bool]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
                  boot_image: Optional[pulumi.Input[str]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  cpu_family: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input['ServerNicArgs']] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
@@ -44,18 +47,35 @@ class ServerArgs:
         The set of arguments for constructing a Server resource.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               > ssh_key_path and ssh_keys fields are immutable.
+               
+               
+               > **⚠ WARNING**
+               >
+               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+               >
+               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
         :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -64,6 +84,8 @@ class ServerArgs:
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "volume", volume)
+        if allow_replace is not None:
+            pulumi.set(__self__, "allow_replace", allow_replace)
         if availability_zone is not None:
             pulumi.set(__self__, "availability_zone", availability_zone)
         if boot_cdrom is not None:
@@ -79,6 +101,8 @@ class ServerArgs:
             pulumi.set(__self__, "cpu_family", cpu_family)
         if firewallrule_ids is not None:
             pulumi.set(__self__, "firewallrule_ids", firewallrule_ids)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
@@ -91,6 +115,8 @@ class ServerArgs:
             pulumi.set(__self__, "nic", nic)
         if ram is not None:
             pulumi.set(__self__, "ram", ram)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if ssh_key_paths is not None:
             warnings.warn("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""", DeprecationWarning)
             pulumi.log.warn("""ssh_key_paths is deprecated: Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
@@ -128,6 +154,32 @@ class ServerArgs:
     @volume.setter
     def volume(self, value: pulumi.Input['ServerVolumeArgs']):
         pulumi.set(self, "volume", value)
+
+    @property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "allow_replace")
+
+    @allow_replace.setter
+    def allow_replace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_replace", value)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -203,6 +255,18 @@ class ServerArgs:
         pulumi.set(self, "firewallrule_ids", value)
 
     @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -275,6 +339,18 @@ class ServerArgs:
         pulumi.set(self, "ram", value)
 
     @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
+
+    @property
     @pulumi.getter(name="sshKeyPaths")
     @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
@@ -339,6 +415,7 @@ class ServerArgs:
 @pulumi.input_type
 class _ServerState:
     def __init__(__self__, *,
+                 allow_replace: Optional[pulumi.Input[bool]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
                  boot_image: Optional[pulumi.Input[str]] = None,
@@ -348,6 +425,7 @@ class _ServerState:
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -357,6 +435,7 @@ class _ServerState:
                  primary_ip: Optional[pulumi.Input[str]] = None,
                  primary_nic: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
@@ -365,18 +444,9 @@ class _ServerState:
                  volume: Optional[pulumi.Input['ServerVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering Server resources.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] boot_volume: The associated boot volume.
-        :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
                >
@@ -389,12 +459,26 @@ class _ServerState:
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
+        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+        :param pulumi.Input[str] boot_volume: The associated boot volume.
+        :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -402,6 +486,8 @@ class _ServerState:
         :param pulumi.Input[str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
         :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         """
+        if allow_replace is not None:
+            pulumi.set(__self__, "allow_replace", allow_replace)
         if availability_zone is not None:
             pulumi.set(__self__, "availability_zone", availability_zone)
         if boot_cdrom is not None:
@@ -423,6 +509,8 @@ class _ServerState:
             pulumi.set(__self__, "firewallrule_id", firewallrule_id)
         if firewallrule_ids is not None:
             pulumi.set(__self__, "firewallrule_ids", firewallrule_ids)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
@@ -441,6 +529,8 @@ class _ServerState:
             pulumi.set(__self__, "primary_nic", primary_nic)
         if ram is not None:
             pulumi.set(__self__, "ram", ram)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if ssh_key_paths is not None:
             warnings.warn("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""", DeprecationWarning)
             pulumi.log.warn("""ssh_key_paths is deprecated: Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
@@ -456,6 +546,32 @@ class _ServerState:
             pulumi.set(__self__, "vm_state", vm_state)
         if volume is not None:
             pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "allow_replace")
+
+    @allow_replace.setter
+    def allow_replace(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_replace", value)
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -567,6 +683,18 @@ class _ServerState:
         pulumi.set(self, "firewallrule_ids", value)
 
     @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -595,18 +723,6 @@ class _ServerState:
     def inline_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list with the IDs for the volumes that are defined inside the server resource.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "inline_volume_ids")
 
@@ -687,6 +803,18 @@ class _ServerState:
         pulumi.set(self, "ram", value)
 
     @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
+
+    @property
     @pulumi.getter(name="sshKeyPaths")
     @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
@@ -765,6 +893,7 @@ class Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_replace: Optional[pulumi.Input[bool]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
                  boot_image: Optional[pulumi.Input[str]] = None,
@@ -772,12 +901,14 @@ class Server(pulumi.CustomResource):
                  cpu_family: Optional[pulumi.Input[str]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
@@ -786,22 +917,278 @@ class Server(pulumi.CustomResource):
                  volume: Optional[pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
+        Manages a **Server** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational server. After this section completes, the provisioner can be called.
+
+        ### ENTERPRISE Server
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example_datacenter.location,
+            size=4,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example.name,
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            },
+            labels=[
+                {
+                    "key": "labelkey1",
+                    "value": "labelvalue1",
+                },
+                {
+                    "key": "labelkey2",
+                    "value": "labelvalue2",
+                },
+            ])
+        ```
+        ### With IPv6 Enabled
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Resource Server Test",
+            location="us/las")
+        webserver_ipblock = ionoscloud.compute.IPBlock("webserver_ipblock",
+            location="us/las",
+            size=4,
+            name="webserver_ipblock")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="public",
+            ipv6_cidr_block="ipv6_cidr_block_from_lan")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Resource Server Test",
+            datacenter_id=example.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name="ubuntu:latest",
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    webserver_ipblock.ips[0],
+                    webserver_ipblock.ips[1],
+                ],
+                "dhcpv6": True,
+                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_ips": [
+                    "ipv6_ip1",
+                    "ipv6_ip2",
+                    "ipv6_ip3",
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": webserver_ipblock.ips[2],
+                    "target_ip": webserver_ipblock.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        ```
+
+        ### CUBE Server
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_template(name="Basic Cube XS")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="de/txl")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            availability_zone="ZONE_2",
+            image_name="ubuntu:latest",
+            type="CUBE",
+            template_uuid=example.id,
+            image_password=server_image_password["result"],
+            datacenter_id=example_datacenter.id,
+            volume={
+                "name": "Volume Example",
+                "licence_type": "LINUX",
+                "disk_type": "DAS",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
+        ```
+
+        ### Server that boots from CDROM
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+
+        cdrom_datacenter = ionoscloud.compute.Datacenter("cdrom",
+            name="CDROM Test",
+            location="de/txl",
+            description="CDROM image test",
+            sec_auth_protection=False)
+        public = ionoscloud.compute.Lan("public",
+            datacenter_id=cdrom_datacenter.id,
+            public=True,
+            name="Uplink")
+        cdrom = ionoscloud.compute.get_image(image_alias="ubuntu:latest_iso",
+            type="CDROM",
+            location="de/txl",
+            cloud_init="NONE")
+        test = ionoscloud.compute.Server("test",
+            datacenter_id=cdrom_datacenter.id,
+            name="ubuntu_latest_from_cdrom",
+            cores=1,
+            ram=1024,
+            cpu_family=cdrom_datacenter.cpu_architectures[0].cpu_family,
+            type="ENTERPRISE",
+            volume={
+                "name": "hdd0",
+                "disk_type": "HDD",
+                "size": 50,
+                "licence_type": "OTHER",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": False,
+            })
+        ```
+
+        ## Notes
+
+        Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+
+        ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+        from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+
         ## Import
 
         Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 
         ```sh
-        $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}
+        $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
         ```
 
-        Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+        Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 
         ```sh
-        $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+        $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               > ssh_key_path and ssh_keys fields are immutable.
+               
+               
+               > **⚠ WARNING**
+               >
+               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+               >
+               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -809,12 +1196,14 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -829,18 +1218,259 @@ class Server(pulumi.CustomResource):
                  args: ServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages a **Server** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational server. After this section completes, the provisioner can be called.
+
+        ### ENTERPRISE Server
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example_datacenter.location,
+            size=4,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example.name,
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            },
+            labels=[
+                {
+                    "key": "labelkey1",
+                    "value": "labelvalue1",
+                },
+                {
+                    "key": "labelkey2",
+                    "value": "labelvalue2",
+                },
+            ])
+        ```
+        ### With IPv6 Enabled
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Resource Server Test",
+            location="us/las")
+        webserver_ipblock = ionoscloud.compute.IPBlock("webserver_ipblock",
+            location="us/las",
+            size=4,
+            name="webserver_ipblock")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="public",
+            ipv6_cidr_block="ipv6_cidr_block_from_lan")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Resource Server Test",
+            datacenter_id=example.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name="ubuntu:latest",
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    webserver_ipblock.ips[0],
+                    webserver_ipblock.ips[1],
+                ],
+                "dhcpv6": True,
+                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_ips": [
+                    "ipv6_ip1",
+                    "ipv6_ip2",
+                    "ipv6_ip3",
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": webserver_ipblock.ips[2],
+                    "target_ip": webserver_ipblock.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        ```
+
+        ### CUBE Server
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_template(name="Basic Cube XS")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="de/txl")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            availability_zone="ZONE_2",
+            image_name="ubuntu:latest",
+            type="CUBE",
+            template_uuid=example.id,
+            image_password=server_image_password["result"],
+            datacenter_id=example_datacenter.id,
+            volume={
+                "name": "Volume Example",
+                "licence_type": "LINUX",
+                "disk_type": "DAS",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
+        ```
+
+        ### Server that boots from CDROM
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+
+        cdrom_datacenter = ionoscloud.compute.Datacenter("cdrom",
+            name="CDROM Test",
+            location="de/txl",
+            description="CDROM image test",
+            sec_auth_protection=False)
+        public = ionoscloud.compute.Lan("public",
+            datacenter_id=cdrom_datacenter.id,
+            public=True,
+            name="Uplink")
+        cdrom = ionoscloud.compute.get_image(image_alias="ubuntu:latest_iso",
+            type="CDROM",
+            location="de/txl",
+            cloud_init="NONE")
+        test = ionoscloud.compute.Server("test",
+            datacenter_id=cdrom_datacenter.id,
+            name="ubuntu_latest_from_cdrom",
+            cores=1,
+            ram=1024,
+            cpu_family=cdrom_datacenter.cpu_architectures[0].cpu_family,
+            type="ENTERPRISE",
+            volume={
+                "name": "hdd0",
+                "disk_type": "HDD",
+                "size": 50,
+                "licence_type": "OTHER",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": False,
+            })
+        ```
+
+        ## Notes
+
+        Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+
+        ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+        from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+
         ## Import
 
         Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 
         ```sh
-        $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}
+        $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
         ```
 
-        Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+        Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 
         ```sh
-        $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+        $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id
         ```
 
         :param str resource_name: The name of the resource.
@@ -858,6 +1488,7 @@ class Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_replace: Optional[pulumi.Input[bool]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
                  boot_image: Optional[pulumi.Input[str]] = None,
@@ -865,12 +1496,14 @@ class Server(pulumi.CustomResource):
                  cpu_family: Optional[pulumi.Input[str]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
@@ -886,6 +1519,7 @@ class Server(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerArgs.__new__(ServerArgs)
 
+            __props__.__dict__["allow_replace"] = allow_replace
             __props__.__dict__["availability_zone"] = availability_zone
             __props__.__dict__["boot_cdrom"] = boot_cdrom
             __props__.__dict__["boot_image"] = boot_image
@@ -895,12 +1529,14 @@ class Server(pulumi.CustomResource):
                 raise TypeError("Missing required property 'datacenter_id'")
             __props__.__dict__["datacenter_id"] = datacenter_id
             __props__.__dict__["firewallrule_ids"] = firewallrule_ids
+            __props__.__dict__["hostname"] = hostname
             __props__.__dict__["image_name"] = image_name
             __props__.__dict__["image_password"] = None if image_password is None else pulumi.Output.secret(image_password)
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
             __props__.__dict__["nic"] = nic
             __props__.__dict__["ram"] = ram
+            __props__.__dict__["security_groups_ids"] = security_groups_ids
             __props__.__dict__["ssh_key_paths"] = ssh_key_paths
             __props__.__dict__["ssh_keys"] = ssh_keys
             __props__.__dict__["template_uuid"] = template_uuid
@@ -926,6 +1562,7 @@ class Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_replace: Optional[pulumi.Input[bool]] = None,
             availability_zone: Optional[pulumi.Input[str]] = None,
             boot_cdrom: Optional[pulumi.Input[str]] = None,
             boot_image: Optional[pulumi.Input[str]] = None,
@@ -935,6 +1572,7 @@ class Server(pulumi.CustomResource):
             datacenter_id: Optional[pulumi.Input[str]] = None,
             firewallrule_id: Optional[pulumi.Input[str]] = None,
             firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            hostname: Optional[pulumi.Input[str]] = None,
             image_name: Optional[pulumi.Input[str]] = None,
             image_password: Optional[pulumi.Input[str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -944,6 +1582,7 @@ class Server(pulumi.CustomResource):
             primary_ip: Optional[pulumi.Input[str]] = None,
             primary_nic: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
+            security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             template_uuid: Optional[pulumi.Input[str]] = None,
@@ -957,18 +1596,9 @@ class Server(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] boot_volume: The associated boot volume.
-        :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
                >
@@ -981,12 +1611,26 @@ class Server(pulumi.CustomResource):
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
+        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+        :param pulumi.Input[str] boot_volume: The associated boot volume.
+        :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -998,6 +1642,7 @@ class Server(pulumi.CustomResource):
 
         __props__ = _ServerState.__new__(_ServerState)
 
+        __props__.__dict__["allow_replace"] = allow_replace
         __props__.__dict__["availability_zone"] = availability_zone
         __props__.__dict__["boot_cdrom"] = boot_cdrom
         __props__.__dict__["boot_image"] = boot_image
@@ -1007,6 +1652,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["firewallrule_id"] = firewallrule_id
         __props__.__dict__["firewallrule_ids"] = firewallrule_ids
+        __props__.__dict__["hostname"] = hostname
         __props__.__dict__["image_name"] = image_name
         __props__.__dict__["image_password"] = image_password
         __props__.__dict__["inline_volume_ids"] = inline_volume_ids
@@ -1016,6 +1662,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["primary_ip"] = primary_ip
         __props__.__dict__["primary_nic"] = primary_nic
         __props__.__dict__["ram"] = ram
+        __props__.__dict__["security_groups_ids"] = security_groups_ids
         __props__.__dict__["ssh_key_paths"] = ssh_key_paths
         __props__.__dict__["ssh_keys"] = ssh_keys
         __props__.__dict__["template_uuid"] = template_uuid
@@ -1023,6 +1670,28 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["vm_state"] = vm_state
         __props__.__dict__["volume"] = volume
         return Server(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> pulumi.Output[Optional[bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "allow_replace")
 
     @property
     @pulumi.getter(name="availabilityZone")
@@ -1098,6 +1767,14 @@ class Server(pulumi.CustomResource):
         return pulumi.get(self, "firewallrule_ids")
 
     @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Output[str]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> pulumi.Output[str]:
         """
@@ -1118,18 +1795,6 @@ class Server(pulumi.CustomResource):
     def inline_volume_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         A list with the IDs for the volumes that are defined inside the server resource.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "inline_volume_ids")
 
@@ -1180,6 +1845,14 @@ class Server(pulumi.CustomResource):
         (Computed)[integer] The amount of memory for the server in MB.
         """
         return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The list of Security Group IDs for the
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter(name="sshKeyPaths")

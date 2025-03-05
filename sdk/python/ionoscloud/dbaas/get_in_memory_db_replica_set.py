@@ -83,7 +83,7 @@ class GetInMemoryDBReplicaSetResult:
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> str:
         return pulumi.get(self, "display_name")
 
     @property
@@ -104,12 +104,12 @@ class GetInMemoryDBReplicaSetResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
 
     @property
@@ -233,7 +233,7 @@ def get_in_memory_db_replica_set(display_name: Optional[str] = None,
         version=pulumi.get(__ret__, 'version'))
 def get_in_memory_db_replica_set_output(display_name: Optional[pulumi.Input[Optional[str]]] = None,
                                         id: Optional[pulumi.Input[Optional[str]]] = None,
-                                        location: Optional[pulumi.Input[str]] = None,
+                                        location: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInMemoryDBReplicaSetResult]:
     """
     The `dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.

@@ -80,7 +80,7 @@ class GetMariaDBClusterResult:
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[str]:
+    def display_name(self) -> str:
         """
         [string] The friendly name of your cluster.
         """
@@ -96,7 +96,7 @@ class GetMariaDBClusterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -173,6 +173,15 @@ def get_maria_db_cluster(display_name: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_cluster(id="cluster_id",
+        location="de/txl")
+    ```
+
     ### By Name
 
     ```python
@@ -219,6 +228,15 @@ def get_maria_db_cluster_output(display_name: Optional[pulumi.Input[Optional[str
     The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_cluster(id="cluster_id",
+        location="de/txl")
+    ```
 
     ### By Name
 

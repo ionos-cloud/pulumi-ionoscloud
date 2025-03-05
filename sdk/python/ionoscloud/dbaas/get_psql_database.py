@@ -85,6 +85,16 @@ def get_psql_database(cluster_id: Optional[str] = None,
     """
     The **PgSql Database data source** can be used to search for and return an existing PgSql database.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_database(cluster_id="cluster_id",
+        name="databasename")
+    ```
+
 
     :param str cluster_id: [string] The ID of the cluster.
     :param str name: [string] Name of an existing database that you want to search for.
@@ -105,6 +115,16 @@ def get_psql_database_output(cluster_id: Optional[pulumi.Input[str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLDatabaseResult]:
     """
     The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_database(cluster_id="cluster_id",
+        name="databasename")
+    ```
 
 
     :param str cluster_id: [string] The ID of the cluster.

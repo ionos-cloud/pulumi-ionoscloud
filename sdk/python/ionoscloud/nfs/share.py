@@ -23,8 +23,8 @@ class ShareArgs:
     def __init__(__self__, *,
                  client_groups: pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]],
                  cluster_id: pulumi.Input[str],
-                 location: pulumi.Input[str],
                  gid: Optional[pulumi.Input[int]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[int]] = None,
                  uid: Optional[pulumi.Input[int]] = None):
@@ -32,17 +32,18 @@ class ShareArgs:
         The set of arguments for constructing a Share resource.
         :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         pulumi.set(__self__, "client_groups", client_groups)
         pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "location", location)
         if gid is not None:
             pulumi.set(__self__, "gid", gid)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if quota is not None:
@@ -76,18 +77,6 @@ class ShareArgs:
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        The location of the Network File Storage Cluster.
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
-
-    @property
-    @pulumi.getter
     def gid(self) -> Optional[pulumi.Input[int]]:
         """
         The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
@@ -97,6 +86,18 @@ class ShareArgs:
     @gid.setter
     def gid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gid", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -151,7 +152,7 @@ class _ShareState:
         :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
         :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
@@ -214,7 +215,7 @@ class _ShareState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the Network File Storage Cluster.
+        The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -345,7 +346,7 @@ class Share(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
@@ -450,8 +451,6 @@ class Share(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["gid"] = gid
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["quota"] = quota
@@ -485,7 +484,7 @@ class Share(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
         :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
@@ -531,9 +530,9 @@ class Share(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
-        The location of the Network File Storage Cluster.
+        The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 

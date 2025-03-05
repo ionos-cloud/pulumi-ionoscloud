@@ -21,6 +21,7 @@ class ProviderArgs:
     def __init__(__self__, *,
                  contract_number: Optional[pulumi.Input[str]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 insecure: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  s3_access_key: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,7 @@ class ProviderArgs:
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        :param pulumi.Input[bool] insecure: This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
         :param pulumi.Input[str] password: IonosCloud password for API operations. If token is provided, token is preferred
         :param pulumi.Input[str] s3_access_key: Access key for IONOS Object Storage operations.
         :param pulumi.Input[str] s3_region: Region for IONOS Object Storage operations.
@@ -42,6 +44,8 @@ class ProviderArgs:
             pulumi.set(__self__, "contract_number", contract_number)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
+        if insecure is not None:
+            pulumi.set(__self__, "insecure", insecure)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if retries is not None:
@@ -80,6 +84,18 @@ class ProviderArgs:
     @endpoint.setter
     def endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter
+    def insecure(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+        """
+        return pulumi.get(self, "insecure")
+
+    @insecure.setter
+    def insecure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "insecure", value)
 
     @property
     @pulumi.getter
@@ -171,6 +187,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  contract_number: Optional[pulumi.Input[str]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 insecure: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  s3_access_key: Optional[pulumi.Input[str]] = None,
@@ -188,6 +205,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        :param pulumi.Input[bool] insecure: This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
         :param pulumi.Input[str] password: IonosCloud password for API operations. If token is provided, token is preferred
         :param pulumi.Input[str] s3_access_key: Access key for IONOS Object Storage operations.
         :param pulumi.Input[str] s3_region: Region for IONOS Object Storage operations.
@@ -224,6 +242,7 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  contract_number: Optional[pulumi.Input[str]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 insecure: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  retries: Optional[pulumi.Input[int]] = None,
                  s3_access_key: Optional[pulumi.Input[str]] = None,
@@ -242,6 +261,7 @@ class Provider(pulumi.ProviderResource):
 
             __props__.__dict__["contract_number"] = contract_number
             __props__.__dict__["endpoint"] = endpoint
+            __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
             __props__.__dict__["password"] = password
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
             __props__.__dict__["s3_access_key"] = s3_access_key

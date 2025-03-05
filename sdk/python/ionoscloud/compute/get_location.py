@@ -54,7 +54,7 @@ class GetLocationResult:
 
     @property
     @pulumi.getter
-    def feature(self) -> Optional[str]:
+    def feature(self) -> str:
         return pulumi.get(self, "feature")
 
     @property
@@ -75,7 +75,7 @@ class GetLocationResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
 

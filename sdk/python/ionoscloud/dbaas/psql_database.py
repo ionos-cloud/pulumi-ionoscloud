@@ -166,7 +166,7 @@ class PSQLDatabase(pulumi.CustomResource):
         The resource can be imported using the `clusterId` and the `name`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example clusterid/name
         ```
 
         :param str resource_name: The name of the resource.
@@ -212,7 +212,7 @@ class PSQLDatabase(pulumi.CustomResource):
         The resource can be imported using the `clusterId` and the `name`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example clusterid/name
         ```
 
         :param str resource_name: The name of the resource.

@@ -27,7 +27,7 @@ class GetNicResult:
     """
     A collection of values returned by getNic.
     """
-    def __init__(__self__, datacenter_id=None, device_number=None, dhcp=None, dhcpv6=None, firewall_active=None, firewall_type=None, flowlogs=None, id=None, ips=None, ipv6_cidr_block=None, ipv6_ips=None, lan=None, mac=None, name=None, pci_slot=None, server_id=None):
+    def __init__(__self__, datacenter_id=None, device_number=None, dhcp=None, dhcpv6=None, firewall_active=None, firewall_type=None, flowlogs=None, id=None, ips=None, ipv6_cidr_block=None, ipv6_ips=None, lan=None, mac=None, name=None, pci_slot=None, security_groups_ids=None, server_id=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -73,6 +73,9 @@ class GetNicResult:
         if pci_slot and not isinstance(pci_slot, int):
             raise TypeError("Expected argument 'pci_slot' to be a int")
         pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids and not isinstance(security_groups_ids, list):
+            raise TypeError("Expected argument 'security_groups_ids' to be a list")
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
@@ -95,7 +98,7 @@ class GetNicResult:
 
     @property
     @pulumi.getter
-    def dhcp(self) -> Optional[bool]:
+    def dhcp(self) -> bool:
         """
         Indicates if the NIC should get an IP address using DHCP (true) or not (false).
         """
@@ -103,12 +106,12 @@ class GetNicResult:
 
     @property
     @pulumi.getter
-    def dhcpv6(self) -> Optional[bool]:
+    def dhcpv6(self) -> bool:
         return pulumi.get(self, "dhcpv6")
 
     @property
     @pulumi.getter(name="firewallActive")
-    def firewall_active(self) -> Optional[bool]:
+    def firewall_active(self) -> bool:
         """
         If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
         """
@@ -132,7 +135,7 @@ class GetNicResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the NIC.
         """
@@ -158,7 +161,7 @@ class GetNicResult:
 
     @property
     @pulumi.getter
-    def lan(self) -> Optional[int]:
+    def lan(self) -> int:
         """
         The LAN ID the NIC will sit on.
         """
@@ -174,7 +177,7 @@ class GetNicResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         Specifies the name of the flow log.
         """
@@ -187,6 +190,14 @@ class GetNicResult:
         The PCI slot number of the Nic.
         """
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter(name="serverId")
@@ -218,19 +229,12 @@ class AwaitableGetNicResult(GetNicResult):
             mac=self.mac,
             name=self.name,
             pci_slot=self.pci_slot,
+            security_groups_ids=self.security_groups_ids,
             server_id=self.server_id)
 
 
 def get_nic(datacenter_id: Optional[str] = None,
-            dhcp: Optional[bool] = None,
-            dhcpv6: Optional[bool] = None,
-            firewall_active: Optional[bool] = None,
-            firewall_type: Optional[str] = None,
             id: Optional[str] = None,
-            ips: Optional[Sequence[str]] = None,
-            ipv6_cidr_block: Optional[str] = None,
-            ipv6_ips: Optional[Sequence[str]] = None,
-            lan: Optional[int] = None,
             name: Optional[str] = None,
             server_id: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNicResult:
@@ -241,31 +245,38 @@ def get_nic(datacenter_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nic(datacenter_id="datancenter_id",
+        server_id="server_id",
+        id="nic_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nic(datacenter_id="datancenter_id",
+        server_id="server_id",
+        name="Nic Example")
+    ```
+
 
     :param str datacenter_id: [string] The ID of a Virtual Data Center.
-    :param bool dhcp: Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-    :param bool firewall_active: If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-    :param str firewall_type: The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
     :param str id: ID of the nic you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided.
            If none, are provided, the datasource will return an error.
-    :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-    :param int lan: The LAN ID the NIC will sit on.
     :param str name: [string] The name of the LAN.
     :param str server_id: [string] The ID of a server.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
-    __args__['dhcp'] = dhcp
-    __args__['dhcpv6'] = dhcpv6
-    __args__['firewallActive'] = firewall_active
-    __args__['firewallType'] = firewall_type
     __args__['id'] = id
-    __args__['ips'] = ips
-    __args__['ipv6CidrBlock'] = ipv6_cidr_block
-    __args__['ipv6Ips'] = ipv6_ips
-    __args__['lan'] = lan
     __args__['name'] = name
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -287,17 +298,10 @@ def get_nic(datacenter_id: Optional[str] = None,
         mac=pulumi.get(__ret__, 'mac'),
         name=pulumi.get(__ret__, 'name'),
         pci_slot=pulumi.get(__ret__, 'pci_slot'),
+        security_groups_ids=pulumi.get(__ret__, 'security_groups_ids'),
         server_id=pulumi.get(__ret__, 'server_id'))
 def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
-                   dhcp: Optional[pulumi.Input[Optional[bool]]] = None,
-                   dhcpv6: Optional[pulumi.Input[Optional[bool]]] = None,
-                   firewall_active: Optional[pulumi.Input[Optional[bool]]] = None,
-                   firewall_type: Optional[pulumi.Input[Optional[str]]] = None,
                    id: Optional[pulumi.Input[Optional[str]]] = None,
-                   ips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                   ipv6_cidr_block: Optional[pulumi.Input[Optional[str]]] = None,
-                   ipv6_ips: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                   lan: Optional[pulumi.Input[Optional[int]]] = None,
                    name: Optional[pulumi.Input[Optional[str]]] = None,
                    server_id: Optional[pulumi.Input[str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNicResult]:
@@ -308,31 +312,38 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nic(datacenter_id="datancenter_id",
+        server_id="server_id",
+        id="nic_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nic(datacenter_id="datancenter_id",
+        server_id="server_id",
+        name="Nic Example")
+    ```
+
 
     :param str datacenter_id: [string] The ID of a Virtual Data Center.
-    :param bool dhcp: Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-    :param bool firewall_active: If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-    :param str firewall_type: The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
     :param str id: ID of the nic you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided.
            If none, are provided, the datasource will return an error.
-    :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-    :param int lan: The LAN ID the NIC will sit on.
     :param str name: [string] The name of the LAN.
     :param str server_id: [string] The ID of a server.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
-    __args__['dhcp'] = dhcp
-    __args__['dhcpv6'] = dhcpv6
-    __args__['firewallActive'] = firewall_active
-    __args__['firewallType'] = firewall_type
     __args__['id'] = id
-    __args__['ips'] = ips
-    __args__['ipv6CidrBlock'] = ipv6_cidr_block
-    __args__['ipv6Ips'] = ipv6_ips
-    __args__['lan'] = lan
     __args__['name'] = name
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -353,4 +364,5 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
         mac=pulumi.get(__response__, 'mac'),
         name=pulumi.get(__response__, 'name'),
         pci_slot=pulumi.get(__response__, 'pci_slot'),
+        security_groups_ids=pulumi.get(__response__, 'security_groups_ids'),
         server_id=pulumi.get(__response__, 'server_id')))

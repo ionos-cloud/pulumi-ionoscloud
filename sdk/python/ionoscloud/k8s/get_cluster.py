@@ -137,7 +137,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         id of the cluster
         """
@@ -177,7 +177,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         name of the cluster
         """
@@ -307,6 +307,14 @@ def get_cluster(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_cluster(id="cluster_id")
+    ```
+
     ### By Name
     ```python
     import pulumi
@@ -388,6 +396,14 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_cluster(id="cluster_id")
+    ```
 
     ### By Name
     ```python

@@ -218,10 +218,10 @@ class Crossconnect(pulumi.CustomResource):
         A Cross Connect resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
+        $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
         ```
 
-        This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
+        This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -279,10 +279,10 @@ class Crossconnect(pulumi.CustomResource):
         A Cross Connect resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
+        $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
         ```
 
-        This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
+        This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
 
         :param str resource_name: The name of the resource.
         :param CrossconnectArgs args: The arguments to use to populate this resource's properties.

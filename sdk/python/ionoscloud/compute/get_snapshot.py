@@ -137,7 +137,7 @@ class GetSnapshotResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         UUID of the snapshot
         """
@@ -251,6 +251,14 @@ def get_snapshot(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_snapshot(id="snapshot_id")
+    ```
+
     ### By Name & Size & Location
     ```python
     import pulumi
@@ -308,6 +316,14 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_snapshot(id="snapshot_id")
+    ```
 
     ### By Name & Size & Location
     ```python

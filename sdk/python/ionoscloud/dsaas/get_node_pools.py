@@ -101,6 +101,35 @@ def get_node_pools(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### All Node Pools under a Cluster ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id")
+    ```
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id",
+        name="Dataplatform_Node_Pool_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id",
+        name="_Example",
+        partial_match=True)
+    ```
+
 
     :param str cluster_id: ID of the cluster the searched node pool is part of.
     :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
@@ -127,6 +156,35 @@ def get_node_pools_output(cluster_id: Optional[pulumi.Input[str]] = None,
     The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
 
     ## Example Usage
+
+    ### All Node Pools under a Cluster ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id")
+    ```
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id",
+        name="Dataplatform_Node_Pool_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_node_pools(cluster_id="cluster_id",
+        name="_Example",
+        partial_match=True)
+    ```
 
 
     :param str cluster_id: ID of the cluster the searched node pool is part of.

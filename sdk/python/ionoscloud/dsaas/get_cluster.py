@@ -108,7 +108,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The UUID of the cluster.
         """
@@ -140,7 +140,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of your cluster.
         """
@@ -208,6 +208,14 @@ def get_cluster(id: Optional[str] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(id="cluster_id")
+    ```
 
     ### By Name
 
@@ -301,6 +309,14 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(id="cluster_id")
+    ```
 
     ### By Name
 

@@ -42,7 +42,7 @@ class GetS3KeyResult:
 
     @property
     @pulumi.getter
-    def active(self) -> Optional[bool]:
+    def active(self) -> bool:
         """
         The state of the IONOS Object Storage key
         """
@@ -50,7 +50,7 @@ class GetS3KeyResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the IONOS Object Storage key
         """
@@ -85,8 +85,7 @@ class AwaitableGetS3KeyResult(GetS3KeyResult):
             user_id=self.user_id)
 
 
-def get_s3_key(active: Optional[bool] = None,
-               id: Optional[str] = None,
+def get_s3_key(id: Optional[str] = None,
                user_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetS3KeyResult:
     """
@@ -95,13 +94,21 @@ def get_s3_key(active: Optional[bool] = None,
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
+    ## Example Usage
 
-    :param bool active: The state of the IONOS Object Storage key
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_s3_key(id="key_id",
+        user_id="user-uuid")
+    ```
+
+
     :param str id: ID of the IONOS Object Storage key you want to search for.
     :param str user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
     """
     __args__ = dict()
-    __args__['active'] = active
     __args__['id'] = id
     __args__['userId'] = user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -112,8 +119,7 @@ def get_s3_key(active: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         secret_key=pulumi.get(__ret__, 'secret_key'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_s3_key_output(active: Optional[pulumi.Input[Optional[bool]]] = None,
-                      id: Optional[pulumi.Input[Optional[str]]] = None,
+def get_s3_key_output(id: Optional[pulumi.Input[str]] = None,
                       user_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetS3KeyResult]:
     """
@@ -122,13 +128,21 @@ def get_s3_key_output(active: Optional[pulumi.Input[Optional[bool]]] = None,
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
+    ## Example Usage
 
-    :param bool active: The state of the IONOS Object Storage key
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_s3_key(id="key_id",
+        user_id="user-uuid")
+    ```
+
+
     :param str id: ID of the IONOS Object Storage key you want to search for.
     :param str user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
     """
     __args__ = dict()
-    __args__['active'] = active
     __args__['id'] = id
     __args__['userId'] = user_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

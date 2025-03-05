@@ -150,6 +150,29 @@ def get_route(gateway_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_route(id="your_apigateway_route_id",
+        gateway_id="your_gateway_id")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_route(name="apigateway-route",
+        gateway_id="your_gateway_id")
+    ```
+
 
     :param str gateway_id: The ID of the API Gateway that the route belongs to.
     :param str id: ID of an existing API Gateway Route that you want to search for.
@@ -185,6 +208,29 @@ def get_route_output(gateway_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_route(id="your_apigateway_route_id",
+        gateway_id="your_gateway_id")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_route(name="apigateway-route",
+        gateway_id="your_gateway_id")
+    ```
 
 
     :param str gateway_id: The ID of the API Gateway that the route belongs to.

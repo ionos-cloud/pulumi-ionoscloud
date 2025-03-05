@@ -82,7 +82,7 @@ class GetTargetGroupResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The Id of that Target group
         """
@@ -90,7 +90,7 @@ class GetTargetGroupResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of that Target Group.
         """
@@ -155,6 +155,14 @@ def get_target_group(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_target_group(id="target_group_id")
+    ```
+
     ### By Name
     ```python
     import pulumi
@@ -207,6 +215,14 @@ def get_target_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_target_group(id="target_group_id")
+    ```
 
     ### By Name
     ```python

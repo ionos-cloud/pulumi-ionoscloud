@@ -286,7 +286,7 @@ class RegistryToken(pulumi.CustomResource):
         Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+        $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken container_registry uuid/container_registry_token uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -343,7 +343,7 @@ class RegistryToken(pulumi.CustomResource):
         Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+        $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken container_registry uuid/container_registry_token uuid
         ```
 
         :param str resource_name: The name of the resource.

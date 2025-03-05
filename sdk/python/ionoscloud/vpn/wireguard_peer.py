@@ -23,29 +23,30 @@ class WireguardPeerArgs:
     def __init__(__self__, *,
                  allowed_ips: pulumi.Input[Sequence[pulumi.Input[str]]],
                  gateway_id: pulumi.Input[str],
-                 location: pulumi.Input[str],
                  public_key: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  endpoint: Optional[pulumi.Input['WireguardPeerEndpointArgs']] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WireguardPeer resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         :param pulumi.Input[str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
         :param pulumi.Input[str] public_key: [string] The public key for the WireGuard Gateway.
         :param pulumi.Input[str] description: [string] A description of the WireGuard Gateway.
         :param pulumi.Input['WireguardPeerEndpointArgs'] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
         :param pulumi.Input[str] name: [string] The human-readable name of the WireGuard Gateway.
         """
         pulumi.set(__self__, "allowed_ips", allowed_ips)
         pulumi.set(__self__, "gateway_id", gateway_id)
-        pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "public_key", public_key)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -72,18 +73,6 @@ class WireguardPeerArgs:
     @gateway_id.setter
     def gateway_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "gateway_id", value)
-
-    @property
-    @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        [string] The location of the WireGuard Gateway.
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter(name="publicKey")
@@ -120,6 +109,18 @@ class WireguardPeerArgs:
     @endpoint.setter
     def endpoint(self, value: Optional[pulumi.Input['WireguardPeerEndpointArgs']]):
         pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The location of the WireGuard Gateway.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -314,7 +315,7 @@ class WireguardPeer(pulumi.CustomResource):
         WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
 
         ```sh
-        $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example <gateway_id>:<peer_id>
+        $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example gateway_id:peer_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -364,7 +365,7 @@ class WireguardPeer(pulumi.CustomResource):
         WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
 
         ```sh
-        $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example <gateway_id>:<peer_id>
+        $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example gateway_id:peer_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -406,8 +407,6 @@ class WireguardPeer(pulumi.CustomResource):
             if gateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'gateway_id'")
             __props__.__dict__["gateway_id"] = gateway_id
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if public_key is None and not opts.urn:
@@ -496,7 +495,7 @@ class WireguardPeer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
         [string] The location of the WireGuard Gateway.
         """

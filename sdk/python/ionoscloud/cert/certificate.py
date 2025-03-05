@@ -171,12 +171,25 @@ class Certificate(pulumi.CustomResource):
         """
         Manages a **Certificate** on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate="tour_certificate",
+            certificate_chain="your_certificate_chain",
+            private_key="your_private_key")
+        ```
+
         ## Import
 
         Resource certificate can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -195,12 +208,25 @@ class Certificate(pulumi.CustomResource):
         """
         Manages a **Certificate** on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate="tour_certificate",
+            certificate_chain="your_certificate_chain",
+            private_key="your_private_key")
+        ```
+
         ## Import
 
         Resource certificate can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
         ```
 
         :param str resource_name: The name of the resource.

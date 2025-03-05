@@ -38,7 +38,7 @@ class MariaDBClusterArgs:
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
         :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
-        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
@@ -121,7 +121,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> pulumi.Input[str]:
         """
-        [string] The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster. Cannot be downgraded.
         """
         return pulumi.get(self, "mariadb_version")
 
@@ -200,11 +200,11 @@ class _MariaDBClusterState:
         :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your cluster.
                
-               > **⚠ WARNING:** `Location` attribute will become required in the future.
+               > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
@@ -285,7 +285,7 @@ class _MariaDBClusterState:
         """
         [string] The DNS name pointing to your cluster.
 
-        > **⚠ WARNING:** `Location` attribute will become required in the future.
+        > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         """
         return pulumi.get(self, "dns_name")
 
@@ -333,7 +333,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster. Cannot be downgraded.
         """
         return pulumi.get(self, "mariadb_version")
 
@@ -385,12 +385,73 @@ class MariaDBCluster(pulumi.CustomResource):
         """
         Manages a **DBaaS MariaDB Cluster**.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
+            location="de/txl",
+            description="Datacenter for testing DBaaS cluster")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_server = ionoscloud.compute.Server("example",
+            name="example",
+            datacenter_id=example.id,
+            cores=2,
+            ram=2048,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_SKYLAKE",
+            image_name="rockylinux-8-GenericCloud-20230518",
+            image_password="password",
+            volume={
+                "name": "example",
+                "size": 10,
+                "disk_type": "SSD Standard",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "example",
+                "dhcp": True,
+            })
+        cluster_password = random.index.Password("cluster_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_maria_db_cluster = ionoscloud.dbaas.MariaDBCluster("example",
+            mariadb_version="10.6",
+            location="de/txl",
+            instances=1,
+            cores=4,
+            ram=4,
+            storage_size=10,
+            connections={
+                "datacenter_id": example.id,
+                "lan_id": example_lan.id,
+                "cidr": "database_ip_cidr_from_nic",
+            },
+            display_name="MariaDB_cluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            credentials={
+                "username": "username",
+                "password": cluster_password["result"],
+            })
+        ```
+
         ## Import
 
         Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -402,7 +463,7 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
@@ -415,12 +476,73 @@ class MariaDBCluster(pulumi.CustomResource):
         """
         Manages a **DBaaS MariaDB Cluster**.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="example",
+            location="de/txl",
+            description="Datacenter for testing DBaaS cluster")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="example")
+        example_server = ionoscloud.compute.Server("example",
+            name="example",
+            datacenter_id=example.id,
+            cores=2,
+            ram=2048,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_SKYLAKE",
+            image_name="rockylinux-8-GenericCloud-20230518",
+            image_password="password",
+            volume={
+                "name": "example",
+                "size": 10,
+                "disk_type": "SSD Standard",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "example",
+                "dhcp": True,
+            })
+        cluster_password = random.index.Password("cluster_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_maria_db_cluster = ionoscloud.dbaas.MariaDBCluster("example",
+            mariadb_version="10.6",
+            location="de/txl",
+            instances=1,
+            cores=4,
+            ram=4,
+            storage_size=10,
+            connections={
+                "datacenter_id": example.id,
+                "lan_id": example_lan.id,
+                "cidr": "database_ip_cidr_from_nic",
+            },
+            display_name="MariaDB_cluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            credentials={
+                "username": "username",
+                "password": cluster_password["result"],
+            })
+        ```
+
         ## Import
 
         Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -518,11 +640,11 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your cluster.
                
-               > **⚠ WARNING:** `Location` attribute will become required in the future.
+               > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
         :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
@@ -581,7 +703,7 @@ class MariaDBCluster(pulumi.CustomResource):
         """
         [string] The DNS name pointing to your cluster.
 
-        > **⚠ WARNING:** `Location` attribute will become required in the future.
+        > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         """
         return pulumi.get(self, "dns_name")
 
@@ -613,7 +735,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> pulumi.Output[str]:
         """
-        [string] The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster. Cannot be downgraded.
         """
         return pulumi.get(self, "mariadb_version")
 

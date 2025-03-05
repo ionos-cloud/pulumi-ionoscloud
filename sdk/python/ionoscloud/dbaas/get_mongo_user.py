@@ -57,7 +57,7 @@ class GetMongoUserResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -97,6 +97,15 @@ def get_mongo_user(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By username
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_user(cluster_id="cluster_id",
+        username="username")
+    ```
+
 
     :param str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
     :param str database: [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -130,6 +139,15 @@ def get_mongo_user_output(cluster_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By username
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_user(cluster_id="cluster_id",
+        username="username")
+    ```
 
 
     :param str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.

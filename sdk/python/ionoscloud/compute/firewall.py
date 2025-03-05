@@ -530,7 +530,7 @@ class Firewall(pulumi.CustomResource):
         Resource Firewall can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
+        $ pulumi import ionoscloud:compute/firewall:Firewall myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -622,7 +622,7 @@ class Firewall(pulumi.CustomResource):
         Resource Firewall can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
+        $ pulumi import ionoscloud:compute/firewall:Firewall myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
         ```
 
         :param str resource_name: The name of the resource.
