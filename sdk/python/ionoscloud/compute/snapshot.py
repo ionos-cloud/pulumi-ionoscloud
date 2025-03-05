@@ -583,7 +583,7 @@ class Snapshot(pulumi.CustomResource):
         Resource Snapshot can be imported using the `snapshot id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
+        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot snapshot uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -662,7 +662,7 @@ class Snapshot(pulumi.CustomResource):
         Resource Snapshot can be imported using the `snapshot id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
+        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot snapshot uuid
         ```
 
         :param str resource_name: The name of the resource.

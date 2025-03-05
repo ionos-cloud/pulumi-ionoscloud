@@ -209,7 +209,7 @@ class NatGateway(pulumi.CustomResource):
         A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
+        $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway datacenter uuid/nat gateway uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -265,7 +265,7 @@ class NatGateway(pulumi.CustomResource):
         A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
+        $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway datacenter uuid/nat gateway uuid
         ```
 
         :param str resource_name: The name of the resource.

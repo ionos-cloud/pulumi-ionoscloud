@@ -127,6 +127,27 @@ def get_cluster(id: Optional[str] = None,
     """
     Returns information about clusters of Network File Storage (NFS) on IonosCloud.
 
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_cluster(location="location",
+        id="cluster-id")
+    ```
+
+    ## By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_cluster(location="location",
+        name="partial-name",
+        partial_match=True)
+    ```
+
 
     :param str id: ID of the Network File Storage cluster.
     :param str location: The location where the Network File Storage cluster is located.
@@ -156,6 +177,27 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_cluster(location="location",
+        id="cluster-id")
+    ```
+
+    ## By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_cluster(location="location",
+        name="partial-name",
+        partial_match=True)
+    ```
 
 
     :param str id: ID of the Network File Storage cluster.

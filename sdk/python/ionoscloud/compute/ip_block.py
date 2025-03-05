@@ -206,7 +206,7 @@ class IPBlock(pulumi.CustomResource):
         Resource Ipblock can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock ipblock uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -242,7 +242,7 @@ class IPBlock(pulumi.CustomResource):
         Resource Ipblock can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock ipblock uuid
         ```
 
         :param str resource_name: The name of the resource.

@@ -141,6 +141,29 @@ def get_cluster(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_cluster(id="your_kafka_cluster_id",
+        location="location_of_kafka_cluster")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_cluster(name="kafka-cluster",
+        location="location_of_kafka_cluster")
+    ```
+
 
     :param str id: ID of an existing Kafka Cluster that you want to search for.
     :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
@@ -175,6 +198,29 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_cluster(id="your_kafka_cluster_id",
+        location="location_of_kafka_cluster")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_cluster(name="kafka-cluster",
+        location="location_of_kafka_cluster")
+    ```
 
 
     :param str id: ID of an existing Kafka Cluster that you want to search for.

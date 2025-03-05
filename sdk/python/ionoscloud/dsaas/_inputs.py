@@ -21,6 +21,8 @@ __all__ = [
     'ClusterLanRouteArgsDict',
     'ClusterMaintenanceWindowArgs',
     'ClusterMaintenanceWindowArgsDict',
+    'NodePoolAutoScalingArgs',
+    'NodePoolAutoScalingArgsDict',
     'NodePoolMaintenanceWindowArgs',
     'NodePoolMaintenanceWindowArgsDict',
 ]
@@ -196,6 +198,56 @@ class ClusterMaintenanceWindowArgs:
     @time.setter
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
+
+
+if not MYPY:
+    class NodePoolAutoScalingArgsDict(TypedDict):
+        max_node_count: pulumi.Input[int]
+        """
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        """
+        min_node_count: pulumi.Input[int]
+        """
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+elif False:
+    NodePoolAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NodePoolAutoScalingArgs:
+    def __init__(__self__, *,
+                 max_node_count: pulumi.Input[int],
+                 min_node_count: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] max_node_count: [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        :param pulumi.Input[int] min_node_count: [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        pulumi.set(__self__, "max_node_count", max_node_count)
+        pulumi.set(__self__, "min_node_count", min_node_count)
+
+    @property
+    @pulumi.getter(name="maxNodeCount")
+    def max_node_count(self) -> pulumi.Input[int]:
+        """
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        """
+        return pulumi.get(self, "max_node_count")
+
+    @max_node_count.setter
+    def max_node_count(self, value: pulumi.Input[int]):
+        pulumi.set(self, "max_node_count", value)
+
+    @property
+    @pulumi.getter(name="minNodeCount")
+    def min_node_count(self) -> pulumi.Input[int]:
+        """
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        return pulumi.get(self, "min_node_count")
+
+    @min_node_count.setter
+    def min_node_count(self, value: pulumi.Input[int]):
+        pulumi.set(self, "min_node_count", value)
 
 
 if not MYPY:

@@ -170,7 +170,7 @@ class GetVolumeResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the volume.
         """
@@ -202,7 +202,7 @@ class GetVolumeResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the volume.
         """
@@ -297,6 +297,24 @@ def get_volume(datacenter_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_volume(datacenter_id="datacenter_id",
+        id="volume_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_volume(datacenter_id="datacenter_id",
+        name="Volume Example")
+    ```
+
 
     :param str id: ID of the volume you want to search for.
            
@@ -342,6 +360,24 @@ def get_volume_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_volume(datacenter_id="datacenter_id",
+        id="volume_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_volume(datacenter_id="datacenter_id",
+        name="Volume Example")
+    ```
 
 
     :param str id: ID of the volume you want to search for.

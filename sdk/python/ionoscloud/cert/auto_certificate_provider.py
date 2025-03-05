@@ -22,23 +22,24 @@ __all__ = ['AutoCertificateProviderArgs', 'AutoCertificateProvider']
 class AutoCertificateProviderArgs:
     def __init__(__self__, *,
                  email: pulumi.Input[str],
-                 location: pulumi.Input[str],
                  server: pulumi.Input[str],
                  external_account_binding: Optional[pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs']] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AutoCertificateProvider resource.
         :param pulumi.Input[str] email: [string] The email address of the certificate requester.
-        :param pulumi.Input[str] location: [string] The location of the provider.
         :param pulumi.Input[str] server: [string] The URL of the certificate provider.
         :param pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs'] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[str] location: [string] The location of the provider.
         :param pulumi.Input[str] name: [string] The name of the certificate provider.
         """
         pulumi.set(__self__, "email", email)
-        pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "server", server)
         if external_account_binding is not None:
             pulumi.set(__self__, "external_account_binding", external_account_binding)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -53,18 +54,6 @@ class AutoCertificateProviderArgs:
     @email.setter
     def email(self, value: pulumi.Input[str]):
         pulumi.set(self, "email", value)
-
-    @property
-    @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        [string] The location of the provider.
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -89,6 +78,18 @@ class AutoCertificateProviderArgs:
     @external_account_binding.setter
     def external_account_binding(self, value: Optional[pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs']]):
         pulumi.set(self, "external_account_binding", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The location of the provider.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -227,7 +228,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
         The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example location:provider_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -269,7 +270,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
         The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example location:provider_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -305,8 +306,6 @@ class AutoCertificateProvider(pulumi.CustomResource):
                 raise TypeError("Missing required property 'email'")
             __props__.__dict__["email"] = email
             __props__.__dict__["external_account_binding"] = external_account_binding
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if server is None and not opts.urn:
@@ -369,7 +368,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
         [string] The location of the provider.
         """

@@ -129,6 +129,38 @@ def get_mongo_template(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(id="template_id")
+    ```
+    ### By name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(name="name")
+    ```
+
+    ### By name, using partial_match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(name="name",
+        partial_match=True)
+    ```
+
+    * `name` - (Optional) The name of the template you want to search for.
+    * `id` - (Optional) ID of the template you want to search for.
+    * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+
+    Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+
 
     :param str id: The ID of the template.
     :param str name: The name of the template.
@@ -158,6 +190,38 @@ def get_mongo_template_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(id="template_id")
+    ```
+    ### By name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(name="name")
+    ```
+
+    ### By name, using partial_match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_mongo_template(name="name",
+        partial_match=True)
+    ```
+
+    * `name` - (Optional) The name of the template you want to search for.
+    * `id` - (Optional) ID of the template you want to search for.
+    * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+
+    Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
 
 
     :param str id: The ID of the template.

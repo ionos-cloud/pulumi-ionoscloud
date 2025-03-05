@@ -80,6 +80,14 @@ def get_psql_versions(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### Retrieve list of postgres versions for a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_versions(cluster_id="cluster_id")
+    ```
+
     ### Retrieve list of postgres versions for all clusters
     ```python
     import pulumi
@@ -108,6 +116,14 @@ def get_psql_versions_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
     The **DbaaS Postgres Versions data source** can be used to search for and retrieve list of available postgres versions for a specific cluster or for all clusters.
 
     ## Example Usage
+
+    ### Retrieve list of postgres versions for a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_versions(cluster_id="cluster_id")
+    ```
 
     ### Retrieve list of postgres versions for all clusters
     ```python

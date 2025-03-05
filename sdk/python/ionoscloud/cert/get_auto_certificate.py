@@ -62,7 +62,7 @@ class GetAutoCertificateResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
@@ -88,7 +88,7 @@ class GetAutoCertificateResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
@@ -133,6 +133,24 @@ def get_auto_certificate(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate(id="auto_certificate_id",
+        location="auto_certificate_location")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate(name="AutoCertificate Name Example",
+        location="auto_certificate_location")
+    ```
+
 
     :param str id: [string] ID of the auto-certificate you want to search for.
            
@@ -167,6 +185,24 @@ def get_auto_certificate_output(id: Optional[pulumi.Input[Optional[str]]] = None
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate(id="auto_certificate_id",
+        location="auto_certificate_location")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate(name="AutoCertificate Name Example",
+        location="auto_certificate_location")
+    ```
 
 
     :param str id: [string] ID of the auto-certificate you want to search for.

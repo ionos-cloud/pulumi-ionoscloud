@@ -26,7 +26,7 @@ class GetImageResult:
     """
     A collection of values returned by getImage.
     """
-    def __init__(__self__, cloud_init=None, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, id=None, image_alias=None, image_aliases=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, public=None, ram_hot_plug=None, ram_hot_unplug=None, size=None, type=None, version=None):
+    def __init__(__self__, cloud_init=None, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, expose_serial=None, id=None, image_alias=None, image_aliases=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, public=None, ram_hot_plug=None, ram_hot_unplug=None, size=None, type=None, version=None):
         if cloud_init and not isinstance(cloud_init, str):
             raise TypeError("Expected argument 'cloud_init' to be a str")
         pulumi.set(__self__, "cloud_init", cloud_init)
@@ -51,6 +51,9 @@ class GetImageResult:
         if disc_virtio_hot_unplug and not isinstance(disc_virtio_hot_unplug, bool):
             raise TypeError("Expected argument 'disc_virtio_hot_unplug' to be a bool")
         pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if expose_serial and not isinstance(expose_serial, bool):
+            raise TypeError("Expected argument 'expose_serial' to be a bool")
+        pulumi.set(__self__, "expose_serial", expose_serial)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -120,7 +123,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter
-    def description(self) -> Optional[str]:
+    def description(self) -> str:
         """
         description of the image
         """
@@ -159,6 +162,14 @@ class GetImageResult:
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> bool:
+        """
+        Indicates if the serial ID of the disk attached to the server will be exposed or not.
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -168,7 +179,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter(name="imageAlias")
-    def image_alias(self) -> Optional[str]:
+    def image_alias(self) -> str:
         return pulumi.get(self, "image_alias")
 
     @property
@@ -189,7 +200,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter
-    def location(self) -> Optional[str]:
+    def location(self) -> str:
         """
         Location of that image/snapshot.
         """
@@ -197,7 +208,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         name of the image
         """
@@ -253,7 +264,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> str:
         """
         This indicates the type of image
         """
@@ -261,7 +272,7 @@ class GetImageResult:
 
     @property
     @pulumi.getter
-    def version(self) -> Optional[str]:
+    def version(self) -> str:
         return pulumi.get(self, "version")
 
 
@@ -279,6 +290,7 @@ class AwaitableGetImageResult(GetImageResult):
             disc_scsi_hot_unplug=self.disc_scsi_hot_unplug,
             disc_virtio_hot_plug=self.disc_virtio_hot_plug,
             disc_virtio_hot_unplug=self.disc_virtio_hot_unplug,
+            expose_serial=self.expose_serial,
             id=self.id,
             image_alias=self.image_alias,
             image_aliases=self.image_aliases,
@@ -377,6 +389,7 @@ def get_image(cloud_init: Optional[str] = None,
         disc_scsi_hot_unplug=pulumi.get(__ret__, 'disc_scsi_hot_unplug'),
         disc_virtio_hot_plug=pulumi.get(__ret__, 'disc_virtio_hot_plug'),
         disc_virtio_hot_unplug=pulumi.get(__ret__, 'disc_virtio_hot_unplug'),
+        expose_serial=pulumi.get(__ret__, 'expose_serial'),
         id=pulumi.get(__ret__, 'id'),
         image_alias=pulumi.get(__ret__, 'image_alias'),
         image_aliases=pulumi.get(__ret__, 'image_aliases'),
@@ -472,6 +485,7 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
         disc_scsi_hot_unplug=pulumi.get(__response__, 'disc_scsi_hot_unplug'),
         disc_virtio_hot_plug=pulumi.get(__response__, 'disc_virtio_hot_plug'),
         disc_virtio_hot_unplug=pulumi.get(__response__, 'disc_virtio_hot_unplug'),
+        expose_serial=pulumi.get(__response__, 'expose_serial'),
         id=pulumi.get(__response__, 'id'),
         image_alias=pulumi.get(__response__, 'image_alias'),
         image_aliases=pulumi.get(__response__, 'image_aliases'),

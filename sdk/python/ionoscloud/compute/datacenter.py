@@ -251,12 +251,33 @@ class Datacenter(pulumi.CustomResource):
             sec_auth_protection=False)
         ```
 
+        ## Attaching a NSG to a Datacenter
+
+        #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+        #### Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter NSG Example",
+            location="de/txl")
+        example_nsg = ionoscloud.nsg.Nsg("example",
+            name="Example NSG",
+            description="Example NSG Description",
+            datacenter_id=example.id)
+        example_datacenter_nsg_selection = ionoscloud.nsg.DatacenterNsgSelection("example",
+            datacenter_id=example.id,
+            nsg_id=example_nsg.id)
+        ```
+
         ## Import
 
         Resource Datacenter can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc datacenter uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -288,12 +309,33 @@ class Datacenter(pulumi.CustomResource):
             sec_auth_protection=False)
         ```
 
+        ## Attaching a NSG to a Datacenter
+
+        #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+        #### Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter NSG Example",
+            location="de/txl")
+        example_nsg = ionoscloud.nsg.Nsg("example",
+            name="Example NSG",
+            description="Example NSG Description",
+            datacenter_id=example.id)
+        example_datacenter_nsg_selection = ionoscloud.nsg.DatacenterNsgSelection("example",
+            datacenter_id=example.id,
+            nsg_id=example_nsg.id)
+        ```
+
         ## Import
 
         Resource Datacenter can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc datacenter uuid
         ```
 
         :param str resource_name: The name of the resource.

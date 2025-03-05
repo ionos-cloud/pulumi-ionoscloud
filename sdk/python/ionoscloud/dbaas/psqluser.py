@@ -186,7 +186,7 @@ class PSQLUser(pulumi.CustomResource):
         The resource can be imported using the `clusterId` and the `username`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example clusterid/username
         ```
 
         :param str resource_name: The name of the resource.
@@ -237,7 +237,7 @@ class PSQLUser(pulumi.CustomResource):
         The resource can be imported using the `clusterId` and the `username`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example clusterid/username
         ```
 
         :param str resource_name: The name of the resource.

@@ -41,6 +41,8 @@ if typing.TYPE_CHECKING:
     nfs = __nfs
     import ionoscloud.nlb as __nlb
     nlb = __nlb
+    import ionoscloud.nsg as __nsg
+    nsg = __nsg
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
@@ -60,6 +62,7 @@ else:
     logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
     nlb = _utilities.lazy_import('ionoscloud.nlb')
+    nsg = _utilities.lazy_import('ionoscloud.nsg')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
@@ -487,6 +490,30 @@ _utilities.register(
   "fqn": "ionoscloud.nlb",
   "classes": {
    "ionoscloud:nlb/forwardingRule:ForwardingRule": "ForwardingRule"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/datacenterNsgSelection",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection": "DatacenterNsgSelection"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/firewall",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/firewall:Firewall": "Firewall"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/nsg",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/nsg:Nsg": "Nsg"
   }
  },
  {

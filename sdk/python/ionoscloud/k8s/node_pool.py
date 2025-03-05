@@ -51,9 +51,22 @@ class NodePoolArgs:
         :param pulumi.Input[int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         :param pulumi.Input[int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
-        :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+               This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+               
+               Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+               
+               ⚠️ **Note**:
+               
+               Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+               This will also ignore the manual changes for `node_count` made in the `tf` plan.
+               You can read more details about the `ignore_changes` attribute here.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
@@ -211,7 +224,20 @@ class NodePoolArgs:
     @pulumi.getter(name="allowReplace")
     def allow_replace(self) -> Optional[pulumi.Input[bool]]:
         """
-        When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+        This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+
+        Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+
+        ⚠️ **Note**:
+
+        Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+        This will also ignore the manual changes for `node_count` made in the `tf` plan.
+        You can read more details about the `ignore_changes` attribute here.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -235,7 +261,7 @@ class NodePoolArgs:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -327,9 +353,22 @@ class _NodePoolState:
                  storage_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
-        :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+               This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+               
+               Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+               
+               ⚠️ **Note**:
+               
+               Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+               This will also ignore the manual changes for `node_count` made in the `tf` plan.
+               You can read more details about the `ignore_changes` attribute here.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -387,7 +426,20 @@ class _NodePoolState:
     @pulumi.getter(name="allowReplace")
     def allow_replace(self) -> Optional[pulumi.Input[bool]]:
         """
-        When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+        This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+
+        Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+
+        ⚠️ **Note**:
+
+        Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+        This will also ignore the manual changes for `node_count` made in the `tf` plan.
+        You can read more details about the `ignore_changes` attribute here.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -411,7 +463,7 @@ class _NodePoolState:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -627,27 +679,114 @@ class NodePool(pulumi.CustomResource):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location="us/las",
+            size=3,
+            name="IP Block Example")
+        example_cluster = ionoscloud.k8s.Cluster("example",
+            name="k8sClusterExample",
+            k8s_version="1.31.2",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
+            api_subnet_allow_lists=["1.2.3.4/32"],
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
+        example_node_pool = ionoscloud.k8s.NodePool("example",
+            datacenter_id=example.id,
+            k8s_cluster_id=example_cluster.id,
+            name="k8sNodePoolExample",
+            k8s_version=example_cluster.k8s_version,
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
+            cpu_family="INTEL_XEON",
+            availability_zone="AUTO",
+            storage_type="SSD",
+            node_count=1,
+            cores_count=2,
+            ram_size=2048,
+            storage_size=40,
+            public_ips=[
+                example_ip_block.ips[0],
+                example_ip_block.ips[1],
+                example_ip_block.ips[2],
+            ],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
+            labels={
+                "lab1": "value1",
+                "lab2": "value2",
+            },
+            annotations={
+                "ann1": "value1",
+                "ann2": "value2",
+            })
+        ```
+        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+
         ## Import
 
         A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 
         ```sh
-        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
-        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
 
-        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
         ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+               This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+               
+               Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+               
+               ⚠️ **Note**:
+               
+               Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+               This will also ignore the manual changes for `node_count` made in the `tf` plan.
+               You can read more details about the `ignore_changes` attribute here.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -673,19 +812,93 @@ class NodePool(pulumi.CustomResource):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location="us/las",
+            size=3,
+            name="IP Block Example")
+        example_cluster = ionoscloud.k8s.Cluster("example",
+            name="k8sClusterExample",
+            k8s_version="1.31.2",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
+            api_subnet_allow_lists=["1.2.3.4/32"],
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
+        example_node_pool = ionoscloud.k8s.NodePool("example",
+            datacenter_id=example.id,
+            k8s_cluster_id=example_cluster.id,
+            name="k8sNodePoolExample",
+            k8s_version=example_cluster.k8s_version,
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
+            cpu_family="INTEL_XEON",
+            availability_zone="AUTO",
+            storage_type="SSD",
+            node_count=1,
+            cores_count=2,
+            ram_size=2048,
+            storage_size=40,
+            public_ips=[
+                example_ip_block.ips[0],
+                example_ip_block.ips[1],
+                example_ip_block.ips[2],
+            ],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
+            labels={
+                "lab1": "value1",
+                "lab2": "value2",
+            },
+            annotations={
+                "ann1": "value1",
+                "ann2": "value2",
+            })
+        ```
+        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+
         ## Import
 
         A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 
         ```sh
-        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
-        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
 
-        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
         ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 
@@ -804,9 +1017,22 @@ class NodePool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+               This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+               
+               Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+               
+               ⚠️ **Note**:
+               
+               Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+               This will also ignore the manual changes for `node_count` made in the `tf` plan.
+               You can read more details about the `ignore_changes` attribute here.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -851,7 +1077,20 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="allowReplace")
     def allow_replace(self) -> pulumi.Output[Optional[bool]]:
         """
-        When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+        [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+        This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+
+        Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+
+        ⚠️ **Note**:
+
+        Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
+        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
+        This will also ignore the manual changes for `node_count` made in the `tf` plan.
+        You can read more details about the `ignore_changes` attribute here.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -867,7 +1106,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> pulumi.Output[Optional['outputs.NodePoolAutoScaling']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 

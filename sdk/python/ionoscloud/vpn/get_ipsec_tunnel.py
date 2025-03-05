@@ -99,7 +99,7 @@ class GetIpsecTunnelResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
 
     @property
@@ -150,6 +150,56 @@ def get_ipsec_tunnel(gateway_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(id="tunnel_id",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(name="ipsec-tunnel",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ## Attributes reference
+
+    The following attributes are returned by the datasource:
+
+    * `id` - The unique ID of the IPSec Gateway Tunnel.
+    * `name` - The name of the IPSec Gateway Tunnel.
+    * `description` - The human-readable description of your IPSec Gateway Tunnel.
+    * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+    * `ike` - Settings for the initial security exchange phase.
+        * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
+        * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
+        * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
+        * `lifetime` - The phase lifetime in seconds.
+    * `esp` - Settings for the IPSec SA (ESP) phase.
+        * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
+        * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
+        * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
+        * `lifetime` - The phase lifetime in seconds.
+    * `auth` - Properties with all data needed to define IPSec Authentication.
+        * `method` - The authentication method to use for IPSec Authentication.
+    * `cloud_network_cidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+      tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+    * `peer_network_cidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+      tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
+
 
     :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
     :param str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
@@ -178,7 +228,7 @@ def get_ipsec_tunnel(gateway_id: Optional[str] = None,
         remote_host=pulumi.get(__ret__, 'remote_host'))
 def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[str]] = None,
                             id: Optional[pulumi.Input[Optional[str]]] = None,
-                            location: Optional[pulumi.Input[str]] = None,
+                            location: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecTunnelResult]:
     """
@@ -188,6 +238,56 @@ def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(id="tunnel_id",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(name="ipsec-tunnel",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ## Attributes reference
+
+    The following attributes are returned by the datasource:
+
+    * `id` - The unique ID of the IPSec Gateway Tunnel.
+    * `name` - The name of the IPSec Gateway Tunnel.
+    * `description` - The human-readable description of your IPSec Gateway Tunnel.
+    * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+    * `ike` - Settings for the initial security exchange phase.
+        * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
+        * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
+        * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
+        * `lifetime` - The phase lifetime in seconds.
+    * `esp` - Settings for the IPSec SA (ESP) phase.
+        * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
+        * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
+        * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
+        * `lifetime` - The phase lifetime in seconds.
+    * `auth` - Properties with all data needed to define IPSec Authentication.
+        * `method` - The authentication method to use for IPSec Authentication.
+    * `cloud_network_cidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+      tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+    * `peer_network_cidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+      tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
 
 
     :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.

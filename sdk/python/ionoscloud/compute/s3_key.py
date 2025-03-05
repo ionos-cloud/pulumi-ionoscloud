@@ -145,10 +145,10 @@ class S3Key(pulumi.CustomResource):
         An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
+        $ pulumi import ionoscloud:compute/s3Key:S3Key demo userid/s3Keyid
         ```
 
-        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -187,10 +187,10 @@ class S3Key(pulumi.CustomResource):
         An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
+        $ pulumi import ionoscloud:compute/s3Key:S3Key demo userid/s3Keyid
         ```
 
-        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
 
         :param str resource_name: The name of the resource.
         :param S3KeyArgs args: The arguments to use to populate this resource's properties.

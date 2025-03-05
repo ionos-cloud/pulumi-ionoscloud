@@ -695,12 +695,106 @@ class Volume(pulumi.CustomResource):
         """
         Manages a **Volume** on IonosCloud.
 
+        ## Example Usage
+
+        A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example_datacenter.location,
+            size=4,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example.name,
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        volume_image_password = random.index.Password("volume_image_password",
+            length=16,
+            special=False)
+        example_volume = ionoscloud.compute.Volume("example",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            name="Volume Example",
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            image_name=example.name,
+            image_password=volume_image_password["result"],
+            user_data="foo")
+        example2 = ionoscloud.compute.Volume("example2",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            name="Another Volume Example",
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            licence_type="OTHER")
+        ```
+
         ## Import
 
         Resource Volume can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+        $ pulumi import ionoscloud:compute/volume:Volume myvolume datacenter uuid/server uuid/volume uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -729,12 +823,106 @@ class Volume(pulumi.CustomResource):
         """
         Manages a **Volume** on IonosCloud.
 
+        ## Example Usage
+
+        A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example = ionoscloud.compute.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example_datacenter.id,
+            public=True,
+            name="Lan Example")
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example_datacenter.location,
+            size=4,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example.name,
+            image_password=server_image_password["result"],
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        volume_image_password = random.index.Password("volume_image_password",
+            length=16,
+            special=False)
+        example_volume = ionoscloud.compute.Volume("example",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            name="Volume Example",
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            image_name=example.name,
+            image_password=volume_image_password["result"],
+            user_data="foo")
+        example2 = ionoscloud.compute.Volume("example2",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            name="Another Volume Example",
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            licence_type="OTHER")
+        ```
+
         ## Import
 
         Resource Volume can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+        $ pulumi import ionoscloud:compute/volume:Volume myvolume datacenter uuid/server uuid/volume uuid
         ```
 
         :param str resource_name: The name of the resource.

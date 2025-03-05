@@ -183,7 +183,7 @@ class Zone(pulumi.CustomResource):
         The resource can be imported using the `zone_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
+        $ pulumi import ionoscloud:dns/zone:Zone examplezone_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -228,7 +228,7 @@ class Zone(pulumi.CustomResource):
         The resource can be imported using the `zone_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
+        $ pulumi import ionoscloud:dns/zone:Zone examplezone_id
         ```
 
         :param str resource_name: The name of the resource.

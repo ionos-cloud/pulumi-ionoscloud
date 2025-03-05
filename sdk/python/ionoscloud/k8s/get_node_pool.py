@@ -147,7 +147,7 @@ class GetNodePoolResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The LAN ID of an existing LAN at the related datacenter
         """
@@ -195,7 +195,7 @@ class GetNodePoolResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         name of the node pool
         """
@@ -301,6 +301,24 @@ def get_node_pool(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool(id="k8s_nodepool_id",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool(name="k8s NodePool Example",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
+
 
     :param str id: ID of the node pool you want to search for.
            
@@ -346,6 +364,24 @@ def get_node_pool_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool(id="k8s_nodepool_id",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool(name="k8s NodePool Example",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
 
 
     :param str id: ID of the node pool you want to search for.

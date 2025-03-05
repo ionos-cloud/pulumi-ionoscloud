@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'IpsecGatewayConnectionArgs',
     'IpsecGatewayConnectionArgsDict',
+    'IpsecGatewayMaintenanceWindowArgs',
+    'IpsecGatewayMaintenanceWindowArgsDict',
     'IpsecTunnelAuthArgs',
     'IpsecTunnelAuthArgsDict',
     'IpsecTunnelEspArgs',
@@ -25,6 +27,8 @@ __all__ = [
     'IpsecTunnelIkeArgsDict',
     'WireguardGatewayConnectionArgs',
     'WireguardGatewayConnectionArgsDict',
+    'WireguardGatewayMaintenanceWindowArgs',
+    'WireguardGatewayMaintenanceWindowArgsDict',
     'WireguardPeerEndpointArgs',
     'WireguardPeerEndpointArgsDict',
 ]
@@ -124,6 +128,56 @@ class IpsecGatewayConnectionArgs:
     @ipv6_cidr.setter
     def ipv6_cidr(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipv6_cidr", value)
+
+
+if not MYPY:
+    class IpsecGatewayMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        [string] The name of the week day.
+        """
+        time: pulumi.Input[str]
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+elif False:
+    IpsecGatewayMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class IpsecGatewayMaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day_of_the_week: pulumi.Input[str],
+                 time: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[str] time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> pulumi.Input[str]:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @day_of_the_week.setter
+    def day_of_the_week(self, value: pulumi.Input[str]):
+        pulumi.set(self, "day_of_the_week", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[str]:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[str]):
+        pulumi.set(self, "time", value)
 
 
 if not MYPY:
@@ -492,6 +546,56 @@ class WireguardGatewayConnectionArgs:
     @ipv6_cidr.setter
     def ipv6_cidr(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipv6_cidr", value)
+
+
+if not MYPY:
+    class WireguardGatewayMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        [string] The name of the week day.
+        """
+        time: pulumi.Input[str]
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+elif False:
+    WireguardGatewayMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class WireguardGatewayMaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day_of_the_week: pulumi.Input[str],
+                 time: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[str] time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> pulumi.Input[str]:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @day_of_the_week.setter
+    def day_of_the_week(self, value: pulumi.Input[str]):
+        pulumi.set(self, "day_of_the_week", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[str]:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[str]):
+        pulumi.set(self, "time", value)
 
 
 if not MYPY:

@@ -91,6 +91,23 @@ def get_psql_databases(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### All databases from a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_databases(cluster_id="cluster_id")
+    ```
+
+    ### Filter by owner
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_databases(cluster_id="cluster_id",
+        owner="owner")
+    ```
+
 
     :param str cluster_id: [string] The ID of the cluster.
     :param str owner: [string] Filter using a specific owner.
@@ -113,6 +130,23 @@ def get_psql_databases_output(cluster_id: Optional[pulumi.Input[str]] = None,
     The **PgSql Databases data source** can be used to search for and return multiple existing PgSql databases.
 
     ## Example Usage
+
+    ### All databases from a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_databases(cluster_id="cluster_id")
+    ```
+
+    ### Filter by owner
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_databases(cluster_id="cluster_id",
+        owner="owner")
+    ```
 
 
     :param str cluster_id: [string] The ID of the cluster.

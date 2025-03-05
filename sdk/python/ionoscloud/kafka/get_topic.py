@@ -156,6 +156,31 @@ def get_topic(cluster_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_topic(id="your_kafka_cluster_topic_id",
+        cluster_id="your_kafka_cluster_id",
+        location="your_kafka_cluster_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_topic(name="kafka-cluster-topic",
+        cluster_id="your_kafka_cluster_id",
+        location="location_of_kafka_cluster")
+    ```
+
 
     :param str cluster_id: ID of the Kafka Cluster that the topic belongs to.
     :param str id: ID of an existing Kafka Cluster Topic that you want to search for.
@@ -195,6 +220,31 @@ def get_topic_output(cluster_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_topic(id="your_kafka_cluster_topic_id",
+        cluster_id="your_kafka_cluster_id",
+        location="your_kafka_cluster_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.kafka.get_topic(name="kafka-cluster-topic",
+        cluster_id="your_kafka_cluster_id",
+        location="location_of_kafka_cluster")
+    ```
 
 
     :param str cluster_id: ID of the Kafka Cluster that the topic belongs to.

@@ -326,7 +326,7 @@ class Route(pulumi.CustomResource):
         API Gateway route can be imported using the `apigateway route id`:
 
         ```sh
-        $ pulumi import ionoscloud:apigateway/route:Route myroute {apigateway uuid}:{apigateway route uuid}
+        $ pulumi import ionoscloud:apigateway/route:Route myroute apigateway uuid:apigateway route uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -398,7 +398,7 @@ class Route(pulumi.CustomResource):
         API Gateway route can be imported using the `apigateway route id`:
 
         ```sh
-        $ pulumi import ionoscloud:apigateway/route:Route myroute {apigateway uuid}:{apigateway route uuid}
+        $ pulumi import ionoscloud:apigateway/route:Route myroute apigateway uuid:apigateway route uuid
         ```
 
         :param str resource_name: The name of the resource.

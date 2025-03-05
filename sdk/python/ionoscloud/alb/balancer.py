@@ -372,7 +372,7 @@ class Balancer(pulumi.CustomResource):
         Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+        $ pulumi import ionoscloud:alb/balancer:Balancer myalb datacenter uuid/applicationLoadBalancer uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -431,7 +431,7 @@ class Balancer(pulumi.CustomResource):
         Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+        $ pulumi import ionoscloud:alb/balancer:Balancer myalb datacenter uuid/applicationLoadBalancer uuid
         ```
 
         :param str resource_name: The name of the resource.

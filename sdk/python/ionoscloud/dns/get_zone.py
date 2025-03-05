@@ -64,7 +64,7 @@ class GetZoneResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The UUID of the DNS Zone.
         """
@@ -72,7 +72,7 @@ class GetZoneResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the DNS Zone.
         """
@@ -118,6 +118,15 @@ def get_zone(id: Optional[str] = None,
     > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(id="zone_id")
+    ```
 
     ### By name
     ```python
@@ -169,6 +178,15 @@ def get_zone_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(id="zone_id")
+    ```
 
     ### By name
     ```python

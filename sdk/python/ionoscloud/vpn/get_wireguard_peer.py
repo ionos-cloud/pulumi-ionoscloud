@@ -87,7 +87,7 @@ class GetWireguardPeerResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The unique ID of the WireGuard Peer.
         """
@@ -95,7 +95,7 @@ class GetWireguardPeerResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
 
     @property
@@ -186,7 +186,7 @@ def get_wireguard_peer(gateway_id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'))
 def get_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None,
                               id: Optional[pulumi.Input[Optional[str]]] = None,
-                              location: Optional[pulumi.Input[str]] = None,
+                              location: Optional[pulumi.Input[Optional[str]]] = None,
                               name: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardPeerResult]:
     """

@@ -91,7 +91,7 @@ class GetForwardingRuleResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         Id of Application Load Balancer Forwarding Rule
         """
@@ -115,7 +115,7 @@ class GetForwardingRuleResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The unique name of the Application Load Balancer HTTP rule.
         """
@@ -172,6 +172,16 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[str] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
+        id="alb_fwr_id")
+    ```
 
     ### By Name
     ```python
@@ -237,6 +247,16 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=example_ionoscloud_datacenter["id"],
+        application_loadbalancer_id=example_ionoscloud_application_loadbalancer["id"],
+        id="alb_fwr_id")
+    ```
 
     ### By Name
     ```python

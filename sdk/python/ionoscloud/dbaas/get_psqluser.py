@@ -85,6 +85,16 @@ def get_psqluser(cluster_id: Optional[str] = None,
     """
     The **PgSql User data source** can be used to search for and return an existing PgSql user.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psqluser(cluster_id="cluster_id",
+        username="username")
+    ```
+
 
     :param str cluster_id: [string] The ID of the cluster.
     :param str username: [string] Name of an existing user that you want to search for.
@@ -105,6 +115,16 @@ def get_psqluser_output(cluster_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLUserResult]:
     """
     The **PgSql User data source** can be used to search for and return an existing PgSql user.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psqluser(cluster_id="cluster_id",
+        username="username")
+    ```
 
 
     :param str cluster_id: [string] The ID of the cluster.

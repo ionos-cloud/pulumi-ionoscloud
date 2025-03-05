@@ -373,65 +373,12 @@ class ForwardingRule(pulumi.CustomResource):
             }])
         ```
 
-        ### Usage with dynamic block for targets:
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example 1")
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example 2")
-        example_balancer = ionoscloud.nlb.Balancer("example",
-            datacenter_id=example.id,
-            name="example",
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"])
-        config = pulumi.Config()
-        i_ps = config.get_object("iPs")
-        if i_ps is None:
-            i_ps = [
-                "22.231.2.2",
-                "22.231.2.3",
-                "22.231.2.4",
-            ]
-        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("example",
-            targets=[{
-                "ip": entry["value"],
-                "port": 31234,
-                "weight": 1,
-                "health_check": {
-                    "check": True,
-                    "check_interval": 1000,
-                    "maintenance": False,
-                },
-            } for entry in [{"key": k, "value": v} for k, v in i_ps]],
-            datacenter_id=example.id,
-            networkloadbalancer_id=example_balancer.id,
-            name="example",
-            algorithm="SOURCE_IP",
-            protocol="TCP",
-            listener_ip="10.12.118.224",
-            listener_port=8081)
-        ```
-
         ## Import
 
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
 
         ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -502,65 +449,12 @@ class ForwardingRule(pulumi.CustomResource):
             }])
         ```
 
-        ### Usage with dynamic block for targets:
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example 1")
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example 2")
-        example_balancer = ionoscloud.nlb.Balancer("example",
-            datacenter_id=example.id,
-            name="example",
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"])
-        config = pulumi.Config()
-        i_ps = config.get_object("iPs")
-        if i_ps is None:
-            i_ps = [
-                "22.231.2.2",
-                "22.231.2.3",
-                "22.231.2.4",
-            ]
-        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("example",
-            targets=[{
-                "ip": entry["value"],
-                "port": 31234,
-                "weight": 1,
-                "health_check": {
-                    "check": True,
-                    "check_interval": 1000,
-                    "maintenance": False,
-                },
-            } for entry in [{"key": k, "value": v} for k, v in i_ps]],
-            datacenter_id=example.id,
-            networkloadbalancer_id=example_balancer.id,
-            name="example",
-            algorithm="SOURCE_IP",
-            protocol="TCP",
-            listener_ip="10.12.118.224",
-            listener_port=8081)
-        ```
-
         ## Import
 
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
 
         ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.

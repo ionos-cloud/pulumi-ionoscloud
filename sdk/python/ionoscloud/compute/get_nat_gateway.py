@@ -51,7 +51,7 @@ class GetNatGatewayResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         Id for the LAN connected to the NAT gateway
         """
@@ -67,7 +67,7 @@ class GetNatGatewayResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         Name of that natgateway
         """
@@ -106,6 +106,24 @@ def get_nat_gateway(datacenter_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nat_gateway(datacenter_id="datacenter_id",
+        id="nat_gateway_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nat_gateway(datacenter_id="datacenter_id",
+        name="NAT Gateway Example")
+    ```
+
 
     :param str datacenter_id: Datacenter's UUID.
     :param str id: ID of the network load balancer forwarding rule you want to search for.
@@ -136,6 +154,24 @@ def get_nat_gateway_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nat_gateway(datacenter_id="datacenter_id",
+        id="nat_gateway_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_nat_gateway(datacenter_id="datacenter_id",
+        name="NAT Gateway Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.

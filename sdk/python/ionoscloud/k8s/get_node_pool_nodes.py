@@ -87,6 +87,15 @@ def get_node_pool_nodes(k8s_cluster_id: Optional[str] = None,
     The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
     ## Example Usage
 
+    ### By IDs
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool_nodes(node_pool_id="k8s_nodepool_id",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
+
 
     :param str k8s_cluster_id: K8s Cluster' UUID
     """
@@ -107,6 +116,15 @@ def get_node_pool_nodes_output(k8s_cluster_id: Optional[pulumi.Input[str]] = Non
     """
     The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
     ## Example Usage
+
+    ### By IDs
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_node_pool_nodes(node_pool_id="k8s_nodepool_id",
+        k8s_cluster_id="k8s_cluster_id")
+    ```
 
 
     :param str k8s_cluster_id: K8s Cluster' UUID

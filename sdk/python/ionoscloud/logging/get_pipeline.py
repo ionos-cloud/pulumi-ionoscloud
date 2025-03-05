@@ -54,7 +54,7 @@ class GetPipelineResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The UUID of the Logging pipeline.
         """
@@ -107,6 +107,15 @@ def get_pipeline(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.logging.get_pipeline(location="de/txl",
+        id="pipeline_id")
+    ```
+
     ### By name
     ```python
     import pulumi
@@ -147,6 +156,15 @@ def get_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.logging.get_pipeline(location="de/txl",
+        id="pipeline_id")
+    ```
 
     ### By name
     ```python

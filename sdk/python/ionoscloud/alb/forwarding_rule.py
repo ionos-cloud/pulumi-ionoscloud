@@ -335,12 +335,86 @@ class ForwardingRule(pulumi.CustomResource):
         """
         Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example1 = ionoscloud.compute.Lan("example_1",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example2 = ionoscloud.compute.Lan("example_2",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_balancer = ionoscloud.alb.Balancer("example",
+            datacenter_id=example.id,
+            name="ALB Example",
+            listener_lan=example1.id,
+            ips=["10.12.118.224"],
+            target_lan=example2.id,
+            lb_private_ips=["10.13.72.225/24"])
+        #optionally you can add a certificate to the application load balancer
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate="your_certificate",
+            certificate_chain="your_certificate_chain",
+            private_key="your_private_key")
+        example_forwarding_rule = ionoscloud.alb.ForwardingRule("example",
+            datacenter_id=example.id,
+            application_loadbalancer_id=example_balancer.id,
+            name="ALB FR Example",
+            protocol="HTTP",
+            listener_ip="10.12.118.224",
+            listener_port=8080,
+            client_timeout=1000,
+            http_rules=[
+                {
+                    "name": "http_rule",
+                    "type": "REDIRECT",
+                    "drop_query": True,
+                    "location": "www.ionos.com",
+                    "status_code": 301,
+                    "conditions": [{
+                        "type": "HEADER",
+                        "condition": "EQUALS",
+                        "negate": True,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+                {
+                    "name": "http_rule_2",
+                    "type": "STATIC",
+                    "drop_query": False,
+                    "status_code": 303,
+                    "response_message": "Response",
+                    "content_type": "text/plain",
+                    "conditions": [{
+                        "type": "QUERY",
+                        "condition": "MATCHES",
+                        "negate": False,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+            ],
+            server_certificates=[cert.id])
+        ```
+
         ## Import
 
         Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule datacenter uuid/application_loadbalancer uuid/application_loadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -364,12 +438,86 @@ class ForwardingRule(pulumi.CustomResource):
         """
         Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example1 = ionoscloud.compute.Lan("example_1",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example2 = ionoscloud.compute.Lan("example_2",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        example_balancer = ionoscloud.alb.Balancer("example",
+            datacenter_id=example.id,
+            name="ALB Example",
+            listener_lan=example1.id,
+            ips=["10.12.118.224"],
+            target_lan=example2.id,
+            lb_private_ips=["10.13.72.225/24"])
+        #optionally you can add a certificate to the application load balancer
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate="your_certificate",
+            certificate_chain="your_certificate_chain",
+            private_key="your_private_key")
+        example_forwarding_rule = ionoscloud.alb.ForwardingRule("example",
+            datacenter_id=example.id,
+            application_loadbalancer_id=example_balancer.id,
+            name="ALB FR Example",
+            protocol="HTTP",
+            listener_ip="10.12.118.224",
+            listener_port=8080,
+            client_timeout=1000,
+            http_rules=[
+                {
+                    "name": "http_rule",
+                    "type": "REDIRECT",
+                    "drop_query": True,
+                    "location": "www.ionos.com",
+                    "status_code": 301,
+                    "conditions": [{
+                        "type": "HEADER",
+                        "condition": "EQUALS",
+                        "negate": True,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+                {
+                    "name": "http_rule_2",
+                    "type": "STATIC",
+                    "drop_query": False,
+                    "status_code": 303,
+                    "response_message": "Response",
+                    "content_type": "text/plain",
+                    "conditions": [{
+                        "type": "QUERY",
+                        "condition": "MATCHES",
+                        "negate": False,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+            ],
+            server_certificates=[cert.id])
+        ```
+
         ## Import
 
         Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule datacenter uuid/application_loadbalancer uuid/application_loadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.

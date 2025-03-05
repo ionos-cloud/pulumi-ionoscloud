@@ -213,7 +213,7 @@ class Apigateway(pulumi.CustomResource):
         The resource can be imported using the `gateway_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example {gateway_id}
+        $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example gateway_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -254,7 +254,7 @@ class Apigateway(pulumi.CustomResource):
         The resource can be imported using the `gateway_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example {gateway_id}
+        $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example gateway_id
         ```
 
         :param str resource_name: The name of the resource.
