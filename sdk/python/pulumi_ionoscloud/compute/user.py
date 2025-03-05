@@ -345,7 +345,7 @@ class User(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         group1 = ionoscloud.compute.Group("group1",
@@ -421,7 +421,7 @@ class User(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         group1 = ionoscloud.compute.Group("group1",

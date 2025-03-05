@@ -158,7 +158,7 @@ class BackupUnit(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         backup_unit_password = random.index.Password("backup_unit_password",
@@ -205,7 +205,7 @@ class BackupUnit(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         backup_unit_password = random.index.Password("backup_unit_password",

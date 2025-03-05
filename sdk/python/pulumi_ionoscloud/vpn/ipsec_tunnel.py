@@ -392,7 +392,7 @@ class IpsecTunnel(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
@@ -445,7 +445,7 @@ class IpsecTunnel(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         # Complete example
@@ -564,7 +564,7 @@ class IpsecTunnel(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
@@ -617,7 +617,7 @@ class IpsecTunnel(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         # Complete example

@@ -126,7 +126,7 @@ class S3Key(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.User("example",
             first_name="example",
@@ -168,7 +168,7 @@ class S3Key(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.User("example",
             first_name="example",

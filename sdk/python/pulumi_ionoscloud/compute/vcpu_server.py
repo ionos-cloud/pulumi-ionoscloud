@@ -734,6 +734,7 @@ class VCPUServer(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -865,6 +866,7 @@ class VCPUServer(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 

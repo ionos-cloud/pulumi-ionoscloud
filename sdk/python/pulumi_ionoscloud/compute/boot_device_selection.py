@@ -167,7 +167,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select an external volume
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
             name="Server Example",
@@ -208,7 +208,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select an inline volume again
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
             name="Server Example",
@@ -249,6 +249,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select a CDROM image
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
@@ -293,6 +294,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Perform a network boot
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
@@ -358,7 +360,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select an external volume
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
             name="Server Example",
@@ -399,7 +401,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select an inline volume again
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
             name="Server Example",
@@ -440,6 +442,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Select a CDROM image
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",
@@ -484,6 +487,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ### Perform a network boot
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         example_server = ionoscloud.compute.Server("example",

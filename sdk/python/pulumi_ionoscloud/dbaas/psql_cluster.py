@@ -548,7 +548,7 @@ class PSQLCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         example = ionoscloud.compute.Datacenter("example",
@@ -590,7 +590,7 @@ class PSQLCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         # Complete example
@@ -697,7 +697,7 @@ class PSQLCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         example = ionoscloud.compute.Datacenter("example",
@@ -739,7 +739,7 @@ class PSQLCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         # Complete example

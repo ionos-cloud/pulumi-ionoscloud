@@ -163,7 +163,7 @@ class Pipeline(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.logging.Pipeline("example",
             location="es/vit",
@@ -227,7 +227,7 @@ class Pipeline(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.logging.Pipeline("example",
             location="es/vit",

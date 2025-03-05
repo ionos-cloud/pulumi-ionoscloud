@@ -275,7 +275,7 @@ class TargetGroup(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.TargetGroup("example",
             name="Target Group Example",
@@ -346,7 +346,7 @@ class TargetGroup(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.TargetGroup("example",
             name="Target Group Example",

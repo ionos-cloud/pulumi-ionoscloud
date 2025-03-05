@@ -327,6 +327,7 @@ def get_cluster(id: Optional[str] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     test_cluster = ionoscloud.k8s.Cluster("test",
@@ -342,6 +343,7 @@ def get_cluster(id: Optional[str] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     test_cluster = ionoscloud.k8s.Cluster("test",
@@ -415,6 +417,7 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     test_cluster = ionoscloud.k8s.Cluster("test",
@@ -430,6 +433,7 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     test_cluster = ionoscloud.k8s.Cluster("test",

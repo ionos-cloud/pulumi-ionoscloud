@@ -240,6 +240,7 @@ def get_cluster(id: Optional[str] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     example_cluster = ionoscloud.dsaas.Cluster("example",
@@ -257,6 +258,7 @@ def get_cluster(id: Optional[str] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     example_cluster = ionoscloud.dsaas.Cluster("example",
@@ -339,6 +341,7 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     example_cluster = ionoscloud.dsaas.Cluster("example",
@@ -356,6 +359,7 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ```python
     import pulumi
+    import ionoscloud as ionoscloud
     import pulumi_ionoscloud as ionoscloud
 
     example_cluster = ionoscloud.dsaas.Cluster("example",

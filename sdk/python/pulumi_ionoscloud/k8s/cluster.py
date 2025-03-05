@@ -403,7 +403,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
@@ -422,7 +422,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         testdatacenter = ionoscloud.compute.Datacenter("testdatacenter",
             name="example",
@@ -493,7 +493,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
@@ -512,7 +512,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         testdatacenter = ionoscloud.compute.Datacenter("testdatacenter",
             name="example",

@@ -193,7 +193,7 @@ class IPBlock(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.IPBlock("example",
             location="us/las",
@@ -229,7 +229,7 @@ class IPBlock(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.IPBlock("example",
             location="us/las",

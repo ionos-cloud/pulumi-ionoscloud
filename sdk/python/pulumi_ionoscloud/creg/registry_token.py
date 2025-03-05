@@ -256,7 +256,7 @@ class RegistryToken(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.creg.Registry("example",
             garbage_collection_schedule={
@@ -313,7 +313,7 @@ class RegistryToken(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.creg.Registry("example",
             garbage_collection_schedule={

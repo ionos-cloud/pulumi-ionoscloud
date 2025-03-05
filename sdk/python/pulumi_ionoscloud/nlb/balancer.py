@@ -341,7 +341,7 @@ class Balancer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -371,7 +371,7 @@ class Balancer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.nlb.Balancer("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
@@ -424,7 +424,7 @@ class Balancer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -454,7 +454,7 @@ class Balancer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.nlb.Balancer("example",
             datacenter_id=example_ionoscloud_datacenter["id"],

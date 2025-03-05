@@ -284,7 +284,7 @@ class Route(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.apigateway.Apigateway("example",
             name="example-gateway",
@@ -356,7 +356,7 @@ class Route(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.apigateway.Apigateway("example",
             name="example-gateway",

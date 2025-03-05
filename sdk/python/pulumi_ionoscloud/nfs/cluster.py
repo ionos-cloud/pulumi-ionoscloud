@@ -210,7 +210,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
@@ -238,6 +238,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -323,7 +324,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
@@ -351,6 +352,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 

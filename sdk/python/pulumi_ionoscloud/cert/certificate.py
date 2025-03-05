@@ -175,7 +175,7 @@ class Certificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",
@@ -212,7 +212,7 @@ class Certificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",

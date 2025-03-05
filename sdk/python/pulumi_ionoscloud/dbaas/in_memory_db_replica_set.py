@@ -438,7 +438,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="example",
@@ -532,7 +532,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="example",

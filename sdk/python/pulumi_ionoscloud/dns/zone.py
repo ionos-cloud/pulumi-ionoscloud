@@ -162,7 +162,7 @@ class Zone(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
             name="example.com",
@@ -207,7 +207,7 @@ class Zone(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
             name="example.com",

@@ -211,7 +211,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter_Example",
@@ -268,7 +268,7 @@ class Cluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter_Example",

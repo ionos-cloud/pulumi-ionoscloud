@@ -545,7 +545,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -601,7 +601,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -656,7 +656,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -729,7 +729,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Nic("example",
             datacenter_id=foobar["id"],
@@ -779,7 +779,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -835,7 +835,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -890,7 +890,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -963,7 +963,7 @@ class Nic(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Nic("example",
             datacenter_id=foobar["id"],

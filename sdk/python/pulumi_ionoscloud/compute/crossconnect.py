@@ -190,7 +190,7 @@ class Crossconnect(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         cross_connect_test_resource = ionoscloud.compute.Crossconnect("CrossConnectTestResource",
             name="CrossConnectTestResource",
@@ -251,7 +251,7 @@ class Crossconnect(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         cross_connect_test_resource = ionoscloud.compute.Crossconnect("CrossConnectTestResource",
             name="CrossConnectTestResource",

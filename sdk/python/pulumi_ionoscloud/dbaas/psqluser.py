@@ -160,7 +160,7 @@ class PSQLUser(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         user_password = random.index.Password("user_password",
@@ -211,7 +211,7 @@ class PSQLUser(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         user_password = random.index.Password("user_password",

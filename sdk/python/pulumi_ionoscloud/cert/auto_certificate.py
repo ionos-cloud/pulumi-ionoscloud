@@ -255,7 +255,7 @@ class AutoCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.cert.AutoCertificateProvider("example",
             name="Let's Encrypt",
@@ -305,7 +305,7 @@ class AutoCertificate(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.cert.AutoCertificateProvider("example",
             name="Let's Encrypt",

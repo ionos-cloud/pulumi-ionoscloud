@@ -292,7 +292,7 @@ class Share(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
@@ -364,7 +364,7 @@ class Share(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         # Basic example
         nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",

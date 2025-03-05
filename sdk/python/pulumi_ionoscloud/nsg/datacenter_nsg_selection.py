@@ -113,7 +113,7 @@ class DatacenterNsgSelection(pulumi.CustomResource):
         ### Select an external volume
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Default NSG Example",
@@ -149,7 +149,7 @@ class DatacenterNsgSelection(pulumi.CustomResource):
         ### Select an external volume
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Default NSG Example",

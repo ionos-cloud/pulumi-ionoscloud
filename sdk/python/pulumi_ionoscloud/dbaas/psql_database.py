@@ -145,7 +145,7 @@ class PSQLDatabase(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_pg_database = ionoscloud.dbaas.PSQLDatabase("example_pg_database",
             cluster_id=example["id"],
@@ -191,7 +191,7 @@ class PSQLDatabase(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example_pg_database = ionoscloud.dbaas.PSQLDatabase("example_pg_database",
             cluster_id=example["id"],

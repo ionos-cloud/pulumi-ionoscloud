@@ -442,7 +442,7 @@ class WireguardGateway(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
             name="datacenter_example",
@@ -511,7 +511,7 @@ class WireguardGateway(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
             name="datacenter_example",

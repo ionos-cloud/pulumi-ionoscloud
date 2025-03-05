@@ -588,7 +588,7 @@ class MongoCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
@@ -626,7 +626,7 @@ class MongoCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
@@ -710,7 +710,7 @@ class MongoCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",
@@ -748,7 +748,7 @@ class MongoCluster(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         datacenter_example = ionoscloud.compute.Datacenter("datacenter_example",

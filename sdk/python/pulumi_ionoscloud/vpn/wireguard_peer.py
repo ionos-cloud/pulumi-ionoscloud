@@ -292,7 +292,7 @@ class WireguardPeer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.vpn.WireguardPeer("example",
             location="de/fra",
@@ -342,7 +342,7 @@ class WireguardPeer(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
 
         example = ionoscloud.vpn.WireguardPeer("example",
             location="de/fra",

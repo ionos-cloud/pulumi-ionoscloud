@@ -927,6 +927,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -1004,7 +1005,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -1074,6 +1075,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -1113,6 +1115,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         cdrom_datacenter = ionoscloud.compute.Datacenter("cdrom",
@@ -1225,6 +1228,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -1302,7 +1306,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumi_ionoscloud as ionoscloud
+        import ionoscloud as ionoscloud
         import pulumi_random as random
 
         example = ionoscloud.compute.Datacenter("example",
@@ -1372,6 +1376,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
@@ -1411,6 +1416,7 @@ class Server(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import ionoscloud as ionoscloud
         import pulumi_ionoscloud as ionoscloud
 
         cdrom_datacenter = ionoscloud.compute.Datacenter("cdrom",
