@@ -17,7 +17,7 @@ def readme():
         return "ionoscloud Pulumi Package - Development Version"
 
 
-setup(name='ionoscloud',
+setup(name='pulumi_ionoscloud',
       python_requires='>=3.9',
       version=VERSION,
       description="A Pulumi package for creating and managing ionoscloud cloud resources.",
@@ -31,7 +31,7 @@ setup(name='ionoscloud',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'ionoscloud': [
+          'pulumi_ionoscloud': [
               'py.typed',
               'pulumi-plugin.json',
           ]
