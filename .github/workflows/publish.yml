@@ -120,18 +120,18 @@ jobs:
       uses: ./.github/actions/setup-tools
       with:
         tools: pulumictl, pulumicli, dotnet, go, nodejs, python
-    # - name: Publish SDKs
-    #   if: inputs.skipJavaSdk == false
-    #   uses: pulumi/pulumi-package-publisher@696a0fe98f86d86ada2a842d1859f3e8c40d6cd7 # v0.0.21
-    #   with:
-    #     sdk: all,!java
-    #     version: ${{ inputs.version }}
-    # - name: Publish SDKs (except Java)
-    #   if: inputs.skipJavaSdk == true
-    #   uses: pulumi/pulumi-package-publisher@696a0fe98f86d86ada2a842d1859f3e8c40d6cd7 # v0.0.21
-    #   with:
-    #     sdk: all,!java,!java
-    #     version: ${{ inputs.version }}
+    - name: Publish SDKs
+      if: inputs.skipJavaSdk == false
+      uses: pulumi/pulumi-package-publisher@696a0fe98f86d86ada2a842d1859f3e8c40d6cd7 # v0.0.21
+      with:
+        sdk: all,!java,!dotnet
+        version: ${{ inputs.version }}
+    - name: Publish SDKs (except Java)
+      if: inputs.skipJavaSdk == true
+      uses: pulumi/pulumi-package-publisher@696a0fe98f86d86ada2a842d1859f3e8c40d6cd7 # v0.0.21
+      with:
+        sdk: all,!java,!dotnet
+        version: ${{ inputs.version }}
     - name: Download Go SDK
       uses: ./.github/actions/download-sdk
       with:
@@ -162,7 +162,7 @@ jobs:
     name: Clean up release labels
     # Only run for non-prerelease, if the publish_go_sdk job was successful or skipped
     if: inputs.isPrerelease == false
-    
+
     needs: publish_sdk
     runs-on: ubuntu-latest
     steps:
