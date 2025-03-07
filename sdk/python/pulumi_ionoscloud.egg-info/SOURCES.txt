@@ -1,4 +1,5 @@
 README.md
+pyproject.toml
 setup.py
 pulumi_ionoscloud/__init__.py
 pulumi_ionoscloud/_utilities.py
