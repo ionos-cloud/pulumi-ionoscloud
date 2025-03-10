@@ -54,7 +54,7 @@ export interface GetLocationResult {
      * Array of features and CPU families available in a location
      */
     readonly cpuArchitectures: outputs.compute.GetLocationCpuArchitecture[];
-    readonly feature?: string;
+    readonly feature: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -63,7 +63,7 @@ export interface GetLocationResult {
      * List of image aliases available for the location
      */
     readonly imageAliases: string[];
-    readonly name?: string;
+    readonly name: string;
 }
 /**
  * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.

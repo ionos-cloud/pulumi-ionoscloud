@@ -12,6 +12,30 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGatewayRule({
+ *     datacenterId: "datacenter_id",
+ *     natgatewayId: "natgateway_id",
+ *     id: "natgateway_rule_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGatewayRule({
+ *     datacenterId: "datacenter_id",
+ *     natgatewayId: "natgateway_id",
+ *     name: "NAT Gateway Rule Example",
+ * });
+ * ```
  */
 export function getNatGatewayRule(args: GetNatGatewayRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetNatGatewayRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -55,11 +79,11 @@ export interface GetNatGatewayRuleResult {
     /**
      * Id of the NAT gateway rule
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Name of the NAT gateway rule
      */
-    readonly name?: string;
+    readonly name: string;
     readonly natgatewayId: string;
     /**
      * Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
@@ -92,6 +116,30 @@ export interface GetNatGatewayRuleResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGatewayRule({
+ *     datacenterId: "datacenter_id",
+ *     natgatewayId: "natgateway_id",
+ *     id: "natgateway_rule_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGatewayRule({
+ *     datacenterId: "datacenter_id",
+ *     natgatewayId: "natgateway_id",
+ *     name: "NAT Gateway Rule Example",
+ * });
+ * ```
  */
 export function getNatGatewayRuleOutput(args: GetNatGatewayRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNatGatewayRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  * A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
  *
  * ```sh
- * $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
+ * $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool dataplatform_cluster_uuid/dataplatform_nodepool_id
  * ```
  */
 export class NodePool extends pulumi.CustomResource {
@@ -93,6 +93,10 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly annotations!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+     */
+    public readonly autoScaling!: pulumi.Output<outputs.dsaas.NodePoolAutoScaling | undefined>;
+    /**
      * [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
      */
     public readonly availabilityZone!: pulumi.Output<string>;
@@ -117,7 +121,7 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     public readonly maintenanceWindows!: pulumi.Output<outputs.dsaas.NodePoolMaintenanceWindow[]>;
     /**
@@ -159,6 +163,7 @@ export class NodePool extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NodePoolState | undefined;
             resourceInputs["annotations"] = state ? state.annotations : undefined;
+            resourceInputs["autoScaling"] = state ? state.autoScaling : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["coresCount"] = state ? state.coresCount : undefined;
@@ -181,6 +186,7 @@ export class NodePool extends pulumi.CustomResource {
                 throw new Error("Missing required property 'nodeCount'");
             }
             resourceInputs["annotations"] = args ? args.annotations : undefined;
+            resourceInputs["autoScaling"] = args ? args.autoScaling : undefined;
             resourceInputs["availabilityZone"] = args ? args.availabilityZone : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["coresCount"] = args ? args.coresCount : undefined;
@@ -209,6 +215,10 @@ export interface NodePoolState {
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+     */
+    autoScaling?: pulumi.Input<inputs.dsaas.NodePoolAutoScaling>;
+    /**
      * [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
      */
     availabilityZone?: pulumi.Input<string>;
@@ -233,7 +243,7 @@ export interface NodePoolState {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.NodePoolMaintenanceWindow>[]>;
     /**
@@ -271,6 +281,10 @@ export interface NodePoolArgs {
      */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+     */
+    autoScaling?: pulumi.Input<inputs.dsaas.NodePoolAutoScaling>;
+    /**
      * [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
      */
     availabilityZone?: pulumi.Input<string>;
@@ -291,7 +305,7 @@ export interface NodePoolArgs {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.NodePoolMaintenanceWindow>[]>;
     /**

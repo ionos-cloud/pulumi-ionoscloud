@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGateway({
+ *     datacenterId: "datacenter_id",
+ *     id: "nat_gateway_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGateway({
+ *     datacenterId: "datacenter_id",
+ *     name: "NAT Gateway Example",
+ * });
+ * ```
  */
 export function getNatGateway(args: GetNatGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetNatGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -50,7 +72,7 @@ export interface GetNatGatewayResult {
     /**
      * Id for the LAN connected to the NAT gateway
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
      */
@@ -58,7 +80,7 @@ export interface GetNatGatewayResult {
     /**
      * Name of that natgateway
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
      */
@@ -70,6 +92,28 @@ export interface GetNatGatewayResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGateway({
+ *     datacenterId: "datacenter_id",
+ *     id: "nat_gateway_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNatGateway({
+ *     datacenterId: "datacenter_id",
+ *     name: "NAT Gateway Example",
+ * });
+ * ```
  */
 export function getNatGatewayOutput(args: GetNatGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNatGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

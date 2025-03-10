@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * Resource Ipblock can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+ * $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock ipblock uuid
  * ```
  */
 export class IPBlock extends pulumi.CustomResource {

@@ -23,12 +23,36 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Attaching a NSG to a Datacenter
+ *
+ * #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+ * #### Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter NSG Example",
+ *     location: "de/txl",
+ * });
+ * const exampleNsg = new ionoscloud.nsg.Nsg("example", {
+ *     name: "Example NSG",
+ *     description: "Example NSG Description",
+ *     datacenterId: example.id,
+ * });
+ * const exampleDatacenterNsgSelection = new ionoscloud.nsg.DatacenterNsgSelection("example", {
+ *     datacenterId: example.id,
+ *     nsgId: exampleNsg.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource Datacenter can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+ * $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc datacenter uuid
  * ```
  */
 export class Datacenter extends pulumi.CustomResource {

@@ -48,7 +48,7 @@ export interface GetWireguardPeerArgs {
     /**
      * [String] The location of the WireGuard Gateway.
      */
-    location: string;
+    location?: string;
     /**
      * [String] The name of the WireGuard Peer.
      */
@@ -75,8 +75,8 @@ export interface GetWireguardPeerResult {
     /**
      * The unique ID of the WireGuard Peer.
      */
-    readonly id?: string;
-    readonly location: string;
+    readonly id: string;
+    readonly location?: string;
     /**
      * The name of the WireGuard Peer.
      */
@@ -132,7 +132,7 @@ export interface GetWireguardPeerOutputArgs {
     /**
      * [String] The location of the WireGuard Gateway.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [String] The name of the WireGuard Peer.
      */

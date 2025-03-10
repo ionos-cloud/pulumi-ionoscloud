@@ -52,12 +52,73 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example-kafka-datacenter",
+ *     location: "de/fra",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example-kafka-lan",
+ * });
+ * const password = new random.index.Password("password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example-kafka-server",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 2 * 1024,
+ *     availabilityZone: "AUTO",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: password.result,
+ *     volume: {
+ *         name: "example-kafka-volume",
+ *         size: 6,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example-kafka-nic",
+ *         dhcp: true,
+ *     },
+ * });
+ * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
+ *     name: "example-kafka-cluster",
+ *     location: example.location,
+ *     version: "3.7.0",
+ *     size: "S",
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         brokerAddresses: "kafka_cluster_broker_ips_cidr_list",
+ *     },
+ * });
+ * const exampleTopic = new ionoscloud.kafka.Topic("example", {
+ *     clusterId: exampleCluster.id,
+ *     name: "kafka-cluster-topic",
+ *     location: exampleCluster.location,
+ *     replicationFactor: 1,
+ *     numberOfPartitions: 1,
+ *     retentionTime: 86400000,
+ *     segmentBytes: 1073741824,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
  *
  * ```sh
- * $ pulumi import ionoscloud:kafka/topic:Topic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+ * $ pulumi import ionoscloud:kafka/topic:Topic my_topic location:kafka cluster uuid:kafka cluster topic uuid
  * ```
  */
 export class Topic extends pulumi.CustomResource {
@@ -93,9 +154,9 @@ export class Topic extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
@@ -150,9 +211,6 @@ export class Topic extends pulumi.CustomResource {
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -175,7 +233,7 @@ export interface TopicState {
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -217,9 +275,9 @@ export interface TopicArgs {
      */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the Kafka Cluster.
      */

@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  * Resource User can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/user:User myuser {user uuid}
+ * $ pulumi import ionoscloud:compute/user:User myuser user uuid
  * ```
  */
 export class User extends pulumi.CustomResource {

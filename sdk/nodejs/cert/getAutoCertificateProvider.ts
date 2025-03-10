@@ -13,8 +13,31 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     id: "provider_id",
+ *     location: "provider_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     name: "Provider Name Example",
+ *     location: "provider_location",
+ * });
+ * ```
  */
-export function getAutoCertificateProvider(args: GetAutoCertificateProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateProviderResult> {
+export function getAutoCertificateProvider(args?: GetAutoCertificateProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateProviderResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", {
         "id": args.id,
@@ -36,7 +59,7 @@ export interface GetAutoCertificateProviderArgs {
     /**
      * [string] The location of the provider.
      */
-    location: string;
+    location?: string;
     /**
      * [string] Name of an existing provider that you want to search for.
      */
@@ -55,9 +78,9 @@ export interface GetAutoCertificateProviderResult {
      * [list]
      */
     readonly externalAccountBindings: outputs.cert.GetAutoCertificateProviderExternalAccountBinding[];
-    readonly id?: string;
-    readonly location: string;
-    readonly name?: string;
+    readonly id: string;
+    readonly location?: string;
+    readonly name: string;
     /**
      * [string] The URL of the certificate provider.
      */
@@ -70,8 +93,31 @@ export interface GetAutoCertificateProviderResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     id: "provider_id",
+ *     location: "provider_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     name: "Provider Name Example",
+ *     location: "provider_location",
+ * });
+ * ```
  */
-export function getAutoCertificateProviderOutput(args: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateProviderResult> {
+export function getAutoCertificateProviderOutput(args?: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateProviderResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", {
         "id": args.id,
@@ -93,7 +139,7 @@ export interface GetAutoCertificateProviderOutputArgs {
     /**
      * [string] The location of the provider.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of an existing provider that you want to search for.
      */

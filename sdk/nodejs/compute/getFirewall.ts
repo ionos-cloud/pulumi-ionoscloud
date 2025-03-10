@@ -11,6 +11,32 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getFirewall({
+ *     datacenterId: "datacenter_id",
+ *     serverId: "server_id",
+ *     nicId: "nic_id",
+ *     id: "firewall_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getFirewall({
+ *     datacenterId: "datacenter_id",
+ *     serverId: "server_id",
+ *     nicId: "nic_id",
+ *     name: "test_ds_firewall_rule",
+ * });
+ * ```
  */
 export function getFirewall(args: GetFirewallArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -67,11 +93,11 @@ export interface GetFirewallResult {
     /**
      * The id of the firewall rule.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of the firewall rule.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly nicId: string;
     /**
      * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
@@ -107,6 +133,32 @@ export interface GetFirewallResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getFirewall({
+ *     datacenterId: "datacenter_id",
+ *     serverId: "server_id",
+ *     nicId: "nic_id",
+ *     id: "firewall_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getFirewall({
+ *     datacenterId: "datacenter_id",
+ *     serverId: "server_id",
+ *     nicId: "nic_id",
+ *     name: "test_ds_firewall_rule",
+ * });
+ * ```
  */
 export function getFirewallOutput(args: GetFirewallOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFirewallResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

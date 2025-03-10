@@ -49,7 +49,7 @@ import * as utilities from "../utilities";
  * Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}
+ * $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser cluster uuid
  * ```
  */
 export class Cluster extends pulumi.CustomResource {
@@ -89,7 +89,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly lans!: pulumi.Output<outputs.dsaas.ClusterLan[] | undefined>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     public readonly maintenanceWindows!: pulumi.Output<outputs.dsaas.ClusterMaintenanceWindow[]>;
     /**
@@ -148,7 +148,7 @@ export interface ClusterState {
      */
     lans?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLan>[]>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterMaintenanceWindow>[]>;
     /**
@@ -174,7 +174,7 @@ export interface ClusterArgs {
      */
     lans?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLan>[]>;
     /**
-     * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterMaintenanceWindow>[]>;
     /**

@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCubeServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCubeServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "Server Example",
+ * });
+ * ```
  */
 export function getCubeServer(args: GetCubeServerArgs, opts?: pulumi.InvokeOptions): Promise<GetCubeServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -69,18 +91,26 @@ export interface GetCubeServerResult {
      */
     readonly datacenterId: string;
     /**
+     * The hostname of the server
+     */
+    readonly hostname: string;
+    /**
      * Id of the firewall rule
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Name of the firewall rule
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * list of
      */
     readonly nics: outputs.compute.GetCubeServerNic[];
     readonly ram: number;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    readonly securityGroupsIds: string[];
     /**
      * The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      */
@@ -101,6 +131,28 @@ export interface GetCubeServerResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCubeServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCubeServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "Server Example",
+ * });
+ * ```
  */
 export function getCubeServerOutput(args: GetCubeServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCubeServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

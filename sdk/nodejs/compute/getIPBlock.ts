@@ -14,6 +14,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getIPBlock({
+ *     id: "ipblock_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,7 +51,6 @@ export function getIPBlock(args?: GetIPBlockArgs, opts?: pulumi.InvokeOptions): 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getIPBlock:getIPBlock", {
         "id": args.id,
-        "ipConsumers": args.ipConsumers,
         "location": args.location,
         "name": args.name,
         "size": args.size,
@@ -56,10 +65,6 @@ export interface GetIPBlockArgs {
      * ID of an existing Ip Block that you want to search for.
      */
     id?: string;
-    /**
-     * Read-Only attribute. Lists consumption detail of an individual ip
-     */
-    ipConsumers?: inputs.compute.GetIPBlockIpConsumer[];
     /**
      * The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */
@@ -81,7 +86,7 @@ export interface GetIPBlockResult {
     /**
      * The id of Ip Block
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Read-Only attribute. Lists consumption detail of an individual ip
      */
@@ -93,15 +98,15 @@ export interface GetIPBlockResult {
     /**
      * The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */
-    readonly location?: string;
+    readonly location: string;
     /**
      * The name of Ip Block
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The number of IP addresses to reserve for this block.
      */
-    readonly size?: number;
+    readonly size: number;
 }
 /**
  * The **IP Block data source** can be used to search for and return an existing Ip Block.
@@ -110,6 +115,16 @@ export interface GetIPBlockResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getIPBlock({
+ *     id: "ipblock_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript
@@ -138,7 +153,6 @@ export function getIPBlockOutput(args?: GetIPBlockOutputArgs, opts?: pulumi.Invo
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getIPBlock:getIPBlock", {
         "id": args.id,
-        "ipConsumers": args.ipConsumers,
         "location": args.location,
         "name": args.name,
         "size": args.size,
@@ -153,10 +167,6 @@ export interface GetIPBlockOutputArgs {
      * ID of an existing Ip Block that you want to search for.
      */
     id?: pulumi.Input<string>;
-    /**
-     * Read-Only attribute. Lists consumption detail of an individual ip
-     */
-    ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.GetIPBlockIpConsumerArgs>[]>;
     /**
      * The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */

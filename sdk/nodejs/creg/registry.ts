@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * Resource Container Registry can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
+ * $ pulumi import ionoscloud:creg/registry:Registry mycr container_registry uuid
  * ```
  */
 export class Registry extends pulumi.CustomResource {

@@ -11,6 +11,35 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getTopic({
+ *     id: "your_kafka_cluster_topic_id",
+ *     clusterId: "your_kafka_cluster_id",
+ *     location: "your_kafka_cluster_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getTopic({
+ *     name: "kafka-cluster-topic",
+ *     clusterId: "your_kafka_cluster_id",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
  */
 export function getTopic(args: GetTopicArgs, opts?: pulumi.InvokeOptions): Promise<GetTopicResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -92,6 +121,35 @@ export interface GetTopicResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getTopic({
+ *     id: "your_kafka_cluster_topic_id",
+ *     clusterId: "your_kafka_cluster_id",
+ *     location: "your_kafka_cluster_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getTopic({
+ *     name: "kafka-cluster-topic",
+ *     clusterId: "your_kafka_cluster_id",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
  */
 export function getTopicOutput(args: GetTopicOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTopicResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -9,6 +9,17 @@ import * as utilities from "../utilities";
 /**
  * The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
  * ## Example Usage
+ *
+ * ### By IDs
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePoolNodes({
+ *     nodePoolId: "k8s_nodepool_id",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
  */
 export function getNodePoolNodes(args: GetNodePoolNodesArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolNodesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -47,6 +58,17 @@ export interface GetNodePoolNodesResult {
 /**
  * The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
  * ## Example Usage
+ *
+ * ### By IDs
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePoolNodes({
+ *     nodePoolId: "k8s_nodepool_id",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
  */
 export function getNodePoolNodesOutput(args: GetNodePoolNodesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolNodesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

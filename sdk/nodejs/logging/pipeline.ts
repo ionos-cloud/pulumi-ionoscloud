@@ -7,6 +7,42 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a **Logging pipeline**.
+ *
+ * > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
+ *
+ * ## Usage example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.logging.Pipeline("example", {
+ *     location: "es/vit",
+ *     name: "pipelineexample",
+ *     logs: [
+ *         {
+ *             source: "kubernetes",
+ *             tag: "tagexample",
+ *             protocol: "http",
+ *             destinations: [{
+ *                 type: "loki",
+ *                 retentionInDays: 7,
+ *             }],
+ *         },
+ *         {
+ *             source: "kubernetes",
+ *             tag: "anothertagexample",
+ *             protocol: "tcp",
+ *             destinations: [{
+ *                 type: "loki",
+ *                 retentionInDays: 7,
+ *             }],
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
@@ -20,7 +56,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `location` and `pipeline_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
+ * $ pulumi import ionoscloud:logging/pipeline:Pipeline example location:pipeline_id
  * ```
  */
 export class Pipeline extends pulumi.CustomResource {
@@ -56,7 +92,7 @@ export class Pipeline extends pulumi.CustomResource {
      */
     public /*out*/ readonly grafanaAddress!: pulumi.Output<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
@@ -109,7 +145,7 @@ export interface PipelineState {
      */
     grafanaAddress?: pulumi.Input<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -127,7 +163,7 @@ export interface PipelineState {
  */
 export interface PipelineArgs {
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**

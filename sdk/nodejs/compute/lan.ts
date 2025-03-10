@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  * Resource Lan can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
+ * $ pulumi import ionoscloud:compute/lan:Lan mylandatacenter uuid/lan id
  * ```
  */
 export class Lan extends pulumi.CustomResource {
@@ -103,6 +103,10 @@ export class Lan extends pulumi.CustomResource {
      */
     public readonly ipFailovers!: pulumi.Output<outputs.compute.LanIpFailover[]>;
     /**
+     * [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+     */
+    public /*out*/ readonly ipv4CidrBlock!: pulumi.Output<string>;
+    /**
      * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
      */
     public readonly ipv6CidrBlock!: pulumi.Output<string>;
@@ -134,6 +138,7 @@ export class Lan extends pulumi.CustomResource {
             const state = argsOrState as LanState | undefined;
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["ipFailovers"] = state ? state.ipFailovers : undefined;
+            resourceInputs["ipv4CidrBlock"] = state ? state.ipv4CidrBlock : undefined;
             resourceInputs["ipv6CidrBlock"] = state ? state.ipv6CidrBlock : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["pcc"] = state ? state.pcc : undefined;
@@ -149,6 +154,7 @@ export class Lan extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["pcc"] = args ? args.pcc : undefined;
             resourceInputs["public"] = args ? args.public : undefined;
+            resourceInputs["ipv4CidrBlock"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Lan.__pulumiType, name, resourceInputs, opts);
@@ -167,6 +173,10 @@ export interface LanState {
      * IP failover configurations for lan
      */
     ipFailovers?: pulumi.Input<pulumi.Input<inputs.compute.LanIpFailover>[]>;
+    /**
+     * [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+     */
+    ipv4CidrBlock?: pulumi.Input<string>;
     /**
      * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
      */

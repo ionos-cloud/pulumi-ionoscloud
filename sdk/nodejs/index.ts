@@ -28,6 +28,7 @@ import * as kafka from "./kafka";
 import * as logging from "./logging";
 import * as nfs from "./nfs";
 import * as nlb from "./nlb";
+import * as nsg from "./nsg";
 import * as types from "./types";
 import * as vpn from "./vpn";
 
@@ -48,6 +49,7 @@ export {
     logging,
     nfs,
     nlb,
+    nsg,
     types,
     vpn,
 };

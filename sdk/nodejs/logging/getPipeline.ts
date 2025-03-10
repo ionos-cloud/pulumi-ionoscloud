@@ -14,6 +14,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.logging.getPipeline({
+ *     location: "de/txl",
+ *     id: "pipeline_id",
+ * });
+ * ```
+ *
  * ### By name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -66,7 +77,7 @@ export interface GetPipelineResult {
     /**
      * The UUID of the Logging pipeline.
      */
-    readonly id?: string;
+    readonly id: string;
     readonly location?: string;
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
@@ -84,6 +95,17 @@ export interface GetPipelineResult {
  * > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.logging.getPipeline({
+ *     location: "de/txl",
+ *     id: "pipeline_id",
+ * });
+ * ```
  *
  * ### By name
  * ```typescript

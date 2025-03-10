@@ -12,6 +12,42 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     id: "node_pool_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -56,6 +92,10 @@ export interface GetNodePoolResult {
      */
     readonly annotations: {[key: string]: string};
     /**
+     * Whether the Node Pool should autoscale. For more details, please check the API documentation
+     */
+    readonly autoScalings: outputs.dsaas.GetNodePoolAutoScaling[];
+    /**
      * The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
      */
     readonly availabilityZone: string;
@@ -78,7 +118,7 @@ export interface GetNodePoolResult {
     /**
      * ID of your node pool.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
      */
@@ -90,7 +130,7 @@ export interface GetNodePoolResult {
     /**
      * The name of your node pool
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The number of nodes that make up the node pool.
      */
@@ -119,6 +159,42 @@ export interface GetNodePoolResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     id: "node_pool_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

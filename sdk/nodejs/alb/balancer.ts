@@ -48,7 +48,7 @@ import * as utilities from "../utilities";
  * Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+ * $ pulumi import ionoscloud:alb/balancer:Balancer myalb datacenter uuid/applicationLoadBalancer uuid
  * ```
  */
 export class Balancer extends pulumi.CustomResource {

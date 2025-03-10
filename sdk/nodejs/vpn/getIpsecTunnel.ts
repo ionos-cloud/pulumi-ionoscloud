@@ -13,6 +13,60 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecTunnel({
+ *     id: "tunnel_id",
+ *     gatewayId: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecTunnel({
+ *     name: "ipsec-tunnel",
+ *     gatewayId: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ## Attributes reference
+ *
+ * The following attributes are returned by the datasource:
+ *
+ * * `id` - The unique ID of the IPSec Gateway Tunnel.
+ * * `name` - The name of the IPSec Gateway Tunnel.
+ * * `description` - The human-readable description of your IPSec Gateway Tunnel.
+ * * `remoteHost` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+ * * `ike` - Settings for the initial security exchange phase.
+ *     * `diffieHellmanGroup` - The Diffie-Hellman Group to use for IPSec Encryption.
+ *     * `encryptionAlgorithm` - The encryption algorithm to use for IPSec Encryption.
+ *     * `integrityAlgorithm` - The integrity algorithm to use for IPSec Encryption.
+ *     * `lifetime` - The phase lifetime in seconds.
+ * * `esp` - Settings for the IPSec SA (ESP) phase.
+ *     * `diffieHellmanGroup` - The Diffie-Hellman Group to use for IPSec Encryption.
+ *     * `encryptionAlgorithm` - The encryption algorithm to use for IPSec Encryption.
+ *     * `integrityAlgorithm` - The integrity algorithm to use for IPSec Encryption.
+ *     * `lifetime` - The phase lifetime in seconds.
+ * * `auth` - Properties with all data needed to define IPSec Authentication.
+ *     * `method` - The authentication method to use for IPSec Authentication.
+ * * `cloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+ *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+ * * `peerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+ *   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
  */
 export function getIpsecTunnel(args: GetIpsecTunnelArgs, opts?: pulumi.InvokeOptions): Promise<GetIpsecTunnelResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -39,7 +93,7 @@ export interface GetIpsecTunnelArgs {
     /**
      * The location of the IPSec Gateway Tunnel.
      */
-    location: string;
+    location?: string;
     /**
      * Name of an existing IPSec Gateway Tunnel that you want to search for.
      */
@@ -57,7 +111,7 @@ export interface GetIpsecTunnelResult {
     readonly gatewayId: string;
     readonly id: string;
     readonly ikes: outputs.vpn.GetIpsecTunnelIke[];
-    readonly location: string;
+    readonly location?: string;
     readonly name: string;
     readonly peerNetworkCidrs: string[];
     readonly remoteHost: string;
@@ -69,6 +123,60 @@ export interface GetIpsecTunnelResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecTunnel({
+ *     id: "tunnel_id",
+ *     gatewayId: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecTunnel({
+ *     name: "ipsec-tunnel",
+ *     gatewayId: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ## Attributes reference
+ *
+ * The following attributes are returned by the datasource:
+ *
+ * * `id` - The unique ID of the IPSec Gateway Tunnel.
+ * * `name` - The name of the IPSec Gateway Tunnel.
+ * * `description` - The human-readable description of your IPSec Gateway Tunnel.
+ * * `remoteHost` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+ * * `ike` - Settings for the initial security exchange phase.
+ *     * `diffieHellmanGroup` - The Diffie-Hellman Group to use for IPSec Encryption.
+ *     * `encryptionAlgorithm` - The encryption algorithm to use for IPSec Encryption.
+ *     * `integrityAlgorithm` - The integrity algorithm to use for IPSec Encryption.
+ *     * `lifetime` - The phase lifetime in seconds.
+ * * `esp` - Settings for the IPSec SA (ESP) phase.
+ *     * `diffieHellmanGroup` - The Diffie-Hellman Group to use for IPSec Encryption.
+ *     * `encryptionAlgorithm` - The encryption algorithm to use for IPSec Encryption.
+ *     * `integrityAlgorithm` - The integrity algorithm to use for IPSec Encryption.
+ *     * `lifetime` - The phase lifetime in seconds.
+ * * `auth` - Properties with all data needed to define IPSec Authentication.
+ *     * `method` - The authentication method to use for IPSec Authentication.
+ * * `cloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+ *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+ * * `peerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+ *   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
  */
 export function getIpsecTunnelOutput(args: GetIpsecTunnelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpsecTunnelResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,7 +203,7 @@ export interface GetIpsecTunnelOutputArgs {
     /**
      * The location of the IPSec Gateway Tunnel.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing IPSec Gateway Tunnel that you want to search for.
      */

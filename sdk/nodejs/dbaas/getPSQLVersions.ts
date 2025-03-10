@@ -9,6 +9,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### Retrieve list of postgres versions for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLVersions({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
+ *
  * ### Retrieve list of postgres versions for all clusters
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -58,6 +68,16 @@ export interface GetPSQLVersionsResult {
  * The **DbaaS Postgres Versions data source** can be used to search for and retrieve list of available postgres versions for a specific cluster or for all clusters.
  *
  * ## Example Usage
+ *
+ * ### Retrieve list of postgres versions for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLVersions({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
  *
  * ### Retrieve list of postgres versions for all clusters
  * ```typescript

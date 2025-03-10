@@ -14,6 +14,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     id: "registry_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -81,13 +91,13 @@ export interface GetRegistryResult {
     /**
      * Id of the container registry.
      */
-    readonly id?: string;
+    readonly id: string;
     readonly location?: string;
     readonly maintenanceWindows: outputs.creg.GetRegistryMaintenanceWindow[];
     /**
      * The name of the container registry.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     readonly storageUsages: outputs.creg.GetRegistryStorageUsage[];
 }
@@ -98,6 +108,16 @@ export interface GetRegistryResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     id: "registry_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

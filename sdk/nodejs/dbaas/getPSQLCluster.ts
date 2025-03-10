@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ *
  * ### By Name
  *
  * ```typescript
@@ -72,7 +82,7 @@ export interface GetPSQLClusterResult {
     /**
      * The friendly name of your cluster.
      */
-    readonly displayName?: string;
+    readonly displayName: string;
     /**
      * The DNS name pointing to your cluster.
      */
@@ -81,7 +91,7 @@ export interface GetPSQLClusterResult {
      * The unique ID of the backup you want to restore.
      */
     readonly fromBackups: outputs.dbaas.GetPSQLClusterFromBackup[];
-    readonly id?: string;
+    readonly id: string;
     /**
      * The total number of instances in the cluster (one master and n-1 standbys)
      */
@@ -121,6 +131,16 @@ export interface GetPSQLClusterResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
  *
  * ### By Name
  *

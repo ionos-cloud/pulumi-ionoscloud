@@ -6,6 +6,66 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getClusters({
+ *     filters: [{
+ *         name: "name",
+ *         value: "k8sClusterExample",
+ *     }],
+ * });
+ * ```
+ *
+ * ### By Name and k8s version Family
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example2 = ionoscloud.k8s.getClusters({
+ *     filters: [
+ *         {
+ *             name: "name",
+ *             value: "k8sClusterExample",
+ *         },
+ *         {
+ *             name: "k8s_version",
+ *             value: "1.27",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Retrieve private clusters only, by Name and Cluster State
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServers({
+ *     filters: [
+ *         {
+ *             name: "name",
+ *             value: "k8sClusterExample",
+ *         },
+ *         {
+ *             name: "state",
+ *             value: "ACTIVE",
+ *         },
+ *         {
+ *             name: "public",
+ *             value: "false",
+ *         },
+ *     ],
+ * });
+ * ```
+ */
 export function getClusters(args?: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -18,6 +78,11 @@ export function getClusters(args?: GetClustersArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getClusters.
  */
 export interface GetClustersArgs {
+    /**
+     * One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8sCluster resource **except** those containing other nested structures such as `maintenanceWindow` or `config`.
+     *
+     * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
+     */
     filters?: inputs.k8s.GetClustersFilter[];
 }
 
@@ -25,7 +90,14 @@ export interface GetClustersArgs {
  * A collection of values returned by getClusters.
  */
 export interface GetClustersResult {
+    /**
+     * list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+     */
     readonly clusters: outputs.k8s.GetClustersCluster[];
+    /**
+     * indicates the number of clusters found and added to the list after the query has been performed with the specified filters.
+     * For a full reference of all the attributes returned, check out documentation
+     */
     readonly entries: number;
     readonly filters?: outputs.k8s.GetClustersFilter[];
     /**
@@ -33,6 +105,66 @@ export interface GetClustersResult {
      */
     readonly id: string;
 }
+/**
+ * The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getClusters({
+ *     filters: [{
+ *         name: "name",
+ *         value: "k8sClusterExample",
+ *     }],
+ * });
+ * ```
+ *
+ * ### By Name and k8s version Family
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example2 = ionoscloud.k8s.getClusters({
+ *     filters: [
+ *         {
+ *             name: "name",
+ *             value: "k8sClusterExample",
+ *         },
+ *         {
+ *             name: "k8s_version",
+ *             value: "1.27",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Retrieve private clusters only, by Name and Cluster State
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServers({
+ *     filters: [
+ *         {
+ *             name: "name",
+ *             value: "k8sClusterExample",
+ *         },
+ *         {
+ *             name: "state",
+ *             value: "ACTIVE",
+ *         },
+ *         {
+ *             name: "public",
+ *             value: "false",
+ *         },
+ *     ],
+ * });
+ * ```
+ */
 export function getClustersOutput(args?: GetClustersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClustersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -45,5 +177,10 @@ export function getClustersOutput(args?: GetClustersOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getClusters.
  */
 export interface GetClustersOutputArgs {
+    /**
+     * One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8sCluster resource **except** those containing other nested structures such as `maintenanceWindow` or `config`.
+     *
+     * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.k8s.GetClustersFilterArgs>[]>;
 }

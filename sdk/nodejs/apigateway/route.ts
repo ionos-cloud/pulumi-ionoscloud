@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  * API Gateway route can be imported using the `apigateway route id`:
  *
  * ```sh
- * $ pulumi import ionoscloud:apigateway/route:Route myroute {apigateway uuid}:{apigateway route uuid}
+ * $ pulumi import ionoscloud:apigateway/route:Route myroute apigateway uuid:apigateway route uuid
  * ```
  */
 export class Route extends pulumi.CustomResource {

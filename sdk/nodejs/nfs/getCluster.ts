@@ -8,6 +8,31 @@ import * as utilities from "../utilities";
 
 /**
  * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     id: "cluster-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -73,6 +98,31 @@ export interface GetClusterResult {
 }
 /**
  * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     id: "cluster-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

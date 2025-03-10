@@ -12,6 +12,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getResource({
+ *     resourceId: "resource_id",
+ * });
+ * ```
+ *
  * ### By Type
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -19,6 +29,17 @@ import * as utilities from "../utilities";
  *
  * const example = ionoscloud.compute.getResource({
  *     resourceType: "datacenter",
+ * });
+ * ```
+ *
+ * ### By ID & Type
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getResource({
+ *     resourceType: "datacenter",
+ *     resourceId: "resource_id",
  * });
  * ```
  */
@@ -64,6 +85,16 @@ export interface GetResourceResult {
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getResource({
+ *     resourceId: "resource_id",
+ * });
+ * ```
+ *
  * ### By Type
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -71,6 +102,17 @@ export interface GetResourceResult {
  *
  * const example = ionoscloud.compute.getResource({
  *     resourceType: "datacenter",
+ * });
+ * ```
+ *
+ * ### By ID & Type
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getResource({
+ *     resourceType: "datacenter",
+ *     resourceId: "resource_id",
  * });
  * ```
  */

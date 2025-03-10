@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `clusterId` and the `name`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+ * $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example clusterid/name
  * ```
  */
 export class PSQLDatabase extends pulumi.CustomResource {

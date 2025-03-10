@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVCPUServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVCPUServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "VCPU Server Example",
+ * });
+ * ```
  */
 export function getVCPUServer(args: GetVCPUServerArgs, opts?: pulumi.InvokeOptions): Promise<GetVCPUServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -70,9 +92,13 @@ export interface GetVCPUServerResult {
      */
     readonly datacenterId: string;
     /**
+     * The hostname of the server
+     */
+    readonly hostname: string;
+    /**
      * The Id of the label
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * list of
      */
@@ -80,7 +106,7 @@ export interface GetVCPUServerResult {
     /**
      * Name of the firewall rule
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * list of
      */
@@ -89,6 +115,10 @@ export interface GetVCPUServerResult {
      * The amount of memory for the server in MB
      */
     readonly ram: number;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    readonly securityGroupsIds: string[];
     readonly token: string;
     /**
      * The type of firewall rule
@@ -109,6 +139,28 @@ export interface GetVCPUServerResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVCPUServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVCPUServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "VCPU Server Example",
+ * });
+ * ```
  */
 export function getVCPUServerOutput(args: GetVCPUServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVCPUServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

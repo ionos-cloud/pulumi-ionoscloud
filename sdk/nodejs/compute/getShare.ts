@@ -9,15 +9,24 @@ import * as utilities from "../utilities";
  * You need to provide the groupId and resourceId to get the group resources for the shared resource.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getShare({
+ *     groupId: "group_id",
+ *     resourceId: "resource_id",
+ * });
+ * ```
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getShare:getShare", {
-        "editPrivilege": args.editPrivilege,
         "groupId": args.groupId,
-        "id": args.id,
         "resourceId": args.resourceId,
-        "sharePrivilege": args.sharePrivilege,
     }, opts);
 }
 
@@ -26,28 +35,16 @@ export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetShareArgs {
     /**
-     * The flag that specifies if the group has permission to edit privileges on this resource.
-     */
-    editPrivilege?: boolean;
-    /**
      * The ID of the specific group containing the resource to update.
      */
     groupId: string;
     /**
-     * The uuid of the share object
-     *
-     *
-     * `id`, `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
-     */
-    id: string;
-    /**
      * The ID of the specific resource to update.
+     *
+     *
+     * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */
     resourceId: string;
-    /**
-     * The group has permission to share this resource.
-     */
-    sharePrivilege?: boolean;
 }
 
 /**
@@ -57,7 +54,7 @@ export interface GetShareResult {
     /**
      * The flag that specifies if the group has permission to edit privileges on this resource.
      */
-    readonly editPrivilege?: boolean;
+    readonly editPrivilege: boolean;
     /**
      * The ID of the specific group containing the resource to update.
      */
@@ -73,22 +70,31 @@ export interface GetShareResult {
     /**
      * The group has permission to share this resource.
      */
-    readonly sharePrivilege?: boolean;
+    readonly sharePrivilege: boolean;
 }
 /**
  * The **Share data source** can be used to search for and return an existing share object.
  * You need to provide the groupId and resourceId to get the group resources for the shared resource.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getShare({
+ *     groupId: "group_id",
+ *     resourceId: "resource_id",
+ * });
+ * ```
  */
 export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getShare:getShare", {
-        "editPrivilege": args.editPrivilege,
         "groupId": args.groupId,
-        "id": args.id,
         "resourceId": args.resourceId,
-        "sharePrivilege": args.sharePrivilege,
     }, opts);
 }
 
@@ -97,26 +103,14 @@ export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOut
  */
 export interface GetShareOutputArgs {
     /**
-     * The flag that specifies if the group has permission to edit privileges on this resource.
-     */
-    editPrivilege?: pulumi.Input<boolean>;
-    /**
      * The ID of the specific group containing the resource to update.
      */
     groupId: pulumi.Input<string>;
     /**
-     * The uuid of the share object
-     *
-     *
-     * `id`, `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
-     */
-    id: pulumi.Input<string>;
-    /**
      * The ID of the specific resource to update.
+     *
+     *
+     * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */
     resourceId: pulumi.Input<string>;
-    /**
-     * The group has permission to share this resource.
-     */
-    sharePrivilege?: pulumi.Input<boolean>;
 }

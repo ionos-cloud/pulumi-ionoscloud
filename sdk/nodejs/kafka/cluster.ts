@@ -44,12 +44,64 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example-kafka-datacenter",
+ *     location: "de/fra",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example-kafka-lan",
+ * });
+ * const password = new random.index.Password("password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example-kafka-server",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 2 * 1024,
+ *     availabilityZone: "AUTO",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: password.result,
+ *     volume: {
+ *         name: "example-kafka-volume",
+ *         size: 6,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example-kafka-nic",
+ *         dhcp: true,
+ *     },
+ * });
+ * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
+ *     name: "example-kafka-cluster",
+ *     location: example.location,
+ *     version: "3.7.0",
+ *     size: "S",
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         brokerAddresses: "kafka_cluster_broker_ips_cidr_list",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Kafka Cluster can be imported using the `location` and `kafka cluster id`:
  *
  * ```sh
- * $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster {location}:{kafka cluster uuid}
+ * $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster location:kafka cluster uuid
  * ```
  */
 export class Cluster extends pulumi.CustomResource {
@@ -82,6 +134,8 @@ export class Cluster extends pulumi.CustomResource {
 
     /**
      * [list] IP address and port of cluster brokers.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     public /*out*/ readonly brokerAddresses!: pulumi.Output<string[]>;
     /**
@@ -89,9 +143,9 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly connections!: pulumi.Output<outputs.kafka.ClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
@@ -129,9 +183,6 @@ export class Cluster extends pulumi.CustomResource {
             if ((!args || args.connections === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'connections'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             if ((!args || args.size === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
@@ -156,6 +207,8 @@ export class Cluster extends pulumi.CustomResource {
 export interface ClusterState {
     /**
      * [list] IP address and port of cluster brokers.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     brokerAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -163,7 +216,7 @@ export interface ClusterState {
      */
     connections?: pulumi.Input<inputs.kafka.ClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -189,9 +242,9 @@ export interface ClusterArgs {
      */
     connections: pulumi.Input<inputs.kafka.ClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the Kafka Cluster.
      */

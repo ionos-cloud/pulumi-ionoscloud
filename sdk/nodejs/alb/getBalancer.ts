@@ -14,6 +14,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.alb.getBalancer({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     id: "alb_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,7 +98,7 @@ export interface GetBalancerResult {
     /**
      * Id of the application load balancer.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
      */
@@ -104,7 +115,7 @@ export interface GetBalancerResult {
     /**
      * Specifies the name of the flow log.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     /**
      * ID of the balanced private target LAN (outbound).
@@ -118,6 +129,17 @@ export interface GetBalancerResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.alb.getBalancer({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     id: "alb_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

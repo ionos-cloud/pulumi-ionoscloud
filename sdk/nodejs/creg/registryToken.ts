@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+ * $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken container_registry uuid/container_registry_token uuid
  * ```
  */
 export class RegistryToken extends pulumi.CustomResource {

@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getLan({
+ *     datacenterId: "datacenter_id",
+ *     id: "lan_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getLan({
+ *     datacenterId: "datacenter_id",
+ *     name: "Lan Example",
+ * });
+ * ```
  */
 export function getLan(args: GetLanArgs, opts?: pulumi.InvokeOptions): Promise<GetLanResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -53,16 +75,23 @@ export interface GetLanResult {
     /**
      * The id of the LAN.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * list of
      */
     readonly ipFailovers: outputs.compute.GetLanIpFailover[];
+    /**
+     * For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+     */
+    readonly ipv4CidrBlock: string;
+    /**
+     * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
+     */
     readonly ipv6CidrBlock: string;
     /**
      * The name of the LAN.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The unique id of a `ionoscloud.compute.Crossconnect` resource, in order.
      */
@@ -78,6 +107,28 @@ export interface GetLanResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getLan({
+ *     datacenterId: "datacenter_id",
+ *     id: "lan_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getLan({
+ *     datacenterId: "datacenter_id",
+ *     name: "Lan Example",
+ * });
+ * ```
  */
 export function getLanOutput(args: GetLanOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLanResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

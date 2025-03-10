@@ -10,6 +10,44 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     id: "template_id",
+ * });
+ * ```
+ * ### By name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     name: "name",
+ * });
+ * ```
+ *
+ * ### By name, using partialMatch
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     name: "name",
+ *     partialMatch: true,
+ * });
+ * ```
+ *
+ * * `name` - (Optional) The name of the template you want to search for.
+ * * `id` - (Optional) ID of the template you want to search for.
+ * * `partialMatch` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+ *
+ * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
  */
 export function getMongoTemplate(args?: GetMongoTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoTemplateResult> {
     args = args || {};
@@ -72,6 +110,44 @@ export interface GetMongoTemplateResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     id: "template_id",
+ * });
+ * ```
+ * ### By name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     name: "name",
+ * });
+ * ```
+ *
+ * ### By name, using partialMatch
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoTemplate({
+ *     name: "name",
+ *     partialMatch: true,
+ * });
+ * ```
+ *
+ * * `name` - (Optional) The name of the template you want to search for.
+ * * `id` - (Optional) ID of the template you want to search for.
+ * * `partialMatch` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+ *
+ * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
  */
 export function getMongoTemplateOutput(args?: GetMongoTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoTemplateResult> {
     args = args || {};

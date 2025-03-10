@@ -14,6 +14,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getApigateway({
+ *     id: "your_apigateway_id",
+ * });
+ * ```
+ *
  * ### By Name
  *
  * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
@@ -90,6 +101,17 @@ export interface GetApigatewayResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getApigateway({
+ *     id: "your_apigateway_id",
+ * });
+ * ```
  *
  * ### By Name
  *

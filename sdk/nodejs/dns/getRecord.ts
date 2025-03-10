@@ -12,6 +12,41 @@ import * as utilities from "../utilities";
  * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     id: "record_id",
+ *     zoneId: "zone_id",
+ * });
+ * ```
+ *
+ * ### By name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     name: "recordexample",
+ *     zoneId: "zone_id",
+ * });
+ * ```
+ *
+ * ### By name with partial match
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     name: "record",
+ *     partialMatch: true,
+ *     zoneId: "zone_id",
+ * });
+ * ```
  */
 export function getRecord(args: GetRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetRecordResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -63,11 +98,11 @@ export interface GetRecordResult {
     /**
      * The UUID of the DNS Record.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of the DNS Record.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     /**
      * The priority for the DNS Record.
@@ -91,6 +126,41 @@ export interface GetRecordResult {
  * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     id: "record_id",
+ *     zoneId: "zone_id",
+ * });
+ * ```
+ *
+ * ### By name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     name: "recordexample",
+ *     zoneId: "zone_id",
+ * });
+ * ```
+ *
+ * ### By name with partial match
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getRecord({
+ *     name: "record",
+ *     partialMatch: true,
+ *     zoneId: "zone_id",
+ * });
+ * ```
  */
 export function getRecordOutput(args: GetRecordOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRecordResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

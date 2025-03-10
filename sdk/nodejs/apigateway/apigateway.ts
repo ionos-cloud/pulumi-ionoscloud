@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `gateway_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example {gateway_id}
+ * $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example gateway_id
  * ```
  */
 export class Apigateway extends pulumi.CustomResource {

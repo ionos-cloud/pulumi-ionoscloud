@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  * Resource Target Group can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup {target group uuid}
+ * $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
  * ```
  */
 export class TargetGroup extends pulumi.CustomResource {

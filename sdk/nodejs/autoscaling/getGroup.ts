@@ -11,6 +11,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const autoscalingGroup = ionoscloud.autoscaling.getGroup({
+ *     id: "autoscaling_group_uuid",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -54,7 +64,7 @@ export interface GetGroupResult {
     /**
      * Unique identifier for the resource
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Location of the datacenter. This location is the same as the one from the selected template.
      */
@@ -70,7 +80,7 @@ export interface GetGroupResult {
     /**
      * The name of the Autoscaling Group.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
      */
@@ -82,6 +92,16 @@ export interface GetGroupResult {
  * The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const autoscalingGroup = ionoscloud.autoscaling.getGroup({
+ *     id: "autoscaling_group_uuid",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

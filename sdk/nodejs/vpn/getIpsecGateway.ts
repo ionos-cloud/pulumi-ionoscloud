@@ -13,8 +13,36 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecGateway({
+ *     id: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecGateway({
+ *     name: "ipsec-gateway",
+ *     location: "gateway_location",
+ * });
+ * ```
  */
-export function getIpsecGateway(args: GetIpsecGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetIpsecGatewayResult> {
+export function getIpsecGateway(args?: GetIpsecGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetIpsecGatewayResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", {
         "id": args.id,
@@ -35,7 +63,7 @@ export interface GetIpsecGatewayArgs {
     /**
      * The location of the IPSec Gateway.
      */
-    location: string;
+    location?: string;
     /**
      * Name of an existing IPSec Gateway that you want to search for.
      */
@@ -66,11 +94,19 @@ export interface GetIpsecGatewayResult {
      * The unique ID of the IPSec Gateway.
      */
     readonly id: string;
-    readonly location: string;
+    readonly location?: string;
+    /**
+     * A weekly 4 hour-long window, during which maintenance might occur.
+     */
+    readonly maintenanceWindows: outputs.vpn.GetIpsecGatewayMaintenanceWindow[];
     /**
      * The name of the IPSec Gateway.
      */
     readonly name: string;
+    /**
+     * Gateway performance options.
+     */
+    readonly tier: string;
     /**
      * The IKE version that is permitted for the VPN tunnels.
      */
@@ -83,8 +119,36 @@ export interface GetIpsecGatewayResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecGateway({
+ *     id: "gateway_id",
+ *     location: "gateway_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getIpsecGateway({
+ *     name: "ipsec-gateway",
+ *     location: "gateway_location",
+ * });
+ * ```
  */
-export function getIpsecGatewayOutput(args: GetIpsecGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpsecGatewayResult> {
+export function getIpsecGatewayOutput(args?: GetIpsecGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpsecGatewayResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", {
         "id": args.id,
@@ -105,7 +169,7 @@ export interface GetIpsecGatewayOutputArgs {
     /**
      * The location of the IPSec Gateway.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing IPSec Gateway that you want to search for.
      */

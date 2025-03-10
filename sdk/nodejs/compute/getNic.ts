@@ -12,20 +12,36 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNic({
+ *     datacenterId: "datancenter_id",
+ *     serverId: "server_id",
+ *     id: "nic_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNic({
+ *     datacenterId: "datancenter_id",
+ *     serverId: "server_id",
+ *     name: "Nic Example",
+ * });
+ * ```
  */
 export function getNic(args: GetNicArgs, opts?: pulumi.InvokeOptions): Promise<GetNicResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getNic:getNic", {
         "datacenterId": args.datacenterId,
-        "dhcp": args.dhcp,
-        "dhcpv6": args.dhcpv6,
-        "firewallActive": args.firewallActive,
-        "firewallType": args.firewallType,
         "id": args.id,
-        "ips": args.ips,
-        "ipv6CidrBlock": args.ipv6CidrBlock,
-        "ipv6Ips": args.ipv6Ips,
-        "lan": args.lan,
         "name": args.name,
         "serverId": args.serverId,
     }, opts);
@@ -40,35 +56,12 @@ export interface GetNicArgs {
      */
     datacenterId: string;
     /**
-     * Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-     */
-    dhcp?: boolean;
-    dhcpv6?: boolean;
-    /**
-     * If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-     */
-    firewallActive?: boolean;
-    /**
-     * The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-     */
-    firewallType?: string;
-    /**
      * ID of the nic you want to search for.
      *
      * `datacenterId` and either `name` or `id` must be provided.
      * If none, are provided, the datasource will return an error.
      */
     id?: string;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips?: string[];
-    ipv6CidrBlock?: string;
-    ipv6Ips?: string[];
-    /**
-     * The LAN ID the NIC will sit on.
-     */
-    lan?: number;
     /**
      * [string] The name of the LAN.
      */
@@ -94,12 +87,12 @@ export interface GetNicResult {
     /**
      * Indicates if the NIC should get an IP address using DHCP (true) or not (false).
      */
-    readonly dhcp?: boolean;
-    readonly dhcpv6?: boolean;
+    readonly dhcp: boolean;
+    readonly dhcpv6: boolean;
     /**
      * If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
      */
-    readonly firewallActive?: boolean;
+    readonly firewallActive: boolean;
     /**
      * The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
      */
@@ -111,7 +104,7 @@ export interface GetNicResult {
     /**
      * The id of the NIC.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
      */
@@ -121,7 +114,7 @@ export interface GetNicResult {
     /**
      * The LAN ID the NIC will sit on.
      */
-    readonly lan?: number;
+    readonly lan: number;
     /**
      * The MAC address of the NIC.
      */
@@ -129,11 +122,15 @@ export interface GetNicResult {
     /**
      * Specifies the name of the flow log.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The PCI slot number of the Nic.
      */
     readonly pciSlot: number;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    readonly securityGroupsIds: string[];
     /**
      * The ID of a server.
      */
@@ -145,20 +142,36 @@ export interface GetNicResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNic({
+ *     datacenterId: "datancenter_id",
+ *     serverId: "server_id",
+ *     id: "nic_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getNic({
+ *     datacenterId: "datancenter_id",
+ *     serverId: "server_id",
+ *     name: "Nic Example",
+ * });
+ * ```
  */
 export function getNicOutput(args: GetNicOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNicResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNic:getNic", {
         "datacenterId": args.datacenterId,
-        "dhcp": args.dhcp,
-        "dhcpv6": args.dhcpv6,
-        "firewallActive": args.firewallActive,
-        "firewallType": args.firewallType,
         "id": args.id,
-        "ips": args.ips,
-        "ipv6CidrBlock": args.ipv6CidrBlock,
-        "ipv6Ips": args.ipv6Ips,
-        "lan": args.lan,
         "name": args.name,
         "serverId": args.serverId,
     }, opts);
@@ -173,35 +186,12 @@ export interface GetNicOutputArgs {
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-     */
-    dhcp?: pulumi.Input<boolean>;
-    dhcpv6?: pulumi.Input<boolean>;
-    /**
-     * If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-     */
-    firewallActive?: pulumi.Input<boolean>;
-    /**
-     * The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-     */
-    firewallType?: pulumi.Input<string>;
-    /**
      * ID of the nic you want to search for.
      *
      * `datacenterId` and either `name` or `id` must be provided.
      * If none, are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
-    ipv6CidrBlock?: pulumi.Input<string>;
-    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The LAN ID the NIC will sit on.
-     */
-    lan?: pulumi.Input<number>;
     /**
      * [string] The name of the LAN.
      */

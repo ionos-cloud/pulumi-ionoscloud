@@ -22,7 +22,8 @@ import * as utilities from "../utilities";
  * export const vpnWireguardGatewayPublicKey = exampleVpnWireguardGateway.publicKey;
  * ```
  */
-export function getWireguardGateway(args: GetWireguardGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetWireguardGatewayResult> {
+export function getWireguardGateway(args?: GetWireguardGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetWireguardGatewayResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", {
         "description": args.description,
@@ -47,7 +48,7 @@ export interface GetWireguardGatewayArgs {
     /**
      * [String] The location of the WireGuard Gateway.
      */
-    location: string;
+    location?: string;
     /**
      * [String] The name of the WireGuard Gateway.
      */
@@ -80,7 +81,11 @@ export interface GetWireguardGatewayResult {
      */
     readonly interfaceIpv6Cidr: string;
     readonly listenPort: number;
-    readonly location: string;
+    readonly location?: string;
+    /**
+     * A weekly 4 hour-long window, during which maintenance might occur.
+     */
+    readonly maintenanceWindows: outputs.vpn.GetWireguardGatewayMaintenanceWindow[];
     readonly name: string;
     /**
      * The public key for the WireGuard Gateway.
@@ -90,6 +95,10 @@ export interface GetWireguardGatewayResult {
      * The current status of the WireGuard Gateway.
      */
     readonly status: string;
+    /**
+     * Gateway performance options.
+     */
+    readonly tier: string;
 }
 /**
  * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
@@ -107,7 +116,8 @@ export interface GetWireguardGatewayResult {
  * export const vpnWireguardGatewayPublicKey = exampleVpnWireguardGateway.publicKey;
  * ```
  */
-export function getWireguardGatewayOutput(args: GetWireguardGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWireguardGatewayResult> {
+export function getWireguardGatewayOutput(args?: GetWireguardGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWireguardGatewayResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", {
         "description": args.description,
@@ -132,7 +142,7 @@ export interface GetWireguardGatewayOutputArgs {
     /**
      * [String] The location of the WireGuard Gateway.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [String] The name of the WireGuard Gateway.
      */

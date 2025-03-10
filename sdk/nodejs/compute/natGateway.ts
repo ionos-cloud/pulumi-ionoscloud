@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
+ * $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway datacenter uuid/nat gateway uuid
  * ```
  */
 export class NatGateway extends pulumi.CustomResource {

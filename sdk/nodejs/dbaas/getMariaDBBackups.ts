@@ -10,6 +10,28 @@ import * as utilities from "../utilities";
  * The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
  *
  * ## Example Usage
+ *
+ * ### Get all backups for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     clusterId: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ *
+ * ### Get a specific backup
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     backupId: "backup_id",
+ *     location: "de/txl",
+ * });
+ * ```
  */
 export function getMariaDBBackups(args?: GetMariaDBBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetMariaDBBackupsResult> {
     args = args || {};
@@ -47,12 +69,12 @@ export interface GetMariaDBBackupsArgs {
  * A collection of values returned by getMariaDBBackups.
  */
 export interface GetMariaDBBackupsResult {
-    readonly backupId?: string;
+    readonly backupId: string;
     readonly backups: outputs.dbaas.GetMariaDBBackupsBackup[];
     /**
      * The unique ID of the cluster that was backed up.
      */
-    readonly clusterId?: string;
+    readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -63,6 +85,28 @@ export interface GetMariaDBBackupsResult {
  * The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
  *
  * ## Example Usage
+ *
+ * ### Get all backups for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     clusterId: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ *
+ * ### Get a specific backup
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     backupId: "backup_id",
+ *     location: "de/txl",
+ * });
+ * ```
  */
 export function getMariaDBBackupsOutput(args?: GetMariaDBBackupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMariaDBBackupsResult> {
     args = args || {};

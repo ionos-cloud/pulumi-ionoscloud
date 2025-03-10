@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  * WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
  *
  * ```sh
- * $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example <gateway_id>:<peer_id>
+ * $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example gateway_id:peer_id
  * ```
  */
 export class WireguardPeer extends pulumi.CustomResource {
@@ -88,7 +88,7 @@ export class WireguardPeer extends pulumi.CustomResource {
     /**
      * [string] The location of the WireGuard Gateway.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * [string] The human-readable name of the WireGuard Gateway.
      */
@@ -130,9 +130,6 @@ export class WireguardPeer extends pulumi.CustomResource {
             }
             if ((!args || args.gatewayId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gatewayId'");
-            }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
             }
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
@@ -212,7 +209,7 @@ export interface WireguardPeerArgs {
     /**
      * [string] The location of the WireGuard Gateway.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] The human-readable name of the WireGuard Gateway.
      */

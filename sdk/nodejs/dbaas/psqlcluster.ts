@@ -56,12 +56,87 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example",
+ *     location: "de/txl",
+ *     description: "Datacenter for testing dbaas cluster",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example",
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example",
+ *     datacenterId: example.id,
+ *     cores: 2,
+ *     ram: 2048,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "rockylinux-8-GenericCloud-20230518",
+ *     imagePassword: "password",
+ *     volume: {
+ *         name: "example",
+ *         size: 6,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example",
+ *         dhcp: true,
+ *     },
+ * });
+ * const clusterPassword = new random.index.Password("cluster_password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("example", {
+ *     postgresVersion: "12",
+ *     instances: 1,
+ *     cores: 4,
+ *     ram: 2048,
+ *     storageSize: 2048,
+ *     storageType: "HDD",
+ *     connectionPooler: {
+ *         enabled: true,
+ *         poolMode: "session",
+ *     },
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         cidr: "database_ip_cidr_from_nic",
+ *     },
+ *     location: example.location,
+ *     displayName: "PostgreSQL_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     },
+ *     credentials: {
+ *         username: "username",
+ *         password: clusterPassword.result,
+ *     },
+ *     synchronizationMode: "ASYNCHRONOUS",
+ *     fromBackup: {
+ *         backupId: "backup_uuid",
+ *         recoveryTargetTime: "2021-12-06T13:54:08Z",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+ * $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser cluster uuid
  * ```
  */
 export class PSQLCluster extends pulumi.CustomResource {
@@ -133,7 +208,7 @@ export class PSQLCluster extends pulumi.CustomResource {
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
@@ -285,7 +360,7 @@ export interface PSQLClusterState {
      */
     location?: pulumi.Input<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
@@ -351,7 +426,7 @@ export interface PSQLClusterArgs {
      */
     location: pulumi.Input<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
