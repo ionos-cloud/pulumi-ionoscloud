@@ -9,12 +9,78 @@ import * as utilities from "../utilities";
 /**
  * Manages a **DBaaS MariaDB Cluster**.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example",
+ *     location: "de/txl",
+ *     description: "Datacenter for testing DBaaS cluster",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example",
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example",
+ *     datacenterId: example.id,
+ *     cores: 2,
+ *     ram: 2048,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "rockylinux-8-GenericCloud-20230518",
+ *     imagePassword: "password",
+ *     volume: {
+ *         name: "example",
+ *         size: 10,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example",
+ *         dhcp: true,
+ *     },
+ * });
+ * const clusterPassword = new random.index.Password("cluster_password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const exampleMariaDBCluster = new ionoscloud.dbaas.MariaDBCluster("example", {
+ *     mariadbVersion: "10.6",
+ *     location: "de/txl",
+ *     instances: 1,
+ *     cores: 4,
+ *     ram: 4,
+ *     storageSize: 10,
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         cidr: "database_ip_cidr_from_nic",
+ *     },
+ *     displayName: "MariaDB_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     },
+ *     credentials: {
+ *         username: "username",
+ *         password: clusterPassword.result,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+ * $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
  * ```
  */
 export class MariaDBCluster extends pulumi.CustomResource {
@@ -64,7 +130,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
     /**
      * [string] The DNS name pointing to your cluster.
      *
-     * > **⚠ WARNING:** `Location` attribute will become required in the future.
+     * > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     public /*out*/ readonly dnsName!: pulumi.Output<string>;
     /**
@@ -80,7 +146,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * [string] The MariaDB version of your cluster.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     public readonly mariadbVersion!: pulumi.Output<string>;
     /**
@@ -182,7 +248,7 @@ export interface MariaDBClusterState {
     /**
      * [string] The DNS name pointing to your cluster.
      *
-     * > **⚠ WARNING:** `Location` attribute will become required in the future.
+     * > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     dnsName?: pulumi.Input<string>;
     /**
@@ -198,7 +264,7 @@ export interface MariaDBClusterState {
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * [string] The MariaDB version of your cluster.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     mariadbVersion?: pulumi.Input<string>;
     /**
@@ -244,7 +310,7 @@ export interface MariaDBClusterArgs {
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * [string] The MariaDB version of your cluster.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     mariadbVersion: pulumi.Input<string>;
     /**

@@ -108,7 +108,7 @@ import * as utilities from "../utilities";
  * Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+ * $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
  * ```
  */
 export class MongoCluster extends pulumi.CustomResource {
@@ -176,7 +176,7 @@ export class MongoCluster extends pulumi.CustomResource {
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.MongoClusterMaintenanceWindow>;
     /**
@@ -319,7 +319,7 @@ export interface MongoClusterState {
      */
     location?: pulumi.Input<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
     /**
@@ -389,7 +389,7 @@ export interface MongoClusterArgs {
      */
     location: pulumi.Input<string>;
     /**
-     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
     /**

@@ -12,6 +12,17 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By username
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoUser({
+ *     clusterId: "cluster_id",
+ *     username: "username",
+ * });
+ * ```
  */
 export function getMongoUser(args: GetMongoUserArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -53,7 +64,7 @@ export interface GetMongoUserArgs {
 export interface GetMongoUserResult {
     readonly clusterId: string;
     readonly database: string;
-    readonly id?: string;
+    readonly id: string;
     readonly roles: outputs.dbaas.GetMongoUserRole[];
     readonly username: string;
 }
@@ -63,6 +74,17 @@ export interface GetMongoUserResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By username
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoUser({
+ *     clusterId: "cluster_id",
+ *     username: "username",
+ * });
+ * ```
  */
 export function getMongoUserOutput(args: GetMongoUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

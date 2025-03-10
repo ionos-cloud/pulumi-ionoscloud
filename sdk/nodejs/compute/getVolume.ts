@@ -10,6 +10,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     id: "volume_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     name: "Volume Example",
+ * });
+ * ```
  */
 export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -81,7 +103,7 @@ export interface GetVolumeResult {
     /**
      * The id of the volume.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The image or snapshot UUID.
      */
@@ -97,7 +119,7 @@ export interface GetVolumeResult {
     /**
      * The name of the volume.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Is capable of nic hot plug (no reboot required)
      */
@@ -129,6 +151,28 @@ export interface GetVolumeResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     id: "volume_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     name: "Volume Example",
+ * });
+ * ```
  */
 export function getVolumeOutput(args: GetVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVolumeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

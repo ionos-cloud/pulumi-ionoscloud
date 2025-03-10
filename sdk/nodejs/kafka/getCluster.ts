@@ -13,6 +13,33 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getCluster({
+ *     id: "your_kafka_cluster_id",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getCluster({
+ *     name: "kafka-cluster",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -81,6 +108,33 @@ export interface GetClusterResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getCluster({
+ *     id: "your_kafka_cluster_id",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.kafka.getCluster({
+ *     name: "kafka-cluster",
+ *     location: "location_of_kafka_cluster",
+ * });
+ * ```
  */
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

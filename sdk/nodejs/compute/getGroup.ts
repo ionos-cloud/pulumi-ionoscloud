@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getGroup({
+ *     id: "group_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -95,7 +105,7 @@ export interface GetGroupResult {
     /**
      * The id of the group.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Privilege for a group to manage DBaaS related functionality.
      */
@@ -103,7 +113,7 @@ export interface GetGroupResult {
     /**
      * A name for the group.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The group will be allowed to reserve IP addresses.
      */
@@ -123,6 +133,16 @@ export interface GetGroupResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getGroup({
+ *     id: "group_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

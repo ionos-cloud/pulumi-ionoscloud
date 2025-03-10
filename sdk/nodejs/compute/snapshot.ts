@@ -65,7 +65,7 @@ import * as utilities from "../utilities";
  * Resource Snapshot can be imported using the `snapshot id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
+ * $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot snapshot uuid
  * ```
  */
 export class Snapshot extends pulumi.CustomResource {

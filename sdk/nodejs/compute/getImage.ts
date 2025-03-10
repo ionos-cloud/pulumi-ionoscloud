@@ -122,7 +122,7 @@ export interface GetImageResult {
     /**
      * description of the image
      */
-    readonly description?: string;
+    readonly description: string;
     /**
      * Is capable of SCSI drive hot plug (no reboot required)
      */
@@ -140,10 +140,14 @@ export interface GetImageResult {
      */
     readonly discVirtioHotUnplug: boolean;
     /**
+     * Indicates if the serial ID of the disk attached to the server will be exposed or not.
+     */
+    readonly exposeSerial: boolean;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly imageAlias?: string;
+    readonly imageAlias: string;
     /**
      * List of image aliases mapped for this Image
      */
@@ -155,11 +159,11 @@ export interface GetImageResult {
     /**
      * Location of that image/snapshot.
      */
-    readonly location?: string;
+    readonly location: string;
     /**
      * name of the image
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Is capable of nic hot plug (no reboot required)
      */
@@ -187,8 +191,8 @@ export interface GetImageResult {
     /**
      * This indicates the type of image
      */
-    readonly type?: string;
-    readonly version?: string;
+    readonly type: string;
+    readonly version: string;
 }
 /**
  * The **Image data source** can be used to search for and return an existing image which can then be used to provision a server.\

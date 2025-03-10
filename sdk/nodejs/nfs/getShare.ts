@@ -8,6 +8,33 @@ import * as utilities from "../utilities";
 
 /**
  * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     id: "share-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -47,7 +74,7 @@ export interface GetShareArgs {
     /**
      * The location where the Network File Storage share is located.
      */
-    location: string;
+    location?: string;
     /**
      * Name of the Network File Storage share.
      */
@@ -89,7 +116,7 @@ export interface GetShareResult {
     /**
      * The location where the Network File Storage share is located.
      */
-    readonly location: string;
+    readonly location?: string;
     /**
      * The name of the Network File Storage share.
      */
@@ -110,6 +137,33 @@ export interface GetShareResult {
 }
 /**
  * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     id: "share-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -149,7 +203,7 @@ export interface GetShareOutputArgs {
     /**
      * The location where the Network File Storage share is located.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of the Network File Storage share.
      */

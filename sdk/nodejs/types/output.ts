@@ -975,6 +975,10 @@ export namespace compute {
          */
         name?: string;
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds?: string[];
     }
 
     export interface CubeServerNicFirewall {
@@ -1014,16 +1018,6 @@ export namespace compute {
         diskType: string;
         /**
          * [string] Required if `sshKeyPath` is not provided.
-         *
-         * > **⚠ WARNING**
-         * >
-         * > Image_name under volume level is deprecated, please use imageName under server level
-         *
-         *
-         * > **⚠ WARNING**
-         * >
-         * > For creating a **CUBE** server, you can not set `volume.size` argument.
-         * >
          *
          * @deprecated Please use imagePassword under server level
          */
@@ -1246,6 +1240,10 @@ export namespace compute {
          * The PCI slot number of the Nic
          */
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds: string[];
     }
 
     export interface GetCubeServerNicFirewallRule {
@@ -1650,6 +1648,10 @@ export namespace compute {
          * The PCI slot number of the Nic
          */
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds: string[];
     }
 
     export interface GetServerNicFirewallRule {
@@ -1800,6 +1802,7 @@ export namespace compute {
         cdroms: outputs.compute.GetServersServerCdrom[];
         cores: number;
         cpuFamily: string;
+        hostname: string;
         /**
          * The unique ID of the server.
          */
@@ -1859,6 +1862,7 @@ export namespace compute {
         mac: string;
         name: string;
         pciSlot: number;
+        securityGroupsIds: string[];
     }
 
     export interface GetServersServerNicFirewallRule {
@@ -2124,6 +2128,10 @@ export namespace compute {
          * The PCI slot number of the Nic
          */
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds: string[];
     }
 
     export interface GetVCPUServerNicFirewallRule {
@@ -2329,8 +2337,6 @@ export namespace compute {
         id: string;
         /**
          * Specifies the name of the flow log.
-         *
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
          */
         name: string;
     }
@@ -2379,6 +2385,10 @@ export namespace compute {
          */
         name?: string;
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the
+         */
+        securityGroupsIds?: string[];
     }
 
     export interface ServerNicFirewall {
@@ -2558,6 +2568,14 @@ export namespace compute {
          */
         name?: string;
         pciSlot: number;
+        /**
+         * The list of Security Group IDs for the resource.
+         *
+         * > **⚠ WARNING**
+         * >
+         * > sshKeys field is immutable.
+         */
+        securityGroupsIds?: string[];
     }
 
     export interface VCPUServerNicFirewall {
@@ -3329,6 +3347,17 @@ export namespace dsaas {
         time: string;
     }
 
+    export interface GetNodePoolAutoScaling {
+        /**
+         * The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: number;
+        /**
+         * The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: number;
+    }
+
     export interface GetNodePoolMaintenanceWindow {
         dayOfTheWeek: string;
         /**
@@ -3399,6 +3428,17 @@ export namespace dsaas {
          * Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
          */
         time: string;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: number;
+        /**
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: number;
     }
 
     export interface NodePoolMaintenanceWindow {
@@ -3495,7 +3535,7 @@ export namespace k8s {
         availableUpgradeVersions: string[];
         caCrt: string;
         configs: outputs.k8s.GetClustersClusterConfig[];
-        id?: string;
+        id: string;
         k8sVersion: string;
         kubeConfig: string;
         location: string;
@@ -3503,7 +3543,7 @@ export namespace k8s {
          * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
          */
         maintenanceWindows: outputs.k8s.GetClustersClusterMaintenanceWindow[];
-        name?: string;
+        name: string;
         /**
          * The NAT gateway IP of the cluster if the cluster is private.
          */
@@ -3532,6 +3572,9 @@ export namespace k8s {
 
     export interface GetClustersClusterConfig {
         apiVersion: string;
+        /**
+         * list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+         */
         clusters: outputs.k8s.GetClustersClusterConfigCluster[];
         contexts: outputs.k8s.GetClustersClusterConfigContext[];
         currentContext: string;
@@ -3633,7 +3676,7 @@ export namespace k8s {
          *
          * `k8sClusterId` and `nodePoolId` must be provided.
          */
-        id?: string;
+        id: string;
         /**
          * The kubernetes version
          */
@@ -3641,15 +3684,15 @@ export namespace k8s {
         /**
          * Name of an existing node pool that you want to search for.
          */
-        name?: string;
+        name: string;
         /**
          * private ip of the node
          */
-        privateIp?: string;
+        privateIp: string;
         /**
          * public ip of the node
          */
-        publicIp?: string;
+        publicIp: string;
     }
 
     export interface NodePoolAutoScaling {
@@ -3819,6 +3862,8 @@ export namespace nfs {
         ipAddress: string;
         /**
          * The Private LAN to which the Network File Storage cluster must be connected.
+         * -
+         * > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
         lan: string;
     }
@@ -4073,6 +4118,31 @@ export namespace nlb {
 
 }
 
+export namespace nsg {
+    export interface GetNsgRule {
+        icmpCode: string;
+        icmpType: string;
+        /**
+         * Id of an existing Network Security Group that you want to search for.
+         */
+        id: string;
+        /**
+         * Name of an existing Network Security Group that you want to search for.
+         *
+         * Either `name`, or `id` must be provided. If none, the datasource will return an error.
+         */
+        name: string;
+        portRangeEnd: number;
+        portRangeStart: number;
+        protocol: string;
+        sourceIp: string;
+        sourceMac: string;
+        targetIp: string;
+        type: string;
+    }
+
+}
+
 export namespace vpn {
     export interface GetIpsecGatewayConnection {
         /**
@@ -4092,6 +4162,17 @@ export namespace vpn {
          * The numeric LAN ID to connect your VPN Gateway to.
          */
         lanId: string;
+    }
+
+    export interface GetIpsecGatewayMaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
     }
 
     export interface GetIpsecTunnelAuth {
@@ -4158,6 +4239,17 @@ export namespace vpn {
         lanId: string;
     }
 
+    export interface GetWireguardGatewayMaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
     export interface GetWireguardPeerEndpoint {
         /**
          * Hostname or IPV4 address that the WireGuard Server will connect to.
@@ -4188,6 +4280,17 @@ export namespace vpn {
          * [string] The numeric LAN ID to connect your VPN Gateway to.
          */
         lanId: string;
+    }
+
+    export interface IpsecGatewayMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: string;
     }
 
     export interface IpsecTunnelAuth {
@@ -4270,6 +4373,17 @@ export namespace vpn {
          * [String] The ID of the LAN where the WireGuard Gateway is connected.
          */
         lanId: string;
+    }
+
+    export interface WireguardGatewayMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: string;
     }
 
     export interface WireguardPeerEndpoint {

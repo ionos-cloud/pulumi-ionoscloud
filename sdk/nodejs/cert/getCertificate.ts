@@ -12,6 +12,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getCertificate({
+ *     id: "certificate_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -72,11 +82,11 @@ export interface GetCertificateResult {
     /**
      * The id of the certificate.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of the certificate.
      */
-    readonly name?: string;
+    readonly name: string;
 }
 /**
  * The **Certificate data source** can be used to search for and return an existing certificate.
@@ -85,6 +95,16 @@ export interface GetCertificateResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getCertificate({
+ *     id: "certificate_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

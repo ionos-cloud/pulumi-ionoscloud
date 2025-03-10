@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -124,7 +134,7 @@ export interface GetClusterResult {
     /**
      * id of the cluster
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Kubernetes version
      */
@@ -144,7 +154,7 @@ export interface GetClusterResult {
     /**
      * name of the cluster
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * the NAT gateway IP of the cluster if the cluster is private.
      */
@@ -202,6 +212,16 @@ export interface GetClusterResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

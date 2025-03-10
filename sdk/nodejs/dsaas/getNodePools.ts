@@ -10,6 +10,41 @@ import * as utilities from "../utilities";
  * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
  *
  * ## Example Usage
+ *
+ * ### All Node Pools under a Cluster ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getNodePools(args: GetNodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -61,6 +96,41 @@ export interface GetNodePoolsResult {
  * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
  *
  * ## Example Usage
+ *
+ * ### All Node Pools under a Cluster ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePools({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getNodePoolsOutput(args: GetNodePoolsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

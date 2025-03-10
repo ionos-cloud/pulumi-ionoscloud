@@ -7,18 +7,279 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a **Server** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * This resource will create an operational server. After this section completes, the provisioner can be called.
+ *
+ * ### ENTERPRISE Server
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
+ *     cloudInit: "V1",
+ *     imageAlias: "ubuntu:latest",
+ *     location: "us/las",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: exampleDatacenter.location,
+ *     size: 4,
+ *     name: "IP Block Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: exampleDatacenter.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: example.then(example => example.name),
+ *     imagePassword: serverImagePassword.result,
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             exampleIPBlock.ips[0],
+ *             exampleIPBlock.ips[1],
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: exampleIPBlock.ips[2],
+ *             targetIp: exampleIPBlock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ *     labels: [
+ *         {
+ *             key: "labelkey1",
+ *             value: "labelvalue1",
+ *         },
+ *         {
+ *             key: "labelkey2",
+ *             value: "labelvalue2",
+ *         },
+ *     ],
+ * });
+ * ```
+ * ### With IPv6 Enabled
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Resource Server Test",
+ *     location: "us/las",
+ * });
+ * const webserverIpblock = new ionoscloud.compute.IPBlock("webserver_ipblock", {
+ *     location: "us/las",
+ *     size: 4,
+ *     name: "webserver_ipblock",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "public",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Resource Server Test",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: serverImagePassword.result,
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             webserverIpblock.ips[0],
+ *             webserverIpblock.ips[1],
+ *         ],
+ *         dhcpv6: true,
+ *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6Ips: [
+ *             "ipv6_ip1",
+ *             "ipv6_ip2",
+ *             "ipv6_ip3",
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: webserverIpblock.ips[2],
+ *             targetIp: webserverIpblock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ * });
+ * ```
+ *
+ * ### CUBE Server
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getTemplate({
+ *     name: "Basic Cube XS",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     availabilityZone: "ZONE_2",
+ *     imageName: "ubuntu:latest",
+ *     type: "CUBE",
+ *     templateUuid: example.then(example => example.id),
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleDatacenter.id,
+ *     volume: {
+ *         name: "Volume Example",
+ *         licenceType: "LINUX",
+ *         diskType: "DAS",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "Nic Example",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * ```
+ *
+ * ### Server that boots from CDROM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const cdromDatacenter = new ionoscloud.compute.Datacenter("cdrom", {
+ *     name: "CDROM Test",
+ *     location: "de/txl",
+ *     description: "CDROM image test",
+ *     secAuthProtection: false,
+ * });
+ * const _public = new ionoscloud.compute.Lan("public", {
+ *     datacenterId: cdromDatacenter.id,
+ *     "public": true,
+ *     name: "Uplink",
+ * });
+ * const cdrom = ionoscloud.compute.getImage({
+ *     imageAlias: "ubuntu:latest_iso",
+ *     type: "CDROM",
+ *     location: "de/txl",
+ *     cloudInit: "NONE",
+ * });
+ * const test = new ionoscloud.compute.Server("test", {
+ *     datacenterId: cdromDatacenter.id,
+ *     name: "ubuntu_latest_from_cdrom",
+ *     cores: 1,
+ *     ram: 1024,
+ *     cpuFamily: cdromDatacenter.cpuArchitectures.apply(cpuArchitectures => cpuArchitectures[0].cpuFamily),
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "hdd0",
+ *         diskType: "HDD",
+ *         size: 50,
+ *         licenceType: "OTHER",
+ *     },
+ *     nic: {
+ *         lan: 1,
+ *         dhcp: true,
+ *         firewallActive: false,
+ *     },
+ * });
+ * ```
+ *
+ * ## Notes
+ *
+ * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ *
+ * ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+ * from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+ *
  * ## Import
  *
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}
+ * $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
  * ```
  *
- * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+ * $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id
  * ```
  */
 export class Server extends pulumi.CustomResource {
@@ -49,6 +310,24 @@ export class Server extends pulumi.CustomResource {
         return obj['__pulumiType'] === Server.__pulumiType;
     }
 
+    /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    public readonly allowReplace!: pulumi.Output<boolean | undefined>;
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
@@ -88,6 +367,10 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly firewallruleIds!: pulumi.Output<string[]>;
     /**
+     * (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    public readonly hostname!: pulumi.Output<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     public readonly imageName!: pulumi.Output<string>;
@@ -97,18 +380,6 @@ export class Server extends pulumi.CustomResource {
     public readonly imagePassword!: pulumi.Output<string>;
     /**
      * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     public /*out*/ readonly inlineVolumeIds!: pulumi.Output<string[]>;
     /**
@@ -135,6 +406,10 @@ export class Server extends pulumi.CustomResource {
      * (Computed)[integer] The amount of memory for the server in MB.
      */
     public readonly ram!: pulumi.Output<number>;
+    /**
+     * The list of Security Group IDs for the
+     */
+    public readonly securityGroupsIds!: pulumi.Output<string[] | undefined>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *
@@ -175,6 +450,7 @@ export class Server extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerState | undefined;
+            resourceInputs["allowReplace"] = state ? state.allowReplace : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = state ? state.bootCdrom : undefined;
             resourceInputs["bootImage"] = state ? state.bootImage : undefined;
@@ -184,6 +460,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["firewallruleId"] = state ? state.firewallruleId : undefined;
             resourceInputs["firewallruleIds"] = state ? state.firewallruleIds : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["imageName"] = state ? state.imageName : undefined;
             resourceInputs["imagePassword"] = state ? state.imagePassword : undefined;
             resourceInputs["inlineVolumeIds"] = state ? state.inlineVolumeIds : undefined;
@@ -193,6 +470,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["primaryIp"] = state ? state.primaryIp : undefined;
             resourceInputs["primaryNic"] = state ? state.primaryNic : undefined;
             resourceInputs["ram"] = state ? state.ram : undefined;
+            resourceInputs["securityGroupsIds"] = state ? state.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = state ? state.sshKeyPaths : undefined;
             resourceInputs["sshKeys"] = state ? state.sshKeys : undefined;
             resourceInputs["templateUuid"] = state ? state.templateUuid : undefined;
@@ -207,6 +485,7 @@ export class Server extends pulumi.CustomResource {
             if ((!args || args.volume === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volume'");
             }
+            resourceInputs["allowReplace"] = args ? args.allowReplace : undefined;
             resourceInputs["availabilityZone"] = args ? args.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = args ? args.bootCdrom : undefined;
             resourceInputs["bootImage"] = args ? args.bootImage : undefined;
@@ -214,12 +493,14 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["cpuFamily"] = args ? args.cpuFamily : undefined;
             resourceInputs["datacenterId"] = args ? args.datacenterId : undefined;
             resourceInputs["firewallruleIds"] = args ? args.firewallruleIds : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["imageName"] = args ? args.imageName : undefined;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nic"] = args ? args.nic : undefined;
             resourceInputs["ram"] = args ? args.ram : undefined;
+            resourceInputs["securityGroupsIds"] = args ? args.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = args ? args.sshKeyPaths : undefined;
             resourceInputs["sshKeys"] = args ? args.sshKeys : undefined;
             resourceInputs["templateUuid"] = args ? args.templateUuid : undefined;
@@ -243,6 +524,24 @@ export class Server extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Server resources.
  */
 export interface ServerState {
+    /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    allowReplace?: pulumi.Input<boolean>;
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
@@ -282,6 +581,10 @@ export interface ServerState {
      */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    hostname?: pulumi.Input<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     imageName?: pulumi.Input<string>;
@@ -291,18 +594,6 @@ export interface ServerState {
     imagePassword?: pulumi.Input<string>;
     /**
      * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -329,6 +620,10 @@ export interface ServerState {
      * (Computed)[integer] The amount of memory for the server in MB.
      */
     ram?: pulumi.Input<number>;
+    /**
+     * The list of Security Group IDs for the
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *
@@ -362,6 +657,24 @@ export interface ServerState {
  */
 export interface ServerArgs {
     /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    allowReplace?: pulumi.Input<boolean>;
+    /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
     availabilityZone?: pulumi.Input<string>;
@@ -392,6 +705,10 @@ export interface ServerArgs {
      */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    hostname?: pulumi.Input<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     imageName?: pulumi.Input<string>;
@@ -415,6 +732,10 @@ export interface ServerArgs {
      * (Computed)[integer] The amount of memory for the server in MB.
      */
     ram?: pulumi.Input<number>;
+    /**
+     * The list of Security Group IDs for the
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *

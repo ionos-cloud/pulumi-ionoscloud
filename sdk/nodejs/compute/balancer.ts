@@ -70,7 +70,7 @@ import * as utilities from "../utilities";
  * Resource Load Balancer can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/balancer:Balancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+ * $ pulumi import ionoscloud:compute/balancer:Balancer myloadbalancer datacenter uuid/loadbalancer uuid
  * ```
  */
 export class Balancer extends pulumi.CustomResource {

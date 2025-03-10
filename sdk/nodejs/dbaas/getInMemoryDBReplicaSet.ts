@@ -33,7 +33,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  */
-export function getInMemoryDBReplicaSet(args: GetInMemoryDBReplicaSetArgs, opts?: pulumi.InvokeOptions): Promise<GetInMemoryDBReplicaSetResult> {
+export function getInMemoryDBReplicaSet(args?: GetInMemoryDBReplicaSetArgs, opts?: pulumi.InvokeOptions): Promise<GetInMemoryDBReplicaSetResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", {
         "displayName": args.displayName,
@@ -59,7 +60,7 @@ export interface GetInMemoryDBReplicaSetArgs {
      *
      * > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    location: string;
+    location?: string;
 }
 
 /**
@@ -74,7 +75,7 @@ export interface GetInMemoryDBReplicaSetResult {
      * [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. It includes:
      */
     readonly credentials: outputs.dbaas.GetInMemoryDBReplicaSetCredential[];
-    readonly displayName?: string;
+    readonly displayName: string;
     /**
      * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      */
@@ -83,8 +84,8 @@ export interface GetInMemoryDBReplicaSetResult {
      * [string] The eviction policy for the replica set, possible values are:
      */
     readonly evictionPolicy: string;
-    readonly id?: string;
-    readonly location: string;
+    readonly id: string;
+    readonly location?: string;
     /**
      * A weekly 4 hour-long window, during which maintenance might occur. It includes:
      */
@@ -137,7 +138,8 @@ export interface GetInMemoryDBReplicaSetResult {
  * });
  * ```
  */
-export function getInMemoryDBReplicaSetOutput(args: GetInMemoryDBReplicaSetOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInMemoryDBReplicaSetResult> {
+export function getInMemoryDBReplicaSetOutput(args?: GetInMemoryDBReplicaSetOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInMemoryDBReplicaSetResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", {
         "displayName": args.displayName,
@@ -163,5 +165,5 @@ export interface GetInMemoryDBReplicaSetOutputArgs {
      *
      * > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
 }

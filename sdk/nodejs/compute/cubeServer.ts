@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * import * as random from "@pulumi/random";
  *
  * const example = ionoscloud.compute.getTemplate({
- *     name: "CUBES XS",
+ *     name: "Basic Cube XS",
  * });
  * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Example",
@@ -57,12 +57,77 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With IPv6 Enabled
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getTemplate({
+ *     name: "Basic Cube XS",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ * });
+ * const webserverIpblock = new ionoscloud.compute.IPBlock("webserver_ipblock", {
+ *     location: "de/txl",
+ *     size: 4,
+ *     name: "webserver_ipblock",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleCubeServer = new ionoscloud.compute.CubeServer("example", {
+ *     name: "Server Example",
+ *     availabilityZone: "AUTO",
+ *     imageName: "ubuntu:latest",
+ *     templateUuid: example.then(example => example.id),
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleDatacenter.id,
+ *     volume: {
+ *         name: "Volume Example",
+ *         licenceType: "LINUX",
+ *         diskType: "DAS",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "Nic Example",
+ *         dhcp: true,
+ *         ips: [
+ *             webserverIpblock.ips[0],
+ *             webserverIpblock.ips[1],
+ *         ],
+ *         dhcpv6: false,
+ *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6Ips: [
+ *             "ipv6_ip1",
+ *             "ipv6_ip2",
+ *             "ipv6_ip3",
+ *         ],
+ *         firewallActive: true,
+ *     },
+ * });
+ * ```
+ *
+ * ## Notes
+ *
+ * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ *
  * ## Import
  *
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
+ * $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver datacenter uuid/server uuid
  * ```
  */
 export class CubeServer extends pulumi.CustomResource {
@@ -94,6 +159,22 @@ export class CubeServer extends pulumi.CustomResource {
     }
 
     /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > For creating a **CUBE** server, you can not set `volume.size` argument.
+     * >
+     */
+    public readonly allowReplace!: pulumi.Output<boolean | undefined>;
+    /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
     public readonly availabilityZone!: pulumi.Output<string>;
@@ -120,21 +201,15 @@ export class CubeServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly firewallruleId!: pulumi.Output<string>;
     /**
+     * (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    public readonly hostname!: pulumi.Output<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     public readonly imageName!: pulumi.Output<string>;
     /**
      * [string] Required if `sshKeyPath` is not provided.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > For creating a **CUBE** server, you can not set `volume.size` argument.
-     * >
      */
     public readonly imagePassword!: pulumi.Output<string>;
     /**
@@ -157,6 +232,10 @@ export class CubeServer extends pulumi.CustomResource {
      * The associated NIC.
      */
     public /*out*/ readonly primaryNic!: pulumi.Output<string>;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    public readonly securityGroupsIds!: pulumi.Output<string[] | undefined>;
     /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */
@@ -187,12 +266,14 @@ export class CubeServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CubeServerState | undefined;
+            resourceInputs["allowReplace"] = state ? state.allowReplace : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = state ? state.bootCdrom : undefined;
             resourceInputs["bootImage"] = state ? state.bootImage : undefined;
             resourceInputs["bootVolume"] = state ? state.bootVolume : undefined;
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["firewallruleId"] = state ? state.firewallruleId : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["imageName"] = state ? state.imageName : undefined;
             resourceInputs["imagePassword"] = state ? state.imagePassword : undefined;
             resourceInputs["inlineVolumeIds"] = state ? state.inlineVolumeIds : undefined;
@@ -200,6 +281,7 @@ export class CubeServer extends pulumi.CustomResource {
             resourceInputs["nic"] = state ? state.nic : undefined;
             resourceInputs["primaryIp"] = state ? state.primaryIp : undefined;
             resourceInputs["primaryNic"] = state ? state.primaryNic : undefined;
+            resourceInputs["securityGroupsIds"] = state ? state.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = state ? state.sshKeyPaths : undefined;
             resourceInputs["templateUuid"] = state ? state.templateUuid : undefined;
             resourceInputs["vmState"] = state ? state.vmState : undefined;
@@ -218,14 +300,17 @@ export class CubeServer extends pulumi.CustomResource {
             if ((!args || args.volume === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volume'");
             }
+            resourceInputs["allowReplace"] = args ? args.allowReplace : undefined;
             resourceInputs["availabilityZone"] = args ? args.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = args ? args.bootCdrom : undefined;
             resourceInputs["bootImage"] = args ? args.bootImage : undefined;
             resourceInputs["datacenterId"] = args ? args.datacenterId : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["imageName"] = args ? args.imageName : undefined;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nic"] = args ? args.nic : undefined;
+            resourceInputs["securityGroupsIds"] = args ? args.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = args ? args.sshKeyPaths : undefined;
             resourceInputs["templateUuid"] = args ? args.templateUuid : undefined;
             resourceInputs["vmState"] = args ? args.vmState : undefined;
@@ -247,6 +332,22 @@ export class CubeServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CubeServer resources.
  */
 export interface CubeServerState {
+    /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > For creating a **CUBE** server, you can not set `volume.size` argument.
+     * >
+     */
+    allowReplace?: pulumi.Input<boolean>;
     /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
@@ -274,21 +375,15 @@ export interface CubeServerState {
      */
     firewallruleId?: pulumi.Input<string>;
     /**
+     * (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    hostname?: pulumi.Input<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     imageName?: pulumi.Input<string>;
     /**
      * [string] Required if `sshKeyPath` is not provided.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > For creating a **CUBE** server, you can not set `volume.size` argument.
-     * >
      */
     imagePassword?: pulumi.Input<string>;
     /**
@@ -312,6 +407,10 @@ export interface CubeServerState {
      */
     primaryNic?: pulumi.Input<string>;
     /**
+     * The list of Security Group IDs for the resource.
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
@@ -334,6 +433,22 @@ export interface CubeServerState {
  */
 export interface CubeServerArgs {
     /**
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > For creating a **CUBE** server, you can not set `volume.size` argument.
+     * >
+     */
+    allowReplace?: pulumi.Input<boolean>;
+    /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
     availabilityZone?: pulumi.Input<string>;
@@ -352,21 +467,15 @@ export interface CubeServerArgs {
      */
     datacenterId: pulumi.Input<string>;
     /**
+     * (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+     */
+    hostname?: pulumi.Input<string>;
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
     imageName?: pulumi.Input<string>;
     /**
      * [string] Required if `sshKeyPath` is not provided.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > For creating a **CUBE** server, you can not set `volume.size` argument.
-     * >
      */
     imagePassword?: pulumi.Input<string>;
     /**
@@ -377,6 +486,10 @@ export interface CubeServerArgs {
      * See the Nic section.
      */
     nic: pulumi.Input<inputs.compute.CubeServerNic>;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */

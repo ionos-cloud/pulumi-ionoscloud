@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+ * $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example location:provider_id
  * ```
  */
 export class AutoCertificateProvider extends pulumi.CustomResource {
@@ -74,7 +74,7 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
     /**
      * [string] The location of the provider.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * [string] The name of the certificate provider.
      */
@@ -106,9 +106,6 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
             const args = argsOrState as AutoCertificateProviderArgs | undefined;
             if ((!args || args.email === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'email'");
-            }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
             }
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
@@ -165,7 +162,7 @@ export interface AutoCertificateProviderArgs {
     /**
      * [string] The location of the provider.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the certificate provider.
      */

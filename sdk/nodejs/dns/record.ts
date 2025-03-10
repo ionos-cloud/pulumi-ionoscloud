@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `zone_id` and the `record_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
+ * $ pulumi import ionoscloud:dns/record:Record example zone_id/record_id
  * ```
  */
 export class Record extends pulumi.CustomResource {

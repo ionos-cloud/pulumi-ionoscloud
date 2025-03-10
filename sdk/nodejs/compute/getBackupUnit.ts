@@ -12,6 +12,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getBackupUnit({
+ *     id: "backup_unit_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -58,7 +68,7 @@ export interface GetBackupUnitResult {
     /**
      * The id of the Backup Unit.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The login associated with the backup unit. Derived from the contract number.
      */
@@ -66,7 +76,7 @@ export interface GetBackupUnitResult {
     /**
      * The name of the Backup Unit.
      */
-    readonly name?: string;
+    readonly name: string;
 }
 /**
  * The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
@@ -75,6 +85,16 @@ export interface GetBackupUnitResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getBackupUnit({
+ *     id: "backup_unit_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

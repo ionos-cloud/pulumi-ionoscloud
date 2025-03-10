@@ -77,7 +77,7 @@ import * as utilities from "../utilities";
  * Resource Firewall can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
+ * $ pulumi import ionoscloud:compute/firewall:Firewall myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
  * ```
  */
 export class Firewall extends pulumi.CustomResource {

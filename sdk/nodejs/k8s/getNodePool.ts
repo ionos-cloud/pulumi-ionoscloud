@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePool({
+ *     id: "k8s_nodepool_id",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePool({
+ *     name: "k8s NodePool Example",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
  */
 export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -77,7 +99,7 @@ export interface GetNodePoolResult {
     /**
      * The LAN ID of an existing LAN at the related datacenter
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * ID of the cluster this node pool is part of
      */
@@ -101,7 +123,7 @@ export interface GetNodePoolResult {
     /**
      * name of the node pool
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * The number of nodes in this node pool
      */
@@ -145,6 +167,28 @@ export interface GetNodePoolResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePool({
+ *     id: "k8s_nodepool_id",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getNodePool({
+ *     name: "k8s NodePool Example",
+ *     k8sClusterId: "k8s_cluster_id",
+ * });
+ * ```
  */
 export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

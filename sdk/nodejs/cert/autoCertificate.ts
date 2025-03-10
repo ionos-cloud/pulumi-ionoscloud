@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  * The resource can be imported using the `auto_certificate_id` and the `location`, separated by `:`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example {location}:{auto_certificate_id}
+ * $ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example location:auto_certificate_id
  * ```
  */
 export class AutoCertificate extends pulumi.CustomResource {

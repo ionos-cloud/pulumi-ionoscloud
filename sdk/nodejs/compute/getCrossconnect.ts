@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCrossconnect({
+ *     id: "private_crossconnect_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -64,15 +74,15 @@ export interface GetCrossconnectResult {
     /**
      * Description of cross connect
      */
-    readonly description?: string;
+    readonly description: string;
     /**
      * The UUID of the connectable datacenter
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of the connectable datacenter
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Lists LAN's joined to this cross connect
      */
@@ -84,6 +94,16 @@ export interface GetCrossconnectResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getCrossconnect({
+ *     id: "private_crossconnect_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

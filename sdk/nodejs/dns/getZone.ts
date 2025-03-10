@@ -13,6 +13,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getZone({
+ *     id: "zone_id",
+ * });
+ * ```
+ *
  * ### By name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -79,11 +90,11 @@ export interface GetZoneResult {
     /**
      * The UUID of the DNS Zone.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of the DNS Zone.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * A list of available name servers.
      */
@@ -98,6 +109,17 @@ export interface GetZoneResult {
  * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dns.getZone({
+ *     id: "zone_id",
+ * });
+ * ```
  *
  * ### By name
  * ```typescript

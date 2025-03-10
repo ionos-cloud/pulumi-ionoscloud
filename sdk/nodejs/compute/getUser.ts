@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     id: "user_id",
+ * });
+ * ```
+ *
  * ### By Email
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -83,7 +93,7 @@ export interface GetUserResult {
     /**
      * The id of the user.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The last name for the user.
      */
@@ -103,6 +113,16 @@ export interface GetUserResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     id: "user_id",
+ * });
+ * ```
  *
  * ### By Email
  * ```typescript

@@ -9,12 +9,75 @@ import * as utilities from "../utilities";
 /**
  * Manages a **DBaaS InMemoryDB Replica Set**.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example",
+ *     location: "de/txl",
+ *     description: "Datacenter for DBaaS InMemoryDB replica sets",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example",
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example",
+ *     datacenterId: example.id,
+ *     cores: 2,
+ *     ram: 2048,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "rockylinux-8-GenericCloud-20230518",
+ *     imagePassword: "password",
+ *     volume: {
+ *         name: "example",
+ *         size: 10,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example",
+ *         dhcp: true,
+ *     },
+ * });
+ * const exampleInMemoryDBReplicaSet = new ionoscloud.dbaas.InMemoryDBReplicaSet("example", {
+ *     location: example.location,
+ *     displayName: "ExampleReplicaSet",
+ *     version: "7.2",
+ *     replicas: 4,
+ *     resources: {
+ *         cores: 1,
+ *         ram: 6,
+ *     },
+ *     persistenceMode: "RDB",
+ *     evictionPolicy: "noeviction",
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         cidr: "database_ip_cidr_from_nic",
+ *     },
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Monday",
+ *         time: "10:00:00",
+ *     },
+ *     credentials: {
+ *         username: "myuser",
+ *         plainTextPassword: "testpassword",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+ * $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example location:replicaSet uuid
  * ```
  */
 export class InMemoryDBReplicaSet extends pulumi.CustomResource {
@@ -59,6 +122,8 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
     public readonly displayName!: pulumi.Output<string>;
     /**
      * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     public /*out*/ readonly dnsName!: pulumi.Output<string>;
     /**
@@ -70,9 +135,9 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
      */
     public readonly initialSnapshotId!: pulumi.Output<string | undefined>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
@@ -137,9 +202,6 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
             if ((!args || args.evictionPolicy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'evictionPolicy'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             if ((!args || args.persistenceMode === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'persistenceMode'");
             }
@@ -188,6 +250,8 @@ export interface InMemoryDBReplicaSetState {
     displayName?: pulumi.Input<string>;
     /**
      * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     dnsName?: pulumi.Input<string>;
     /**
@@ -199,7 +263,7 @@ export interface InMemoryDBReplicaSetState {
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -253,9 +317,9 @@ export interface InMemoryDBReplicaSetArgs {
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */

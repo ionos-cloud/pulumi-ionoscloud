@@ -14,6 +14,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getDatacenter({
+ *     id: "datacenter_id",
+ * });
+ * ```
+ *
  * ### By Name & Location
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -74,7 +84,7 @@ export interface GetDatacenterResult {
     /**
      * UUID of the Virtual Data Center
      */
-    readonly id?: string;
+    readonly id: string;
     readonly ipv6CidrBlock: string;
     /**
      * The regional location where the Virtual Data Center will be created
@@ -83,7 +93,7 @@ export interface GetDatacenterResult {
     /**
      * The name of the Virtual Data Center
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Boolean value representing if the data center requires extra protection e.g. two factor protection
      */
@@ -100,6 +110,16 @@ export interface GetDatacenterResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getDatacenter({
+ *     id: "datacenter_id",
+ * });
+ * ```
  *
  * ### By Name & Location
  * ```typescript

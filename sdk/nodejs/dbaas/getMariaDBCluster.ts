@@ -11,6 +11,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBCluster({
+ *     id: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ *
  * ### By Name
  *
  * ```typescript
@@ -70,12 +81,12 @@ export interface GetMariaDBClusterResult {
     /**
      * [string] The friendly name of your cluster.
      */
-    readonly displayName?: string;
+    readonly displayName: string;
     /**
      * [string] The DNS name pointing to your cluster.
      */
     readonly dnsName: string;
-    readonly id?: string;
+    readonly id: string;
     /**
      * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
@@ -102,6 +113,17 @@ export interface GetMariaDBClusterResult {
  * The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBCluster({
+ *     id: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
  *
  * ### By Name
  *

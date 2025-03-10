@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  * Resource Share can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
+ * $ pulumi import ionoscloud:compute/share:Share myshare group uuid/resource uuid
  * ```
  */
 export class Share extends pulumi.CustomResource {

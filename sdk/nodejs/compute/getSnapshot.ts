@@ -9,6 +9,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getSnapshot({
+ *     id: "snapshot_id",
+ * });
+ * ```
+ *
  * ### By Name & Size & Location
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -95,7 +105,7 @@ export interface GetSnapshotResult {
     /**
      * UUID of the snapshot
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * OS type of this Snapshot
      */
@@ -137,6 +147,16 @@ export interface GetSnapshotResult {
  * The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getSnapshot({
+ *     id: "snapshot_id",
+ * });
+ * ```
  *
  * ### By Name & Size & Location
  * ```typescript

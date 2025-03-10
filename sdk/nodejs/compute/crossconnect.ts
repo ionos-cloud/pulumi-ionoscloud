@@ -53,10 +53,10 @@ import * as utilities from "../utilities";
  * A Cross Connect resource can be imported using its `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
+ * $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
  * ```
  *
- * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
+ * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
  */
 export class Crossconnect extends pulumi.CustomResource {
     /**

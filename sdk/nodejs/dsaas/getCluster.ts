@@ -13,6 +13,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ *
  * ### By Name
  *
  * ```typescript
@@ -142,7 +152,7 @@ export interface GetClusterResult {
     /**
      * The UUID of the cluster.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Kubernetes configuration
      */
@@ -158,7 +168,7 @@ export interface GetClusterResult {
     /**
      * The name of your cluster.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     /**
      * cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
@@ -181,6 +191,16 @@ export interface GetClusterResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
  *
  * ### By Name
  *

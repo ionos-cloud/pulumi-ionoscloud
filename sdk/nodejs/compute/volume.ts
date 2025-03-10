@@ -7,12 +7,115 @@ import * as utilities from "../utilities";
 /**
  * Manages a **Volume** on IonosCloud.
  *
+ * ## Example Usage
+ *
+ * A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
+ *     cloudInit: "V1",
+ *     imageAlias: "ubuntu:latest",
+ *     location: "us/las",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: exampleDatacenter.location,
+ *     size: 4,
+ *     name: "IP Block Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: exampleDatacenter.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: example.then(example => example.name),
+ *     imagePassword: serverImagePassword.result,
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             exampleIPBlock.ips[0],
+ *             exampleIPBlock.ips[1],
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: exampleIPBlock.ips[2],
+ *             targetIp: exampleIPBlock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ * });
+ * const volumeImagePassword = new random.index.Password("volume_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleVolume = new ionoscloud.compute.Volume("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     serverId: exampleServer.id,
+ *     name: "Volume Example",
+ *     availabilityZone: "ZONE_1",
+ *     size: 5,
+ *     diskType: "SSD Standard",
+ *     bus: "VIRTIO",
+ *     imageName: example.then(example => example.name),
+ *     imagePassword: volumeImagePassword.result,
+ *     userData: "foo",
+ * });
+ * const example2 = new ionoscloud.compute.Volume("example2", {
+ *     datacenterId: exampleDatacenter.id,
+ *     serverId: exampleServer.id,
+ *     name: "Another Volume Example",
+ *     availabilityZone: "ZONE_1",
+ *     size: 5,
+ *     diskType: "SSD Standard",
+ *     bus: "VIRTIO",
+ *     licenceType: "OTHER",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource Volume can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+ * $ pulumi import ionoscloud:compute/volume:Volume myvolume datacenter uuid/server uuid/volume uuid
  * ```
  */
 export class Volume extends pulumi.CustomResource {

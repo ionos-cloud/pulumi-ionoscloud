@@ -13,6 +13,17 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getBalancer({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     id: "networkloadbalancer_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -69,7 +80,7 @@ export interface GetBalancerResult {
     /**
      * Id of that Network Load Balancer
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
      */
@@ -86,7 +97,7 @@ export interface GetBalancerResult {
     /**
      * Specifies the name of the flow log.
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * Id of the balanced private target LAN. (outbound)
      */
@@ -98,6 +109,17 @@ export interface GetBalancerResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getBalancer({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     id: "networkloadbalancer_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

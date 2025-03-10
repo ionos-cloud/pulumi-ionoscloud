@@ -10,6 +10,32 @@ import * as utilities from "../utilities";
  * The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getForwardingRule({
+ *     datacenterId: "datacenter_id",
+ *     networkloadbalancerId: "networkloadbalancer_id",
+ *     id: "networkloadbalancer_forwardingrule_id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getForwardingRule({
+ *     datacenterId: "datacenter_id",
+ *     networkloadbalancerId: "networkloadbalancer_id",
+ *     name: "Network Load Balancer Forwarding Rule Example",
+ * });
+ * ```
  */
 export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetForwardingRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -61,7 +87,7 @@ export interface GetForwardingRuleResult {
     /**
      * The id of that Network Load Balancer forwarding rule.
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Listening IP. (inbound)
      */
@@ -73,7 +99,7 @@ export interface GetForwardingRuleResult {
     /**
      * The name of that Network Load Balancer forwarding rule.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly networkloadbalancerId: string;
     /**
      * Protocol of the balancing.
@@ -88,6 +114,32 @@ export interface GetForwardingRuleResult {
  * The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getForwardingRule({
+ *     datacenterId: "datacenter_id",
+ *     networkloadbalancerId: "networkloadbalancer_id",
+ *     id: "networkloadbalancer_forwardingrule_id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nlb.getForwardingRule({
+ *     datacenterId: "datacenter_id",
+ *     networkloadbalancerId: "networkloadbalancer_id",
+ *     name: "Network Load Balancer Forwarding Rule Example",
+ * });
+ * ```
  */
 export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetForwardingRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

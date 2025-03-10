@@ -10,6 +10,17 @@ import * as utilities from "../utilities";
  * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLBackups({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
  */
 export function getPSQLBackups(args: GetPSQLBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLBackupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -51,6 +62,17 @@ export interface GetPSQLBackupsResult {
  * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLBackups({
+ *     clusterId: "cluster_id",
+ * });
+ * ```
  */
 export function getPSQLBackupsOutput(args: GetPSQLBackupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLBackupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

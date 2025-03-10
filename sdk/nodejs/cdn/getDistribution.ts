@@ -14,6 +14,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cdn.getDistribution({
+ *     id: "distr_id",
+ * });
+ * ```
+ *
  * ### By Domain
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -77,7 +87,7 @@ export interface GetDistributionResult {
      * The domain of the distribution.
      */
     readonly domain?: string;
-    readonly id?: string;
+    readonly id: string;
     readonly partialMatch?: boolean;
     /**
      * IP of the distribution, it has to be included on the domain DNS Zone as A record.
@@ -103,6 +113,16 @@ export interface GetDistributionResult {
  * When this happens, please refine your search and make sure that your resources have unique domains.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cdn.getDistribution({
+ *     id: "distr_id",
+ * });
+ * ```
  *
  * ### By Domain
  * ```typescript

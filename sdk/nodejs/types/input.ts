@@ -528,6 +528,10 @@ export namespace compute {
          */
         name?: pulumi.Input<string>;
         pciSlot?: pulumi.Input<number>;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface CubeServerNicFirewall {
@@ -567,16 +571,6 @@ export namespace compute {
         diskType: pulumi.Input<string>;
         /**
          * [string] Required if `sshKeyPath` is not provided.
-         *
-         * > **⚠ WARNING**
-         * >
-         * > Image_name under volume level is deprecated, please use imageName under server level
-         *
-         *
-         * > **⚠ WARNING**
-         * >
-         * > For creating a **CUBE** server, you can not set `volume.size` argument.
-         * >
          *
          * @deprecated Please use imagePassword under server level
          */
@@ -622,30 +616,6 @@ export namespace compute {
          * A valid CPU vendor name
          */
         vendor?: pulumi.Input<string>;
-    }
-
-    export interface GetIPBlockIpConsumer {
-        datacenterId?: string;
-        datacenterName?: string;
-        ip?: string;
-        k8sClusterUuid?: string;
-        k8sNodepoolUuid?: string;
-        mac?: string;
-        nicId?: string;
-        serverId?: string;
-        serverName?: string;
-    }
-
-    export interface GetIPBlockIpConsumerArgs {
-        datacenterId?: pulumi.Input<string>;
-        datacenterName?: pulumi.Input<string>;
-        ip?: pulumi.Input<string>;
-        k8sClusterUuid?: pulumi.Input<string>;
-        k8sNodepoolUuid?: pulumi.Input<string>;
-        mac?: pulumi.Input<string>;
-        nicId?: pulumi.Input<string>;
-        serverId?: pulumi.Input<string>;
-        serverName?: pulumi.Input<string>;
     }
 
     export interface GetServersFilter {
@@ -726,8 +696,6 @@ export namespace compute {
         id?: pulumi.Input<string>;
         /**
          * Specifies the name of the flow log.
-         *
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
          */
         name: pulumi.Input<string>;
     }
@@ -776,6 +744,10 @@ export namespace compute {
          */
         name?: pulumi.Input<string>;
         pciSlot?: pulumi.Input<number>;
+        /**
+         * The list of Security Group IDs for the
+         */
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface ServerNicFirewall {
@@ -955,6 +927,14 @@ export namespace compute {
          */
         name?: pulumi.Input<string>;
         pciSlot?: pulumi.Input<number>;
+        /**
+         * The list of Security Group IDs for the resource.
+         *
+         * > **⚠ WARNING**
+         * >
+         * > sshKeys field is immutable.
+         */
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface VCPUServerNicFirewall {
@@ -1361,6 +1341,17 @@ export namespace dsaas {
         time: pulumi.Input<string>;
     }
 
+    export interface NodePoolAutoScaling {
+        /**
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: pulumi.Input<number>;
+        /**
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: pulumi.Input<number>;
+    }
+
     export interface NodePoolMaintenanceWindow {
         /**
          * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
@@ -1518,6 +1509,8 @@ export namespace nfs {
         ipAddress: pulumi.Input<string>;
         /**
          * The Private LAN to which the Network File Storage cluster must be connected.
+         * -
+         * > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
         lan: pulumi.Input<string>;
     }
@@ -1693,6 +1686,9 @@ export namespace nlb {
 
 }
 
+export namespace nsg {
+}
+
 export namespace vpn {
     export interface IpsecGatewayConnection {
         /**
@@ -1713,6 +1709,17 @@ export namespace vpn {
          * [string] The numeric LAN ID to connect your VPN Gateway to.
          */
         lanId: pulumi.Input<string>;
+    }
+
+    export interface IpsecGatewayMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: pulumi.Input<string>;
     }
 
     export interface IpsecTunnelAuth {
@@ -1795,6 +1802,17 @@ export namespace vpn {
          * [String] The ID of the LAN where the WireGuard Gateway is connected.
          */
         lanId: pulumi.Input<string>;
+    }
+
+    export interface WireguardGatewayMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: pulumi.Input<string>;
     }
 
     export interface WireguardPeerEndpoint {

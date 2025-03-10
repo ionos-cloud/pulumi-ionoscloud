@@ -13,6 +13,33 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getRoute({
+ *     id: "your_apigateway_route_id",
+ *     gatewayId: "your_gateway_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getRoute({
+ *     name: "apigateway-route",
+ *     gatewayId: "your_gateway_id",
+ * });
+ * ```
  */
 export function getRoute(args: GetRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetRouteResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -82,6 +109,33 @@ export interface GetRouteResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getRoute({
+ *     id: "your_apigateway_route_id",
+ *     gatewayId: "your_gateway_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
+ * this data source is called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.apigateway.getRoute({
+ *     name: "apigateway-route",
+ *     gatewayId: "your_gateway_id",
+ * });
+ * ```
  */
 export function getRouteOutput(args: GetRouteOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRouteResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

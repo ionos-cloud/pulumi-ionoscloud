@@ -12,6 +12,31 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ * ### By displayName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     displayName: "display_name",
+ * });
+ * ```
+ *
+ * * `displayName` - (Optional) Display Name of an existing cluster that you want to search for.
+ * * `id` - (Optional) ID of the cluster you want to search for.
+ *
+ * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
  */
 export function getMongoCluster(args?: GetMongoClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoClusterResult> {
     args = args || {};
@@ -54,12 +79,12 @@ export interface GetMongoClusterResult {
     /**
      * The name of your cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    readonly displayName?: string;
+    readonly displayName: string;
     /**
      * Cluster edition. Playground, business or enterprise.
      */
     readonly edition: string;
-    readonly id?: string;
+    readonly id: string;
     /**
      * The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
      */
@@ -101,6 +126,31 @@ export interface GetMongoClusterResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ * ### By displayName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     displayName: "display_name",
+ * });
+ * ```
+ *
+ * * `displayName` - (Optional) Display Name of an existing cluster that you want to search for.
+ * * `id` - (Optional) ID of the cluster you want to search for.
+ *
+ * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
  */
 export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoClusterResult> {
     args = args || {};

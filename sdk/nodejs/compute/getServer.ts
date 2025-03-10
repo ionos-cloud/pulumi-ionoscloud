@@ -12,6 +12,28 @@ import * as utilities from "../utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "Server Example",
+ * });
+ * ```
  */
 export function getServer(args: GetServerArgs, opts?: pulumi.InvokeOptions): Promise<GetServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -80,9 +102,13 @@ export interface GetServerResult {
      */
     readonly datacenterId: string;
     /**
+     * The hostname of the resource.
+     */
+    readonly hostname: string;
+    /**
      * The Id of the label
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * list of
      */
@@ -90,7 +116,7 @@ export interface GetServerResult {
     /**
      * Name of the firewall rule
      */
-    readonly name?: string;
+    readonly name: string;
     /**
      * list of
      */
@@ -99,6 +125,10 @@ export interface GetServerResult {
      * The amount of memory for the server in MB
      */
     readonly ram: number;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    readonly securityGroupsIds: string[];
     /**
      * The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      */
@@ -123,6 +153,28 @@ export interface GetServerResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
  * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServer({
+ *     datacenterId: "datacenter_id",
+ *     id: "server_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getServer({
+ *     datacenterId: "datacenter_id",
+ *     name: "Server Example",
+ * });
+ * ```
  */
 export function getServerOutput(args: GetServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

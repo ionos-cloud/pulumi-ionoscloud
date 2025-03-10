@@ -14,6 +14,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getTargetGroup({
+ *     id: "target_group_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -84,11 +94,11 @@ export interface GetTargetGroupResult {
     /**
      * The Id of that Target group
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * The name of that Target Group.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     /**
      * Balancing protocol.
@@ -110,6 +120,16 @@ export interface GetTargetGroupResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getTargetGroup({
+ *     id: "target_group_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

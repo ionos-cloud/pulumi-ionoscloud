@@ -107,9 +107,9 @@ export class Share extends pulumi.CustomResource {
      */
     public readonly gid!: pulumi.Output<number | undefined>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
      * The directory being exported.
      */
@@ -156,9 +156,6 @@ export class Share extends pulumi.CustomResource {
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             resourceInputs["clientGroups"] = args ? args.clientGroups : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["gid"] = args ? args.gid : undefined;
@@ -190,7 +187,7 @@ export interface ShareState {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -228,9 +225,9 @@ export interface ShareArgs {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * The directory being exported.
      */

@@ -6,6 +6,18 @@ import * as utilities from "../utilities";
 
 /**
  * The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLDatabase({
+ *     clusterId: "cluster_id",
+ *     name: "databasename",
+ * });
+ * ```
  */
 export function getPSQLDatabase(args: GetPSQLDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLDatabaseResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -46,6 +58,18 @@ export interface GetPSQLDatabaseResult {
 }
 /**
  * The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLDatabase({
+ *     clusterId: "cluster_id",
+ *     name: "databasename",
+ * });
+ * ```
  */
 export function getPSQLDatabaseOutput(args: GetPSQLDatabaseOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLDatabaseResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -14,6 +14,18 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.alb.getForwardingRule({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
+ *     id: "alb_fwr_id",
+ * });
+ * ```
+ *
  * ### By Name
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -96,7 +108,7 @@ export interface GetForwardingRuleResult {
     /**
      * Id of Application Load Balancer Forwarding Rule
      */
-    readonly id?: string;
+    readonly id: string;
     /**
      * Listening (inbound) IP.
      */
@@ -108,7 +120,7 @@ export interface GetForwardingRuleResult {
     /**
      * The unique name of the Application Load Balancer HTTP rule.
      */
-    readonly name?: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     /**
      * Balancing protocol.
@@ -123,6 +135,18 @@ export interface GetForwardingRuleResult {
  * When this happens, please refine your search and make sure that your resources have unique names.
  *
  * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.alb.getForwardingRule({
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     applicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.id,
+ *     id: "alb_fwr_id",
+ * });
+ * ```
  *
  * ### By Name
  * ```typescript

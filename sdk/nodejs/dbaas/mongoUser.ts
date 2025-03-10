@@ -133,7 +133,7 @@ import * as utilities from "../utilities";
  * Then you can import the user using the following command:
  *
  * ```sh
- * $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+ * $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
  * ```
  */
 export class MongoUser extends pulumi.CustomResource {

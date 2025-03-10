@@ -6,6 +6,18 @@ import * as utilities from "../utilities";
 
 /**
  * The **PgSql User data source** can be used to search for and return an existing PgSql user.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLUser({
+ *     clusterId: "cluster_id",
+ *     username: "username",
+ * });
+ * ```
  */
 export function getPSQLUser(args: GetPSQLUserArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -46,6 +58,18 @@ export interface GetPSQLUserResult {
 }
 /**
  * The **PgSql User data source** can be used to search for and return an existing PgSql user.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getPSQLUser({
+ *     clusterId: "cluster_id",
+ *     username: "username",
+ * });
+ * ```
  */
 export function getPSQLUserOutput(args: GetPSQLUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
