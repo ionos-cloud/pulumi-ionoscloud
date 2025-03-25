@@ -180,14 +180,18 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/mime": "^2.0.0",
 			},
 		},
-		Python: &tfbridge.PythonInfo{
-			PackageName:          "pulumi_" + mainPkg,
-			RespectSchemaVersion: true,
-			// List any Python dependencies and their version ranges
-			Requires: map[string]string{
-				"pulumi": ">=3.0.0,<4.0.0",
-			},
-		},
+		Python: (func() *tfbridge.PythonInfo {
+			i := &tfbridge.PythonInfo{
+				RespectSchemaVersion: true,
+				PackageName:          "pulumi_" + mainPkg,
+				Requires: map[string]string{
+					"pulumi": ">=3.0.0,<4.0.0",
+				},
+			}
+			i.PyProject.Enabled = true
+			i.InputTypes = tfbridge.PythonInputTypeClassesAndDicts
+			return i
+		})(),
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(
 				"github.com/ionos-cloud/pulumi-ionoscloud/sdk/",
