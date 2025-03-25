@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/ionoscloud",
-    "version": "${VERSION}",
+    "version": "1.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing ionoscloud cloud resources.",
     "keywords": [
         "ionos-cloud",
@@ -23,6 +23,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "ionoscloud"
+        "name": "ionoscloud",
+        "version": "1.0.0-alpha.0+dev"
     }
 }
