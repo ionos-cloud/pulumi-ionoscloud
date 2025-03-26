@@ -25,7 +25,8 @@
         "go": {
             "importBasePath": "github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud",
             "generateResourceContainerTypes": true,
-            "generateExtraInputTypes": true
+            "generateExtraInputTypes": true,
+            "respectSchemaVersion": true
         },
         "nodejs": {
             "packageDescription": "A Pulumi package for creating and managing ionoscloud cloud resources.",
@@ -38,7 +39,8 @@
                 "@types/node": "^10.0.0"
             },
             "compatibility": "tfbridge20",
-            "disableUnionOutputTypes": true
+            "disableUnionOutputTypes": true,
+            "respectSchemaVersion": true
         },
         "python": {
             "packageName": "pulumi_ionoscloud",
@@ -47,7 +49,11 @@
             },
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/ionos-cloud/terraform-provider-ionoscloud)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-ionoscloud` repo](https://github.com/ionos-cloud/pulumi-ionoscloud/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-ionoscloud` repo](https://github.com/ionos-cloud/terraform-provider-ionoscloud/issues).",
             "compatibility": "tfbridge20",
-            "pyproject": {}
+            "respectSchemaVersion": true,
+            "pyproject": {
+                "enabled": true
+            },
+            "inputTypes": "classes-and-dicts"
         }
     },
     "config": {

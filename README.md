@@ -15,10 +15,25 @@ The Ionoscloud resource provider for Pulumi lets you use Ionoscloud resources in
 
 This package is available in many languages in the standard packaging formats.
 
+### Node.js (Java/TypeScript)
+
+To use JavaScript or TypeScript in Node.js, install using either `npm`:
+
+    npm install @pulumi/ionoscloud
+
+or `yarn`:
+
+    yarn add @pulumi/ionoscloud
+
+### Python
+
+To use Python, install using `pip`:
+
+    pip install pulumi_ionoscloud
 
 ### Go
 
-To use from Go, use `go get` to grab the latest version of the library
+To use Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-ionoscloud/sdk/go
 
