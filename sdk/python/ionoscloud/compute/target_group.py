@@ -320,7 +320,7 @@ class TargetGroup(pulumi.CustomResource):
         Resource Target Group can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup {target group uuid}
+        $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -391,7 +391,7 @@ class TargetGroup(pulumi.CustomResource):
         Resource Target Group can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup {target group uuid}
+        $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
         ```
 
         :param str resource_name: The name of the resource.

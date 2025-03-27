@@ -193,7 +193,7 @@ class Distribution(pulumi.CustomResource):
         Resource Distribution can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution distribution uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -216,7 +216,7 @@ class Distribution(pulumi.CustomResource):
         Resource Distribution can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution distribution uuid
         ```
 
         :param str resource_name: The name of the resource.

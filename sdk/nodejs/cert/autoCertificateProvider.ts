@@ -6,6 +6,35 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **CM provider**.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.cert.AutoCertificateProvider("example", {
+ *     name: "Let's Encrypt",
+ *     email: "user@example.com",
+ *     location: "de/fra",
+ *     server: "https://acme-v02.api.letsencrypt.org/directory",
+ *     externalAccountBinding: {
+ *         keyId: "some-key-id",
+ *         keySecret: "secret",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example location:provider_id
+ * ```
+ */
 export class AutoCertificateProvider extends pulumi.CustomResource {
     /**
      * Get an existing AutoCertificateProvider resource's state with the given name, ID, and optional extra
@@ -35,20 +64,23 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
     }
 
     /**
-     * The email address of the certificate requester
+     * [string] The email address of the certificate requester.
      */
     public readonly email!: pulumi.Output<string>;
+    /**
+     * [list] External account binding details.
+     */
     public readonly externalAccountBinding!: pulumi.Output<outputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
-     * The location of the certificate provider
+     * [string] The location of the provider.
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * The name of the certificate provider
+     * [string] The name of the certificate provider.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The URL of the certificate provider
+     * [string] The URL of the certificate provider.
      */
     public readonly server!: pulumi.Output<string>;
 
@@ -94,20 +126,23 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
  */
 export interface AutoCertificateProviderState {
     /**
-     * The email address of the certificate requester
+     * [string] The email address of the certificate requester.
      */
     email?: pulumi.Input<string>;
+    /**
+     * [list] External account binding details.
+     */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
-     * The location of the certificate provider
+     * [string] The location of the provider.
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of the certificate provider
+     * [string] The name of the certificate provider.
      */
     name?: pulumi.Input<string>;
     /**
-     * The URL of the certificate provider
+     * [string] The URL of the certificate provider.
      */
     server?: pulumi.Input<string>;
 }
@@ -117,20 +152,23 @@ export interface AutoCertificateProviderState {
  */
 export interface AutoCertificateProviderArgs {
     /**
-     * The email address of the certificate requester
+     * [string] The email address of the certificate requester.
      */
     email: pulumi.Input<string>;
+    /**
+     * [list] External account binding details.
+     */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
-     * The location of the certificate provider
+     * [string] The location of the provider.
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of the certificate provider
+     * [string] The name of the certificate provider.
      */
     name?: pulumi.Input<string>;
     /**
-     * The URL of the certificate provider
+     * [string] The URL of the certificate provider.
      */
     server: pulumi.Input<string>;
 }

@@ -65,17 +65,17 @@ class GetAutoCertificateProviderResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
@@ -113,6 +113,24 @@ def get_auto_certificate_provider(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate_provider(id="provider_id",
+        location="provider_location")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate_provider(name="Provider Name Example",
+        location="provider_location")
+    ```
+
 
     :param str id: [string] ID of the provider you want to search for.
            
@@ -135,7 +153,7 @@ def get_auto_certificate_provider(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         server=pulumi.get(__ret__, 'server'))
 def get_auto_certificate_provider_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                                         location: Optional[pulumi.Input[str]] = None,
+                                         location: Optional[pulumi.Input[Optional[str]]] = None,
                                          name: Optional[pulumi.Input[Optional[str]]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateProviderResult]:
     """
@@ -145,6 +163,24 @@ def get_auto_certificate_provider_output(id: Optional[pulumi.Input[Optional[str]
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate_provider(id="provider_id",
+        location="provider_location")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_auto_certificate_provider(name="Provider Name Example",
+        location="provider_location")
+    ```
 
 
     :param str id: [string] ID of the provider you want to search for.

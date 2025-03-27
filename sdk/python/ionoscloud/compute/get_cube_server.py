@@ -27,7 +27,7 @@ class GetCubeServerResult:
     """
     A collection of values returned by getCubeServer.
     """
-    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, id=None, name=None, nics=None, ram=None, template_uuid=None, token=None, vm_state=None, volumes=None):
+    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, name=None, nics=None, ram=None, security_groups_ids=None, template_uuid=None, token=None, vm_state=None, volumes=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -52,6 +52,9 @@ class GetCubeServerResult:
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if hostname and not isinstance(hostname, str):
+            raise TypeError("Expected argument 'hostname' to be a str")
+        pulumi.set(__self__, "hostname", hostname)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -64,6 +67,9 @@ class GetCubeServerResult:
         if ram and not isinstance(ram, int):
             raise TypeError("Expected argument 'ram' to be a int")
         pulumi.set(__self__, "ram", ram)
+        if security_groups_ids and not isinstance(security_groups_ids, list):
+            raise TypeError("Expected argument 'security_groups_ids' to be a list")
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if template_uuid and not isinstance(template_uuid, str):
             raise TypeError("Expected argument 'template_uuid' to be a str")
         pulumi.set(__self__, "template_uuid", template_uuid)
@@ -128,7 +134,15 @@ class GetCubeServerResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def hostname(self) -> str:
+        """
+        The hostname of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         Id of the firewall rule
         """
@@ -136,7 +150,7 @@ class GetCubeServerResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         Name of the firewall rule
         """
@@ -154,6 +168,14 @@ class GetCubeServerResult:
     @pulumi.getter
     def ram(self) -> int:
         return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter(name="templateUuid")
@@ -199,10 +221,12 @@ class AwaitableGetCubeServerResult(GetCubeServerResult):
             cores=self.cores,
             cpu_family=self.cpu_family,
             datacenter_id=self.datacenter_id,
+            hostname=self.hostname,
             id=self.id,
             name=self.name,
             nics=self.nics,
             ram=self.ram,
+            security_groups_ids=self.security_groups_ids,
             template_uuid=self.template_uuid,
             token=self.token,
             vm_state=self.vm_state,
@@ -220,6 +244,24 @@ def get_cube_server(datacenter_id: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_cube_server(datacenter_id="datacenter_id",
+        id="server_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_cube_server(datacenter_id="datacenter_id",
+        name="Server Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -246,10 +288,12 @@ def get_cube_server(datacenter_id: Optional[str] = None,
         cores=pulumi.get(__ret__, 'cores'),
         cpu_family=pulumi.get(__ret__, 'cpu_family'),
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
+        hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         nics=pulumi.get(__ret__, 'nics'),
         ram=pulumi.get(__ret__, 'ram'),
+        security_groups_ids=pulumi.get(__ret__, 'security_groups_ids'),
         template_uuid=pulumi.get(__ret__, 'template_uuid'),
         token=pulumi.get(__ret__, 'token'),
         vm_state=pulumi.get(__ret__, 'vm_state'),
@@ -265,6 +309,24 @@ def get_cube_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_cube_server(datacenter_id="datacenter_id",
+        id="server_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_cube_server(datacenter_id="datacenter_id",
+        name="Server Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -290,10 +352,12 @@ def get_cube_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
         cores=pulumi.get(__response__, 'cores'),
         cpu_family=pulumi.get(__response__, 'cpu_family'),
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         nics=pulumi.get(__response__, 'nics'),
         ram=pulumi.get(__response__, 'ram'),
+        security_groups_ids=pulumi.get(__response__, 'security_groups_ids'),
         template_uuid=pulumi.get(__response__, 'template_uuid'),
         token=pulumi.get(__response__, 'token'),
         vm_state=pulumi.get(__response__, 'vm_state'),

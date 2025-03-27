@@ -6,6 +6,52 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Kafka Cluster** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * // Basic example
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example-kafka-datacenter",
+ *     location: "de/fra",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example-kafka-lan",
+ * });
+ * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
+ *     name: "example-kafka-cluster",
+ *     location: "de/fra",
+ *     version: "3.7.0",
+ *     size: "S",
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         brokerAddresses: [
+ *             "192.168.1.101/24",
+ *             "192.168.1.102/24",
+ *             "192.168.1.103/24",
+ *         ],
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Kafka Cluster can be imported using the `location` and `kafka cluster id`:
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster location:kafka cluster uuid
+ * ```
+ */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -35,28 +81,29 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /**
-     * IP address and port of cluster brokers.
+     * [list] IP address and port of cluster brokers.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     public /*out*/ readonly brokerAddresses!: pulumi.Output<string[]>;
     /**
-     * The network connection for your Kafka Cluster. Only one connection is allowed.
+     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
      */
     public readonly connections!: pulumi.Output<outputs.kafka.ClusterConnections>;
     /**
-     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
-     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+     * [string] Name of the Kafka Cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
      */
     public readonly size!: pulumi.Output<string>;
     /**
-     * The desired Kafka Version. Supported version: 3.7.0
+     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -107,28 +154,29 @@ export class Cluster extends pulumi.CustomResource {
  */
 export interface ClusterState {
     /**
-     * IP address and port of cluster brokers.
+     * [list] IP address and port of cluster brokers.
+     *
+     * > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     brokerAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The network connection for your Kafka Cluster. Only one connection is allowed.
+     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
      */
     connections?: pulumi.Input<inputs.kafka.ClusterConnections>;
     /**
-     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
-     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+     * [string] Name of the Kafka Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
      */
     size?: pulumi.Input<string>;
     /**
-     * The desired Kafka Version. Supported version: 3.7.0
+     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
      */
     version?: pulumi.Input<string>;
 }
@@ -138,24 +186,23 @@ export interface ClusterState {
  */
 export interface ClusterArgs {
     /**
-     * The network connection for your Kafka Cluster. Only one connection is allowed.
+     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
      */
     connections: pulumi.Input<inputs.kafka.ClusterConnections>;
     /**
-     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
-     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+     * [string] Name of the Kafka Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
      */
     size: pulumi.Input<string>;
     /**
-     * The desired Kafka Version. Supported version: 3.7.0
+     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
      */
     version: pulumi.Input<string>;
 }

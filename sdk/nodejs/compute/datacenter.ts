@@ -6,6 +6,55 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a Virtual **Data Center** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "datacenter description",
+ *     secAuthProtection: false,
+ * });
+ * ```
+ *
+ * ## Attaching a NSG to a Datacenter
+ *
+ * #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+ * #### Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter NSG Example",
+ *     location: "de/txl",
+ * });
+ * const exampleNsg = new ionoscloud.nsg.Nsg("example", {
+ *     name: "Example NSG",
+ *     description: "Example NSG Description",
+ *     datacenterId: example.id,
+ * });
+ * const exampleDatacenterNsgSelection = new ionoscloud.nsg.DatacenterNsgSelection("example", {
+ *     datacenterId: example.id,
+ *     nsgId: exampleNsg.id,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Datacenter can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc datacenter uuid
+ * ```
+ */
 export class Datacenter extends pulumi.CustomResource {
     /**
      * Get an existing Datacenter resource's state with the given name, ID, and optional extra
@@ -34,19 +83,37 @@ export class Datacenter extends pulumi.CustomResource {
         return obj['__pulumiType'] === Datacenter.__pulumiType;
     }
 
+    /**
+     * Array of features and CPU families available in a location
+     */
     public /*out*/ readonly cpuArchitectures!: pulumi.Output<outputs.compute.DatacenterCpuArchitecture[]>;
     /**
-     * A description for the datacenter, e.g. staging, production
+     * [string] Description for the Virtual Data Center.
      */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * List of features supported by the location this data center is part of
+     */
     public /*out*/ readonly features!: pulumi.Output<string[]>;
     /**
-     * Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+     * The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
      */
     public /*out*/ readonly ipv6CidrBlock!: pulumi.Output<string>;
+    /**
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     */
     public readonly location!: pulumi.Output<string>;
+    /**
+     * [string] The name of the Virtual Data Center.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+     */
     public readonly secAuthProtection!: pulumi.Output<boolean | undefined>;
+    /**
+     * The version of that Data Center. Gets incremented with every change
+     */
     public /*out*/ readonly version!: pulumi.Output<number>;
 
     /**
@@ -93,19 +160,37 @@ export class Datacenter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Datacenter resources.
  */
 export interface DatacenterState {
+    /**
+     * Array of features and CPU families available in a location
+     */
     cpuArchitectures?: pulumi.Input<pulumi.Input<inputs.compute.DatacenterCpuArchitecture>[]>;
     /**
-     * A description for the datacenter, e.g. staging, production
+     * [string] Description for the Virtual Data Center.
      */
     description?: pulumi.Input<string>;
+    /**
+     * List of features supported by the location this data center is part of
+     */
     features?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+     * The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
      */
     ipv6CidrBlock?: pulumi.Input<string>;
+    /**
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     */
     location?: pulumi.Input<string>;
+    /**
+     * [string] The name of the Virtual Data Center.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+     */
     secAuthProtection?: pulumi.Input<boolean>;
+    /**
+     * The version of that Data Center. Gets incremented with every change
+     */
     version?: pulumi.Input<number>;
 }
 
@@ -114,10 +199,19 @@ export interface DatacenterState {
  */
 export interface DatacenterArgs {
     /**
-     * A description for the datacenter, e.g. staging, production
+     * [string] Description for the Virtual Data Center.
      */
     description?: pulumi.Input<string>;
+    /**
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     */
     location: pulumi.Input<string>;
+    /**
+     * [string] The name of the Virtual Data Center.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+     */
     secAuthProtection?: pulumi.Input<boolean>;
 }

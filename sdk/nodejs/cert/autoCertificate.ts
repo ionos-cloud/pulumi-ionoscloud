@@ -4,6 +4,43 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **CM AutoCertificate**.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.cert.AutoCertificateProvider("example", {
+ *     name: "Let's Encrypt",
+ *     email: "user@example.com",
+ *     location: "de/fra",
+ *     server: "https://acme-v02.api.letsencrypt.org/directory",
+ *     externalAccountBinding: {
+ *         keyId: "some-key-id",
+ *         keySecret: "secret",
+ *     },
+ * });
+ * const exampleAutoCertificate = new ionoscloud.cert.AutoCertificate("example", {
+ *     providerId: example.id,
+ *     commonName: "www.example.com",
+ *     location: example.location,
+ *     keyAlgorithm: "rsa4096",
+ *     name: "My Auto renewed certificate",
+ *     subjectAlternativeNames: ["app.example.com"],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The resource can be imported using the `auto_certificate_id` and the `location`, separated by `:`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example location:auto_certificate_id
+ * ```
+ */
 export class AutoCertificate extends pulumi.CustomResource {
     /**
      * Get an existing AutoCertificate resource's state with the given name, ID, and optional extra
@@ -33,32 +70,31 @@ export class AutoCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
      */
     public readonly commonName!: pulumi.Output<string>;
     /**
-     * The key algorithm used to generate the certificate
+     * [string] The key algorithm used to generate the certificate.
      */
     public readonly keyAlgorithm!: pulumi.Output<string>;
     /**
-     * The ID of the last certificate that was issued
+     * [string] The ID of the last certificate that was issued.
      */
     public /*out*/ readonly lastIssuedCertificateId!: pulumi.Output<string>;
     /**
-     * The location of the auto-certificate
+     * [string] The location of the auto-certificate.
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * A certificate name used for management purposes
+     * [string] A certificate name used for management purposes.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The certificate provider used to issue the certificates
+     * [string] The certificate provider used to issue the certificates.
      */
     public readonly providerId!: pulumi.Output<string>;
     /**
-     * Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-     * IONOS Cloud DNS
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
      */
     public readonly subjectAlternativeNames!: pulumi.Output<string[] | undefined>;
 
@@ -114,32 +150,31 @@ export class AutoCertificate extends pulumi.CustomResource {
  */
 export interface AutoCertificateState {
     /**
-     * The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
      */
     commonName?: pulumi.Input<string>;
     /**
-     * The key algorithm used to generate the certificate
+     * [string] The key algorithm used to generate the certificate.
      */
     keyAlgorithm?: pulumi.Input<string>;
     /**
-     * The ID of the last certificate that was issued
+     * [string] The ID of the last certificate that was issued.
      */
     lastIssuedCertificateId?: pulumi.Input<string>;
     /**
-     * The location of the auto-certificate
+     * [string] The location of the auto-certificate.
      */
     location?: pulumi.Input<string>;
     /**
-     * A certificate name used for management purposes
+     * [string] A certificate name used for management purposes.
      */
     name?: pulumi.Input<string>;
     /**
-     * The certificate provider used to issue the certificates
+     * [string] The certificate provider used to issue the certificates.
      */
     providerId?: pulumi.Input<string>;
     /**
-     * Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-     * IONOS Cloud DNS
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -149,28 +184,27 @@ export interface AutoCertificateState {
  */
 export interface AutoCertificateArgs {
     /**
-     * The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
      */
     commonName: pulumi.Input<string>;
     /**
-     * The key algorithm used to generate the certificate
+     * [string] The key algorithm used to generate the certificate.
      */
     keyAlgorithm: pulumi.Input<string>;
     /**
-     * The location of the auto-certificate
+     * [string] The location of the auto-certificate.
      */
     location: pulumi.Input<string>;
     /**
-     * A certificate name used for management purposes
+     * [string] A certificate name used for management purposes.
      */
     name?: pulumi.Input<string>;
     /**
-     * The certificate provider used to issue the certificates
+     * [string] The certificate provider used to issue the certificates.
      */
     providerId: pulumi.Input<string>;
     /**
-     * Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-     * IONOS Cloud DNS
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }

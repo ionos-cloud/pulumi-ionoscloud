@@ -407,7 +407,7 @@ class Cluster(pulumi.CustomResource):
 
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
-            k8s_version="1.28.6",
+            k8s_version="1.31.2",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
@@ -434,7 +434,7 @@ class Cluster(pulumi.CustomResource):
             name="IP Block Private K8s")
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
-            k8s_version="1.28.6",
+            k8s_version="1.31.2",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
@@ -454,7 +454,7 @@ class Cluster(pulumi.CustomResource):
         A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:k8s/cluster:Cluster demo {k8s_cluster uuid}
+        $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
         ```
 
         This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
@@ -497,7 +497,7 @@ class Cluster(pulumi.CustomResource):
 
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
-            k8s_version="1.28.6",
+            k8s_version="1.31.2",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
@@ -524,7 +524,7 @@ class Cluster(pulumi.CustomResource):
             name="IP Block Private K8s")
         example = ionoscloud.k8s.Cluster("example",
             name="k8sClusterExample",
-            k8s_version="1.28.6",
+            k8s_version="1.31.2",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
@@ -544,7 +544,7 @@ class Cluster(pulumi.CustomResource):
         A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:k8s/cluster:Cluster demo {k8s_cluster uuid}
+        $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
         ```
 
         This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.

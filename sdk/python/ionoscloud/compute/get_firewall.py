@@ -93,7 +93,7 @@ class GetFirewallResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the firewall rule.
         """
@@ -101,7 +101,7 @@ class GetFirewallResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the firewall rule.
         """
@@ -207,6 +207,28 @@ def get_firewall(datacenter_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_firewall(datacenter_id="datacenter_id",
+        server_id="server_id",
+        nic_id="nic_id",
+        id="firewall_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_firewall(datacenter_id="datacenter_id",
+        server_id="server_id",
+        nic_id="nic_id",
+        name="test_ds_firewall_rule")
+    ```
+
 
     :param str datacenter_id: The Virtual Data Center ID.
     :param str id: ID of the firewall rule you want to search for.
@@ -253,6 +275,28 @@ def get_firewall_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_firewall(datacenter_id="datacenter_id",
+        server_id="server_id",
+        nic_id="nic_id",
+        id="firewall_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_firewall(datacenter_id="datacenter_id",
+        server_id="server_id",
+        nic_id="nic_id",
+        name="test_ds_firewall_rule")
+    ```
 
 
     :param str datacenter_id: The Virtual Data Center ID.

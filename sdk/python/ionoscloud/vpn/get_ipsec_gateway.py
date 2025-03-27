@@ -27,7 +27,7 @@ class GetIpsecGatewayResult:
     """
     A collection of values returned by getIpsecGateway.
     """
-    def __init__(__self__, connections=None, description=None, gateway_ip=None, id=None, location=None, name=None, version=None):
+    def __init__(__self__, connections=None, description=None, gateway_ip=None, id=None, location=None, maintenance_windows=None, name=None, tier=None, version=None):
         if connections and not isinstance(connections, list):
             raise TypeError("Expected argument 'connections' to be a list")
         pulumi.set(__self__, "connections", connections)
@@ -43,9 +43,15 @@ class GetIpsecGatewayResult:
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
+        if maintenance_windows and not isinstance(maintenance_windows, list):
+            raise TypeError("Expected argument 'maintenance_windows' to be a list")
+        pulumi.set(__self__, "maintenance_windows", maintenance_windows)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if tier and not isinstance(tier, str):
+            raise TypeError("Expected argument 'tier' to be a str")
+        pulumi.set(__self__, "tier", tier)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -84,8 +90,16 @@ class GetIpsecGatewayResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maintenanceWindows")
+    def maintenance_windows(self) -> Sequence['outputs.GetIpsecGatewayMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
@@ -94,6 +108,14 @@ class GetIpsecGatewayResult:
         The name of the IPSec Gateway.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tier(self) -> str:
+        """
+        Gateway performance options.
+        """
+        return pulumi.get(self, "tier")
 
     @property
     @pulumi.getter
@@ -115,7 +137,9 @@ class AwaitableGetIpsecGatewayResult(GetIpsecGatewayResult):
             gateway_ip=self.gateway_ip,
             id=self.id,
             location=self.location,
+            maintenance_windows=self.maintenance_windows,
             name=self.name,
+            tier=self.tier,
             version=self.version)
 
 
@@ -131,6 +155,29 @@ def get_ipsec_gateway(id: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_gateway(id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_gateway(name="ipsec-gateway",
+        location="gateway_location")
+    ```
 
 
     :param str id: ID of an existing IPSec Gateway that you want to search for.
@@ -152,10 +199,12 @@ def get_ipsec_gateway(id: Optional[str] = None,
         gateway_ip=pulumi.get(__ret__, 'gateway_ip'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
+        maintenance_windows=pulumi.get(__ret__, 'maintenance_windows'),
         name=pulumi.get(__ret__, 'name'),
+        tier=pulumi.get(__ret__, 'tier'),
         version=pulumi.get(__ret__, 'version'))
 def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                             location: Optional[pulumi.Input[str]] = None,
+                             location: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              version: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecGatewayResult]:
@@ -166,6 +215,29 @@ def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_gateway(id="gateway_id",
+        location="gateway_location")
+    ```
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_gateway(name="ipsec-gateway",
+        location="gateway_location")
+    ```
 
 
     :param str id: ID of an existing IPSec Gateway that you want to search for.
@@ -186,5 +258,7 @@ def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
         gateway_ip=pulumi.get(__response__, 'gateway_ip'),
         id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
         name=pulumi.get(__response__, 'name'),
+        tier=pulumi.get(__response__, 'tier'),
         version=pulumi.get(__response__, 'version')))

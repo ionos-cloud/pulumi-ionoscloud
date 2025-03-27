@@ -19,6 +19,7 @@ __all__ = [
     'ClusterLan',
     'ClusterLanRoute',
     'ClusterMaintenanceWindow',
+    'NodePoolAutoScaling',
     'NodePoolMaintenanceWindow',
     'GetClusterConfigResult',
     'GetClusterConfigClusterResult',
@@ -27,6 +28,7 @@ __all__ = [
     'GetClusterLanResult',
     'GetClusterLanRouteResult',
     'GetClusterMaintenanceWindowResult',
+    'GetNodePoolAutoScalingResult',
     'GetNodePoolMaintenanceWindowResult',
     'GetNodePoolsNodePoolResult',
     'GetNodePoolsNodePoolMaintenanceWindowResult',
@@ -164,6 +166,54 @@ class ClusterMaintenanceWindow(dict):
         [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class NodePoolAutoScaling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxNodeCount":
+            suggest = "max_node_count"
+        elif key == "minNodeCount":
+            suggest = "min_node_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NodePoolAutoScaling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NodePoolAutoScaling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NodePoolAutoScaling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_node_count: int,
+                 min_node_count: int):
+        """
+        :param int max_node_count: [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        :param int min_node_count: [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        pulumi.set(__self__, "max_node_count", max_node_count)
+        pulumi.set(__self__, "min_node_count", min_node_count)
+
+    @property
+    @pulumi.getter(name="maxNodeCount")
+    def max_node_count(self) -> int:
+        """
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        """
+        return pulumi.get(self, "max_node_count")
+
+    @property
+    @pulumi.getter(name="minNodeCount")
+    def min_node_count(self) -> int:
+        """
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        return pulumi.get(self, "min_node_count")
 
 
 @pulumi.output_type
@@ -426,6 +476,35 @@ class GetClusterMaintenanceWindowResult(dict):
         Time at which the maintenance should start.
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetNodePoolAutoScalingResult(dict):
+    def __init__(__self__, *,
+                 max_node_count: int,
+                 min_node_count: int):
+        """
+        :param int max_node_count: The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        :param int min_node_count: The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        pulumi.set(__self__, "max_node_count", max_node_count)
+        pulumi.set(__self__, "min_node_count", min_node_count)
+
+    @property
+    @pulumi.getter(name="maxNodeCount")
+    def max_node_count(self) -> int:
+        """
+        The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        """
+        return pulumi.get(self, "max_node_count")
+
+    @property
+    @pulumi.getter(name="minNodeCount")
+    def min_node_count(self) -> int:
+        """
+        The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+        return pulumi.get(self, "min_node_count")
 
 
 @pulumi.output_type

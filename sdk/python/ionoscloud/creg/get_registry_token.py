@@ -65,7 +65,7 @@ class GetRegistryTokenResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         Id of the container registry token.
         """
@@ -73,7 +73,7 @@ class GetRegistryTokenResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
@@ -125,6 +125,15 @@ def get_registry_token(id: Optional[str] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
+        id="token_id")
+    ```
 
     ### By Name
     ```python
@@ -182,6 +191,15 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=example_ionoscloud_container_registry["id"],
+        id="token_id")
+    ```
 
     ### By Name
     ```python

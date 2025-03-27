@@ -6,6 +6,37 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages an **Container Registry** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.creg.Registry("example", {
+ *     garbageCollectionSchedule: {
+ *         days: [
+ *             "Monday",
+ *             "Tuesday",
+ *         ],
+ *         time: "05:19:00+00:00",
+ *     },
+ *     location: "de/fra",
+ *     name: "container-registry-example",
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Container Registry can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:creg/registry:Registry mycr container_registry uuid
+ * ```
+ */
 export class Registry extends pulumi.CustomResource {
     /**
      * Get an existing Registry resource's state with the given name, ID, and optional extra
@@ -35,14 +66,25 @@ export class Registry extends pulumi.CustomResource {
     }
 
     /**
-     * The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-     * __Note__: If this list is empty or not set, there are no restrictions.
+     * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
     public readonly apiSubnetAllowLists!: pulumi.Output<string[] | undefined>;
+    /**
+     * [Map]
+     */
     public readonly features!: pulumi.Output<outputs.creg.RegistryFeatures>;
+    /**
+     * [Map]
+     */
     public readonly garbageCollectionSchedule!: pulumi.Output<outputs.creg.RegistryGarbageCollectionSchedule>;
     public /*out*/ readonly hostname!: pulumi.Output<string>;
+    /**
+     * [string] Immutable, update forces re-creation of the resource.
+     */
     public readonly location!: pulumi.Output<string>;
+    /**
+     * The name of the container registry. Immutable, update forces re-creation of the resource.
+     */
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly storageUsages!: pulumi.Output<outputs.creg.RegistryStorageUsage[]>;
 
@@ -89,14 +131,25 @@ export class Registry extends pulumi.CustomResource {
  */
 export interface RegistryState {
     /**
-     * The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-     * __Note__: If this list is empty or not set, there are no restrictions.
+     * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
     apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [Map]
+     */
     features?: pulumi.Input<inputs.creg.RegistryFeatures>;
+    /**
+     * [Map]
+     */
     garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
     hostname?: pulumi.Input<string>;
+    /**
+     * [string] Immutable, update forces re-creation of the resource.
+     */
     location?: pulumi.Input<string>;
+    /**
+     * The name of the container registry. Immutable, update forces re-creation of the resource.
+     */
     name?: pulumi.Input<string>;
     storageUsages?: pulumi.Input<pulumi.Input<inputs.creg.RegistryStorageUsage>[]>;
 }
@@ -106,12 +159,23 @@ export interface RegistryState {
  */
 export interface RegistryArgs {
     /**
-     * The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-     * __Note__: If this list is empty or not set, there are no restrictions.
+     * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
     apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * [Map]
+     */
     features?: pulumi.Input<inputs.creg.RegistryFeatures>;
+    /**
+     * [Map]
+     */
     garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
+    /**
+     * [string] Immutable, update forces re-creation of the resource.
+     */
     location: pulumi.Input<string>;
+    /**
+     * The name of the container registry. Immutable, update forces re-creation of the resource.
+     */
     name?: pulumi.Input<string>;
 }

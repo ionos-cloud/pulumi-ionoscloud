@@ -82,7 +82,7 @@ class GetForwardingRuleResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of that Network Load Balancer forwarding rule.
         """
@@ -106,7 +106,7 @@ class GetForwardingRuleResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of that Network Load Balancer forwarding rule.
         """
@@ -162,6 +162,28 @@ def get_forwarding_rule(datacenter_id: Optional[str] = None,
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_forwarding_rule(datacenter_id="datacenter_id",
+        networkloadbalancer_id="networkloadbalancer_id",
+        id="networkloadbalancer_forwardingrule_id")
+    ```
+
+    ## By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_forwarding_rule(datacenter_id="datacenter_id",
+        networkloadbalancer_id="networkloadbalancer_id",
+        name="Network Load Balancer Forwarding Rule Example")
+    ```
+
 
     :param str datacenter_id: Datacenter's UUID.
     :param str id: ID of the network load balancer forwarding rule you want to search for.
@@ -198,6 +220,28 @@ def get_forwarding_rule_output(datacenter_id: Optional[pulumi.Input[str]] = None
     The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_forwarding_rule(datacenter_id="datacenter_id",
+        networkloadbalancer_id="networkloadbalancer_id",
+        id="networkloadbalancer_forwardingrule_id")
+    ```
+
+    ## By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_forwarding_rule(datacenter_id="datacenter_id",
+        networkloadbalancer_id="networkloadbalancer_id",
+        name="Network Load Balancer Forwarding Rule Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.

@@ -14,69 +14,6 @@ import (
 
 // Manages a **CDN Distribution** on IonosCloud.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
-//				Domain:        pulumi.String("example.com"),
-//				CertificateId: pulumi.Any(cert.Id),
-//				RoutingRules: cdn.DistributionRoutingRuleArray{
-//					&cdn.DistributionRoutingRuleArgs{
-//						Scheme: pulumi.String("https"),
-//						Prefix: pulumi.String("/api"),
-//						Upstream: &cdn.DistributionRoutingRuleUpstreamArgs{
-//							Host:           pulumi.String("server.example.com"),
-//							Caching:        pulumi.Bool(true),
-//							Waf:            pulumi.Bool(true),
-//							SniMode:        pulumi.String("distribution"),
-//							RateLimitClass: pulumi.String("R500"),
-//							GeoRestrictions: &cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{
-//								AllowLists: pulumi.StringArray{
-//									pulumi.String("CN"),
-//									pulumi.String("RU"),
-//								},
-//							},
-//						},
-//					},
-//					&cdn.DistributionRoutingRuleArgs{
-//						Scheme: pulumi.String("http/https"),
-//						Prefix: pulumi.String("/api2"),
-//						Upstream: &cdn.DistributionRoutingRuleUpstreamArgs{
-//							Host:           pulumi.String("server2.example.com"),
-//							Caching:        pulumi.Bool(false),
-//							Waf:            pulumi.Bool(false),
-//							SniMode:        pulumi.String("origin"),
-//							RateLimitClass: pulumi.String("R10"),
-//							GeoRestrictions: &cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{
-//								BlockLists: pulumi.StringArray{
-//									pulumi.String("CN"),
-//									pulumi.String("RU"),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Resource Distribution can be imported using the `resource id`, e.g.

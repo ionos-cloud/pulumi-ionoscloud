@@ -27,7 +27,7 @@ class GetWireguardGatewayResult:
     """
     A collection of values returned by getWireguardGateway.
     """
-    def __init__(__self__, connections=None, description=None, gateway_ip=None, id=None, interface_ipv4_cidr=None, interface_ipv6_cidr=None, listen_port=None, location=None, name=None, public_key=None, status=None):
+    def __init__(__self__, connections=None, description=None, gateway_ip=None, id=None, interface_ipv4_cidr=None, interface_ipv6_cidr=None, listen_port=None, location=None, maintenance_windows=None, name=None, public_key=None, status=None, tier=None):
         if connections and not isinstance(connections, list):
             raise TypeError("Expected argument 'connections' to be a list")
         pulumi.set(__self__, "connections", connections)
@@ -52,6 +52,9 @@ class GetWireguardGatewayResult:
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
+        if maintenance_windows and not isinstance(maintenance_windows, list):
+            raise TypeError("Expected argument 'maintenance_windows' to be a list")
+        pulumi.set(__self__, "maintenance_windows", maintenance_windows)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -61,6 +64,9 @@ class GetWireguardGatewayResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tier and not isinstance(tier, str):
+            raise TypeError("Expected argument 'tier' to be a str")
+        pulumi.set(__self__, "tier", tier)
 
     @property
     @pulumi.getter
@@ -114,8 +120,16 @@ class GetWireguardGatewayResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maintenanceWindows")
+    def maintenance_windows(self) -> Sequence['outputs.GetWireguardGatewayMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
@@ -138,6 +152,14 @@ class GetWireguardGatewayResult:
         """
         return pulumi.get(self, "status")
 
+    @property
+    @pulumi.getter
+    def tier(self) -> str:
+        """
+        Gateway performance options.
+        """
+        return pulumi.get(self, "tier")
+
 
 class AwaitableGetWireguardGatewayResult(GetWireguardGatewayResult):
     # pylint: disable=using-constant-test
@@ -153,9 +175,11 @@ class AwaitableGetWireguardGatewayResult(GetWireguardGatewayResult):
             interface_ipv6_cidr=self.interface_ipv6_cidr,
             listen_port=self.listen_port,
             location=self.location,
+            maintenance_windows=self.maintenance_windows,
             name=self.name,
             public_key=self.public_key,
-            status=self.status)
+            status=self.status,
+            tier=self.tier)
 
 
 def get_wireguard_gateway(description: Optional[str] = None,
@@ -200,12 +224,14 @@ def get_wireguard_gateway(description: Optional[str] = None,
         interface_ipv6_cidr=pulumi.get(__ret__, 'interface_ipv6_cidr'),
         listen_port=pulumi.get(__ret__, 'listen_port'),
         location=pulumi.get(__ret__, 'location'),
+        maintenance_windows=pulumi.get(__ret__, 'maintenance_windows'),
         name=pulumi.get(__ret__, 'name'),
         public_key=pulumi.get(__ret__, 'public_key'),
-        status=pulumi.get(__ret__, 'status'))
+        status=pulumi.get(__ret__, 'status'),
+        tier=pulumi.get(__ret__, 'tier'))
 def get_wireguard_gateway_output(description: Optional[pulumi.Input[Optional[str]]] = None,
                                  id: Optional[pulumi.Input[Optional[str]]] = None,
-                                 location: Optional[pulumi.Input[str]] = None,
+                                 location: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardGatewayResult]:
     """
@@ -244,6 +270,8 @@ def get_wireguard_gateway_output(description: Optional[pulumi.Input[Optional[str
         interface_ipv6_cidr=pulumi.get(__response__, 'interface_ipv6_cidr'),
         listen_port=pulumi.get(__response__, 'listen_port'),
         location=pulumi.get(__response__, 'location'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
         name=pulumi.get(__response__, 'name'),
         public_key=pulumi.get(__response__, 'public_key'),
-        status=pulumi.get(__response__, 'status')))
+        status=pulumi.get(__response__, 'status'),
+        tier=pulumi.get(__response__, 'tier')))

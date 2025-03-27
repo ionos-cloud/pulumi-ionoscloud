@@ -226,6 +226,8 @@ class CubeServerNic(dict):
             suggest = "ipv6_ips"
         elif key == "pciSlot":
             suggest = "pci_slot"
+        elif key == "securityGroupsIds":
+            suggest = "security_groups_ids"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in CubeServerNic. Access the value via the '{suggest}' property getter instead.")
@@ -251,12 +253,14 @@ class CubeServerNic(dict):
                  ipv6_ips: Optional[Sequence[str]] = None,
                  mac: Optional[str] = None,
                  name: Optional[str] = None,
-                 pci_slot: Optional[int] = None):
+                 pci_slot: Optional[int] = None,
+                 security_groups_ids: Optional[Sequence[str]] = None):
         """
         :param bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
         :param str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
         :param Sequence[str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param str name: [string] The name of the server.
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the resource.
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -283,6 +287,8 @@ class CubeServerNic(dict):
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -360,6 +366,14 @@ class CubeServerNic(dict):
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> Optional[int]:
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[Sequence[str]]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
 
 @pulumi.output_type
@@ -554,16 +568,6 @@ class CubeServerVolume(dict):
         :param str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param str boot_server: The UUID of the attached server.
         :param str image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
         :param str licence_type: [string] Sets the OS type of the server.
         :param str name: [string] The name of the server.
         :param Sequence[str] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
@@ -665,16 +669,6 @@ class CubeServerVolume(dict):
     def image_password(self) -> Optional[str]:
         """
         [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
         """
         return pulumi.get(self, "image_password")
 
@@ -1125,8 +1119,6 @@ class NicFlowlog(dict):
         :param str bucket: Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
         :param str direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
         :param str name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         :param str id: The ID of the NIC.
         """
         pulumi.set(__self__, "action", action)
@@ -1165,8 +1157,6 @@ class NicFlowlog(dict):
     def name(self) -> str:
         """
         Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         """
         return pulumi.get(self, "name")
 
@@ -1225,6 +1215,8 @@ class ServerNic(dict):
             suggest = "ipv6_ips"
         elif key == "pciSlot":
             suggest = "pci_slot"
+        elif key == "securityGroupsIds":
+            suggest = "security_groups_ids"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServerNic. Access the value via the '{suggest}' property getter instead.")
@@ -1251,7 +1243,8 @@ class ServerNic(dict):
                  ipv6_ips: Optional[Sequence[str]] = None,
                  mac: Optional[str] = None,
                  name: Optional[str] = None,
-                 pci_slot: Optional[int] = None):
+                 pci_slot: Optional[int] = None,
+                 security_groups_ids: Optional[Sequence[str]] = None):
         """
         :param bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
         :param Sequence['ServerNicFirewallArgs'] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
@@ -1259,6 +1252,7 @@ class ServerNic(dict):
         :param str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
         :param Sequence[str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param str name: [string] The name of the server.
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -1287,6 +1281,8 @@ class ServerNic(dict):
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -1375,6 +1371,14 @@ class ServerNic(dict):
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> Optional[int]:
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[Sequence[str]]:
+        """
+        The list of Security Group IDs for the
+        """
+        return pulumi.get(self, "security_groups_ids")
 
 
 @pulumi.output_type
@@ -2055,6 +2059,8 @@ class VCPUServerNic(dict):
             suggest = "ipv6_ips"
         elif key == "pciSlot":
             suggest = "pci_slot"
+        elif key == "securityGroupsIds":
+            suggest = "security_groups_ids"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VCPUServerNic. Access the value via the '{suggest}' property getter instead.")
@@ -2081,11 +2087,17 @@ class VCPUServerNic(dict):
                  ipv6_ips: Optional[Sequence[str]] = None,
                  mac: Optional[str] = None,
                  name: Optional[str] = None,
-                 pci_slot: Optional[int] = None):
+                 pci_slot: Optional[int] = None,
+                 security_groups_ids: Optional[Sequence[str]] = None):
         """
         :param Sequence['VCPUServerNicFirewallArgs'] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
         :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         :param str name: [string] The name of the server.
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -2114,6 +2126,8 @@ class VCPUServerNic(dict):
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -2193,6 +2207,18 @@ class VCPUServerNic(dict):
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> Optional[int]:
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[Sequence[str]]:
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
 
 @pulumi.output_type
@@ -2888,6 +2914,7 @@ class GetCubeServerNicResult(dict):
                  mac: str,
                  name: str,
                  pci_slot: int,
+                 security_groups_ids: Sequence[str],
                  dhcpv6: Optional[bool] = None):
         """
         :param int device_number: The Logical Unit Number (LUN) of the storage volume
@@ -2903,6 +2930,7 @@ class GetCubeServerNicResult(dict):
         :param str mac: The MAC address of the NIC
         :param str name: Name of an existing server that you want to search for.
         :param int pci_slot: The PCI slot number of the Nic
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the resource.
         """
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "dhcp", dhcp)
@@ -2917,6 +2945,7 @@ class GetCubeServerNicResult(dict):
         pulumi.set(__self__, "mac", mac)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if dhcpv6 is not None:
             pulumi.set(__self__, "dhcpv6", dhcpv6)
 
@@ -3019,6 +3048,14 @@ class GetCubeServerNicResult(dict):
         The PCI slot number of the Nic
         """
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter
@@ -4053,6 +4090,7 @@ class GetServerNicResult(dict):
                  mac: str,
                  name: str,
                  pci_slot: int,
+                 security_groups_ids: Sequence[str],
                  dhcpv6: Optional[bool] = None):
         """
         :param int device_number: The Logical Unit Number (LUN) of the storage volume
@@ -4068,6 +4106,7 @@ class GetServerNicResult(dict):
         :param str mac: The MAC address of the NIC
         :param str name: Name of an existing server that you want to search for.
         :param int pci_slot: The PCI slot number of the Nic
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the resource.
         """
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "dhcp", dhcp)
@@ -4082,6 +4121,7 @@ class GetServerNicResult(dict):
         pulumi.set(__self__, "mac", mac)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if dhcpv6 is not None:
             pulumi.set(__self__, "dhcpv6", dhcpv6)
 
@@ -4184,6 +4224,14 @@ class GetServerNicResult(dict):
         The PCI slot number of the Nic
         """
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter
@@ -4591,6 +4639,7 @@ class GetServersServerResult(dict):
                  cdroms: Sequence['outputs.GetServersServerCdromResult'],
                  cores: int,
                  cpu_family: str,
+                 hostname: str,
                  id: str,
                  labels: Sequence['outputs.GetServersServerLabelResult'],
                  nics: Sequence['outputs.GetServersServerNicResult'],
@@ -4611,6 +4660,7 @@ class GetServersServerResult(dict):
         pulumi.set(__self__, "cdroms", cdroms)
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "nics", nics)
@@ -4658,6 +4708,11 @@ class GetServersServerResult(dict):
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> str:
         return pulumi.get(self, "cpu_family")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
@@ -4900,6 +4955,7 @@ class GetServersServerNicResult(dict):
                  mac: str,
                  name: str,
                  pci_slot: int,
+                 security_groups_ids: Sequence[str],
                  dhcpv6: Optional[bool] = None):
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "dhcp", dhcp)
@@ -4914,6 +4970,7 @@ class GetServersServerNicResult(dict):
         pulumi.set(__self__, "mac", mac)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if dhcpv6 is not None:
             pulumi.set(__self__, "dhcpv6", dhcpv6)
 
@@ -4981,6 +5038,11 @@ class GetServersServerNicResult(dict):
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> int:
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter
@@ -5723,6 +5785,7 @@ class GetVCPUServerNicResult(dict):
                  mac: str,
                  name: str,
                  pci_slot: int,
+                 security_groups_ids: Sequence[str],
                  dhcpv6: Optional[bool] = None):
         """
         :param int device_number: The Logical Unit Number (LUN) of the storage volume
@@ -5738,6 +5801,7 @@ class GetVCPUServerNicResult(dict):
         :param str mac: The MAC address of the NIC
         :param str name: Name of an existing server that you want to search for.
         :param int pci_slot: The PCI slot number of the Nic
+        :param Sequence[str] security_groups_ids: The list of Security Group IDs for the resource.
         """
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "dhcp", dhcp)
@@ -5752,6 +5816,7 @@ class GetVCPUServerNicResult(dict):
         pulumi.set(__self__, "mac", mac)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if dhcpv6 is not None:
             pulumi.set(__self__, "dhcpv6", dhcpv6)
 
@@ -5854,6 +5919,14 @@ class GetVCPUServerNicResult(dict):
         The PCI slot number of the Nic
         """
         return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[str]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter

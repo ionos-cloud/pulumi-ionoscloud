@@ -320,7 +320,7 @@ class Record(pulumi.CustomResource):
         The resource can be imported using the `zone_id` and the `record_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
+        $ pulumi import ionoscloud:dns/record:Record example zone_id/record_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -377,7 +377,7 @@ class Record(pulumi.CustomResource):
         The resource can be imported using the `zone_id` and the `record_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
+        $ pulumi import ionoscloud:dns/record:Record example zone_id/record_id
         ```
 
         :param str resource_name: The name of the resource.

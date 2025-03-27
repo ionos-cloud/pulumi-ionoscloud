@@ -2203,32 +2203,7 @@
             }
         }
     },
-    "auto-settings": {
-        "resources": {
-            "ionoscloud_datacenter_nsg_selection": {
-                "aliases": [
-                    "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection"
-                ]
-            },
-            "ionoscloud_nsg": {
-                "aliases": [
-                    "ionoscloud:index/nsg:Nsg"
-                ]
-            },
-            "ionoscloud_nsg_firewallrule": {
-                "aliases": [
-                    "ionoscloud:index/nsgFirewallrule:NsgFirewallrule"
-                ]
-            }
-        },
-        "datasources": {
-            "ionoscloud_nsg": {
-                "renames": [
-                    "ionoscloud:index/getNsg:getNsg"
-                ]
-            }
-        }
-    },
+    "auto-settings": {},
     "mux": {
         "resources": {
             "ionoscloud:alb/balancer:Balancer": 0,
@@ -2275,10 +2250,7 @@
             "ionoscloud:dns/zone:Zone": 0,
             "ionoscloud:dsaas/cluster:Cluster": 0,
             "ionoscloud:dsaas/nodePool:NodePool": 0,
-            "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection": 0,
             "ionoscloud:index/monitoringPipeline:MonitoringPipeline": 1,
-            "ionoscloud:index/nsg:Nsg": 0,
-            "ionoscloud:index/nsgFirewallrule:NsgFirewallrule": 0,
             "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": 1,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
@@ -2367,7 +2339,6 @@
             "ionoscloud:dsaas/getNodePools:getNodePools": 0,
             "ionoscloud:dsaas/getVersions:getVersions": 0,
             "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline": 1,
-            "ionoscloud:index/getNsg:getNsg": 0,
             "ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey": 1,
             "ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion": 1,
             "ionoscloud:k8s/getCluster:getCluster": 0,

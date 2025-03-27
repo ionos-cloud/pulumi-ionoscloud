@@ -6,6 +6,37 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **User data source** can be used to search for and return existing users.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     id: "user_id",
+ * });
+ * ```
+ *
+ * ### By Email
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     email: "example@email.com",
+ * });
+ * ```
+ *
+ * ### By Email from Env Variables - Current User
+ * data "ionoscloud.compute.User" "example" {
+ * }
+ */
 export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +50,15 @@ export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promis
  * A collection of arguments for invoking getUser.
  */
 export interface GetUserArgs {
+    /**
+     * Email of an existing user that you want to search for.
+     */
     email?: string;
+    /**
+     * ID of the user you want to search for.
+     *
+     * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+     */
     id?: string;
 }
 
@@ -27,17 +66,78 @@ export interface GetUserArgs {
  * A collection of values returned by getUser.
  */
 export interface GetUserResult {
+    /**
+     * Indicates if the user is active
+     */
     readonly active: boolean;
+    /**
+     * Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+     */
     readonly administrator: boolean;
+    /**
+     * The e-mail address for the user.
+     */
     readonly email?: string;
+    /**
+     * The first name for the user.
+     */
     readonly firstName: string;
+    /**
+     * Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+     */
     readonly forceSecAuth: boolean;
+    /**
+     * Shows the id and name of the groups that the user is a member of
+     */
     readonly groups: outputs.compute.GetUserGroup[];
+    /**
+     * The id of the user.
+     */
     readonly id: string;
+    /**
+     * The last name for the user.
+     */
     readonly lastName: string;
+    /**
+     * Canonical (S3) id of the user for a given identity
+     */
     readonly s3CanonicalUserId: string;
+    /**
+     * Indicates if secure authentication is active for the user or not
+     */
     readonly secAuthActive: boolean;
 }
+/**
+ * The **User data source** can be used to search for and return existing users.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     id: "user_id",
+ * });
+ * ```
+ *
+ * ### By Email
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getUser({
+ *     email: "example@email.com",
+ * });
+ * ```
+ *
+ * ### By Email from Env Variables - Current User
+ * data "ionoscloud.compute.User" "example" {
+ * }
+ */
 export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -51,6 +151,14 @@ export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOutp
  * A collection of arguments for invoking getUser.
  */
 export interface GetUserOutputArgs {
+    /**
+     * Email of an existing user that you want to search for.
+     */
     email?: pulumi.Input<string>;
+    /**
+     * ID of the user you want to search for.
+     *
+     * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+     */
     id?: pulumi.Input<string>;
 }

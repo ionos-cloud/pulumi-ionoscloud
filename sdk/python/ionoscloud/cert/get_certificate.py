@@ -58,7 +58,7 @@ class GetCertificateResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the certificate.
         """
@@ -66,7 +66,7 @@ class GetCertificateResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the certificate.
         """
@@ -97,6 +97,14 @@ def get_certificate(certificate: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_certificate(id="certificate_id")
+    ```
 
     ### By Name
     ```python
@@ -139,6 +147,14 @@ def get_certificate_output(certificate: Optional[pulumi.Input[Optional[str]]] = 
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_certificate(id="certificate_id")
+    ```
 
     ### By Name
     ```python

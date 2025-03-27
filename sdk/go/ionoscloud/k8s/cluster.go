@@ -124,11 +124,11 @@ import (
 // $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
 // ```
 //
-// This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+// This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
 //
 // ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
 //
-// pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+// terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 type Cluster struct {
 	pulumi.CustomResourceState
 

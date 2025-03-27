@@ -6,6 +6,36 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+ * You can provide a string for either id or name parameters which will be compared with provisioned providers.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     id: "provider_id",
+ *     location: "provider_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     name: "Provider Name Example",
+ *     location: "provider_location",
+ * });
+ * ```
+ */
 export function getAutoCertificateProvider(args?: GetAutoCertificateProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateProviderResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -20,8 +50,19 @@ export function getAutoCertificateProvider(args?: GetAutoCertificateProviderArgs
  * A collection of arguments for invoking getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderArgs {
+    /**
+     * [string] ID of the provider you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * [string] The location of the provider.
+     */
     location?: string;
+    /**
+     * [string] Name of an existing provider that you want to search for.
+     */
     name?: string;
 }
 
@@ -29,13 +70,52 @@ export interface GetAutoCertificateProviderArgs {
  * A collection of values returned by getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderResult {
+    /**
+     * [string] The email address of the certificate requester.
+     */
     readonly email: string;
+    /**
+     * [list]
+     */
     readonly externalAccountBindings: outputs.cert.GetAutoCertificateProviderExternalAccountBinding[];
     readonly id: string;
     readonly location?: string;
     readonly name: string;
+    /**
+     * [string] The URL of the certificate provider.
+     */
     readonly server: string;
 }
+/**
+ * The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+ * You can provide a string for either id or name parameters which will be compared with provisioned providers.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     id: "provider_id",
+ *     location: "provider_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificateProvider({
+ *     name: "Provider Name Example",
+ *     location: "provider_location",
+ * });
+ * ```
+ */
 export function getAutoCertificateProviderOutput(args?: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateProviderResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -50,7 +130,18 @@ export function getAutoCertificateProviderOutput(args?: GetAutoCertificateProvid
  * A collection of arguments for invoking getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderOutputArgs {
+    /**
+     * [string] ID of the provider you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * [string] The location of the provider.
+     */
     location?: pulumi.Input<string>;
+    /**
+     * [string] Name of an existing provider that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

@@ -237,7 +237,7 @@ class IPFailover(pulumi.CustomResource):
         Resource IpFailover can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -324,7 +324,7 @@ class IPFailover(pulumi.CustomResource):
         Resource IpFailover can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
         ```
 
         :param str resource_name: The name of the resource.

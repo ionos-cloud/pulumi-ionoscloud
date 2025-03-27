@@ -79,6 +79,15 @@ def get_servers(group_id: Optional[str] = None,
     """
     The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group_servers = ionoscloud.autoscaling.get_servers(group_id="autoscaling_group_uuid")
+    ```
+
 
     :param str group_id: The unique ID of the autoscaling group.
            
@@ -97,6 +106,15 @@ def get_servers_output(group_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
     The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group_servers = ionoscloud.autoscaling.get_servers(group_id="autoscaling_group_uuid")
+    ```
 
 
     :param str group_id: The unique ID of the autoscaling group.

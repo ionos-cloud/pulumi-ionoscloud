@@ -21,6 +21,11 @@ endpoint: Optional[str]
 IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 """
 
+insecure: Optional[bool]
+"""
+This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+"""
+
 password: Optional[str]
 """
 IonosCloud password for API operations. If token is provided, token is preferred

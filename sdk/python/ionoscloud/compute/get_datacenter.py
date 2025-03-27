@@ -82,7 +82,7 @@ class GetDatacenterResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         UUID of the Virtual Data Center
         """
@@ -103,7 +103,7 @@ class GetDatacenterResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the Virtual Data Center
         """
@@ -155,6 +155,14 @@ def get_datacenter(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_datacenter(id="datacenter_id")
+    ```
+
     ### By Name & Location
     ```python
     import pulumi
@@ -199,6 +207,14 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_datacenter(id="datacenter_id")
+    ```
 
     ### By Name & Location
     ```python

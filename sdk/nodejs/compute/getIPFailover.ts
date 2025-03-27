@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+ * You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ */
 export function getIPFailover(args: GetIPFailoverArgs, opts?: pulumi.InvokeOptions): Promise<GetIPFailoverResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getIPFailover:getIPFailover", {
@@ -17,8 +22,17 @@ export function getIPFailover(args: GetIPFailoverArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getIPFailover.
  */
 export interface GetIPFailoverArgs {
+    /**
+     * The ID of the datacenter containing the ip failover datasource
+     */
     datacenterId: string;
+    /**
+     * The reserved IP address to be used in the IP failover group.
+     */
     ip: string;
+    /**
+     * The ID of a LAN.
+     */
     lanId: string;
 }
 
@@ -26,12 +40,29 @@ export interface GetIPFailoverArgs {
  * A collection of values returned by getIPFailover.
  */
 export interface GetIPFailoverResult {
+    /**
+     * The ID of a Data Center.
+     */
     readonly datacenterId: string;
     readonly id: string;
+    /**
+     * The reserved IP address to be used in the IP failover group.
+     */
     readonly ip: string;
+    /**
+     * The ID of a LAN.
+     */
     readonly lanId: string;
+    /**
+     * The ID of a NIC.
+     */
     readonly nicuuid: string;
 }
+/**
+ * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+ * You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ */
 export function getIPFailoverOutput(args: GetIPFailoverOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIPFailoverResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getIPFailover:getIPFailover", {
@@ -45,7 +76,16 @@ export function getIPFailoverOutput(args: GetIPFailoverOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getIPFailover.
  */
 export interface GetIPFailoverOutputArgs {
+    /**
+     * The ID of the datacenter containing the ip failover datasource
+     */
     datacenterId: pulumi.Input<string>;
+    /**
+     * The reserved IP address to be used in the IP failover group.
+     */
     ip: pulumi.Input<string>;
+    /**
+     * The ID of a LAN.
+     */
     lanId: pulumi.Input<string>;
 }

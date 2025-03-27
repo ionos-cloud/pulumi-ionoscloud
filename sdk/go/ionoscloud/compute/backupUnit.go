@@ -12,50 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Backup Unit** on IonosCloud.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			backupUnitPassword, err := random.NewPassword(ctx, "backup_unit_password", &random.PasswordArgs{
-//				Length:          16,
-//				Special:         true,
-//				OverrideSpecial: "!#$%&*()-_=+[]{}:?",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewBackupUnit(ctx, "example", &compute.BackupUnitArgs{
-//				Name:     pulumi.String("Backup Unit Example"),
-//				Password: backupUnitPassword.Result,
-//				Email:    pulumi.String("example@example-domain.com"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Important Notes
-//
-// - Please note that at the moment, Backup Units cannot be renamed
-// - Please note that the password attribute is write-only, and it cannot be retrieved from the API when importing a ionoscloud_backup_unit. The only way to keep track of it is to specify it on the resource to be imported, thus, making it a required attribute.
-//
 // ## Import
 //
 // A Backup Unit resource can be imported using its `resource id`, e.g.
@@ -64,7 +20,7 @@ import (
 // $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo backup_unit_uuid
 // ```
 //
-// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of pulumi. Please note that you need to manually specify the password when first declaring the resource in pulumi, as there is no way to retrieve the password from the Cloud API.
+// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
 type BackupUnit struct {
 	pulumi.CustomResourceState
 

@@ -6,6 +6,69 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     name: "K8s Cluster Example",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ */
 export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +82,15 @@ export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getCluster.
  */
 export interface GetClusterArgs {
+    /**
+     * ID of the cluster you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * Name of an existing cluster that you want to search for.
+     */
     name?: string;
 }
 
@@ -27,26 +98,177 @@ export interface GetClusterArgs {
  * A collection of values returned by getCluster.
  */
 export interface GetClusterResult {
+    /**
+     * access to the K8s API server is restricted to these CIDRs
+     */
     readonly apiSubnetAllowLists: string[];
+    /**
+     * A list of available versions for upgrading the cluster
+     */
     readonly availableUpgradeVersions: string[];
+    /**
+     * base64 decoded cluster certificate authority data (provided as an attribute for direct use)
+     */
     readonly caCrt: string;
+    /**
+     * structured kubernetes config consisting of a list with 1 item with the following fields:
+     * * apiVersion - Kubernetes API Version
+     * * kind - "Config"
+     * * current-context - string
+     * * clusters - list of
+     * * name - name of cluster
+     * * cluster - map of
+     * * certificate-authority-data - **base64 decoded** cluster CA data
+     * * server -  server address in the form `https://host:port`
+     * * contexts - list of
+     * * name - context name
+     * * context - map of
+     * * cluster - cluster name
+     * * user - cluster user
+     * * users - list of
+     * * name - user name
+     * * user - map of
+     * * token - user token used for authentication
+     */
     readonly configs: outputs.k8s.GetClusterConfig[];
+    /**
+     * id of the cluster
+     */
     readonly id: string;
+    /**
+     * Kubernetes version
+     */
     readonly k8sVersion: string;
+    /**
+     * Kubernetes configuration
+     */
     readonly kubeConfig: string;
+    /**
+     * this attribute is mandatory if the cluster is private.
+     */
     readonly location: string;
+    /**
+     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+     */
     readonly maintenanceWindows: outputs.k8s.GetClusterMaintenanceWindow[];
+    /**
+     * name of the cluster
+     */
     readonly name: string;
+    /**
+     * the NAT gateway IP of the cluster if the cluster is private.
+     */
     readonly natGatewayIp: string;
+    /**
+     * list of the IDs of the node pools in this cluster
+     */
     readonly nodePools: string[];
+    /**
+     * the node subnet of the cluster, if the cluster is private.
+     */
     readonly nodeSubnet: string;
+    /**
+     * indicates if the cluster is public or private.
+     */
     readonly public: boolean;
+    /**
+     * list of IONOS Object Storage bucket configured for K8s usage
+     */
     readonly s3Buckets: outputs.k8s.GetClusterS3Bucket[];
+    /**
+     * cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
+     */
     readonly server: string;
+    /**
+     * one of "AVAILABLE",
+     * "INACTIVE",
+     * "BUSY",
+     * "DEPLOYING",
+     * "ACTIVE",
+     * "FAILED",
+     * "SUSPENDED",
+     * "FAILED_SUSPENDED",
+     * "UPDATING",
+     * "FAILED_UPDATING",
+     * "DESTROYING",
+     * "FAILED_DESTROYING",
+     * "TERMINATED"
+     */
     readonly state: string;
+    /**
+     * a convenience map to be search the token of a specific user
+     * - key - is the user name
+     * - value - is the token
+     */
     readonly userTokens: {[key: string]: string};
+    /**
+     * A list of versions that may be used for node pools under this cluster
+     */
     readonly viableNodePoolVersions: string[];
 }
+/**
+ * The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.k8s.getCluster({
+ *     name: "K8s Cluster Example",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testCluster = new ionoscloud.k8s.Cluster("test", {
+ *     name: "test_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Saturday",
+ *         time: "03:58:25Z",
+ *     },
+ * });
+ * const test = ionoscloud.k8s.getCluster({
+ *     name: "test_cluster",
+ * });
+ * ```
+ */
 export function getClusterOutput(args?: GetClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -60,6 +282,14 @@ export function getClusterOutput(args?: GetClusterOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getCluster.
  */
 export interface GetClusterOutputArgs {
+    /**
+     * ID of the cluster you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of an existing cluster that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

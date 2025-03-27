@@ -109,7 +109,7 @@ class GetUserResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the user.
         """
@@ -168,6 +168,14 @@ def get_user(email: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_user(id="user_id")
+    ```
+
     ### By Email
     ```python
     import pulumi
@@ -212,6 +220,14 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_user(id="user_id")
+    ```
 
     ### By Email
     ```python

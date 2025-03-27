@@ -431,7 +431,7 @@ class ForwardingRule(pulumi.CustomResource):
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
 
         ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -560,7 +560,7 @@ class ForwardingRule(pulumi.CustomResource):
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
 
         ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
         ```
 
         :param str resource_name: The name of the resource.

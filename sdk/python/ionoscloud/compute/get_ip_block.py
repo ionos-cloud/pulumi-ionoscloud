@@ -14,7 +14,6 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
-from ._inputs import *
 
 __all__ = [
     'GetIPBlockResult',
@@ -50,7 +49,7 @@ class GetIPBlockResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of Ip Block
         """
@@ -74,7 +73,7 @@ class GetIPBlockResult:
 
     @property
     @pulumi.getter
-    def location(self) -> Optional[str]:
+    def location(self) -> str:
         """
         The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
         """
@@ -82,7 +81,7 @@ class GetIPBlockResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of Ip Block
         """
@@ -90,7 +89,7 @@ class GetIPBlockResult:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[int]:
+    def size(self) -> int:
         """
         The number of IP addresses to reserve for this block.
         """
@@ -112,7 +111,6 @@ class AwaitableGetIPBlockResult(GetIPBlockResult):
 
 
 def get_ip_block(id: Optional[str] = None,
-                 ip_consumers: Optional[Sequence[Union['GetIPBlockIpConsumerArgs', 'GetIPBlockIpConsumerArgsDict']]] = None,
                  location: Optional[str] = None,
                  name: Optional[str] = None,
                  size: Optional[int] = None,
@@ -124,6 +122,14 @@ def get_ip_block(id: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_ip_block(id="ipblock_id")
+    ```
 
     ### By Name
     ```python
@@ -145,14 +151,12 @@ def get_ip_block(id: Optional[str] = None,
 
 
     :param str id: ID of an existing Ip Block that you want to search for.
-    :param Sequence[Union['GetIPBlockIpConsumerArgs', 'GetIPBlockIpConsumerArgsDict']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
     :param str location: The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
     :param str name: Name of an existing Ip Block that you want to search for.
     :param int size: The number of IP addresses to reserve for this block.
     """
     __args__ = dict()
     __args__['id'] = id
-    __args__['ipConsumers'] = ip_consumers
     __args__['location'] = location
     __args__['name'] = name
     __args__['size'] = size
@@ -167,7 +171,6 @@ def get_ip_block(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         size=pulumi.get(__ret__, 'size'))
 def get_ip_block_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                        ip_consumers: Optional[pulumi.Input[Optional[Sequence[Union['GetIPBlockIpConsumerArgs', 'GetIPBlockIpConsumerArgsDict']]]]] = None,
                         location: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         size: Optional[pulumi.Input[Optional[int]]] = None,
@@ -179,6 +182,14 @@ def get_ip_block_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_ip_block(id="ipblock_id")
+    ```
 
     ### By Name
     ```python
@@ -200,14 +211,12 @@ def get_ip_block_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str id: ID of an existing Ip Block that you want to search for.
-    :param Sequence[Union['GetIPBlockIpConsumerArgs', 'GetIPBlockIpConsumerArgsDict']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
     :param str location: The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
     :param str name: Name of an existing Ip Block that you want to search for.
     :param int size: The number of IP addresses to reserve for this block.
     """
     __args__ = dict()
     __args__['id'] = id
-    __args__['ipConsumers'] = ip_consumers
     __args__['location'] = location
     __args__['name'] = name
     __args__['size'] = size

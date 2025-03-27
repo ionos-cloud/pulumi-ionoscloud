@@ -6,6 +6,33 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
+ *
+ * ## Example Usage
+ *
+ * ### Get all backups for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     clusterId: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ *
+ * ### Get a specific backup
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     backupId: "backup_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ */
 export function getMariaDBBackups(args?: GetMariaDBBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetMariaDBBackupsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -20,8 +47,21 @@ export function getMariaDBBackups(args?: GetMariaDBBackupsArgs, opts?: pulumi.In
  * A collection of arguments for invoking getMariaDBBackups.
  */
 export interface GetMariaDBBackupsArgs {
+    /**
+     * [string] The unique ID of the backup.
+     */
     backupId?: string;
+    /**
+     * [string] The unique ID of the cluster.
+     */
     clusterId?: string;
+    /**
+     * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+     *
+     * ⚠️ **Note:** Either `clusterId` or `backupId` must be used, but not both at the same time.
+     *
+     * > **⚠ WARNING:** `Location` attribute will become required in the future.
+     */
     location?: string;
 }
 
@@ -31,6 +71,9 @@ export interface GetMariaDBBackupsArgs {
 export interface GetMariaDBBackupsResult {
     readonly backupId: string;
     readonly backups: outputs.dbaas.GetMariaDBBackupsBackup[];
+    /**
+     * The unique ID of the cluster that was backed up.
+     */
     readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -38,6 +81,33 @@ export interface GetMariaDBBackupsResult {
     readonly id: string;
     readonly location?: string;
 }
+/**
+ * The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
+ *
+ * ## Example Usage
+ *
+ * ### Get all backups for a specific cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     clusterId: "cluster_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ *
+ * ### Get a specific backup
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMariaDBBackups({
+ *     backupId: "backup_id",
+ *     location: "de/txl",
+ * });
+ * ```
+ */
 export function getMariaDBBackupsOutput(args?: GetMariaDBBackupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMariaDBBackupsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -52,7 +122,20 @@ export function getMariaDBBackupsOutput(args?: GetMariaDBBackupsOutputArgs, opts
  * A collection of arguments for invoking getMariaDBBackups.
  */
 export interface GetMariaDBBackupsOutputArgs {
+    /**
+     * [string] The unique ID of the backup.
+     */
     backupId?: pulumi.Input<string>;
+    /**
+     * [string] The unique ID of the cluster.
+     */
     clusterId?: pulumi.Input<string>;
+    /**
+     * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+     *
+     * ⚠️ **Note:** Either `clusterId` or `backupId` must be used, but not both at the same time.
+     *
+     * > **⚠ WARNING:** `Location` attribute will become required in the future.
+     */
     location?: pulumi.Input<string>;
 }

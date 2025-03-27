@@ -23,9 +23,11 @@ class IpsecGatewayArgs:
     def __init__(__self__, *,
                  connections: pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]],
                  gateway_ip: pulumi.Input[str],
-                 location: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IpsecGateway resource.
@@ -33,20 +35,27 @@ class IpsecGatewayArgs:
                same datacenter. Minimum items: 1. Maximum items: 10.
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
         :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
+        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
                values: `IKEv2`.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "gateway_ip", gateway_ip)
-        pulumi.set(__self__, "location", location)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -78,19 +87,6 @@ class IpsecGatewayArgs:
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
-
-    @property
-    @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         [string] The human-readable description of the IPSec Gateway.
@@ -103,6 +99,31 @@ class IpsecGatewayArgs:
 
     @property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']]:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         [string] The name of the IPSec Gateway.
@@ -112,6 +133,18 @@ class IpsecGatewayArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
 
     @property
     @pulumi.getter
@@ -134,7 +167,9 @@ class _IpsecGatewayState:
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IpsecGateway resources.
@@ -144,8 +179,10 @@ class _IpsecGatewayState:
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
         :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
                values: `IKEv2`.
         """
@@ -157,8 +194,12 @@ class _IpsecGatewayState:
             pulumi.set(__self__, "gateway_ip", gateway_ip)
         if location is not None:
             pulumi.set(__self__, "location", location)
+        if maintenance_window is not None:
+            pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -205,13 +246,25 @@ class _IpsecGatewayState:
     def location(self) -> Optional[pulumi.Input[str]]:
         """
         [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
     @location.setter
     def location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']]:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @maintenance_window.setter
+    def maintenance_window(self, value: Optional[pulumi.Input['IpsecGatewayMaintenanceWindowArgs']]):
+        pulumi.set(self, "maintenance_window", value)
 
     @property
     @pulumi.getter
@@ -224,6 +277,18 @@ class _IpsecGatewayState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
 
     @property
     @pulumi.getter
@@ -248,7 +313,9 @@ class IpsecGateway(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -292,7 +359,7 @@ class IpsecGateway(pulumi.CustomResource):
         The resource can be imported using the `location` and `gateway_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
+        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example location:gateway_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -303,8 +370,10 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
         :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
                values: `IKEv2`.
         """
@@ -355,7 +424,7 @@ class IpsecGateway(pulumi.CustomResource):
         The resource can be imported using the `location` and `gateway_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
+        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example location:gateway_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -377,7 +446,9 @@ class IpsecGateway(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 tier: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -395,10 +466,10 @@ class IpsecGateway(pulumi.CustomResource):
             if gateway_ip is None and not opts.urn:
                 raise TypeError("Missing required property 'gateway_ip'")
             __props__.__dict__["gateway_ip"] = gateway_ip
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
+            __props__.__dict__["maintenance_window"] = maintenance_window
             __props__.__dict__["name"] = name
+            __props__.__dict__["tier"] = tier
             __props__.__dict__["version"] = version
         super(IpsecGateway, __self__).__init__(
             'ionoscloud:vpn/ipsecGateway:IpsecGateway',
@@ -414,7 +485,9 @@ class IpsecGateway(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            tier: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'IpsecGateway':
         """
         Get an existing IpsecGateway resource's state with the given name, id, and optional extra
@@ -429,8 +502,10 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
         :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
+               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
+        :param pulumi.Input[str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
                values: `IKEv2`.
         """
@@ -442,7 +517,9 @@ class IpsecGateway(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["gateway_ip"] = gateway_ip
         __props__.__dict__["location"] = location
+        __props__.__dict__["maintenance_window"] = maintenance_window
         __props__.__dict__["name"] = name
+        __props__.__dict__["tier"] = tier
         __props__.__dict__["version"] = version
         return IpsecGateway(resource_name, opts=opts, __props__=__props__)
 
@@ -474,12 +551,20 @@ class IpsecGateway(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
         [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> pulumi.Output['outputs.IpsecGatewayMaintenanceWindow']:
+        """
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter
@@ -488,6 +573,14 @@ class IpsecGateway(pulumi.CustomResource):
         [string] The name of the IPSec Gateway.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tier(self) -> pulumi.Output[Optional[str]]:
+        """
+        (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+        """
+        return pulumi.get(self, "tier")
 
     @property
     @pulumi.getter

@@ -81,7 +81,7 @@ class GetRecordResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The UUID of the DNS Record.
         """
@@ -89,7 +89,7 @@ class GetRecordResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the DNS Record.
         """
@@ -162,6 +162,35 @@ def get_record(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(id="record_id",
+        zone_id="zone_id")
+    ```
+
+    ### By name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(name="recordexample",
+        zone_id="zone_id")
+    ```
+
+    ### By name with partial match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(name="record",
+        partial_match=True,
+        zone_id="zone_id")
+    ```
+
 
     :param str id: [string] The ID of the DNS Record you want to search for.
     :param str name: [string] The name of the DNS Record you want to search for.
@@ -202,6 +231,35 @@ def get_record_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(id="record_id",
+        zone_id="zone_id")
+    ```
+
+    ### By name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(name="recordexample",
+        zone_id="zone_id")
+    ```
+
+    ### By name with partial match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_record(name="record",
+        partial_match=True,
+        zone_id="zone_id")
+    ```
 
 
     :param str id: [string] The ID of the DNS Record you want to search for.

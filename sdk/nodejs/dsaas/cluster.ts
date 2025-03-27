@@ -6,6 +6,52 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Dataplatform Cluster**.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter_Example",
+ *     location: "de/txl",
+ *     description: "Datacenter for testing Dataplatform Cluster",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "LAN_Example",
+ * });
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: example.id,
+ *     name: "Dataplatform_Cluster_Example",
+ *     maintenanceWindows: [{
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     }],
+ *     version: "23.11",
+ *     lans: [{
+ *         lanId: exampleLan.id,
+ *         dhcp: false,
+ *         routes: [{
+ *             network: "182.168.42.1/24",
+ *             gateway: "192.168.42.1",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser cluster uuid
+ * ```
+ */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -35,11 +81,11 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /**
-     * The UUID of the virtual data center (VDC) in which the cluster is provisioned
+     * [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
      */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * A list of LANs you want this node pool to be part of
+     * [list] A list of LANs you want this node pool to be part of.
      */
     public readonly lans!: pulumi.Output<outputs.dsaas.ClusterLan[] | undefined>;
     /**
@@ -47,12 +93,11 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly maintenanceWindows!: pulumi.Output<outputs.dsaas.ClusterMaintenanceWindow[]>;
     /**
-     * The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-     * character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+     * [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The version of the Data Platform.
+     * [int] The version of the Data Platform.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -95,11 +140,11 @@ export class Cluster extends pulumi.CustomResource {
  */
 export interface ClusterState {
     /**
-     * The UUID of the virtual data center (VDC) in which the cluster is provisioned
+     * [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
      */
     datacenterId?: pulumi.Input<string>;
     /**
-     * A list of LANs you want this node pool to be part of
+     * [list] A list of LANs you want this node pool to be part of.
      */
     lans?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLan>[]>;
     /**
@@ -107,12 +152,11 @@ export interface ClusterState {
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterMaintenanceWindow>[]>;
     /**
-     * The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-     * character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+     * [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */
     name?: pulumi.Input<string>;
     /**
-     * The version of the Data Platform.
+     * [int] The version of the Data Platform.
      */
     version?: pulumi.Input<string>;
 }
@@ -122,11 +166,11 @@ export interface ClusterState {
  */
 export interface ClusterArgs {
     /**
-     * The UUID of the virtual data center (VDC) in which the cluster is provisioned
+     * [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * A list of LANs you want this node pool to be part of
+     * [list] A list of LANs you want this node pool to be part of.
      */
     lans?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLan>[]>;
     /**
@@ -134,12 +178,11 @@ export interface ClusterArgs {
      */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterMaintenanceWindow>[]>;
     /**
-     * The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-     * character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+     * [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */
     name?: pulumi.Input<string>;
     /**
-     * The version of the Data Platform.
+     * [int] The version of the Data Platform.
      */
     version?: pulumi.Input<string>;
 }

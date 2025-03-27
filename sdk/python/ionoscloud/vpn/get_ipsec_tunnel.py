@@ -99,7 +99,7 @@ class GetIpsecTunnelResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         return pulumi.get(self, "location")
 
     @property
@@ -150,6 +150,17 @@ def get_ipsec_tunnel(gateway_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(id="tunnel_id",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
+
 
     :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
     :param str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
@@ -178,7 +189,7 @@ def get_ipsec_tunnel(gateway_id: Optional[str] = None,
         remote_host=pulumi.get(__ret__, 'remote_host'))
 def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[str]] = None,
                             id: Optional[pulumi.Input[Optional[str]]] = None,
-                            location: Optional[pulumi.Input[str]] = None,
+                            location: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecTunnelResult]:
     """
@@ -188,6 +199,17 @@ def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_ipsec_tunnel(id="tunnel_id",
+        gateway_id="gateway_id",
+        location="gateway_location")
+    ```
 
 
     :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.

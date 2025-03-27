@@ -81,6 +81,15 @@ def get_psql_backups(cluster_id: Optional[str] = None,
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_backups(cluster_id="cluster_id")
+    ```
+
 
     :param str cluster_id: The unique ID of the cluster.
            
@@ -101,6 +110,15 @@ def get_psql_backups_output(cluster_id: Optional[pulumi.Input[str]] = None,
     The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_backups(cluster_id="cluster_id")
+    ```
 
 
     :param str cluster_id: The unique ID of the cluster.

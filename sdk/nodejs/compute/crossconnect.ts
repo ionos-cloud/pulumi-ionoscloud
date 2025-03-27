@@ -6,6 +6,58 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Cross Connect** on IonosCloud.
+ * Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
+ * The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
+ * You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
+ *
+ * The IP addresses of the NICs used for the Cross Connect connection may not be used in more than one NIC and they need to belong to the same IP range.
+ *
+ * ## Example Usage
+ *
+ * To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const crossConnectTestResource = new ionoscloud.compute.Crossconnect("CrossConnectTestResource", {
+ *     name: "CrossConnectTestResource",
+ *     description: "CrossConnectTestResource",
+ * });
+ * const dc1 = new ionoscloud.compute.Datacenter("dc1", {
+ *     location: "de/txl",
+ *     name: "dc1",
+ * });
+ * const dc2 = new ionoscloud.compute.Datacenter("dc2", {
+ *     location: "de/txl",
+ *     name: "dc2",
+ * });
+ * const dc1lan = new ionoscloud.compute.Lan("dc1lan", {
+ *     datacenterId: dc1.id,
+ *     "public": false,
+ *     name: "dc1lan",
+ *     pcc: crossConnectTestResource.id,
+ * });
+ * const dc2lan = new ionoscloud.compute.Lan("dc2lan", {
+ *     datacenterId: dc2.id,
+ *     "public": false,
+ *     name: "dc2lan",
+ *     pcc: crossConnectTestResource.id,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Cross Connect resource can be imported using its `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
+ * ```
+ *
+ * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
+ */
 export class Crossconnect extends pulumi.CustomResource {
     /**
      * Get an existing Crossconnect resource's state with the given name, ID, and optional extra
@@ -39,15 +91,16 @@ export class Crossconnect extends pulumi.CustomResource {
      */
     public readonly connectableDatacenters!: pulumi.Output<outputs.compute.CrossconnectConnectableDatacenter[]>;
     /**
-     * The desired description
+     * [string] A short description for the cross-connection.
+     * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The desired name
+     * [string] The name of the cross-connection.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * A list containing the details of all cross-connected datacenters
+     * Lists LAN's joined to this cross connect
      */
     public readonly peers!: pulumi.Output<outputs.compute.CrossconnectPeer[]>;
 
@@ -89,15 +142,16 @@ export interface CrossconnectState {
      */
     connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[]>;
     /**
-     * The desired description
+     * [string] A short description for the cross-connection.
+     * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
     description?: pulumi.Input<string>;
     /**
-     * The desired name
+     * [string] The name of the cross-connection.
      */
     name?: pulumi.Input<string>;
     /**
-     * A list containing the details of all cross-connected datacenters
+     * Lists LAN's joined to this cross connect
      */
     peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[]>;
 }
@@ -111,15 +165,16 @@ export interface CrossconnectArgs {
      */
     connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[]>;
     /**
-     * The desired description
+     * [string] A short description for the cross-connection.
+     * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
     description?: pulumi.Input<string>;
     /**
-     * The desired name
+     * [string] The name of the cross-connection.
      */
     name?: pulumi.Input<string>;
     /**
-     * A list containing the details of all cross-connected datacenters
+     * Lists LAN's joined to this cross connect
      */
     peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[]>;
 }

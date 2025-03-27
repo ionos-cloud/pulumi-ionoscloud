@@ -46,7 +46,7 @@ class GetMariaDBBackupsResult:
 
     @property
     @pulumi.getter(name="backupId")
-    def backup_id(self) -> Optional[str]:
+    def backup_id(self) -> str:
         return pulumi.get(self, "backup_id")
 
     @property
@@ -56,7 +56,7 @@ class GetMariaDBBackupsResult:
 
     @property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[str]:
+    def cluster_id(self) -> str:
         """
         The unique ID of the cluster that was backed up.
         """
@@ -98,6 +98,24 @@ def get_maria_db_backups(backup_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### Get all backups for a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_backups(cluster_id="cluster_id",
+        location="de/txl")
+    ```
+
+    ### Get a specific backup
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_backups(backup_id="backup_id",
+        location="de/txl")
+    ```
+
 
     :param str backup_id: [string] The unique ID of the backup.
     :param str cluster_id: [string] The unique ID of the cluster.
@@ -128,6 +146,24 @@ def get_maria_db_backups_output(backup_id: Optional[pulumi.Input[Optional[str]]]
     The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
 
     ## Example Usage
+
+    ### Get all backups for a specific cluster
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_backups(cluster_id="cluster_id",
+        location="de/txl")
+    ```
+
+    ### Get a specific backup
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_backups(backup_id="backup_id",
+        location="de/txl")
+    ```
 
 
     :param str backup_id: [string] The unique ID of the backup.

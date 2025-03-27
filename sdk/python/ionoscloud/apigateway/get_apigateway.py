@@ -128,6 +128,15 @@ def get_apigateway(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_apigateway(id="your_apigateway_id")
+    ```
+
     ### By Name
 
     Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
@@ -171,6 +180,15 @@ def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_apigateway(id="your_apigateway_id")
+    ```
 
     ### By Name
 

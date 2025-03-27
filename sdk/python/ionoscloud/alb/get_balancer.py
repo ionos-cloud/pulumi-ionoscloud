@@ -85,7 +85,7 @@ class GetBalancerResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         Id of the application load balancer.
         """
@@ -122,7 +122,7 @@ class GetBalancerResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         Specifies the name of the flow log.
         """
@@ -173,6 +173,15 @@ def get_balancer(datacenter_id: Optional[str] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
+        id="alb_id")
+    ```
 
     ### By Name
     ```python
@@ -233,6 +242,15 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search and make sure that your resources have unique names.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
+        id="alb_id")
+    ```
 
     ### By Name
     ```python

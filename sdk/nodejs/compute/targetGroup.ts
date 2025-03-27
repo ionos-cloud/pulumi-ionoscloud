@@ -6,6 +6,62 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Target Group** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.TargetGroup("example", {
+ *     name: "Target Group Example",
+ *     algorithm: "ROUND_ROBIN",
+ *     protocol: "HTTP",
+ *     protocolVersion: "HTTP1",
+ *     targets: [
+ *         {
+ *             ip: "22.231.2.2",
+ *             port: 8080,
+ *             weight: 1,
+ *             proxyProtocol: "v2ssl",
+ *             healthCheckEnabled: true,
+ *             maintenanceEnabled: false,
+ *         },
+ *         {
+ *             ip: "22.231.2.3",
+ *             port: 8081,
+ *             weight: 124,
+ *             proxyProtocol: "v2",
+ *             healthCheckEnabled: false,
+ *             maintenanceEnabled: false,
+ *         },
+ *     ],
+ *     healthCheck: {
+ *         checkTimeout: 5000,
+ *         checkInterval: 50000,
+ *         retries: 2,
+ *     },
+ *     httpHealthCheck: {
+ *         path: "/.",
+ *         method: "GET",
+ *         matchType: "STATUS_CODE",
+ *         response: "200",
+ *         regex: true,
+ *         negate: true,
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Target Group can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
+ * ```
+ */
 export class TargetGroup extends pulumi.CustomResource {
     /**
      * Get an existing TargetGroup resource's state with the given name, ID, and optional extra
@@ -35,11 +91,11 @@ export class TargetGroup extends pulumi.CustomResource {
     }
 
     /**
-     * Balancing algorithm.
+     * [string] Balancing algorithm.
      */
     public readonly algorithm!: pulumi.Output<string>;
     /**
-     * Health check attributes for Application Load Balancer forwarding rule
+     * Health check attributes for Target Group.
      */
     public readonly healthCheck!: pulumi.Output<outputs.compute.TargetGroupHealthCheck>;
     /**
@@ -47,19 +103,19 @@ export class TargetGroup extends pulumi.CustomResource {
      */
     public readonly httpHealthCheck!: pulumi.Output<outputs.compute.TargetGroupHttpHealthCheck>;
     /**
-     * The name of the target group.
+     * [string] The name of the target group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Balancing protocol.
+     * [string] Balancing protocol.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+     * [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
      */
     public readonly protocolVersion!: pulumi.Output<string>;
     /**
-     * Array of items in the collection.
+     * [list] Array of items in the collection
      */
     public readonly targets!: pulumi.Output<outputs.compute.TargetGroupTarget[]>;
 
@@ -112,11 +168,11 @@ export class TargetGroup extends pulumi.CustomResource {
  */
 export interface TargetGroupState {
     /**
-     * Balancing algorithm.
+     * [string] Balancing algorithm.
      */
     algorithm?: pulumi.Input<string>;
     /**
-     * Health check attributes for Application Load Balancer forwarding rule
+     * Health check attributes for Target Group.
      */
     healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck>;
     /**
@@ -124,19 +180,19 @@ export interface TargetGroupState {
      */
     httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck>;
     /**
-     * The name of the target group.
+     * [string] The name of the target group.
      */
     name?: pulumi.Input<string>;
     /**
-     * Balancing protocol.
+     * [string] Balancing protocol.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+     * [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
      */
     protocolVersion?: pulumi.Input<string>;
     /**
-     * Array of items in the collection.
+     * [list] Array of items in the collection
      */
     targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[]>;
 }
@@ -146,11 +202,11 @@ export interface TargetGroupState {
  */
 export interface TargetGroupArgs {
     /**
-     * Balancing algorithm.
+     * [string] Balancing algorithm.
      */
     algorithm: pulumi.Input<string>;
     /**
-     * Health check attributes for Application Load Balancer forwarding rule
+     * Health check attributes for Target Group.
      */
     healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck>;
     /**
@@ -158,19 +214,19 @@ export interface TargetGroupArgs {
      */
     httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck>;
     /**
-     * The name of the target group.
+     * [string] The name of the target group.
      */
     name?: pulumi.Input<string>;
     /**
-     * Balancing protocol.
+     * [string] Balancing protocol.
      */
     protocol: pulumi.Input<string>;
     /**
-     * The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+     * [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
      */
     protocolVersion: pulumi.Input<string>;
     /**
-     * Array of items in the collection.
+     * [list] Array of items in the collection
      */
     targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[]>;
 }

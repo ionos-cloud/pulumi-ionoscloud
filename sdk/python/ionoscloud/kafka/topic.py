@@ -20,7 +20,7 @@ __all__ = ['TopicArgs', 'Topic']
 class TopicArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
-                 location: pulumi.Input[str],
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  number_of_partitions: Optional[pulumi.Input[int]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
@@ -29,7 +29,7 @@ class TopicArgs:
         """
         The set of arguments for constructing a Topic resource.
         :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -45,7 +45,8 @@ class TopicArgs:
                retention. Default value: 1073741824.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "location", location)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if number_of_partitions is not None:
@@ -71,14 +72,14 @@ class TopicArgs:
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
+    def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: pulumi.Input[str]):
+    def location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "location", value)
 
     @property
@@ -163,7 +164,7 @@ class _TopicState:
         """
         Input properties used for looking up and filtering Topic resources.
         :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -209,7 +210,7 @@ class _TopicState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -348,13 +349,13 @@ class Topic(pulumi.CustomResource):
         Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
 
         ```sh
-        $ pulumi import ionoscloud:kafka/topic:Topic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+        $ pulumi import ionoscloud:kafka/topic:Topic my_topic location:kafka cluster uuid:kafka cluster topic uuid
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -424,7 +425,7 @@ class Topic(pulumi.CustomResource):
         Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
 
         ```sh
-        $ pulumi import ionoscloud:kafka/topic:Topic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+        $ pulumi import ionoscloud:kafka/topic:Topic my_topic location:kafka cluster uuid:kafka cluster topic uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -461,8 +462,6 @@ class Topic(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["number_of_partitions"] = number_of_partitions
@@ -494,7 +493,7 @@ class Topic(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -532,9 +531,9 @@ class Topic(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 

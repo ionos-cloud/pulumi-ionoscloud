@@ -22,22 +22,23 @@ __all__ = ['ClusterArgs', 'Cluster']
 class ClusterArgs:
     def __init__(__self__, *,
                  connections: pulumi.Input['ClusterConnectionsArgs'],
-                 location: pulumi.Input[str],
                  size: pulumi.Input[int],
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nfs: Optional[pulumi.Input['ClusterNfsArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
+        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
-        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
         :param pulumi.Input[str] name: The name of the Network File Storage cluster.
         """
         pulumi.set(__self__, "connections", connections)
-        pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "size", size)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nfs is not None:
@@ -57,20 +58,6 @@ class ClusterArgs:
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        The location where the Network File Storage cluster is located.
-        - `de/fra` - Frankfurt
-        - `de/txl` - Berlin
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
-
-    @property
-    @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
         The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
@@ -80,6 +67,20 @@ class ClusterArgs:
     @size.setter
     def size(self, value: pulumi.Input[int]):
         pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        - `de/fra` - Frankfurt
+        - `de/txl` - Berlin
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -114,7 +115,7 @@ class _ClusterState:
         """
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
+        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[str] name: The name of the Network File Storage cluster.
@@ -147,7 +148,7 @@ class _ClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location where the Network File Storage cluster is located.
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         - `de/fra` - Frankfurt
         - `de/txl` - Berlin
         """
@@ -240,13 +241,13 @@ class Cluster(pulumi.CustomResource):
         A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
 
         ```sh
-        $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
+        $ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
+        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[str] name: The name of the Network File Storage cluster.
@@ -296,7 +297,7 @@ class Cluster(pulumi.CustomResource):
         A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
 
         ```sh
-        $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
+        $ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -331,8 +332,6 @@ class Cluster(pulumi.CustomResource):
             if connections is None and not opts.urn:
                 raise TypeError("Missing required property 'connections'")
             __props__.__dict__["connections"] = connections
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["nfs"] = nfs
@@ -362,7 +361,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
+        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[str] name: The name of the Network File Storage cluster.
@@ -389,9 +388,9 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
-        The location where the Network File Storage cluster is located.
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         - `de/fra` - Frankfurt
         - `de/txl` - Berlin
         """

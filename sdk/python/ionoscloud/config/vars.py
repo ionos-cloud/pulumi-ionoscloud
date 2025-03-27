@@ -32,6 +32,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('endpoint')
 
     @property
+    def insecure(self) -> Optional[bool]:
+        """
+        This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+        """
+        return __config__.get_bool('insecure')
+
+    @property
     def password(self) -> Optional[str]:
         """
         IonosCloud password for API operations. If token is provided, token is preferred

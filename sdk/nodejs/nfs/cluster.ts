@@ -6,6 +6,50 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Create clusters of Network File Storage (NFS) on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * // Basic example
+ * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
+ *     name: "NFS Datacenter",
+ *     location: "de/txl",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
+ *     datacenterId: nfsDc.id,
+ *     "public": false,
+ *     name: "Lan for NFS",
+ * });
+ * const example = new ionoscloud.nfs.Cluster("example", {
+ *     name: "test",
+ *     location: "de/txl",
+ *     size: 2,
+ *     nfs: {
+ *         minVersion: "4.2",
+ *     },
+ *     connections: {
+ *         datacenterId: nfsDc.id,
+ *         ipAddress: "192.168.100.10/24",
+ *         lan: nfsLan.id,
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid
+ * ```
+ */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -39,17 +83,18 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly connections!: pulumi.Output<outputs.nfs.ClusterConnections>;
     /**
-     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
-     * 'us/las, 'us/ewr, 'us/mci'
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * - `de/fra` - Frankfurt
+     * - `de/txl` - Berlin
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * The name of the Network File Storage Cluster.
+     * The name of the Network File Storage cluster.
      */
     public readonly name!: pulumi.Output<string>;
     public readonly nfs!: pulumi.Output<outputs.nfs.ClusterNfs | undefined>;
     /**
-     * The size of the Network File Storage Cluster. Minimum size is 2.
+     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
     public readonly size!: pulumi.Output<number>;
 
@@ -99,17 +144,18 @@ export interface ClusterState {
      */
     connections?: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
-     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
-     * 'us/las, 'us/ewr, 'us/mci'
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * - `de/fra` - Frankfurt
+     * - `de/txl` - Berlin
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of the Network File Storage Cluster.
+     * The name of the Network File Storage cluster.
      */
     name?: pulumi.Input<string>;
     nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
     /**
-     * The size of the Network File Storage Cluster. Minimum size is 2.
+     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
     size?: pulumi.Input<number>;
 }
@@ -123,17 +169,18 @@ export interface ClusterArgs {
      */
     connections: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
-     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
-     * 'us/las, 'us/ewr, 'us/mci'
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * - `de/fra` - Frankfurt
+     * - `de/txl` - Berlin
      */
     location?: pulumi.Input<string>;
     /**
-     * The name of the Network File Storage Cluster.
+     * The name of the Network File Storage cluster.
      */
     name?: pulumi.Input<string>;
     nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
     /**
-     * The size of the Network File Storage Cluster. Minimum size is 2.
+     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
     size: pulumi.Input<number>;
 }

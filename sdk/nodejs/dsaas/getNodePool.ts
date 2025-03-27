@@ -6,6 +6,49 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     id: "node_pool_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dsaas/getNodePool:getNodePool", {
@@ -20,9 +63,23 @@ export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getNodePool.
  */
 export interface GetNodePoolArgs {
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     clusterId: string;
+    /**
+     * ID of the node pool you want to search for.
+     */
     id?: string;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: string;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     partialMatch?: boolean;
 }
 
@@ -30,24 +87,115 @@ export interface GetNodePoolArgs {
  * A collection of values returned by getNodePool.
  */
 export interface GetNodePoolResult {
+    /**
+     * Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+     */
     readonly annotations: {[key: string]: string};
+    /**
+     * Whether the Node Pool should autoscale. For more details, please check the API documentation
+     */
     readonly autoScalings: outputs.dsaas.GetNodePoolAutoScaling[];
+    /**
+     * The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+     */
     readonly availabilityZone: string;
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     readonly clusterId: string;
+    /**
+     * The number of CPU cores per node.
+     */
     readonly coresCount: number;
+    /**
+     * A CPU family.
+     */
     readonly cpuFamily: string;
+    /**
+     * The UUID of the virtual data center (VDC) the cluster is provisioned.
+     */
     readonly datacenterId: string;
+    /**
+     * ID of your node pool.
+     */
     readonly id: string;
+    /**
+     * Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     */
     readonly maintenanceWindows: outputs.dsaas.GetNodePoolMaintenanceWindow[];
+    /**
+     * The name of your node pool
+     */
     readonly name: string;
+    /**
+     * The number of nodes that make up the node pool.
+     */
     readonly nodeCount: number;
     readonly partialMatch?: boolean;
+    /**
+     * The RAM size for one node in MB.
+     */
     readonly ramSize: number;
+    /**
+     * The size of the volume in GB.
+     */
     readonly storageSize: number;
+    /**
+     * The type of hardware for the volume.
+     */
     readonly storageType: string;
+    /**
+     * The version of the Data Platform.
+     */
     readonly version: string;
 }
+/**
+ * The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     id: "node_pool_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "Dataplatform_Node_Pool_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getNodePool({
+ *     clusterId: "cluster_id",
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dsaas/getNodePool:getNodePool", {
@@ -62,8 +210,22 @@ export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getNodePool.
  */
 export interface GetNodePoolOutputArgs {
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     clusterId: pulumi.Input<string>;
+    /**
+     * ID of the node pool you want to search for.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     partialMatch?: pulumi.Input<boolean>;
 }

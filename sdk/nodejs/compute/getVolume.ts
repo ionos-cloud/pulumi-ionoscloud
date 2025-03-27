@@ -4,6 +4,35 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * The volume data source can be used to search for and return existing volumes.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     id: "volume_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     name: "Volume Example",
+ * });
+ * ```
+ */
 export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getVolume:getVolume", {
@@ -18,7 +47,15 @@ export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pro
  */
 export interface GetVolumeArgs {
     datacenterId: string;
+    /**
+     * ID of the volume you want to search for.
+     *
+     * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * Name of an existing volume that you want to search for.
+     */
     name?: string;
 }
 
@@ -26,28 +63,117 @@ export interface GetVolumeArgs {
  * A collection of values returned by getVolume.
  */
 export interface GetVolumeResult {
+    /**
+     * The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
+     */
     readonly availabilityZone: string;
+    /**
+     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+     */
     readonly backupUnitId: string;
+    /**
+     * The UUID of the attached server.
+     */
     readonly bootServer: string;
+    /**
+     * The bus type of the volume: VIRTIO or IDE.
+     */
     readonly bus: string;
+    /**
+     * Is capable of CPU hot plug (no reboot required)
+     */
     readonly cpuHotPlug: boolean;
     readonly datacenterId: string;
+    /**
+     * The LUN ID of the storage volume. Null for volumes not mounted to any VM
+     */
     readonly deviceNumber: number;
+    /**
+     * Is capable of Virt-IO drive hot plug (no reboot required)
+     */
     readonly discVirtioHotPlug: boolean;
+    /**
+     * Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+     */
     readonly discVirtioHotUnplug: boolean;
+    /**
+     * The volume type: HDD or SSD.
+     */
     readonly diskType: string;
+    /**
+     * The id of the volume.
+     */
     readonly id: string;
+    /**
+     * The image or snapshot UUID.
+     */
     readonly image: string;
+    /**
+     * Required if `sshkeyPath` is not provided.
+     */
     readonly imagePassword: string;
+    /**
+     * The type of the licence.
+     */
     readonly licenceType: string;
+    /**
+     * The name of the volume.
+     */
     readonly name: string;
+    /**
+     * Is capable of nic hot plug (no reboot required)
+     */
     readonly nicHotPlug: boolean;
+    /**
+     * Is capable of nic hot unplug (no reboot required)
+     */
     readonly nicHotUnplug: boolean;
+    /**
+     * Is capable of memory hot plug (no reboot required)
+     */
     readonly ramHotPlug: boolean;
+    /**
+     * The size of the volume in GB.
+     */
     readonly size: number;
+    /**
+     * The associated public SSH key.
+     */
     readonly sshkey: string;
+    /**
+     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+     */
     readonly userData: string;
 }
+/**
+ * The volume data source can be used to search for and return existing volumes.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     id: "volume_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getVolume({
+ *     datacenterId: "datacenter_id",
+ *     name: "Volume Example",
+ * });
+ * ```
+ */
 export function getVolumeOutput(args: GetVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVolumeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getVolume:getVolume", {
@@ -62,6 +188,14 @@ export function getVolumeOutput(args: GetVolumeOutputArgs, opts?: pulumi.InvokeO
  */
 export interface GetVolumeOutputArgs {
     datacenterId: pulumi.Input<string>;
+    /**
+     * ID of the volume you want to search for.
+     *
+     * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of an existing volume that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

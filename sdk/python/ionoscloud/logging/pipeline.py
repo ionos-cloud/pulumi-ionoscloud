@@ -27,7 +27,7 @@ class PipelineArgs:
         """
         The set of arguments for constructing a Pipeline resource.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineLogArgs']]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
-        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
         pulumi.set(__self__, "logs", logs)
@@ -52,7 +52,7 @@ class PipelineArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -83,7 +83,7 @@ class _PipelineState:
         """
         Input properties used for looking up and filtering Pipeline resources.
         :param pulumi.Input[str] grafana_address: [string] The address of the client's grafana instance.
-        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineLogArgs']]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
@@ -112,7 +112,7 @@ class _PipelineState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -168,12 +168,12 @@ class Pipeline(pulumi.CustomResource):
         The resource can be imported using the `location` and `pipeline_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
+        $ pulumi import ionoscloud:logging/pipeline:Pipeline example location:pipeline_id
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
@@ -197,7 +197,7 @@ class Pipeline(pulumi.CustomResource):
         The resource can be imported using the `location` and `pipeline_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
+        $ pulumi import ionoscloud:logging/pipeline:Pipeline example location:pipeline_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -255,7 +255,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] grafana_address: [string] The address of the client's grafana instance.
-        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
@@ -281,7 +281,7 @@ class Pipeline(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 

@@ -176,7 +176,7 @@ class Certificate(pulumi.CustomResource):
         Resource certificate can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -200,7 +200,7 @@ class Certificate(pulumi.CustomResource):
         Resource certificate can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
         ```
 
         :param str resource_name: The name of the resource.

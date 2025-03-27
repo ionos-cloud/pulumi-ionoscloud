@@ -6,6 +6,126 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ### 
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const example1 = new ionoscloud.compute.Lan("example1", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 1",
+ * });
+ * const example2 = new ionoscloud.compute.Lan("example2", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 2",
+ * });
+ * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "example",
+ *     listenerLan: example1.id,
+ *     targetLan: example2.id,
+ *     ips: ["10.12.118.224"],
+ *     lbPrivateIps: ["10.13.72.225/24"],
+ * });
+ * const exampleForwardingRule = new ionoscloud.nlb.ForwardingRule("example", {
+ *     datacenterId: example.id,
+ *     networkloadbalancerId: exampleBalancer.id,
+ *     name: "example",
+ *     algorithm: "SOURCE_IP",
+ *     protocol: "TCP",
+ *     listenerIp: "10.12.118.224",
+ *     listenerPort: 8081,
+ *     targets: [{
+ *         ip: "22.231.2.2",
+ *         port: 8080,
+ *         weight: 123,
+ *         proxyProtocol: "v1",
+ *         healthCheck: {
+ *             check: true,
+ *             checkInterval: 1000,
+ *         },
+ *     }],
+ * });
+ * ```
+ *
+ * ### Usage with dynamic block for targets:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const example1 = new ionoscloud.compute.Lan("example1", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 1",
+ * });
+ * const example2 = new ionoscloud.compute.Lan("example2", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 2",
+ * });
+ * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "example",
+ *     listenerLan: example1.id,
+ *     targetLan: example2.id,
+ *     ips: ["10.12.118.224"],
+ *     lbPrivateIps: ["10.13.72.225/24"],
+ * });
+ * const config = new pulumi.Config();
+ * const iPs = config.getObject<Array<any>>("iPs") || [
+ *     "22.231.2.2",
+ *     "22.231.2.3",
+ *     "22.231.2.4",
+ * ];
+ * const exampleForwardingRule = new ionoscloud.nlb.ForwardingRule("example", {
+ *     targets: iPs.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         ip: entry.value,
+ *         port: 31234,
+ *         weight: 1,
+ *         healthCheck: {
+ *             check: true,
+ *             checkInterval: 1000,
+ *             maintenance: false,
+ *         },
+ *     })),
+ *     datacenterId: example.id,
+ *     networkloadbalancerId: exampleBalancer.id,
+ *     name: "example",
+ *     algorithm: "SOURCE_IP",
+ *     protocol: "TCP",
+ *     listenerIp: "10.12.118.224",
+ *     listenerPort: 8081,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
+ * ```
+ */
 export class ForwardingRule extends pulumi.CustomResource {
     /**
      * Get an existing ForwardingRule resource's state with the given name, ID, and optional extra
@@ -35,33 +155,36 @@ export class ForwardingRule extends pulumi.CustomResource {
     }
 
     /**
-     * Algorithm for the balancing.
+     * [string] Algorithm for the balancing.
      */
     public readonly algorithm!: pulumi.Output<string>;
+    /**
+     * [string] A Datacenter's UUID.
+     */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     public readonly healthCheck!: pulumi.Output<outputs.nlb.ForwardingRuleHealthCheck>;
     /**
-     * Listening IP. (inbound)
+     * [string] Listening IP. (inbound)
      */
     public readonly listenerIp!: pulumi.Output<string>;
     /**
-     * Listening port number. (inbound) (range: 1 to 65535)
+     * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
     public readonly listenerPort!: pulumi.Output<number>;
     /**
-     * A name of that Network Load Balancer forwarding rule
+     * [string] A name of that Network Load Balancer forwarding rule.
      */
     public readonly name!: pulumi.Output<string>;
     public readonly networkloadbalancerId!: pulumi.Output<string>;
     /**
-     * Protocol of the balancing.
+     * [string] Protocol of the balancing.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * Array of items in that collection
+     * [Set] Array of items in that collection.
      */
     public readonly targets!: pulumi.Output<outputs.nlb.ForwardingRuleTarget[]>;
 
@@ -130,33 +253,36 @@ export class ForwardingRule extends pulumi.CustomResource {
  */
 export interface ForwardingRuleState {
     /**
-     * Algorithm for the balancing.
+     * [string] Algorithm for the balancing.
      */
     algorithm?: pulumi.Input<string>;
+    /**
+     * [string] A Datacenter's UUID.
+     */
     datacenterId?: pulumi.Input<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck>;
     /**
-     * Listening IP. (inbound)
+     * [string] Listening IP. (inbound)
      */
     listenerIp?: pulumi.Input<string>;
     /**
-     * Listening port number. (inbound) (range: 1 to 65535)
+     * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
     listenerPort?: pulumi.Input<number>;
     /**
-     * A name of that Network Load Balancer forwarding rule
+     * [string] A name of that Network Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     networkloadbalancerId?: pulumi.Input<string>;
     /**
-     * Protocol of the balancing.
+     * [string] Protocol of the balancing.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * Array of items in that collection
+     * [Set] Array of items in that collection.
      */
     targets?: pulumi.Input<pulumi.Input<inputs.nlb.ForwardingRuleTarget>[]>;
 }
@@ -166,33 +292,36 @@ export interface ForwardingRuleState {
  */
 export interface ForwardingRuleArgs {
     /**
-     * Algorithm for the balancing.
+     * [string] Algorithm for the balancing.
      */
     algorithm: pulumi.Input<string>;
+    /**
+     * [string] A Datacenter's UUID.
+     */
     datacenterId: pulumi.Input<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck>;
     /**
-     * Listening IP. (inbound)
+     * [string] Listening IP. (inbound)
      */
     listenerIp: pulumi.Input<string>;
     /**
-     * Listening port number. (inbound) (range: 1 to 65535)
+     * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
     listenerPort: pulumi.Input<number>;
     /**
-     * A name of that Network Load Balancer forwarding rule
+     * [string] A name of that Network Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     networkloadbalancerId: pulumi.Input<string>;
     /**
-     * Protocol of the balancing.
+     * [string] Protocol of the balancing.
      */
     protocol: pulumi.Input<string>;
     /**
-     * Array of items in that collection
+     * [Set] Array of items in that collection.
      */
     targets: pulumi.Input<pulumi.Input<inputs.nlb.ForwardingRuleTarget>[]>;
 }

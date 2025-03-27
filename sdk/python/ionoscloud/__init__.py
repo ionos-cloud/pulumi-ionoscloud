@@ -5,7 +5,14 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .get_monitoring_pipeline import *
+from .get_object_storage_accesskey import *
+from .get_object_storage_region import *
+from .monitoring_pipeline import *
+from .object_storage_accesskey import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -41,6 +48,10 @@ if typing.TYPE_CHECKING:
     nfs = __nfs
     import ionoscloud.nlb as __nlb
     nlb = __nlb
+    import ionoscloud.nsg as __nsg
+    nsg = __nsg
+    import ionoscloud.objectstorage as __objectstorage
+    objectstorage = __objectstorage
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
@@ -60,6 +71,8 @@ else:
     logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
     nlb = _utilities.lazy_import('ionoscloud.nlb')
+    nsg = _utilities.lazy_import('ionoscloud.nsg')
+    objectstorage = _utilities.lazy_import('ionoscloud.objectstorage')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
@@ -419,6 +432,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "index/monitoringPipeline",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/monitoringPipeline:MonitoringPipeline": "MonitoringPipeline"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/objectStorageAccesskey",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": "ObjectStorageAccesskey"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "ionoscloud.k8s",
   "classes": {
@@ -487,6 +516,118 @@ _utilities.register(
   "fqn": "ionoscloud.nlb",
   "classes": {
    "ionoscloud:nlb/forwardingRule:ForwardingRule": "ForwardingRule"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/datacenterNsgSelection",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection": "DatacenterNsgSelection"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/firewall",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/firewall:Firewall": "Firewall"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nsg/nsg",
+  "fqn": "ionoscloud.nsg",
+  "classes": {
+   "ionoscloud:nsg/nsg:Nsg": "Nsg"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucket",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucket:Bucket": "Bucket"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketLifecycleConfiguration",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration": "BucketLifecycleConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketPolicy",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketPolicy:BucketPolicy": "BucketPolicy"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketServerSideEncryptionConfiguration",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": "BucketServerSideEncryptionConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketVersioning",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketVersioning:BucketVersioning": "BucketVersioning"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/corsConfiguration",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": "CorsConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/object",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/object:Object": "Object"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/objectCopy",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/objectCopy:ObjectCopy": "ObjectCopy"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/objectLockConfiguration",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": "ObjectLockConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/publicAccessBlock",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": "PublicAccessBlock"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/websiteConfiguration",
+  "fqn": "ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration": "WebsiteConfiguration"
   }
  },
  {

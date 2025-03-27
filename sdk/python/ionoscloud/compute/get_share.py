@@ -45,7 +45,7 @@ class GetShareResult:
 
     @property
     @pulumi.getter(name="editPrivilege")
-    def edit_privilege(self) -> Optional[bool]:
+    def edit_privilege(self) -> bool:
         """
         The flag that specifies if the group has permission to edit privileges on this resource.
         """
@@ -77,7 +77,7 @@ class GetShareResult:
 
     @property
     @pulumi.getter(name="sharePrivilege")
-    def share_privilege(self) -> Optional[bool]:
+    def share_privilege(self) -> bool:
         """
         The group has permission to share this resource.
         """
@@ -97,11 +97,8 @@ class AwaitableGetShareResult(GetShareResult):
             share_privilege=self.share_privilege)
 
 
-def get_share(edit_privilege: Optional[bool] = None,
-              group_id: Optional[str] = None,
-              id: Optional[str] = None,
+def get_share(group_id: Optional[str] = None,
               resource_id: Optional[str] = None,
-              share_privilege: Optional[bool] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetShareResult:
     """
     The **Share data source** can be used to search for and return an existing share object.
@@ -110,21 +107,12 @@ def get_share(edit_privilege: Optional[bool] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
 
-    :param bool edit_privilege: The flag that specifies if the group has permission to edit privileges on this resource.
     :param str group_id: The ID of the specific group containing the resource to update.
-    :param str id: The uuid of the share object
-           
-           
-           `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
     :param str resource_id: The ID of the specific resource to update.
-    :param bool share_privilege: The group has permission to share this resource.
     """
     __args__ = dict()
-    __args__['editPrivilege'] = edit_privilege
     __args__['groupId'] = group_id
-    __args__['id'] = id
     __args__['resourceId'] = resource_id
-    __args__['sharePrivilege'] = share_privilege
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getShare:getShare', __args__, opts=opts, typ=GetShareResult).value
 
@@ -134,11 +122,8 @@ def get_share(edit_privilege: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         share_privilege=pulumi.get(__ret__, 'share_privilege'))
-def get_share_output(edit_privilege: Optional[pulumi.Input[Optional[bool]]] = None,
-                     group_id: Optional[pulumi.Input[str]] = None,
-                     id: Optional[pulumi.Input[str]] = None,
+def get_share_output(group_id: Optional[pulumi.Input[str]] = None,
                      resource_id: Optional[pulumi.Input[str]] = None,
-                     share_privilege: Optional[pulumi.Input[Optional[bool]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
     The **Share data source** can be used to search for and return an existing share object.
@@ -147,21 +132,12 @@ def get_share_output(edit_privilege: Optional[pulumi.Input[Optional[bool]]] = No
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
 
-    :param bool edit_privilege: The flag that specifies if the group has permission to edit privileges on this resource.
     :param str group_id: The ID of the specific group containing the resource to update.
-    :param str id: The uuid of the share object
-           
-           
-           `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
     :param str resource_id: The ID of the specific resource to update.
-    :param bool share_privilege: The group has permission to share this resource.
     """
     __args__ = dict()
-    __args__['editPrivilege'] = edit_privilege
     __args__['groupId'] = group_id
-    __args__['id'] = id
     __args__['resourceId'] = resource_id
-    __args__['sharePrivilege'] = share_privilege
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getShare:getShare', __args__, opts=opts, typ=GetShareResult)
     return __ret__.apply(lambda __response__: GetShareResult(

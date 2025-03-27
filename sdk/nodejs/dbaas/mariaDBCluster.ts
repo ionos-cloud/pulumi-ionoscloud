@@ -6,6 +6,17 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **DBaaS MariaDB Cluster**.
+ *
+ * ## Import
+ *
+ * Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
+ * ```
+ */
 export class MariaDBCluster extends pulumi.CustomResource {
     /**
      * Get an existing MariaDBCluster resource's state with the given name, ID, and optional extra
@@ -39,7 +50,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
      */
     public readonly connections!: pulumi.Output<outputs.dbaas.MariaDBClusterConnections>;
     /**
-     * The number of CPU cores per instance.
+     * [int] The number of CPU cores per instance.
      */
     public readonly cores!: pulumi.Output<number>;
     /**
@@ -47,35 +58,37 @@ export class MariaDBCluster extends pulumi.CustomResource {
      */
     public readonly credentials!: pulumi.Output<outputs.dbaas.MariaDBClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
-     * The DNS name pointing to your cluster.
+     * [string] The DNS name pointing to your cluster.
+     *
+     * > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     public /*out*/ readonly dnsName!: pulumi.Output<string>;
     /**
-     * The total number of instances in the cluster (one primary and n-1 secondary).
+     * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
     public readonly instances!: pulumi.Output<number>;
     /**
-     * The cluster location
+     * [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * The MariaDB version of your cluster. Cannot be downgraded.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     public readonly mariadbVersion!: pulumi.Output<string>;
     /**
-     * The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB).
      */
     public readonly ram!: pulumi.Output<number>;
     /**
-     * The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB).
      */
     public readonly storageSize!: pulumi.Output<number>;
 
@@ -155,7 +168,7 @@ export interface MariaDBClusterState {
      */
     connections?: pulumi.Input<inputs.dbaas.MariaDBClusterConnections>;
     /**
-     * The number of CPU cores per instance.
+     * [int] The number of CPU cores per instance.
      */
     cores?: pulumi.Input<number>;
     /**
@@ -163,35 +176,37 @@ export interface MariaDBClusterState {
      */
     credentials?: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The DNS name pointing to your cluster.
+     * [string] The DNS name pointing to your cluster.
+     *
+     * > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     dnsName?: pulumi.Input<string>;
     /**
-     * The total number of instances in the cluster (one primary and n-1 secondary).
+     * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
     instances?: pulumi.Input<number>;
     /**
-     * The cluster location
+     * [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      */
     location?: pulumi.Input<string>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * The MariaDB version of your cluster. Cannot be downgraded.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     mariadbVersion?: pulumi.Input<string>;
     /**
-     * The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB).
      */
     ram?: pulumi.Input<number>;
     /**
-     * The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB).
      */
     storageSize?: pulumi.Input<number>;
 }
@@ -205,7 +220,7 @@ export interface MariaDBClusterArgs {
      */
     connections: pulumi.Input<inputs.dbaas.MariaDBClusterConnections>;
     /**
-     * The number of CPU cores per instance.
+     * [int] The number of CPU cores per instance.
      */
     cores: pulumi.Input<number>;
     /**
@@ -213,31 +228,31 @@ export interface MariaDBClusterArgs {
      */
     credentials: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     displayName: pulumi.Input<string>;
     /**
-     * The total number of instances in the cluster (one primary and n-1 secondary).
+     * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
     instances: pulumi.Input<number>;
     /**
-     * The cluster location
+     * [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      */
     location?: pulumi.Input<string>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
     /**
-     * The MariaDB version of your cluster. Cannot be downgraded.
+     * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
     mariadbVersion: pulumi.Input<string>;
     /**
-     * The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB).
      */
     ram: pulumi.Input<number>;
     /**
-     * The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB).
      */
     storageSize: pulumi.Input<number>;
 }

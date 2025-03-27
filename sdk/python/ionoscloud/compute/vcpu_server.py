@@ -29,11 +29,13 @@ class VCPUServerArgs:
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
                  boot_image: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input['VCPUServerNicArgs']] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None):
         """
@@ -46,11 +48,17 @@ class VCPUServerArgs:
         :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] The password for the image.
         :param pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input['VCPUServerNicArgs'] nic: See the Nic section.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         """
@@ -69,6 +77,8 @@ class VCPUServerArgs:
             pulumi.set(__self__, "boot_image", boot_image)
         if firewallrule_ids is not None:
             pulumi.set(__self__, "firewallrule_ids", firewallrule_ids)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
@@ -79,6 +89,8 @@ class VCPUServerArgs:
             pulumi.set(__self__, "name", name)
         if nic is not None:
             pulumi.set(__self__, "nic", nic)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if ssh_keys is not None:
             pulumi.set(__self__, "ssh_keys", ssh_keys)
         if vm_state is not None:
@@ -182,6 +194,18 @@ class VCPUServerArgs:
         pulumi.set(self, "firewallrule_ids", value)
 
     @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -242,6 +266,22 @@ class VCPUServerArgs:
         pulumi.set(self, "nic", value)
 
     @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
+
+    @property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -278,6 +318,7 @@ class _VCPUServerState:
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -287,6 +328,7 @@ class _VCPUServerState:
                  primary_ip: Optional[pulumi.Input[str]] = None,
                  primary_nic: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
@@ -301,19 +343,21 @@ class _VCPUServerState:
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] The password for the image.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
-               
-               > **⚠ WARNING**
-               >
-               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input['VCPUServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: [integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input['VCPUServerVolumeArgs'] volume: See the Volume section.
@@ -339,6 +383,8 @@ class _VCPUServerState:
             pulumi.set(__self__, "firewallrule_id", firewallrule_id)
         if firewallrule_ids is not None:
             pulumi.set(__self__, "firewallrule_ids", firewallrule_ids)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
@@ -357,6 +403,8 @@ class _VCPUServerState:
             pulumi.set(__self__, "primary_nic", primary_nic)
         if ram is not None:
             pulumi.set(__self__, "ram", ram)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
         if ssh_keys is not None:
             pulumi.set(__self__, "ssh_keys", ssh_keys)
         if type is not None:
@@ -473,6 +521,18 @@ class _VCPUServerState:
         pulumi.set(self, "firewallrule_ids", value)
 
     @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -501,10 +561,6 @@ class _VCPUServerState:
     def inline_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list with the IDs for the volumes that are defined inside the server resource.
-
-        > **⚠ WARNING**
-        >
-        > ssh_keys field is immutable.
         """
         return pulumi.get(self, "inline_volume_ids")
 
@@ -585,6 +641,22 @@ class _VCPUServerState:
         pulumi.set(self, "ram", value)
 
     @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
+
+    @property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -641,12 +713,14 @@ class VCPUServer(pulumi.CustomResource):
                  cores: Optional[pulumi.Input[int]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
                  volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
@@ -657,13 +731,13 @@ class VCPUServer(pulumi.CustomResource):
         Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 
         ```sh
-        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}
+        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid
         ```
 
         Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
 
         ```sh
-        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid/primary nic id/firewall rule id
         ```
 
         :param str resource_name: The name of the resource.
@@ -674,12 +748,18 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[int] cores: [integer] Number of server CPU cores.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] The password for the image.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[int] ram: [integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
@@ -696,13 +776,13 @@ class VCPUServer(pulumi.CustomResource):
         Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
 
         ```sh
-        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}
+        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid
         ```
 
         Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
 
         ```sh
-        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+        $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid/primary nic id/firewall rule id
         ```
 
         :param str resource_name: The name of the resource.
@@ -726,12 +806,14 @@ class VCPUServer(pulumi.CustomResource):
                  cores: Optional[pulumi.Input[int]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
                  volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
@@ -754,6 +836,7 @@ class VCPUServer(pulumi.CustomResource):
                 raise TypeError("Missing required property 'datacenter_id'")
             __props__.__dict__["datacenter_id"] = datacenter_id
             __props__.__dict__["firewallrule_ids"] = firewallrule_ids
+            __props__.__dict__["hostname"] = hostname
             __props__.__dict__["image_name"] = image_name
             __props__.__dict__["image_password"] = None if image_password is None else pulumi.Output.secret(image_password)
             __props__.__dict__["labels"] = labels
@@ -762,6 +845,7 @@ class VCPUServer(pulumi.CustomResource):
             if ram is None and not opts.urn:
                 raise TypeError("Missing required property 'ram'")
             __props__.__dict__["ram"] = ram
+            __props__.__dict__["security_groups_ids"] = security_groups_ids
             __props__.__dict__["ssh_keys"] = ssh_keys
             __props__.__dict__["vm_state"] = vm_state
             if volume is None and not opts.urn:
@@ -795,6 +879,7 @@ class VCPUServer(pulumi.CustomResource):
             datacenter_id: Optional[pulumi.Input[str]] = None,
             firewallrule_id: Optional[pulumi.Input[str]] = None,
             firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            hostname: Optional[pulumi.Input[str]] = None,
             image_name: Optional[pulumi.Input[str]] = None,
             image_password: Optional[pulumi.Input[str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -804,6 +889,7 @@ class VCPUServer(pulumi.CustomResource):
             primary_ip: Optional[pulumi.Input[str]] = None,
             primary_nic: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
+            security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vm_state: Optional[pulumi.Input[str]] = None,
@@ -823,19 +909,21 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] The password for the image.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
-               
-               > **⚠ WARNING**
-               >
-               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: [integer] The amount of memory for the server in MB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
@@ -853,6 +941,7 @@ class VCPUServer(pulumi.CustomResource):
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["firewallrule_id"] = firewallrule_id
         __props__.__dict__["firewallrule_ids"] = firewallrule_ids
+        __props__.__dict__["hostname"] = hostname
         __props__.__dict__["image_name"] = image_name
         __props__.__dict__["image_password"] = image_password
         __props__.__dict__["inline_volume_ids"] = inline_volume_ids
@@ -862,6 +951,7 @@ class VCPUServer(pulumi.CustomResource):
         __props__.__dict__["primary_ip"] = primary_ip
         __props__.__dict__["primary_nic"] = primary_nic
         __props__.__dict__["ram"] = ram
+        __props__.__dict__["security_groups_ids"] = security_groups_ids
         __props__.__dict__["ssh_keys"] = ssh_keys
         __props__.__dict__["type"] = type
         __props__.__dict__["vm_state"] = vm_state
@@ -939,6 +1029,14 @@ class VCPUServer(pulumi.CustomResource):
         return pulumi.get(self, "firewallrule_ids")
 
     @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Output[str]:
+        """
+        (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> pulumi.Output[str]:
         """
@@ -959,10 +1057,6 @@ class VCPUServer(pulumi.CustomResource):
     def inline_volume_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         A list with the IDs for the volumes that are defined inside the server resource.
-
-        > **⚠ WARNING**
-        >
-        > ssh_keys field is immutable.
         """
         return pulumi.get(self, "inline_volume_ids")
 
@@ -1013,6 +1107,18 @@ class VCPUServer(pulumi.CustomResource):
         [integer] The amount of memory for the server in MB.
         """
         return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
+        return pulumi.get(self, "security_groups_ids")
 
     @property
     @pulumi.getter(name="sshKeys")

@@ -94,7 +94,7 @@ class GetShareResult:
 
     @property
     @pulumi.getter
-    def location(self) -> str:
+    def location(self) -> Optional[str]:
         """
         The location where the Network File Storage share is located.
         """
@@ -169,6 +169,17 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
     """
     Returns information about shares of Network File Storage (NFS) on IonosCloud.
 
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_share(location="location",
+        cluster_id="cluster-id",
+        id="share-id")
+    ```
+
 
     :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
     :param str cluster_id: The ID of the Network File Storage cluster.
@@ -208,7 +219,7 @@ def get_share_output(client_groups: Optional[pulumi.Input[Optional[Sequence[Unio
                      cluster_id: Optional[pulumi.Input[str]] = None,
                      gid: Optional[pulumi.Input[Optional[int]]] = None,
                      id: Optional[pulumi.Input[Optional[str]]] = None,
-                     location: Optional[pulumi.Input[str]] = None,
+                     location: Optional[pulumi.Input[Optional[str]]] = None,
                      name: Optional[pulumi.Input[Optional[str]]] = None,
                      partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                      quota: Optional[pulumi.Input[Optional[int]]] = None,
@@ -216,6 +227,17 @@ def get_share_output(client_groups: Optional[pulumi.Input[Optional[Sequence[Unio
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
     Returns information about shares of Network File Storage (NFS) on IonosCloud.
+
+    ## By ID
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nfs.get_share(location="location",
+        cluster_id="cluster-id",
+        id="share-id")
+    ```
 
 
     :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:

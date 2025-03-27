@@ -136,19 +136,7 @@ type IPFailover struct {
 	Ip pulumi.StringOutput `pulumi:"ip"`
 	// [string] The ID of a LAN.
 	LanId pulumi.StringOutput `pulumi:"lanId"`
-	// [string] The ID of a NIC.
-	//
-	// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-	// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-	// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-	// IP failover group.
-	//
-	// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-	// following options:
-	// 1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-	//    of creation, for example:
-	// 2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-	//    `-parallelism=1` as presented below:
+	// The UUID of the master NIC
 	Nicuuid pulumi.StringOutput `pulumi:"nicuuid"`
 }
 
@@ -200,19 +188,7 @@ type ipfailoverState struct {
 	Ip *string `pulumi:"ip"`
 	// [string] The ID of a LAN.
 	LanId *string `pulumi:"lanId"`
-	// [string] The ID of a NIC.
-	//
-	// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-	// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-	// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-	// IP failover group.
-	//
-	// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-	// following options:
-	// 1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-	//    of creation, for example:
-	// 2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-	//    `-parallelism=1` as presented below:
+	// The UUID of the master NIC
 	Nicuuid *string `pulumi:"nicuuid"`
 }
 
@@ -223,19 +199,7 @@ type IPFailoverState struct {
 	Ip pulumi.StringPtrInput
 	// [string] The ID of a LAN.
 	LanId pulumi.StringPtrInput
-	// [string] The ID of a NIC.
-	//
-	// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-	// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-	// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-	// IP failover group.
-	//
-	// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-	// following options:
-	// 1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-	//    of creation, for example:
-	// 2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-	//    `-parallelism=1` as presented below:
+	// The UUID of the master NIC
 	Nicuuid pulumi.StringPtrInput
 }
 
@@ -250,19 +214,7 @@ type ipfailoverArgs struct {
 	Ip string `pulumi:"ip"`
 	// [string] The ID of a LAN.
 	LanId string `pulumi:"lanId"`
-	// [string] The ID of a NIC.
-	//
-	// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-	// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-	// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-	// IP failover group.
-	//
-	// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-	// following options:
-	// 1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-	//    of creation, for example:
-	// 2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-	//    `-parallelism=1` as presented below:
+	// The UUID of the master NIC
 	Nicuuid string `pulumi:"nicuuid"`
 }
 
@@ -274,19 +226,7 @@ type IPFailoverArgs struct {
 	Ip pulumi.StringInput
 	// [string] The ID of a LAN.
 	LanId pulumi.StringInput
-	// [string] The ID of a NIC.
-	//
-	// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-	// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-	// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-	// IP failover group.
-	//
-	// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-	// following options:
-	// 1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-	//    of creation, for example:
-	// 2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-	//    `-parallelism=1` as presented below:
+	// The UUID of the master NIC
 	Nicuuid pulumi.StringInput
 }
 
@@ -392,19 +332,7 @@ func (o IPFailoverOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPFailover) pulumi.StringOutput { return v.LanId }).(pulumi.StringOutput)
 }
 
-// [string] The ID of a NIC.
-//
-// > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
-// using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-// an IP failover group using Pulumi, please use only Pulumi in order to manage the created
-// IP failover group.
-//
-// > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-// following options:
-//  1. Create multiple IP failover groups resources and use `dependsOn` meta-argument to specify the order
-//     of creation, for example:
-//  2. Define the resources as presented above, but without using the `dependsOn` meta-argument and run the apply command using
-//     `-parallelism=1` as presented below:
+// The UUID of the master NIC
 func (o IPFailoverOutput) Nicuuid() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPFailover) pulumi.StringOutput { return v.Nicuuid }).(pulumi.StringOutput)
 }

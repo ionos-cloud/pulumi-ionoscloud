@@ -27,7 +27,7 @@ class GetLanResult:
     """
     A collection of values returned by getLan.
     """
-    def __init__(__self__, datacenter_id=None, id=None, ip_failovers=None, ipv6_cidr_block=None, name=None, pcc=None, public=None):
+    def __init__(__self__, datacenter_id=None, id=None, ip_failovers=None, ipv4_cidr_block=None, ipv6_cidr_block=None, name=None, pcc=None, public=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -37,6 +37,9 @@ class GetLanResult:
         if ip_failovers and not isinstance(ip_failovers, list):
             raise TypeError("Expected argument 'ip_failovers' to be a list")
         pulumi.set(__self__, "ip_failovers", ip_failovers)
+        if ipv4_cidr_block and not isinstance(ipv4_cidr_block, str):
+            raise TypeError("Expected argument 'ipv4_cidr_block' to be a str")
+        pulumi.set(__self__, "ipv4_cidr_block", ipv4_cidr_block)
         if ipv6_cidr_block and not isinstance(ipv6_cidr_block, str):
             raise TypeError("Expected argument 'ipv6_cidr_block' to be a str")
         pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
@@ -60,7 +63,7 @@ class GetLanResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         The id of the LAN.
         """
@@ -75,13 +78,24 @@ class GetLanResult:
         return pulumi.get(self, "ip_failovers")
 
     @property
+    @pulumi.getter(name="ipv4CidrBlock")
+    def ipv4_cidr_block(self) -> str:
+        """
+        For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+        """
+        return pulumi.get(self, "ipv4_cidr_block")
+
+    @property
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> str:
+        """
+        Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
+        """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the LAN.
         """
@@ -113,6 +127,7 @@ class AwaitableGetLanResult(GetLanResult):
             datacenter_id=self.datacenter_id,
             id=self.id,
             ip_failovers=self.ip_failovers,
+            ipv4_cidr_block=self.ipv4_cidr_block,
             ipv6_cidr_block=self.ipv6_cidr_block,
             name=self.name,
             pcc=self.pcc,
@@ -129,6 +144,24 @@ def get_lan(datacenter_id: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_lan(datacenter_id="datacenter_id",
+        id="lan_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_lan(datacenter_id="datacenter_id",
+        name="Lan Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -148,6 +181,7 @@ def get_lan(datacenter_id: Optional[str] = None,
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         id=pulumi.get(__ret__, 'id'),
         ip_failovers=pulumi.get(__ret__, 'ip_failovers'),
+        ipv4_cidr_block=pulumi.get(__ret__, 'ipv4_cidr_block'),
         ipv6_cidr_block=pulumi.get(__ret__, 'ipv6_cidr_block'),
         name=pulumi.get(__ret__, 'name'),
         pcc=pulumi.get(__ret__, 'pcc'),
@@ -162,6 +196,24 @@ def get_lan_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
+
+    ### By ID
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_lan(datacenter_id="datacenter_id",
+        id="lan_id")
+    ```
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_lan(datacenter_id="datacenter_id",
+        name="Lan Example")
+    ```
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -180,6 +232,7 @@ def get_lan_output(datacenter_id: Optional[pulumi.Input[str]] = None,
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         id=pulumi.get(__response__, 'id'),
         ip_failovers=pulumi.get(__response__, 'ip_failovers'),
+        ipv4_cidr_block=pulumi.get(__response__, 'ipv4_cidr_block'),
         ipv6_cidr_block=pulumi.get(__response__, 'ipv6_cidr_block'),
         name=pulumi.get(__response__, 'name'),
         pcc=pulumi.get(__response__, 'pcc'),

@@ -6,6 +6,45 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **Container Registry data source** can be used to search for and return an existing Container Registry.
+ * You can provide a string for the name parameter which will be compared with provisioned Container Registry.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     id: "registry_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     name: "container-registry-example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     name: "-example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getRegistry(args?: GetRegistryArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -21,9 +60,20 @@ export function getRegistry(args?: GetRegistryArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getRegistry.
  */
 export interface GetRegistryArgs {
+    /**
+     * ID of the container registry you want to search for.
+     */
     id?: string;
     location?: string;
+    /**
+     * Name of an existing container registry that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: string;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     */
     partialMatch?: boolean;
 }
 
@@ -31,17 +81,65 @@ export interface GetRegistryArgs {
  * A collection of values returned by getRegistry.
  */
 export interface GetRegistryResult {
+    /**
+     * The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+     */
     readonly apiSubnetAllowLists: string[];
     readonly features: outputs.creg.GetRegistryFeature[];
     readonly garbageCollectionSchedules: outputs.creg.GetRegistryGarbageCollectionSchedule[];
     readonly hostname: string;
+    /**
+     * Id of the container registry.
+     */
     readonly id: string;
     readonly location?: string;
     readonly maintenanceWindows: outputs.creg.GetRegistryMaintenanceWindow[];
+    /**
+     * The name of the container registry.
+     */
     readonly name: string;
     readonly partialMatch?: boolean;
     readonly storageUsages: outputs.creg.GetRegistryStorageUsage[];
 }
+/**
+ * The **Container Registry data source** can be used to search for and return an existing Container Registry.
+ * You can provide a string for the name parameter which will be compared with provisioned Container Registry.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By Id
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     id: "registry_id",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     name: "container-registry-example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.creg.getRegistry({
+ *     name: "-example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getRegistryOutput(args?: GetRegistryOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -57,8 +155,19 @@ export function getRegistryOutput(args?: GetRegistryOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getRegistry.
  */
 export interface GetRegistryOutputArgs {
+    /**
+     * ID of the container registry you want to search for.
+     */
     id?: pulumi.Input<string>;
     location?: pulumi.Input<string>;
+    /**
+     * Name of an existing container registry that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     */
     partialMatch?: pulumi.Input<boolean>;
 }

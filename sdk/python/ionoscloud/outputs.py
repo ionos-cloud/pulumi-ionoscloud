@@ -13,90 +13,137 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
-from . import outputs
 
 __all__ = [
-    'GetMariadbBackupsBackupResult',
-    'GetMariadbBackupsBackupBaseBackupResult',
+    'MonitoringPipelineTimeouts',
+    'ObjectStorageAccesskeyTimeouts',
+    'GetObjectStorageRegionCapabilityResult',
 ]
 
 @pulumi.output_type
-class GetMariadbBackupsBackupResult(dict):
+class MonitoringPipelineTimeouts(dict):
     def __init__(__self__, *,
-                 base_backups: Sequence['outputs.GetMariadbBackupsBackupBaseBackupResult'],
-                 cluster_id: str,
-                 earliest_recovery_target_time: str,
-                 size: int):
+                 create: Optional[str] = None,
+                 delete: Optional[str] = None,
+                 read: Optional[str] = None,
+                 update: Optional[str] = None):
         """
-        :param Sequence['GetMariadbBackupsBackupBaseBackupArgs'] base_backups: The list of backups for the specified cluster
-        :param str cluster_id: [string] The unique ID of the cluster.
-        :param str earliest_recovery_target_time: The oldest available timestamp to which you can restore.
-        :param int size: The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        :param str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param str read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        :param str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        pulumi.set(__self__, "base_backups", base_backups)
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
-        pulumi.set(__self__, "size", size)
-
-    @property
-    @pulumi.getter(name="baseBackups")
-    def base_backups(self) -> Sequence['outputs.GetMariadbBackupsBackupBaseBackupResult']:
-        """
-        The list of backups for the specified cluster
-        """
-        return pulumi.get(self, "base_backups")
-
-    @property
-    @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> str:
-        """
-        [string] The unique ID of the cluster.
-        """
-        return pulumi.get(self, "cluster_id")
-
-    @property
-    @pulumi.getter(name="earliestRecoveryTargetTime")
-    def earliest_recovery_target_time(self) -> str:
-        """
-        The oldest available timestamp to which you can restore.
-        """
-        return pulumi.get(self, "earliest_recovery_target_time")
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
 
     @property
     @pulumi.getter
-    def size(self) -> int:
+    def create(self) -> Optional[str]:
         """
-        The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        return pulumi.get(self, "size")
+        return pulumi.get(self, "create")
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @property
+    @pulumi.getter
+    def read(self) -> Optional[str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        """
+        return pulumi.get(self, "read")
+
+    @property
+    @pulumi.getter
+    def update(self) -> Optional[str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
-class GetMariadbBackupsBackupBaseBackupResult(dict):
+class ObjectStorageAccesskeyTimeouts(dict):
     def __init__(__self__, *,
-                 created: str,
-                 size: int):
+                 create: Optional[str] = None,
+                 delete: Optional[str] = None,
+                 read: Optional[str] = None):
         """
-        :param str created: The ISO 8601 creation timestamp
-        :param int size: The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        :param str create: [string] Time to wait for the bucket to be created. Default is `10m`.
+        :param str delete: [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        :param str read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
-        pulumi.set(__self__, "created", created)
-        pulumi.set(__self__, "size", size)
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def create(self) -> Optional[str]:
         """
-        The ISO 8601 creation timestamp
+        [string] Time to wait for the bucket to be created. Default is `10m`.
         """
-        return pulumi.get(self, "created")
+        return pulumi.get(self, "create")
 
     @property
     @pulumi.getter
-    def size(self) -> int:
+    def delete(self) -> Optional[str]:
         """
-        The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        [string] Time to wait for the bucket to be deleted. Default is `10m`.
         """
-        return pulumi.get(self, "size")
+        return pulumi.get(self, "delete")
+
+    @property
+    @pulumi.getter
+    def read(self) -> Optional[str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        """
+        return pulumi.get(self, "read")
+
+
+@pulumi.output_type
+class GetObjectStorageRegionCapabilityResult(dict):
+    def __init__(__self__, *,
+                 iam: bool,
+                 s3select: bool):
+        """
+        :param bool iam: Indicates if IAM policy based access is supported
+        :param bool s3select: Indicates if S3 Select is supported
+        """
+        pulumi.set(__self__, "iam", iam)
+        pulumi.set(__self__, "s3select", s3select)
+
+    @property
+    @pulumi.getter
+    def iam(self) -> bool:
+        """
+        Indicates if IAM policy based access is supported
+        """
+        return pulumi.get(self, "iam")
+
+    @property
+    @pulumi.getter
+    def s3select(self) -> bool:
+        """
+        Indicates if S3 Select is supported
+        """
+        return pulumi.get(self, "s3select")
 
 

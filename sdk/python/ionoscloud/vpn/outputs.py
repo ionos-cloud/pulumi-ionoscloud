@@ -16,16 +16,20 @@ from .. import _utilities
 
 __all__ = [
     'IpsecGatewayConnection',
+    'IpsecGatewayMaintenanceWindow',
     'IpsecTunnelAuth',
     'IpsecTunnelEsp',
     'IpsecTunnelIke',
     'WireguardGatewayConnection',
+    'WireguardGatewayMaintenanceWindow',
     'WireguardPeerEndpoint',
     'GetIpsecGatewayConnectionResult',
+    'GetIpsecGatewayMaintenanceWindowResult',
     'GetIpsecTunnelAuthResult',
     'GetIpsecTunnelEspResult',
     'GetIpsecTunnelIkeResult',
     'GetWireguardGatewayConnectionResult',
+    'GetWireguardGatewayMaintenanceWindowResult',
     'GetWireguardPeerEndpointResult',
 ]
 
@@ -106,6 +110,52 @@ class IpsecGatewayConnection(dict):
         Gateway. **Note**: this should be the subnet already assigned to the LAN
         """
         return pulumi.get(self, "ipv6_cidr")
+
+
+@pulumi.output_type
+class IpsecGatewayMaintenanceWindow(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfTheWeek":
+            suggest = "day_of_the_week"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IpsecGatewayMaintenanceWindow. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IpsecGatewayMaintenanceWindow.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IpsecGatewayMaintenanceWindow.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
 
 
 @pulumi.output_type
@@ -413,6 +463,52 @@ class WireguardGatewayConnection(dict):
 
 
 @pulumi.output_type
+class WireguardGatewayMaintenanceWindow(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfTheWeek":
+            suggest = "day_of_the_week"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WireguardGatewayMaintenanceWindow. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WireguardGatewayMaintenanceWindow.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WireguardGatewayMaintenanceWindow.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
 class WireguardPeerEndpoint(dict):
     def __init__(__self__, *,
                  host: str,
@@ -493,6 +589,35 @@ class GetIpsecGatewayConnectionResult(dict):
         The numeric LAN ID to connect your VPN Gateway to.
         """
         return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetIpsecGatewayMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: The name of the week day.
+        :param str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
 
 
 @pulumi.output_type
@@ -664,6 +789,35 @@ class GetWireguardGatewayConnectionResult(dict):
         The ID of the LAN where the WireGuard Gateway is connected.
         """
         return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetWireguardGatewayMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: The name of the week day.
+        :param str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
 
 
 @pulumi.output_type

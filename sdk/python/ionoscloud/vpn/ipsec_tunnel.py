@@ -26,10 +26,10 @@ class IpsecTunnelArgs:
                  esps: pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]],
                  gateway_id: pulumi.Input[str],
                  ike: pulumi.Input['IpsecTunnelIkeArgs'],
-                 location: pulumi.Input[str],
                  peer_network_cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
                  remote_host: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IpsecTunnel resource.
@@ -41,12 +41,12 @@ class IpsecTunnelArgs:
         :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
         :param pulumi.Input[str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
         :param pulumi.Input['IpsecTunnelIkeArgs'] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
         :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
                tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
         :param pulumi.Input[str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         :param pulumi.Input[str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
+        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+               gb/lhr, us/ewr, us/las, us/mci, fr/par
         :param pulumi.Input[str] name: [string] The name of the IPSec Gateway Tunnel.
         """
         pulumi.set(__self__, "auth", auth)
@@ -54,11 +54,12 @@ class IpsecTunnelArgs:
         pulumi.set(__self__, "esps", esps)
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "ike", ike)
-        pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "peer_network_cidrs", peer_network_cidrs)
         pulumi.set(__self__, "remote_host", remote_host)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -126,19 +127,6 @@ class IpsecTunnelArgs:
         pulumi.set(self, "ike", value)
 
     @property
-    @pulumi.getter
-    def location(self) -> pulumi.Input[str]:
-        """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
-        """
-        return pulumi.get(self, "location")
-
-    @location.setter
-    def location(self, value: pulumi.Input[str]):
-        pulumi.set(self, "location", value)
-
-    @property
     @pulumi.getter(name="peerNetworkCidrs")
     def peer_network_cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
@@ -174,6 +162,19 @@ class IpsecTunnelArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -447,7 +448,7 @@ class IpsecTunnel(pulumi.CustomResource):
         The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
+        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example location:gateway_id:tunnel_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -539,7 +540,7 @@ class IpsecTunnel(pulumi.CustomResource):
         The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
 
         ```sh
-        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
+        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example location:gateway_id:tunnel_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -592,8 +593,6 @@ class IpsecTunnel(pulumi.CustomResource):
             if ike is None and not opts.urn:
                 raise TypeError("Missing required property 'ike'")
             __props__.__dict__["ike"] = ike
-            if location is None and not opts.urn:
-                raise TypeError("Missing required property 'location'")
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if peer_network_cidrs is None and not opts.urn:
@@ -714,7 +713,7 @@ class IpsecTunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def location(self) -> pulumi.Output[str]:
+    def location(self) -> pulumi.Output[Optional[str]]:
         """
         [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
         gb/lhr, us/ewr, us/las, us/mci, fr/par

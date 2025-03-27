@@ -63,7 +63,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[str]:
+    def id(self) -> str:
         """
         Unique identifier for the resource
         """
@@ -95,7 +95,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         The name of the Autoscaling Group.
         """
@@ -145,6 +145,14 @@ def get_group(id: Optional[str] = None,
 
     ## Example Usage
 
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group = ionoscloud.autoscaling.get_group(id="autoscaling_group_uuid")
+    ```
+
     ### By Name
     ```python
     import pulumi
@@ -182,6 +190,14 @@ def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
 
     ## Example Usage
+
+    ### By Id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group = ionoscloud.autoscaling.get_group(id="autoscaling_group_uuid")
+    ```
 
     ### By Name
     ```python

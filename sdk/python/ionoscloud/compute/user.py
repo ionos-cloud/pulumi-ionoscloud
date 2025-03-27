@@ -392,7 +392,7 @@ class User(pulumi.CustomResource):
         Resource User can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/user:User myuser {user uuid}
+        $ pulumi import ionoscloud:compute/user:User myuser user uuid
         ```
 
         :param str resource_name: The name of the resource.
@@ -468,7 +468,7 @@ class User(pulumi.CustomResource):
         Resource User can be imported using the `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:compute/user:User myuser {user uuid}
+        $ pulumi import ionoscloud:compute/user:User myuser user uuid
         ```
 
         :param str resource_name: The name of the resource.

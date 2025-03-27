@@ -6,6 +6,38 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ * ### By displayName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     displayName: "display_name",
+ * });
+ * ```
+ *
+ * * `displayName` - (Optional) Display Name of an existing cluster that you want to search for.
+ * * `id` - (Optional) ID of the cluster you want to search for.
+ *
+ * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+ */
 export function getMongoCluster(args?: GetMongoClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +51,9 @@ export function getMongoCluster(args?: GetMongoClusterArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getMongoCluster.
  */
 export interface GetMongoClusterArgs {
+    /**
+     * The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+     */
     displayName?: string;
     id?: string;
 }
@@ -29,23 +64,94 @@ export interface GetMongoClusterArgs {
 export interface GetMongoClusterResult {
     readonly backups: outputs.dbaas.GetMongoClusterBackup[];
     readonly biConnectors: outputs.dbaas.GetMongoClusterBiConnector[];
+    /**
+     * The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit"
+     */
     readonly connectionString: string;
+    /**
+     * Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+     */
     readonly connections: outputs.dbaas.GetMongoClusterConnection[];
+    /**
+     * The number of CPU cores per replica. Required for enterprise edition.
+     */
     readonly cores: number;
+    /**
+     * The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+     */
     readonly displayName: string;
+    /**
+     * Cluster edition. Playground, business or enterprise.
+     */
     readonly edition: string;
     readonly id: string;
+    /**
+     * The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+     */
     readonly instances: number;
+    /**
+     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     */
     readonly location: string;
+    /**
+     * A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+     */
     readonly maintenanceWindows: outputs.dbaas.GetMongoClusterMaintenanceWindow[];
+    /**
+     * The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     */
     readonly mongodbVersion: string;
+    /**
+     * The amount of memory per instance in megabytes. Required for enterprise edition.
+     */
     readonly ram: number;
     readonly shards: number;
+    /**
+     * The amount of storage per instance in MB. Required for enterprise edition.
+     */
     readonly storageSize: number;
+    /**
+     * The storage type used in your cluster. Required for enterprise edition.
+     */
     readonly storageType: string;
+    /**
+     * The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created.
+     */
     readonly templateId: string;
     readonly type: string;
 }
+/**
+ * The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     id: "cluster_id",
+ * });
+ * ```
+ * ### By displayName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dbaas.getMongoCluster({
+ *     displayName: "display_name",
+ * });
+ * ```
+ *
+ * * `displayName` - (Optional) Display Name of an existing cluster that you want to search for.
+ * * `id` - (Optional) ID of the cluster you want to search for.
+ *
+ * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+ */
 export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -59,6 +165,9 @@ export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: p
  * A collection of arguments for invoking getMongoCluster.
  */
 export interface GetMongoClusterOutputArgs {
+    /**
+     * The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+     */
     displayName?: pulumi.Input<string>;
     id?: pulumi.Input<string>;
 }

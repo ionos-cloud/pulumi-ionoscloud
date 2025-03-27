@@ -14,33 +14,6 @@ import (
 // The **IP Failover data source** can be used to search for and return an existing IP Failover object.
 // You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := compute.LookupIPFailover(ctx, &compute.LookupIPFailoverArgs{
-//				DatacenterId: "datacenter_id",
-//				LanId:        "lan_id",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupIPFailover(ctx *pulumi.Context, args *LookupIPFailoverArgs, opts ...pulumi.InvokeOption) (*LookupIPFailoverResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIPFailoverResult
@@ -57,7 +30,7 @@ type LookupIPFailoverArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// The reserved IP address to be used in the IP failover group.
 	Ip string `pulumi:"ip"`
-	// The id of the lan of which the IP failover belongs
+	// The ID of a LAN.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -89,7 +62,7 @@ type LookupIPFailoverOutputArgs struct {
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// The reserved IP address to be used in the IP failover group.
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// The id of the lan of which the IP failover belongs
+	// The ID of a LAN.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 

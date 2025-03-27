@@ -61,8 +61,6 @@ __all__ = [
     'VCPUServerNicFirewallArgsDict',
     'VCPUServerVolumeArgs',
     'VCPUServerVolumeArgsDict',
-    'GetIPBlockIpConsumerArgs',
-    'GetIPBlockIpConsumerArgsDict',
     'GetServersFilterArgs',
     'GetServersFilterArgsDict',
 ]
@@ -280,6 +278,10 @@ if not MYPY:
         [string] The name of the server.
         """
         pci_slot: NotRequired[pulumi.Input[int]]
+        security_groups_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The list of Security Group IDs for the resource.
+        """
 elif False:
     CubeServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -298,12 +300,14 @@ class CubeServerNicArgs:
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 pci_slot: Optional[pulumi.Input[int]] = None):
+                 pci_slot: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
         :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param pulumi.Input[str] name: [string] The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -330,6 +334,8 @@ class CubeServerNicArgs:
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -459,6 +465,18 @@ class CubeServerNicArgs:
     @pci_slot.setter
     def pci_slot(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "pci_slot", value)
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
 
 
 if not MYPY:
@@ -632,16 +650,6 @@ if not MYPY:
         image_password: NotRequired[pulumi.Input[str]]
         """
         [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
         """
         licence_type: NotRequired[pulumi.Input[str]]
         """
@@ -692,16 +700,6 @@ class CubeServerVolumeArgs:
         :param pulumi.Input[str] backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param pulumi.Input[str] boot_server: The UUID of the attached server.
         :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
         :param pulumi.Input[str] licence_type: [string] Sets the OS type of the server.
         :param pulumi.Input[str] name: [string] The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
@@ -845,16 +843,6 @@ class CubeServerVolumeArgs:
     def image_password(self) -> Optional[pulumi.Input[str]]:
         """
         [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
         """
         return pulumi.get(self, "image_password")
 
@@ -1424,8 +1412,6 @@ if not MYPY:
         name: pulumi.Input[str]
         """
         Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         """
         id: NotRequired[pulumi.Input[str]]
         """
@@ -1447,8 +1433,6 @@ class NicFlowlogArgs:
         :param pulumi.Input[str] bucket: Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
         :param pulumi.Input[str] direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
         :param pulumi.Input[str] name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         :param pulumi.Input[str] id: The ID of the NIC.
         """
         pulumi.set(__self__, "action", action)
@@ -1499,8 +1483,6 @@ class NicFlowlogArgs:
     def name(self) -> pulumi.Input[str]:
         """
         Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         """
         return pulumi.get(self, "name")
 
@@ -1605,6 +1587,10 @@ if not MYPY:
         [string] The name of the server.
         """
         pci_slot: NotRequired[pulumi.Input[int]]
+        security_groups_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The list of Security Group IDs for the
+        """
 elif False:
     ServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1624,7 +1610,8 @@ class ServerNicArgs:
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 pci_slot: Optional[pulumi.Input[int]] = None):
+                 pci_slot: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
         :param pulumi.Input[Sequence[pulumi.Input['ServerNicFirewallArgs']]] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
@@ -1632,6 +1619,7 @@ class ServerNicArgs:
         :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param pulumi.Input[str] name: [string] The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -1660,6 +1648,8 @@ class ServerNicArgs:
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -1804,6 +1794,18 @@ class ServerNicArgs:
     @pci_slot.setter
     def pci_slot(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "pci_slot", value)
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
 
 
 if not MYPY:
@@ -2717,6 +2719,14 @@ if not MYPY:
         [string] The name of the server.
         """
         pci_slot: NotRequired[pulumi.Input[int]]
+        security_groups_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
 elif False:
     VCPUServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -2736,11 +2746,17 @@ class VCPUServerNicArgs:
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 pci_slot: Optional[pulumi.Input[int]] = None):
+                 pci_slot: Optional[pulumi.Input[int]] = None,
+                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgs']]] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         :param pulumi.Input[str] name: [string] The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups_ids: The list of Security Group IDs for the resource.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_keys field is immutable.
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -2769,6 +2785,8 @@ class VCPUServerNicArgs:
             pulumi.set(__self__, "name", name)
         if pci_slot is not None:
             pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
 
     @property
     @pulumi.getter
@@ -2904,6 +2922,22 @@ class VCPUServerNicArgs:
     @pci_slot.setter
     def pci_slot(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "pci_slot", value)
+
+    @property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Security Group IDs for the resource.
+
+        > **⚠ WARNING**
+        >
+        > ssh_keys field is immutable.
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+    @security_groups_ids.setter
+    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups_ids", value)
 
 
 if not MYPY:
@@ -3346,124 +3380,6 @@ class VCPUServerVolumeArgs:
     @user_data.setter
     def user_data(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_data", value)
-
-
-if not MYPY:
-    class GetIPBlockIpConsumerArgsDict(TypedDict):
-        datacenter_id: str
-        datacenter_name: str
-        ip: str
-        k8s_cluster_uuid: str
-        k8s_nodepool_uuid: str
-        mac: str
-        nic_id: str
-        server_id: str
-        server_name: str
-elif False:
-    GetIPBlockIpConsumerArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class GetIPBlockIpConsumerArgs:
-    def __init__(__self__, *,
-                 datacenter_id: str,
-                 datacenter_name: str,
-                 ip: str,
-                 k8s_cluster_uuid: str,
-                 k8s_nodepool_uuid: str,
-                 mac: str,
-                 nic_id: str,
-                 server_id: str,
-                 server_name: str):
-        pulumi.set(__self__, "datacenter_id", datacenter_id)
-        pulumi.set(__self__, "datacenter_name", datacenter_name)
-        pulumi.set(__self__, "ip", ip)
-        pulumi.set(__self__, "k8s_cluster_uuid", k8s_cluster_uuid)
-        pulumi.set(__self__, "k8s_nodepool_uuid", k8s_nodepool_uuid)
-        pulumi.set(__self__, "mac", mac)
-        pulumi.set(__self__, "nic_id", nic_id)
-        pulumi.set(__self__, "server_id", server_id)
-        pulumi.set(__self__, "server_name", server_name)
-
-    @property
-    @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> str:
-        return pulumi.get(self, "datacenter_id")
-
-    @datacenter_id.setter
-    def datacenter_id(self, value: str):
-        pulumi.set(self, "datacenter_id", value)
-
-    @property
-    @pulumi.getter(name="datacenterName")
-    def datacenter_name(self) -> str:
-        return pulumi.get(self, "datacenter_name")
-
-    @datacenter_name.setter
-    def datacenter_name(self, value: str):
-        pulumi.set(self, "datacenter_name", value)
-
-    @property
-    @pulumi.getter
-    def ip(self) -> str:
-        return pulumi.get(self, "ip")
-
-    @ip.setter
-    def ip(self, value: str):
-        pulumi.set(self, "ip", value)
-
-    @property
-    @pulumi.getter(name="k8sClusterUuid")
-    def k8s_cluster_uuid(self) -> str:
-        return pulumi.get(self, "k8s_cluster_uuid")
-
-    @k8s_cluster_uuid.setter
-    def k8s_cluster_uuid(self, value: str):
-        pulumi.set(self, "k8s_cluster_uuid", value)
-
-    @property
-    @pulumi.getter(name="k8sNodepoolUuid")
-    def k8s_nodepool_uuid(self) -> str:
-        return pulumi.get(self, "k8s_nodepool_uuid")
-
-    @k8s_nodepool_uuid.setter
-    def k8s_nodepool_uuid(self, value: str):
-        pulumi.set(self, "k8s_nodepool_uuid", value)
-
-    @property
-    @pulumi.getter
-    def mac(self) -> str:
-        return pulumi.get(self, "mac")
-
-    @mac.setter
-    def mac(self, value: str):
-        pulumi.set(self, "mac", value)
-
-    @property
-    @pulumi.getter(name="nicId")
-    def nic_id(self) -> str:
-        return pulumi.get(self, "nic_id")
-
-    @nic_id.setter
-    def nic_id(self, value: str):
-        pulumi.set(self, "nic_id", value)
-
-    @property
-    @pulumi.getter(name="serverId")
-    def server_id(self) -> str:
-        return pulumi.get(self, "server_id")
-
-    @server_id.setter
-    def server_id(self, value: str):
-        pulumi.set(self, "server_id", value)
-
-    @property
-    @pulumi.getter(name="serverName")
-    def server_name(self) -> str:
-        return pulumi.get(self, "server_name")
-
-    @server_name.setter
-    def server_name(self, value: str):
-        pulumi.set(self, "server_name", value)
 
 
 if not MYPY:

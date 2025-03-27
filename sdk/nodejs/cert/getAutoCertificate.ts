@@ -4,6 +4,36 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.
+ * You can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificate({
+ *     id: "auto_certificate_id",
+ *     location: "auto_certificate_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificate({
+ *     name: "AutoCertificate Name Example",
+ *     location: "auto_certificate_location",
+ * });
+ * ```
+ */
 export function getAutoCertificate(args: GetAutoCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:cert/getAutoCertificate:getAutoCertificate", {
@@ -17,8 +47,19 @@ export function getAutoCertificate(args: GetAutoCertificateArgs, opts?: pulumi.I
  * A collection of arguments for invoking getAutoCertificate.
  */
 export interface GetAutoCertificateArgs {
+    /**
+     * [string] ID of the auto-certificate you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * [string] The location of the auto-certificate.
+     */
     location: string;
+    /**
+     * [string] Name of an existing auto-certificate that you want to search for.
+     */
     name?: string;
 }
 
@@ -26,15 +67,57 @@ export interface GetAutoCertificateArgs {
  * A collection of values returned by getAutoCertificate.
  */
 export interface GetAutoCertificateResult {
+    /**
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     */
     readonly commonName: string;
     readonly id: string;
+    /**
+     * [string] The key algorithm used to generate the certificate.
+     */
     readonly keyAlgorithm: string;
+    /**
+     * [string] The ID of the last certificate that was issued.
+     */
     readonly lastIssuedCertificateId: string;
     readonly location: string;
     readonly name: string;
     readonly providerId: string;
+    /**
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     */
     readonly subjectAlternativeNames: string[];
 }
+/**
+ * The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.
+ * You can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By ID
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificate({
+ *     id: "auto_certificate_id",
+ *     location: "auto_certificate_location",
+ * });
+ * ```
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.cert.getAutoCertificate({
+ *     name: "AutoCertificate Name Example",
+ *     location: "auto_certificate_location",
+ * });
+ * ```
+ */
 export function getAutoCertificateOutput(args: GetAutoCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:cert/getAutoCertificate:getAutoCertificate", {
@@ -48,7 +131,18 @@ export function getAutoCertificateOutput(args: GetAutoCertificateOutputArgs, opt
  * A collection of arguments for invoking getAutoCertificate.
  */
 export interface GetAutoCertificateOutputArgs {
+    /**
+     * [string] ID of the auto-certificate you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * [string] The location of the auto-certificate.
+     */
     location: pulumi.Input<string>;
+    /**
+     * [string] Name of an existing auto-certificate that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

@@ -53,7 +53,7 @@ class NodePoolArgs:
         :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
@@ -235,7 +235,7 @@ class NodePoolArgs:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -329,7 +329,7 @@ class _NodePoolState:
         Input properties used for looking up and filtering NodePool resources.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -411,7 +411,7 @@ class _NodePoolState:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -632,7 +632,7 @@ class NodePool(pulumi.CustomResource):
         A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 
         ```sh
-        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
         This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
@@ -647,7 +647,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -678,7 +678,7 @@ class NodePool(pulumi.CustomResource):
         A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 
         ```sh
-        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
         This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
@@ -806,7 +806,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -867,7 +867,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> pulumi.Output[Optional['outputs.NodePoolAutoScaling']]:
         """
-        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 

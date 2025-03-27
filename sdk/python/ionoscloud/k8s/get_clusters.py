@@ -45,11 +45,18 @@ class GetClustersResult:
     @property
     @pulumi.getter
     def clusters(self) -> Sequence['outputs.GetClustersClusterResult']:
+        """
+        list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8s_cluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+        """
         return pulumi.get(self, "clusters")
 
     @property
     @pulumi.getter
     def entries(self) -> int:
+        """
+        indicates the number of clusters found and added to the list after the query has been performed with the specified filters.
+        For a full reference of all the attributes returned, check out documentation
+        """
         return pulumi.get(self, "entries")
 
     @property
@@ -81,7 +88,63 @@ class AwaitableGetClustersResult(GetClustersResult):
 def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClustersResult:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_clusters(filters=[{
+        "name": "name",
+        "value": "k8sClusterExample",
+    }])
+    ```
+
+    ### By Name and k8s version Family
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example2 = ionoscloud.k8s.get_clusters(filters=[
+        {
+            "name": "name",
+            "value": "k8sClusterExample",
+        },
+        {
+            "name": "k8s_version",
+            "value": "1.27",
+        },
+    ])
+    ```
+
+    ### Retrieve private clusters only, by Name and Cluster State
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_servers(filters=[
+        {
+            "name": "name",
+            "value": "k8sClusterExample",
+        },
+        {
+            "name": "state",
+            "value": "ACTIVE",
+        },
+        {
+            "name": "public",
+            "value": "false",
+        },
+    ])
+    ```
+
+
+    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+           
+           **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -96,7 +159,63 @@ def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetC
 def get_clusters_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']]]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_clusters(filters=[{
+        "name": "name",
+        "value": "k8sClusterExample",
+    }])
+    ```
+
+    ### By Name and k8s version Family
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example2 = ionoscloud.k8s.get_clusters(filters=[
+        {
+            "name": "name",
+            "value": "k8sClusterExample",
+        },
+        {
+            "name": "k8s_version",
+            "value": "1.27",
+        },
+    ])
+    ```
+
+    ### Retrieve private clusters only, by Name and Cluster State
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_servers(filters=[
+        {
+            "name": "name",
+            "value": "k8sClusterExample",
+        },
+        {
+            "name": "state",
+            "value": "ACTIVE",
+        },
+        {
+            "name": "public",
+            "value": "false",
+        },
+    ])
+    ```
+
+
+    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+           
+           **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
     """
     __args__ = dict()
     __args__['filters'] = filters

@@ -87,7 +87,7 @@ import (
 // $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
 // ```
 //
-// This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
+// This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
 type Crossconnect struct {
 	pulumi.CustomResourceState
 

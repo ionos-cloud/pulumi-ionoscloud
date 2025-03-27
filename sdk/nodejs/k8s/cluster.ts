@@ -6,6 +6,79 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Managed Kubernetes Cluster** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ### Public cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.k8s.Cluster("example", {
+ *     name: "k8sClusterExample",
+ *     k8sVersion: "1.31.2",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00Z",
+ *     },
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
+ *     s3Buckets: [{
+ *         name: "globally_unique_bucket_name",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Private Cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const testdatacenter = new ionoscloud.compute.Datacenter("testdatacenter", {
+ *     name: "example",
+ *     location: "de/fra",
+ *     description: "Test datacenter",
+ * });
+ * const k8sip = new ionoscloud.compute.IPBlock("k8sip", {
+ *     location: "de/fra",
+ *     size: 1,
+ *     name: "IP Block Private K8s",
+ * });
+ * const example = new ionoscloud.k8s.Cluster("example", {
+ *     name: "k8sClusterExample",
+ *     k8sVersion: "1.31.2",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00Z",
+ *     },
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
+ *     s3Buckets: [{
+ *         name: "globally_unique_bucket_name",
+ *     }],
+ *     location: "de/fra",
+ *     natGatewayIp: k8sip.ips[0],
+ *     nodeSubnet: "192.168.0.0/16",
+ *     "public": false,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
+ * ```
+ *
+ * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
+ *
+ * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+ *
+ * terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+ */
 export class Cluster extends pulumi.CustomResource {
     /**
      * Get an existing Cluster resource's state with the given name, ID, and optional extra
@@ -35,23 +108,21 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      */
     public readonly allowReplace!: pulumi.Output<boolean | undefined>;
     /**
-     * Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction.
-     * If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will
-     * be used: 32 for IPv4 and 128 for IPv6.
+     * [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
      */
     public readonly apiSubnetAllowLists!: pulumi.Output<string[] | undefined>;
     /**
-     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-     * The provider will ignore downgrades of patch level.
+     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
     public readonly k8sVersion!: pulumi.Output<string>;
     /**
-     * This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have
-     * a data center at that location. This attribute is immutable.
+     * [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
@@ -59,30 +130,27 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.k8s.ClusterMaintenanceWindow>;
     /**
-     * The desired name for the cluster
+     * [string] The name of the Kubernetes Cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the
-     * same location as the cluster's location. This attribute is mandatory if the cluster is private.
+     * [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
      */
     public readonly natGatewayIp!: pulumi.Output<string | undefined>;
     /**
-     * The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid
-     * CIDR notation for an IPv4 network prefix of 16 bits length.
+     * [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
      */
     public readonly nodeSubnet!: pulumi.Output<string>;
     /**
-     * The indicator if the cluster is public or private.
+     * [boolean] Indicates if the cluster is public or private. This attribute is immutable.
      */
     public readonly public!: pulumi.Output<boolean | undefined>;
     /**
-     * List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store
-     * K8s API audit logs.
+     * [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
      */
     public readonly s3Buckets!: pulumi.Output<outputs.k8s.ClusterS3Bucket[] | undefined>;
     /**
-     * List of versions that may be used for node pools under this cluster
+     * [list] List of versions that may be used for node pools under this cluster
      */
     public /*out*/ readonly viableNodePoolVersions!: pulumi.Output<string[]>;
 
@@ -134,23 +202,21 @@ export class Cluster extends pulumi.CustomResource {
  */
 export interface ClusterState {
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      */
     allowReplace?: pulumi.Input<boolean>;
     /**
-     * Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction.
-     * If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will
-     * be used: 32 for IPv4 and 128 for IPv6.
+     * [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
      */
     apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-     * The provider will ignore downgrades of patch level.
+     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
     k8sVersion?: pulumi.Input<string>;
     /**
-     * This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have
-     * a data center at that location. This attribute is immutable.
+     * [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
      */
     location?: pulumi.Input<string>;
     /**
@@ -158,30 +224,27 @@ export interface ClusterState {
      */
     maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow>;
     /**
-     * The desired name for the cluster
+     * [string] The name of the Kubernetes Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the
-     * same location as the cluster's location. This attribute is mandatory if the cluster is private.
+     * [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
      */
     natGatewayIp?: pulumi.Input<string>;
     /**
-     * The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid
-     * CIDR notation for an IPv4 network prefix of 16 bits length.
+     * [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
      */
     nodeSubnet?: pulumi.Input<string>;
     /**
-     * The indicator if the cluster is public or private.
+     * [boolean] Indicates if the cluster is public or private. This attribute is immutable.
      */
     public?: pulumi.Input<boolean>;
     /**
-     * List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store
-     * K8s API audit logs.
+     * [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
      */
     s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[]>;
     /**
-     * List of versions that may be used for node pools under this cluster
+     * [list] List of versions that may be used for node pools under this cluster
      */
     viableNodePoolVersions?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -191,23 +254,21 @@ export interface ClusterState {
  */
 export interface ClusterArgs {
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      */
     allowReplace?: pulumi.Input<boolean>;
     /**
-     * Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction.
-     * If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will
-     * be used: 32 for IPv4 and 128 for IPv6.
+     * [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
      */
     apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-     * The provider will ignore downgrades of patch level.
+     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
     k8sVersion?: pulumi.Input<string>;
     /**
-     * This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have
-     * a data center at that location. This attribute is immutable.
+     * [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
      */
     location?: pulumi.Input<string>;
     /**
@@ -215,26 +276,23 @@ export interface ClusterArgs {
      */
     maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow>;
     /**
-     * The desired name for the cluster
+     * [string] The name of the Kubernetes Cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the
-     * same location as the cluster's location. This attribute is mandatory if the cluster is private.
+     * [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
      */
     natGatewayIp?: pulumi.Input<string>;
     /**
-     * The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid
-     * CIDR notation for an IPv4 network prefix of 16 bits length.
+     * [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
      */
     nodeSubnet?: pulumi.Input<string>;
     /**
-     * The indicator if the cluster is public or private.
+     * [boolean] Indicates if the cluster is public or private. This attribute is immutable.
      */
     public?: pulumi.Input<boolean>;
     /**
-     * List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store
-     * K8s API audit logs.
+     * [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
      */
     s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[]>;
 }
