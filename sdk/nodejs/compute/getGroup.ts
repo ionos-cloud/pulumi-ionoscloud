@@ -66,14 +66,23 @@ export interface GetGroupResult {
      * The group will be allowed to access the activity log.
      */
     readonly accessActivityLog: boolean;
+    readonly accessAndManageAiModelHub: boolean;
+    readonly accessAndManageApiGateway: boolean;
+    readonly accessAndManageCdn: boolean;
     /**
      * The group will be allowed to access and manage certificates.
      */
     readonly accessAndManageCertificates: boolean;
+    readonly accessAndManageDns: boolean;
+    readonly accessAndManageIamResources: boolean;
+    readonly accessAndManageKaas: boolean;
+    readonly accessAndManageLogging: boolean;
     /**
      * The group will be allowed to access and manage monitoring.
      */
     readonly accessAndManageMonitoring: boolean;
+    readonly accessAndManageNetworkFileStorage: boolean;
+    readonly accessAndManageVpn: boolean;
     /**
      * The group will be allowed to create backup unit privilege.
      */
@@ -94,6 +103,7 @@ export interface GetGroupResult {
      * The group will be allowed to create kubernetes cluster privilege.
      */
     readonly createK8sCluster: boolean;
+    readonly createNetworkSecurityGroups: boolean;
     /**
      * The group will be allowed to create Cross Connects privilege.
      */
@@ -106,10 +116,12 @@ export interface GetGroupResult {
      * The id of the group.
      */
     readonly id: string;
+    readonly manageDataplatform: boolean;
     /**
      * Privilege for a group to manage DBaaS related functionality.
      */
     readonly manageDbaas: boolean;
+    readonly manageRegistry: boolean;
     /**
      * A name for the group.
      */

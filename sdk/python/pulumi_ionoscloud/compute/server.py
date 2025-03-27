@@ -22,7 +22,6 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[str],
-                 volume: pulumi.Input['ServerVolumeArgs'],
                  allow_replace: Optional[pulumi.Input[bool]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  boot_cdrom: Optional[pulumi.Input[str]] = None,
@@ -42,11 +41,11 @@ class ServerArgs:
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 vm_state: Optional[pulumi.Input[str]] = None):
+                 vm_state: Optional[pulumi.Input[str]] = None,
+                 volume: Optional[pulumi.Input['ServerVolumeArgs']] = None):
         """
         The set of arguments for constructing a Server resource.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         :param pulumi.Input[bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
@@ -81,9 +80,9 @@ class ServerArgs:
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
         :param pulumi.Input[str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
-        pulumi.set(__self__, "volume", volume)
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
         if availability_zone is not None:
@@ -130,6 +129,8 @@ class ServerArgs:
             pulumi.set(__self__, "type", type)
         if vm_state is not None:
             pulumi.set(__self__, "vm_state", vm_state)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
 
     @property
     @pulumi.getter(name="datacenterId")
@@ -142,18 +143,6 @@ class ServerArgs:
     @datacenter_id.setter
     def datacenter_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "datacenter_id", value)
-
-    @property
-    @pulumi.getter
-    def volume(self) -> pulumi.Input['ServerVolumeArgs']:
-        """
-        See the Volume section.
-        """
-        return pulumi.get(self, "volume")
-
-    @volume.setter
-    def volume(self, value: pulumi.Input['ServerVolumeArgs']):
-        pulumi.set(self, "volume", value)
 
     @property
     @pulumi.getter(name="allowReplace")
@@ -410,6 +399,18 @@ class ServerArgs:
     @vm_state.setter
     def vm_state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vm_state", value)
+
+    @property
+    @pulumi.getter
+    def volume(self) -> Optional[pulumi.Input['ServerVolumeArgs']]:
+        """
+        See the Volume section.
+        """
+        return pulumi.get(self, "volume")
+
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input['ServerVolumeArgs']]):
+        pulumi.set(self, "volume", value)
 
 
 @pulumi.input_type
@@ -1536,8 +1537,6 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["template_uuid"] = template_uuid
             __props__.__dict__["type"] = type
             __props__.__dict__["vm_state"] = vm_state
-            if volume is None and not opts.urn:
-                raise TypeError("Missing required property 'volume'")
             __props__.__dict__["volume"] = volume
             __props__.__dict__["boot_volume"] = None
             __props__.__dict__["firewallrule_id"] = None
@@ -1891,7 +1890,7 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def volume(self) -> pulumi.Output['outputs.ServerVolume']:
+    def volume(self) -> pulumi.Output[Optional['outputs.ServerVolume']]:
         """
         See the Volume section.
         """

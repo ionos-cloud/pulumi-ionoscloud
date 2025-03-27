@@ -22,16 +22,28 @@ __all__ = ['GroupArgs', 'Group']
 class GroupArgs:
     def __init__(__self__, *,
                  access_activity_log: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_ai_model_hub: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_api_gateway: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_cdn: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_certificates: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_dns: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_iam_resources: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_kaas: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_logging: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_monitoring: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_network_file_storage: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_vpn: Optional[pulumi.Input[bool]] = None,
                  create_backup_unit: Optional[pulumi.Input[bool]] = None,
                  create_datacenter: Optional[pulumi.Input[bool]] = None,
                  create_flow_log: Optional[pulumi.Input[bool]] = None,
                  create_internet_access: Optional[pulumi.Input[bool]] = None,
                  create_k8s_cluster: Optional[pulumi.Input[bool]] = None,
+                 create_network_security_groups: Optional[pulumi.Input[bool]] = None,
                  create_pcc: Optional[pulumi.Input[bool]] = None,
                  create_snapshot: Optional[pulumi.Input[bool]] = None,
+                 manage_dataplatform: Optional[pulumi.Input[bool]] = None,
                  manage_dbaas: Optional[pulumi.Input[bool]] = None,
+                 manage_registry: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reserve_ip: Optional[pulumi.Input[bool]] = None,
                  s3_privilege: Optional[pulumi.Input[bool]] = None,
@@ -40,16 +52,28 @@ class GroupArgs:
         """
         The set of arguments for constructing a Group resource.
         :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
+        :param pulumi.Input[bool] access_and_manage_ai_model_hub: Privilege for a group to access and manage AiModelHub.
+        :param pulumi.Input[bool] access_and_manage_api_gateway: Privilege for a group to access and manage ApiGateway.
+        :param pulumi.Input[bool] access_and_manage_cdn: Privilege for a group to access and manage Cdn.
         :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_dns: Privilege for a group to access and manage dns records.
+        :param pulumi.Input[bool] access_and_manage_iam_resources: Privilege for a group to access and manage IamResources.
+        :param pulumi.Input[bool] access_and_manage_kaas: Privilege for a group to access and manage Kaas.
+        :param pulumi.Input[bool] access_and_manage_logging: Privilege for a group to access and manage logging.
         :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
+        :param pulumi.Input[bool] access_and_manage_network_file_storage: Privilege for a group to access and manage NetworkFileStorage.
+        :param pulumi.Input[bool] access_and_manage_vpn: Privilege for a group to access and manage Vpn.
         :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
         :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
         :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
         :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
         :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        :param pulumi.Input[bool] create_network_security_groups: Create Network Security groups.
         :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
         :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
+        :param pulumi.Input[bool] manage_dataplatform: Privilege for a group to access and manage the Data Platform.
         :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        :param pulumi.Input[bool] manage_registry: Privilege for group accessing container registry related functionality.
         :param pulumi.Input[str] name: [string] A name for the group.
         :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
         :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
@@ -58,10 +82,28 @@ class GroupArgs:
         """
         if access_activity_log is not None:
             pulumi.set(__self__, "access_activity_log", access_activity_log)
+        if access_and_manage_ai_model_hub is not None:
+            pulumi.set(__self__, "access_and_manage_ai_model_hub", access_and_manage_ai_model_hub)
+        if access_and_manage_api_gateway is not None:
+            pulumi.set(__self__, "access_and_manage_api_gateway", access_and_manage_api_gateway)
+        if access_and_manage_cdn is not None:
+            pulumi.set(__self__, "access_and_manage_cdn", access_and_manage_cdn)
         if access_and_manage_certificates is not None:
             pulumi.set(__self__, "access_and_manage_certificates", access_and_manage_certificates)
+        if access_and_manage_dns is not None:
+            pulumi.set(__self__, "access_and_manage_dns", access_and_manage_dns)
+        if access_and_manage_iam_resources is not None:
+            pulumi.set(__self__, "access_and_manage_iam_resources", access_and_manage_iam_resources)
+        if access_and_manage_kaas is not None:
+            pulumi.set(__self__, "access_and_manage_kaas", access_and_manage_kaas)
+        if access_and_manage_logging is not None:
+            pulumi.set(__self__, "access_and_manage_logging", access_and_manage_logging)
         if access_and_manage_monitoring is not None:
             pulumi.set(__self__, "access_and_manage_monitoring", access_and_manage_monitoring)
+        if access_and_manage_network_file_storage is not None:
+            pulumi.set(__self__, "access_and_manage_network_file_storage", access_and_manage_network_file_storage)
+        if access_and_manage_vpn is not None:
+            pulumi.set(__self__, "access_and_manage_vpn", access_and_manage_vpn)
         if create_backup_unit is not None:
             pulumi.set(__self__, "create_backup_unit", create_backup_unit)
         if create_datacenter is not None:
@@ -72,12 +114,18 @@ class GroupArgs:
             pulumi.set(__self__, "create_internet_access", create_internet_access)
         if create_k8s_cluster is not None:
             pulumi.set(__self__, "create_k8s_cluster", create_k8s_cluster)
+        if create_network_security_groups is not None:
+            pulumi.set(__self__, "create_network_security_groups", create_network_security_groups)
         if create_pcc is not None:
             pulumi.set(__self__, "create_pcc", create_pcc)
         if create_snapshot is not None:
             pulumi.set(__self__, "create_snapshot", create_snapshot)
+        if manage_dataplatform is not None:
+            pulumi.set(__self__, "manage_dataplatform", manage_dataplatform)
         if manage_dbaas is not None:
             pulumi.set(__self__, "manage_dbaas", manage_dbaas)
+        if manage_registry is not None:
+            pulumi.set(__self__, "manage_registry", manage_registry)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if reserve_ip is not None:
@@ -105,6 +153,42 @@ class GroupArgs:
         pulumi.set(self, "access_activity_log", value)
 
     @property
+    @pulumi.getter(name="accessAndManageAiModelHub")
+    def access_and_manage_ai_model_hub(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage AiModelHub.
+        """
+        return pulumi.get(self, "access_and_manage_ai_model_hub")
+
+    @access_and_manage_ai_model_hub.setter
+    def access_and_manage_ai_model_hub(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_ai_model_hub", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageApiGateway")
+    def access_and_manage_api_gateway(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage ApiGateway.
+        """
+        return pulumi.get(self, "access_and_manage_api_gateway")
+
+    @access_and_manage_api_gateway.setter
+    def access_and_manage_api_gateway(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_api_gateway", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageCdn")
+    def access_and_manage_cdn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Cdn.
+        """
+        return pulumi.get(self, "access_and_manage_cdn")
+
+    @access_and_manage_cdn.setter
+    def access_and_manage_cdn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_cdn", value)
+
+    @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -117,6 +201,54 @@ class GroupArgs:
         pulumi.set(self, "access_and_manage_certificates", value)
 
     @property
+    @pulumi.getter(name="accessAndManageDns")
+    def access_and_manage_dns(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage dns records.
+        """
+        return pulumi.get(self, "access_and_manage_dns")
+
+    @access_and_manage_dns.setter
+    def access_and_manage_dns(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_dns", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageIamResources")
+    def access_and_manage_iam_resources(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage IamResources.
+        """
+        return pulumi.get(self, "access_and_manage_iam_resources")
+
+    @access_and_manage_iam_resources.setter
+    def access_and_manage_iam_resources(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_iam_resources", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageKaas")
+    def access_and_manage_kaas(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Kaas.
+        """
+        return pulumi.get(self, "access_and_manage_kaas")
+
+    @access_and_manage_kaas.setter
+    def access_and_manage_kaas(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_kaas", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageLogging")
+    def access_and_manage_logging(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage logging.
+        """
+        return pulumi.get(self, "access_and_manage_logging")
+
+    @access_and_manage_logging.setter
+    def access_and_manage_logging(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_logging", value)
+
+    @property
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -127,6 +259,30 @@ class GroupArgs:
     @access_and_manage_monitoring.setter
     def access_and_manage_monitoring(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "access_and_manage_monitoring", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageNetworkFileStorage")
+    def access_and_manage_network_file_storage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage NetworkFileStorage.
+        """
+        return pulumi.get(self, "access_and_manage_network_file_storage")
+
+    @access_and_manage_network_file_storage.setter
+    def access_and_manage_network_file_storage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_network_file_storage", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageVpn")
+    def access_and_manage_vpn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Vpn.
+        """
+        return pulumi.get(self, "access_and_manage_vpn")
+
+    @access_and_manage_vpn.setter
+    def access_and_manage_vpn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_vpn", value)
 
     @property
     @pulumi.getter(name="createBackupUnit")
@@ -189,6 +345,18 @@ class GroupArgs:
         pulumi.set(self, "create_k8s_cluster", value)
 
     @property
+    @pulumi.getter(name="createNetworkSecurityGroups")
+    def create_network_security_groups(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Create Network Security groups.
+        """
+        return pulumi.get(self, "create_network_security_groups")
+
+    @create_network_security_groups.setter
+    def create_network_security_groups(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "create_network_security_groups", value)
+
+    @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -213,6 +381,18 @@ class GroupArgs:
         pulumi.set(self, "create_snapshot", value)
 
     @property
+    @pulumi.getter(name="manageDataplatform")
+    def manage_dataplatform(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage the Data Platform.
+        """
+        return pulumi.get(self, "manage_dataplatform")
+
+    @manage_dataplatform.setter
+    def manage_dataplatform(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "manage_dataplatform", value)
+
+    @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -223,6 +403,18 @@ class GroupArgs:
     @manage_dbaas.setter
     def manage_dbaas(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "manage_dbaas", value)
+
+    @property
+    @pulumi.getter(name="manageRegistry")
+    def manage_registry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for group accessing container registry related functionality.
+        """
+        return pulumi.get(self, "manage_registry")
+
+    @manage_registry.setter
+    def manage_registry(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "manage_registry", value)
 
     @property
     @pulumi.getter
@@ -290,16 +482,28 @@ class GroupArgs:
 class _GroupState:
     def __init__(__self__, *,
                  access_activity_log: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_ai_model_hub: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_api_gateway: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_cdn: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_certificates: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_dns: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_iam_resources: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_kaas: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_logging: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_monitoring: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_network_file_storage: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_vpn: Optional[pulumi.Input[bool]] = None,
                  create_backup_unit: Optional[pulumi.Input[bool]] = None,
                  create_datacenter: Optional[pulumi.Input[bool]] = None,
                  create_flow_log: Optional[pulumi.Input[bool]] = None,
                  create_internet_access: Optional[pulumi.Input[bool]] = None,
                  create_k8s_cluster: Optional[pulumi.Input[bool]] = None,
+                 create_network_security_groups: Optional[pulumi.Input[bool]] = None,
                  create_pcc: Optional[pulumi.Input[bool]] = None,
                  create_snapshot: Optional[pulumi.Input[bool]] = None,
+                 manage_dataplatform: Optional[pulumi.Input[bool]] = None,
                  manage_dbaas: Optional[pulumi.Input[bool]] = None,
+                 manage_registry: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reserve_ip: Optional[pulumi.Input[bool]] = None,
                  s3_privilege: Optional[pulumi.Input[bool]] = None,
@@ -309,16 +513,28 @@ class _GroupState:
         """
         Input properties used for looking up and filtering Group resources.
         :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
+        :param pulumi.Input[bool] access_and_manage_ai_model_hub: Privilege for a group to access and manage AiModelHub.
+        :param pulumi.Input[bool] access_and_manage_api_gateway: Privilege for a group to access and manage ApiGateway.
+        :param pulumi.Input[bool] access_and_manage_cdn: Privilege for a group to access and manage Cdn.
         :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_dns: Privilege for a group to access and manage dns records.
+        :param pulumi.Input[bool] access_and_manage_iam_resources: Privilege for a group to access and manage IamResources.
+        :param pulumi.Input[bool] access_and_manage_kaas: Privilege for a group to access and manage Kaas.
+        :param pulumi.Input[bool] access_and_manage_logging: Privilege for a group to access and manage logging.
         :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
+        :param pulumi.Input[bool] access_and_manage_network_file_storage: Privilege for a group to access and manage NetworkFileStorage.
+        :param pulumi.Input[bool] access_and_manage_vpn: Privilege for a group to access and manage Vpn.
         :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
         :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
         :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
         :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
         :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        :param pulumi.Input[bool] create_network_security_groups: Create Network Security groups.
         :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
         :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
+        :param pulumi.Input[bool] manage_dataplatform: Privilege for a group to access and manage the Data Platform.
         :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        :param pulumi.Input[bool] manage_registry: Privilege for group accessing container registry related functionality.
         :param pulumi.Input[str] name: [string] A name for the group.
         :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
         :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
@@ -330,10 +546,28 @@ class _GroupState:
         """
         if access_activity_log is not None:
             pulumi.set(__self__, "access_activity_log", access_activity_log)
+        if access_and_manage_ai_model_hub is not None:
+            pulumi.set(__self__, "access_and_manage_ai_model_hub", access_and_manage_ai_model_hub)
+        if access_and_manage_api_gateway is not None:
+            pulumi.set(__self__, "access_and_manage_api_gateway", access_and_manage_api_gateway)
+        if access_and_manage_cdn is not None:
+            pulumi.set(__self__, "access_and_manage_cdn", access_and_manage_cdn)
         if access_and_manage_certificates is not None:
             pulumi.set(__self__, "access_and_manage_certificates", access_and_manage_certificates)
+        if access_and_manage_dns is not None:
+            pulumi.set(__self__, "access_and_manage_dns", access_and_manage_dns)
+        if access_and_manage_iam_resources is not None:
+            pulumi.set(__self__, "access_and_manage_iam_resources", access_and_manage_iam_resources)
+        if access_and_manage_kaas is not None:
+            pulumi.set(__self__, "access_and_manage_kaas", access_and_manage_kaas)
+        if access_and_manage_logging is not None:
+            pulumi.set(__self__, "access_and_manage_logging", access_and_manage_logging)
         if access_and_manage_monitoring is not None:
             pulumi.set(__self__, "access_and_manage_monitoring", access_and_manage_monitoring)
+        if access_and_manage_network_file_storage is not None:
+            pulumi.set(__self__, "access_and_manage_network_file_storage", access_and_manage_network_file_storage)
+        if access_and_manage_vpn is not None:
+            pulumi.set(__self__, "access_and_manage_vpn", access_and_manage_vpn)
         if create_backup_unit is not None:
             pulumi.set(__self__, "create_backup_unit", create_backup_unit)
         if create_datacenter is not None:
@@ -344,12 +578,18 @@ class _GroupState:
             pulumi.set(__self__, "create_internet_access", create_internet_access)
         if create_k8s_cluster is not None:
             pulumi.set(__self__, "create_k8s_cluster", create_k8s_cluster)
+        if create_network_security_groups is not None:
+            pulumi.set(__self__, "create_network_security_groups", create_network_security_groups)
         if create_pcc is not None:
             pulumi.set(__self__, "create_pcc", create_pcc)
         if create_snapshot is not None:
             pulumi.set(__self__, "create_snapshot", create_snapshot)
+        if manage_dataplatform is not None:
+            pulumi.set(__self__, "manage_dataplatform", manage_dataplatform)
         if manage_dbaas is not None:
             pulumi.set(__self__, "manage_dbaas", manage_dbaas)
+        if manage_registry is not None:
+            pulumi.set(__self__, "manage_registry", manage_registry)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if reserve_ip is not None:
@@ -379,6 +619,42 @@ class _GroupState:
         pulumi.set(self, "access_activity_log", value)
 
     @property
+    @pulumi.getter(name="accessAndManageAiModelHub")
+    def access_and_manage_ai_model_hub(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage AiModelHub.
+        """
+        return pulumi.get(self, "access_and_manage_ai_model_hub")
+
+    @access_and_manage_ai_model_hub.setter
+    def access_and_manage_ai_model_hub(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_ai_model_hub", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageApiGateway")
+    def access_and_manage_api_gateway(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage ApiGateway.
+        """
+        return pulumi.get(self, "access_and_manage_api_gateway")
+
+    @access_and_manage_api_gateway.setter
+    def access_and_manage_api_gateway(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_api_gateway", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageCdn")
+    def access_and_manage_cdn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Cdn.
+        """
+        return pulumi.get(self, "access_and_manage_cdn")
+
+    @access_and_manage_cdn.setter
+    def access_and_manage_cdn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_cdn", value)
+
+    @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -391,6 +667,54 @@ class _GroupState:
         pulumi.set(self, "access_and_manage_certificates", value)
 
     @property
+    @pulumi.getter(name="accessAndManageDns")
+    def access_and_manage_dns(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage dns records.
+        """
+        return pulumi.get(self, "access_and_manage_dns")
+
+    @access_and_manage_dns.setter
+    def access_and_manage_dns(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_dns", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageIamResources")
+    def access_and_manage_iam_resources(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage IamResources.
+        """
+        return pulumi.get(self, "access_and_manage_iam_resources")
+
+    @access_and_manage_iam_resources.setter
+    def access_and_manage_iam_resources(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_iam_resources", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageKaas")
+    def access_and_manage_kaas(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Kaas.
+        """
+        return pulumi.get(self, "access_and_manage_kaas")
+
+    @access_and_manage_kaas.setter
+    def access_and_manage_kaas(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_kaas", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageLogging")
+    def access_and_manage_logging(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage logging.
+        """
+        return pulumi.get(self, "access_and_manage_logging")
+
+    @access_and_manage_logging.setter
+    def access_and_manage_logging(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_logging", value)
+
+    @property
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -401,6 +725,30 @@ class _GroupState:
     @access_and_manage_monitoring.setter
     def access_and_manage_monitoring(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "access_and_manage_monitoring", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageNetworkFileStorage")
+    def access_and_manage_network_file_storage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage NetworkFileStorage.
+        """
+        return pulumi.get(self, "access_and_manage_network_file_storage")
+
+    @access_and_manage_network_file_storage.setter
+    def access_and_manage_network_file_storage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_network_file_storage", value)
+
+    @property
+    @pulumi.getter(name="accessAndManageVpn")
+    def access_and_manage_vpn(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage Vpn.
+        """
+        return pulumi.get(self, "access_and_manage_vpn")
+
+    @access_and_manage_vpn.setter
+    def access_and_manage_vpn(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "access_and_manage_vpn", value)
 
     @property
     @pulumi.getter(name="createBackupUnit")
@@ -463,6 +811,18 @@ class _GroupState:
         pulumi.set(self, "create_k8s_cluster", value)
 
     @property
+    @pulumi.getter(name="createNetworkSecurityGroups")
+    def create_network_security_groups(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Create Network Security groups.
+        """
+        return pulumi.get(self, "create_network_security_groups")
+
+    @create_network_security_groups.setter
+    def create_network_security_groups(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "create_network_security_groups", value)
+
+    @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -487,6 +847,18 @@ class _GroupState:
         pulumi.set(self, "create_snapshot", value)
 
     @property
+    @pulumi.getter(name="manageDataplatform")
+    def manage_dataplatform(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for a group to access and manage the Data Platform.
+        """
+        return pulumi.get(self, "manage_dataplatform")
+
+    @manage_dataplatform.setter
+    def manage_dataplatform(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "manage_dataplatform", value)
+
+    @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -497,6 +869,18 @@ class _GroupState:
     @manage_dbaas.setter
     def manage_dbaas(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "manage_dbaas", value)
+
+    @property
+    @pulumi.getter(name="manageRegistry")
+    def manage_registry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Privilege for group accessing container registry related functionality.
+        """
+        return pulumi.get(self, "manage_registry")
+
+    @manage_registry.setter
+    def manage_registry(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "manage_registry", value)
 
     @property
     @pulumi.getter
@@ -580,16 +964,28 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_activity_log: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_ai_model_hub: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_api_gateway: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_cdn: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_certificates: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_dns: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_iam_resources: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_kaas: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_logging: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_monitoring: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_network_file_storage: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_vpn: Optional[pulumi.Input[bool]] = None,
                  create_backup_unit: Optional[pulumi.Input[bool]] = None,
                  create_datacenter: Optional[pulumi.Input[bool]] = None,
                  create_flow_log: Optional[pulumi.Input[bool]] = None,
                  create_internet_access: Optional[pulumi.Input[bool]] = None,
                  create_k8s_cluster: Optional[pulumi.Input[bool]] = None,
+                 create_network_security_groups: Optional[pulumi.Input[bool]] = None,
                  create_pcc: Optional[pulumi.Input[bool]] = None,
                  create_snapshot: Optional[pulumi.Input[bool]] = None,
+                 manage_dataplatform: Optional[pulumi.Input[bool]] = None,
                  manage_dbaas: Optional[pulumi.Input[bool]] = None,
+                 manage_registry: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reserve_ip: Optional[pulumi.Input[bool]] = None,
                  s3_privilege: Optional[pulumi.Input[bool]] = None,
@@ -662,16 +1058,28 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
+        :param pulumi.Input[bool] access_and_manage_ai_model_hub: Privilege for a group to access and manage AiModelHub.
+        :param pulumi.Input[bool] access_and_manage_api_gateway: Privilege for a group to access and manage ApiGateway.
+        :param pulumi.Input[bool] access_and_manage_cdn: Privilege for a group to access and manage Cdn.
         :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_dns: Privilege for a group to access and manage dns records.
+        :param pulumi.Input[bool] access_and_manage_iam_resources: Privilege for a group to access and manage IamResources.
+        :param pulumi.Input[bool] access_and_manage_kaas: Privilege for a group to access and manage Kaas.
+        :param pulumi.Input[bool] access_and_manage_logging: Privilege for a group to access and manage logging.
         :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
+        :param pulumi.Input[bool] access_and_manage_network_file_storage: Privilege for a group to access and manage NetworkFileStorage.
+        :param pulumi.Input[bool] access_and_manage_vpn: Privilege for a group to access and manage Vpn.
         :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
         :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
         :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
         :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
         :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        :param pulumi.Input[bool] create_network_security_groups: Create Network Security groups.
         :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
         :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
+        :param pulumi.Input[bool] manage_dataplatform: Privilege for a group to access and manage the Data Platform.
         :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        :param pulumi.Input[bool] manage_registry: Privilege for group accessing container registry related functionality.
         :param pulumi.Input[str] name: [string] A name for the group.
         :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
         :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
@@ -763,16 +1171,28 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_activity_log: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_ai_model_hub: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_api_gateway: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_cdn: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_certificates: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_dns: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_iam_resources: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_kaas: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_logging: Optional[pulumi.Input[bool]] = None,
                  access_and_manage_monitoring: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_network_file_storage: Optional[pulumi.Input[bool]] = None,
+                 access_and_manage_vpn: Optional[pulumi.Input[bool]] = None,
                  create_backup_unit: Optional[pulumi.Input[bool]] = None,
                  create_datacenter: Optional[pulumi.Input[bool]] = None,
                  create_flow_log: Optional[pulumi.Input[bool]] = None,
                  create_internet_access: Optional[pulumi.Input[bool]] = None,
                  create_k8s_cluster: Optional[pulumi.Input[bool]] = None,
+                 create_network_security_groups: Optional[pulumi.Input[bool]] = None,
                  create_pcc: Optional[pulumi.Input[bool]] = None,
                  create_snapshot: Optional[pulumi.Input[bool]] = None,
+                 manage_dataplatform: Optional[pulumi.Input[bool]] = None,
                  manage_dbaas: Optional[pulumi.Input[bool]] = None,
+                 manage_registry: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reserve_ip: Optional[pulumi.Input[bool]] = None,
                  s3_privilege: Optional[pulumi.Input[bool]] = None,
@@ -788,16 +1208,28 @@ class Group(pulumi.CustomResource):
             __props__ = GroupArgs.__new__(GroupArgs)
 
             __props__.__dict__["access_activity_log"] = access_activity_log
+            __props__.__dict__["access_and_manage_ai_model_hub"] = access_and_manage_ai_model_hub
+            __props__.__dict__["access_and_manage_api_gateway"] = access_and_manage_api_gateway
+            __props__.__dict__["access_and_manage_cdn"] = access_and_manage_cdn
             __props__.__dict__["access_and_manage_certificates"] = access_and_manage_certificates
+            __props__.__dict__["access_and_manage_dns"] = access_and_manage_dns
+            __props__.__dict__["access_and_manage_iam_resources"] = access_and_manage_iam_resources
+            __props__.__dict__["access_and_manage_kaas"] = access_and_manage_kaas
+            __props__.__dict__["access_and_manage_logging"] = access_and_manage_logging
             __props__.__dict__["access_and_manage_monitoring"] = access_and_manage_monitoring
+            __props__.__dict__["access_and_manage_network_file_storage"] = access_and_manage_network_file_storage
+            __props__.__dict__["access_and_manage_vpn"] = access_and_manage_vpn
             __props__.__dict__["create_backup_unit"] = create_backup_unit
             __props__.__dict__["create_datacenter"] = create_datacenter
             __props__.__dict__["create_flow_log"] = create_flow_log
             __props__.__dict__["create_internet_access"] = create_internet_access
             __props__.__dict__["create_k8s_cluster"] = create_k8s_cluster
+            __props__.__dict__["create_network_security_groups"] = create_network_security_groups
             __props__.__dict__["create_pcc"] = create_pcc
             __props__.__dict__["create_snapshot"] = create_snapshot
+            __props__.__dict__["manage_dataplatform"] = manage_dataplatform
             __props__.__dict__["manage_dbaas"] = manage_dbaas
+            __props__.__dict__["manage_registry"] = manage_registry
             __props__.__dict__["name"] = name
             __props__.__dict__["reserve_ip"] = reserve_ip
             __props__.__dict__["s3_privilege"] = s3_privilege
@@ -815,16 +1247,28 @@ class Group(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_activity_log: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_ai_model_hub: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_api_gateway: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_cdn: Optional[pulumi.Input[bool]] = None,
             access_and_manage_certificates: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_dns: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_iam_resources: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_kaas: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_logging: Optional[pulumi.Input[bool]] = None,
             access_and_manage_monitoring: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_network_file_storage: Optional[pulumi.Input[bool]] = None,
+            access_and_manage_vpn: Optional[pulumi.Input[bool]] = None,
             create_backup_unit: Optional[pulumi.Input[bool]] = None,
             create_datacenter: Optional[pulumi.Input[bool]] = None,
             create_flow_log: Optional[pulumi.Input[bool]] = None,
             create_internet_access: Optional[pulumi.Input[bool]] = None,
             create_k8s_cluster: Optional[pulumi.Input[bool]] = None,
+            create_network_security_groups: Optional[pulumi.Input[bool]] = None,
             create_pcc: Optional[pulumi.Input[bool]] = None,
             create_snapshot: Optional[pulumi.Input[bool]] = None,
+            manage_dataplatform: Optional[pulumi.Input[bool]] = None,
             manage_dbaas: Optional[pulumi.Input[bool]] = None,
+            manage_registry: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             reserve_ip: Optional[pulumi.Input[bool]] = None,
             s3_privilege: Optional[pulumi.Input[bool]] = None,
@@ -839,16 +1283,28 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
+        :param pulumi.Input[bool] access_and_manage_ai_model_hub: Privilege for a group to access and manage AiModelHub.
+        :param pulumi.Input[bool] access_and_manage_api_gateway: Privilege for a group to access and manage ApiGateway.
+        :param pulumi.Input[bool] access_and_manage_cdn: Privilege for a group to access and manage Cdn.
         :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_dns: Privilege for a group to access and manage dns records.
+        :param pulumi.Input[bool] access_and_manage_iam_resources: Privilege for a group to access and manage IamResources.
+        :param pulumi.Input[bool] access_and_manage_kaas: Privilege for a group to access and manage Kaas.
+        :param pulumi.Input[bool] access_and_manage_logging: Privilege for a group to access and manage logging.
         :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
+        :param pulumi.Input[bool] access_and_manage_network_file_storage: Privilege for a group to access and manage NetworkFileStorage.
+        :param pulumi.Input[bool] access_and_manage_vpn: Privilege for a group to access and manage Vpn.
         :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
         :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
         :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
         :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
         :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        :param pulumi.Input[bool] create_network_security_groups: Create Network Security groups.
         :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
         :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
+        :param pulumi.Input[bool] manage_dataplatform: Privilege for a group to access and manage the Data Platform.
         :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        :param pulumi.Input[bool] manage_registry: Privilege for group accessing container registry related functionality.
         :param pulumi.Input[str] name: [string] A name for the group.
         :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
         :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
@@ -863,16 +1319,28 @@ class Group(pulumi.CustomResource):
         __props__ = _GroupState.__new__(_GroupState)
 
         __props__.__dict__["access_activity_log"] = access_activity_log
+        __props__.__dict__["access_and_manage_ai_model_hub"] = access_and_manage_ai_model_hub
+        __props__.__dict__["access_and_manage_api_gateway"] = access_and_manage_api_gateway
+        __props__.__dict__["access_and_manage_cdn"] = access_and_manage_cdn
         __props__.__dict__["access_and_manage_certificates"] = access_and_manage_certificates
+        __props__.__dict__["access_and_manage_dns"] = access_and_manage_dns
+        __props__.__dict__["access_and_manage_iam_resources"] = access_and_manage_iam_resources
+        __props__.__dict__["access_and_manage_kaas"] = access_and_manage_kaas
+        __props__.__dict__["access_and_manage_logging"] = access_and_manage_logging
         __props__.__dict__["access_and_manage_monitoring"] = access_and_manage_monitoring
+        __props__.__dict__["access_and_manage_network_file_storage"] = access_and_manage_network_file_storage
+        __props__.__dict__["access_and_manage_vpn"] = access_and_manage_vpn
         __props__.__dict__["create_backup_unit"] = create_backup_unit
         __props__.__dict__["create_datacenter"] = create_datacenter
         __props__.__dict__["create_flow_log"] = create_flow_log
         __props__.__dict__["create_internet_access"] = create_internet_access
         __props__.__dict__["create_k8s_cluster"] = create_k8s_cluster
+        __props__.__dict__["create_network_security_groups"] = create_network_security_groups
         __props__.__dict__["create_pcc"] = create_pcc
         __props__.__dict__["create_snapshot"] = create_snapshot
+        __props__.__dict__["manage_dataplatform"] = manage_dataplatform
         __props__.__dict__["manage_dbaas"] = manage_dbaas
+        __props__.__dict__["manage_registry"] = manage_registry
         __props__.__dict__["name"] = name
         __props__.__dict__["reserve_ip"] = reserve_ip
         __props__.__dict__["s3_privilege"] = s3_privilege
@@ -890,6 +1358,30 @@ class Group(pulumi.CustomResource):
         return pulumi.get(self, "access_activity_log")
 
     @property
+    @pulumi.getter(name="accessAndManageAiModelHub")
+    def access_and_manage_ai_model_hub(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage AiModelHub.
+        """
+        return pulumi.get(self, "access_and_manage_ai_model_hub")
+
+    @property
+    @pulumi.getter(name="accessAndManageApiGateway")
+    def access_and_manage_api_gateway(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage ApiGateway.
+        """
+        return pulumi.get(self, "access_and_manage_api_gateway")
+
+    @property
+    @pulumi.getter(name="accessAndManageCdn")
+    def access_and_manage_cdn(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage Cdn.
+        """
+        return pulumi.get(self, "access_and_manage_cdn")
+
+    @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -898,12 +1390,60 @@ class Group(pulumi.CustomResource):
         return pulumi.get(self, "access_and_manage_certificates")
 
     @property
+    @pulumi.getter(name="accessAndManageDns")
+    def access_and_manage_dns(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage dns records.
+        """
+        return pulumi.get(self, "access_and_manage_dns")
+
+    @property
+    @pulumi.getter(name="accessAndManageIamResources")
+    def access_and_manage_iam_resources(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage IamResources.
+        """
+        return pulumi.get(self, "access_and_manage_iam_resources")
+
+    @property
+    @pulumi.getter(name="accessAndManageKaas")
+    def access_and_manage_kaas(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage Kaas.
+        """
+        return pulumi.get(self, "access_and_manage_kaas")
+
+    @property
+    @pulumi.getter(name="accessAndManageLogging")
+    def access_and_manage_logging(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage logging.
+        """
+        return pulumi.get(self, "access_and_manage_logging")
+
+    @property
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> pulumi.Output[Optional[bool]]:
         """
         [Boolean]  The group will be allowed to access and manage monitoring.
         """
         return pulumi.get(self, "access_and_manage_monitoring")
+
+    @property
+    @pulumi.getter(name="accessAndManageNetworkFileStorage")
+    def access_and_manage_network_file_storage(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage NetworkFileStorage.
+        """
+        return pulumi.get(self, "access_and_manage_network_file_storage")
+
+    @property
+    @pulumi.getter(name="accessAndManageVpn")
+    def access_and_manage_vpn(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage Vpn.
+        """
+        return pulumi.get(self, "access_and_manage_vpn")
 
     @property
     @pulumi.getter(name="createBackupUnit")
@@ -946,6 +1486,14 @@ class Group(pulumi.CustomResource):
         return pulumi.get(self, "create_k8s_cluster")
 
     @property
+    @pulumi.getter(name="createNetworkSecurityGroups")
+    def create_network_security_groups(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Create Network Security groups.
+        """
+        return pulumi.get(self, "create_network_security_groups")
+
+    @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -962,12 +1510,28 @@ class Group(pulumi.CustomResource):
         return pulumi.get(self, "create_snapshot")
 
     @property
+    @pulumi.getter(name="manageDataplatform")
+    def manage_dataplatform(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for a group to access and manage the Data Platform.
+        """
+        return pulumi.get(self, "manage_dataplatform")
+
+    @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> pulumi.Output[Optional[bool]]:
         """
         [Boolean]  Privilege for a group to manage DBaaS related functionality.
         """
         return pulumi.get(self, "manage_dbaas")
+
+    @property
+    @pulumi.getter(name="manageRegistry")
+    def manage_registry(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Privilege for group accessing container registry related functionality.
+        """
+        return pulumi.get(self, "manage_registry")
 
     @property
     @pulumi.getter

@@ -5,7 +5,15 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .get_monitoring_pipeline import *
+from .get_object_storage_accesskey import *
+from .get_object_storage_region import *
+from .get_s3_objects import *
+from .monitoring_pipeline import *
+from .object_storage_accesskey import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -43,6 +51,8 @@ if typing.TYPE_CHECKING:
     nlb = __nlb
     import pulumi_ionoscloud.nsg as __nsg
     nsg = __nsg
+    import pulumi_ionoscloud.objectstorage as __objectstorage
+    objectstorage = __objectstorage
     import pulumi_ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
@@ -63,6 +73,7 @@ else:
     nfs = _utilities.lazy_import('pulumi_ionoscloud.nfs')
     nlb = _utilities.lazy_import('pulumi_ionoscloud.nlb')
     nsg = _utilities.lazy_import('pulumi_ionoscloud.nsg')
+    objectstorage = _utilities.lazy_import('pulumi_ionoscloud.objectstorage')
     vpn = _utilities.lazy_import('pulumi_ionoscloud.vpn')
 
 _utilities.register(
@@ -422,6 +433,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "index/monitoringPipeline",
+  "fqn": "pulumi_ionoscloud",
+  "classes": {
+   "ionoscloud:index/monitoringPipeline:MonitoringPipeline": "MonitoringPipeline"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/objectStorageAccesskey",
+  "fqn": "pulumi_ionoscloud",
+  "classes": {
+   "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": "ObjectStorageAccesskey"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "pulumi_ionoscloud.k8s",
   "classes": {
@@ -514,6 +541,94 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.nsg",
   "classes": {
    "ionoscloud:nsg/nsg:Nsg": "Nsg"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucket",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucket:Bucket": "Bucket"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketLifecycleConfiguration",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration": "BucketLifecycleConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketObject",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketObject:BucketObject": "BucketObject"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketPolicy",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketPolicy:BucketPolicy": "BucketPolicy"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketServerSideEncryptionConfiguration",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": "BucketServerSideEncryptionConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/bucketVersioning",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/bucketVersioning:BucketVersioning": "BucketVersioning"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/corsConfiguration",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": "CorsConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/objectCopy",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/objectCopy:ObjectCopy": "ObjectCopy"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/objectLockConfiguration",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": "ObjectLockConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/publicAccessBlock",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": "PublicAccessBlock"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/websiteConfiguration",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration": "WebsiteConfiguration"
   }
  },
  {

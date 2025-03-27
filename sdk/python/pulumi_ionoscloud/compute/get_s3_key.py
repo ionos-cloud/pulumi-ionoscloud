@@ -119,7 +119,7 @@ def get_s3_key(id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         secret_key=pulumi.get(__ret__, 'secret_key'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_s3_key_output(id: Optional[pulumi.Input[str]] = None,
+def get_s3_key_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                       user_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetS3KeyResult]:
     """
