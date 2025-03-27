@@ -525,7 +525,7 @@
                 }
             },
             "ionoscloud_monitoring_pipeline": {
-                "current": "ionoscloud:index/monitoringPipeline:MonitoringPipeline",
+                "current": "ionoscloud:monitoring/pipeline:Pipeline",
                 "majorVersion": 1
             },
             "ionoscloud_natgateway": {
@@ -2205,9 +2205,10 @@
     },
     "auto-settings": {
         "resources": {
-            "ionoscloud_s3_object": {
+            "ionoscloud_monitoring_pipeline": {
                 "aliases": [
-                    "ionoscloud:objectstorage/object:Object"
+                    "ionoscloud:index/monitoringPipeline:MonitoringPipeline",
+                    "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline"
                 ]
             }
         }
@@ -2258,13 +2259,13 @@
             "ionoscloud:dns/zone:Zone": 0,
             "ionoscloud:dsaas/cluster:Cluster": 0,
             "ionoscloud:dsaas/nodePool:NodePool": 0,
-            "ionoscloud:index/monitoringPipeline:MonitoringPipeline": 1,
             "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": 1,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
             "ionoscloud:kafka/cluster:Cluster": 0,
             "ionoscloud:kafka/topic:Topic": 0,
             "ionoscloud:logging/pipeline:Pipeline": 0,
+            "ionoscloud:monitoring/pipeline:Pipeline": 1,
             "ionoscloud:nfs/cluster:Cluster": 0,
             "ionoscloud:nfs/share:Share": 0,
             "ionoscloud:nlb/balancer:Balancer": 0,
@@ -2279,7 +2280,7 @@
             "ionoscloud:objectstorage/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": 1,
             "ionoscloud:objectstorage/bucketVersioning:BucketVersioning": 1,
             "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": 1,
-            "ionoscloud:objectstorage/object:Object": 1,
+            "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline": 1,
             "ionoscloud:objectstorage/objectCopy:ObjectCopy": 1,
             "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": 1,
             "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": 1,

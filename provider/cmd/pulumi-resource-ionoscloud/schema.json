@@ -6359,27 +6359,6 @@
                 }
             }
         },
-        "ionoscloud:index/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts": {
-            "properties": {
-                "create": {
-                    "type": "string",
-                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
-                },
-                "delete": {
-                    "type": "string",
-                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.\n"
-                },
-                "read": {
-                    "type": "string",
-                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.\n"
-                },
-                "update": {
-                    "type": "string",
-                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
-                }
-            },
-            "type": "object"
-        },
         "ionoscloud:index/ObjectStorageAccesskeyTimeouts:ObjectStorageAccesskeyTimeouts": {
             "properties": {
                 "create": {
@@ -7301,6 +7280,27 @@
                 }
             }
         },
+        "ionoscloud:monitoring/PipelineTimeouts:PipelineTimeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.\n"
+                },
+                "read": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.\n"
+                },
+                "update": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                }
+            },
+            "type": "object"
+        },
         "ionoscloud:nfs/ClusterConnections:ClusterConnections": {
             "properties": {
                 "datacenterId": {
@@ -7994,6 +7994,27 @@
                 "allowedMethods",
                 "allowedOrigins"
             ]
+        },
+        "ionoscloud:objectstorage/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.\n"
+                },
+                "read": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.\n"
+                },
+                "update": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                }
+            },
+            "type": "object"
         },
         "ionoscloud:objectstorage/ObjectLockConfigurationRule:ObjectLockConfigurationRule": {
             "properties": {
@@ -15186,84 +15207,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/monitoringPipeline:MonitoringPipeline": {
-            "description": "Manages a **Monitoring pipeline**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **monitoring_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.MonitoringPipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.MonitoringPipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.MonitoringPipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewMonitoringPipeline(ctx, \"example\", \u0026ionoscloud.MonitoringPipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.MonitoringPipeline;\nimport com.pulumi.ionoscloud.MonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new MonitoringPipeline(\"example\", MonitoringPipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:MonitoringPipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n**NOTE:** The default timeout for all operations is 60 minutes. If you want to change the default value, you can use `timeouts` attribute inside the resource:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.MonitoringPipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.MonitoringPipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.MonitoringPipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewMonitoringPipeline(ctx, \"example\", \u0026ionoscloud.MonitoringPipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.MonitoringPipeline;\nimport com.pulumi.ionoscloud.MonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new MonitoringPipeline(\"example\", MonitoringPipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:MonitoringPipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a Monitoring pipeline, you can define an empty Monitoring pipeline resource in the plan:\n\nhcl\n\nresource \"ionoscloud_monitoring_pipeline\" \"example\" {\n\n}\n\nThe resource can be imported using the `location` and `pipeline_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/monitoringPipeline:MonitoringPipeline example location:pipeline_id\n```\n\n",
-            "properties": {
-                "grafanaEndpoint": {
-                    "type": "string",
-                    "description": "[string] The endpoint of the Grafana instance.\n"
-                },
-                "httpEndpoint": {
-                    "type": "string",
-                    "description": "[string] The HTTP endpoint of the monitoring instance.\n"
-                },
-                "key": {
-                    "type": "string",
-                    "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
-                    "secret": true
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the Monitoring pipeline.\n"
-                },
-                "timeouts": {
-                    "$ref": "#/types/ionoscloud:index/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
-                }
-            },
-            "required": [
-                "grafanaEndpoint",
-                "httpEndpoint",
-                "key",
-                "name"
-            ],
-            "inputProperties": {
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the Monitoring pipeline.\n"
-                },
-                "timeouts": {
-                    "$ref": "#/types/ionoscloud:index/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering MonitoringPipeline resources.\n",
-                "properties": {
-                    "grafanaEndpoint": {
-                        "type": "string",
-                        "description": "[string] The endpoint of the Grafana instance.\n"
-                    },
-                    "httpEndpoint": {
-                        "type": "string",
-                        "description": "[string] The HTTP endpoint of the monitoring instance.\n"
-                    },
-                    "key": {
-                        "type": "string",
-                        "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
-                        "secret": true
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the Monitoring pipeline.\n"
-                    },
-                    "timeouts": {
-                        "$ref": "#/types/ionoscloud:index/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": {
             "description": "Manages an **Object Storage Accesskey** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.ObjectStorageAccesskey(\"example\", {description: \"my description\"});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.ObjectStorageAccesskey(\"example\", description=\"my description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.ObjectStorageAccesskey(\"example\", new()\n    {\n        Description = \"my description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewObjectStorageAccesskey(ctx, \"example\", \u0026ionoscloud.ObjectStorageAccesskeyArgs{\n\t\t\tDescription: pulumi.String(\"my description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.ObjectStorageAccesskey;\nimport com.pulumi.ionoscloud.ObjectStorageAccesskeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ObjectStorageAccesskey(\"example\", ObjectStorageAccesskeyArgs.builder()\n            .description(\"my description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:ObjectStorageAccesskey\n    properties:\n      description: my description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAn object storage accesskey resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey demo objectStorageAccesskeyid\n```\n\nThis can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.\n\n",
             "properties": {
@@ -16127,6 +16070,89 @@
                 },
                 "type": "object"
             }
+        },
+        "ionoscloud:monitoring/pipeline:Pipeline": {
+            "description": "Manages a **Monitoring pipeline**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **monitoring_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.monitoring.Pipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.monitoring.Pipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Monitoring.Pipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/monitoring\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := monitoring.NewPipeline(ctx, \"example\", \u0026monitoring.PipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.monitoring.Pipeline;\nimport com.pulumi.ionoscloud.monitoring.PipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Pipeline(\"example\", PipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:monitoring:Pipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n**NOTE:** The default timeout for all operations is 60 minutes. If you want to change the default value, you can use `timeouts` attribute inside the resource:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.monitoring.Pipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.monitoring.Pipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Monitoring.Pipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/monitoring\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := monitoring.NewPipeline(ctx, \"example\", \u0026monitoring.PipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.monitoring.Pipeline;\nimport com.pulumi.ionoscloud.monitoring.PipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Pipeline(\"example\", PipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:monitoring:Pipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a Monitoring pipeline, you can define an empty Monitoring pipeline resource in the plan:\n\nhcl\n\nresource \"ionoscloud_monitoring_pipeline\" \"example\" {\n\n}\n\nThe resource can be imported using the `location` and `pipeline_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:monitoring/pipeline:Pipeline example location:pipeline_id\n```\n\n",
+            "properties": {
+                "grafanaEndpoint": {
+                    "type": "string",
+                    "description": "[string] The endpoint of the Grafana instance.\n"
+                },
+                "httpEndpoint": {
+                    "type": "string",
+                    "description": "[string] The HTTP endpoint of the monitoring instance.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
+                    "secret": true
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the Monitoring pipeline.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:monitoring/PipelineTimeouts:PipelineTimeouts"
+                }
+            },
+            "required": [
+                "grafanaEndpoint",
+                "httpEndpoint",
+                "key",
+                "name"
+            ],
+            "inputProperties": {
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the Monitoring pipeline.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:monitoring/PipelineTimeouts:PipelineTimeouts"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Pipeline resources.\n",
+                "properties": {
+                    "grafanaEndpoint": {
+                        "type": "string",
+                        "description": "[string] The endpoint of the Grafana instance.\n"
+                    },
+                    "httpEndpoint": {
+                        "type": "string",
+                        "description": "[string] The HTTP endpoint of the monitoring instance.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
+                        "secret": true
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the Monitoring pipeline.\n"
+                    },
+                    "timeouts": {
+                        "$ref": "#/types/ionoscloud:monitoring/PipelineTimeouts:PipelineTimeouts"
+                    }
+                },
+                "type": "object"
+            },
+            "aliases": [
+                {
+                    "type": "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline"
+                }
+            ]
         },
         "ionoscloud:nfs/cluster:Cluster": {
             "description": "Create clusters of Network File Storage (NFS) on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfs_dc\", {\n    name: \"NFS Datacenter\",\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfs_lan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n    name: \"Lan for NFS\",\n});\nconst example = new ionoscloud.nfs.Cluster(\"example\", {\n    name: \"test\",\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"192.168.100.10/24\",\n        lan: nfsLan.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\n# Basic example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfs_dc\",\n    name=\"NFS Datacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfs_lan\",\n    datacenter_id=nfs_dc.id,\n    public=False,\n    name=\"Lan for NFS\")\nexample = ionoscloud.nfs.Cluster(\"example\",\n    name=\"test\",\n    location=\"de/txl\",\n    size=2,\n    nfs={\n        \"min_version\": \"4.2\",\n    },\n    connections={\n        \"datacenter_id\": nfs_dc.id,\n        \"ip_address\": \"192.168.100.10/24\",\n        \"lan\": nfs_lan.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfs_dc\", new()\n    {\n        Name = \"NFS Datacenter\",\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfs_lan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n        Name = \"Lan for NFS\",\n    });\n\n    var example = new Ionoscloud.Nfs.Cluster(\"example\", new()\n    {\n        Name = \"test\",\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"192.168.100.10/24\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfs_dc\", \u0026compute.DatacenterArgs{\n\t\t\tName:              pulumi.String(\"NFS Datacenter\"),\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfs_lan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tName:         pulumi.String(\"Lan for NFS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nfs.NewCluster(ctx, \"example\", \u0026nfs.ClusterArgs{\n\t\t\tName:     pulumi.String(\"test\"),\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026nfs.ClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026nfs.ClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.nfs.Cluster;\nimport com.pulumi.ionoscloud.nfs.ClusterArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()\n            .name(\"NFS Datacenter\")\n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()\n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .name(\"Lan for NFS\")\n            .build());\n\n        var example = new Cluster(\"example\", ClusterArgs.builder()\n            .name(\"test\")\n            .location(\"de/txl\")\n            .size(2)\n            .nfs(ClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(ClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"192.168.100.10/24\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    name: nfs_dc\n    properties:\n      name: NFS Datacenter\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    name: nfs_lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n      name: Lan for NFS\n  example:\n    type: ionoscloud:nfs:Cluster\n    properties:\n      name: test\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: 192.168.100.10/24\n        lan: ${nfsLan.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\nimport * as random from \"@pulumi/random\";\n\n// Complete example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfs_dc\", {\n    name: \"NFS Datacenter\",\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfs_lan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n    name: \"Lan for NFS\",\n});\nconst hDDImage = ionoscloud.compute.getImage({\n    imageAlias: \"ubuntu:20.04\",\n    type: \"HDD\",\n    cloudInit: \"V1\",\n    location: \"de/txl\",\n});\nconst password = new random.index.Password(\"password\", {\n    length: 16,\n    special: false,\n});\n// needed for the NIC - which provides the IP address for the NFS cluster.\nconst nfsServer = new ionoscloud.compute.Server(\"nfs_server\", {\n    name: \"Server for NFS\",\n    datacenterId: nfsDc.id,\n    cores: 1,\n    ram: 2048,\n    availabilityZone: \"ZONE_1\",\n    cpuFamily: \"INTEL_SKYLAKE\",\n    imageName: hDDImage.then(hDDImage =\u003e hDDImage.id),\n    imagePassword: password.result,\n    volume: {\n        name: \"system\",\n        size: 14,\n        diskType: \"SSD\",\n    },\n    nic: {\n        name: \"NIC A\",\n        lan: nfsLan.id,\n        dhcp: true,\n        firewallActive: true,\n    },\n});\nconst example = new ionoscloud.nfs.Cluster(\"example\", {\n    name: \"test\",\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"nfs_cluster_cidr_from_nic\",\n        lan: nfsLan.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\nimport pulumi_random as random\n\n# Complete example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfs_dc\",\n    name=\"NFS Datacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfs_lan\",\n    datacenter_id=nfs_dc.id,\n    public=False,\n    name=\"Lan for NFS\")\nh_dd_image = ionoscloud.compute.get_image(image_alias=\"ubuntu:20.04\",\n    type=\"HDD\",\n    cloud_init=\"V1\",\n    location=\"de/txl\")\npassword = random.index.Password(\"password\",\n    length=16,\n    special=False)\n# needed for the NIC - which provides the IP address for the NFS cluster.\nnfs_server = ionoscloud.compute.Server(\"nfs_server\",\n    name=\"Server for NFS\",\n    datacenter_id=nfs_dc.id,\n    cores=1,\n    ram=2048,\n    availability_zone=\"ZONE_1\",\n    cpu_family=\"INTEL_SKYLAKE\",\n    image_name=h_dd_image.id,\n    image_password=password[\"result\"],\n    volume={\n        \"name\": \"system\",\n        \"size\": 14,\n        \"disk_type\": \"SSD\",\n    },\n    nic={\n        \"name\": \"NIC A\",\n        \"lan\": nfs_lan.id,\n        \"dhcp\": True,\n        \"firewall_active\": True,\n    })\nexample = ionoscloud.nfs.Cluster(\"example\",\n    name=\"test\",\n    location=\"de/txl\",\n    size=2,\n    nfs={\n        \"min_version\": \"4.2\",\n    },\n    connections={\n        \"datacenter_id\": nfs_dc.id,\n        \"ip_address\": \"nfs_cluster_cidr_from_nic\",\n        \"lan\": nfs_lan.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\nusing Random = Pulumi.Random;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Complete example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfs_dc\", new()\n    {\n        Name = \"NFS Datacenter\",\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfs_lan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n        Name = \"Lan for NFS\",\n    });\n\n    var hDDImage = Ionoscloud.Compute.GetImage.Invoke(new()\n    {\n        ImageAlias = \"ubuntu:20.04\",\n        Type = \"HDD\",\n        CloudInit = \"V1\",\n        Location = \"de/txl\",\n    });\n\n    var password = new Random.Index.Password(\"password\", new()\n    {\n        Length = 16,\n        Special = false,\n    });\n\n    // needed for the NIC - which provides the IP address for the NFS cluster.\n    var nfsServer = new Ionoscloud.Compute.Server(\"nfs_server\", new()\n    {\n        Name = \"Server for NFS\",\n        DatacenterId = nfsDc.Id,\n        Cores = 1,\n        Ram = 2048,\n        AvailabilityZone = \"ZONE_1\",\n        CpuFamily = \"INTEL_SKYLAKE\",\n        ImageName = hDDImage.Apply(getImageResult =\u003e getImageResult.Id),\n        ImagePassword = password.Result,\n        Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs\n        {\n            Name = \"system\",\n            Size = 14,\n            DiskType = \"SSD\",\n        },\n        Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs\n        {\n            Name = \"NIC A\",\n            Lan = nfsLan.Id,\n            Dhcp = true,\n            FirewallActive = true,\n        },\n    });\n\n    var example = new Ionoscloud.Nfs.Cluster(\"example\", new()\n    {\n        Name = \"test\",\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"nfs_cluster_cidr_from_nic\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs\"\n\t\"github.com/pulumi/pulumi-random/sdk/go/random\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Complete example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfs_dc\", \u0026compute.DatacenterArgs{\n\t\t\tName:              pulumi.String(\"NFS Datacenter\"),\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfs_lan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tName:         pulumi.String(\"Lan for NFS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\thDDImage, err := compute.GetImage(ctx, \u0026compute.GetImageArgs{\n\t\t\tImageAlias: pulumi.StringRef(\"ubuntu:20.04\"),\n\t\t\tType:       pulumi.StringRef(\"HDD\"),\n\t\t\tCloudInit:  pulumi.StringRef(\"V1\"),\n\t\t\tLocation:   pulumi.StringRef(\"de/txl\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpassword, err := random.NewPassword(ctx, \"password\", \u0026random.PasswordArgs{\n\t\t\tLength:  16,\n\t\t\tSpecial: false,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// needed for the NIC - which provides the IP address for the NFS cluster.\n\t\t_, err = compute.NewServer(ctx, \"nfs_server\", \u0026compute.ServerArgs{\n\t\t\tName:             pulumi.String(\"Server for NFS\"),\n\t\t\tDatacenterId:     nfsDc.ID(),\n\t\t\tCores:            pulumi.Int(1),\n\t\t\tRam:              pulumi.Int(2048),\n\t\t\tAvailabilityZone: pulumi.String(\"ZONE_1\"),\n\t\t\tCpuFamily:        pulumi.String(\"INTEL_SKYLAKE\"),\n\t\t\tImageName:        pulumi.String(hDDImage.Id),\n\t\t\tImagePassword:    password.Result,\n\t\t\tVolume: \u0026compute.ServerVolumeArgs{\n\t\t\t\tName:     pulumi.String(\"system\"),\n\t\t\t\tSize:     pulumi.Int(14),\n\t\t\t\tDiskType: pulumi.String(\"SSD\"),\n\t\t\t},\n\t\t\tNic: \u0026compute.ServerNicArgs{\n\t\t\t\tName:           pulumi.String(\"NIC A\"),\n\t\t\t\tLan:            nfsLan.ID(),\n\t\t\t\tDhcp:           pulumi.Bool(true),\n\t\t\t\tFirewallActive: pulumi.Bool(true),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nfs.NewCluster(ctx, \"example\", \u0026nfs.ClusterArgs{\n\t\t\tName:     pulumi.String(\"test\"),\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026nfs.ClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026nfs.ClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"nfs_cluster_cidr_from_nic\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.compute.ComputeFunctions;\nimport com.pulumi.ionoscloud.compute.inputs.GetImageArgs;\nimport com.pulumi.random.password;\nimport com.pulumi.random.PasswordArgs;\nimport com.pulumi.ionoscloud.compute.Server;\nimport com.pulumi.ionoscloud.compute.ServerArgs;\nimport com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;\nimport com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;\nimport com.pulumi.ionoscloud.nfs.Cluster;\nimport com.pulumi.ionoscloud.nfs.ClusterArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Complete example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()\n            .name(\"NFS Datacenter\")\n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()\n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .name(\"Lan for NFS\")\n            .build());\n\n        final var hDDImage = ComputeFunctions.getImage(GetImageArgs.builder()\n            .imageAlias(\"ubuntu:20.04\")\n            .type(\"HDD\")\n            .cloudInit(\"V1\")\n            .location(\"de/txl\")\n            .build());\n\n        var password = new Password(\"password\", PasswordArgs.builder()\n            .length(16)\n            .special(false)\n            .build());\n\n        // needed for the NIC - which provides the IP address for the NFS cluster.\n        var nfsServer = new Server(\"nfsServer\", ServerArgs.builder()\n            .name(\"Server for NFS\")\n            .datacenterId(nfsDc.id())\n            .cores(1)\n            .ram(2048)\n            .availabilityZone(\"ZONE_1\")\n            .cpuFamily(\"INTEL_SKYLAKE\")\n            .imageName(hDDImage.applyValue(getImageResult -\u003e getImageResult.id()))\n            .imagePassword(password.result())\n            .volume(ServerVolumeArgs.builder()\n                .name(\"system\")\n                .size(14)\n                .diskType(\"SSD\")\n                .build())\n            .nic(ServerNicArgs.builder()\n                .name(\"NIC A\")\n                .lan(nfsLan.id())\n                .dhcp(true)\n                .firewallActive(true)\n                .build())\n            .build());\n\n        var example = new Cluster(\"example\", ClusterArgs.builder()\n            .name(\"test\")\n            .location(\"de/txl\")\n            .size(2)\n            .nfs(ClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(ClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"nfs_cluster_cidr_from_nic\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Complete example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    name: nfs_dc\n    properties:\n      name: NFS Datacenter\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    name: nfs_lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n      name: Lan for NFS\n  password:\n    type: random:password\n    properties:\n      length: 16\n      special: false\n  # needed for the NIC - which provides the IP address for the NFS cluster.\n  nfsServer:\n    type: ionoscloud:compute:Server\n    name: nfs_server\n    properties:\n      name: Server for NFS\n      datacenterId: ${nfsDc.id}\n      cores: 1\n      ram: 2048\n      availabilityZone: ZONE_1\n      cpuFamily: INTEL_SKYLAKE\n      imageName: ${hDDImage.id}\n      imagePassword: ${password.result}\n      volume:\n        name: system\n        size: 14\n        diskType: SSD\n      nic:\n        name: NIC A\n        lan: ${nfsLan.id}\n        dhcp: true\n        firewallActive: true\n  example:\n    type: ionoscloud:nfs:Cluster\n    properties:\n      name: test\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: nfs_cluster_cidr_from_nic\n        lan: ${nfsLan.id}\nvariables:\n  hDDImage:\n    fn::invoke:\n      function: ionoscloud:compute:getImage\n      arguments:\n        imageAlias: ubuntu:20.04\n        type: HDD\n        cloudInit: V1\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Network File Storage Cluster resource can be imported using its `location` and `resource id`:\n\n```sh\n$ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid\n```\n\n",
@@ -17452,12 +17478,7 @@
                     }
                 },
                 "type": "object"
-            },
-            "aliases": [
-                {
-                    "type": "ionoscloud:objectstorage/object:Object"
-                }
-            ]
+            }
         },
         "ionoscloud:objectstorage/bucketPolicy:BucketPolicy": {
             "description": "Manages **Buckets policies** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.objectstorage.Bucket(\"example\", {name: \"example\"});\nconst exampleBucketPolicy = new ionoscloud.objectstorage.BucketPolicy(\"example\", {\n    bucket: example.name,\n    policy: JSON.stringify({\n        Version: \"2012-10-17\",\n        Statement: [{\n            Sid: \"Delegate certain actions to another user\",\n            Action: [\n                \"s3:ListBucket\",\n                \"s3:PutObject\",\n                \"s3:GetObject\",\n            ],\n            Effect: \"Allow\",\n            Resource: [\n                \"arn:aws:s3:::example\",\n                \"arn:aws:s3:::example/*\",\n            ],\n            Condition: {\n                IpAddress: [\"123.123.123.123/32\"],\n            },\n            Principal: [\"arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\"],\n        }],\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.Bucket(\"example\", name=\"example\")\nexample_bucket_policy = ionoscloud.objectstorage.BucketPolicy(\"example\",\n    bucket=example.name,\n    policy=json.dumps({\n        \"Version\": \"2012-10-17\",\n        \"Statement\": [{\n            \"Sid\": \"Delegate certain actions to another user\",\n            \"Action\": [\n                \"s3:ListBucket\",\n                \"s3:PutObject\",\n                \"s3:GetObject\",\n            ],\n            \"Effect\": \"Allow\",\n            \"Resource\": [\n                \"arn:aws:s3:::example\",\n                \"arn:aws:s3:::example/*\",\n            ],\n            \"Condition\": {\n                \"IpAddress\": [\"123.123.123.123/32\"],\n            },\n            \"Principal\": [\"arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\"],\n        }],\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.Bucket(\"example\", new()\n    {\n        Name = \"example\",\n    });\n\n    var exampleBucketPolicy = new Ionoscloud.Objectstorage.BucketPolicy(\"example\", new()\n    {\n        Bucket = example.Name,\n        Policy = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"Version\"] = \"2012-10-17\",\n            [\"Statement\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"Sid\"] = \"Delegate certain actions to another user\",\n                    [\"Action\"] = new[]\n                    {\n                        \"s3:ListBucket\",\n                        \"s3:PutObject\",\n                        \"s3:GetObject\",\n                    },\n                    [\"Effect\"] = \"Allow\",\n                    [\"Resource\"] = new[]\n                    {\n                        \"arn:aws:s3:::example\",\n                        \"arn:aws:s3:::example/*\",\n                    },\n                    [\"Condition\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"IpAddress\"] = new[]\n                        {\n                            \"123.123.123.123/32\",\n                        },\n                    },\n                    [\"Principal\"] = new[]\n                    {\n                        \"arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\",\n                    },\n                },\n            },\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := objectstorage.NewBucket(ctx, \"example\", \u0026objectstorage.BucketArgs{\n\t\t\tName: pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"Version\": \"2012-10-17\",\n\t\t\t\"Statement\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"Sid\": \"Delegate certain actions to another user\",\n\t\t\t\t\t\"Action\": []string{\n\t\t\t\t\t\t\"s3:ListBucket\",\n\t\t\t\t\t\t\"s3:PutObject\",\n\t\t\t\t\t\t\"s3:GetObject\",\n\t\t\t\t\t},\n\t\t\t\t\t\"Effect\": \"Allow\",\n\t\t\t\t\t\"Resource\": []string{\n\t\t\t\t\t\t\"arn:aws:s3:::example\",\n\t\t\t\t\t\t\"arn:aws:s3:::example/*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"Condition\": map[string]interface{}{\n\t\t\t\t\t\t\"IpAddress\": []string{\n\t\t\t\t\t\t\t\"123.123.123.123/32\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"Principal\": []string{\n\t\t\t\t\t\t\"arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = objectstorage.NewBucketPolicy(ctx, \"example\", \u0026objectstorage.BucketPolicyArgs{\n\t\t\tBucket: example.Name,\n\t\t\tPolicy: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.objectstorage.Bucket;\nimport com.pulumi.ionoscloud.objectstorage.BucketArgs;\nimport com.pulumi.ionoscloud.objectstorage.BucketPolicy;\nimport com.pulumi.ionoscloud.objectstorage.BucketPolicyArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Bucket(\"example\", BucketArgs.builder()\n            .name(\"example\")\n            .build());\n\n        var exampleBucketPolicy = new BucketPolicy(\"exampleBucketPolicy\", BucketPolicyArgs.builder()\n            .bucket(example.name())\n            .policy(serializeJson(\n                jsonObject(\n                    jsonProperty(\"Version\", \"2012-10-17\"),\n                    jsonProperty(\"Statement\", jsonArray(jsonObject(\n                        jsonProperty(\"Sid\", \"Delegate certain actions to another user\"),\n                        jsonProperty(\"Action\", jsonArray(\n                            \"s3:ListBucket\", \n                            \"s3:PutObject\", \n                            \"s3:GetObject\"\n                        )),\n                        jsonProperty(\"Effect\", \"Allow\"),\n                        jsonProperty(\"Resource\", jsonArray(\n                            \"arn:aws:s3:::example\", \n                            \"arn:aws:s3:::example/*\"\n                        )),\n                        jsonProperty(\"Condition\", jsonObject(\n                            jsonProperty(\"IpAddress\", jsonArray(\"123.123.123.123/32\"))\n                        )),\n                        jsonProperty(\"Principal\", jsonArray(\"arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\"))\n                    )))\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:Bucket\n    properties:\n      name: example\n  exampleBucketPolicy:\n    type: ionoscloud:objectstorage:BucketPolicy\n    name: example\n    properties:\n      bucket: ${example.name}\n      policy:\n        fn::toJSON:\n          Version: 2012-10-17\n          Statement:\n            - Sid: Delegate certain actions to another user\n              Action:\n                - s3:ListBucket\n                - s3:PutObject\n                - s3:GetObject\n              Effect: Allow\n              Resource:\n                - arn:aws:s3:::example\n                - arn:aws:s3:::example/*\n              Condition:\n                IpAddress:\n                  - 123.123.123.123/32\n              Principal:\n                - arn:aws:iam:::user/31000000:9acd8251-2857-410e-b1fd-ca86462bdcec\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Policy can be imported using the `bucket name`\n\n```sh\n$ pulumi import ionoscloud:objectstorage/bucketPolicy:BucketPolicy example example\n```\n\n",
@@ -17651,370 +17672,84 @@
                 "type": "object"
             }
         },
-        "ionoscloud:objectstorage/object:Object": {
-            "description": "Manages **IONOS Object Storage Objects** on IonosCloud.\n\n## Import\n\nResource Object can be imported using the `bucket name` and `object key`\n\n```sh\n$ pulumi import ionoscloud:objectstorage/object:Object example example/object\n```\n\n",
+        "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline": {
+            "description": "Manages a **Monitoring pipeline**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **monitoring_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.monitoring.Pipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.monitoring.Pipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Monitoring.Pipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/monitoring\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := monitoring.NewPipeline(ctx, \"example\", \u0026monitoring.PipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.monitoring.Pipeline;\nimport com.pulumi.ionoscloud.monitoring.PipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Pipeline(\"example\", PipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:monitoring:Pipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n**NOTE:** The default timeout for all operations is 60 minutes. If you want to change the default value, you can use `timeouts` attribute inside the resource:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.monitoring.Pipeline(\"example\", {\n    location: \"es/vit\",\n    name: \"pipelineExample\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.monitoring.Pipeline(\"example\",\n    location=\"es/vit\",\n    name=\"pipelineExample\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Monitoring.Pipeline(\"example\", new()\n    {\n        Location = \"es/vit\",\n        Name = \"pipelineExample\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/monitoring\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := monitoring.NewPipeline(ctx, \"example\", \u0026monitoring.PipelineArgs{\n\t\t\tLocation: pulumi.String(\"es/vit\"),\n\t\t\tName:     pulumi.String(\"pipelineExample\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.monitoring.Pipeline;\nimport com.pulumi.ionoscloud.monitoring.PipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Pipeline(\"example\", PipelineArgs.builder()\n            .location(\"es/vit\")\n            .name(\"pipelineExample\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:monitoring:Pipeline\n    properties:\n      location: es/vit\n      name: pipelineExample\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a Monitoring pipeline, you can define an empty Monitoring pipeline resource in the plan:\n\nhcl\n\nresource \"ionoscloud_monitoring_pipeline\" \"example\" {\n\n}\n\nThe resource can be imported using the `location` and `pipeline_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline example location:pipeline_id\n```\n\n",
             "properties": {
-                "bucket": {
+                "grafanaEndpoint": {
                     "type": "string",
-                    "description": "[string] The name of the bucket where the object will be stored. Must be between 3 and 63 characters.\n"
+                    "description": "[string] The endpoint of the Grafana instance.\n"
                 },
-                "cacheControl": {
+                "httpEndpoint": {
                     "type": "string",
-                    "description": "[string] Specifies caching behavior along the request/reply chain.\n"
-                },
-                "content": {
-                    "type": "string",
-                    "description": "[string] Inline content of the object.\n"
-                },
-                "contentDisposition": {
-                    "type": "string",
-                    "description": "[string] Specifies presentational information for the object.\n"
-                },
-                "contentEncoding": {
-                    "type": "string",
-                    "description": "[string] Specifies what content encodings have been applied to the object.\n"
-                },
-                "contentLanguage": {
-                    "type": "string",
-                    "description": "[string] The natural language or languages of the intended audience for the object.\n"
-                },
-                "contentType": {
-                    "type": "string",
-                    "description": "[string] A standard MIME type describing the format of the contents.\n"
-                },
-                "etag": {
-                    "type": "string",
-                    "description": "[string] An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at a URL.\n"
-                },
-                "expires": {
-                    "type": "string",
-                    "description": "[string] The date and time at which the object is no longer cacheable.\n"
-                },
-                "forceDestroy": {
-                    "type": "boolean",
-                    "description": "[bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.\n"
+                    "description": "[string] The HTTP endpoint of the monitoring instance.\n"
                 },
                 "key": {
                     "type": "string",
-                    "description": "[string] The key of the object. Must be at least 1 character long.\n"
-                },
-                "metadata": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.\n"
-                },
-                "mfa": {
-                    "type": "string",
-                    "description": "[string]The concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.\n"
-                },
-                "objectLockLegalHold": {
-                    "type": "string",
-                    "description": "[string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.\n"
-                },
-                "objectLockMode": {
-                    "type": "string",
-                    "description": "[string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.\n"
-                },
-                "objectLockRetainUntilDate": {
-                    "type": "string",
-                    "description": "[string] The date and time when the object lock retention expires.Must be in RFC3999 format\n"
-                },
-                "requestPayer": {
-                    "type": "string",
-                    "description": "[string] Confirms that the requester knows that they will be charged for the request.\n"
-                },
-                "serverSideEncryption": {
-                    "type": "string",
-                    "description": "[string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.\n"
-                },
-                "serverSideEncryptionContext": {
-                    "type": "string",
-                    "description": "[string] Specifies the IONOS Object Storage Encryption Context for object encryption.\n",
+                    "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
                     "secret": true
                 },
-                "serverSideEncryptionCustomerAlgorithm": {
+                "location": {
                     "type": "string",
-                    "description": "[string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.\n"
+                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
                 },
-                "serverSideEncryptionCustomerKey": {
+                "name": {
                     "type": "string",
-                    "description": "[string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.\n"
+                    "description": "[string] The name of the Monitoring pipeline.\n"
                 },
-                "serverSideEncryptionCustomerKeyMd5": {
-                    "type": "string",
-                    "description": "[string] Specifies the 128-bit MD5 digest of the encryption key.\n"
-                },
-                "source": {
-                    "type": "string",
-                    "description": "[string] The path to the file to upload.\n"
-                },
-                "storageClass": {
-                    "type": "string",
-                    "description": "[string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.\n"
-                },
-                "tags": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] The tag-set for the object.\n"
-                },
-                "versionId": {
-                    "type": "string",
-                    "description": "[string] The version of the object.\n"
-                },
-                "websiteRedirect": {
-                    "type": "string",
-                    "description": "[string] Redirects requests for this object to another object in the same bucket or to an external URL.\n"
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:objectstorage/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
                 }
             },
             "required": [
-                "bucket",
-                "contentType",
-                "etag",
-                "forceDestroy",
+                "grafanaEndpoint",
+                "httpEndpoint",
                 "key",
-                "serverSideEncryption",
-                "storageClass",
-                "versionId"
+                "name"
             ],
             "inputProperties": {
-                "bucket": {
+                "location": {
                     "type": "string",
-                    "description": "[string] The name of the bucket where the object will be stored. Must be between 3 and 63 characters.\n"
+                    "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
                 },
-                "cacheControl": {
+                "name": {
                     "type": "string",
-                    "description": "[string] Specifies caching behavior along the request/reply chain.\n"
+                    "description": "[string] The name of the Monitoring pipeline.\n"
                 },
-                "content": {
-                    "type": "string",
-                    "description": "[string] Inline content of the object.\n"
-                },
-                "contentDisposition": {
-                    "type": "string",
-                    "description": "[string] Specifies presentational information for the object.\n"
-                },
-                "contentEncoding": {
-                    "type": "string",
-                    "description": "[string] Specifies what content encodings have been applied to the object.\n"
-                },
-                "contentLanguage": {
-                    "type": "string",
-                    "description": "[string] The natural language or languages of the intended audience for the object.\n"
-                },
-                "contentType": {
-                    "type": "string",
-                    "description": "[string] A standard MIME type describing the format of the contents.\n"
-                },
-                "expires": {
-                    "type": "string",
-                    "description": "[string] The date and time at which the object is no longer cacheable.\n"
-                },
-                "forceDestroy": {
-                    "type": "boolean",
-                    "description": "[bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.\n"
-                },
-                "key": {
-                    "type": "string",
-                    "description": "[string] The key of the object. Must be at least 1 character long.\n"
-                },
-                "metadata": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.\n"
-                },
-                "mfa": {
-                    "type": "string",
-                    "description": "[string]The concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.\n"
-                },
-                "objectLockLegalHold": {
-                    "type": "string",
-                    "description": "[string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.\n"
-                },
-                "objectLockMode": {
-                    "type": "string",
-                    "description": "[string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.\n"
-                },
-                "objectLockRetainUntilDate": {
-                    "type": "string",
-                    "description": "[string] The date and time when the object lock retention expires.Must be in RFC3999 format\n"
-                },
-                "requestPayer": {
-                    "type": "string",
-                    "description": "[string] Confirms that the requester knows that they will be charged for the request.\n"
-                },
-                "serverSideEncryption": {
-                    "type": "string",
-                    "description": "[string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.\n"
-                },
-                "serverSideEncryptionContext": {
-                    "type": "string",
-                    "description": "[string] Specifies the IONOS Object Storage Encryption Context for object encryption.\n",
-                    "secret": true
-                },
-                "serverSideEncryptionCustomerAlgorithm": {
-                    "type": "string",
-                    "description": "[string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.\n"
-                },
-                "serverSideEncryptionCustomerKey": {
-                    "type": "string",
-                    "description": "[string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.\n"
-                },
-                "serverSideEncryptionCustomerKeyMd5": {
-                    "type": "string",
-                    "description": "[string] Specifies the 128-bit MD5 digest of the encryption key.\n"
-                },
-                "source": {
-                    "type": "string",
-                    "description": "[string] The path to the file to upload.\n"
-                },
-                "storageClass": {
-                    "type": "string",
-                    "description": "[string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.\n"
-                },
-                "tags": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] The tag-set for the object.\n"
-                },
-                "websiteRedirect": {
-                    "type": "string",
-                    "description": "[string] Redirects requests for this object to another object in the same bucket or to an external URL.\n"
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:objectstorage/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
                 }
             },
-            "requiredInputs": [
-                "bucket",
-                "key"
-            ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering Object resources.\n",
+                "description": "Input properties used for looking up and filtering MonitoringPipeline resources.\n",
                 "properties": {
-                    "bucket": {
+                    "grafanaEndpoint": {
                         "type": "string",
-                        "description": "[string] The name of the bucket where the object will be stored. Must be between 3 and 63 characters.\n"
+                        "description": "[string] The endpoint of the Grafana instance.\n"
                     },
-                    "cacheControl": {
+                    "httpEndpoint": {
                         "type": "string",
-                        "description": "[string] Specifies caching behavior along the request/reply chain.\n"
-                    },
-                    "content": {
-                        "type": "string",
-                        "description": "[string] Inline content of the object.\n"
-                    },
-                    "contentDisposition": {
-                        "type": "string",
-                        "description": "[string] Specifies presentational information for the object.\n"
-                    },
-                    "contentEncoding": {
-                        "type": "string",
-                        "description": "[string] Specifies what content encodings have been applied to the object.\n"
-                    },
-                    "contentLanguage": {
-                        "type": "string",
-                        "description": "[string] The natural language or languages of the intended audience for the object.\n"
-                    },
-                    "contentType": {
-                        "type": "string",
-                        "description": "[string] A standard MIME type describing the format of the contents.\n"
-                    },
-                    "etag": {
-                        "type": "string",
-                        "description": "[string] An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at a URL.\n"
-                    },
-                    "expires": {
-                        "type": "string",
-                        "description": "[string] The date and time at which the object is no longer cacheable.\n"
-                    },
-                    "forceDestroy": {
-                        "type": "boolean",
-                        "description": "[bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.\n"
+                        "description": "[string] The HTTP endpoint of the monitoring instance.\n"
                     },
                     "key": {
                         "type": "string",
-                        "description": "[string] The key of the object. Must be at least 1 character long.\n"
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "[map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.\n"
-                    },
-                    "mfa": {
-                        "type": "string",
-                        "description": "[string]The concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.\n"
-                    },
-                    "objectLockLegalHold": {
-                        "type": "string",
-                        "description": "[string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.\n"
-                    },
-                    "objectLockMode": {
-                        "type": "string",
-                        "description": "[string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.\n"
-                    },
-                    "objectLockRetainUntilDate": {
-                        "type": "string",
-                        "description": "[string] The date and time when the object lock retention expires.Must be in RFC3999 format\n"
-                    },
-                    "requestPayer": {
-                        "type": "string",
-                        "description": "[string] Confirms that the requester knows that they will be charged for the request.\n"
-                    },
-                    "serverSideEncryption": {
-                        "type": "string",
-                        "description": "[string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.\n"
-                    },
-                    "serverSideEncryptionContext": {
-                        "type": "string",
-                        "description": "[string] Specifies the IONOS Object Storage Encryption Context for object encryption.\n",
+                        "description": "(Sensitive)[string] The key used to connect to the monitoring pipeline.\n\n\u003e **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.\n",
                         "secret": true
                     },
-                    "serverSideEncryptionCustomerAlgorithm": {
+                    "location": {
                         "type": "string",
-                        "description": "[string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.\n"
+                        "description": "[string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.\n"
                     },
-                    "serverSideEncryptionCustomerKey": {
+                    "name": {
                         "type": "string",
-                        "description": "[string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.\n"
+                        "description": "[string] The name of the Monitoring pipeline.\n"
                     },
-                    "serverSideEncryptionCustomerKeyMd5": {
-                        "type": "string",
-                        "description": "[string] Specifies the 128-bit MD5 digest of the encryption key.\n"
-                    },
-                    "source": {
-                        "type": "string",
-                        "description": "[string] The path to the file to upload.\n"
-                    },
-                    "storageClass": {
-                        "type": "string",
-                        "description": "[string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.\n"
-                    },
-                    "tags": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "[map] The tag-set for the object.\n"
-                    },
-                    "versionId": {
-                        "type": "string",
-                        "description": "[string] The version of the object.\n"
-                    },
-                    "websiteRedirect": {
-                        "type": "string",
-                        "description": "[string] Redirects requests for this object to another object in the same bucket or to an external URL.\n"
+                    "timeouts": {
+                        "$ref": "#/types/ionoscloud:objectstorage/MonitoringPipelineTimeouts:MonitoringPipelineTimeouts"
                     }
                 },
                 "type": "object"
             },
-            "deprecationMessage": "ionoscloud.objectstorage/object.Object has been deprecated in favor of ionoscloud.objectstorage/bucketobject.BucketObject"
+            "deprecationMessage": "ionoscloud.objectstorage/monitoringpipeline.MonitoringPipeline has been deprecated in favor of ionoscloud.monitoring/pipeline.Pipeline"
         },
         "ionoscloud:objectstorage/objectCopy:ObjectCopy": {
             "description": "Creates a copy of an object that is already stored in IONOS Object Storage.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst source = new ionoscloud.objectstorage.Bucket(\"source\", {name: \"source\"});\nconst target = new ionoscloud.objectstorage.Bucket(\"target\", {name: \"target\"});\nconst sourceBucketObject = new ionoscloud.objectstorage.BucketObject(\"source\", {\n    bucket: source.name,\n    key: \"source_object\",\n    content: \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\",\n    contentType: \"application/octet-stream\",\n});\nconst example = new ionoscloud.objectstorage.ObjectCopy(\"example\", {\n    bucket: target.name,\n    key: \"example\",\n    source: pulumi.interpolate`${source.name}/${sourceBucketObject.key}`,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nsource = ionoscloud.objectstorage.Bucket(\"source\", name=\"source\")\ntarget = ionoscloud.objectstorage.Bucket(\"target\", name=\"target\")\nsource_bucket_object = ionoscloud.objectstorage.BucketObject(\"source\",\n    bucket=source.name,\n    key=\"source_object\",\n    content=\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\",\n    content_type=\"application/octet-stream\")\nexample = ionoscloud.objectstorage.ObjectCopy(\"example\",\n    bucket=target.name,\n    key=\"example\",\n    source=pulumi.Output.all(\n        name=source.name,\n        key=source_bucket_object.key\n).apply(lambda resolved_outputs: f\"{resolved_outputs['name']}/{resolved_outputs['key']}\")\n)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var source = new Ionoscloud.Objectstorage.Bucket(\"source\", new()\n    {\n        Name = \"source\",\n    });\n\n    var target = new Ionoscloud.Objectstorage.Bucket(\"target\", new()\n    {\n        Name = \"target\",\n    });\n\n    var sourceBucketObject = new Ionoscloud.Objectstorage.BucketObject(\"source\", new()\n    {\n        Bucket = source.Name,\n        Key = \"source_object\",\n        Content = \"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\",\n        ContentType = \"application/octet-stream\",\n    });\n\n    var example = new Ionoscloud.Objectstorage.ObjectCopy(\"example\", new()\n    {\n        Bucket = target.Name,\n        Key = \"example\",\n        Source = Output.Tuple(source.Name, sourceBucketObject.Key).Apply(values =\u003e\n        {\n            var name = values.Item1;\n            var key = values.Item2;\n            return $\"{name}/{key}\";\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsource, err := objectstorage.NewBucket(ctx, \"source\", \u0026objectstorage.BucketArgs{\n\t\t\tName: pulumi.String(\"source\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttarget, err := objectstorage.NewBucket(ctx, \"target\", \u0026objectstorage.BucketArgs{\n\t\t\tName: pulumi.String(\"target\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsourceBucketObject, err := objectstorage.NewBucketObject(ctx, \"source\", \u0026objectstorage.BucketObjectArgs{\n\t\t\tBucket:      source.Name,\n\t\t\tKey:         pulumi.String(\"source_object\"),\n\t\t\tContent:     pulumi.String(\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"),\n\t\t\tContentType: pulumi.String(\"application/octet-stream\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = objectstorage.NewObjectCopy(ctx, \"example\", \u0026objectstorage.ObjectCopyArgs{\n\t\t\tBucket: target.Name,\n\t\t\tKey:    pulumi.String(\"example\"),\n\t\t\tSource: pulumi.All(source.Name, sourceBucketObject.Key).ApplyT(func(_args []interface{}) (string, error) {\n\t\t\t\tname := _args[0].(string)\n\t\t\t\tkey := _args[1].(string)\n\t\t\t\treturn fmt.Sprintf(\"%v/%v\", name, key), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.objectstorage.Bucket;\nimport com.pulumi.ionoscloud.objectstorage.BucketArgs;\nimport com.pulumi.ionoscloud.objectstorage.BucketObject;\nimport com.pulumi.ionoscloud.objectstorage.BucketObjectArgs;\nimport com.pulumi.ionoscloud.objectstorage.ObjectCopy;\nimport com.pulumi.ionoscloud.objectstorage.ObjectCopyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var source = new Bucket(\"source\", BucketArgs.builder()\n            .name(\"source\")\n            .build());\n\n        var target = new Bucket(\"target\", BucketArgs.builder()\n            .name(\"target\")\n            .build());\n\n        var sourceBucketObject = new BucketObject(\"sourceBucketObject\", BucketObjectArgs.builder()\n            .bucket(source.name())\n            .key(\"source_object\")\n            .content(\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\")\n            .contentType(\"application/octet-stream\")\n            .build());\n\n        var example = new ObjectCopy(\"example\", ObjectCopyArgs.builder()\n            .bucket(target.name())\n            .key(\"example\")\n            .source(Output.tuple(source.name(), sourceBucketObject.key()).applyValue(values -\u003e {\n                var name = values.t1;\n                var key = values.t2;\n                return String.format(\"%s/%s\", name,key);\n            }))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  source:\n    type: ionoscloud:objectstorage:Bucket\n    properties:\n      name: source\n  target:\n    type: ionoscloud:objectstorage:Bucket\n    properties:\n      name: target\n  sourceBucketObject:\n    type: ionoscloud:objectstorage:BucketObject\n    name: source\n    properties:\n      bucket: ${source.name}\n      key: source_object\n      content: 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\n      contentType: application/octet-stream\n  example:\n    type: ionoscloud:objectstorage:ObjectCopy\n    properties:\n      bucket: ${target.name}\n      key: example\n      source: ${source.name}/${sourceBucketObject.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
@@ -23747,7 +23482,7 @@
             }
         },
         "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline": {
-            "description": "The **Monitoring pipeline** datasource can be used to search for and return an existing Monitoring pipeline.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **monitoring_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By ID\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getMonitoringPipeline({\n    location: \"de/txl\",\n    id: \"pipeline_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_monitoring_pipeline(location=\"de/txl\",\n    id=\"pipeline_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetMonitoringPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Id = \"pipeline_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupMonitoringPipeline(ctx, \u0026ionoscloud.LookupMonitoringPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tId:       pulumi.StringRef(\"pipeline_id\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetMonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getMonitoringPipeline(GetMonitoringPipelineArgs.builder()\n            .location(\"de/txl\")\n            .id(\"pipeline_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:getMonitoringPipeline\n      arguments:\n        location: de/txl\n        id: pipeline_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getMonitoringPipeline({\n    location: \"de/txl\",\n    name: \"pipeline_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_monitoring_pipeline(location=\"de/txl\",\n    name=\"pipeline_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetMonitoringPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Name = \"pipeline_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupMonitoringPipeline(ctx, \u0026ionoscloud.LookupMonitoringPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tName:     pulumi.StringRef(\"pipeline_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetMonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getMonitoringPipeline(GetMonitoringPipelineArgs.builder()\n            .location(\"de/txl\")\n            .name(\"pipeline_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:getMonitoringPipeline\n      arguments:\n        location: de/txl\n        name: pipeline_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The **Monitoring pipeline** datasource can be used to search for and return an existing Monitoring pipeline.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **monitoring_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By ID\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getMonitoringPipeline({\n    location: \"de/txl\",\n    id: \"pipeline_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_monitoring_pipeline(location=\"de/txl\",\n    id=\"pipeline_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetMonitoringPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Id = \"pipeline_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetMonitoringPipeline(ctx, \u0026ionoscloud.GetMonitoringPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tId:       pulumi.StringRef(\"pipeline_id\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetMonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getMonitoringPipeline(GetMonitoringPipelineArgs.builder()\n            .location(\"de/txl\")\n            .id(\"pipeline_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:getMonitoringPipeline\n      arguments:\n        location: de/txl\n        id: pipeline_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getMonitoringPipeline({\n    location: \"de/txl\",\n    name: \"pipeline_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_monitoring_pipeline(location=\"de/txl\",\n    name=\"pipeline_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetMonitoringPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Name = \"pipeline_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetMonitoringPipeline(ctx, \u0026ionoscloud.GetMonitoringPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tName:     pulumi.StringRef(\"pipeline_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetMonitoringPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getMonitoringPipeline(GetMonitoringPipelineArgs.builder()\n            .location(\"de/txl\")\n            .name(\"pipeline_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:getMonitoringPipeline\n      arguments:\n        location: de/txl\n        name: pipeline_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getMonitoringPipeline.\n",
                 "properties": {

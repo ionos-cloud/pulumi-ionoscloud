@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **Monitoring pipeline**.
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.MonitoringPipeline("example", {
+ * const example = new ionoscloud.monitoring.Pipeline("example", {
  *     location: "es/vit",
  *     name: "pipelineExample",
  * });
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.MonitoringPipeline("example", {
+ * const example = new ionoscloud.monitoring.Pipeline("example", {
  *     location: "es/vit",
  *     name: "pipelineExample",
  * });
@@ -48,12 +48,12 @@ import * as utilities from "./utilities";
  * The resource can be imported using the `location` and `pipeline_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/monitoringPipeline:MonitoringPipeline example location:pipeline_id
+ * $ pulumi import ionoscloud:monitoring/pipeline:Pipeline example location:pipeline_id
  * ```
  */
-export class MonitoringPipeline extends pulumi.CustomResource {
+export class Pipeline extends pulumi.CustomResource {
     /**
-     * Get an existing MonitoringPipeline resource's state with the given name, ID, and optional extra
+     * Get an existing Pipeline resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -61,22 +61,22 @@ export class MonitoringPipeline extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MonitoringPipelineState, opts?: pulumi.CustomResourceOptions): MonitoringPipeline {
-        return new MonitoringPipeline(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PipelineState, opts?: pulumi.CustomResourceOptions): Pipeline {
+        return new Pipeline(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/monitoringPipeline:MonitoringPipeline';
+    public static readonly __pulumiType = 'ionoscloud:monitoring/pipeline:Pipeline';
 
     /**
-     * Returns true if the given object is an instance of MonitoringPipeline.  This is designed to work even
+     * Returns true if the given object is an instance of Pipeline.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is MonitoringPipeline {
+    public static isInstance(obj: any): obj is Pipeline {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === MonitoringPipeline.__pulumiType;
+        return obj['__pulumiType'] === Pipeline.__pulumiType;
     }
 
     /**
@@ -101,21 +101,21 @@ export class MonitoringPipeline extends pulumi.CustomResource {
      * [string] The name of the Monitoring pipeline.
      */
     public readonly name!: pulumi.Output<string>;
-    public readonly timeouts!: pulumi.Output<outputs.MonitoringPipelineTimeouts | undefined>;
+    public readonly timeouts!: pulumi.Output<outputs.monitoring.PipelineTimeouts | undefined>;
 
     /**
-     * Create a MonitoringPipeline resource with the given unique name, arguments, and options.
+     * Create a Pipeline resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: MonitoringPipelineArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: MonitoringPipelineArgs | MonitoringPipelineState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: PipelineArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: PipelineArgs | PipelineState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as MonitoringPipelineState | undefined;
+            const state = argsOrState as PipelineState | undefined;
             resourceInputs["grafanaEndpoint"] = state ? state.grafanaEndpoint : undefined;
             resourceInputs["httpEndpoint"] = state ? state.httpEndpoint : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
@@ -123,7 +123,7 @@ export class MonitoringPipeline extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["timeouts"] = state ? state.timeouts : undefined;
         } else {
-            const args = argsOrState as MonitoringPipelineArgs | undefined;
+            const args = argsOrState as PipelineArgs | undefined;
             resourceInputs["location"] = args ? args.location : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["timeouts"] = args ? args.timeouts : undefined;
@@ -132,16 +132,18 @@ export class MonitoringPipeline extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const aliasOpts = { aliases: [{ type: "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline" }] };
+        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(MonitoringPipeline.__pulumiType, name, resourceInputs, opts);
+        super(Pipeline.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering MonitoringPipeline resources.
+ * Input properties used for looking up and filtering Pipeline resources.
  */
-export interface MonitoringPipelineState {
+export interface PipelineState {
     /**
      * [string] The endpoint of the Grafana instance.
      */
@@ -164,13 +166,13 @@ export interface MonitoringPipelineState {
      * [string] The name of the Monitoring pipeline.
      */
     name?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.MonitoringPipelineTimeouts>;
+    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts>;
 }
 
 /**
- * The set of arguments for constructing a MonitoringPipeline resource.
+ * The set of arguments for constructing a Pipeline resource.
  */
-export interface MonitoringPipelineArgs {
+export interface PipelineArgs {
     /**
      * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
      */
@@ -179,5 +181,5 @@ export interface MonitoringPipelineArgs {
      * [string] The name of the Monitoring pipeline.
      */
     name?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.MonitoringPipelineTimeouts>;
+    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts>;
 }

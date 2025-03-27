@@ -56,6 +56,7 @@ const (
 	nlbModule           = "nlb"
 	nsgModule           = "nsg"           // the networkloadblancer module
 	objectStorageModule = "objectstorage" // the object storage module
+	monitoringModule    = "monitoring"    // the object storage module
 
 )
 
@@ -744,6 +745,9 @@ func Provider() tfbridge.ProviderInfo {
 				ComputeID: func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
 					return resource.ID(state["key"].V.(string)), nil // state["bucket"].V.(string) + "\"" +
 				},
+			},
+			"ionoscloud_monitoring_pipeline": {
+				Tok: tfbridge.MakeResource(mainPkg, monitoringModule, "Pipeline"),
 			},
 		},
 	}

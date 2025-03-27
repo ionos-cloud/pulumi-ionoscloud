@@ -9,7 +9,6 @@ from .get_monitoring_pipeline import *
 from .get_object_storage_accesskey import *
 from .get_object_storage_region import *
 from .get_s3_objects import *
-from .monitoring_pipeline import *
 from .object_storage_accesskey import *
 from .provider import *
 from ._inputs import *
@@ -45,6 +44,8 @@ if typing.TYPE_CHECKING:
     kafka = __kafka
     import pulumi_ionoscloud.logging as __logging
     logging = __logging
+    import pulumi_ionoscloud.monitoring as __monitoring
+    monitoring = __monitoring
     import pulumi_ionoscloud.nfs as __nfs
     nfs = __nfs
     import pulumi_ionoscloud.nlb as __nlb
@@ -70,6 +71,7 @@ else:
     k8s = _utilities.lazy_import('pulumi_ionoscloud.k8s')
     kafka = _utilities.lazy_import('pulumi_ionoscloud.kafka')
     logging = _utilities.lazy_import('pulumi_ionoscloud.logging')
+    monitoring = _utilities.lazy_import('pulumi_ionoscloud.monitoring')
     nfs = _utilities.lazy_import('pulumi_ionoscloud.nfs')
     nlb = _utilities.lazy_import('pulumi_ionoscloud.nlb')
     nsg = _utilities.lazy_import('pulumi_ionoscloud.nsg')
@@ -433,14 +435,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/monitoringPipeline",
-  "fqn": "pulumi_ionoscloud",
-  "classes": {
-   "ionoscloud:index/monitoringPipeline:MonitoringPipeline": "MonitoringPipeline"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/objectStorageAccesskey",
   "fqn": "pulumi_ionoscloud",
   "classes": {
@@ -485,6 +479,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.logging",
   "classes": {
    "ionoscloud:logging/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "monitoring/pipeline",
+  "fqn": "pulumi_ionoscloud.monitoring",
+  "classes": {
+   "ionoscloud:monitoring/pipeline:Pipeline": "Pipeline"
   }
  },
  {
@@ -597,6 +599,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.objectstorage",
   "classes": {
    "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": "CorsConfiguration"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/monitoringPipeline",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline": "MonitoringPipeline"
   }
  },
  {

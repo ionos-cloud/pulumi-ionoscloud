@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BucketVersioning{}
 	case "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration":
 		r = &CorsConfiguration{}
+	case "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline":
+		r = &MonitoringPipeline{}
 	case "ionoscloud:objectstorage/objectCopy:ObjectCopy":
 		r = &ObjectCopy{}
 	case "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration":
@@ -89,6 +91,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"objectstorage/corsConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"objectstorage/monitoringPipeline",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

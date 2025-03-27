@@ -55,6 +55,11 @@ export const getBucketPolicy: typeof import("./getBucketPolicy").getBucketPolicy
 export const getBucketPolicyOutput: typeof import("./getBucketPolicy").getBucketPolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getBucketPolicy","getBucketPolicyOutput"], () => require("./getBucketPolicy"));
 
+export { MonitoringPipelineArgs, MonitoringPipelineState } from "./monitoringPipeline";
+export type MonitoringPipeline = import("./monitoringPipeline").MonitoringPipeline;
+export const MonitoringPipeline: typeof import("./monitoringPipeline").MonitoringPipeline = null as any;
+utilities.lazyLoad(exports, ["MonitoringPipeline"], () => require("./monitoringPipeline"));
+
 export { ObjectCopyArgs, ObjectCopyState } from "./objectCopy";
 export type ObjectCopy = import("./objectCopy").ObjectCopy;
 export const ObjectCopy: typeof import("./objectCopy").ObjectCopy = null as any;
@@ -94,6 +99,8 @@ const _module = {
                 return new BucketVersioning(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration":
                 return new CorsConfiguration(name, <any>undefined, { urn })
+            case "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline":
+                return new MonitoringPipeline(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/objectCopy:ObjectCopy":
                 return new ObjectCopy(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration":
@@ -114,6 +121,7 @@ pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketPolicy"
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketServerSideEncryptionConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketVersioning", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/corsConfiguration", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/monitoringPipeline", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectCopy", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/publicAccessBlock", _module)

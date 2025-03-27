@@ -25,11 +25,6 @@ export const getS3Objects: typeof import("./getS3Objects").getS3Objects = null a
 export const getS3ObjectsOutput: typeof import("./getS3Objects").getS3ObjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getS3Objects","getS3ObjectsOutput"], () => require("./getS3Objects"));
 
-export { MonitoringPipelineArgs, MonitoringPipelineState } from "./monitoringPipeline";
-export type MonitoringPipeline = import("./monitoringPipeline").MonitoringPipeline;
-export const MonitoringPipeline: typeof import("./monitoringPipeline").MonitoringPipeline = null as any;
-utilities.lazyLoad(exports, ["MonitoringPipeline"], () => require("./monitoringPipeline"));
-
 export { ObjectStorageAccesskeyArgs, ObjectStorageAccesskeyState } from "./objectStorageAccesskey";
 export type ObjectStorageAccesskey = import("./objectStorageAccesskey").ObjectStorageAccesskey;
 export const ObjectStorageAccesskey: typeof import("./objectStorageAccesskey").ObjectStorageAccesskey = null as any;
@@ -56,6 +51,7 @@ import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
 import * as kafka from "./kafka";
 import * as logging from "./logging";
+import * as monitoring from "./monitoring";
 import * as nfs from "./nfs";
 import * as nlb from "./nlb";
 import * as nsg from "./nsg";
@@ -78,6 +74,7 @@ export {
     k8s,
     kafka,
     logging,
+    monitoring,
     nfs,
     nlb,
     nsg,
@@ -90,8 +87,6 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "ionoscloud:index/monitoringPipeline:MonitoringPipeline":
-                return new MonitoringPipeline(name, <any>undefined, { urn })
             case "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey":
                 return new ObjectStorageAccesskey(name, <any>undefined, { urn })
             default:
@@ -99,7 +94,6 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("ionoscloud", "index/monitoringPipeline", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/objectStorageAccesskey", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),

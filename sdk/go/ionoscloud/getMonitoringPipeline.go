@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupMonitoringPipeline(ctx, &ionoscloud.LookupMonitoringPipelineArgs{
+//			_, err := ionoscloud.GetMonitoringPipeline(ctx, &ionoscloud.GetMonitoringPipelineArgs{
 //				Location: pulumi.StringRef("de/txl"),
 //				Id:       pulumi.StringRef("pipeline_id"),
 //			}, nil)
@@ -57,7 +57,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupMonitoringPipeline(ctx, &ionoscloud.LookupMonitoringPipelineArgs{
+//			_, err := ionoscloud.GetMonitoringPipeline(ctx, &ionoscloud.GetMonitoringPipelineArgs{
 //				Location: pulumi.StringRef("de/txl"),
 //				Name:     pulumi.StringRef("pipeline_name"),
 //			}, nil)
@@ -69,9 +69,9 @@ import (
 //	}
 //
 // ```
-func LookupMonitoringPipeline(ctx *pulumi.Context, args *LookupMonitoringPipelineArgs, opts ...pulumi.InvokeOption) (*LookupMonitoringPipelineResult, error) {
+func GetMonitoringPipeline(ctx *pulumi.Context, args *GetMonitoringPipelineArgs, opts ...pulumi.InvokeOption) (*GetMonitoringPipelineResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupMonitoringPipelineResult
+	var rv GetMonitoringPipelineResult
 	err := ctx.Invoke("ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func LookupMonitoringPipeline(ctx *pulumi.Context, args *LookupMonitoringPipelin
 }
 
 // A collection of arguments for invoking getMonitoringPipeline.
-type LookupMonitoringPipelineArgs struct {
+type GetMonitoringPipelineArgs struct {
 	// [string] The ID of the Monitoring pipeline you want to search for.
 	Id *string `pulumi:"id"`
 	// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
@@ -92,7 +92,7 @@ type LookupMonitoringPipelineArgs struct {
 }
 
 // A collection of values returned by getMonitoringPipeline.
-type LookupMonitoringPipelineResult struct {
+type GetMonitoringPipelineResult struct {
 	GrafanaEndpoint string `pulumi:"grafanaEndpoint"`
 	// The HTTP endpoint of the Monitoring instance.
 	HttpEndpoint string `pulumi:"httpEndpoint"`
@@ -103,17 +103,17 @@ type LookupMonitoringPipelineResult struct {
 	Name string `pulumi:"name"`
 }
 
-func LookupMonitoringPipelineOutput(ctx *pulumi.Context, args LookupMonitoringPipelineOutputArgs, opts ...pulumi.InvokeOption) LookupMonitoringPipelineResultOutput {
+func GetMonitoringPipelineOutput(ctx *pulumi.Context, args GetMonitoringPipelineOutputArgs, opts ...pulumi.InvokeOption) GetMonitoringPipelineResultOutput {
 	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMonitoringPipelineResultOutput, error) {
-			args := v.(LookupMonitoringPipelineArgs)
+		ApplyT(func(v interface{}) (GetMonitoringPipelineResultOutput, error) {
+			args := v.(GetMonitoringPipelineArgs)
 			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline", args, LookupMonitoringPipelineResultOutput{}, options).(LookupMonitoringPipelineResultOutput), nil
-		}).(LookupMonitoringPipelineResultOutput)
+			return ctx.InvokeOutput("ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline", args, GetMonitoringPipelineResultOutput{}, options).(GetMonitoringPipelineResultOutput), nil
+		}).(GetMonitoringPipelineResultOutput)
 }
 
 // A collection of arguments for invoking getMonitoringPipeline.
-type LookupMonitoringPipelineOutputArgs struct {
+type GetMonitoringPipelineOutputArgs struct {
 	// [string] The ID of the Monitoring pipeline you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
@@ -124,48 +124,48 @@ type LookupMonitoringPipelineOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupMonitoringPipelineOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMonitoringPipelineArgs)(nil)).Elem()
+func (GetMonitoringPipelineOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMonitoringPipelineArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getMonitoringPipeline.
-type LookupMonitoringPipelineResultOutput struct{ *pulumi.OutputState }
+type GetMonitoringPipelineResultOutput struct{ *pulumi.OutputState }
 
-func (LookupMonitoringPipelineResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMonitoringPipelineResult)(nil)).Elem()
+func (GetMonitoringPipelineResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMonitoringPipelineResult)(nil)).Elem()
 }
 
-func (o LookupMonitoringPipelineResultOutput) ToLookupMonitoringPipelineResultOutput() LookupMonitoringPipelineResultOutput {
+func (o GetMonitoringPipelineResultOutput) ToGetMonitoringPipelineResultOutput() GetMonitoringPipelineResultOutput {
 	return o
 }
 
-func (o LookupMonitoringPipelineResultOutput) ToLookupMonitoringPipelineResultOutputWithContext(ctx context.Context) LookupMonitoringPipelineResultOutput {
+func (o GetMonitoringPipelineResultOutput) ToGetMonitoringPipelineResultOutputWithContext(ctx context.Context) GetMonitoringPipelineResultOutput {
 	return o
 }
 
-func (o LookupMonitoringPipelineResultOutput) GrafanaEndpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMonitoringPipelineResult) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
+func (o GetMonitoringPipelineResultOutput) GrafanaEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitoringPipelineResult) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
 }
 
 // The HTTP endpoint of the Monitoring instance.
-func (o LookupMonitoringPipelineResultOutput) HttpEndpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMonitoringPipelineResult) string { return v.HttpEndpoint }).(pulumi.StringOutput)
+func (o GetMonitoringPipelineResultOutput) HttpEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitoringPipelineResult) string { return v.HttpEndpoint }).(pulumi.StringOutput)
 }
 
 // The UUID of the Monitoring pipeline.
-func (o LookupMonitoringPipelineResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMonitoringPipelineResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetMonitoringPipelineResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitoringPipelineResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupMonitoringPipelineResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMonitoringPipelineResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o GetMonitoringPipelineResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMonitoringPipelineResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Monitoring pipeline.
-func (o LookupMonitoringPipelineResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMonitoringPipelineResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetMonitoringPipelineResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMonitoringPipelineResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupMonitoringPipelineResultOutput{})
+	pulumi.RegisterOutputType(GetMonitoringPipelineResultOutput{})
 }

@@ -15,6 +15,7 @@ from .cors_configuration import *
 from .get_bucket import *
 from .get_bucket_object import *
 from .get_bucket_policy import *
+from .monitoring_pipeline import *
 from .object_copy import *
 from .object_lock_configuration import *
 from .public_access_block import *
