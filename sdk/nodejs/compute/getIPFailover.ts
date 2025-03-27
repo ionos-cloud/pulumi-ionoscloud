@@ -8,6 +8,18 @@ import * as utilities from "../utilities";
  * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
  * You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getIPFailover({
+ *     datacenterId: "datacenter_id",
+ *     lanId: "lan_id",
+ * });
+ * ```
  */
 export function getIPFailover(args: GetIPFailoverArgs, opts?: pulumi.InvokeOptions): Promise<GetIPFailoverResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -31,7 +43,7 @@ export interface GetIPFailoverArgs {
      */
     ip: string;
     /**
-     * The ID of a LAN.
+     * The id of the lan of which the IP failover belongs
      */
     lanId: string;
 }
@@ -62,6 +74,18 @@ export interface GetIPFailoverResult {
  * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
  * You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getIPFailover({
+ *     datacenterId: "datacenter_id",
+ *     lanId: "lan_id",
+ * });
+ * ```
  */
 export function getIPFailoverOutput(args: GetIPFailoverOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIPFailoverResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -85,7 +109,7 @@ export interface GetIPFailoverOutputArgs {
      */
     ip: pulumi.Input<string>;
     /**
-     * The ID of a LAN.
+     * The id of the lan of which the IP failover belongs
      */
     lanId: pulumi.Input<string>;
 }

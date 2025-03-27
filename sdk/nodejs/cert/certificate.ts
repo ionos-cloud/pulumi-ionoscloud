@@ -7,6 +7,20 @@ import * as utilities from "../utilities";
 /**
  * Manages a **Certificate** on IonosCloud.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     name: "add_name_here",
+ *     certificate: "tour_certificate",
+ *     certificateChain: "your_certificate_chain",
+ *     privateKey: "your_private_key",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource certificate can be imported using the `resource id`, e.g.

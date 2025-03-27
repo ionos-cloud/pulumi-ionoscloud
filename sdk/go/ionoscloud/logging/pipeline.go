@@ -12,6 +12,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Logging pipeline**.
+//
+// > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
+//
+// ## Usage example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/logging"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := logging.NewPipeline(ctx, "example", &logging.PipelineArgs{
+//				Location: pulumi.String("es/vit"),
+//				Name:     pulumi.String("pipelineexample"),
+//				Logs: logging.PipelineLogArray{
+//					&logging.PipelineLogArgs{
+//						Source:   pulumi.String("kubernetes"),
+//						Tag:      pulumi.String("tagexample"),
+//						Protocol: pulumi.String("http"),
+//						Destinations: logging.PipelineLogDestinationArray{
+//							&logging.PipelineLogDestinationArgs{
+//								Type:            pulumi.String("loki"),
+//								RetentionInDays: pulumi.Int(7),
+//							},
+//						},
+//					},
+//					&logging.PipelineLogArgs{
+//						Source:   pulumi.String("kubernetes"),
+//						Tag:      pulumi.String("anothertagexample"),
+//						Protocol: pulumi.String("tcp"),
+//						Destinations: logging.PipelineLogDestinationArray{
+//							&logging.PipelineLogDestinationArgs{
+//								Type:            pulumi.String("loki"),
+//								RetentionInDays: pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:

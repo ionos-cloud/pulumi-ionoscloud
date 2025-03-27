@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:compute/s3Key:S3Key demo userid/s3Keyid
  * ```
  *
- * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+ * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
  */
 export class S3Key extends pulumi.CustomResource {
     /**

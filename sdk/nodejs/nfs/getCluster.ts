@@ -20,6 +20,19 @@ import * as utilities from "../utilities";
  *     id: "cluster-id",
  * });
  * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,6 +108,19 @@ export interface GetClusterResult {
  * const example = ionoscloud.nfs.getCluster({
  *     location: "location",
  *     id: "cluster-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getCluster({
+ *     location: "location",
+ *     name: "partial-name",
+ *     partialMatch: true,
  * });
  * ```
  */

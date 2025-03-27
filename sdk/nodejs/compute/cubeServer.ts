@@ -57,6 +57,71 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With IPv6 Enabled
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getTemplate({
+ *     name: "Basic Cube XS",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ * });
+ * const webserverIpblock = new ionoscloud.compute.IPBlock("webserver_ipblock", {
+ *     location: "de/txl",
+ *     size: 4,
+ *     name: "webserver_ipblock",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleCubeServer = new ionoscloud.compute.CubeServer("example", {
+ *     name: "Server Example",
+ *     availabilityZone: "AUTO",
+ *     imageName: "ubuntu:latest",
+ *     templateUuid: example.then(example => example.id),
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleDatacenter.id,
+ *     volume: {
+ *         name: "Volume Example",
+ *         licenceType: "LINUX",
+ *         diskType: "DAS",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "Nic Example",
+ *         dhcp: true,
+ *         ips: [
+ *             webserverIpblock.ips[0],
+ *             webserverIpblock.ips[1],
+ *         ],
+ *         dhcpv6: false,
+ *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6Ips: [
+ *             "ipv6_ip1",
+ *             "ipv6_ip2",
+ *             "ipv6_ip3",
+ *         ],
+ *         firewallActive: true,
+ *     },
+ * });
+ * ```
+ *
+ * ## Notes
+ *
+ * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ *
  * ## Import
  *
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.

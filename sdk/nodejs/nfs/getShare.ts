@@ -21,6 +21,20 @@ import * as utilities from "../utilities";
  *     id: "share-id",
  * });
  * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     name: "partial-name",
+ *     partialMatch: true,
+ * });
+ * ```
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -134,6 +148,20 @@ export interface GetShareResult {
  *     location: "location",
  *     clusterId: "cluster-id",
  *     id: "share-id",
+ * });
+ * ```
+ *
+ * ## By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.nfs.getShare({
+ *     location: "location",
+ *     clusterId: "cluster-id",
+ *     name: "partial-name",
+ *     partialMatch: true,
  * });
  * ```
  */

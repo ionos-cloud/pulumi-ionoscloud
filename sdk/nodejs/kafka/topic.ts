@@ -52,6 +52,67 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example-kafka-datacenter",
+ *     location: "de/fra",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example-kafka-lan",
+ * });
+ * const password = new random.index.Password("password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example-kafka-server",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 2 * 1024,
+ *     availabilityZone: "AUTO",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: password.result,
+ *     volume: {
+ *         name: "example-kafka-volume",
+ *         size: 6,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example-kafka-nic",
+ *         dhcp: true,
+ *     },
+ * });
+ * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
+ *     name: "example-kafka-cluster",
+ *     location: example.location,
+ *     version: "3.7.0",
+ *     size: "S",
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         brokerAddresses: "kafka_cluster_broker_ips_cidr_list",
+ *     },
+ * });
+ * const exampleTopic = new ionoscloud.kafka.Topic("example", {
+ *     clusterId: exampleCluster.id,
+ *     name: "kafka-cluster-topic",
+ *     location: exampleCluster.location,
+ *     replicationFactor: 1,
+ *     numberOfPartitions: 1,
+ *     retentionTime: 86400000,
+ *     segmentBytes: 1073741824,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:

@@ -9,6 +9,18 @@ import * as utilities from "../utilities";
  * You need to provide the groupId and resourceId to get the group resources for the shared resource.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getShare({
+ *     groupId: "group_id",
+ *     resourceId: "resource_id",
+ * });
+ * ```
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -28,6 +40,9 @@ export interface GetShareArgs {
     groupId: string;
     /**
      * The ID of the specific resource to update.
+     *
+     *
+     * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */
     resourceId: string;
 }
@@ -62,6 +77,18 @@ export interface GetShareResult {
  * You need to provide the groupId and resourceId to get the group resources for the shared resource.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getShare({
+ *     groupId: "group_id",
+ *     resourceId: "resource_id",
+ * });
+ * ```
  */
 export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -81,6 +108,9 @@ export interface GetShareOutputArgs {
     groupId: pulumi.Input<string>;
     /**
      * The ID of the specific resource to update.
+     *
+     *
+     * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */
     resourceId: pulumi.Input<string>;
 }

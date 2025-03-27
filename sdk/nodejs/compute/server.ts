@@ -7,6 +7,267 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a **Server** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * This resource will create an operational server. After this section completes, the provisioner can be called.
+ *
+ * ### ENTERPRISE Server
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
+ *     cloudInit: "V1",
+ *     imageAlias: "ubuntu:latest",
+ *     location: "us/las",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: exampleDatacenter.location,
+ *     size: 4,
+ *     name: "IP Block Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: exampleDatacenter.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: example.then(example => example.name),
+ *     imagePassword: serverImagePassword.result,
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             exampleIPBlock.ips[0],
+ *             exampleIPBlock.ips[1],
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: exampleIPBlock.ips[2],
+ *             targetIp: exampleIPBlock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ *     labels: [
+ *         {
+ *             key: "labelkey1",
+ *             value: "labelvalue1",
+ *         },
+ *         {
+ *             key: "labelkey2",
+ *             value: "labelvalue2",
+ *         },
+ *     ],
+ * });
+ * ```
+ * ### With IPv6 Enabled
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Resource Server Test",
+ *     location: "us/las",
+ * });
+ * const webserverIpblock = new ionoscloud.compute.IPBlock("webserver_ipblock", {
+ *     location: "us/las",
+ *     size: 4,
+ *     name: "webserver_ipblock",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "public",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Resource Server Test",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: serverImagePassword.result,
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             webserverIpblock.ips[0],
+ *             webserverIpblock.ips[1],
+ *         ],
+ *         dhcpv6: true,
+ *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6Ips: [
+ *             "ipv6_ip1",
+ *             "ipv6_ip2",
+ *             "ipv6_ip3",
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: webserverIpblock.ips[2],
+ *             targetIp: webserverIpblock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ * });
+ * ```
+ *
+ * ### CUBE Server
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getTemplate({
+ *     name: "Basic Cube XS",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     availabilityZone: "ZONE_2",
+ *     imageName: "ubuntu:latest",
+ *     type: "CUBE",
+ *     templateUuid: example.then(example => example.id),
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleDatacenter.id,
+ *     volume: {
+ *         name: "Volume Example",
+ *         licenceType: "LINUX",
+ *         diskType: "DAS",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "Nic Example",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * ```
+ *
+ * ### Server that boots from CDROM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const cdromDatacenter = new ionoscloud.compute.Datacenter("cdrom", {
+ *     name: "CDROM Test",
+ *     location: "de/txl",
+ *     description: "CDROM image test",
+ *     secAuthProtection: false,
+ * });
+ * const _public = new ionoscloud.compute.Lan("public", {
+ *     datacenterId: cdromDatacenter.id,
+ *     "public": true,
+ *     name: "Uplink",
+ * });
+ * const cdrom = ionoscloud.compute.getImage({
+ *     imageAlias: "ubuntu:latest_iso",
+ *     type: "CDROM",
+ *     location: "de/txl",
+ *     cloudInit: "NONE",
+ * });
+ * const test = new ionoscloud.compute.Server("test", {
+ *     datacenterId: cdromDatacenter.id,
+ *     name: "ubuntu_latest_from_cdrom",
+ *     cores: 1,
+ *     ram: 1024,
+ *     cpuFamily: cdromDatacenter.cpuArchitectures.apply(cpuArchitectures => cpuArchitectures[0].cpuFamily),
+ *     type: "ENTERPRISE",
+ *     volume: {
+ *         name: "hdd0",
+ *         diskType: "HDD",
+ *         size: 50,
+ *         licenceType: "OTHER",
+ *     },
+ *     nic: {
+ *         lan: 1,
+ *         dhcp: true,
+ *         firewallActive: false,
+ *     },
+ * });
+ * ```
+ *
+ * ## Notes
+ *
+ * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ *
+ * ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+ * from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+ *
  * ## Import
  *
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
@@ -15,7 +276,7 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
  * ```
  *
- * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
  *
  * ```sh
  * $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id

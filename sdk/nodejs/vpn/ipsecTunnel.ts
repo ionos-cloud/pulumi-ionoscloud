@@ -71,6 +71,93 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const testDatacenter = new ionoscloud.compute.Datacenter("test_datacenter", {
+ *     name: "vpn_gateway_test",
+ *     location: "de/fra",
+ * });
+ * const testLan = new ionoscloud.compute.Lan("test_lan", {
+ *     name: "test_lan",
+ *     "public": false,
+ *     datacenterId: testDatacenter.id,
+ *     ipv6CidrBlock: lanIpv6CidrBlock,
+ * });
+ * const testIpblock = new ionoscloud.compute.IPBlock("test_ipblock", {
+ *     name: "test_ipblock",
+ *     location: "de/fra",
+ *     size: 1,
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const testServer = new ionoscloud.compute.Server("test_server", {
+ *     name: "test_server",
+ *     datacenterId: testDatacenter.id,
+ *     cores: 1,
+ *     ram: 2048,
+ *     imageName: "ubuntu:latest",
+ *     imagePassword: serverImagePassword.result,
+ *     nic: {
+ *         lan: testLan.id,
+ *         name: "test_nic",
+ *         dhcp: true,
+ *         dhcpv6: false,
+ *         ipv6CidrBlock: ipv6CidrBlock,
+ *         firewallActive: false,
+ *     },
+ *     volume: {
+ *         name: "test_volume",
+ *         diskType: "HDD",
+ *         size: 10,
+ *         licenceType: "OTHER",
+ *     },
+ * });
+ * const example = new ionoscloud.vpn.IpsecGateway("example", {
+ *     name: "ipsec-gateway",
+ *     location: "de/fra",
+ *     gatewayIp: testIpblock.ips[0],
+ *     version: "IKEv2",
+ *     description: "This gateway connects site A to VDC X.",
+ *     connections: [{
+ *         datacenterId: testDatacenter.id,
+ *         lanId: testLan.id,
+ *         ipv4Cidr: "ipv4_cidr_block_from_nic",
+ *         ipv6Cidr: "ipv6_cidr_block_from_dc",
+ *     }],
+ * });
+ * const exampleIpsecTunnel = new ionoscloud.vpn.IpsecTunnel("example", {
+ *     location: "de/fra",
+ *     gatewayId: example.id,
+ *     name: "example-tunnel",
+ *     remoteHost: "vpn.mycompany.com",
+ *     description: "Allows local subnet X to connect to virtual network Y.",
+ *     auth: {
+ *         method: "PSK",
+ *         pskKey: "X2wosbaw74M8hQGbK3jCCaEusR6CCFRa",
+ *     },
+ *     ike: {
+ *         diffieHellmanGroup: "16-MODP4096",
+ *         encryptionAlgorithm: "AES256",
+ *         integrityAlgorithm: "SHA256",
+ *         lifetime: 86400,
+ *     },
+ *     esps: [{
+ *         diffieHellmanGroup: "16-MODP4096",
+ *         encryptionAlgorithm: "AES256",
+ *         integrityAlgorithm: "SHA256",
+ *         lifetime: 3600,
+ *     }],
+ *     cloudNetworkCidrs: ["0.0.0.0/0"],
+ *     peerNetworkCidrs: ["1.2.3.4/32"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:

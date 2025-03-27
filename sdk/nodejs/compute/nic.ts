@@ -7,6 +7,223 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a **NIC** on IonosCloud.
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: example.location,
+ *     size: 2,
+ *     name: "IP Block Example",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "Lan",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: "Ubuntu-20.04",
+ *     imagePassword: serverImagePassword.result,
+ *     volume: {
+ *         name: "system",
+ *         size: 14,
+ *         diskType: "SSD",
+ *     },
+ *     nic: {
+ *         lan: 1,
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * const exampleNic = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: example.id,
+ *     serverId: exampleServer.id,
+ *     lan: exampleLan.id,
+ *     name: "NIC",
+ *     dhcp: true,
+ *     firewallActive: true,
+ *     firewallType: "INGRESS",
+ *     ips: [
+ *         exampleIPBlock.ips[0],
+ *         exampleIPBlock.ips[1],
+ *     ],
+ * });
+ * ```
+ *
+ * ### With IPv6
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "IPv6 Enabled LAN",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: "Ubuntu-20.04",
+ *     imagePassword: serverImagePassword.result,
+ *     volume: {
+ *         name: "system",
+ *         size: 14,
+ *         diskType: "SSD",
+ *     },
+ *     nic: {
+ *         lan: 1,
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * const exampleNic = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: example.id,
+ *     serverId: exampleServer.id,
+ *     lan: exampleLan.id,
+ *     name: "IPv6 Enabled NIC",
+ *     dhcp: true,
+ *     firewallActive: true,
+ *     firewallType: "INGRESS",
+ *     dhcpv6: false,
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *     ipv6Ips: [
+ *         "ipv6_ip1",
+ *         "ipv6_ip2",
+ *         "ipv6_ip3",
+ *     ],
+ * });
+ * ```
+ * ## Example configuring Flowlog
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "IPv6 Enabled LAN",
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_XEON",
+ *     imageName: "Ubuntu-20.04",
+ *     imagePassword: serverImagePassword.result,
+ *     volume: {
+ *         name: "system",
+ *         size: 14,
+ *         diskType: "SSD",
+ *     },
+ *     nic: {
+ *         lan: 1,
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * const exampleNic = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: example.id,
+ *     serverId: exampleServer.id,
+ *     lan: exampleLan.id,
+ *     name: "IPV6 and Flowlog Enabled NIC",
+ *     dhcp: true,
+ *     firewallActive: true,
+ *     firewallType: "INGRESS",
+ *     dhcpv6: false,
+ *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *     ipv6Ips: [
+ *         "ipv6_ip1",
+ *         "ipv6_ip2",
+ *         "ipv6_ip3",
+ *     ],
+ *     flowlog: {
+ *         action: "ACCEPTED",
+ *         bucket: "flowlog-bucket",
+ *         direction: "INGRESS",
+ *         name: "flowlog",
+ *     },
+ * });
+ * ```
+ *
+ * This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than
+ * `name` will. Deleting a flowlog will also force NIC re-creation.
+ *
+ * ## Working with load balancers
+ *
+ * Please be aware that when using a NIC in a load balancer, the load balancer will
+ * change the NIC's ID behind the scenes, therefore the plan will always report this change
+ * trying to revert the state to the one specified by your file.
+ * In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
+ * in order to ignore changes to the `lan` attribute:
+ *
+ * Here's an example:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: foobar.id,
+ *     serverId: exampleIonoscloudServer.id,
+ *     lan: 2,
+ *     dhcp: true,
+ *     firewallActive: true,
+ *     name: "updated",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource **Nic** can be imported using the `resource id`, e.g.

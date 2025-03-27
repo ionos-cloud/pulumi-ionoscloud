@@ -9,6 +9,85 @@ import * as utilities from "../utilities";
 /**
  * Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "datacenter description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example",
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: "us/las",
+ *     size: 3,
+ *     name: "IP Block Example",
+ * });
+ * const exampleCluster = new ionoscloud.k8s.Cluster("example", {
+ *     name: "k8sClusterExample",
+ *     k8sVersion: "1.31.2",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00Z",
+ *     },
+ *     apiSubnetAllowLists: ["1.2.3.4/32"],
+ *     s3Buckets: [{
+ *         name: "globally_unique_s3_bucket_name",
+ *     }],
+ * });
+ * const exampleNodePool = new ionoscloud.k8s.NodePool("example", {
+ *     datacenterId: example.id,
+ *     k8sClusterId: exampleCluster.id,
+ *     name: "k8sNodePoolExample",
+ *     k8sVersion: exampleCluster.k8sVersion,
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Monday",
+ *         time: "09:00:00Z",
+ *     },
+ *     autoScaling: {
+ *         minNodeCount: 1,
+ *         maxNodeCount: 2,
+ *     },
+ *     cpuFamily: "INTEL_XEON",
+ *     availabilityZone: "AUTO",
+ *     storageType: "SSD",
+ *     nodeCount: 1,
+ *     coresCount: 2,
+ *     ramSize: 2048,
+ *     storageSize: 40,
+ *     publicIps: [
+ *         exampleIPBlock.ips[0],
+ *         exampleIPBlock.ips[1],
+ *         exampleIPBlock.ips[2],
+ *     ],
+ *     lans: [{
+ *         id: exampleLan.id,
+ *         dhcp: true,
+ *         routes: [{
+ *             network: "1.2.3.5/24",
+ *             gatewayIp: "10.1.5.17",
+ *         }],
+ *     }],
+ *     labels: {
+ *         lab1: "value1",
+ *         lab2: "value2",
+ *     },
+ *     annotations: {
+ *         ann1: "value1",
+ *         ann2: "value2",
+ *     },
+ * });
+ * ```
+ * **Note:** Set `createBeforeDestroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+ *
  * ## Import
  *
  * A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
@@ -17,11 +96,11 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
  * ```
  *
- * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+ * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
  *
  * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
  *
- * terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+ * pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
  *
  * ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
  */
@@ -54,7 +133,20 @@ export class NodePool extends pulumi.CustomResource {
     }
 
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+     *
+     * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+     *
+     * ⚠️ **Note**:
+     *
+     * Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+     * This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+     * You can read more details about the `ignoreChanges` attribute here.
      */
     public readonly allowReplace!: pulumi.Output<boolean | undefined>;
     /**
@@ -218,7 +310,20 @@ export class NodePool extends pulumi.CustomResource {
  */
 export interface NodePoolState {
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+     *
+     * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+     *
+     * ⚠️ **Note**:
+     *
+     * Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+     * This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+     * You can read more details about the `ignoreChanges` attribute here.
      */
     allowReplace?: pulumi.Input<boolean>;
     /**
@@ -296,7 +401,20 @@ export interface NodePoolState {
  */
 export interface NodePoolArgs {
     /**
-     * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
+     * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
+     *
+     * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
+     *
+     * ⚠️ **Note**:
+     *
+     * Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
+     * This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
+     * You can read more details about the `ignoreChanges` attribute here.
      */
     allowReplace?: pulumi.Input<boolean>;
     /**

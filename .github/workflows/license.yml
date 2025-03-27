@@ -60,4 +60,6 @@ jobs:
             github.com/pjbgf/sha1cd,
             github.com/pulumi,
             github.com/segmentio/asm,
-            golang.org
+            golang.org,
+            github.com/ionos-cloud/sdk-go-cert-manager,
+            github.com/ionos-cloud/terraform-provider-ionoscloud/v6

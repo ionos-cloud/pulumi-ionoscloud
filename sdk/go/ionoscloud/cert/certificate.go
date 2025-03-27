@@ -14,6 +14,35 @@ import (
 
 // Manages a **Certificate** on IonosCloud.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      pulumi.String("tour_certificate"),
+//				CertificateChain: pulumi.String("your_certificate_chain"),
+//				PrivateKey:       pulumi.String("your_private_key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource certificate can be imported using the `resource id`, e.g.

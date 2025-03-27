@@ -62,62 +62,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Usage with dynamic block for targets:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "Datacenter Example",
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const example1 = new ionoscloud.compute.Lan("example1", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "Lan Example 1",
- * });
- * const example2 = new ionoscloud.compute.Lan("example2", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "Lan Example 2",
- * });
- * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
- *     datacenterId: example.id,
- *     name: "example",
- *     listenerLan: example1.id,
- *     targetLan: example2.id,
- *     ips: ["10.12.118.224"],
- *     lbPrivateIps: ["10.13.72.225/24"],
- * });
- * const config = new pulumi.Config();
- * const iPs = config.getObject<Array<any>>("iPs") || [
- *     "22.231.2.2",
- *     "22.231.2.3",
- *     "22.231.2.4",
- * ];
- * const exampleForwardingRule = new ionoscloud.nlb.ForwardingRule("example", {
- *     targets: iPs.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         ip: entry.value,
- *         port: 31234,
- *         weight: 1,
- *         healthCheck: {
- *             check: true,
- *             checkInterval: 1000,
- *             maintenance: false,
- *         },
- *     })),
- *     datacenterId: example.id,
- *     networkloadbalancerId: exampleBalancer.id,
- *     name: "example",
- *     algorithm: "SOURCE_IP",
- *     protocol: "TCP",
- *     listenerIp: "10.12.118.224",
- *     listenerPort: 8081,
- * });
- * ```
- *
  * ## Import
  *
  * A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.

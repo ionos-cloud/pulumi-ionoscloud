@@ -42,6 +42,70 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * // Complete example
+ * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
+ *     name: "NFS Datacenter",
+ *     location: "de/txl",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
+ *     datacenterId: nfsDc.id,
+ *     "public": false,
+ *     name: "Lan for NFS",
+ * });
+ * const hDDImage = ionoscloud.compute.getImage({
+ *     imageAlias: "ubuntu:20.04",
+ *     type: "HDD",
+ *     cloudInit: "V1",
+ *     location: "de/txl",
+ * });
+ * const password = new random.index.Password("password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * // needed for the NIC - which provides the IP address for the NFS cluster.
+ * const nfsServer = new ionoscloud.compute.Server("nfs_server", {
+ *     name: "Server for NFS",
+ *     datacenterId: nfsDc.id,
+ *     cores: 1,
+ *     ram: 2048,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: hDDImage.then(hDDImage => hDDImage.id),
+ *     imagePassword: password.result,
+ *     volume: {
+ *         name: "system",
+ *         size: 14,
+ *         diskType: "SSD",
+ *     },
+ *     nic: {
+ *         name: "NIC A",
+ *         lan: nfsLan.id,
+ *         dhcp: true,
+ *         firewallActive: true,
+ *     },
+ * });
+ * const example = new ionoscloud.nfs.Cluster("example", {
+ *     name: "test",
+ *     location: "de/txl",
+ *     size: 2,
+ *     nfs: {
+ *         minVersion: "4.2",
+ *     },
+ *     connections: {
+ *         datacenterId: nfsDc.id,
+ *         ipAddress: "nfs_cluster_cidr_from_nic",
+ *         lan: nfsLan.id,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * A Network File Storage Cluster resource can be imported using its `location` and `resource id`:

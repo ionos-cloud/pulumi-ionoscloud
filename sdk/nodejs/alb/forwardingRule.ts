@@ -9,6 +9,86 @@ import * as utilities from "../utilities";
 /**
  * Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "datacenter description",
+ *     secAuthProtection: false,
+ * });
+ * const example1 = new ionoscloud.compute.Lan("example_1", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const example2 = new ionoscloud.compute.Lan("example_2", {
+ *     datacenterId: example.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const exampleBalancer = new ionoscloud.alb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "ALB Example",
+ *     listenerLan: example1.id,
+ *     ips: ["10.12.118.224"],
+ *     targetLan: example2.id,
+ *     lbPrivateIps: ["10.13.72.225/24"],
+ * });
+ * //optionally you can add a certificate to the application load balancer
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     name: "add_name_here",
+ *     certificate: "your_certificate",
+ *     certificateChain: "your_certificate_chain",
+ *     privateKey: "your_private_key",
+ * });
+ * const exampleForwardingRule = new ionoscloud.alb.ForwardingRule("example", {
+ *     datacenterId: example.id,
+ *     applicationLoadbalancerId: exampleBalancer.id,
+ *     name: "ALB FR Example",
+ *     protocol: "HTTP",
+ *     listenerIp: "10.12.118.224",
+ *     listenerPort: 8080,
+ *     clientTimeout: 1000,
+ *     httpRules: [
+ *         {
+ *             name: "http_rule",
+ *             type: "REDIRECT",
+ *             dropQuery: true,
+ *             location: "www.ionos.com",
+ *             statusCode: 301,
+ *             conditions: [{
+ *                 type: "HEADER",
+ *                 condition: "EQUALS",
+ *                 negate: true,
+ *                 key: "key",
+ *                 value: "10.12.120.224/24",
+ *             }],
+ *         },
+ *         {
+ *             name: "http_rule_2",
+ *             type: "STATIC",
+ *             dropQuery: false,
+ *             statusCode: 303,
+ *             responseMessage: "Response",
+ *             contentType: "text/plain",
+ *             conditions: [{
+ *                 type: "QUERY",
+ *                 condition: "MATCHES",
+ *                 negate: false,
+ *                 key: "key",
+ *                 value: "10.12.120.224/24",
+ *             }],
+ *         },
+ *     ],
+ *     serverCertificates: [cert.id],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.

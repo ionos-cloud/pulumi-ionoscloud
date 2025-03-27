@@ -9,6 +9,72 @@ import * as utilities from "../utilities";
 /**
  * Manages a **DBaaS MariaDB Cluster**.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example",
+ *     location: "de/txl",
+ *     description: "Datacenter for testing DBaaS cluster",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example",
+ * });
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "example",
+ *     datacenterId: example.id,
+ *     cores: 2,
+ *     ram: 2048,
+ *     availabilityZone: "ZONE_1",
+ *     cpuFamily: "INTEL_SKYLAKE",
+ *     imageName: "rockylinux-8-GenericCloud-20230518",
+ *     imagePassword: "password",
+ *     volume: {
+ *         name: "example",
+ *         size: 10,
+ *         diskType: "SSD Standard",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "example",
+ *         dhcp: true,
+ *     },
+ * });
+ * const clusterPassword = new random.index.Password("cluster_password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const exampleMariaDBCluster = new ionoscloud.dbaas.MariaDBCluster("example", {
+ *     mariadbVersion: "10.6",
+ *     location: "de/txl",
+ *     instances: 1,
+ *     cores: 4,
+ *     ram: 4,
+ *     storageSize: 10,
+ *     connections: {
+ *         datacenterId: example.id,
+ *         lanId: exampleLan.id,
+ *         cidr: "database_ip_cidr_from_nic",
+ *     },
+ *     displayName: "MariaDB_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     },
+ *     credentials: {
+ *         username: "username",
+ *         password: clusterPassword.result,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.

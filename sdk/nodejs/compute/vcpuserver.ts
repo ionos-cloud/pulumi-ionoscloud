@@ -7,6 +7,99 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a **VCPU Server** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ### VCPU Server
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const example = ionoscloud.compute.getImage({
+ *     type: "HDD",
+ *     imageAlias: "ubuntu:latest",
+ *     location: "us/las",
+ * });
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "de/txl",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": true,
+ *     name: "Lan Example",
+ * });
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: exampleDatacenter.location,
+ *     size: 4,
+ *     name: "IP Block Example",
+ * });
+ * const serverImagePassword = new random.index.Password("server_image_password", {
+ *     length: 16,
+ *     special: false,
+ * });
+ * const exampleVCPUServer = new ionoscloud.compute.VCPUServer("example", {
+ *     name: "VCPU Server Example",
+ *     datacenterId: exampleDatacenter.id,
+ *     cores: 1,
+ *     ram: 1024,
+ *     availabilityZone: "ZONE_1",
+ *     imageName: example.then(example => example.id),
+ *     imagePassword: serverImagePassword.result,
+ *     volume: {
+ *         name: "system",
+ *         size: 5,
+ *         diskType: "SSD Standard",
+ *         userData: "foo",
+ *         bus: "VIRTIO",
+ *         availabilityZone: "ZONE_1",
+ *     },
+ *     nic: {
+ *         lan: exampleLan.id,
+ *         name: "system",
+ *         dhcp: true,
+ *         firewallActive: true,
+ *         firewallType: "BIDIRECTIONAL",
+ *         ips: [
+ *             exampleIPBlock.ips[0],
+ *             exampleIPBlock.ips[1],
+ *         ],
+ *         firewalls: [{
+ *             protocol: "TCP",
+ *             name: "SSH",
+ *             portRangeStart: 22,
+ *             portRangeEnd: 22,
+ *             sourceMac: "00:0a:95:9d:68:17",
+ *             sourceIp: exampleIPBlock.ips[2],
+ *             targetIp: exampleIPBlock.ips[3],
+ *             type: "EGRESS",
+ *         }],
+ *     },
+ *     labels: [
+ *         {
+ *             key: "labelkey1",
+ *             value: "labelvalue1",
+ *         },
+ *         {
+ *             key: "labelkey2",
+ *             value: "labelvalue2",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Notes
+ *
+ * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ *
+ * ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+ * from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+ *
  * ## Import
  *
  * Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
@@ -15,7 +108,7 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid
  * ```
  *
- * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
  *
  * ```sh
  * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver datacenter uuid/server uuid/primary nic id/firewall rule id

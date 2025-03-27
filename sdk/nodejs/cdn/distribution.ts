@@ -9,6 +9,54 @@ import * as utilities from "../utilities";
 /**
  * Manages a **CDN Distribution** on IonosCloud.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = new ionoscloud.cdn.Distribution("example", {
+ *     domain: "example.com",
+ *     certificateId: cert.id,
+ *     routingRules: [
+ *         {
+ *             scheme: "https",
+ *             prefix: "/api",
+ *             upstream: {
+ *                 host: "server.example.com",
+ *                 caching: true,
+ *                 waf: true,
+ *                 sniMode: "distribution",
+ *                 rateLimitClass: "R500",
+ *                 geoRestrictions: {
+ *                     allowLists: [
+ *                         "CN",
+ *                         "RU",
+ *                     ],
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             scheme: "http/https",
+ *             prefix: "/api2",
+ *             upstream: {
+ *                 host: "server2.example.com",
+ *                 caching: false,
+ *                 waf: false,
+ *                 sniMode: "origin",
+ *                 rateLimitClass: "R10",
+ *                 geoRestrictions: {
+ *                     blockLists: [
+ *                         "CN",
+ *                         "RU",
+ *                     ],
+ *                 },
+ *             },
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Resource Distribution can be imported using the `resource id`, e.g.

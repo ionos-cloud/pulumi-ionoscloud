@@ -12,6 +12,397 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Server** on IonosCloud.
+//
+// ## Example Usage
+//
+// This resource will create an operational server. After this section completes, the provisioner can be called.
+//
+// ### ENTERPRISE Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				CloudInit:  pulumi.StringRef("V1"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String(example.Name),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Firewalls: compute.ServerNicFirewallArray{
+//						&compute.ServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//				Labels: compute.ServerLabelArray{
+//					&compute.ServerLabelArgs{
+//						Key:   pulumi.String("labelkey1"),
+//						Value: pulumi.String("labelvalue1"),
+//					},
+//					&compute.ServerLabelArgs{
+//						Key:   pulumi.String("labelkey2"),
+//						Value: pulumi.String("labelvalue2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### With IPv6 Enabled
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Resource Server Test"),
+//				Location: pulumi.String("us/las"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			webserverIpblock, err := compute.NewIPBlock(ctx, "webserver_ipblock", &compute.IPBlockArgs{
+//				Location: pulumi.String("us/las"),
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("webserver_ipblock"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId:  example.ID(),
+//				Public:        pulumi.Bool(true),
+//				Name:          pulumi.String("public"),
+//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_lan"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Resource Server Test"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Dhcpv6:        pulumi.Bool(true),
+//					Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_lan"),
+//					Ipv6Ips: pulumi.StringArray{
+//						pulumi.String("ipv6_ip1"),
+//						pulumi.String("ipv6_ip2"),
+//						pulumi.String("ipv6_ip3"),
+//					},
+//					Firewalls: compute.ServerNicFirewallArray{
+//						&compute.ServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: webserverIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### CUBE Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetTemplate(ctx, &compute.GetTemplateArgs{
+//				Name: pulumi.StringRef("Basic Cube XS"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Datacenter Example"),
+//				Location: pulumi.String("de/txl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Type:             pulumi.String("CUBE"),
+//				TemplateUuid:     pulumi.String(example.Id),
+//				ImagePassword:    serverImagePassword.Result,
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("Volume Example"),
+//					LicenceType: pulumi.String("LINUX"),
+//					DiskType:    pulumi.String("DAS"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Server that boots from CDROM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cdromDatacenter, err := compute.NewDatacenter(ctx, "cdrom", &compute.DatacenterArgs{
+//				Name:              pulumi.String("CDROM Test"),
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("CDROM image test"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "public", &compute.LanArgs{
+//				DatacenterId: cdromDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Uplink"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.GetImage(ctx, &compute.GetImageArgs{
+//				ImageAlias: pulumi.StringRef("ubuntu:latest_iso"),
+//				Type:       pulumi.StringRef("CDROM"),
+//				Location:   pulumi.StringRef("de/txl"),
+//				CloudInit:  pulumi.StringRef("NONE"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "test", &compute.ServerArgs{
+//				DatacenterId: cdromDatacenter.ID(),
+//				Name:         pulumi.String("ubuntu_latest_from_cdrom"),
+//				Cores:        pulumi.Int(1),
+//				Ram:          pulumi.Int(1024),
+//				CpuFamily: pulumi.String(cdromDatacenter.CpuArchitectures.ApplyT(func(cpuArchitectures []compute.DatacenterCpuArchitecture) (*string, error) {
+//					return &cpuArchitectures[0].CpuFamily, nil
+//				}).(pulumi.StringPtrOutput)),
+//				Type: pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("hdd0"),
+//					DiskType:    pulumi.String("HDD"),
+//					Size:        pulumi.Int(50),
+//					LicenceType: pulumi.String("OTHER"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Notes
+//
+// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+//
+// ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+// from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+//
 // ## Import
 //
 // Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
@@ -20,7 +411,7 @@ import (
 // $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
 // ```
 //
-// Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+// Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 //
 // ```sh
 // $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id
