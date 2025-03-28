@@ -460,32 +460,8 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_s3_object": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucketObject"),
 			},
-			"ionoscloud_s3_bucket_lifecycle_configuration": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "BucketLifecycleConfiguration"),
-			},
-			"ionoscloud_s3_bucket_object_lock_configuration": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObjectLockConfiguration"),
-			},
 			"ionoscloud_s3_bucket_policy": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucketPolicy"),
-			},
-			"ionoscloud_s3_bucket_server_side_encryption_configuration": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucketServerSideEncryptionConfiguration"),
-			},
-			"ionoscloud_s3_bucket_versioning": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucketVersioning"),
-			},
-			"ionoscloud_s3_bucket_cors_configuration": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getCorsConfiguration"),
-			},
-			"ionoscloud_s3_bucket_public_access_block": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getPublicAccessBlock"),
-			},
-			"ionoscloud_s3_bucket_website_configuration": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getWebsiteConfiguration"),
-			},
-			"ionoscloud_s3_object_copy": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObjectCopy"),
 			},
 			"ionoscloud_monitoring_pipeline": {
 				Tok: tfbridge.MakeDataSource(mainPkg, monitoringModule, "getPipeline"),
