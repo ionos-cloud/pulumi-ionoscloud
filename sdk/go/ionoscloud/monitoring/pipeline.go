@@ -109,12 +109,6 @@ func NewPipeline(ctx *pulumi.Context,
 		args = &PipelineArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline"),
-		},
-	})
-	opts = append(opts, aliases)
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"key",
 	})

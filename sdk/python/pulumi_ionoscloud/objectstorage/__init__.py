@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .access_key import *
 from .bucket import *
 from .bucket_lifecycle_configuration import *
 from .bucket_object import *
@@ -12,10 +13,12 @@ from .bucket_policy import *
 from .bucket_server_side_encryption_configuration import *
 from .bucket_versioning import *
 from .cors_configuration import *
+from .get_access_key import *
 from .get_bucket import *
 from .get_bucket_object import *
 from .get_bucket_policy import *
-from .monitoring_pipeline import *
+from .get_objects import *
+from .get_region import *
 from .object_copy import *
 from .object_lock_configuration import *
 from .public_access_block import *

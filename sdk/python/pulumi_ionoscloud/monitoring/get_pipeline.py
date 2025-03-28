@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetMonitoringPipelineResult',
-    'AwaitableGetMonitoringPipelineResult',
-    'get_monitoring_pipeline',
-    'get_monitoring_pipeline_output',
+    'GetPipelineResult',
+    'AwaitableGetPipelineResult',
+    'get_pipeline',
+    'get_pipeline_output',
 ]
 
 @pulumi.output_type
-class GetMonitoringPipelineResult:
+class GetPipelineResult:
     """
-    A collection of values returned by getMonitoringPipeline.
+    A collection of values returned by getPipeline.
     """
     def __init__(__self__, grafana_endpoint=None, http_endpoint=None, id=None, location=None, name=None):
         if grafana_endpoint and not isinstance(grafana_endpoint, str):
@@ -78,12 +78,12 @@ class GetMonitoringPipelineResult:
         return pulumi.get(self, "name")
 
 
-class AwaitableGetMonitoringPipelineResult(GetMonitoringPipelineResult):
+class AwaitableGetPipelineResult(GetPipelineResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetMonitoringPipelineResult(
+        return GetPipelineResult(
             grafana_endpoint=self.grafana_endpoint,
             http_endpoint=self.http_endpoint,
             id=self.id,
@@ -91,10 +91,10 @@ class AwaitableGetMonitoringPipelineResult(GetMonitoringPipelineResult):
             name=self.name)
 
 
-def get_monitoring_pipeline(id: Optional[str] = None,
-                            location: Optional[str] = None,
-                            name: Optional[str] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMonitoringPipelineResult:
+def get_pipeline(id: Optional[str] = None,
+                 location: Optional[str] = None,
+                 name: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPipelineResult:
     """
     The **Monitoring pipeline** datasource can be used to search for and return an existing Monitoring pipeline.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -108,7 +108,7 @@ def get_monitoring_pipeline(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_monitoring_pipeline(location="de/txl",
+    example = ionoscloud.monitoring.get_pipeline(location="de/txl",
         id="pipeline_id")
     ```
 
@@ -117,7 +117,7 @@ def get_monitoring_pipeline(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_monitoring_pipeline(location="de/txl",
+    example = ionoscloud.monitoring.get_pipeline(location="de/txl",
         name="pipeline_name")
     ```
 
@@ -133,18 +133,18 @@ def get_monitoring_pipeline(id: Optional[str] = None,
     __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline', __args__, opts=opts, typ=GetMonitoringPipelineResult).value
+    __ret__ = pulumi.runtime.invoke('ionoscloud:monitoring/getPipeline:getPipeline', __args__, opts=opts, typ=GetPipelineResult).value
 
-    return AwaitableGetMonitoringPipelineResult(
+    return AwaitableGetPipelineResult(
         grafana_endpoint=pulumi.get(__ret__, 'grafana_endpoint'),
         http_endpoint=pulumi.get(__ret__, 'http_endpoint'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'))
-def get_monitoring_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                                   location: Optional[pulumi.Input[Optional[str]]] = None,
-                                   name: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMonitoringPipelineResult]:
+def get_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None,
+                        location: Optional[pulumi.Input[Optional[str]]] = None,
+                        name: Optional[pulumi.Input[Optional[str]]] = None,
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPipelineResult]:
     """
     The **Monitoring pipeline** datasource can be used to search for and return an existing Monitoring pipeline.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -158,7 +158,7 @@ def get_monitoring_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_monitoring_pipeline(location="de/txl",
+    example = ionoscloud.monitoring.get_pipeline(location="de/txl",
         id="pipeline_id")
     ```
 
@@ -167,7 +167,7 @@ def get_monitoring_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_monitoring_pipeline(location="de/txl",
+    example = ionoscloud.monitoring.get_pipeline(location="de/txl",
         name="pipeline_name")
     ```
 
@@ -183,8 +183,8 @@ def get_monitoring_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = N
     __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline', __args__, opts=opts, typ=GetMonitoringPipelineResult)
-    return __ret__.apply(lambda __response__: GetMonitoringPipelineResult(
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:monitoring/getPipeline:getPipeline', __args__, opts=opts, typ=GetPipelineResult)
+    return __ret__.apply(lambda __response__: GetPipelineResult(
         grafana_endpoint=pulumi.get(__response__, 'grafana_endpoint'),
         http_endpoint=pulumi.get(__response__, 'http_endpoint'),
         id=pulumi.get(__response__, 'id'),

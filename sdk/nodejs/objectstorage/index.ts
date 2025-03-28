@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AccessKeyArgs, AccessKeyState } from "./accessKey";
+export type AccessKey = import("./accessKey").AccessKey;
+export const AccessKey: typeof import("./accessKey").AccessKey = null as any;
+utilities.lazyLoad(exports, ["AccessKey"], () => require("./accessKey"));
+
 export { BucketArgs, BucketState } from "./bucket";
 export type Bucket = import("./bucket").Bucket;
 export const Bucket: typeof import("./bucket").Bucket = null as any;
@@ -40,6 +45,11 @@ export type CorsConfiguration = import("./corsConfiguration").CorsConfiguration;
 export const CorsConfiguration: typeof import("./corsConfiguration").CorsConfiguration = null as any;
 utilities.lazyLoad(exports, ["CorsConfiguration"], () => require("./corsConfiguration"));
 
+export { GetAccessKeyArgs, GetAccessKeyResult, GetAccessKeyOutputArgs } from "./getAccessKey";
+export const getAccessKey: typeof import("./getAccessKey").getAccessKey = null as any;
+export const getAccessKeyOutput: typeof import("./getAccessKey").getAccessKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getAccessKey","getAccessKeyOutput"], () => require("./getAccessKey"));
+
 export { GetBucketArgs, GetBucketResult, GetBucketOutputArgs } from "./getBucket";
 export const getBucket: typeof import("./getBucket").getBucket = null as any;
 export const getBucketOutput: typeof import("./getBucket").getBucketOutput = null as any;
@@ -55,10 +65,15 @@ export const getBucketPolicy: typeof import("./getBucketPolicy").getBucketPolicy
 export const getBucketPolicyOutput: typeof import("./getBucketPolicy").getBucketPolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getBucketPolicy","getBucketPolicyOutput"], () => require("./getBucketPolicy"));
 
-export { MonitoringPipelineArgs, MonitoringPipelineState } from "./monitoringPipeline";
-export type MonitoringPipeline = import("./monitoringPipeline").MonitoringPipeline;
-export const MonitoringPipeline: typeof import("./monitoringPipeline").MonitoringPipeline = null as any;
-utilities.lazyLoad(exports, ["MonitoringPipeline"], () => require("./monitoringPipeline"));
+export { GetObjectsArgs, GetObjectsResult, GetObjectsOutputArgs } from "./getObjects";
+export const getObjects: typeof import("./getObjects").getObjects = null as any;
+export const getObjectsOutput: typeof import("./getObjects").getObjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getObjects","getObjectsOutput"], () => require("./getObjects"));
+
+export { GetRegionArgs, GetRegionResult, GetRegionOutputArgs } from "./getRegion";
+export const getRegion: typeof import("./getRegion").getRegion = null as any;
+export const getRegionOutput: typeof import("./getRegion").getRegionOutput = null as any;
+utilities.lazyLoad(exports, ["getRegion","getRegionOutput"], () => require("./getRegion"));
 
 export { ObjectCopyArgs, ObjectCopyState } from "./objectCopy";
 export type ObjectCopy = import("./objectCopy").ObjectCopy;
@@ -85,6 +100,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "ionoscloud:objectstorage/accessKey:AccessKey":
+                return new AccessKey(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/bucket:Bucket":
                 return new Bucket(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration":
@@ -99,8 +116,6 @@ const _module = {
                 return new BucketVersioning(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration":
                 return new CorsConfiguration(name, <any>undefined, { urn })
-            case "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline":
-                return new MonitoringPipeline(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/objectCopy:ObjectCopy":
                 return new ObjectCopy(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration":
@@ -114,6 +129,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/accessKey", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucket", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketLifecycleConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketObject", _module)
@@ -121,7 +137,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketPolicy"
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketServerSideEncryptionConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/bucketVersioning", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/corsConfiguration", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/monitoringPipeline", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectCopy", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/publicAccessBlock", _module)

@@ -5,14 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .get_monitoring_pipeline import *
-from .get_object_storage_accesskey import *
-from .get_object_storage_region import *
-from .get_s3_objects import *
-from .object_storage_accesskey import *
 from .provider import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -435,14 +428,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/objectStorageAccesskey",
-  "fqn": "pulumi_ionoscloud",
-  "classes": {
-   "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": "ObjectStorageAccesskey"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "pulumi_ionoscloud.k8s",
   "classes": {
@@ -547,6 +532,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "objectstorage/accessKey",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/accessKey:AccessKey": "AccessKey"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "objectstorage/bucket",
   "fqn": "pulumi_ionoscloud.objectstorage",
   "classes": {
@@ -599,14 +592,6 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.objectstorage",
   "classes": {
    "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": "CorsConfiguration"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "objectstorage/monitoringPipeline",
-  "fqn": "pulumi_ionoscloud.objectstorage",
-  "classes": {
-   "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline": "MonitoringPipeline"
   }
  },
  {

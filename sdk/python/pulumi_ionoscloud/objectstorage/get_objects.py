@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetS3ObjectsResult',
-    'AwaitableGetS3ObjectsResult',
-    'get_s3_objects',
-    'get_s3_objects_output',
+    'GetObjectsResult',
+    'AwaitableGetObjectsResult',
+    'get_objects',
+    'get_objects_output',
 ]
 
 @pulumi.output_type
-class GetS3ObjectsResult:
+class GetObjectsResult:
     """
-    A collection of values returned by getS3Objects.
+    A collection of values returned by getObjects.
     """
     def __init__(__self__, bucket=None, common_prefixes=None, delimiter=None, encoding_type=None, fetch_owner=None, id=None, keys=None, max_keys=None, owners=None, prefix=None, start_after=None):
         if bucket and not isinstance(bucket, str):
@@ -126,12 +126,12 @@ class GetS3ObjectsResult:
         return pulumi.get(self, "start_after")
 
 
-class AwaitableGetS3ObjectsResult(GetS3ObjectsResult):
+class AwaitableGetObjectsResult(GetObjectsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetS3ObjectsResult(
+        return GetObjectsResult(
             bucket=self.bucket,
             common_prefixes=self.common_prefixes,
             delimiter=self.delimiter,
@@ -145,14 +145,14 @@ class AwaitableGetS3ObjectsResult(GetS3ObjectsResult):
             start_after=self.start_after)
 
 
-def get_s3_objects(bucket: Optional[str] = None,
-                   delimiter: Optional[str] = None,
-                   encoding_type: Optional[str] = None,
-                   fetch_owner: Optional[bool] = None,
-                   max_keys: Optional[int] = None,
-                   prefix: Optional[str] = None,
-                   start_after: Optional[str] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetS3ObjectsResult:
+def get_objects(bucket: Optional[str] = None,
+                delimiter: Optional[str] = None,
+                encoding_type: Optional[str] = None,
+                fetch_owner: Optional[bool] = None,
+                max_keys: Optional[int] = None,
+                prefix: Optional[str] = None,
+                start_after: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectsResult:
     """
     The **Objects data source** can be used to search for and return existing objects.
 
@@ -162,7 +162,7 @@ def get_s3_objects(bucket: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_s3_objects(bucket="example",
+    example = ionoscloud.objectstorage.get_objects(bucket="example",
         prefix="prefix1/",
         delimiter="/",
         max_keys=100,
@@ -187,9 +187,9 @@ def get_s3_objects(bucket: Optional[str] = None,
     __args__['prefix'] = prefix
     __args__['startAfter'] = start_after
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('ionoscloud:index/getS3Objects:getS3Objects', __args__, opts=opts, typ=GetS3ObjectsResult).value
+    __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getObjects:getObjects', __args__, opts=opts, typ=GetObjectsResult).value
 
-    return AwaitableGetS3ObjectsResult(
+    return AwaitableGetObjectsResult(
         bucket=pulumi.get(__ret__, 'bucket'),
         common_prefixes=pulumi.get(__ret__, 'common_prefixes'),
         delimiter=pulumi.get(__ret__, 'delimiter'),
@@ -201,14 +201,14 @@ def get_s3_objects(bucket: Optional[str] = None,
         owners=pulumi.get(__ret__, 'owners'),
         prefix=pulumi.get(__ret__, 'prefix'),
         start_after=pulumi.get(__ret__, 'start_after'))
-def get_s3_objects_output(bucket: Optional[pulumi.Input[str]] = None,
-                          delimiter: Optional[pulumi.Input[Optional[str]]] = None,
-                          encoding_type: Optional[pulumi.Input[Optional[str]]] = None,
-                          fetch_owner: Optional[pulumi.Input[Optional[bool]]] = None,
-                          max_keys: Optional[pulumi.Input[Optional[int]]] = None,
-                          prefix: Optional[pulumi.Input[Optional[str]]] = None,
-                          start_after: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetS3ObjectsResult]:
+def get_objects_output(bucket: Optional[pulumi.Input[str]] = None,
+                       delimiter: Optional[pulumi.Input[Optional[str]]] = None,
+                       encoding_type: Optional[pulumi.Input[Optional[str]]] = None,
+                       fetch_owner: Optional[pulumi.Input[Optional[bool]]] = None,
+                       max_keys: Optional[pulumi.Input[Optional[int]]] = None,
+                       prefix: Optional[pulumi.Input[Optional[str]]] = None,
+                       start_after: Optional[pulumi.Input[Optional[str]]] = None,
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectsResult]:
     """
     The **Objects data source** can be used to search for and return existing objects.
 
@@ -218,7 +218,7 @@ def get_s3_objects_output(bucket: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_s3_objects(bucket="example",
+    example = ionoscloud.objectstorage.get_objects(bucket="example",
         prefix="prefix1/",
         delimiter="/",
         max_keys=100,
@@ -243,8 +243,8 @@ def get_s3_objects_output(bucket: Optional[pulumi.Input[str]] = None,
     __args__['prefix'] = prefix
     __args__['startAfter'] = start_after
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getS3Objects:getS3Objects', __args__, opts=opts, typ=GetS3ObjectsResult)
-    return __ret__.apply(lambda __response__: GetS3ObjectsResult(
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getObjects:getObjects', __args__, opts=opts, typ=GetObjectsResult)
+    return __ret__.apply(lambda __response__: GetObjectsResult(
         bucket=pulumi.get(__response__, 'bucket'),
         common_prefixes=pulumi.get(__response__, 'common_prefixes'),
         delimiter=pulumi.get(__response__, 'delimiter'),

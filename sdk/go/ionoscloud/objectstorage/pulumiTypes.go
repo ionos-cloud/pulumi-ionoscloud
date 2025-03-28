@@ -13,6 +13,181 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AccessKeyTimeouts struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create *string `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	Read *string `pulumi:"read"`
+}
+
+// AccessKeyTimeoutsInput is an input type that accepts AccessKeyTimeoutsArgs and AccessKeyTimeoutsOutput values.
+// You can construct a concrete instance of `AccessKeyTimeoutsInput` via:
+//
+//	AccessKeyTimeoutsArgs{...}
+type AccessKeyTimeoutsInput interface {
+	pulumi.Input
+
+	ToAccessKeyTimeoutsOutput() AccessKeyTimeoutsOutput
+	ToAccessKeyTimeoutsOutputWithContext(context.Context) AccessKeyTimeoutsOutput
+}
+
+type AccessKeyTimeoutsArgs struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	Read pulumi.StringPtrInput `pulumi:"read"`
+}
+
+func (AccessKeyTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeyTimeouts)(nil)).Elem()
+}
+
+func (i AccessKeyTimeoutsArgs) ToAccessKeyTimeoutsOutput() AccessKeyTimeoutsOutput {
+	return i.ToAccessKeyTimeoutsOutputWithContext(context.Background())
+}
+
+func (i AccessKeyTimeoutsArgs) ToAccessKeyTimeoutsOutputWithContext(ctx context.Context) AccessKeyTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeyTimeoutsOutput)
+}
+
+func (i AccessKeyTimeoutsArgs) ToAccessKeyTimeoutsPtrOutput() AccessKeyTimeoutsPtrOutput {
+	return i.ToAccessKeyTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i AccessKeyTimeoutsArgs) ToAccessKeyTimeoutsPtrOutputWithContext(ctx context.Context) AccessKeyTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeyTimeoutsOutput).ToAccessKeyTimeoutsPtrOutputWithContext(ctx)
+}
+
+// AccessKeyTimeoutsPtrInput is an input type that accepts AccessKeyTimeoutsArgs, AccessKeyTimeoutsPtr and AccessKeyTimeoutsPtrOutput values.
+// You can construct a concrete instance of `AccessKeyTimeoutsPtrInput` via:
+//
+//	        AccessKeyTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AccessKeyTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToAccessKeyTimeoutsPtrOutput() AccessKeyTimeoutsPtrOutput
+	ToAccessKeyTimeoutsPtrOutputWithContext(context.Context) AccessKeyTimeoutsPtrOutput
+}
+
+type accessKeyTimeoutsPtrType AccessKeyTimeoutsArgs
+
+func AccessKeyTimeoutsPtr(v *AccessKeyTimeoutsArgs) AccessKeyTimeoutsPtrInput {
+	return (*accessKeyTimeoutsPtrType)(v)
+}
+
+func (*accessKeyTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessKeyTimeouts)(nil)).Elem()
+}
+
+func (i *accessKeyTimeoutsPtrType) ToAccessKeyTimeoutsPtrOutput() AccessKeyTimeoutsPtrOutput {
+	return i.ToAccessKeyTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *accessKeyTimeoutsPtrType) ToAccessKeyTimeoutsPtrOutputWithContext(ctx context.Context) AccessKeyTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeyTimeoutsPtrOutput)
+}
+
+type AccessKeyTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (AccessKeyTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeyTimeouts)(nil)).Elem()
+}
+
+func (o AccessKeyTimeoutsOutput) ToAccessKeyTimeoutsOutput() AccessKeyTimeoutsOutput {
+	return o
+}
+
+func (o AccessKeyTimeoutsOutput) ToAccessKeyTimeoutsOutputWithContext(ctx context.Context) AccessKeyTimeoutsOutput {
+	return o
+}
+
+func (o AccessKeyTimeoutsOutput) ToAccessKeyTimeoutsPtrOutput() AccessKeyTimeoutsPtrOutput {
+	return o.ToAccessKeyTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o AccessKeyTimeoutsOutput) ToAccessKeyTimeoutsPtrOutputWithContext(ctx context.Context) AccessKeyTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AccessKeyTimeouts) *AccessKeyTimeouts {
+		return &v
+	}).(AccessKeyTimeoutsPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o AccessKeyTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessKeyTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+func (o AccessKeyTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessKeyTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+func (o AccessKeyTimeoutsOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccessKeyTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
+}
+
+type AccessKeyTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (AccessKeyTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AccessKeyTimeouts)(nil)).Elem()
+}
+
+func (o AccessKeyTimeoutsPtrOutput) ToAccessKeyTimeoutsPtrOutput() AccessKeyTimeoutsPtrOutput {
+	return o
+}
+
+func (o AccessKeyTimeoutsPtrOutput) ToAccessKeyTimeoutsPtrOutputWithContext(ctx context.Context) AccessKeyTimeoutsPtrOutput {
+	return o
+}
+
+func (o AccessKeyTimeoutsPtrOutput) Elem() AccessKeyTimeoutsOutput {
+	return o.ApplyT(func(v *AccessKeyTimeouts) AccessKeyTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret AccessKeyTimeouts
+		return ret
+	}).(AccessKeyTimeoutsOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o AccessKeyTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessKeyTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+func (o AccessKeyTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessKeyTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+func (o AccessKeyTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccessKeyTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(pulumi.StringPtrOutput)
+}
+
 type BucketLifecycleConfigurationRule struct {
 	// Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
 	AbortIncompleteMultipartUpload *BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload `pulumi:"abortIncompleteMultipartUpload"`
@@ -1348,200 +1523,6 @@ func (o CorsConfigurationCorsRuleArrayOutput) Index(i pulumi.IntInput) CorsConfi
 	}).(CorsConfigurationCorsRuleOutput)
 }
 
-type MonitoringPipelineTimeouts struct {
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Create *string `pulumi:"create"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
-	Delete *string `pulumi:"delete"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-	Read *string `pulumi:"read"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Update *string `pulumi:"update"`
-}
-
-// MonitoringPipelineTimeoutsInput is an input type that accepts MonitoringPipelineTimeoutsArgs and MonitoringPipelineTimeoutsOutput values.
-// You can construct a concrete instance of `MonitoringPipelineTimeoutsInput` via:
-//
-//	MonitoringPipelineTimeoutsArgs{...}
-type MonitoringPipelineTimeoutsInput interface {
-	pulumi.Input
-
-	ToMonitoringPipelineTimeoutsOutput() MonitoringPipelineTimeoutsOutput
-	ToMonitoringPipelineTimeoutsOutputWithContext(context.Context) MonitoringPipelineTimeoutsOutput
-}
-
-type MonitoringPipelineTimeoutsArgs struct {
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Create pulumi.StringPtrInput `pulumi:"create"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
-	Delete pulumi.StringPtrInput `pulumi:"delete"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-	Read pulumi.StringPtrInput `pulumi:"read"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Update pulumi.StringPtrInput `pulumi:"update"`
-}
-
-func (MonitoringPipelineTimeoutsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*MonitoringPipelineTimeouts)(nil)).Elem()
-}
-
-func (i MonitoringPipelineTimeoutsArgs) ToMonitoringPipelineTimeoutsOutput() MonitoringPipelineTimeoutsOutput {
-	return i.ToMonitoringPipelineTimeoutsOutputWithContext(context.Background())
-}
-
-func (i MonitoringPipelineTimeoutsArgs) ToMonitoringPipelineTimeoutsOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MonitoringPipelineTimeoutsOutput)
-}
-
-func (i MonitoringPipelineTimeoutsArgs) ToMonitoringPipelineTimeoutsPtrOutput() MonitoringPipelineTimeoutsPtrOutput {
-	return i.ToMonitoringPipelineTimeoutsPtrOutputWithContext(context.Background())
-}
-
-func (i MonitoringPipelineTimeoutsArgs) ToMonitoringPipelineTimeoutsPtrOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MonitoringPipelineTimeoutsOutput).ToMonitoringPipelineTimeoutsPtrOutputWithContext(ctx)
-}
-
-// MonitoringPipelineTimeoutsPtrInput is an input type that accepts MonitoringPipelineTimeoutsArgs, MonitoringPipelineTimeoutsPtr and MonitoringPipelineTimeoutsPtrOutput values.
-// You can construct a concrete instance of `MonitoringPipelineTimeoutsPtrInput` via:
-//
-//	        MonitoringPipelineTimeoutsArgs{...}
-//
-//	or:
-//
-//	        nil
-type MonitoringPipelineTimeoutsPtrInput interface {
-	pulumi.Input
-
-	ToMonitoringPipelineTimeoutsPtrOutput() MonitoringPipelineTimeoutsPtrOutput
-	ToMonitoringPipelineTimeoutsPtrOutputWithContext(context.Context) MonitoringPipelineTimeoutsPtrOutput
-}
-
-type monitoringPipelineTimeoutsPtrType MonitoringPipelineTimeoutsArgs
-
-func MonitoringPipelineTimeoutsPtr(v *MonitoringPipelineTimeoutsArgs) MonitoringPipelineTimeoutsPtrInput {
-	return (*monitoringPipelineTimeoutsPtrType)(v)
-}
-
-func (*monitoringPipelineTimeoutsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**MonitoringPipelineTimeouts)(nil)).Elem()
-}
-
-func (i *monitoringPipelineTimeoutsPtrType) ToMonitoringPipelineTimeoutsPtrOutput() MonitoringPipelineTimeoutsPtrOutput {
-	return i.ToMonitoringPipelineTimeoutsPtrOutputWithContext(context.Background())
-}
-
-func (i *monitoringPipelineTimeoutsPtrType) ToMonitoringPipelineTimeoutsPtrOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(MonitoringPipelineTimeoutsPtrOutput)
-}
-
-type MonitoringPipelineTimeoutsOutput struct{ *pulumi.OutputState }
-
-func (MonitoringPipelineTimeoutsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MonitoringPipelineTimeouts)(nil)).Elem()
-}
-
-func (o MonitoringPipelineTimeoutsOutput) ToMonitoringPipelineTimeoutsOutput() MonitoringPipelineTimeoutsOutput {
-	return o
-}
-
-func (o MonitoringPipelineTimeoutsOutput) ToMonitoringPipelineTimeoutsOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsOutput {
-	return o
-}
-
-func (o MonitoringPipelineTimeoutsOutput) ToMonitoringPipelineTimeoutsPtrOutput() MonitoringPipelineTimeoutsPtrOutput {
-	return o.ToMonitoringPipelineTimeoutsPtrOutputWithContext(context.Background())
-}
-
-func (o MonitoringPipelineTimeoutsOutput) ToMonitoringPipelineTimeoutsPtrOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v MonitoringPipelineTimeouts) *MonitoringPipelineTimeouts {
-		return &v
-	}).(MonitoringPipelineTimeoutsPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o MonitoringPipelineTimeoutsOutput) Create() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v MonitoringPipelineTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
-func (o MonitoringPipelineTimeoutsOutput) Delete() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v MonitoringPipelineTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-func (o MonitoringPipelineTimeoutsOutput) Read() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v MonitoringPipelineTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o MonitoringPipelineTimeoutsOutput) Update() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v MonitoringPipelineTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
-}
-
-type MonitoringPipelineTimeoutsPtrOutput struct{ *pulumi.OutputState }
-
-func (MonitoringPipelineTimeoutsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**MonitoringPipelineTimeouts)(nil)).Elem()
-}
-
-func (o MonitoringPipelineTimeoutsPtrOutput) ToMonitoringPipelineTimeoutsPtrOutput() MonitoringPipelineTimeoutsPtrOutput {
-	return o
-}
-
-func (o MonitoringPipelineTimeoutsPtrOutput) ToMonitoringPipelineTimeoutsPtrOutputWithContext(ctx context.Context) MonitoringPipelineTimeoutsPtrOutput {
-	return o
-}
-
-func (o MonitoringPipelineTimeoutsPtrOutput) Elem() MonitoringPipelineTimeoutsOutput {
-	return o.ApplyT(func(v *MonitoringPipelineTimeouts) MonitoringPipelineTimeouts {
-		if v != nil {
-			return *v
-		}
-		var ret MonitoringPipelineTimeouts
-		return ret
-	}).(MonitoringPipelineTimeoutsOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o MonitoringPipelineTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MonitoringPipelineTimeouts) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Create
-	}).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
-func (o MonitoringPipelineTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MonitoringPipelineTimeouts) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Delete
-	}).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-func (o MonitoringPipelineTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MonitoringPipelineTimeouts) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Read
-	}).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o MonitoringPipelineTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MonitoringPipelineTimeouts) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Update
-	}).(pulumi.StringPtrOutput)
-}
-
 type ObjectLockConfigurationRule struct {
 	// [block] A block of defaultRetention as defined below.
 	DefaultRetention *ObjectLockConfigurationRuleDefaultRetention `pulumi:"defaultRetention"`
@@ -2769,7 +2750,70 @@ func (o WebsiteConfigurationRoutingRuleRedirectPtrOutput) ReplaceKeyWith() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetRegionCapability struct {
+	// Indicates if IAM policy based access is supported
+	Iam bool `pulumi:"iam"`
+	// Indicates if S3 Select is supported
+	S3select bool `pulumi:"s3select"`
+}
+
+// GetRegionCapabilityInput is an input type that accepts GetRegionCapabilityArgs and GetRegionCapabilityOutput values.
+// You can construct a concrete instance of `GetRegionCapabilityInput` via:
+//
+//	GetRegionCapabilityArgs{...}
+type GetRegionCapabilityInput interface {
+	pulumi.Input
+
+	ToGetRegionCapabilityOutput() GetRegionCapabilityOutput
+	ToGetRegionCapabilityOutputWithContext(context.Context) GetRegionCapabilityOutput
+}
+
+type GetRegionCapabilityArgs struct {
+	// Indicates if IAM policy based access is supported
+	Iam pulumi.BoolInput `pulumi:"iam"`
+	// Indicates if S3 Select is supported
+	S3select pulumi.BoolInput `pulumi:"s3select"`
+}
+
+func (GetRegionCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionCapability)(nil)).Elem()
+}
+
+func (i GetRegionCapabilityArgs) ToGetRegionCapabilityOutput() GetRegionCapabilityOutput {
+	return i.ToGetRegionCapabilityOutputWithContext(context.Background())
+}
+
+func (i GetRegionCapabilityArgs) ToGetRegionCapabilityOutputWithContext(ctx context.Context) GetRegionCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionCapabilityOutput)
+}
+
+type GetRegionCapabilityOutput struct{ *pulumi.OutputState }
+
+func (GetRegionCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionCapability)(nil)).Elem()
+}
+
+func (o GetRegionCapabilityOutput) ToGetRegionCapabilityOutput() GetRegionCapabilityOutput {
+	return o
+}
+
+func (o GetRegionCapabilityOutput) ToGetRegionCapabilityOutputWithContext(ctx context.Context) GetRegionCapabilityOutput {
+	return o
+}
+
+// Indicates if IAM policy based access is supported
+func (o GetRegionCapabilityOutput) Iam() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegionCapability) bool { return v.Iam }).(pulumi.BoolOutput)
+}
+
+// Indicates if S3 Select is supported
+func (o GetRegionCapabilityOutput) S3select() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegionCapability) bool { return v.S3select }).(pulumi.BoolOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeyTimeoutsInput)(nil)).Elem(), AccessKeyTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeyTimeoutsPtrInput)(nil)).Elem(), AccessKeyTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleInput)(nil)).Elem(), BucketLifecycleConfigurationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleArrayInput)(nil)).Elem(), BucketLifecycleConfigurationRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadInput)(nil)).Elem(), BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs{})
@@ -2788,8 +2832,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketVersioningVersioningConfigurationPtrInput)(nil)).Elem(), BucketVersioningVersioningConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CorsConfigurationCorsRuleInput)(nil)).Elem(), CorsConfigurationCorsRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CorsConfigurationCorsRuleArrayInput)(nil)).Elem(), CorsConfigurationCorsRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MonitoringPipelineTimeoutsInput)(nil)).Elem(), MonitoringPipelineTimeoutsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*MonitoringPipelineTimeoutsPtrInput)(nil)).Elem(), MonitoringPipelineTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRuleInput)(nil)).Elem(), ObjectLockConfigurationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRulePtrInput)(nil)).Elem(), ObjectLockConfigurationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRuleDefaultRetentionInput)(nil)).Elem(), ObjectLockConfigurationRuleDefaultRetentionArgs{})
@@ -2806,6 +2848,9 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationRoutingRuleConditionPtrInput)(nil)).Elem(), WebsiteConfigurationRoutingRuleConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationRoutingRuleRedirectInput)(nil)).Elem(), WebsiteConfigurationRoutingRuleRedirectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationRoutingRuleRedirectPtrInput)(nil)).Elem(), WebsiteConfigurationRoutingRuleRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionCapabilityInput)(nil)).Elem(), GetRegionCapabilityArgs{})
+	pulumi.RegisterOutputType(AccessKeyTimeoutsOutput{})
+	pulumi.RegisterOutputType(AccessKeyTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleArrayOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadOutput{})
@@ -2824,8 +2869,6 @@ func init() {
 	pulumi.RegisterOutputType(BucketVersioningVersioningConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(CorsConfigurationCorsRuleOutput{})
 	pulumi.RegisterOutputType(CorsConfigurationCorsRuleArrayOutput{})
-	pulumi.RegisterOutputType(MonitoringPipelineTimeoutsOutput{})
-	pulumi.RegisterOutputType(MonitoringPipelineTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(ObjectLockConfigurationRuleOutput{})
 	pulumi.RegisterOutputType(ObjectLockConfigurationRulePtrOutput{})
 	pulumi.RegisterOutputType(ObjectLockConfigurationRuleDefaultRetentionOutput{})
@@ -2842,4 +2885,5 @@ func init() {
 	pulumi.RegisterOutputType(WebsiteConfigurationRoutingRuleConditionPtrOutput{})
 	pulumi.RegisterOutputType(WebsiteConfigurationRoutingRuleRedirectOutput{})
 	pulumi.RegisterOutputType(WebsiteConfigurationRoutingRuleRedirectPtrOutput{})
+	pulumi.RegisterOutputType(GetRegionCapabilityOutput{})
 }

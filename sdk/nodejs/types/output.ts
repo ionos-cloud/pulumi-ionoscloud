@@ -5,32 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface GetObjectStorageRegionCapability {
-    /**
-     * Indicates if IAM policy based access is supported
-     */
-    iam: boolean;
-    /**
-     * Indicates if S3 Select is supported
-     */
-    s3select: boolean;
-}
-
-export interface ObjectStorageAccesskeyTimeouts {
-    /**
-     * [string] Time to wait for the bucket to be created. Default is `10m`.
-     */
-    create?: string;
-    /**
-     * [string] Time to wait for the bucket to be deleted. Default is `10m`.
-     */
-    delete?: string;
-    /**
-     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-     */
-    read?: string;
-}
-
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -4192,6 +4166,21 @@ export namespace nsg {
 }
 
 export namespace objectstorage {
+    export interface AccessKeyTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: string;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         */
+        delete?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+         */
+        read?: string;
+    }
+
     export interface BucketLifecycleConfigurationRule {
         /**
          * Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
@@ -4322,23 +4311,15 @@ export namespace objectstorage {
         maxAgeSeconds?: number;
     }
 
-    export interface MonitoringPipelineTimeouts {
+    export interface GetRegionCapability {
         /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         * Indicates if IAM policy based access is supported
          */
-        create?: string;
+        iam: boolean;
         /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         * Indicates if S3 Select is supported
          */
-        delete?: string;
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-         */
-        read?: string;
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-         */
-        update?: string;
+        s3select: boolean;
     }
 
     export interface ObjectLockConfigurationRule {

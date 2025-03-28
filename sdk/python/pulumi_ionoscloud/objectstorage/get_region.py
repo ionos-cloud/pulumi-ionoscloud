@@ -12,20 +12,20 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 
 __all__ = [
-    'GetObjectStorageRegionResult',
-    'AwaitableGetObjectStorageRegionResult',
-    'get_object_storage_region',
-    'get_object_storage_region_output',
+    'GetRegionResult',
+    'AwaitableGetRegionResult',
+    'get_region',
+    'get_region_output',
 ]
 
 @pulumi.output_type
-class GetObjectStorageRegionResult:
+class GetRegionResult:
     """
-    A collection of values returned by getObjectStorageRegion.
+    A collection of values returned by getRegion.
     """
     def __init__(__self__, capability=None, endpoint=None, id=None, location=None, storage_classes=None, version=None, website=None):
         if capability and not isinstance(capability, dict):
@@ -52,7 +52,7 @@ class GetObjectStorageRegionResult:
 
     @property
     @pulumi.getter
-    def capability(self) -> 'outputs.GetObjectStorageRegionCapabilityResult':
+    def capability(self) -> 'outputs.GetRegionCapabilityResult':
         """
         The capabilities of the region
         """
@@ -107,12 +107,12 @@ class GetObjectStorageRegionResult:
         return pulumi.get(self, "website")
 
 
-class AwaitableGetObjectStorageRegionResult(GetObjectStorageRegionResult):
+class AwaitableGetRegionResult(GetRegionResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetObjectStorageRegionResult(
+        return GetRegionResult(
             capability=self.capability,
             endpoint=self.endpoint,
             id=self.id,
@@ -122,8 +122,8 @@ class AwaitableGetObjectStorageRegionResult(GetObjectStorageRegionResult):
             website=self.website)
 
 
-def get_object_storage_region(id: Optional[str] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectStorageRegionResult:
+def get_region(id: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionResult:
     """
     The **Object storage region data source** can be used to search for and return an existing S3 Regions.
 
@@ -134,7 +134,7 @@ def get_object_storage_region(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_object_storage_region(id="region_id")
+    example = ionoscloud.objectstorage.get_region(id="region_id")
     ```
 
 
@@ -143,9 +143,9 @@ def get_object_storage_region(id: Optional[str] = None,
     __args__ = dict()
     __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion', __args__, opts=opts, typ=GetObjectStorageRegionResult).value
+    __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getRegion:getRegion', __args__, opts=opts, typ=GetRegionResult).value
 
-    return AwaitableGetObjectStorageRegionResult(
+    return AwaitableGetRegionResult(
         capability=pulumi.get(__ret__, 'capability'),
         endpoint=pulumi.get(__ret__, 'endpoint'),
         id=pulumi.get(__ret__, 'id'),
@@ -153,8 +153,8 @@ def get_object_storage_region(id: Optional[str] = None,
         storage_classes=pulumi.get(__ret__, 'storage_classes'),
         version=pulumi.get(__ret__, 'version'),
         website=pulumi.get(__ret__, 'website'))
-def get_object_storage_region_output(id: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectStorageRegionResult]:
+def get_region_output(id: Optional[pulumi.Input[str]] = None,
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegionResult]:
     """
     The **Object storage region data source** can be used to search for and return an existing S3 Regions.
 
@@ -165,7 +165,7 @@ def get_object_storage_region_output(id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_object_storage_region(id="region_id")
+    example = ionoscloud.objectstorage.get_region(id="region_id")
     ```
 
 
@@ -174,8 +174,8 @@ def get_object_storage_region_output(id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['id'] = id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion', __args__, opts=opts, typ=GetObjectStorageRegionResult)
-    return __ret__.apply(lambda __response__: GetObjectStorageRegionResult(
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getRegion:getRegion', __args__, opts=opts, typ=GetRegionResult)
+    return __ret__.apply(lambda __response__: GetRegionResult(
         capability=pulumi.get(__response__, 'capability'),
         endpoint=pulumi.get(__response__, 'endpoint'),
         id=pulumi.get(__response__, 'id'),

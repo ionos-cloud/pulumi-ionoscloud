@@ -12,21 +12,21 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['ObjectStorageAccesskeyArgs', 'ObjectStorageAccesskey']
+__all__ = ['AccessKeyArgs', 'AccessKey']
 
 @pulumi.input_type
-class ObjectStorageAccesskeyArgs:
+class AccessKeyArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']] = None):
+                 timeouts: Optional[pulumi.Input['AccessKeyTimeoutsArgs']] = None):
         """
-        The set of arguments for constructing a ObjectStorageAccesskey resource.
+        The set of arguments for constructing a AccessKey resource.
         :param pulumi.Input[str] description: [string] Description of the Access key.
-        :param pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs'] timeouts: Timeouts for this resource.
+        :param pulumi.Input['AccessKeyTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -47,34 +47,34 @@ class ObjectStorageAccesskeyArgs:
 
     @property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']]:
+    def timeouts(self) -> Optional[pulumi.Input['AccessKeyTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']]):
+    def timeouts(self, value: Optional[pulumi.Input['AccessKeyTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
-class _ObjectStorageAccesskeyState:
+class _AccessKeyState:
     def __init__(__self__, *,
                  accesskey: Optional[pulumi.Input[str]] = None,
                  canonical_user_id: Optional[pulumi.Input[str]] = None,
                  contract_user_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  secretkey: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']] = None):
+                 timeouts: Optional[pulumi.Input['AccessKeyTimeoutsArgs']] = None):
         """
-        Input properties used for looking up and filtering ObjectStorageAccesskey resources.
+        Input properties used for looking up and filtering AccessKey resources.
         :param pulumi.Input[str] accesskey: Access key metadata is a string of 92 characters.
         :param pulumi.Input[str] canonical_user_id: The canonical user ID which is valid for user-owned buckets.
         :param pulumi.Input[str] contract_user_id: The contract user ID which is valid for contract-owned buckets
         :param pulumi.Input[str] description: [string] Description of the Access key.
         :param pulumi.Input[str] secretkey: The secret key of the Access key.
-        :param pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs'] timeouts: Timeouts for this resource.
+        :param pulumi.Input['AccessKeyTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
         if accesskey is not None:
             pulumi.set(__self__, "accesskey", accesskey)
@@ -151,24 +151,24 @@ class _ObjectStorageAccesskeyState:
 
     @property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']]:
+    def timeouts(self) -> Optional[pulumi.Input['AccessKeyTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['ObjectStorageAccesskeyTimeoutsArgs']]):
+    def timeouts(self, value: Optional[pulumi.Input['AccessKeyTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
-class ObjectStorageAccesskey(pulumi.CustomResource):
+class AccessKey(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['ObjectStorageAccesskeyTimeoutsArgs', 'ObjectStorageAccesskeyTimeoutsArgsDict']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['AccessKeyTimeoutsArgs', 'AccessKeyTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         Manages an **Object Storage Accesskey** on IonosCloud.
@@ -179,7 +179,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
 
-        example = ionoscloud.ObjectStorageAccesskey("example", description="my description")
+        example = ionoscloud.objectstorage.AccessKey("example", description="my description")
         ```
 
         ## Import
@@ -187,7 +187,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         An object storage accesskey resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey demo objectStorageAccesskeyid
+        $ pulumi import ionoscloud:objectstorage/accessKey:AccessKey demo objectStorageAccesskeyid
         ```
 
         This can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.
@@ -195,13 +195,13 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: [string] Description of the Access key.
-        :param pulumi.Input[Union['ObjectStorageAccesskeyTimeoutsArgs', 'ObjectStorageAccesskeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['AccessKeyTimeoutsArgs', 'AccessKeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[ObjectStorageAccesskeyArgs] = None,
+                 args: Optional[AccessKeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages an **Object Storage Accesskey** on IonosCloud.
@@ -212,7 +212,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
 
-        example = ionoscloud.ObjectStorageAccesskey("example", description="my description")
+        example = ionoscloud.objectstorage.AccessKey("example", description="my description")
         ```
 
         ## Import
@@ -220,18 +220,18 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         An object storage accesskey resource can be imported using its `resource id`, e.g.
 
         ```sh
-        $ pulumi import ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey demo objectStorageAccesskeyid
+        $ pulumi import ionoscloud:objectstorage/accessKey:AccessKey demo objectStorageAccesskeyid
         ```
 
         This can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.
 
         :param str resource_name: The name of the resource.
-        :param ObjectStorageAccesskeyArgs args: The arguments to use to populate this resource's properties.
+        :param AccessKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(ObjectStorageAccesskeyArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(AccessKeyArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -241,7 +241,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['ObjectStorageAccesskeyTimeoutsArgs', 'ObjectStorageAccesskeyTimeoutsArgsDict']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['AccessKeyTimeoutsArgs', 'AccessKeyTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -249,7 +249,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = ObjectStorageAccesskeyArgs.__new__(ObjectStorageAccesskeyArgs)
+            __props__ = AccessKeyArgs.__new__(AccessKeyArgs)
 
             __props__.__dict__["description"] = description
             __props__.__dict__["timeouts"] = timeouts
@@ -257,8 +257,8 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
             __props__.__dict__["canonical_user_id"] = None
             __props__.__dict__["contract_user_id"] = None
             __props__.__dict__["secretkey"] = None
-        super(ObjectStorageAccesskey, __self__).__init__(
-            'ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey',
+        super(AccessKey, __self__).__init__(
+            'ionoscloud:objectstorage/accessKey:AccessKey',
             resource_name,
             __props__,
             opts)
@@ -272,9 +272,9 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
             contract_user_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             secretkey: Optional[pulumi.Input[str]] = None,
-            timeouts: Optional[pulumi.Input[Union['ObjectStorageAccesskeyTimeoutsArgs', 'ObjectStorageAccesskeyTimeoutsArgsDict']]] = None) -> 'ObjectStorageAccesskey':
+            timeouts: Optional[pulumi.Input[Union['AccessKeyTimeoutsArgs', 'AccessKeyTimeoutsArgsDict']]] = None) -> 'AccessKey':
         """
-        Get an existing ObjectStorageAccesskey resource's state with the given name, id, and optional extra
+        Get an existing AccessKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -285,11 +285,11 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         :param pulumi.Input[str] contract_user_id: The contract user ID which is valid for contract-owned buckets
         :param pulumi.Input[str] description: [string] Description of the Access key.
         :param pulumi.Input[str] secretkey: The secret key of the Access key.
-        :param pulumi.Input[Union['ObjectStorageAccesskeyTimeoutsArgs', 'ObjectStorageAccesskeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['AccessKeyTimeoutsArgs', 'AccessKeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _ObjectStorageAccesskeyState.__new__(_ObjectStorageAccesskeyState)
+        __props__ = _AccessKeyState.__new__(_AccessKeyState)
 
         __props__.__dict__["accesskey"] = accesskey
         __props__.__dict__["canonical_user_id"] = canonical_user_id
@@ -297,7 +297,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["secretkey"] = secretkey
         __props__.__dict__["timeouts"] = timeouts
-        return ObjectStorageAccesskey(resource_name, opts=opts, __props__=__props__)
+        return AccessKey(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
@@ -341,7 +341,7 @@ class ObjectStorageAccesskey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def timeouts(self) -> pulumi.Output[Optional['outputs.ObjectStorageAccesskeyTimeouts']]:
+    def timeouts(self) -> pulumi.Output[Optional['outputs.AccessKeyTimeouts']]:
         """
         Timeouts for this resource.
         """

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * The **Objects data source** can be used to search for and return existing objects.
@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getS3Objects({
+ * const example = ionoscloud.objectstorage.getObjects({
  *     bucket: "example",
  *     prefix: "prefix1/",
  *     delimiter: "/",
@@ -22,9 +22,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export function getS3Objects(args: GetS3ObjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetS3ObjectsResult> {
+export function getObjects(args: GetObjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("ionoscloud:index/getS3Objects:getS3Objects", {
+    return pulumi.runtime.invoke("ionoscloud:objectstorage/getObjects:getObjects", {
         "bucket": args.bucket,
         "delimiter": args.delimiter,
         "encodingType": args.encodingType,
@@ -36,9 +36,9 @@ export function getS3Objects(args: GetS3ObjectsArgs, opts?: pulumi.InvokeOptions
 }
 
 /**
- * A collection of arguments for invoking getS3Objects.
+ * A collection of arguments for invoking getObjects.
  */
-export interface GetS3ObjectsArgs {
+export interface GetObjectsArgs {
     /**
      * [string] The name of the bucket where the objects are stored.
      */
@@ -70,9 +70,9 @@ export interface GetS3ObjectsArgs {
 }
 
 /**
- * A collection of values returned by getS3Objects.
+ * A collection of values returned by getObjects.
  */
-export interface GetS3ObjectsResult {
+export interface GetObjectsResult {
     readonly bucket: string;
     /**
      * A list of keys that act as a delimiter for grouping keys.
@@ -103,7 +103,7 @@ export interface GetS3ObjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getS3Objects({
+ * const example = ionoscloud.objectstorage.getObjects({
  *     bucket: "example",
  *     prefix: "prefix1/",
  *     delimiter: "/",
@@ -112,9 +112,9 @@ export interface GetS3ObjectsResult {
  * });
  * ```
  */
-export function getS3ObjectsOutput(args: GetS3ObjectsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetS3ObjectsResult> {
+export function getObjectsOutput(args: GetObjectsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("ionoscloud:index/getS3Objects:getS3Objects", {
+    return pulumi.runtime.invokeOutput("ionoscloud:objectstorage/getObjects:getObjects", {
         "bucket": args.bucket,
         "delimiter": args.delimiter,
         "encodingType": args.encodingType,
@@ -126,9 +126,9 @@ export function getS3ObjectsOutput(args: GetS3ObjectsOutputArgs, opts?: pulumi.I
 }
 
 /**
- * A collection of arguments for invoking getS3Objects.
+ * A collection of arguments for invoking getObjects.
  */
-export interface GetS3ObjectsOutputArgs {
+export interface GetObjectsOutputArgs {
     /**
      * [string] The name of the bucket where the objects are stored.
      */

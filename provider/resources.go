@@ -487,6 +487,18 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_s3_object_copy": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObjectCopy"),
 			},
+			"ionoscloud_monitoring_pipeline": {
+				Tok: tfbridge.MakeDataSource(mainPkg, monitoringModule, "getPipeline"),
+			},
+			"ionoscloud_object_storage_accesskey": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getAccessKey"),
+			},
+			"ionoscloud_object_storage_region": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getRegion"),
+			},
+			"ionoscloud_s3_objects": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObjects"),
+			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"ionoscloud_datacenter": {
@@ -748,6 +760,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_monitoring_pipeline": {
 				Tok: tfbridge.MakeResource(mainPkg, monitoringModule, "Pipeline"),
+			},
+			"ionoscloud_object_storage_accesskey": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "AccessKey"),
 			},
 		},
 	}

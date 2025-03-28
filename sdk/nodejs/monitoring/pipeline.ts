@@ -132,8 +132,6 @@ export class Pipeline extends pulumi.CustomResource {
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Pipeline.__pulumiType, name, resourceInputs, opts);

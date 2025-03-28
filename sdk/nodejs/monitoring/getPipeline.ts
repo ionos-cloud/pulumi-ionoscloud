@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * The **Monitoring pipeline** datasource can be used to search for and return an existing Monitoring pipeline.
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getMonitoringPipeline({
+ * const example = ionoscloud.monitoring.getPipeline({
  *     location: "de/txl",
  *     id: "pipeline_id",
  * });
@@ -28,16 +28,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getMonitoringPipeline({
+ * const example = ionoscloud.monitoring.getPipeline({
  *     location: "de/txl",
  *     name: "pipeline_name",
  * });
  * ```
  */
-export function getMonitoringPipeline(args?: GetMonitoringPipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetMonitoringPipelineResult> {
+export function getPipeline(args?: GetPipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetPipelineResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline", {
+    return pulumi.runtime.invoke("ionoscloud:monitoring/getPipeline:getPipeline", {
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -45,9 +45,9 @@ export function getMonitoringPipeline(args?: GetMonitoringPipelineArgs, opts?: p
 }
 
 /**
- * A collection of arguments for invoking getMonitoringPipeline.
+ * A collection of arguments for invoking getPipeline.
  */
-export interface GetMonitoringPipelineArgs {
+export interface GetPipelineArgs {
     /**
      * [string] The ID of the Monitoring pipeline you want to search for.
      */
@@ -65,9 +65,9 @@ export interface GetMonitoringPipelineArgs {
 }
 
 /**
- * A collection of values returned by getMonitoringPipeline.
+ * A collection of values returned by getPipeline.
  */
-export interface GetMonitoringPipelineResult {
+export interface GetPipelineResult {
     readonly grafanaEndpoint: string;
     /**
      * The HTTP endpoint of the Monitoring instance.
@@ -96,7 +96,7 @@ export interface GetMonitoringPipelineResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getMonitoringPipeline({
+ * const example = ionoscloud.monitoring.getPipeline({
  *     location: "de/txl",
  *     id: "pipeline_id",
  * });
@@ -107,16 +107,16 @@ export interface GetMonitoringPipelineResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getMonitoringPipeline({
+ * const example = ionoscloud.monitoring.getPipeline({
  *     location: "de/txl",
  *     name: "pipeline_name",
  * });
  * ```
  */
-export function getMonitoringPipelineOutput(args?: GetMonitoringPipelineOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMonitoringPipelineResult> {
+export function getPipelineOutput(args?: GetPipelineOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPipelineResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline", {
+    return pulumi.runtime.invokeOutput("ionoscloud:monitoring/getPipeline:getPipeline", {
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -124,9 +124,9 @@ export function getMonitoringPipelineOutput(args?: GetMonitoringPipelineOutputAr
 }
 
 /**
- * A collection of arguments for invoking getMonitoringPipeline.
+ * A collection of arguments for invoking getPipeline.
  */
-export interface GetMonitoringPipelineOutputArgs {
+export interface GetPipelineOutputArgs {
     /**
      * [string] The ID of the Monitoring pipeline you want to search for.
      */

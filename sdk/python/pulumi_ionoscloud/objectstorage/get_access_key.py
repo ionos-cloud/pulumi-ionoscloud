@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetObjectStorageAccesskeyResult',
-    'AwaitableGetObjectStorageAccesskeyResult',
-    'get_object_storage_accesskey',
-    'get_object_storage_accesskey_output',
+    'GetAccessKeyResult',
+    'AwaitableGetAccessKeyResult',
+    'get_access_key',
+    'get_access_key_output',
 ]
 
 @pulumi.output_type
-class GetObjectStorageAccesskeyResult:
+class GetAccessKeyResult:
     """
-    A collection of values returned by getObjectStorageAccesskey.
+    A collection of values returned by getAccessKey.
     """
     def __init__(__self__, accesskey=None, canonical_user_id=None, contract_user_id=None, description=None, id=None):
         if accesskey and not isinstance(accesskey, str):
@@ -84,12 +84,12 @@ class GetObjectStorageAccesskeyResult:
         return pulumi.get(self, "id")
 
 
-class AwaitableGetObjectStorageAccesskeyResult(GetObjectStorageAccesskeyResult):
+class AwaitableGetAccessKeyResult(GetAccessKeyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetObjectStorageAccesskeyResult(
+        return GetAccessKeyResult(
             accesskey=self.accesskey,
             canonical_user_id=self.canonical_user_id,
             contract_user_id=self.contract_user_id,
@@ -97,10 +97,10 @@ class AwaitableGetObjectStorageAccesskeyResult(GetObjectStorageAccesskeyResult):
             id=self.id)
 
 
-def get_object_storage_accesskey(accesskey: Optional[str] = None,
-                                 description: Optional[str] = None,
-                                 id: Optional[str] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectStorageAccesskeyResult:
+def get_access_key(accesskey: Optional[str] = None,
+                   description: Optional[str] = None,
+                   id: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessKeyResult:
     """
     The **Object Storage Accesskey data source** can be used to search for and return an existing Object Storage Accesskeys.
 
@@ -111,7 +111,7 @@ def get_object_storage_accesskey(accesskey: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_object_storage_accesskey(id="accesskey_id")
+    example = ionoscloud.objectstorage.get_access_key(id="accesskey_id")
     ```
 
 
@@ -124,18 +124,18 @@ def get_object_storage_accesskey(accesskey: Optional[str] = None,
     __args__['description'] = description
     __args__['id'] = id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey', __args__, opts=opts, typ=GetObjectStorageAccesskeyResult).value
+    __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getAccessKey:getAccessKey', __args__, opts=opts, typ=GetAccessKeyResult).value
 
-    return AwaitableGetObjectStorageAccesskeyResult(
+    return AwaitableGetAccessKeyResult(
         accesskey=pulumi.get(__ret__, 'accesskey'),
         canonical_user_id=pulumi.get(__ret__, 'canonical_user_id'),
         contract_user_id=pulumi.get(__ret__, 'contract_user_id'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'))
-def get_object_storage_accesskey_output(accesskey: Optional[pulumi.Input[Optional[str]]] = None,
-                                        description: Optional[pulumi.Input[Optional[str]]] = None,
-                                        id: Optional[pulumi.Input[Optional[str]]] = None,
-                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectStorageAccesskeyResult]:
+def get_access_key_output(accesskey: Optional[pulumi.Input[Optional[str]]] = None,
+                          description: Optional[pulumi.Input[Optional[str]]] = None,
+                          id: Optional[pulumi.Input[Optional[str]]] = None,
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessKeyResult]:
     """
     The **Object Storage Accesskey data source** can be used to search for and return an existing Object Storage Accesskeys.
 
@@ -146,7 +146,7 @@ def get_object_storage_accesskey_output(accesskey: Optional[pulumi.Input[Optiona
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_object_storage_accesskey(id="accesskey_id")
+    example = ionoscloud.objectstorage.get_access_key(id="accesskey_id")
     ```
 
 
@@ -159,8 +159,8 @@ def get_object_storage_accesskey_output(accesskey: Optional[pulumi.Input[Optiona
     __args__['description'] = description
     __args__['id'] = id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey', __args__, opts=opts, typ=GetObjectStorageAccesskeyResult)
-    return __ret__.apply(lambda __response__: GetObjectStorageAccesskeyResult(
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getAccessKey:getAccessKey', __args__, opts=opts, typ=GetAccessKeyResult)
+    return __ret__.apply(lambda __response__: GetAccessKeyResult(
         accesskey=pulumi.get(__response__, 'accesskey'),
         canonical_user_id=pulumi.get(__response__, 'canonical_user_id'),
         contract_user_id=pulumi.get(__response__, 'contract_user_id'),

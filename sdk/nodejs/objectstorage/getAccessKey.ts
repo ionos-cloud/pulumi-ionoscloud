@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * The **Object Storage Accesskey data source** can be used to search for and return an existing Object Storage Accesskeys.
@@ -14,15 +14,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getObjectStorageAccesskey({
+ * const example = ionoscloud.objectstorage.getAccessKey({
  *     id: "accesskey_id",
  * });
  * ```
  */
-export function getObjectStorageAccesskey(args?: GetObjectStorageAccesskeyArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStorageAccesskeyResult> {
+export function getAccessKey(args?: GetAccessKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey", {
+    return pulumi.runtime.invoke("ionoscloud:objectstorage/getAccessKey:getAccessKey", {
         "accesskey": args.accesskey,
         "description": args.description,
         "id": args.id,
@@ -30,9 +30,9 @@ export function getObjectStorageAccesskey(args?: GetObjectStorageAccesskeyArgs, 
 }
 
 /**
- * A collection of arguments for invoking getObjectStorageAccesskey.
+ * A collection of arguments for invoking getAccessKey.
  */
-export interface GetObjectStorageAccesskeyArgs {
+export interface GetAccessKeyArgs {
     /**
      * Access key metadata is a string of 92 characters.
      */
@@ -48,9 +48,9 @@ export interface GetObjectStorageAccesskeyArgs {
 }
 
 /**
- * A collection of values returned by getObjectStorageAccesskey.
+ * A collection of values returned by getAccessKey.
  */
-export interface GetObjectStorageAccesskeyResult {
+export interface GetAccessKeyResult {
     /**
      * Access key metadata is a string of 92 characters.
      */
@@ -82,15 +82,15 @@ export interface GetObjectStorageAccesskeyResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getObjectStorageAccesskey({
+ * const example = ionoscloud.objectstorage.getAccessKey({
  *     id: "accesskey_id",
  * });
  * ```
  */
-export function getObjectStorageAccesskeyOutput(args?: GetObjectStorageAccesskeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectStorageAccesskeyResult> {
+export function getAccessKeyOutput(args?: GetAccessKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey", {
+    return pulumi.runtime.invokeOutput("ionoscloud:objectstorage/getAccessKey:getAccessKey", {
         "accesskey": args.accesskey,
         "description": args.description,
         "id": args.id,
@@ -98,9 +98,9 @@ export function getObjectStorageAccesskeyOutput(args?: GetObjectStorageAccesskey
 }
 
 /**
- * A collection of arguments for invoking getObjectStorageAccesskey.
+ * A collection of arguments for invoking getAccessKey.
  */
-export interface GetObjectStorageAccesskeyOutputArgs {
+export interface GetAccessKeyOutputArgs {
     /**
      * Access key metadata is a string of 92 characters.
      */

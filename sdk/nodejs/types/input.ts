@@ -5,20 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ObjectStorageAccesskeyTimeouts {
-    /**
-     * [string] Time to wait for the bucket to be created. Default is `10m`.
-     */
-    create?: pulumi.Input<string>;
-    /**
-     * [string] Time to wait for the bucket to be deleted. Default is `10m`.
-     */
-    delete?: pulumi.Input<string>;
-    /**
-     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-     */
-    read?: pulumi.Input<string>;
-}
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -1725,6 +1711,21 @@ export namespace nsg {
 }
 
 export namespace objectstorage {
+    export interface AccessKeyTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: pulumi.Input<string>;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         */
+        delete?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+         */
+        read?: pulumi.Input<string>;
+    }
+
     export interface BucketLifecycleConfigurationRule {
         /**
          * Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
@@ -1853,25 +1854,6 @@ export namespace objectstorage {
          * [int] Specifies how long the results of a pre-flight request can be cached in seconds.
          */
         maxAgeSeconds?: pulumi.Input<number>;
-    }
-
-    export interface MonitoringPipelineTimeouts {
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-         */
-        create?: pulumi.Input<string>;
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
-         */
-        delete?: pulumi.Input<string>;
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-         */
-        read?: pulumi.Input<string>;
-        /**
-         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-         */
-        update?: pulumi.Input<string>;
     }
 
     export interface ObjectLockConfigurationRule {

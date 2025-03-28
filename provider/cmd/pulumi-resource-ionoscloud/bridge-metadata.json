@@ -656,7 +656,7 @@
                 "majorVersion": 1
             },
             "ionoscloud_object_storage_accesskey": {
-                "current": "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey",
+                "current": "ionoscloud:objectstorage/accessKey:AccessKey",
                 "majorVersion": 1
             },
             "ionoscloud_pg_cluster": {
@@ -1695,7 +1695,7 @@
                 }
             },
             "ionoscloud_monitoring_pipeline": {
-                "current": "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline",
+                "current": "ionoscloud:monitoring/getPipeline:getPipeline",
                 "majorVersion": 1
             },
             "ionoscloud_natgateway": {
@@ -1825,11 +1825,11 @@
                 }
             },
             "ionoscloud_object_storage_accesskey": {
-                "current": "ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey",
+                "current": "ionoscloud:objectstorage/getAccessKey:getAccessKey",
                 "majorVersion": 1
             },
             "ionoscloud_object_storage_region": {
-                "current": "ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion",
+                "current": "ionoscloud:objectstorage/getRegion:getRegion",
                 "majorVersion": 1,
                 "fields": {
                     "storage_classes": {
@@ -1930,7 +1930,7 @@
                 "majorVersion": 1
             },
             "ionoscloud_s3_objects": {
-                "current": "ionoscloud:index/getS3Objects:getS3Objects",
+                "current": "ionoscloud:objectstorage/getObjects:getObjects",
                 "majorVersion": 1,
                 "fields": {
                     "common_prefixes": {
@@ -2203,16 +2203,7 @@
             }
         }
     },
-    "auto-settings": {
-        "resources": {
-            "ionoscloud_monitoring_pipeline": {
-                "aliases": [
-                    "ionoscloud:index/monitoringPipeline:MonitoringPipeline",
-                    "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline"
-                ]
-            }
-        }
-    },
+    "auto-settings": {},
     "mux": {
         "resources": {
             "ionoscloud:alb/balancer:Balancer": 0,
@@ -2259,7 +2250,6 @@
             "ionoscloud:dns/zone:Zone": 0,
             "ionoscloud:dsaas/cluster:Cluster": 0,
             "ionoscloud:dsaas/nodePool:NodePool": 0,
-            "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": 1,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
             "ionoscloud:kafka/cluster:Cluster": 0,
@@ -2273,6 +2263,7 @@
             "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection": 0,
             "ionoscloud:nsg/firewall:Firewall": 0,
             "ionoscloud:nsg/nsg:Nsg": 0,
+            "ionoscloud:objectstorage/accessKey:AccessKey": 1,
             "ionoscloud:objectstorage/bucket:Bucket": 1,
             "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration": 1,
             "ionoscloud:objectstorage/bucketObject:BucketObject": 1,
@@ -2280,7 +2271,6 @@
             "ionoscloud:objectstorage/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": 1,
             "ionoscloud:objectstorage/bucketVersioning:BucketVersioning": 1,
             "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration": 1,
-            "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline": 1,
             "ionoscloud:objectstorage/objectCopy:ObjectCopy": 1,
             "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": 1,
             "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": 1,
@@ -2348,10 +2338,6 @@
             "ionoscloud:dsaas/getNodePool:getNodePool": 0,
             "ionoscloud:dsaas/getNodePools:getNodePools": 0,
             "ionoscloud:dsaas/getVersions:getVersions": 0,
-            "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline": 1,
-            "ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey": 1,
-            "ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion": 1,
-            "ionoscloud:index/getS3Objects:getS3Objects": 1,
             "ionoscloud:k8s/getCluster:getCluster": 0,
             "ionoscloud:k8s/getClusters:getClusters": 0,
             "ionoscloud:k8s/getNodePool:getNodePool": 0,
@@ -2359,14 +2345,18 @@
             "ionoscloud:kafka/getCluster:getCluster": 0,
             "ionoscloud:kafka/getTopic:getTopic": 0,
             "ionoscloud:logging/getPipeline:getPipeline": 0,
+            "ionoscloud:monitoring/getPipeline:getPipeline": 1,
             "ionoscloud:nfs/getCluster:getCluster": 0,
             "ionoscloud:nfs/getShare:getShare": 0,
             "ionoscloud:nlb/getBalancer:getBalancer": 0,
             "ionoscloud:nlb/getForwardingRule:getForwardingRule": 0,
             "ionoscloud:nsg/getNsg:getNsg": 0,
+            "ionoscloud:objectstorage/getAccessKey:getAccessKey": 1,
             "ionoscloud:objectstorage/getBucket:getBucket": 1,
             "ionoscloud:objectstorage/getBucketObject:getBucketObject": 1,
             "ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy": 1,
+            "ionoscloud:objectstorage/getObjects:getObjects": 1,
+            "ionoscloud:objectstorage/getRegion:getRegion": 1,
             "ionoscloud:vpn/getIpsecGateway:getIpsecGateway": 0,
             "ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel": 0,
             "ionoscloud:vpn/getWireguardGateway:getWireguardGateway": 0,

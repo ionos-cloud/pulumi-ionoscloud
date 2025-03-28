@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages an **Object Storage Accesskey** on IonosCloud.
@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.ObjectStorageAccesskey("example", {description: "my description"});
+ * const example = new ionoscloud.objectstorage.AccessKey("example", {description: "my description"});
  * ```
  *
  * ## Import
@@ -23,14 +23,14 @@ import * as utilities from "./utilities";
  * An object storage accesskey resource can be imported using its `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey demo objectStorageAccesskeyid
+ * $ pulumi import ionoscloud:objectstorage/accessKey:AccessKey demo objectStorageAccesskeyid
  * ```
  *
  * This can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.
  */
-export class ObjectStorageAccesskey extends pulumi.CustomResource {
+export class AccessKey extends pulumi.CustomResource {
     /**
-     * Get an existing ObjectStorageAccesskey resource's state with the given name, ID, and optional extra
+     * Get an existing AccessKey resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -38,22 +38,22 @@ export class ObjectStorageAccesskey extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectStorageAccesskeyState, opts?: pulumi.CustomResourceOptions): ObjectStorageAccesskey {
-        return new ObjectStorageAccesskey(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccessKeyState, opts?: pulumi.CustomResourceOptions): AccessKey {
+        return new AccessKey(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey';
+    public static readonly __pulumiType = 'ionoscloud:objectstorage/accessKey:AccessKey';
 
     /**
-     * Returns true if the given object is an instance of ObjectStorageAccesskey.  This is designed to work even
+     * Returns true if the given object is an instance of AccessKey.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ObjectStorageAccesskey {
+    public static isInstance(obj: any): obj is AccessKey {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ObjectStorageAccesskey.__pulumiType;
+        return obj['__pulumiType'] === AccessKey.__pulumiType;
     }
 
     /**
@@ -79,21 +79,21 @@ export class ObjectStorageAccesskey extends pulumi.CustomResource {
     /**
      * Timeouts for this resource.
      */
-    public readonly timeouts!: pulumi.Output<outputs.ObjectStorageAccesskeyTimeouts | undefined>;
+    public readonly timeouts!: pulumi.Output<outputs.objectstorage.AccessKeyTimeouts | undefined>;
 
     /**
-     * Create a ObjectStorageAccesskey resource with the given unique name, arguments, and options.
+     * Create a AccessKey resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ObjectStorageAccesskeyArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ObjectStorageAccesskeyArgs | ObjectStorageAccesskeyState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: AccessKeyArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: AccessKeyArgs | AccessKeyState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ObjectStorageAccesskeyState | undefined;
+            const state = argsOrState as AccessKeyState | undefined;
             resourceInputs["accesskey"] = state ? state.accesskey : undefined;
             resourceInputs["canonicalUserId"] = state ? state.canonicalUserId : undefined;
             resourceInputs["contractUserId"] = state ? state.contractUserId : undefined;
@@ -101,7 +101,7 @@ export class ObjectStorageAccesskey extends pulumi.CustomResource {
             resourceInputs["secretkey"] = state ? state.secretkey : undefined;
             resourceInputs["timeouts"] = state ? state.timeouts : undefined;
         } else {
-            const args = argsOrState as ObjectStorageAccesskeyArgs | undefined;
+            const args = argsOrState as AccessKeyArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["timeouts"] = args ? args.timeouts : undefined;
             resourceInputs["accesskey"] = undefined /*out*/;
@@ -110,14 +110,14 @@ export class ObjectStorageAccesskey extends pulumi.CustomResource {
             resourceInputs["secretkey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ObjectStorageAccesskey.__pulumiType, name, resourceInputs, opts);
+        super(AccessKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering ObjectStorageAccesskey resources.
+ * Input properties used for looking up and filtering AccessKey resources.
  */
-export interface ObjectStorageAccesskeyState {
+export interface AccessKeyState {
     /**
      * Access key metadata is a string of 92 characters.
      */
@@ -141,13 +141,13 @@ export interface ObjectStorageAccesskeyState {
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.ObjectStorageAccesskeyTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstorage.AccessKeyTimeouts>;
 }
 
 /**
- * The set of arguments for constructing a ObjectStorageAccesskey resource.
+ * The set of arguments for constructing a AccessKey resource.
  */
-export interface ObjectStorageAccesskeyArgs {
+export interface AccessKeyArgs {
     /**
      * [string] Description of the Access key.
      */
@@ -155,5 +155,5 @@ export interface ObjectStorageAccesskeyArgs {
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.ObjectStorageAccesskeyTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstorage.AccessKeyTimeouts>;
 }

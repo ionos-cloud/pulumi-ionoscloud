@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * The **Object storage region data source** can be used to search for and return an existing S3 Regions.
@@ -16,22 +16,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getObjectStorageRegion({
+ * const example = ionoscloud.objectstorage.getRegion({
  *     id: "region_id",
  * });
  * ```
  */
-export function getObjectStorageRegion(args: GetObjectStorageRegionArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStorageRegionResult> {
+export function getRegion(args: GetRegionArgs, opts?: pulumi.InvokeOptions): Promise<GetRegionResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion", {
+    return pulumi.runtime.invoke("ionoscloud:objectstorage/getRegion:getRegion", {
         "id": args.id,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getObjectStorageRegion.
+ * A collection of arguments for invoking getRegion.
  */
-export interface GetObjectStorageRegionArgs {
+export interface GetRegionArgs {
     /**
      * Id of an existing object storage Region that you want to search for.
      */
@@ -39,13 +39,13 @@ export interface GetObjectStorageRegionArgs {
 }
 
 /**
- * A collection of values returned by getObjectStorageRegion.
+ * A collection of values returned by getRegion.
  */
-export interface GetObjectStorageRegionResult {
+export interface GetRegionResult {
     /**
      * The capabilities of the region
      */
-    readonly capability: outputs.GetObjectStorageRegionCapability;
+    readonly capability: outputs.objectstorage.GetRegionCapability;
     /**
      * The endpoint URL for the region
      */
@@ -81,22 +81,22 @@ export interface GetObjectStorageRegionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = ionoscloud.getObjectStorageRegion({
+ * const example = ionoscloud.objectstorage.getRegion({
  *     id: "region_id",
  * });
  * ```
  */
-export function getObjectStorageRegionOutput(args: GetObjectStorageRegionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectStorageRegionResult> {
+export function getRegionOutput(args: GetRegionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegionResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion", {
+    return pulumi.runtime.invokeOutput("ionoscloud:objectstorage/getRegion:getRegion", {
         "id": args.id,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getObjectStorageRegion.
+ * A collection of arguments for invoking getRegion.
  */
-export interface GetObjectStorageRegionOutputArgs {
+export interface GetRegionOutputArgs {
     /**
      * Id of an existing object storage Region that you want to search for.
      */

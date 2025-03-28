@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "ionoscloud:objectstorage/accessKey:AccessKey":
+		r = &AccessKey{}
 	case "ionoscloud:objectstorage/bucket:Bucket":
 		r = &Bucket{}
 	case "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration":
@@ -35,8 +37,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BucketVersioning{}
 	case "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration":
 		r = &CorsConfiguration{}
-	case "ionoscloud:objectstorage/monitoringPipeline:MonitoringPipeline":
-		r = &MonitoringPipeline{}
 	case "ionoscloud:objectstorage/objectCopy:ObjectCopy":
 		r = &ObjectCopy{}
 	case "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration":
@@ -58,6 +58,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"objectstorage/accessKey",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"objectstorage/bucket",
@@ -91,11 +96,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"objectstorage/corsConfiguration",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"objectstorage/monitoringPipeline",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetPipelineArgs, GetPipelineResult, GetPipelineOutputArgs } from "./getPipeline";
+export const getPipeline: typeof import("./getPipeline").getPipeline = null as any;
+export const getPipelineOutput: typeof import("./getPipeline").getPipelineOutput = null as any;
+utilities.lazyLoad(exports, ["getPipeline","getPipelineOutput"], () => require("./getPipeline"));
+
 export { PipelineArgs, PipelineState } from "./pipeline";
 export type Pipeline = import("./pipeline").Pipeline;
 export const Pipeline: typeof import("./pipeline").Pipeline = null as any;
