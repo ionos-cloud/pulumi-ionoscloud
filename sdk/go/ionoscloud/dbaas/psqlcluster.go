@@ -196,6 +196,8 @@ import (
 type PSQLCluster struct {
 	pulumi.CustomResourceState
 
+	// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+	AllowReplace pulumi.BoolPtrOutput `pulumi:"allowReplace"`
 	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringOutput `pulumi:"backupLocation"`
 	// [object]
@@ -290,6 +292,8 @@ func GetPSQLCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PSQLCluster resources.
 type psqlclusterState struct {
+	// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+	AllowReplace *bool `pulumi:"allowReplace"`
 	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation *string `pulumi:"backupLocation"`
 	// [object]
@@ -325,6 +329,8 @@ type psqlclusterState struct {
 }
 
 type PSQLClusterState struct {
+	// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+	AllowReplace pulumi.BoolPtrInput
 	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringPtrInput
 	// [object]
@@ -364,6 +370,8 @@ func (PSQLClusterState) ElementType() reflect.Type {
 }
 
 type psqlclusterArgs struct {
+	// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+	AllowReplace *bool `pulumi:"allowReplace"`
 	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation *string `pulumi:"backupLocation"`
 	// [object]
@@ -398,6 +406,8 @@ type psqlclusterArgs struct {
 
 // The set of arguments for constructing a PSQLCluster resource.
 type PSQLClusterArgs struct {
+	// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+	AllowReplace pulumi.BoolPtrInput
 	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringPtrInput
 	// [object]
@@ -515,6 +525,11 @@ func (o PSQLClusterOutput) ToPSQLClusterOutput() PSQLClusterOutput {
 
 func (o PSQLClusterOutput) ToPSQLClusterOutputWithContext(ctx context.Context) PSQLClusterOutput {
 	return o
+}
+
+// When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+func (o PSQLClusterOutput) AllowReplace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PSQLCluster) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
 }
 
 // (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).

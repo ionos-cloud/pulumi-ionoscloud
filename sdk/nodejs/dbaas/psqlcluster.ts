@@ -168,6 +168,10 @@ export class PSQLCluster extends pulumi.CustomResource {
     }
 
     /**
+     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     */
+    public readonly allowReplace!: pulumi.Output<boolean | undefined>;
+    /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     public readonly backupLocation!: pulumi.Output<string>;
@@ -245,6 +249,7 @@ export class PSQLCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PSQLClusterState | undefined;
+            resourceInputs["allowReplace"] = state ? state.allowReplace : undefined;
             resourceInputs["backupLocation"] = state ? state.backupLocation : undefined;
             resourceInputs["connectionPooler"] = state ? state.connectionPooler : undefined;
             resourceInputs["connections"] = state ? state.connections : undefined;
@@ -293,6 +298,7 @@ export class PSQLCluster extends pulumi.CustomResource {
             if ((!args || args.synchronizationMode === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'synchronizationMode'");
             }
+            resourceInputs["allowReplace"] = args ? args.allowReplace : undefined;
             resourceInputs["backupLocation"] = args ? args.backupLocation : undefined;
             resourceInputs["connectionPooler"] = args ? args.connectionPooler : undefined;
             resourceInputs["connections"] = args ? args.connections : undefined;
@@ -319,6 +325,10 @@ export class PSQLCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PSQLCluster resources.
  */
 export interface PSQLClusterState {
+    /**
+     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     */
+    allowReplace?: pulumi.Input<boolean>;
     /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
@@ -389,6 +399,10 @@ export interface PSQLClusterState {
  * The set of arguments for constructing a PSQLCluster resource.
  */
 export interface PSQLClusterArgs {
+    /**
+     * When set to true, allows the update of immutable fields by destroying and re-creating the cluster.
+     */
+    allowReplace?: pulumi.Input<boolean>;
     /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */

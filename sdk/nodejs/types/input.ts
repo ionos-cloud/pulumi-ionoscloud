@@ -1497,6 +1497,27 @@ export namespace logging {
     }
 }
 
+export namespace monitoring {
+    export interface PipelineTimeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+         */
+        read?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: pulumi.Input<string>;
+    }
+}
+
 export namespace nfs {
     export interface ClusterConnections {
         /**
@@ -1687,6 +1708,247 @@ export namespace nlb {
 }
 
 export namespace nsg {
+}
+
+export namespace objectstorage {
+    export interface AccessKeyTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: pulumi.Input<string>;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         */
+        delete?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+         */
+        read?: pulumi.Input<string>;
+    }
+
+    export interface BucketLifecycleConfigurationRule {
+        /**
+         * Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
+         */
+        abortIncompleteMultipartUpload?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload>;
+        /**
+         * A lifecycle rule for when an object expires.
+         */
+        expiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleExpiration>;
+        /**
+         * Unique identifier for the rule.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * A lifecycle rule for when non-current object versions expire.
+         */
+        noncurrentVersionExpiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration>;
+        /**
+         * Object key prefix identifying one or more objects to which the rule applies.
+         */
+        prefix: pulumi.Input<string>;
+        /**
+         * Whether the rule is currently being applied. Valid values: Enabled or Disabled.
+         */
+        status: pulumi.Input<string>;
+    }
+
+    export interface BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload {
+        /**
+         * Specifies the number of days after which IONOS Object Storage Object Storage aborts an incomplete multipart upload.
+         */
+        daysAfterInitiation?: pulumi.Input<number>;
+    }
+
+    export interface BucketLifecycleConfigurationRuleExpiration {
+        /**
+         * Specifies the date when the object expires. Required if 'days' is not specified.
+         */
+        date?: pulumi.Input<string>;
+        /**
+         * Specifies the number of days after object creation when the object expires. Required if 'date' is not specified.
+         */
+        days?: pulumi.Input<number>;
+        /**
+         * Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
+         */
+        expiredObjectDeleteMarker?: pulumi.Input<boolean>;
+    }
+
+    export interface BucketLifecycleConfigurationRuleNoncurrentVersionExpiration {
+        /**
+         * Specifies the number of days an object is noncurrent before IONOS Object Storage can perform the associated action.
+         */
+        noncurrentDays?: pulumi.Input<number>;
+    }
+
+    export interface BucketServerSideEncryptionConfigurationRule {
+        /**
+         * [block] Defines the default encryption settings.
+         */
+        applyServerSideEncryptionByDefault?: pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault>;
+    }
+
+    export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * [string] Server-side encryption algorithm to use. Valid values are 'AES256'
+         */
+        sseAlgorithm: pulumi.Input<string>;
+    }
+
+    export interface BucketTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: pulumi.Input<string>;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         */
+        delete?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+         */
+        read?: pulumi.Input<string>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: pulumi.Input<string>;
+    }
+
+    export interface BucketVersioningVersioningConfiguration {
+        /**
+         * [string] Specifies whether MFA delete is enabled or not. Can be `Enabled` or `Disabled`.
+         */
+        mfaDelete?: pulumi.Input<string>;
+        /**
+         * [string] The versioning state of the bucket. Can be `Enabled` or `Suspended`.
+         */
+        status: pulumi.Input<string>;
+    }
+
+    export interface CorsConfigurationCorsRule {
+        /**
+         * [list] Specifies which headers are allowed in a preflight OPTIONS request through the Access-Control-Request-Headers header
+         */
+        allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [list] An HTTP method that you allow the origin to execute. Valid values are GET, PUT, HEAD, POST, DELETE.
+         */
+        allowedMethods: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [list] Specifies which origins are allowed to make requests to the resource.
+         */
+        allowedOrigins: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [list] Specifies which headers are exposed to the browser.
+         */
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [int] Container for the Contract Number of the owner
+         *
+         *
+         * Days and years are mutually exclusive. You can only specify one of them.
+         */
+        id?: pulumi.Input<number>;
+        /**
+         * [int] Specifies how long the results of a pre-flight request can be cached in seconds.
+         */
+        maxAgeSeconds?: pulumi.Input<number>;
+    }
+
+    export interface ObjectLockConfigurationRule {
+        /**
+         * [block] A block of defaultRetention as defined below.
+         */
+        defaultRetention?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRuleDefaultRetention>;
+    }
+
+    export interface ObjectLockConfigurationRuleDefaultRetention {
+        /**
+         * [int] The default retention period of the bucket in days.
+         */
+        days?: pulumi.Input<number>;
+        /**
+         * [string] The default retention mode of the bucket. Can be `GOVERNANCE` or `COMPLIANCE`.
+         */
+        mode?: pulumi.Input<string>;
+        /**
+         * [int] The default retention period of the bucket in years.
+         *
+         * Days and years are mutually exclusive. You can only specify one of them.
+         */
+        years?: pulumi.Input<number>;
+    }
+
+    export interface WebsiteConfigurationErrorDocument {
+        /**
+         * The object key
+         */
+        key?: pulumi.Input<string>;
+    }
+
+    export interface WebsiteConfigurationIndexDocument {
+        /**
+         * A suffix that is appended to a request that is for a directory on the website endpoint (for example, if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests.
+         */
+        suffix?: pulumi.Input<string>;
+    }
+
+    export interface WebsiteConfigurationRedirectAllRequestsTo {
+        /**
+         * Name of the host where requests will be redirected.
+         */
+        hostName?: pulumi.Input<string>;
+        /**
+         * Protocol to use (http, https).
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface WebsiteConfigurationRoutingRule {
+        /**
+         * A container for describing a condition that must be met for the specified redirect to apply.
+         */
+        condition?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleCondition>;
+        /**
+         * Container for the redirect information.
+         */
+        redirect?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleRedirect>;
+    }
+
+    export interface WebsiteConfigurationRoutingRuleCondition {
+        /**
+         * The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
+         */
+        httpErrorCodeReturnedEquals?: pulumi.Input<string>;
+        /**
+         * The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix example, the key prefix will be /example.
+         */
+        keyPrefixEquals?: pulumi.Input<string>;
+    }
+
+    export interface WebsiteConfigurationRoutingRuleRedirect {
+        /**
+         * The host name to use in the redirect request.
+         */
+        hostName?: pulumi.Input<string>;
+        /**
+         * The HTTP redirect code to use on the response. Not required if one of the siblings is present.
+         */
+        httpRedirectCode?: pulumi.Input<string>;
+        /**
+         * Protocol to use (http, https).
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * The object key to be used in the redirect request. For example, redirect request to error.html, the replace key prefix will be /error.html. Not required if one of the siblings is present.
+         */
+        replaceKeyPrefixWith?: pulumi.Input<string>;
+        /**
+         * The specific object key to use in the redirect request. For example, redirect request for error.html, the replace key will be /error.html. Not required if one of the siblings is present.
+         */
+        replaceKeyWith?: pulumi.Input<string>;
+    }
 }
 
 export namespace vpn {

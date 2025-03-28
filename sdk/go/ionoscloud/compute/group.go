@@ -109,10 +109,28 @@ type Group struct {
 
 	// [Boolean] The group will be allowed to access the activity log.
 	AccessActivityLog pulumi.BoolPtrOutput `pulumi:"accessActivityLog"`
+	// Privilege for a group to access and manage AiModelHub.
+	AccessAndManageAiModelHub pulumi.BoolPtrOutput `pulumi:"accessAndManageAiModelHub"`
+	// Privilege for a group to access and manage ApiGateway.
+	AccessAndManageApiGateway pulumi.BoolPtrOutput `pulumi:"accessAndManageApiGateway"`
+	// Privilege for a group to access and manage Cdn.
+	AccessAndManageCdn pulumi.BoolPtrOutput `pulumi:"accessAndManageCdn"`
 	// [Boolean]  The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates pulumi.BoolPtrOutput `pulumi:"accessAndManageCertificates"`
+	// Privilege for a group to access and manage dns records.
+	AccessAndManageDns pulumi.BoolPtrOutput `pulumi:"accessAndManageDns"`
+	// Privilege for a group to access and manage IamResources.
+	AccessAndManageIamResources pulumi.BoolPtrOutput `pulumi:"accessAndManageIamResources"`
+	// Privilege for a group to access and manage Kaas.
+	AccessAndManageKaas pulumi.BoolPtrOutput `pulumi:"accessAndManageKaas"`
+	// Privilege for a group to access and manage logging.
+	AccessAndManageLogging pulumi.BoolPtrOutput `pulumi:"accessAndManageLogging"`
 	// [Boolean]  The group will be allowed to access and manage monitoring.
 	AccessAndManageMonitoring pulumi.BoolPtrOutput `pulumi:"accessAndManageMonitoring"`
+	// Privilege for a group to access and manage NetworkFileStorage.
+	AccessAndManageNetworkFileStorage pulumi.BoolPtrOutput `pulumi:"accessAndManageNetworkFileStorage"`
+	// Privilege for a group to access and manage Vpn.
+	AccessAndManageVpn pulumi.BoolPtrOutput `pulumi:"accessAndManageVpn"`
 	// [Boolean] The group will be allowed to create backup unit privilege.
 	CreateBackupUnit pulumi.BoolPtrOutput `pulumi:"createBackupUnit"`
 	// [Boolean] The group will be allowed to create virtual data centers.
@@ -123,12 +141,18 @@ type Group struct {
 	CreateInternetAccess pulumi.BoolPtrOutput `pulumi:"createInternetAccess"`
 	// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
 	CreateK8sCluster pulumi.BoolPtrOutput `pulumi:"createK8sCluster"`
+	// Create Network Security groups.
+	CreateNetworkSecurityGroups pulumi.BoolPtrOutput `pulumi:"createNetworkSecurityGroups"`
 	// [Boolean] The group will be allowed to create Cross Connects privilege.
 	CreatePcc pulumi.BoolPtrOutput `pulumi:"createPcc"`
 	// [Boolean] The group will be allowed to create snapshots.
 	CreateSnapshot pulumi.BoolPtrOutput `pulumi:"createSnapshot"`
+	// Privilege for a group to access and manage the Data Platform.
+	ManageDataplatform pulumi.BoolPtrOutput `pulumi:"manageDataplatform"`
 	// [Boolean]  Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas pulumi.BoolPtrOutput `pulumi:"manageDbaas"`
+	// Privilege for group accessing container registry related functionality.
+	ManageRegistry pulumi.BoolPtrOutput `pulumi:"manageRegistry"`
 	// [string] A name for the group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [Boolean] The group will be allowed to reserve IP addresses.
@@ -179,10 +203,28 @@ func GetGroup(ctx *pulumi.Context,
 type groupState struct {
 	// [Boolean] The group will be allowed to access the activity log.
 	AccessActivityLog *bool `pulumi:"accessActivityLog"`
+	// Privilege for a group to access and manage AiModelHub.
+	AccessAndManageAiModelHub *bool `pulumi:"accessAndManageAiModelHub"`
+	// Privilege for a group to access and manage ApiGateway.
+	AccessAndManageApiGateway *bool `pulumi:"accessAndManageApiGateway"`
+	// Privilege for a group to access and manage Cdn.
+	AccessAndManageCdn *bool `pulumi:"accessAndManageCdn"`
 	// [Boolean]  The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates *bool `pulumi:"accessAndManageCertificates"`
+	// Privilege for a group to access and manage dns records.
+	AccessAndManageDns *bool `pulumi:"accessAndManageDns"`
+	// Privilege for a group to access and manage IamResources.
+	AccessAndManageIamResources *bool `pulumi:"accessAndManageIamResources"`
+	// Privilege for a group to access and manage Kaas.
+	AccessAndManageKaas *bool `pulumi:"accessAndManageKaas"`
+	// Privilege for a group to access and manage logging.
+	AccessAndManageLogging *bool `pulumi:"accessAndManageLogging"`
 	// [Boolean]  The group will be allowed to access and manage monitoring.
 	AccessAndManageMonitoring *bool `pulumi:"accessAndManageMonitoring"`
+	// Privilege for a group to access and manage NetworkFileStorage.
+	AccessAndManageNetworkFileStorage *bool `pulumi:"accessAndManageNetworkFileStorage"`
+	// Privilege for a group to access and manage Vpn.
+	AccessAndManageVpn *bool `pulumi:"accessAndManageVpn"`
 	// [Boolean] The group will be allowed to create backup unit privilege.
 	CreateBackupUnit *bool `pulumi:"createBackupUnit"`
 	// [Boolean] The group will be allowed to create virtual data centers.
@@ -193,12 +235,18 @@ type groupState struct {
 	CreateInternetAccess *bool `pulumi:"createInternetAccess"`
 	// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
 	CreateK8sCluster *bool `pulumi:"createK8sCluster"`
+	// Create Network Security groups.
+	CreateNetworkSecurityGroups *bool `pulumi:"createNetworkSecurityGroups"`
 	// [Boolean] The group will be allowed to create Cross Connects privilege.
 	CreatePcc *bool `pulumi:"createPcc"`
 	// [Boolean] The group will be allowed to create snapshots.
 	CreateSnapshot *bool `pulumi:"createSnapshot"`
+	// Privilege for a group to access and manage the Data Platform.
+	ManageDataplatform *bool `pulumi:"manageDataplatform"`
 	// [Boolean]  Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas *bool `pulumi:"manageDbaas"`
+	// Privilege for group accessing container registry related functionality.
+	ManageRegistry *bool `pulumi:"manageRegistry"`
 	// [string] A name for the group.
 	Name *string `pulumi:"name"`
 	// [Boolean] The group will be allowed to reserve IP addresses.
@@ -220,10 +268,28 @@ type groupState struct {
 type GroupState struct {
 	// [Boolean] The group will be allowed to access the activity log.
 	AccessActivityLog pulumi.BoolPtrInput
+	// Privilege for a group to access and manage AiModelHub.
+	AccessAndManageAiModelHub pulumi.BoolPtrInput
+	// Privilege for a group to access and manage ApiGateway.
+	AccessAndManageApiGateway pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Cdn.
+	AccessAndManageCdn pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates pulumi.BoolPtrInput
+	// Privilege for a group to access and manage dns records.
+	AccessAndManageDns pulumi.BoolPtrInput
+	// Privilege for a group to access and manage IamResources.
+	AccessAndManageIamResources pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Kaas.
+	AccessAndManageKaas pulumi.BoolPtrInput
+	// Privilege for a group to access and manage logging.
+	AccessAndManageLogging pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to access and manage monitoring.
 	AccessAndManageMonitoring pulumi.BoolPtrInput
+	// Privilege for a group to access and manage NetworkFileStorage.
+	AccessAndManageNetworkFileStorage pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Vpn.
+	AccessAndManageVpn pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create backup unit privilege.
 	CreateBackupUnit pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create virtual data centers.
@@ -234,12 +300,18 @@ type GroupState struct {
 	CreateInternetAccess pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
 	CreateK8sCluster pulumi.BoolPtrInput
+	// Create Network Security groups.
+	CreateNetworkSecurityGroups pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create Cross Connects privilege.
 	CreatePcc pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create snapshots.
 	CreateSnapshot pulumi.BoolPtrInput
+	// Privilege for a group to access and manage the Data Platform.
+	ManageDataplatform pulumi.BoolPtrInput
 	// [Boolean]  Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas pulumi.BoolPtrInput
+	// Privilege for group accessing container registry related functionality.
+	ManageRegistry pulumi.BoolPtrInput
 	// [string] A name for the group.
 	Name pulumi.StringPtrInput
 	// [Boolean] The group will be allowed to reserve IP addresses.
@@ -265,10 +337,28 @@ func (GroupState) ElementType() reflect.Type {
 type groupArgs struct {
 	// [Boolean] The group will be allowed to access the activity log.
 	AccessActivityLog *bool `pulumi:"accessActivityLog"`
+	// Privilege for a group to access and manage AiModelHub.
+	AccessAndManageAiModelHub *bool `pulumi:"accessAndManageAiModelHub"`
+	// Privilege for a group to access and manage ApiGateway.
+	AccessAndManageApiGateway *bool `pulumi:"accessAndManageApiGateway"`
+	// Privilege for a group to access and manage Cdn.
+	AccessAndManageCdn *bool `pulumi:"accessAndManageCdn"`
 	// [Boolean]  The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates *bool `pulumi:"accessAndManageCertificates"`
+	// Privilege for a group to access and manage dns records.
+	AccessAndManageDns *bool `pulumi:"accessAndManageDns"`
+	// Privilege for a group to access and manage IamResources.
+	AccessAndManageIamResources *bool `pulumi:"accessAndManageIamResources"`
+	// Privilege for a group to access and manage Kaas.
+	AccessAndManageKaas *bool `pulumi:"accessAndManageKaas"`
+	// Privilege for a group to access and manage logging.
+	AccessAndManageLogging *bool `pulumi:"accessAndManageLogging"`
 	// [Boolean]  The group will be allowed to access and manage monitoring.
 	AccessAndManageMonitoring *bool `pulumi:"accessAndManageMonitoring"`
+	// Privilege for a group to access and manage NetworkFileStorage.
+	AccessAndManageNetworkFileStorage *bool `pulumi:"accessAndManageNetworkFileStorage"`
+	// Privilege for a group to access and manage Vpn.
+	AccessAndManageVpn *bool `pulumi:"accessAndManageVpn"`
 	// [Boolean] The group will be allowed to create backup unit privilege.
 	CreateBackupUnit *bool `pulumi:"createBackupUnit"`
 	// [Boolean] The group will be allowed to create virtual data centers.
@@ -279,12 +369,18 @@ type groupArgs struct {
 	CreateInternetAccess *bool `pulumi:"createInternetAccess"`
 	// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
 	CreateK8sCluster *bool `pulumi:"createK8sCluster"`
+	// Create Network Security groups.
+	CreateNetworkSecurityGroups *bool `pulumi:"createNetworkSecurityGroups"`
 	// [Boolean] The group will be allowed to create Cross Connects privilege.
 	CreatePcc *bool `pulumi:"createPcc"`
 	// [Boolean] The group will be allowed to create snapshots.
 	CreateSnapshot *bool `pulumi:"createSnapshot"`
+	// Privilege for a group to access and manage the Data Platform.
+	ManageDataplatform *bool `pulumi:"manageDataplatform"`
 	// [Boolean]  Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas *bool `pulumi:"manageDbaas"`
+	// Privilege for group accessing container registry related functionality.
+	ManageRegistry *bool `pulumi:"manageRegistry"`
 	// [string] A name for the group.
 	Name *string `pulumi:"name"`
 	// [Boolean] The group will be allowed to reserve IP addresses.
@@ -303,10 +399,28 @@ type groupArgs struct {
 type GroupArgs struct {
 	// [Boolean] The group will be allowed to access the activity log.
 	AccessActivityLog pulumi.BoolPtrInput
+	// Privilege for a group to access and manage AiModelHub.
+	AccessAndManageAiModelHub pulumi.BoolPtrInput
+	// Privilege for a group to access and manage ApiGateway.
+	AccessAndManageApiGateway pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Cdn.
+	AccessAndManageCdn pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates pulumi.BoolPtrInput
+	// Privilege for a group to access and manage dns records.
+	AccessAndManageDns pulumi.BoolPtrInput
+	// Privilege for a group to access and manage IamResources.
+	AccessAndManageIamResources pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Kaas.
+	AccessAndManageKaas pulumi.BoolPtrInput
+	// Privilege for a group to access and manage logging.
+	AccessAndManageLogging pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to access and manage monitoring.
 	AccessAndManageMonitoring pulumi.BoolPtrInput
+	// Privilege for a group to access and manage NetworkFileStorage.
+	AccessAndManageNetworkFileStorage pulumi.BoolPtrInput
+	// Privilege for a group to access and manage Vpn.
+	AccessAndManageVpn pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create backup unit privilege.
 	CreateBackupUnit pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create virtual data centers.
@@ -317,12 +431,18 @@ type GroupArgs struct {
 	CreateInternetAccess pulumi.BoolPtrInput
 	// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
 	CreateK8sCluster pulumi.BoolPtrInput
+	// Create Network Security groups.
+	CreateNetworkSecurityGroups pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create Cross Connects privilege.
 	CreatePcc pulumi.BoolPtrInput
 	// [Boolean] The group will be allowed to create snapshots.
 	CreateSnapshot pulumi.BoolPtrInput
+	// Privilege for a group to access and manage the Data Platform.
+	ManageDataplatform pulumi.BoolPtrInput
 	// [Boolean]  Privilege for a group to manage DBaaS related functionality.
 	ManageDbaas pulumi.BoolPtrInput
+	// Privilege for group accessing container registry related functionality.
+	ManageRegistry pulumi.BoolPtrInput
 	// [string] A name for the group.
 	Name pulumi.StringPtrInput
 	// [Boolean] The group will be allowed to reserve IP addresses.
@@ -429,14 +549,59 @@ func (o GroupOutput) AccessActivityLog() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessActivityLog }).(pulumi.BoolPtrOutput)
 }
 
+// Privilege for a group to access and manage AiModelHub.
+func (o GroupOutput) AccessAndManageAiModelHub() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageAiModelHub }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage ApiGateway.
+func (o GroupOutput) AccessAndManageApiGateway() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageApiGateway }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage Cdn.
+func (o GroupOutput) AccessAndManageCdn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageCdn }).(pulumi.BoolPtrOutput)
+}
+
 // [Boolean]  The group will be allowed to access and manage certificates.
 func (o GroupOutput) AccessAndManageCertificates() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageCertificates }).(pulumi.BoolPtrOutput)
 }
 
+// Privilege for a group to access and manage dns records.
+func (o GroupOutput) AccessAndManageDns() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageDns }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage IamResources.
+func (o GroupOutput) AccessAndManageIamResources() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageIamResources }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage Kaas.
+func (o GroupOutput) AccessAndManageKaas() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageKaas }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage logging.
+func (o GroupOutput) AccessAndManageLogging() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageLogging }).(pulumi.BoolPtrOutput)
+}
+
 // [Boolean]  The group will be allowed to access and manage monitoring.
 func (o GroupOutput) AccessAndManageMonitoring() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageMonitoring }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage NetworkFileStorage.
+func (o GroupOutput) AccessAndManageNetworkFileStorage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageNetworkFileStorage }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for a group to access and manage Vpn.
+func (o GroupOutput) AccessAndManageVpn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AccessAndManageVpn }).(pulumi.BoolPtrOutput)
 }
 
 // [Boolean] The group will be allowed to create backup unit privilege.
@@ -464,6 +629,11 @@ func (o GroupOutput) CreateK8sCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.CreateK8sCluster }).(pulumi.BoolPtrOutput)
 }
 
+// Create Network Security groups.
+func (o GroupOutput) CreateNetworkSecurityGroups() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.CreateNetworkSecurityGroups }).(pulumi.BoolPtrOutput)
+}
+
 // [Boolean] The group will be allowed to create Cross Connects privilege.
 func (o GroupOutput) CreatePcc() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.CreatePcc }).(pulumi.BoolPtrOutput)
@@ -474,9 +644,19 @@ func (o GroupOutput) CreateSnapshot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.CreateSnapshot }).(pulumi.BoolPtrOutput)
 }
 
+// Privilege for a group to access and manage the Data Platform.
+func (o GroupOutput) ManageDataplatform() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ManageDataplatform }).(pulumi.BoolPtrOutput)
+}
+
 // [Boolean]  Privilege for a group to manage DBaaS related functionality.
 func (o GroupOutput) ManageDbaas() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ManageDbaas }).(pulumi.BoolPtrOutput)
+}
+
+// Privilege for group accessing container registry related functionality.
+func (o GroupOutput) ManageRegistry() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.ManageRegistry }).(pulumi.BoolPtrOutput)
 }
 
 // [string] A name for the group.

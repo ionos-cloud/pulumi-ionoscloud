@@ -26,9 +26,11 @@ import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
 import * as kafka from "./kafka";
 import * as logging from "./logging";
+import * as monitoring from "./monitoring";
 import * as nfs from "./nfs";
 import * as nlb from "./nlb";
 import * as nsg from "./nsg";
+import * as objectstorage from "./objectstorage";
 import * as types from "./types";
 import * as vpn from "./vpn";
 
@@ -47,9 +49,11 @@ export {
     k8s,
     kafka,
     logging,
+    monitoring,
     nfs,
     nlb,
     nsg,
+    objectstorage,
     types,
     vpn,
 };

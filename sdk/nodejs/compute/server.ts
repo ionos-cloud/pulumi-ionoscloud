@@ -435,7 +435,7 @@ export class Server extends pulumi.CustomResource {
     /**
      * See the Volume section.
      */
-    public readonly volume!: pulumi.Output<outputs.compute.ServerVolume>;
+    public readonly volume!: pulumi.Output<outputs.compute.ServerVolume | undefined>;
 
     /**
      * Create a Server resource with the given unique name, arguments, and options.
@@ -481,9 +481,6 @@ export class Server extends pulumi.CustomResource {
             const args = argsOrState as ServerArgs | undefined;
             if ((!args || args.datacenterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datacenterId'");
-            }
-            if ((!args || args.volume === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'volume'");
             }
             resourceInputs["allowReplace"] = args ? args.allowReplace : undefined;
             resourceInputs["availabilityZone"] = args ? args.availabilityZone : undefined;
@@ -761,5 +758,5 @@ export interface ServerArgs {
     /**
      * See the Volume section.
      */
-    volume: pulumi.Input<inputs.compute.ServerVolume>;
+    volume?: pulumi.Input<inputs.compute.ServerVolume>;
 }

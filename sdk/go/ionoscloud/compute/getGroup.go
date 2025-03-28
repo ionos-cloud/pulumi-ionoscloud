@@ -89,11 +89,20 @@ type LookupGroupArgs struct {
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
 	// The group will be allowed to access the activity log.
-	AccessActivityLog bool `pulumi:"accessActivityLog"`
+	AccessActivityLog         bool `pulumi:"accessActivityLog"`
+	AccessAndManageAiModelHub bool `pulumi:"accessAndManageAiModelHub"`
+	AccessAndManageApiGateway bool `pulumi:"accessAndManageApiGateway"`
+	AccessAndManageCdn        bool `pulumi:"accessAndManageCdn"`
 	// The group will be allowed to access and manage certificates.
 	AccessAndManageCertificates bool `pulumi:"accessAndManageCertificates"`
+	AccessAndManageDns          bool `pulumi:"accessAndManageDns"`
+	AccessAndManageIamResources bool `pulumi:"accessAndManageIamResources"`
+	AccessAndManageKaas         bool `pulumi:"accessAndManageKaas"`
+	AccessAndManageLogging      bool `pulumi:"accessAndManageLogging"`
 	// The group will be allowed to access and manage monitoring.
-	AccessAndManageMonitoring bool `pulumi:"accessAndManageMonitoring"`
+	AccessAndManageMonitoring         bool `pulumi:"accessAndManageMonitoring"`
+	AccessAndManageNetworkFileStorage bool `pulumi:"accessAndManageNetworkFileStorage"`
+	AccessAndManageVpn                bool `pulumi:"accessAndManageVpn"`
 	// The group will be allowed to create backup unit privilege.
 	CreateBackupUnit bool `pulumi:"createBackupUnit"`
 	// The group will be allowed to create virtual data centers.
@@ -103,15 +112,18 @@ type LookupGroupResult struct {
 	// The group will be allowed to create internet access privilege.
 	CreateInternetAccess bool `pulumi:"createInternetAccess"`
 	// The group will be allowed to create kubernetes cluster privilege.
-	CreateK8sCluster bool `pulumi:"createK8sCluster"`
+	CreateK8sCluster            bool `pulumi:"createK8sCluster"`
+	CreateNetworkSecurityGroups bool `pulumi:"createNetworkSecurityGroups"`
 	// The group will be allowed to create Cross Connects privilege.
 	CreatePcc bool `pulumi:"createPcc"`
 	// The group will be allowed to create snapshots.
 	CreateSnapshot bool `pulumi:"createSnapshot"`
 	// The id of the group.
-	Id string `pulumi:"id"`
+	Id                 string `pulumi:"id"`
+	ManageDataplatform bool   `pulumi:"manageDataplatform"`
 	// Privilege for a group to manage DBaaS related functionality.
-	ManageDbaas bool `pulumi:"manageDbaas"`
+	ManageDbaas    bool `pulumi:"manageDbaas"`
+	ManageRegistry bool `pulumi:"manageRegistry"`
 	// A name for the group.
 	Name string `pulumi:"name"`
 	// The group will be allowed to reserve IP addresses.
@@ -165,14 +177,50 @@ func (o LookupGroupResultOutput) AccessActivityLog() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessActivityLog }).(pulumi.BoolOutput)
 }
 
+func (o LookupGroupResultOutput) AccessAndManageAiModelHub() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageAiModelHub }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageApiGateway() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageApiGateway }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageCdn() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageCdn }).(pulumi.BoolOutput)
+}
+
 // The group will be allowed to access and manage certificates.
 func (o LookupGroupResultOutput) AccessAndManageCertificates() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageCertificates }).(pulumi.BoolOutput)
 }
 
+func (o LookupGroupResultOutput) AccessAndManageDns() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageDns }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageIamResources() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageIamResources }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageKaas() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageKaas }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageLogging() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageLogging }).(pulumi.BoolOutput)
+}
+
 // The group will be allowed to access and manage monitoring.
 func (o LookupGroupResultOutput) AccessAndManageMonitoring() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageMonitoring }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageNetworkFileStorage() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageNetworkFileStorage }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) AccessAndManageVpn() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageVpn }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create backup unit privilege.
@@ -200,6 +248,10 @@ func (o LookupGroupResultOutput) CreateK8sCluster() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateK8sCluster }).(pulumi.BoolOutput)
 }
 
+func (o LookupGroupResultOutput) CreateNetworkSecurityGroups() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateNetworkSecurityGroups }).(pulumi.BoolOutput)
+}
+
 // The group will be allowed to create Cross Connects privilege.
 func (o LookupGroupResultOutput) CreatePcc() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreatePcc }).(pulumi.BoolOutput)
@@ -215,9 +267,17 @@ func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupGroupResultOutput) ManageDataplatform() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.ManageDataplatform }).(pulumi.BoolOutput)
+}
+
 // Privilege for a group to manage DBaaS related functionality.
 func (o LookupGroupResultOutput) ManageDbaas() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.ManageDbaas }).(pulumi.BoolOutput)
+}
+
+func (o LookupGroupResultOutput) ManageRegistry() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupGroupResult) bool { return v.ManageRegistry }).(pulumi.BoolOutput)
 }
 
 // A name for the group.

@@ -27,16 +27,43 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, access_activity_log=None, access_and_manage_certificates=None, access_and_manage_monitoring=None, create_backup_unit=None, create_datacenter=None, create_flow_log=None, create_internet_access=None, create_k8s_cluster=None, create_pcc=None, create_snapshot=None, id=None, manage_dbaas=None, name=None, reserve_ip=None, s3_privilege=None, users=None):
+    def __init__(__self__, access_activity_log=None, access_and_manage_ai_model_hub=None, access_and_manage_api_gateway=None, access_and_manage_cdn=None, access_and_manage_certificates=None, access_and_manage_dns=None, access_and_manage_iam_resources=None, access_and_manage_kaas=None, access_and_manage_logging=None, access_and_manage_monitoring=None, access_and_manage_network_file_storage=None, access_and_manage_vpn=None, create_backup_unit=None, create_datacenter=None, create_flow_log=None, create_internet_access=None, create_k8s_cluster=None, create_network_security_groups=None, create_pcc=None, create_snapshot=None, id=None, manage_dataplatform=None, manage_dbaas=None, manage_registry=None, name=None, reserve_ip=None, s3_privilege=None, users=None):
         if access_activity_log and not isinstance(access_activity_log, bool):
             raise TypeError("Expected argument 'access_activity_log' to be a bool")
         pulumi.set(__self__, "access_activity_log", access_activity_log)
+        if access_and_manage_ai_model_hub and not isinstance(access_and_manage_ai_model_hub, bool):
+            raise TypeError("Expected argument 'access_and_manage_ai_model_hub' to be a bool")
+        pulumi.set(__self__, "access_and_manage_ai_model_hub", access_and_manage_ai_model_hub)
+        if access_and_manage_api_gateway and not isinstance(access_and_manage_api_gateway, bool):
+            raise TypeError("Expected argument 'access_and_manage_api_gateway' to be a bool")
+        pulumi.set(__self__, "access_and_manage_api_gateway", access_and_manage_api_gateway)
+        if access_and_manage_cdn and not isinstance(access_and_manage_cdn, bool):
+            raise TypeError("Expected argument 'access_and_manage_cdn' to be a bool")
+        pulumi.set(__self__, "access_and_manage_cdn", access_and_manage_cdn)
         if access_and_manage_certificates and not isinstance(access_and_manage_certificates, bool):
             raise TypeError("Expected argument 'access_and_manage_certificates' to be a bool")
         pulumi.set(__self__, "access_and_manage_certificates", access_and_manage_certificates)
+        if access_and_manage_dns and not isinstance(access_and_manage_dns, bool):
+            raise TypeError("Expected argument 'access_and_manage_dns' to be a bool")
+        pulumi.set(__self__, "access_and_manage_dns", access_and_manage_dns)
+        if access_and_manage_iam_resources and not isinstance(access_and_manage_iam_resources, bool):
+            raise TypeError("Expected argument 'access_and_manage_iam_resources' to be a bool")
+        pulumi.set(__self__, "access_and_manage_iam_resources", access_and_manage_iam_resources)
+        if access_and_manage_kaas and not isinstance(access_and_manage_kaas, bool):
+            raise TypeError("Expected argument 'access_and_manage_kaas' to be a bool")
+        pulumi.set(__self__, "access_and_manage_kaas", access_and_manage_kaas)
+        if access_and_manage_logging and not isinstance(access_and_manage_logging, bool):
+            raise TypeError("Expected argument 'access_and_manage_logging' to be a bool")
+        pulumi.set(__self__, "access_and_manage_logging", access_and_manage_logging)
         if access_and_manage_monitoring and not isinstance(access_and_manage_monitoring, bool):
             raise TypeError("Expected argument 'access_and_manage_monitoring' to be a bool")
         pulumi.set(__self__, "access_and_manage_monitoring", access_and_manage_monitoring)
+        if access_and_manage_network_file_storage and not isinstance(access_and_manage_network_file_storage, bool):
+            raise TypeError("Expected argument 'access_and_manage_network_file_storage' to be a bool")
+        pulumi.set(__self__, "access_and_manage_network_file_storage", access_and_manage_network_file_storage)
+        if access_and_manage_vpn and not isinstance(access_and_manage_vpn, bool):
+            raise TypeError("Expected argument 'access_and_manage_vpn' to be a bool")
+        pulumi.set(__self__, "access_and_manage_vpn", access_and_manage_vpn)
         if create_backup_unit and not isinstance(create_backup_unit, bool):
             raise TypeError("Expected argument 'create_backup_unit' to be a bool")
         pulumi.set(__self__, "create_backup_unit", create_backup_unit)
@@ -52,6 +79,9 @@ class GetGroupResult:
         if create_k8s_cluster and not isinstance(create_k8s_cluster, bool):
             raise TypeError("Expected argument 'create_k8s_cluster' to be a bool")
         pulumi.set(__self__, "create_k8s_cluster", create_k8s_cluster)
+        if create_network_security_groups and not isinstance(create_network_security_groups, bool):
+            raise TypeError("Expected argument 'create_network_security_groups' to be a bool")
+        pulumi.set(__self__, "create_network_security_groups", create_network_security_groups)
         if create_pcc and not isinstance(create_pcc, bool):
             raise TypeError("Expected argument 'create_pcc' to be a bool")
         pulumi.set(__self__, "create_pcc", create_pcc)
@@ -61,9 +91,15 @@ class GetGroupResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if manage_dataplatform and not isinstance(manage_dataplatform, bool):
+            raise TypeError("Expected argument 'manage_dataplatform' to be a bool")
+        pulumi.set(__self__, "manage_dataplatform", manage_dataplatform)
         if manage_dbaas and not isinstance(manage_dbaas, bool):
             raise TypeError("Expected argument 'manage_dbaas' to be a bool")
         pulumi.set(__self__, "manage_dbaas", manage_dbaas)
+        if manage_registry and not isinstance(manage_registry, bool):
+            raise TypeError("Expected argument 'manage_registry' to be a bool")
+        pulumi.set(__self__, "manage_registry", manage_registry)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -86,6 +122,21 @@ class GetGroupResult:
         return pulumi.get(self, "access_activity_log")
 
     @property
+    @pulumi.getter(name="accessAndManageAiModelHub")
+    def access_and_manage_ai_model_hub(self) -> bool:
+        return pulumi.get(self, "access_and_manage_ai_model_hub")
+
+    @property
+    @pulumi.getter(name="accessAndManageApiGateway")
+    def access_and_manage_api_gateway(self) -> bool:
+        return pulumi.get(self, "access_and_manage_api_gateway")
+
+    @property
+    @pulumi.getter(name="accessAndManageCdn")
+    def access_and_manage_cdn(self) -> bool:
+        return pulumi.get(self, "access_and_manage_cdn")
+
+    @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> bool:
         """
@@ -94,12 +145,42 @@ class GetGroupResult:
         return pulumi.get(self, "access_and_manage_certificates")
 
     @property
+    @pulumi.getter(name="accessAndManageDns")
+    def access_and_manage_dns(self) -> bool:
+        return pulumi.get(self, "access_and_manage_dns")
+
+    @property
+    @pulumi.getter(name="accessAndManageIamResources")
+    def access_and_manage_iam_resources(self) -> bool:
+        return pulumi.get(self, "access_and_manage_iam_resources")
+
+    @property
+    @pulumi.getter(name="accessAndManageKaas")
+    def access_and_manage_kaas(self) -> bool:
+        return pulumi.get(self, "access_and_manage_kaas")
+
+    @property
+    @pulumi.getter(name="accessAndManageLogging")
+    def access_and_manage_logging(self) -> bool:
+        return pulumi.get(self, "access_and_manage_logging")
+
+    @property
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> bool:
         """
         The group will be allowed to access and manage monitoring.
         """
         return pulumi.get(self, "access_and_manage_monitoring")
+
+    @property
+    @pulumi.getter(name="accessAndManageNetworkFileStorage")
+    def access_and_manage_network_file_storage(self) -> bool:
+        return pulumi.get(self, "access_and_manage_network_file_storage")
+
+    @property
+    @pulumi.getter(name="accessAndManageVpn")
+    def access_and_manage_vpn(self) -> bool:
+        return pulumi.get(self, "access_and_manage_vpn")
 
     @property
     @pulumi.getter(name="createBackupUnit")
@@ -142,6 +223,11 @@ class GetGroupResult:
         return pulumi.get(self, "create_k8s_cluster")
 
     @property
+    @pulumi.getter(name="createNetworkSecurityGroups")
+    def create_network_security_groups(self) -> bool:
+        return pulumi.get(self, "create_network_security_groups")
+
+    @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> bool:
         """
@@ -166,12 +252,22 @@ class GetGroupResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="manageDataplatform")
+    def manage_dataplatform(self) -> bool:
+        return pulumi.get(self, "manage_dataplatform")
+
+    @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> bool:
         """
         Privilege for a group to manage DBaaS related functionality.
         """
         return pulumi.get(self, "manage_dbaas")
+
+    @property
+    @pulumi.getter(name="manageRegistry")
+    def manage_registry(self) -> bool:
+        return pulumi.get(self, "manage_registry")
 
     @property
     @pulumi.getter
@@ -213,17 +309,29 @@ class AwaitableGetGroupResult(GetGroupResult):
             yield self
         return GetGroupResult(
             access_activity_log=self.access_activity_log,
+            access_and_manage_ai_model_hub=self.access_and_manage_ai_model_hub,
+            access_and_manage_api_gateway=self.access_and_manage_api_gateway,
+            access_and_manage_cdn=self.access_and_manage_cdn,
             access_and_manage_certificates=self.access_and_manage_certificates,
+            access_and_manage_dns=self.access_and_manage_dns,
+            access_and_manage_iam_resources=self.access_and_manage_iam_resources,
+            access_and_manage_kaas=self.access_and_manage_kaas,
+            access_and_manage_logging=self.access_and_manage_logging,
             access_and_manage_monitoring=self.access_and_manage_monitoring,
+            access_and_manage_network_file_storage=self.access_and_manage_network_file_storage,
+            access_and_manage_vpn=self.access_and_manage_vpn,
             create_backup_unit=self.create_backup_unit,
             create_datacenter=self.create_datacenter,
             create_flow_log=self.create_flow_log,
             create_internet_access=self.create_internet_access,
             create_k8s_cluster=self.create_k8s_cluster,
+            create_network_security_groups=self.create_network_security_groups,
             create_pcc=self.create_pcc,
             create_snapshot=self.create_snapshot,
             id=self.id,
+            manage_dataplatform=self.manage_dataplatform,
             manage_dbaas=self.manage_dbaas,
+            manage_registry=self.manage_registry,
             name=self.name,
             reserve_ip=self.reserve_ip,
             s3_privilege=self.s3_privilege,
@@ -270,17 +378,29 @@ def get_group(id: Optional[str] = None,
 
     return AwaitableGetGroupResult(
         access_activity_log=pulumi.get(__ret__, 'access_activity_log'),
+        access_and_manage_ai_model_hub=pulumi.get(__ret__, 'access_and_manage_ai_model_hub'),
+        access_and_manage_api_gateway=pulumi.get(__ret__, 'access_and_manage_api_gateway'),
+        access_and_manage_cdn=pulumi.get(__ret__, 'access_and_manage_cdn'),
         access_and_manage_certificates=pulumi.get(__ret__, 'access_and_manage_certificates'),
+        access_and_manage_dns=pulumi.get(__ret__, 'access_and_manage_dns'),
+        access_and_manage_iam_resources=pulumi.get(__ret__, 'access_and_manage_iam_resources'),
+        access_and_manage_kaas=pulumi.get(__ret__, 'access_and_manage_kaas'),
+        access_and_manage_logging=pulumi.get(__ret__, 'access_and_manage_logging'),
         access_and_manage_monitoring=pulumi.get(__ret__, 'access_and_manage_monitoring'),
+        access_and_manage_network_file_storage=pulumi.get(__ret__, 'access_and_manage_network_file_storage'),
+        access_and_manage_vpn=pulumi.get(__ret__, 'access_and_manage_vpn'),
         create_backup_unit=pulumi.get(__ret__, 'create_backup_unit'),
         create_datacenter=pulumi.get(__ret__, 'create_datacenter'),
         create_flow_log=pulumi.get(__ret__, 'create_flow_log'),
         create_internet_access=pulumi.get(__ret__, 'create_internet_access'),
         create_k8s_cluster=pulumi.get(__ret__, 'create_k8s_cluster'),
+        create_network_security_groups=pulumi.get(__ret__, 'create_network_security_groups'),
         create_pcc=pulumi.get(__ret__, 'create_pcc'),
         create_snapshot=pulumi.get(__ret__, 'create_snapshot'),
         id=pulumi.get(__ret__, 'id'),
+        manage_dataplatform=pulumi.get(__ret__, 'manage_dataplatform'),
         manage_dbaas=pulumi.get(__ret__, 'manage_dbaas'),
+        manage_registry=pulumi.get(__ret__, 'manage_registry'),
         name=pulumi.get(__ret__, 'name'),
         reserve_ip=pulumi.get(__ret__, 'reserve_ip'),
         s3_privilege=pulumi.get(__ret__, 's3_privilege'),
@@ -324,17 +444,29 @@ def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
     return __ret__.apply(lambda __response__: GetGroupResult(
         access_activity_log=pulumi.get(__response__, 'access_activity_log'),
+        access_and_manage_ai_model_hub=pulumi.get(__response__, 'access_and_manage_ai_model_hub'),
+        access_and_manage_api_gateway=pulumi.get(__response__, 'access_and_manage_api_gateway'),
+        access_and_manage_cdn=pulumi.get(__response__, 'access_and_manage_cdn'),
         access_and_manage_certificates=pulumi.get(__response__, 'access_and_manage_certificates'),
+        access_and_manage_dns=pulumi.get(__response__, 'access_and_manage_dns'),
+        access_and_manage_iam_resources=pulumi.get(__response__, 'access_and_manage_iam_resources'),
+        access_and_manage_kaas=pulumi.get(__response__, 'access_and_manage_kaas'),
+        access_and_manage_logging=pulumi.get(__response__, 'access_and_manage_logging'),
         access_and_manage_monitoring=pulumi.get(__response__, 'access_and_manage_monitoring'),
+        access_and_manage_network_file_storage=pulumi.get(__response__, 'access_and_manage_network_file_storage'),
+        access_and_manage_vpn=pulumi.get(__response__, 'access_and_manage_vpn'),
         create_backup_unit=pulumi.get(__response__, 'create_backup_unit'),
         create_datacenter=pulumi.get(__response__, 'create_datacenter'),
         create_flow_log=pulumi.get(__response__, 'create_flow_log'),
         create_internet_access=pulumi.get(__response__, 'create_internet_access'),
         create_k8s_cluster=pulumi.get(__response__, 'create_k8s_cluster'),
+        create_network_security_groups=pulumi.get(__response__, 'create_network_security_groups'),
         create_pcc=pulumi.get(__response__, 'create_pcc'),
         create_snapshot=pulumi.get(__response__, 'create_snapshot'),
         id=pulumi.get(__response__, 'id'),
+        manage_dataplatform=pulumi.get(__response__, 'manage_dataplatform'),
         manage_dbaas=pulumi.get(__response__, 'manage_dbaas'),
+        manage_registry=pulumi.get(__response__, 'manage_registry'),
         name=pulumi.get(__response__, 'name'),
         reserve_ip=pulumi.get(__response__, 'reserve_ip'),
         s3_privilege=pulumi.get(__response__, 's3_privilege'),

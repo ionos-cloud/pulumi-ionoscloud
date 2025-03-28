@@ -489,7 +489,7 @@ type Server struct {
 	// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
 	VmState pulumi.StringOutput `pulumi:"vmState"`
 	// See the Volume section.
-	Volume ServerVolumeOutput `pulumi:"volume"`
+	Volume ServerVolumePtrOutput `pulumi:"volume"`
 }
 
 // NewServer registers a new resource with the given unique name, arguments, and options.
@@ -501,9 +501,6 @@ func NewServer(ctx *pulumi.Context,
 
 	if args.DatacenterId == nil {
 		return nil, errors.New("invalid value for required argument 'DatacenterId'")
-	}
-	if args.Volume == nil {
-		return nil, errors.New("invalid value for required argument 'Volume'")
 	}
 	if args.ImagePassword != nil {
 		args.ImagePassword = pulumi.ToSecret(args.ImagePassword).(pulumi.StringPtrInput)
@@ -747,7 +744,7 @@ type serverArgs struct {
 	// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
 	VmState *string `pulumi:"vmState"`
 	// See the Volume section.
-	Volume ServerVolume `pulumi:"volume"`
+	Volume *ServerVolume `pulumi:"volume"`
 }
 
 // The set of arguments for constructing a Server resource.
@@ -812,7 +809,7 @@ type ServerArgs struct {
 	// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
 	VmState pulumi.StringPtrInput
 	// See the Volume section.
-	Volume ServerVolumeInput
+	Volume ServerVolumePtrInput
 }
 
 func (ServerArgs) ElementType() reflect.Type {
@@ -1050,8 +1047,8 @@ func (o ServerOutput) VmState() pulumi.StringOutput {
 }
 
 // See the Volume section.
-func (o ServerOutput) Volume() ServerVolumeOutput {
-	return o.ApplyT(func(v *Server) ServerVolumeOutput { return v.Volume }).(ServerVolumeOutput)
+func (o ServerOutput) Volume() ServerVolumePtrOutput {
+	return o.ApplyT(func(v *Server) ServerVolumePtrOutput { return v.Volume }).(ServerVolumePtrOutput)
 }
 
 type ServerArrayOutput struct{ *pulumi.OutputState }

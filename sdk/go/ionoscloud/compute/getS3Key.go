@@ -31,7 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.LookupS3Key(ctx, &compute.LookupS3KeyArgs{
-//				Id:     "key_id",
+//				Id:     pulumi.StringRef("key_id"),
 //				UserId: "user-uuid",
 //			}, nil)
 //			if err != nil {
@@ -55,7 +55,7 @@ func LookupS3Key(ctx *pulumi.Context, args *LookupS3KeyArgs, opts ...pulumi.Invo
 // A collection of arguments for invoking getS3Key.
 type LookupS3KeyArgs struct {
 	// ID of the IONOS Object Storage key you want to search for.
-	Id string `pulumi:"id"`
+	Id *string `pulumi:"id"`
 	// [string] The UUID of the user owning the IONOS Object Storage Key.
 	UserId string `pulumi:"userId"`
 }
@@ -84,7 +84,7 @@ func LookupS3KeyOutput(ctx *pulumi.Context, args LookupS3KeyOutputArgs, opts ...
 // A collection of arguments for invoking getS3Key.
 type LookupS3KeyOutputArgs struct {
 	// ID of the IONOS Object Storage key you want to search for.
-	Id pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The UUID of the user owning the IONOS Object Storage Key.
 	UserId pulumi.StringInput `pulumi:"userId"`
 }
