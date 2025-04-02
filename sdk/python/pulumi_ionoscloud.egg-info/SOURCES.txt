@@ -1,6 +1,5 @@
 README.md
 pyproject.toml
-setup.py
 pulumi_ionoscloud/__init__.py
 pulumi_ionoscloud/_utilities.py
 pulumi_ionoscloud/provider.py
@@ -9,7 +8,6 @@ pulumi_ionoscloud/py.typed
 pulumi_ionoscloud.egg-info/PKG-INFO
 pulumi_ionoscloud.egg-info/SOURCES.txt
 pulumi_ionoscloud.egg-info/dependency_links.txt
-pulumi_ionoscloud.egg-info/not-zip-safe
 pulumi_ionoscloud.egg-info/requires.txt
 pulumi_ionoscloud.egg-info/top_level.txt
 pulumi_ionoscloud/alb/__init__.py

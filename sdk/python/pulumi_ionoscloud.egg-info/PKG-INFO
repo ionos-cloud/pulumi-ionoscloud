@@ -1,20 +1,17 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: pulumi_ionoscloud
-Version: 0.1.0
+Version: 1.0.0a0+dev
 Summary: A Pulumi package for creating and managing ionoscloud cloud resources.
-Home-page: https://www.pulumi.com
 License: Apache-2.0
 Project-URL: Homepage, https://www.pulumi.com
 Project-URL: Repository, https://github.com/ionos-cloud/pulumi-ionoscloud
-Keywords: ionoscloud,category/cloud
+Keywords: ionos-cloud,ionoscloud,category/cloud
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 Requires-Dist: parver>=0.2.1
-Requires-Dist: pulumi<4.0.0,>=3.142.0
+Requires-Dist: pulumi<4.0.0,>=3.0.0
 Requires-Dist: semver>=2.8.1
 Requires-Dist: typing-extensions>=4.11; python_version < "3.11"
-Dynamic: home-page
-Dynamic: requires-python
 
 <p align="center">
   <title="Pulumi Ionoscloud Provider - Build and Deploy Infrastructure as Code Solutions on Any Cloud">
@@ -33,10 +30,25 @@ The Ionoscloud resource provider for Pulumi lets you use Ionoscloud resources in
 
 This package is available in many languages in the standard packaging formats.
 
+### Node.js (Java/TypeScript)
+
+To use JavaScript or TypeScript in Node.js, install using either `npm`:
+
+    npm install @pulumi/ionoscloud
+
+or `yarn`:
+
+    yarn add @pulumi/ionoscloud
+
+### Python
+
+To use Python, install using `pip`:
+
+    pip install pulumi_ionoscloud
 
 ### Go
 
-To use from Go, use `go get` to grab the latest version of the library
+To use Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-ionoscloud/sdk/go
 
