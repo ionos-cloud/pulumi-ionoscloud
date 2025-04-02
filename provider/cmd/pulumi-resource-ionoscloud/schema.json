@@ -20,7 +20,8 @@
             "packageReferences": {
                 "Pulumi": "3.*"
             },
-            "compatibility": "tfbridge20"
+            "compatibility": "tfbridge20",
+            "respectSchemaVersion": true
         },
         "go": {
             "importBasePath": "github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud",
