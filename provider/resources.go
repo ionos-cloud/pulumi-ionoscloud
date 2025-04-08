@@ -203,6 +203,7 @@ func Provider() tfbridge.ProviderInfo {
 			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RespectSchemaVersion: true,
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
@@ -558,8 +559,9 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{Source: "certificate_manager_provider.md"},
 			},
 			"ionoscloud_certificate": {
-				Tok:  tfbridge.MakeResource(mainPkg, certModule, "Certificate"),
-				Docs: &tfbridge.DocInfo{Source: "certificate_manager_certificate.md"},
+				Tok:        tfbridge.MakeResource(mainPkg, certModule, "Certificate"),
+				Docs:       &tfbridge.DocInfo{Source: "certificate_manager_certificate.md"},
+				CSharpName: "IonosCertificate",
 			},
 			"ionoscloud_dataplatform_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dsaasModule, "Cluster"),
