@@ -37,6 +37,12 @@ To use Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-ionoscloud/sdk/go
 
+### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+    dotnet add package Pulumi.Ionoscloud
+
 ## Environment Variables
 
 | Environment Variable    | Description                                                                                                                                                              |
