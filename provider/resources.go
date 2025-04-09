@@ -170,6 +170,7 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName:          "@ionos-cloud/sdk-pulumi",
 			RespectSchemaVersion: true,
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -203,10 +204,14 @@ func Provider() tfbridge.ProviderInfo {
 			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace:        "Pulumi",
 			RespectSchemaVersion: true,
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+		},
+		Java: &tfbridge.JavaInfo{
+			BasePackage: "com.ionoscloud.pulumi",
 		},
 		DataSources: map[string]*info.DataSource{
 			"ionoscloud_kafka_cluster": {

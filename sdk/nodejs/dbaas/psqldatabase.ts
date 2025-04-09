@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const examplePgDatabase = new ionoscloud.dbaas.PSQLDatabase("example_pg_database", {
  *     clusterId: example.id,

@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as random from "@pulumi/random";
  *
  * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as random from "@pulumi/random";
  *
  * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {

@@ -37,6 +37,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const testCluster = new ionoscloud.k8s.Cluster("test", {
@@ -55,6 +56,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const testCluster = new ionoscloud.k8s.Cluster("test", {
@@ -237,6 +239,7 @@ export interface GetClusterResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const testCluster = new ionoscloud.k8s.Cluster("test", {
@@ -255,6 +258,7 @@ export interface GetClusterResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const testCluster = new ionoscloud.k8s.Cluster("test", {
