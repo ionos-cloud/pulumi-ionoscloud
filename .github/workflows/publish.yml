@@ -87,7 +87,7 @@ jobs:
         {
           echo 'summary<<EOF'
           if [[ "$LAST_VERSION" != "No stable release" ]]; then
-            schema-tools compare --provider="ionoscloud" --old-commit="$LAST_VERSION" --repository="github://api.github.com/pulumi" --new-commit="--local-path=provider/cmd/pulumi-resource-ionoscloud/schema.json"
+            schema-tools compare --provider="ionoscloud" --old-commit="$LAST_VERSION" --repository="github://api.github.com/ionos-cloud" --new-commit="--local-path=provider/cmd/pulumi-resource-ionoscloud/schema.json"
           fi
           echo 'EOF'
         } >> "$GITHUB_OUTPUT"
