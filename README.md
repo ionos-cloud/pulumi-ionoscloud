@@ -19,11 +19,11 @@ This package is available in many languages in the standard packaging formats.
 
 To use JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    npm install @pulumi/ionoscloud
+    npm install @ionos-cloud/sdk-pulumi
 
 or `yarn`:
 
-    yarn add @pulumi/ionoscloud
+    yarn add @ionos-cloud/sdk-pulumi
 
 ### Python
 
