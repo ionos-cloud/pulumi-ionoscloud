@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const cert = new ionoscloud.cert.Certificate("cert", {
  *     name: "add_name_here",

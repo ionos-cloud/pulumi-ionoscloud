@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * ### Select an external volume
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Default NSG Example",

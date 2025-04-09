@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * ### Select an external volume
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const exampleServer = new ionoscloud.compute.Server("example", {
  *     name: "Server Example",
@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * ### Select an inline volume again
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const exampleServer = new ionoscloud.compute.Server("example", {
  *     name: "Server Example",
@@ -104,6 +104,7 @@ import * as utilities from "../utilities";
  * ### Select a CDROM image
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleServer = new ionoscloud.compute.Server("example", {
@@ -153,6 +154,7 @@ import * as utilities from "../utilities";
  * ### Perform a network boot
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleServer = new ionoscloud.compute.Server("example", {
