@@ -86,4 +86,5 @@ jobs:
         - go
         - nodejs
         - python
+        - java
         testTarget: [local]

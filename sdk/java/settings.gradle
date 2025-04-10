@@ -10,5 +10,5 @@ pluginManagement {
   }
 }
 
-rootProject.name = "com.pulumi.ionoscloud"
+rootProject.name = "com.ionoscloud.pulumi.ionoscloud"
 include("lib")
