@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Example",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter NSG Example",

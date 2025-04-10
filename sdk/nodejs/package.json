@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/ionoscloud",
+    "name": "@ionos-cloud/sdk-pulumi",
     "version": "1.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing ionoscloud cloud resources.",
     "keywords": [

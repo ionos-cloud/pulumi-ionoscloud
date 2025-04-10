@@ -50,6 +50,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
@@ -70,6 +71,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
@@ -229,6 +231,7 @@ export interface GetClusterResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
@@ -249,6 +252,7 @@ export interface GetClusterResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
