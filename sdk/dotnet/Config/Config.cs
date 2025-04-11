@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Ionoscloud
+namespace Ionoscloud.Pulumi.Ionoscloud
 {
     public static class Config
     {
