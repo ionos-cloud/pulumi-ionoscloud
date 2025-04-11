@@ -21,7 +21,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -65,7 +65,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
     /// using Random = Pulumi.Random;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 

@@ -79,6 +79,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -112,6 +113,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -209,6 +211,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -242,6 +245,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -339,6 +343,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -372,6 +377,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dsaas
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
         /// using Ionoscloud = Pulumi.Ionoscloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
