@@ -66,6 +66,7 @@ jobs:
     with:
       version: ${{ needs.prerequisites.outputs.version }}
       isPrerelease: true
+      skipJavaSdk: true
 
   test:
     uses: ./.github/workflows/test.yml
