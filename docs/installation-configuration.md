@@ -8,7 +8,7 @@ layout: installation
 
 The Pulumi `Ionoscloud` provider is available as a package in most Pulumi languages:
 
-* JavaScript/TypeScript: [`@ovhcloud/pulumi-ovh`](https://www.npmjs.com/package/@ionos-cloud/sdk-pulumi)
+* JavaScript/TypeScript: [`@ionos-cloud/sdk-pulumi`](https://www.npmjs.com/package/@ionos-cloud/sdk-pulumi)
 * Python: [`pulumi_ionoscloud`](https://pypi.org/project/pulumi-ionoscloud)
 * Go: [`github.com/ionosc-cloud/pulumi-ionoscloud/sdk/go/ionoscloud`](https://pkg.go.dev/github.com/ionos-cloud/pulumi-ionoscloud/sdk)
 * .NET: [`Ionoscloud.Pulumi.Ionoscloud`](https://www.nuget.org/packages/Ionoscloud.pulumi.ionoscloud/)
