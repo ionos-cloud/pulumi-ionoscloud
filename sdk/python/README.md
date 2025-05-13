@@ -1,12 +1,12 @@
 <p align="center">
   <title="Pulumi Ionoscloud Provider - Build and Deploy Infrastructure as Code Solutions on Any Cloud">
-    <img src="https://www.pulumi.com/images/logo/logo-on-white-box.svg?" width="350">
+    <img src="https://raw.githubusercontent.com/ionos-cloud/pulumi-ionoscloud/refs/heads/main/.github/LOGO_IONOS_Blue_RGB.png" width="350">
   </a>
 </p>
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-ionoscloud/sdk/go)](https://pkg.go.dev/github.com/pulumi/pulumi-ionoscloud/sdk/go)
 
-# Ionoscloud provider
+# Ionoscloud provider for Pulumi
 
 The Ionoscloud resource provider for Pulumi lets you use Ionoscloud resources in your cloud programs. To use this package, [install the Pulumi CLI](https://www.pulumi.com/docs/get-started/install/).
 
