@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`ionoscloud` Terraform Provider](https://github.com/ionos-cloud/terraform-provider-ionoscloud).",
     "repository": "https://github.com/ionos-cloud/pulumi-ionoscloud",
+    "logoUrl": "https://raw.githubusercontent.com/ionos-cloud/pulumi-ionoscloud/refs/heads/main/.github/LOGO_IONOS_Blue_RGB.png",
     "publisher": "ionos-cloud",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
