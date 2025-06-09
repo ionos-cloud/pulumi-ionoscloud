@@ -35,7 +35,7 @@ To use Python, install using `pip`:
 
 To use Go, use `go get` to grab the latest version of the library
 
-    go get github.com/ionos-cloud/pulumi-ionoscloud/sdk/go
+    go get github.com/ionos-cloud/pulumi-ionoscloud/sdk
 
 ### .NET
 
