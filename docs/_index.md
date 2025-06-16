@@ -8,7 +8,7 @@ The `Ionoscloud` provider for Pulumi can be used to provision most of the resour
 
 The provider needs to be configured with proper credentials before it can be used.
 
-We strongly suggest to use token authentication for security purposes. You can find more information [here](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/token-management).
+We strongly suggest to use token authentication for security purposes. You can find more information [here](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/identity-access-management/token-manager).
 
 ## Example
 
