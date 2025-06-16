@@ -28,7 +28,7 @@ Replace the version string with your desired version.
 To provision resources with the Pulumi Ionoscloud provider, you need to have Ionoscloud credentials.
 Your Ionoscloud credentials are never sent to pulumi.com. Pulumi uses the Ionoscloud API and the credentials in your environment to authenticate requests from your computer to Ionoscloud.
 
-The provider needs to be configured with the proper credentials before it can be used. Requests to the Ionoscloud APIs require generating a token. See [Token Management](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/token-management) for a detailed explanation.
+The provider needs to be configured with the proper credentials before it can be used. Requests to the Ionoscloud APIs require generating a token. See [Token Management](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/identity-access-management/token-manager) for a detailed explanation.
 
 ## Environment Variables
 
