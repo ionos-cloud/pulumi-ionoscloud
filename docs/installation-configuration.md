@@ -63,9 +63,7 @@ Before you can provision resources, you must configure the provider with your IO
 
 You need either:
 
-- **Username and Password**  
-  or  
-- **API Token**
+- **Username and Password** or **API Token**
 
 See [Token Management](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/token-management) for details on generating a token.
 
