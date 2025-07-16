@@ -111,7 +111,7 @@ Enable logging for troubleshooting by setting `IONOS_LOG_LEVEL`:
 export IONOS_LOG_LEVEL=debug
 ```
 
-Allowed values: `off`, `debug`, `trace`.  
+Allowed values: `Off`, `Debug`, `Trace`.  
 **Note:** Use `trace` only for debugging. Disable it in your production environments because it can log sensitive data. It logs the full request and response without encryption, even for an HTTPS call. Verbose request and response logging can also significantly impact your application’s performance.
 
 ---
