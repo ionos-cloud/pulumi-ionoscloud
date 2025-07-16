@@ -79,7 +79,7 @@ You can provide credentials using environment variables (recommended for securit
 | `IONOS_PASSWORD`        | Password for IONOS Cloud API authentication                                                                                                                              |
 | `IONOS_TOKEN`           | API token for authentication (alternative to username/password)                                                                    |
 | `IONOS_API_URL`         | API endpoint URL (default: `api.ionos.com`). Override only if necessary.                                                          |
-| `IONOS_LOG_LEVEL`       | Log level: `off`, `debug`, or `trace` (default: `off`)                                                                           |
+| `IONOS_LOG_LEVEL`       | Log level: `Off`, `Debug`, or `Trace` (default: `Off`)                                                                           |
 | `IONOS_PINNED_CERT`     | SHA-256 public fingerprint for certificate pinning                                                                                |
 | `IONOS_CONTRACT_NUMBER` | Contract number (for reseller accounts only)                                                                                      |
 | `IONOS_S3_ACCESS_KEY`   | Access key for IONOS Object Storage API                                                                                           |
