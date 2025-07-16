@@ -1,6 +1,2 @@
 * [Introduction](README.md)
-* [Provider Reference](README-PROVIDER.md)
-* [Installation](installation.md)
-* [Configuration](configuration.md)
-* [Resources](resources.md)
-* [Examples](examples.md)
+* [Installation and Configuration](docs/installation-configuration.md)
