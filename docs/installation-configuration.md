@@ -65,7 +65,7 @@ You need either:
 
 - **Username and Password** or **API Token**
 
-See [Token Management](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/token-management) for details on generating a token.
+See [Token Management](https://docs.ionos.com/cloud/set-up-ionos-cloud/management/identity-access-management/token-manager) for details on generating a token.
 
 ### Setting Credentials
 
