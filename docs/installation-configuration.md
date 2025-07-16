@@ -37,7 +37,7 @@ Depending on your language, install the provider package:
   ```
 
 - **.NET**:  
-  [`IONOSCloud.Pulumi.IONOSCloud`](https://www.nuget.org/packages/Ionoscloud.pulumi.ionoscloud/)
+  [`Ionoscloud.pulumi.ionoscloud`](https://www.nuget.org/packages/Ionoscloud.pulumi.ionoscloud/)
   ```bash
   dotnet add package Ionoscloud.Pulumi.Ionoscloud
   ```
