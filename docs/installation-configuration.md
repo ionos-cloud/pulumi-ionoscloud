@@ -118,4 +118,4 @@ Allowed values: `Off`, `Debug`, `Trace`.
 
 - Ensure your credentials are correct and exported in your environment.
 - If you encounter plugin errors, verify the provider binary version matches your Pulumi project requirements.
-- For more details, consult the [Pulumi IONOS Cloud documentation](https://github.com/ionos-cloud/pulumi-ionoscloud) or open an issue on GitHub.
+- For more details, refer to the [Pulumi IONOS Cloud documentation](https://github.com/ionos-cloud/pulumi-ionoscloud) or open an issue on GitHub.
