@@ -16,7 +16,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"@pulumi/ionoscloud",
+			"@ionos-cloud/sdk-pulumi",
 		},
 	})
 
@@ -64,7 +64,7 @@ func getCSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"Pulumi.ionoscloud",
+			"Ionoscloud.Pulumi.Ionoscloud",
 		},
 	})
 
