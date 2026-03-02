@@ -358,7 +358,7 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
 			},
 			"ionoscloud_inmemorydb_snapshot": {
-				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInmemorydbSnapshot"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBSnapshot"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_snapshot.md"},
 			},
 			"ionoscloud_k8s_cluster": {
