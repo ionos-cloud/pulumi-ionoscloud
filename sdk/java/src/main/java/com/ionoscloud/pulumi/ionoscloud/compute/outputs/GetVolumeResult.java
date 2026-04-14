@@ -69,7 +69,7 @@ public final class GetVolumeResult {
      */
     private String image;
     /**
-     * @return Required if `sshkey_path` is not provided.
+     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     private String imagePassword;
@@ -196,7 +196,7 @@ public final class GetVolumeResult {
         return this.image;
     }
     /**
-     * @return Required if `sshkey_path` is not provided.
+     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public String imagePassword() {

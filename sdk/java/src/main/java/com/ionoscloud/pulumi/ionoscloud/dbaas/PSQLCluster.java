@@ -33,12 +33,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dbaas.PSQLCluster;
- * import com.pulumi.ionoscloud.dbaas.PSQLClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionPoolerArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;
@@ -112,18 +112,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.dbaas.PSQLCluster;
- * import com.pulumi.ionoscloud.dbaas.PSQLClusterArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionPoolerArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;
@@ -223,24 +223,24 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
+ * Resource DbaaS Postgres Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser cluster uuid
+ * terraform import ionoscloud_pg_cluster.mycluser cluster uuid
  * ```
  * 
  */
 @ResourceType(type="ionoscloud:dbaas/pSQLCluster:PSQLCluster")
 public class PSQLCluster extends com.pulumi.resources.CustomResource {
     /**
-     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Export(name="backupLocation", refs={String.class}, tree="[0]")
     private Output<String> backupLocation;
 
     /**
-     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Output<String> backupLocation() {
@@ -496,6 +496,7 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

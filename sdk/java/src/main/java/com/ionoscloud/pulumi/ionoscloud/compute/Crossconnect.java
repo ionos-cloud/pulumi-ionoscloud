@@ -37,12 +37,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Crossconnect;
- * import com.pulumi.ionoscloud.compute.CrossconnectArgs;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Crossconnect;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.CrossconnectArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -202,6 +202,7 @@ public class Crossconnect extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

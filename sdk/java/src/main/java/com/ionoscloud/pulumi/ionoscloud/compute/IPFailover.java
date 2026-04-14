@@ -26,20 +26,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.IPFailover;
- * import com.pulumi.ionoscloud.compute.IPFailoverArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPFailover;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPFailoverArgs;
  * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -93,17 +93,17 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
- *                 .ips(exampleIPBlock.ips().applyValue(ips -> ips[0]))
+ *                 .ips(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
  *                 .build())
  *             .build());
  * 
  *         var exampleIPFailover = new IPFailover("exampleIPFailover", IPFailoverArgs.builder()
  *             .datacenterId(example.id())
  *             .lanId(exampleLan.id())
- *             .ip(exampleIPBlock.ips().applyValue(ips -> ips[0]))
+ *             .ip(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
  *             .nicuuid(exampleServer.primaryNic())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(exampleLan)
@@ -132,7 +132,7 @@ import javax.annotation.Nullable;
  * Resource IpFailover can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
+ * terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
  * ```
  * 
  */
@@ -190,9 +190,9 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -209,9 +209,9 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -258,6 +258,7 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

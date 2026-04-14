@@ -19,9 +19,9 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
+ * The boot device of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-go=&#34;`compute.Server`&#34; pulumi-lang-python=&#34;`compute.Server`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Server`&#34;&gt;`ionoscloud.compute.Server`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-go=&#34;`compute.VCPUServer`&#34; pulumi-lang-python=&#34;`compute.VCPUServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.VCPUServer`&#34;&gt;`ionoscloud.compute.VCPUServer`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-go=&#34;`compute.CubeServer`&#34; pulumi-lang-python=&#34;`compute.CubeServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.CubeServer`&#34;&gt;`ionoscloud.compute.CubeServer`&lt;/span&gt; can be selected with this resource.
  * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
- * This resource also allows switching between a `volume` and a `ionoscloud.compute.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+ * This resource also allows switching between a &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; and a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-go=&#34;`compute.getImage`&#34; pulumi-lang-python=&#34;`compute_get_image`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.getImage`&#34;&gt;`ionoscloud.compute.getImage`&lt;/span&gt; CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  * 
  * ### Select an external volume
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -32,14 +32,14 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Volume;
- * import com.pulumi.ionoscloud.compute.VolumeArgs;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelection;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelection;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -108,14 +108,14 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelection;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
- * import com.pulumi.ionoscloud.compute.Volume;
- * import com.pulumi.ionoscloud.compute.VolumeArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelection;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -155,7 +155,7 @@ import javax.annotation.Nullable;
  *         var example = new BootDeviceSelection("example", BootDeviceSelectionArgs.builder()
  *             .datacenterId(exampleIonoscloudDatacenter.id())
  *             .serverId(exampleServer.id())
- *             .bootDeviceId(exampleServer.inlineVolumeIds().applyValue(inlineVolumeIds -> inlineVolumeIds[0]))
+ *             .bootDeviceId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
@@ -184,16 +184,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelection;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
- * import com.pulumi.ionoscloud.compute.Volume;
- * import com.pulumi.ionoscloud.compute.VolumeArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelection;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -238,8 +238,8 @@ import javax.annotation.Nullable;
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
  *             .datacenterId(exampleIonoscloudDatacenter.id())
- *             .serverId(exampleServer.inlineVolumeIds().applyValue(inlineVolumeIds -> inlineVolumeIds[0]))
- *             .bootDeviceId(example.applyValue(getImageResult -> getImageResult.id()))
+ *             .serverId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
+ *             .bootDeviceId(example.id())
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
@@ -268,14 +268,14 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelection;
- * import com.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
- * import com.pulumi.ionoscloud.compute.Volume;
- * import com.pulumi.ionoscloud.compute.VolumeArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelection;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
  * import java.util.List;
@@ -316,7 +316,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
  *             .datacenterId(exampleIonoscloudDatacenter.id())
- *             .serverId(exampleServer.inlineVolumeIds().applyValue(inlineVolumeIds -> inlineVolumeIds[0]))
+ *             .serverId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
@@ -443,6 +443,7 @@ public class BootDeviceSelection extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

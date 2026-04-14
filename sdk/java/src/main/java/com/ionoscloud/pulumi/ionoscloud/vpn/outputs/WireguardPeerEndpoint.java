@@ -19,7 +19,7 @@ public final class WireguardPeerEndpoint {
      */
     private String host;
     /**
-     * @return [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+     * @return [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
      * 
      */
     private @Nullable Integer port;
@@ -33,7 +33,7 @@ public final class WireguardPeerEndpoint {
         return this.host;
     }
     /**
-     * @return [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+     * @return [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
      * 
      */
     public Optional<Integer> port() {

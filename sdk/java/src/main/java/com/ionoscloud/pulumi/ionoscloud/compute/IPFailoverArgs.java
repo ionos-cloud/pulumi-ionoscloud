@@ -69,9 +69,9 @@ public final class IPFailoverArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -88,9 +88,9 @@ public final class IPFailoverArgs extends com.pulumi.resources.ResourceArgs {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -198,9 +198,9 @@ public final class IPFailoverArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
          * following options:
-         * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+         * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
          *    of creation, for example:
-         * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+         * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
          *    `-parallelism=1` as presented below:
          * 
          * @return builder
@@ -221,9 +221,9 @@ public final class IPFailoverArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
          * following options:
-         * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+         * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
          *    of creation, for example:
-         * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+         * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
          *    `-parallelism=1` as presented below:
          * 
          * @return builder

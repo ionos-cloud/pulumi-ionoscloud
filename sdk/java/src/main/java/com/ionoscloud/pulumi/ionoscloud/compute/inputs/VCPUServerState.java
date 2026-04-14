@@ -36,7 +36,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -47,7 +47,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> bootCdrom;
 
     /**
-     * @return ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -59,14 +59,14 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="bootImage")
     private @Nullable Output<String> bootImage;
 
     /**
-     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<String>> bootImage() {
@@ -171,14 +171,14 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Import(name="imageName")
     private @Nullable Output<String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Optional<Output<String>> imageName() {
@@ -216,14 +216,14 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+     * A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<List<VCPUServerLabelArgs>> labels;
 
     /**
-     * @return A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+     * @return A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     public Optional<Output<List<VCPUServerLabelArgs>>> labels() {
@@ -310,7 +310,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_keys field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     @Import(name="securityGroupsIds")
@@ -321,7 +321,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_keys field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     public Optional<Output<List<String>>> securityGroupsIds() {
@@ -449,7 +449,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -464,7 +464,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -478,7 +478,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -489,7 +489,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -644,7 +644,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -655,7 +655,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -717,7 +717,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -728,7 +728,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -738,7 +738,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -857,7 +857,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; ssh_keys field is immutable.
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
          * 
          * @return builder
          * 
@@ -872,7 +872,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; ssh_keys field is immutable.
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
          * 
          * @return builder
          * 
@@ -886,7 +886,7 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; ssh_keys field is immutable.
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
          * 
          * @return builder
          * 

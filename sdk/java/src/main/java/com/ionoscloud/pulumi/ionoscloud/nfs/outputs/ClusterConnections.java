@@ -23,7 +23,7 @@ public final class ClusterConnections {
     /**
      * @return The Private LAN to which the Network File Storage cluster must be connected.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     private String lan;
@@ -46,7 +46,7 @@ public final class ClusterConnections {
     /**
      * @return The Private LAN to which the Network File Storage cluster must be connected.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public String lan() {

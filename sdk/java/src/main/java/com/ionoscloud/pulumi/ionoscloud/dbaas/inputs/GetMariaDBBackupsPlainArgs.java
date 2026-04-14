@@ -47,7 +47,7 @@ public final class GetMariaDBBackupsPlainArgs extends com.pulumi.resources.Invok
     /**
      * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: &#34;de/fra&#34;, &#34;de/txl&#34;, &#34;es/vit&#34;, &#34;fr/par&#34;, &#34;gb/lhr&#34;, &#34;us/ewr&#34;, &#34;us/las&#34;, &#34;us/mci&#34;. If not set, the endpoint will be the one corresponding to &#34;de/txl&#34;.
      * 
-     * ⚠️ **Note:** Either `cluster_id` or `backup_id` must be used, but not both at the same time.
+     * ⚠️ **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`backupId`&#34; pulumi-lang-dotnet=&#34;`BackupId`&#34; pulumi-lang-go=&#34;`backupId`&#34; pulumi-lang-python=&#34;`backup_id`&#34; pulumi-lang-yaml=&#34;`backupId`&#34; pulumi-lang-java=&#34;`backupId`&#34;&gt;`backupId`&lt;/span&gt; must be used, but not both at the same time.
      * 
      * &gt; **⚠ WARNING:** `Location` attribute will become required in the future.
      * 
@@ -58,7 +58,7 @@ public final class GetMariaDBBackupsPlainArgs extends com.pulumi.resources.Invok
     /**
      * @return [string] The location of the cluster. Different service endpoints are used based on location, possible options are: &#34;de/fra&#34;, &#34;de/txl&#34;, &#34;es/vit&#34;, &#34;fr/par&#34;, &#34;gb/lhr&#34;, &#34;us/ewr&#34;, &#34;us/las&#34;, &#34;us/mci&#34;. If not set, the endpoint will be the one corresponding to &#34;de/txl&#34;.
      * 
-     * ⚠️ **Note:** Either `cluster_id` or `backup_id` must be used, but not both at the same time.
+     * ⚠️ **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`backupId`&#34; pulumi-lang-dotnet=&#34;`BackupId`&#34; pulumi-lang-go=&#34;`backupId`&#34; pulumi-lang-python=&#34;`backup_id`&#34; pulumi-lang-yaml=&#34;`backupId`&#34; pulumi-lang-java=&#34;`backupId`&#34;&gt;`backupId`&lt;/span&gt; must be used, but not both at the same time.
      * 
      * &gt; **⚠ WARNING:** `Location` attribute will become required in the future.
      * 
@@ -118,7 +118,7 @@ public final class GetMariaDBBackupsPlainArgs extends com.pulumi.resources.Invok
         /**
          * @param location [string] The location of the cluster. Different service endpoints are used based on location, possible options are: &#34;de/fra&#34;, &#34;de/txl&#34;, &#34;es/vit&#34;, &#34;fr/par&#34;, &#34;gb/lhr&#34;, &#34;us/ewr&#34;, &#34;us/las&#34;, &#34;us/mci&#34;. If not set, the endpoint will be the one corresponding to &#34;de/txl&#34;.
          * 
-         * ⚠️ **Note:** Either `cluster_id` or `backup_id` must be used, but not both at the same time.
+         * ⚠️ **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`backupId`&#34; pulumi-lang-dotnet=&#34;`BackupId`&#34; pulumi-lang-go=&#34;`backupId`&#34; pulumi-lang-python=&#34;`backup_id`&#34; pulumi-lang-yaml=&#34;`backupId`&#34; pulumi-lang-java=&#34;`backupId`&#34;&gt;`backupId`&lt;/span&gt; must be used, but not both at the same time.
          * 
          * &gt; **⚠ WARNING:** `Location` attribute will become required in the future.
          * 

@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This page provides an overview of the `ionoscloud.vpn.WireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
+ * This page provides an overview of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardPeer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardPeer`&#34; pulumi-lang-go=&#34;`vpn.WireguardPeer`&#34; pulumi-lang-python=&#34;`vpn.WireguardPeer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardPeer`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardPeer`&#34;&gt;`ionoscloud.vpn.WireguardPeer`&lt;/span&gt; resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
  * This resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.
  * 
  * ## Example Usage
@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.vpn.WireguardPeer;
- * import com.pulumi.ionoscloud.vpn.WireguardPeerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.WireguardPeer;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.WireguardPeerArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.WireguardPeerEndpointArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
+ * WireGuard Peers can be imported using the &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34;&gt;`gatewayId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt;, e.g.,
  * 
  * ```sh
  * $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example gateway_id:peer_id
@@ -230,6 +230,7 @@ public class WireguardPeer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

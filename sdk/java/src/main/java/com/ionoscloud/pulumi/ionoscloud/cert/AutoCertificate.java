@@ -28,11 +28,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.cert.AutoCertificateProvider;
- * import com.pulumi.ionoscloud.cert.AutoCertificateProviderArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.AutoCertificateProvider;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.AutoCertificateProviderArgs;
  * import com.pulumi.ionoscloud.cert.inputs.AutoCertificateProviderExternalAccountBindingArgs;
- * import com.pulumi.ionoscloud.cert.AutoCertificate;
- * import com.pulumi.ionoscloud.cert.AutoCertificateArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.AutoCertificate;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.AutoCertificateArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The resource can be imported using the `auto_certificate_id` and the `location`, separated by `:`, e.g.
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`autoCertificateId`&#34; pulumi-lang-dotnet=&#34;`AutoCertificateId`&#34; pulumi-lang-go=&#34;`autoCertificateId`&#34; pulumi-lang-python=&#34;`auto_certificate_id`&#34; pulumi-lang-yaml=&#34;`autoCertificateId`&#34; pulumi-lang-java=&#34;`autoCertificateId`&#34;&gt;`autoCertificateId`&lt;/span&gt; and the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, separated by `:`, e.g.
  * 
  * ```sh
  * $ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example location:auto_certificate_id
@@ -221,6 +221,7 @@ public class AutoCertificate extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

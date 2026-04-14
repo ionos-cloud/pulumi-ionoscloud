@@ -52,7 +52,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class DbaasFunctions {
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -91,47 +91,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSet() {
         return getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -170,47 +148,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSetPlain() {
         return getInMemoryDBReplicaSetPlain(GetInMemoryDBReplicaSetPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -249,47 +205,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs args) {
         return getInMemoryDBReplicaSet(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -328,47 +262,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSetPlain(GetInMemoryDBReplicaSetPlainArgs args) {
         return getInMemoryDBReplicaSetPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -407,47 +319,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", TypeShape.of(GetInMemoryDBReplicaSetResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -486,47 +376,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", TypeShape.of(GetInMemoryDBReplicaSetResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
      * ## Example Usage
      * 
@@ -565,47 +433,25 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By display_name
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
-     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()
-     *             .displayName("example-id")
-     *             .location("us/las")
-     *             .build());
-     * 
-     *     }
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;```hcl
+     * data &#34;ionoscloud_inmemorydb_replicaset&#34; &#34;example&#34; {
+     *   display_name = &#34;example-id&#34;
+     *   location = &#34;us/las&#34;
      * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSetPlain(GetInMemoryDBReplicaSetPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", TypeShape.of(GetInMemoryDBReplicaSetResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.
      * 
      * ## Example Usage
      * 
@@ -648,7 +494,7 @@ public final class DbaasFunctions {
         return getInmemorydbSnapshot(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.
      * 
      * ## Example Usage
      * 
@@ -691,7 +537,7 @@ public final class DbaasFunctions {
         return getInmemorydbSnapshotPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.
      * 
      * ## Example Usage
      * 
@@ -734,7 +580,7 @@ public final class DbaasFunctions {
         return Deployment.getInstance().invoke("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", TypeShape.of(GetInmemorydbSnapshotResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.
      * 
      * ## Example Usage
      * 
@@ -777,7 +623,7 @@ public final class DbaasFunctions {
         return Deployment.getInstance().invoke("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", TypeShape.of(GetInmemorydbSnapshotResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.
      * 
      * ## Example Usage
      * 
@@ -1972,8 +1818,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2007,10 +1859,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoClusterResult> getMongoCluster() {
@@ -2056,8 +1908,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2091,10 +1949,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoClusterResult> getMongoClusterPlain() {
@@ -2140,8 +1998,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2175,10 +2039,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoClusterResult> getMongoCluster(GetMongoClusterArgs args) {
@@ -2224,8 +2088,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2259,10 +2129,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoClusterResult> getMongoClusterPlain(GetMongoClusterPlainArgs args) {
@@ -2308,8 +2178,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2343,10 +2219,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoClusterResult> getMongoCluster(GetMongoClusterArgs args, InvokeOptions options) {
@@ -2392,8 +2268,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2427,10 +2309,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoClusterResult> getMongoCluster(GetMongoClusterArgs args, InvokeOutputOptions options) {
@@ -2476,8 +2358,14 @@ public final class DbaasFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * ### By display_name
-     * 
+     * ### By&lt;span pulumi-lang-nodejs=&#34; displayName
+     * &#34; pulumi-lang-dotnet=&#34; DisplayName
+     * &#34; pulumi-lang-go=&#34; displayName
+     * &#34; pulumi-lang-python=&#34; display_name
+     * &#34; pulumi-lang-yaml=&#34; displayName
+     * &#34; pulumi-lang-java=&#34; displayName
+     * &#34;&gt; displayName
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2511,10 +2399,10 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `display_name` - (Optional) Display Name of an existing cluster that you want to search for.
-     * * `id` - (Optional) ID of the cluster you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; - (Optional) Display Name of an existing cluster that you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the cluster you want to search for.
      * 
-     * Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoClusterResult> getMongoClusterPlain(GetMongoClusterPlainArgs args, InvokeOptions options) {
@@ -2595,8 +2483,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2631,11 +2525,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoTemplateResult> getMongoTemplate() {
@@ -2716,8 +2610,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2752,11 +2652,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoTemplateResult> getMongoTemplatePlain() {
@@ -2837,8 +2737,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2873,11 +2779,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoTemplateResult> getMongoTemplate(GetMongoTemplateArgs args) {
@@ -2958,8 +2864,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -2994,11 +2906,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoTemplateResult> getMongoTemplatePlain(GetMongoTemplatePlainArgs args) {
@@ -3079,8 +2991,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -3115,11 +3033,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoTemplateResult> getMongoTemplate(GetMongoTemplateArgs args, InvokeOptions options) {
@@ -3200,8 +3118,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -3236,11 +3160,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static Output<GetMongoTemplateResult> getMongoTemplate(GetMongoTemplateArgs args, InvokeOutputOptions options) {
@@ -3321,8 +3245,14 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### By name, using partial_match
-     * 
+     * ### By name, using&lt;span pulumi-lang-nodejs=&#34; partialMatch
+     * &#34; pulumi-lang-dotnet=&#34; PartialMatch
+     * &#34; pulumi-lang-go=&#34; partialMatch
+     * &#34; pulumi-lang-python=&#34; partial_match
+     * &#34; pulumi-lang-yaml=&#34; partialMatch
+     * &#34; pulumi-lang-java=&#34; partialMatch
+     * &#34;&gt; partialMatch
+     * &lt;/span&gt;
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
      * {@code
@@ -3357,11 +3287,11 @@ public final class DbaasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * * `name` - (Optional) The name of the template you want to search for.
-     * * `id` - (Optional) ID of the template you want to search for.
-     * * `partial_match` - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - (Optional) The name of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - (Optional) ID of the template you want to search for.
+     * * &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; - (Optional) Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none or both are provided, the datasource will return an error.
      * 
      */
     public static CompletableFuture<GetMongoTemplateResult> getMongoTemplatePlain(GetMongoTemplatePlainArgs args, InvokeOptions options) {
@@ -5260,7 +5190,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5335,7 +5266,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5410,7 +5342,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5485,7 +5418,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5560,7 +5494,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5635,7 +5570,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5710,7 +5646,8 @@ public final class DbaasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = DbaasFunctions.getPSQLVersions();
+     *         final var example = DbaasFunctions.getPSQLVersions(GetPSQLVersionsArgs.builder()
+     *             .build());
      * 
      *     }
      * }

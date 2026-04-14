@@ -30,12 +30,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dsaas.Cluster;
- * import com.pulumi.ionoscloud.dsaas.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.ClusterArgs;
  * import com.pulumi.ionoscloud.dsaas.inputs.ClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dsaas.inputs.ClusterLanArgs;
  * import java.util.List;
@@ -89,10 +89,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
+ * Resource Dataplatform Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser cluster uuid
+ * terraform import ionoscloud_dataplatform_cluster.mycluser cluster uuid
  * ```
  * 
  */
@@ -208,6 +208,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

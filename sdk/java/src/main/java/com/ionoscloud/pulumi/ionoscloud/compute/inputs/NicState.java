@@ -232,7 +232,7 @@ public final class NicState extends com.pulumi.resources.ResourceArgs {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     @Import(name="securityGroupsIds")
@@ -241,7 +241,7 @@ public final class NicState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     public Optional<Output<List<String>>> securityGroupsIds() {
@@ -619,7 +619,7 @@ public final class NicState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 
@@ -632,7 +632,7 @@ public final class NicState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 
@@ -644,7 +644,7 @@ public final class NicState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 

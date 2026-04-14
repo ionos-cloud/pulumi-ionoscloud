@@ -31,15 +31,15 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.kafka.Cluster;
- * import com.pulumi.ionoscloud.kafka.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.ClusterArgs;
  * import com.pulumi.ionoscloud.kafka.inputs.ClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.kafka.Topic;
- * import com.pulumi.ionoscloud.kafka.TopicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Topic;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.TopicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -104,21 +104,21 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.kafka.Cluster;
- * import com.pulumi.ionoscloud.kafka.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.ClusterArgs;
  * import com.pulumi.ionoscloud.kafka.inputs.ClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.kafka.Topic;
- * import com.pulumi.ionoscloud.kafka.TopicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Topic;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.TopicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -200,10 +200,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
+ * Kafka Cluster Topic can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, `kafka cluster id` and the `kafka cluster topic id`:
  * 
  * ```sh
- * $ pulumi import ionoscloud:kafka/topic:Topic my_topic location:kafka cluster uuid:kafka cluster topic uuid
+ * terraform import ionoscloud_kafka_cluster_topic.my_topic location:kafka cluster uuid:kafka cluster topic uuid
  * ```
  * 
  */
@@ -224,14 +224,14 @@ public class Topic extends com.pulumi.resources.CustomResource {
         return this.clusterId;
     }
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * @return [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Output<Optional<String>> location() {
@@ -363,6 +363,7 @@ public class Topic extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

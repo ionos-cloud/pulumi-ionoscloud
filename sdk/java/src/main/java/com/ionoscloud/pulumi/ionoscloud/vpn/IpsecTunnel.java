@@ -33,17 +33,17 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.vpn.IpsecGateway;
- * import com.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGateway;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;
- * import com.pulumi.ionoscloud.vpn.IpsecTunnel;
- * import com.pulumi.ionoscloud.vpn.IpsecTunnelArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecTunnel;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecTunnelArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelAuthArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelIkeArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelEspArgs;
@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *         var example = new IpsecGateway("example", IpsecGatewayArgs.builder()
  *             .name("ipsec_gateway_basic")
  *             .location("de/fra")
- *             .gatewayIp(testIpblock.ips().applyValue(ips -> ips[0]))
+ *             .gatewayIp(testIpblock.ips().applyValue(_ips -> _ips[0]))
  *             .version("IKEv2")
  *             .description("This gateway connects site A to VDC X.")
  *             .connections(IpsecGatewayConnectionArgs.builder()
@@ -131,23 +131,23 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.vpn.IpsecGateway;
- * import com.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGateway;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;
- * import com.pulumi.ionoscloud.vpn.IpsecTunnel;
- * import com.pulumi.ionoscloud.vpn.IpsecTunnelArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecTunnel;
+ * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecTunnelArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelAuthArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelIkeArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelEspArgs;
@@ -214,7 +214,7 @@ import javax.annotation.Nullable;
  *         var example = new IpsecGateway("example", IpsecGatewayArgs.builder()
  *             .name("ipsec-gateway")
  *             .location("de/fra")
- *             .gatewayIp(testIpblock.ips().applyValue(ips -> ips[0]))
+ *             .gatewayIp(testIpblock.ips().applyValue(_ips -> _ips[0]))
  *             .version("IKEv2")
  *             .description("This gateway connects site A to VDC X.")
  *             .connections(IpsecGatewayConnectionArgs.builder()
@@ -259,7 +259,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34;&gt;`gatewayId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`tunnelId`&#34; pulumi-lang-dotnet=&#34;`TunnelId`&#34; pulumi-lang-go=&#34;`tunnelId`&#34; pulumi-lang-python=&#34;`tunnel_id`&#34; pulumi-lang-yaml=&#34;`tunnelId`&#34; pulumi-lang-java=&#34;`tunnelId`&#34;&gt;`tunnelId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example location:gateway_id:tunnel_id
@@ -458,6 +458,7 @@ public class IpsecTunnel extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

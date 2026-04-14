@@ -24,18 +24,18 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use image_name under server level
-     * ssh_key_path and ssh_keys fields are immutable.
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
      * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
      * 
      */
     @Import(name="allowReplace")
@@ -44,18 +44,18 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use image_name under server level
-     * ssh_key_path and ssh_keys fields are immutable.
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
      * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
      * 
      */
     public Optional<Output<Boolean>> allowReplace() {
@@ -78,7 +78,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -89,7 +89,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> bootCdrom;
 
     /**
-     * @return ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -101,14 +101,14 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="bootImage")
     private @Nullable Output<String> bootImage;
 
     /**
-     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<String>> bootImage() {
@@ -221,14 +221,14 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Import(name="imageName")
     private @Nullable Output<String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Optional<Output<String>> imageName() {
@@ -236,14 +236,14 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Required if `ssh_key_path` is not provided.
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="imagePassword")
     private @Nullable Output<String> imagePassword;
 
     /**
-     * @return [string] Required if `ssh_key_path` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<String>> imagePassword() {
@@ -266,14 +266,14 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+     * [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     @Import(name="labels")
     private @Nullable Output<List<ServerLabelArgs>> labels;
 
     /**
-     * @return [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+     * @return [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     public Optional<Output<List<ServerLabelArgs>>> labels() {
@@ -371,24 +371,24 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      * @deprecated
-     * Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key
+     * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
      * 
      */
-    @Deprecated /* Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key */
+    @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
     @Import(name="sshKeyPaths")
     private @Nullable Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      * @deprecated
-     * Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key
+     * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
      * 
      */
-    @Deprecated /* Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key */
+    @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
     public Optional<Output<List<String>>> sshKeyPaths() {
         return Optional.ofNullable(this.sshKeyPaths);
     }
@@ -521,18 +521,18 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use image_name under server level
-         * ssh_key_path and ssh_keys fields are immutable.
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
          * &gt; 
-         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
          * 
          * @return builder
          * 
@@ -545,18 +545,18 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use image_name under server level
-         * ssh_key_path and ssh_keys fields are immutable.
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
          * &gt; 
-         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
          * 
          * @return builder
          * 
@@ -587,7 +587,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -602,7 +602,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -616,7 +616,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -627,7 +627,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -794,7 +794,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -805,7 +805,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -815,7 +815,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imagePassword [string] Required if `ssh_key_path` is not provided.
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -826,7 +826,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imagePassword [string] Required if `ssh_key_path` is not provided.
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -867,7 +867,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -878,7 +878,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -888,7 +888,7 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param labels [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+         * @param labels [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
          * 
          * @return builder
          * 
@@ -1034,44 +1034,44 @@ public final class ServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          * 
          * @return builder
          * 
          * @deprecated
-         * Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key
+         * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
          * 
          */
-        @Deprecated /* Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key */
+        @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
         public Builder sshKeyPaths(@Nullable Output<List<String>> sshKeyPaths) {
             $.sshKeyPaths = sshKeyPaths;
             return this;
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          * 
          * @return builder
          * 
          * @deprecated
-         * Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key
+         * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
          * 
          */
-        @Deprecated /* Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key */
+        @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
         public Builder sshKeyPaths(List<String> sshKeyPaths) {
             return sshKeyPaths(Output.of(sshKeyPaths));
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          * 
          * @return builder
          * 
          * @deprecated
-         * Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key
+         * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
          * 
          */
-        @Deprecated /* Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key */
+        @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
         public Builder sshKeyPaths(String... sshKeyPaths) {
             return sshKeyPaths(List.of(sshKeyPaths));
         }

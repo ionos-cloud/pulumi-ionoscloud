@@ -47,7 +47,7 @@ public final class VCPUServerNic {
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_keys field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     private @Nullable List<String> securityGroupsIds;
@@ -112,7 +112,7 @@ public final class VCPUServerNic {
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_keys field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     public List<String> securityGroupsIds() {

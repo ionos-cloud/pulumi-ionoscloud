@@ -32,9 +32,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.dbaas.PSQLUser;
- * import com.pulumi.ionoscloud.dbaas.PSQLUserArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLUser;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLUserArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -70,13 +70,37 @@ import javax.annotation.Nullable;
  * 
  * In order to import a PgSql user, you can define an empty user resource in the plan:
  * 
- * hcl
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * resource &#34;ionoscloud_pg_user&#34; &#34;example&#34; {
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLUser;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new PSQLUser("example");
+ * 
+ *     }
  * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * The resource can be imported using the `clusterId` and the `username`, for example:
+ * The resource can be imported using the `clusterId` and the &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example clusterid/username
@@ -181,6 +205,7 @@ public class PSQLUser extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

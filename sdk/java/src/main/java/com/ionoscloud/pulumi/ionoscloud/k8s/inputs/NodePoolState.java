@@ -25,18 +25,18 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
      * 
      */
     @Import(name="allowReplace")
@@ -45,18 +45,18 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
      * 
      */
     public Optional<Output<Boolean>> allowReplace() {
@@ -259,14 +259,14 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     @Import(name="publicIps")
     private @Nullable Output<List<String>> publicIps;
 
     /**
-     * @return [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * @return [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     public Optional<Output<List<String>>> publicIps() {
@@ -362,18 +362,18 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
          * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
          * 
          * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
          * 
          * ⚠️ **Note**:
          * 
-         * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-         * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-         * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-         * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-         * You can read more details about the `ignore_changes` attribute here.
+         * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+         * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+         * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+         * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+         * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
          * 
          * @return builder
          * 
@@ -386,18 +386,18 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
          * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
          * 
          * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
          * 
          * ⚠️ **Note**:
          * 
-         * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-         * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-         * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-         * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-         * You can read more details about the `ignore_changes` attribute here.
+         * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+         * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+         * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+         * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+         * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
          * 
          * @return builder
          * 
@@ -690,7 +690,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 
@@ -701,7 +701,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 
@@ -711,7 +711,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 

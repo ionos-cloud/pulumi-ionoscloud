@@ -852,7 +852,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -891,7 +891,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -930,7 +930,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -969,7 +969,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1008,7 +1008,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1047,7 +1047,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1086,7 +1086,7 @@ public final class CregFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = CregFunctions.getRegistryLocations();
+     *         final var example = CregFunctions.getRegistryLocations(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }

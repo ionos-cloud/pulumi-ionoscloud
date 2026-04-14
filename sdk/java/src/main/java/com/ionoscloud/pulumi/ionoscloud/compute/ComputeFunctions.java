@@ -3195,7 +3195,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3229,7 +3229,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3263,9 +3263,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock() {
@@ -3311,7 +3344,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3345,7 +3378,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3379,9 +3412,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain() {
@@ -3427,7 +3493,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3461,7 +3527,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3495,9 +3561,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args) {
@@ -3543,7 +3642,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3577,7 +3676,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3611,9 +3710,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain(GetIPBlockPlainArgs args) {
@@ -3659,7 +3791,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3693,7 +3825,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3727,9 +3859,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args, InvokeOptions options) {
@@ -3775,7 +3940,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3809,7 +3974,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3843,9 +4008,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args, InvokeOutputOptions options) {
@@ -3891,7 +4089,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3925,7 +4123,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3959,9 +4157,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain(GetIPBlockPlainArgs args, InvokeOptions options) {
@@ -3969,7 +4200,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4014,7 +4245,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4059,7 +4290,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4104,7 +4335,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4149,7 +4380,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4233,7 +4464,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4357,7 +4588,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4481,7 +4712,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4605,7 +4836,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4729,7 +4960,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4853,7 +5084,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4977,7 +5208,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -9097,7 +9328,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9143,7 +9374,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9189,7 +9420,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9235,7 +9466,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9281,7 +9512,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9390,7 +9621,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9470,7 +9701,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9550,7 +9781,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9630,7 +9861,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9710,7 +9941,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9790,7 +10021,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9870,7 +10101,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -11795,7 +12026,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -11878,7 +12109,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -11961,7 +12192,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12044,7 +12275,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12127,7 +12358,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12210,7 +12441,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12293,7 +12524,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */

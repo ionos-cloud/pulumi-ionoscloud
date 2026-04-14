@@ -28,20 +28,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
- * import com.pulumi.ionoscloud.compute.Firewall;
- * import com.pulumi.ionoscloud.compute.FirewallArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Firewall;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.FirewallArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -110,10 +110,10 @@ import javax.annotation.Nullable;
  *             .protocol("ICMP")
  *             .name("Firewall Example")
  *             .sourceMac("00:0a:95:9d:68:16")
- *             .sourceIp(exampleIPBlock.ips().applyValue(ips -> ips[0]))
- *             .targetIp(exampleIPBlock.ips().applyValue(ips -> ips[1]))
- *             .icmpType(1)
- *             .icmpCode(8)
+ *             .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
+ *             .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *             .icmpType("1")
+ *             .icmpCode("8")
  *             .type("INGRESS")
  *             .build());
  * 
@@ -128,7 +128,7 @@ import javax.annotation.Nullable;
  * Resource Firewall can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/firewall:Firewall myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
+ * terraform import ionoscloud_firewall.myfwruledatacenter uuid/server uuid/nic uuid/firewall uuid
  * ```
  * 
  */
@@ -356,6 +356,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

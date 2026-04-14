@@ -52,7 +52,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      * 
-     * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+     * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
      * It will save the password(token) returned on create to a file. This is the only way to get the token.
      * 
      */
@@ -62,7 +62,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      * 
-     * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+     * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
      * It will save the password(token) returned on create to a file. This is the only way to get the token.
      * 
      */
@@ -86,14 +86,14 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Must have on of the values: `enabled`, `disabled`
+     * [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return [string] Must have on of the values: `enabled`, `disabled`
+     * @return [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     public Optional<Output<String>> status() {
@@ -173,7 +173,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param savePasswordToFile [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
          * 
-         * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+         * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
          * It will save the password(token) returned on create to a file. This is the only way to get the token.
          * 
          * @return builder
@@ -187,7 +187,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param savePasswordToFile [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
          * 
-         * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+         * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
          * It will save the password(token) returned on create to a file. This is the only way to get the token.
          * 
          * @return builder
@@ -229,7 +229,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status [string] Must have on of the values: `enabled`, `disabled`
+         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 
@@ -240,7 +240,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status [string] Must have on of the values: `enabled`, `disabled`
+         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 

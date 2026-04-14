@@ -27,17 +27,17 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.NatGateway;
- * import com.pulumi.ionoscloud.compute.NatGatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGateway;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGatewayArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NatGatewayLanArgs;
- * import com.pulumi.ionoscloud.compute.NatGatewayRule;
- * import com.pulumi.ionoscloud.compute.NatGatewayRuleArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGatewayRule;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGatewayRuleArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NatGatewayRuleTargetPortRangeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -75,8 +75,8 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .name("example")
  *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
  *             .lans(NatGatewayLanArgs.builder()
  *                 .id(exampleLan.id())
  *                 .gatewayIps("10.11.2.5")
@@ -90,7 +90,7 @@ import javax.annotation.Nullable;
  *             .type("SNAT")
  *             .protocol("TCP")
  *             .sourceSubnet("10.0.1.0/24")
- *             .publicIp(exampleIPBlock.ips().applyValue(ips -> ips[0]))
+ *             .publicIp(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
  *             .targetSubnet("10.0.1.0/24")
  *             .targetPortRange(NatGatewayRuleTargetPortRangeArgs.builder()
  *                 .start(500)
@@ -109,7 +109,7 @@ import javax.annotation.Nullable;
  * A Nat Gateway Rule resource can be imported using its `resource id`, the `datacenter id` and the `natgateway id , e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/natGatewayRule:NatGatewayRule my_natgateway_rule datacenter uuid/nat gateway uuid/nat gateway rule uuid
+ * terraform import ionoscloud_natgateway_rule.my_natgateway_rule datacenter uuid/nat gateway uuid/nat gateway rule uuid
  * ```
  * 
  */
@@ -281,6 +281,7 @@ public class NatGatewayRule extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

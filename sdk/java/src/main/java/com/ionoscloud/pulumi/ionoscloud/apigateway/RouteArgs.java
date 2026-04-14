@@ -83,7 +83,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     @Import(name="type")
@@ -91,7 +91,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     public Optional<Output<String>> type() {
@@ -114,14 +114,14 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] To enable websocket support. Default value: `false`.
+     * [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Import(name="websocket")
     private @Nullable Output<Boolean> websocket;
 
     /**
-     * @return [bool] To enable websocket support. Default value: `false`.
+     * @return [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> websocket() {
@@ -267,7 +267,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param type [string] This field specifies the protocol used by the ingress to route traffic to the backend
-         * service. Default value: `http`.
+         * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -279,7 +279,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param type [string] This field specifies the protocol used by the ingress to route traffic to the backend
-         * service. Default value: `http`.
+         * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -320,7 +320,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param websocket [bool] To enable websocket support. Default value: `false`.
+         * @param websocket [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -331,7 +331,7 @@ public final class RouteArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param websocket [bool] To enable websocket support. Default value: `false`.
+         * @param websocket [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 

@@ -34,14 +34,14 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
      * 
      */
     @Import(name="logs")
     private @Nullable Output<Boolean> logs;
 
     /**
-     * @return [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * @return [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
      * 
      */
     public Optional<Output<Boolean>> logs() {
@@ -49,14 +49,14 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] Enable or disable metrics. Defaults to `false`.
+     * [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Import(name="metrics")
     private @Nullable Output<Boolean> metrics;
 
     /**
-     * @return [bool] Enable or disable metrics. Defaults to `false`.
+     * @return [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> metrics() {
@@ -137,7 +137,7 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param logs [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+         * @param logs [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param logs [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+         * @param logs [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metrics [bool] Enable or disable metrics. Defaults to `false`.
+         * @param metrics [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -169,7 +169,7 @@ public final class ApigatewayArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param metrics [bool] Enable or disable metrics. Defaults to `false`.
+         * @param metrics [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 

@@ -16,14 +16,14 @@ public final class GetDistributionPlainArgs extends com.pulumi.resources.InvokeA
     public static final GetDistributionPlainArgs Empty = new GetDistributionPlainArgs();
 
     /**
-     * Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
+     * Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     @Import(name="domain")
     private @Nullable String domain;
 
     /**
-     * @return Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
+     * @return Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     public Optional<String> domain() {
@@ -48,7 +48,7 @@ public final class GetDistributionPlainArgs extends com.pulumi.resources.InvokeA
     /**
      * Whether partial matching is allowed or not when using domain argument. Default value is false.
      * 
-     * Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     @Import(name="partialMatch")
@@ -57,7 +57,7 @@ public final class GetDistributionPlainArgs extends com.pulumi.resources.InvokeA
     /**
      * @return Whether partial matching is allowed or not when using domain argument. Default value is false.
      * 
-     * Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     public Optional<Boolean> partialMatch() {
@@ -91,7 +91,7 @@ public final class GetDistributionPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param domain Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
+         * @param domain Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class GetDistributionPlainArgs extends com.pulumi.resources.InvokeA
         /**
          * @param partialMatch Whether partial matching is allowed or not when using domain argument. Default value is false.
          * 
-         * Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`domain`&#34; pulumi-lang-dotnet=&#34;`Domain`&#34; pulumi-lang-go=&#34;`domain`&#34; pulumi-lang-python=&#34;`domain`&#34; pulumi-lang-yaml=&#34;`domain`&#34; pulumi-lang-java=&#34;`domain`&#34;&gt;`domain`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
          * 
          * @return builder
          * 

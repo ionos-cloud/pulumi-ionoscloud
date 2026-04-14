@@ -30,13 +30,13 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.dsaas.Cluster;
- * import com.pulumi.ionoscloud.dsaas.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.ClusterArgs;
  * import com.pulumi.ionoscloud.dsaas.inputs.ClusterMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.dsaas.NodePool;
- * import com.pulumi.ionoscloud.dsaas.NodePoolArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.NodePool;
+ * import com.ionoscloud.pulumi.ionoscloud.dsaas.NodePoolArgs;
  * import com.pulumi.ionoscloud.dsaas.inputs.NodePoolMaintenanceWindowArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -165,14 +165,14 @@ public class NodePool extends com.pulumi.resources.CustomResource {
         return this.clusterId;
     }
     /**
-     * [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+     * [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is &lt;span pulumi-lang-nodejs=&#34;`4`&#34; pulumi-lang-dotnet=&#34;`4`&#34; pulumi-lang-go=&#34;`4`&#34; pulumi-lang-python=&#34;`4`&#34; pulumi-lang-yaml=&#34;`4`&#34; pulumi-lang-java=&#34;`4`&#34;&gt;`4`&lt;/span&gt;.
      * 
      */
     @Export(name="coresCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> coresCount;
 
     /**
-     * @return [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+     * @return [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is &lt;span pulumi-lang-nodejs=&#34;`4`&#34; pulumi-lang-dotnet=&#34;`4`&#34; pulumi-lang-go=&#34;`4`&#34; pulumi-lang-python=&#34;`4`&#34; pulumi-lang-yaml=&#34;`4`&#34; pulumi-lang-java=&#34;`4`&#34;&gt;`4`&lt;/span&gt;.
      * 
      */
     public Output<Integer> coresCount() {
@@ -263,28 +263,28 @@ public class NodePool extends com.pulumi.resources.CustomResource {
         return this.nodeCount;
     }
     /**
-     * [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+     * [int] The RAM size for one node in MB. Must be set in multiples of &lt;span pulumi-lang-nodejs=&#34;`1024`&#34; pulumi-lang-dotnet=&#34;`1024`&#34; pulumi-lang-go=&#34;`1024`&#34; pulumi-lang-python=&#34;`1024`&#34; pulumi-lang-yaml=&#34;`1024`&#34; pulumi-lang-java=&#34;`1024`&#34;&gt;`1024`&lt;/span&gt;MB, with a minimum size is of &lt;span pulumi-lang-nodejs=&#34;`2048`&#34; pulumi-lang-dotnet=&#34;`2048`&#34; pulumi-lang-go=&#34;`2048`&#34; pulumi-lang-python=&#34;`2048`&#34; pulumi-lang-yaml=&#34;`2048`&#34; pulumi-lang-java=&#34;`2048`&#34;&gt;`2048`&lt;/span&gt;MB. The default value is &lt;span pulumi-lang-nodejs=&#34;`4096`&#34; pulumi-lang-dotnet=&#34;`4096`&#34; pulumi-lang-go=&#34;`4096`&#34; pulumi-lang-python=&#34;`4096`&#34; pulumi-lang-yaml=&#34;`4096`&#34; pulumi-lang-java=&#34;`4096`&#34;&gt;`4096`&lt;/span&gt;.
      * 
      */
     @Export(name="ramSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> ramSize;
 
     /**
-     * @return [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+     * @return [int] The RAM size for one node in MB. Must be set in multiples of &lt;span pulumi-lang-nodejs=&#34;`1024`&#34; pulumi-lang-dotnet=&#34;`1024`&#34; pulumi-lang-go=&#34;`1024`&#34; pulumi-lang-python=&#34;`1024`&#34; pulumi-lang-yaml=&#34;`1024`&#34; pulumi-lang-java=&#34;`1024`&#34;&gt;`1024`&lt;/span&gt;MB, with a minimum size is of &lt;span pulumi-lang-nodejs=&#34;`2048`&#34; pulumi-lang-dotnet=&#34;`2048`&#34; pulumi-lang-go=&#34;`2048`&#34; pulumi-lang-python=&#34;`2048`&#34; pulumi-lang-yaml=&#34;`2048`&#34; pulumi-lang-java=&#34;`2048`&#34;&gt;`2048`&lt;/span&gt;MB. The default value is &lt;span pulumi-lang-nodejs=&#34;`4096`&#34; pulumi-lang-dotnet=&#34;`4096`&#34; pulumi-lang-go=&#34;`4096`&#34; pulumi-lang-python=&#34;`4096`&#34; pulumi-lang-yaml=&#34;`4096`&#34; pulumi-lang-java=&#34;`4096`&#34;&gt;`4096`&lt;/span&gt;.
      * 
      */
     public Output<Integer> ramSize() {
         return this.ramSize;
     }
     /**
-     * [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+     * [int] The size of the volume in GB. The size must be greater than &lt;span pulumi-lang-nodejs=&#34;`10`&#34; pulumi-lang-dotnet=&#34;`10`&#34; pulumi-lang-go=&#34;`10`&#34; pulumi-lang-python=&#34;`10`&#34; pulumi-lang-yaml=&#34;`10`&#34; pulumi-lang-java=&#34;`10`&#34;&gt;`10`&lt;/span&gt;GB. The default value is &lt;span pulumi-lang-nodejs=&#34;`20`&#34; pulumi-lang-dotnet=&#34;`20`&#34; pulumi-lang-go=&#34;`20`&#34; pulumi-lang-python=&#34;`20`&#34; pulumi-lang-yaml=&#34;`20`&#34; pulumi-lang-java=&#34;`20`&#34;&gt;`20`&lt;/span&gt;.
      * 
      */
     @Export(name="storageSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> storageSize;
 
     /**
-     * @return [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+     * @return [int] The size of the volume in GB. The size must be greater than &lt;span pulumi-lang-nodejs=&#34;`10`&#34; pulumi-lang-dotnet=&#34;`10`&#34; pulumi-lang-go=&#34;`10`&#34; pulumi-lang-python=&#34;`10`&#34; pulumi-lang-yaml=&#34;`10`&#34; pulumi-lang-java=&#34;`10`&#34;&gt;`10`&lt;/span&gt;GB. The default value is &lt;span pulumi-lang-nodejs=&#34;`20`&#34; pulumi-lang-dotnet=&#34;`20`&#34; pulumi-lang-go=&#34;`20`&#34; pulumi-lang-python=&#34;`20`&#34; pulumi-lang-yaml=&#34;`20`&#34; pulumi-lang-java=&#34;`20`&#34;&gt;`20`&lt;/span&gt;.
      * 
      */
     public Output<Integer> storageSize() {
@@ -358,6 +358,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

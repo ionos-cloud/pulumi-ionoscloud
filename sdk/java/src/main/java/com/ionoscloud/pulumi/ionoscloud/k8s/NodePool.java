@@ -34,18 +34,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.k8s.Cluster;
- * import com.pulumi.ionoscloud.k8s.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;
- * import com.pulumi.ionoscloud.k8s.NodePool;
- * import com.pulumi.ionoscloud.k8s.NodePoolArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.NodePool;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.NodePoolArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.NodePoolMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.NodePoolAutoScalingArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.NodePoolLanArgs;
@@ -115,9 +115,9 @@ import javax.annotation.Nullable;
  *             .ramSize(2048)
  *             .storageSize(40)
  *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[1]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[2]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
  *             .lans(NodePoolLanArgs.builder()
  *                 .id(exampleLan.id())
  *                 .dhcp(true)
@@ -141,7 +141,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+ * **Note:** Set &lt;span pulumi-lang-nodejs=&#34;`createBeforeDestroy`&#34; pulumi-lang-dotnet=&#34;`CreateBeforeDestroy`&#34; pulumi-lang-go=&#34;`createBeforeDestroy`&#34; pulumi-lang-python=&#34;`create_before_destroy`&#34; pulumi-lang-yaml=&#34;`createBeforeDestroy`&#34; pulumi-lang-java=&#34;`createBeforeDestroy`&#34;&gt;`createBeforeDestroy`&lt;/span&gt; on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
  * 
  * ## Import
  * 
@@ -153,9 +153,8 @@ import javax.annotation.Nullable;
  * 
  * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
  * 
- * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- * 
- * pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+ * ⚠️ **_Warning: **During a maintenance window, k8s can update your &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+ * pulumi from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
  * 
  * ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
  * 
@@ -165,18 +164,18 @@ public class NodePool extends com.pulumi.resources.CustomResource {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
      * 
      */
     @Export(name="allowReplace", refs={Boolean.class}, tree="[0]")
@@ -185,18 +184,18 @@ public class NodePool extends com.pulumi.resources.CustomResource {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
+     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
+     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
      * 
      */
     public Output<Optional<Boolean>> allowReplace() {
@@ -385,14 +384,14 @@ public class NodePool extends com.pulumi.resources.CustomResource {
         return this.nodeCount;
     }
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     @Export(name="publicIps", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> publicIps;
 
     /**
-     * @return [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * @return [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     public Output<Optional<List<String>>> publicIps() {
@@ -480,6 +479,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -12,6 +12,10 @@ import java.util.Optional;
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("ionoscloud");
+/**
+ * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+ * 
+ */
     public Optional<String> contractNumber() {
         return Codegen.stringProp("contractNumber").config(config).get();
     }

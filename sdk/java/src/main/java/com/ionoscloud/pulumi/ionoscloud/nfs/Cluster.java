@@ -30,12 +30,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.nfs.Cluster;
- * import com.pulumi.ionoscloud.nfs.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.ClusterArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;
  * import java.util.List;
@@ -93,20 +93,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.nfs.Cluster;
- * import com.pulumi.ionoscloud.nfs.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.ClusterArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;
  * import java.util.List;
@@ -156,7 +156,7 @@ import javax.annotation.Nullable;
  *             .ram(2048)
  *             .availabilityZone("ZONE_1")
  *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName(hDDImage.applyValue(getImageResult -> getImageResult.id()))
+ *             .imageName(hDDImage.id())
  *             .imagePassword(password.result())
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
@@ -193,7 +193,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
+ * A Network File Storage Cluster resource can be imported using its &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and `resource id`:
  * 
  * ```sh
  * $ pulumi import ionoscloud:nfs/cluster:Cluster name location:uuid
@@ -217,7 +217,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.connections;
     }
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 
@@ -226,7 +226,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 
@@ -255,14 +255,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.nfs);
     }
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
      * 
      */
     @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
      * 
      */
     public Output<Integer> size() {
@@ -308,6 +308,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -30,20 +30,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -111,8 +111,8 @@ import javax.annotation.Nullable;
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .ips(            
- *                 exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
  *             .build());
  * 
  *     }
@@ -131,18 +131,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -190,7 +190,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -227,18 +227,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NicFlowlogArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -287,7 +287,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -322,7 +322,7 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than
- * `name` will. Deleting a flowlog will also force NIC re-creation.
+ * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force NIC re-creation.
  * 
  * ## Working with load balancers
  * 
@@ -330,7 +330,7 @@ import javax.annotation.Nullable;
  * change the NIC&#39;s ID behind the scenes, therefore the plan will always report this change
  * trying to revert the state to the one specified by your file.
  * In order to prevent this, use the &#34;lifecycle meta-argument&#34; when declaring your NIC,
- * in order to ignore changes to the `lan` attribute:
+ * in order to ignore changes to the &lt;span pulumi-lang-nodejs=&#34;`lan`&#34; pulumi-lang-dotnet=&#34;`Lan`&#34; pulumi-lang-go=&#34;`lan`&#34; pulumi-lang-python=&#34;`lan`&#34; pulumi-lang-yaml=&#34;`lan`&#34; pulumi-lang-java=&#34;`lan`&#34;&gt;`lan`&lt;/span&gt; attribute:
  * 
  * Here&#39;s an example:
  * 
@@ -342,8 +342,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -360,7 +360,7 @@ import javax.annotation.Nullable;
  *         var example = new Nic("example", NicArgs.builder()
  *             .datacenterId(foobar.id())
  *             .serverId(exampleIonoscloudServer.id())
- *             .lan("2")
+ *             .lan(2)
  *             .dhcp(true)
  *             .firewallActive(true)
  *             .name("updated")
@@ -377,7 +377,7 @@ import javax.annotation.Nullable;
  * Resource **Nic** can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/nic:Nic mynic datacenter uuid/server uuid/nic uuid
+ * terraform import ionoscloud_nic.mynic datacenter uuid/server uuid/nic uuid
  * ```
  * 
  */
@@ -582,7 +582,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     @Export(name="securityGroupsIds", refs={List.class,String.class}, tree="[0,1]")
@@ -591,7 +591,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     public Output<Optional<List<String>>> securityGroupsIds() {
@@ -651,6 +651,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

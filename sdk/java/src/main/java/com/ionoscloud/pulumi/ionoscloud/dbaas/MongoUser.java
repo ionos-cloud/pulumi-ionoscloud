@@ -29,16 +29,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoCluster;
- * import com.pulumi.ionoscloud.dbaas.MongoClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoUser;
- * import com.pulumi.ionoscloud.dbaas.MongoUserArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUserArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoUserRoleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -112,18 +112,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoCluster;
- * import com.pulumi.ionoscloud.dbaas.MongoClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoUser;
- * import com.pulumi.ionoscloud.dbaas.MongoUserArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUserArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoUserRoleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -203,18 +203,38 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
- * 
+ * Resource DBaaS MongoDB User can be imported using the `clusterID` and the &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt;.
  * First, define an empty resource in the plan:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * hcl
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- * resource &#34;ionoscloud_mongo_user&#34; &#34;importeduser&#34; {
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var importeduser = new MongoUser("importeduser");
+ * 
+ *     }
  * }
- * 
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * Then you can import the user using the following command:
- * 
  * ```sh
  * $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
  * ```
@@ -318,6 +338,7 @@ public class MongoUser extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

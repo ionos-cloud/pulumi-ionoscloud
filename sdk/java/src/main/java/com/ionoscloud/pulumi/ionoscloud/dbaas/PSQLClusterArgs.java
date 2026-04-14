@@ -23,14 +23,14 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
     public static final PSQLClusterArgs Empty = new PSQLClusterArgs();
 
     /**
-     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Import(name="backupLocation")
     private @Nullable Output<String> backupLocation;
 
     /**
-     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Optional<Output<String>> backupLocation() {
@@ -286,7 +286,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param backupLocation (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+         * @param backupLocation (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 
@@ -297,7 +297,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param backupLocation (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+         * @param backupLocation (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 

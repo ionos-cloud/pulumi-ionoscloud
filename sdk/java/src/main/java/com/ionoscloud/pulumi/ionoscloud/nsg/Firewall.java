@@ -28,12 +28,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.nsg.Nsg;
- * import com.pulumi.ionoscloud.nsg.NsgArgs;
- * import com.pulumi.ionoscloud.nsg.Firewall;
- * import com.pulumi.ionoscloud.nsg.FirewallArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.Nsg;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.NsgArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.Firewall;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.FirewallArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -80,30 +80,10 @@ import javax.annotation.Nullable;
  * Resource Server can be imported using the `resource id`, `nsg id` and `datacenter id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:nsg/firewall:Firewall mynsg datacenter uuid/nsg uuid/firewall uuid
+ * terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid/firewall uuid
  * ```
  * 
- * Or by using an `import` block.
- * 
- * hcl
- * 
- * import {
- * 
- *   to = ionoscloud_nsg.imported
- * 
- *   id = &#34;datacenter uuid/nsg uuid/firewall uuid&#34;
- * 
- * }
- * 
- * resource &#34;ionoscloud_nsg_firewallrule&#34; &#34;imported&#34; {
- * 
- *   nsg_id            = ionoscloud_nsg.example.id
- * 
- *   datacenter_id     = ionoscloud_datacenter.example.id
- * 
- *   protocol          = protocol of the imported rule
- * 
- * }
+ * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block.
  * 
  */
 @ResourceType(type="ionoscloud:nsg/firewall:Firewall")
@@ -316,6 +296,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

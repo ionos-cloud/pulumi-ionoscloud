@@ -28,8 +28,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.cert.Certificate;
- * import com.pulumi.ionoscloud.cert.CertificateArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.Certificate;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.CertificateArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  * Resource certificate can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
+ * terraform import ionoscloud_certificate.mycert certificate uuid
  * ```
  * 
  */
@@ -163,6 +163,7 @@ public class Certificate extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "privateKey"
             ))

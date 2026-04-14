@@ -13,7 +13,7 @@ import java.util.Objects;
 public final class GetClusterConfigContext {
     private Map<String,String> context;
     /**
-     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     private String name;
@@ -23,7 +23,7 @@ public final class GetClusterConfigContext {
         return this.context;
     }
     /**
-     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     public String name() {

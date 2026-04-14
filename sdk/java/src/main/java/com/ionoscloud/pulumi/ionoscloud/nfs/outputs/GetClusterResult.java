@@ -44,7 +44,7 @@ public final class GetClusterResult {
     private List<GetClusterNf> nfs;
     private @Nullable Boolean partialMatch;
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
      * 
      */
     private Integer size;
@@ -89,7 +89,7 @@ public final class GetClusterResult {
         return Optional.ofNullable(this.partialMatch);
     }
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
      * 
      */
     public Integer size() {

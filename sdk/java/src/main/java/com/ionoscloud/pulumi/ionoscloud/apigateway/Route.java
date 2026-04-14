@@ -32,11 +32,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.apigateway.Apigateway;
- * import com.pulumi.ionoscloud.apigateway.ApigatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.Apigateway;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.ApigatewayArgs;
  * import com.pulumi.ionoscloud.apigateway.inputs.ApigatewayCustomDomainArgs;
- * import com.pulumi.ionoscloud.apigateway.Route;
- * import com.pulumi.ionoscloud.apigateway.RouteArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.Route;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.RouteArgs;
  * import com.pulumi.ionoscloud.apigateway.inputs.RouteUpstreamArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  * API Gateway route can be imported using the `apigateway route id`:
  * 
  * ```sh
- * $ pulumi import ionoscloud:apigateway/route:Route myroute apigateway uuid:apigateway route uuid
+ * terraform import ionoscloud_apigateway_route.myroute apigateway uuid:apigateway route uuid
  * ```
  * 
  */
@@ -162,7 +162,7 @@ public class Route extends com.pulumi.resources.CustomResource {
     }
     /**
      * [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
@@ -170,7 +170,7 @@ public class Route extends com.pulumi.resources.CustomResource {
 
     /**
      * @return [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * service. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     public Output<Optional<String>> type() {
@@ -191,14 +191,14 @@ public class Route extends com.pulumi.resources.CustomResource {
         return this.upstreams;
     }
     /**
-     * [bool] To enable websocket support. Default value: `false`.
+     * [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Export(name="websocket", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> websocket;
 
     /**
-     * @return [bool] To enable websocket support. Default value: `false`.
+     * @return [bool] To enable websocket support. Default value: &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Output<Optional<Boolean>> websocket() {
@@ -244,6 +244,7 @@ public class Route extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

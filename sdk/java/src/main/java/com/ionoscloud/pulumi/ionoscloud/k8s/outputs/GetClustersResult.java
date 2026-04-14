@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetClustersResult {
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8s_cluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     private List<GetClustersCluster> clusters;
@@ -35,7 +35,7 @@ public final class GetClustersResult {
 
     private GetClustersResult() {}
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8s_cluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     public List<GetClustersCluster> clusters() {

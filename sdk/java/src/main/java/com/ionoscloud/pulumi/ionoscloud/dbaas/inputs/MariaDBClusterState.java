@@ -82,7 +82,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
     /**
      * [string] The DNS name pointing to your cluster.
      * 
-     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Import(name="dnsName")
@@ -91,7 +91,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
     /**
      * @return [string] The DNS name pointing to your cluster.
      * 
-     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Optional<Output<String>> dnsName() {
@@ -309,7 +309,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         /**
          * @param dnsName [string] The DNS name pointing to your cluster.
          * 
-         * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+         * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
          * 
          * @return builder
          * 
@@ -322,7 +322,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         /**
          * @param dnsName [string] The DNS name pointing to your cluster.
          * 
-         * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+         * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
          * 
          * @return builder
          * 

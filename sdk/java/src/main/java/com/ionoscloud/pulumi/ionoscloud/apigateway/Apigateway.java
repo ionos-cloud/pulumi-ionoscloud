@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.apigateway.Apigateway;
- * import com.pulumi.ionoscloud.apigateway.ApigatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.Apigateway;
+ * import com.ionoscloud.pulumi.ionoscloud.apigateway.ApigatewayArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -60,11 +60,13 @@ import javax.annotation.Nullable;
  * 
  * In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
  * 
+ * ```sh
  * resource &#34;ionoscloud_apigateway&#34; &#34;example&#34; {
  * 
  * }
+ * ```
  * 
- * The resource can be imported using the `gateway_id`, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34;&gt;`gatewayId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:apigateway/apigateway:Apigateway example gateway_id
@@ -88,28 +90,28 @@ public class Apigateway extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customDomains);
     }
     /**
-     * [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
      * 
      */
     @Export(name="logs", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> logs;
 
     /**
-     * @return [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * @return [bool] Enable or disable logging. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
      * 
      */
     public Output<Optional<Boolean>> logs() {
         return Codegen.optional(this.logs);
     }
     /**
-     * [bool] Enable or disable metrics. Defaults to `false`.
+     * [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Export(name="metrics", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> metrics;
 
     /**
-     * @return [bool] Enable or disable metrics. Defaults to `false`.
+     * @return [bool] Enable or disable metrics. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Output<Optional<Boolean>> metrics() {
@@ -183,6 +185,7 @@ public class Apigateway extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -47,14 +47,14 @@ public final class GetApigatewayArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+     * Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Import(name="partialMatch")
     private @Nullable Output<Boolean> partialMatch;
 
     /**
-     * @return Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+     * @return Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> partialMatch() {
@@ -130,7 +130,7 @@ public final class GetApigatewayArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class GetApigatewayArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 

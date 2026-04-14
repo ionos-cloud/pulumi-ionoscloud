@@ -31,12 +31,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.nlb.Balancer;
- * import com.pulumi.ionoscloud.nlb.BalancerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.Balancer;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.BalancerArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -96,8 +96,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.nlb.Balancer;
- * import com.pulumi.ionoscloud.nlb.BalancerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.Balancer;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.BalancerArgs;
  * import com.pulumi.ionoscloud.nlb.inputs.BalancerFlowlogArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -134,14 +134,14 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
- * `name` will. Deleting a flowlog will also force nic re-creation.
+ * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force nic re-creation.
  * 
  * ## Import
  * 
  * A Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer datacenter uuid/networkloadbalancer uuid
+ * terraform import ionoscloud_networkloadbalancer.my_networkloadbalancer datacenter uuid/networkloadbalancer uuid
  * ```
  * 
  */
@@ -313,6 +313,7 @@ public class Balancer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

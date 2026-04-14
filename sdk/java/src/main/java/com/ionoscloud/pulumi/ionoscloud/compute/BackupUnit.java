@@ -28,9 +28,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.BackupUnit;
- * import com.pulumi.ionoscloud.compute.BackupUnitArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnit;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnitArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -176,6 +176,7 @@ public class BackupUnit extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

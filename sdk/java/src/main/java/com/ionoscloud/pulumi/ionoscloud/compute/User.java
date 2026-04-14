@@ -29,12 +29,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Group;
- * import com.pulumi.ionoscloud.compute.GroupArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.User;
- * import com.pulumi.ionoscloud.compute.UserArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.User;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  * Resource User can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/user:User myuser user uuid
+ * terraform import ionoscloud_user.myuser user uuid
  * ```
  * 
  */
@@ -184,7 +184,7 @@ public class User extends com.pulumi.resources.CustomResource {
     /**
      * [Set] The groups that this user will be a member of
      * 
-     * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
@@ -193,7 +193,7 @@ public class User extends com.pulumi.resources.CustomResource {
     /**
      * @return [Set] The groups that this user will be a member of
      * 
-     * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     public Output<Optional<List<String>>> groupIds() {
@@ -295,6 +295,7 @@ public class User extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

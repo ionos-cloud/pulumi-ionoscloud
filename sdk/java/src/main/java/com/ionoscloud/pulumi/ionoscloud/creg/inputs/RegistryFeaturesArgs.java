@@ -18,7 +18,7 @@ public final class RegistryFeaturesArgs extends com.pulumi.resources.ResourceArg
     /**
      * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
      * 
-     * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+     * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure &lt;span pulumi-lang-nodejs=&#34;`vulnerabilityScanning`&#34; pulumi-lang-dotnet=&#34;`VulnerabilityScanning`&#34; pulumi-lang-go=&#34;`vulnerabilityScanning`&#34; pulumi-lang-python=&#34;`vulnerability_scanning`&#34; pulumi-lang-yaml=&#34;`vulnerabilityScanning`&#34; pulumi-lang-java=&#34;`vulnerabilityScanning`&#34;&gt;`vulnerabilityScanning`&lt;/span&gt; is set to false on resource creation.
      * 
      */
     @Import(name="vulnerabilityScanning")
@@ -27,7 +27,7 @@ public final class RegistryFeaturesArgs extends com.pulumi.resources.ResourceArg
     /**
      * @return [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
      * 
-     * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+     * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure &lt;span pulumi-lang-nodejs=&#34;`vulnerabilityScanning`&#34; pulumi-lang-dotnet=&#34;`VulnerabilityScanning`&#34; pulumi-lang-go=&#34;`vulnerabilityScanning`&#34; pulumi-lang-python=&#34;`vulnerability_scanning`&#34; pulumi-lang-yaml=&#34;`vulnerabilityScanning`&#34; pulumi-lang-java=&#34;`vulnerabilityScanning`&#34;&gt;`vulnerabilityScanning`&lt;/span&gt; is set to false on resource creation.
      * 
      */
     public Optional<Output<Boolean>> vulnerabilityScanning() {
@@ -61,7 +61,7 @@ public final class RegistryFeaturesArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param vulnerabilityScanning [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
          * 
-         * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+         * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure &lt;span pulumi-lang-nodejs=&#34;`vulnerabilityScanning`&#34; pulumi-lang-dotnet=&#34;`VulnerabilityScanning`&#34; pulumi-lang-go=&#34;`vulnerabilityScanning`&#34; pulumi-lang-python=&#34;`vulnerability_scanning`&#34; pulumi-lang-yaml=&#34;`vulnerabilityScanning`&#34; pulumi-lang-java=&#34;`vulnerabilityScanning`&#34;&gt;`vulnerabilityScanning`&lt;/span&gt; is set to false on resource creation.
          * 
          * @return builder
          * 
@@ -74,7 +74,7 @@ public final class RegistryFeaturesArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param vulnerabilityScanning [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
          * 
-         * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+         * &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure &lt;span pulumi-lang-nodejs=&#34;`vulnerabilityScanning`&#34; pulumi-lang-dotnet=&#34;`VulnerabilityScanning`&#34; pulumi-lang-go=&#34;`vulnerabilityScanning`&#34; pulumi-lang-python=&#34;`vulnerability_scanning`&#34; pulumi-lang-yaml=&#34;`vulnerabilityScanning`&#34; pulumi-lang-java=&#34;`vulnerabilityScanning`&#34;&gt;`vulnerabilityScanning`&lt;/span&gt; is set to false on resource creation.
          * 
          * @return builder
          * 

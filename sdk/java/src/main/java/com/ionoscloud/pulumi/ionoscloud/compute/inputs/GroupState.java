@@ -229,24 +229,24 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      * @deprecated
-     * Please use user_ids for adding users to the group, since user_id will be removed in the future
+     * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
      * 
      */
-    @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
     /**
-     * @return [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * @return [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      * @deprecated
-     * Please use user_ids for adding users to the group, since user_id will be removed in the future
+     * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
      * 
      */
-    @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
     public Optional<Output<String>> userId() {
         return Optional.ofNullable(this.userId);
     }
@@ -269,7 +269,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     /**
      * List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     @Import(name="users")
@@ -278,7 +278,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     public Optional<Output<List<GroupUserArgs>>> users() {
@@ -620,30 +620,30 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+         * @param userId [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use user_ids for adding users to the group, since user_id will be removed in the future
+         * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
          * 
          */
-        @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
         public Builder userId(@Nullable Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
         /**
-         * @param userId [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+         * @param userId [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use user_ids for adding users to the group, since user_id will be removed in the future
+         * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
          * 
          */
-        @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
         public Builder userId(String userId) {
             return userId(Output.of(userId));
         }
@@ -682,7 +682,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param users List of users - See the User section
          * 
-         * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 
@@ -695,7 +695,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param users List of users - See the User section
          * 
-         * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 
@@ -707,7 +707,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param users List of users - See the User section
          * 
-         * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 

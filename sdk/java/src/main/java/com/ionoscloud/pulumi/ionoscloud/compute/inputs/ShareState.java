@@ -66,8 +66,8 @@ public final class ShareState extends com.pulumi.resources.ResourceArgs {
      * 
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-     * to create the resources in a sequential manner. Another solution involves the usage of `depends_on`
-     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
+     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
      * 
      */
     @Import(name="sharePrivilege")
@@ -78,8 +78,8 @@ public final class ShareState extends com.pulumi.resources.ResourceArgs {
      * 
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-     * to create the resources in a sequential manner. Another solution involves the usage of `depends_on`
-     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
+     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
      * 
      */
     public Optional<Output<Boolean>> sharePrivilege() {
@@ -181,8 +181,8 @@ public final class ShareState extends com.pulumi.resources.ResourceArgs {
          * 
          * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
          * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-         * to create the resources in a sequential manner. Another solution involves the usage of `depends_on`
-         * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+         * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
+         * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
          * 
          * @return builder
          * 
@@ -197,8 +197,8 @@ public final class ShareState extends com.pulumi.resources.ResourceArgs {
          * 
          * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
          * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-         * to create the resources in a sequential manner. Another solution involves the usage of `depends_on`
-         * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+         * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
+         * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
          * 
          * @return builder
          * 

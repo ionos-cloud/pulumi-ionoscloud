@@ -30,16 +30,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.nfs.Cluster;
- * import com.pulumi.ionoscloud.nfs.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.ClusterArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.nfs.Share;
- * import com.pulumi.ionoscloud.nfs.ShareArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.Share;
+ * import com.ionoscloud.pulumi.ionoscloud.nfs.ShareArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ShareClientGroupArgs;
  * import com.pulumi.ionoscloud.nfs.inputs.ShareClientGroupNfsArgs;
  * import java.util.List;
@@ -108,7 +108,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
+ * A Network File Storage Share resource can be imported using its &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; and `resource id`:
  * 
  * ```sh
  * $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
@@ -146,28 +146,28 @@ public class Share extends com.pulumi.resources.CustomResource {
         return this.clusterId;
     }
     /**
-     * The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+     * The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     @Export(name="gid", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> gid;
 
     /**
-     * @return The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+     * @return The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     public Output<Optional<Integer>> gid() {
         return Codegen.optional(this.gid);
     }
     /**
-     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * @return The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Output<Optional<String>> location() {
@@ -202,28 +202,28 @@ public class Share extends com.pulumi.resources.CustomResource {
         return this.nfsPath;
     }
     /**
-     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;. Default is &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
      * 
      */
     @Export(name="quota", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> quota;
 
     /**
-     * @return The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+     * @return The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;. Default is &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
      * 
      */
     public Output<Optional<Integer>> quota() {
         return Codegen.optional(this.quota);
     }
     /**
-     * The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+     * The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     @Export(name="uid", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> uid;
 
     /**
-     * @return The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+     * @return The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     public Output<Optional<Integer>> uid() {
@@ -269,6 +269,7 @@ public class Share extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -37,13 +37,13 @@ public final class ServerVolume {
     private @Nullable Boolean discVirtioHotUnplug;
     private String diskType;
     /**
-     * @return [string] Required if `ssh_key_path` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
-     * Please use image_password under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use image_password under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
     private @Nullable String imagePassword;
     /**
      * @return [string] Sets the OS type of the server.
@@ -65,22 +65,22 @@ public final class ServerVolume {
      */
     private @Nullable Integer size;
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      * @deprecated
-     * Please use ssh_key_path under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use ssh_key_path under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
     private @Nullable List<String> sshKeyPaths;
     /**
      * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      * @deprecated
-     * Please use ssh_keys under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use ssh_keys under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>under server level */
     private @Nullable List<String> sshKeys;
     /**
      * @return The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either &#39;public image&#39; or &#39;imageAlias&#39; that has cloud-init compatibility in conjunction with this property.
@@ -129,13 +129,13 @@ public final class ServerVolume {
         return this.diskType;
     }
     /**
-     * @return [string] Required if `ssh_key_path` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
-     * Please use image_password under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use image_password under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
     public Optional<String> imagePassword() {
         return Optional.ofNullable(this.imagePassword);
     }
@@ -173,13 +173,13 @@ public final class ServerVolume {
         return Optional.ofNullable(this.size);
     }
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      * @deprecated
-     * Please use ssh_key_path under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use ssh_key_path under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
     public List<String> sshKeyPaths() {
         return this.sshKeyPaths == null ? List.of() : this.sshKeyPaths;
     }
@@ -187,10 +187,10 @@ public final class ServerVolume {
      * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      * @deprecated
-     * Please use ssh_keys under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use ssh_keys under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>under server level */
     public List<String> sshKeys() {
         return this.sshKeys == null ? List.of() : this.sshKeys;
     }

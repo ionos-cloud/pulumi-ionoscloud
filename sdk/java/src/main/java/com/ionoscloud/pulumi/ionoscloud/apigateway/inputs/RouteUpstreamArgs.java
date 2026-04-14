@@ -33,14 +33,14 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The load balancer algorithm. Default value: `roundrobin`.
+     * [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
      * 
      */
     @Import(name="loadbalancer")
     private @Nullable Output<String> loadbalancer;
 
     /**
-     * @return [string] The load balancer algorithm. Default value: `roundrobin`.
+     * @return [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
      * 
      */
     public Optional<Output<String>> loadbalancer() {
@@ -48,14 +48,14 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [int] The port of the upstream. Default value: `80`.
+     * [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return [int] The port of the upstream. Default value: `80`.
+     * @return [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -63,14 +63,14 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The target URL of the upstream. Default value: `http`.
+     * [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     @Import(name="scheme")
     private @Nullable Output<String> scheme;
 
     /**
-     * @return [string] The target URL of the upstream. Default value: `http`.
+     * @return [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     public Optional<Output<String>> scheme() {
@@ -78,14 +78,14 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [int] Weight with which to split traffic to the upstream. Default value: `100`.
+     * [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
      * 
      */
     @Import(name="weight")
     private @Nullable Output<Integer> weight;
 
     /**
-     * @return [int] Weight with which to split traffic to the upstream. Default value: `100`.
+     * @return [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> weight() {
@@ -142,7 +142,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param loadbalancer [string] The load balancer algorithm. Default value: `roundrobin`.
+         * @param loadbalancer [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -153,7 +153,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param loadbalancer [string] The load balancer algorithm. Default value: `roundrobin`.
+         * @param loadbalancer [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -163,7 +163,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param port [int] The port of the upstream. Default value: `80`.
+         * @param port [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -174,7 +174,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param port [int] The port of the upstream. Default value: `80`.
+         * @param port [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -184,7 +184,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scheme [string] The target URL of the upstream. Default value: `http`.
+         * @param scheme [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scheme [string] The target URL of the upstream. Default value: `http`.
+         * @param scheme [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param weight [int] Weight with which to split traffic to the upstream. Default value: `100`.
+         * @param weight [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class RouteUpstreamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param weight [int] Weight with which to split traffic to the upstream. Default value: `100`.
+         * @param weight [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
          * 
          * @return builder
          * 

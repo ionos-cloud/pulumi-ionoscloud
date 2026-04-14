@@ -44,7 +44,7 @@ public final class GetLanResult {
      */
     private String name;
     /**
-     * @return The unique id of a `ionoscloud.compute.Crossconnect` resource, in order.
+     * @return The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order.
      * 
      */
     private String pcc;
@@ -98,7 +98,7 @@ public final class GetLanResult {
         return this.name;
     }
     /**
-     * @return The unique id of a `ionoscloud.compute.Crossconnect` resource, in order.
+     * @return The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order.
      * 
      */
     public String pcc() {

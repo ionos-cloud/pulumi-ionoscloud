@@ -22,9 +22,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:ionoscloud")
 public class Provider extends com.pulumi.resources.ProviderResource {
+    /**
+     * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+     * 
+     */
     @Export(name="contractNumber", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> contractNumber;
 
+    /**
+     * @return To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+     * 
+     */
     public Output<Optional<String>> contractNumber() {
         return Codegen.optional(this.contractNumber);
     }
@@ -162,6 +170,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -32,14 +32,14 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * @return Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     public Optional<Output<String>> name() {
@@ -49,7 +49,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     @Import(name="partialMatch")
@@ -58,7 +58,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public Optional<Output<Boolean>> partialMatch() {
@@ -113,7 +113,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+         * @param name Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+         * @param name Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param partialMatch Whether partial matching is allowed or not when using name argument. Default value is false.
          * 
-         * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -149,7 +149,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param partialMatch Whether partial matching is allowed or not when using name argument. Default value is false.
          * 
-         * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 

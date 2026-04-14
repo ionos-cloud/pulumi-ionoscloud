@@ -15,18 +15,17 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	pf_tfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	ionoscloud "github.com/ionos-cloud/pulumi-ionoscloud/provider"
-	"github.com/ionos-cloud/pulumi-ionoscloud/provider/pkg/version"
 )
 
 //go:embed schema.json
 var pulumiSchema []byte
 
 func main() {
-	// Modify the path to point to the new provider
-	tfbridge.Main("ionoscloud", version.Version, ionoscloud.Provider(), pulumiSchema)
+	pf_tfbridge.MainWithMuxer(context.Background(), "ionoscloud", ionoscloud.Provider(), pulumiSchema)
 }

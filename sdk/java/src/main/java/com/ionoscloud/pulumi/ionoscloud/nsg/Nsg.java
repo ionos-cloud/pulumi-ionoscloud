@@ -27,10 +27,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.nsg.Nsg;
- * import com.pulumi.ionoscloud.nsg.NsgArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.Nsg;
+ * import com.ionoscloud.pulumi.ionoscloud.nsg.NsgArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -66,34 +66,10 @@ import javax.annotation.Nullable;
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:nsg/nsg:Nsg mynsg datacenter uuid/nsg uuid
+ * terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
  * ```
  * 
- * Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
- * 
- * hcl
- * 
- * resource &#34;ionoscloud_datacenter&#34; &#34;example&#34; {
- * 
- *   name            = &#34;Datacenter NSG Example&#34;
- * 
- *   location        = &#34;de/txl&#34;
- * 
- * }
- * 
- * import {
- * 
- *   to = ionoscloud_nsg.imported
- * 
- *   id = &#34;datacenter uuid/default nsg uuid&#34;
- * 
- * }
- * 
- * resource &#34;ionoscloud_nsg&#34; &#34;imported_default&#34; {  # Imported here
- * 
- *   datacenter_id     = ionoscloud_datacenter.example.id
- * 
- * }
+ * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block. Here is an example that allows you to import the default created nsg into pulumi.
  * 
  */
 @ResourceType(type="ionoscloud:nsg/nsg:Nsg")
@@ -194,6 +170,7 @@ public class Nsg extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

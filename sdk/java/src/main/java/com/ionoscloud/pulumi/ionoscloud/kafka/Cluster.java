@@ -31,12 +31,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.kafka.Cluster;
- * import com.pulumi.ionoscloud.kafka.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.ClusterArgs;
  * import com.pulumi.ionoscloud.kafka.inputs.ClusterConnectionsArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -92,18 +92,18 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.kafka.Cluster;
- * import com.pulumi.ionoscloud.kafka.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.kafka.ClusterArgs;
  * import com.pulumi.ionoscloud.kafka.inputs.ClusterConnectionsArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -176,10 +176,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Kafka Cluster can be imported using the `location` and `kafka cluster id`:
+ * Kafka Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and `kafka cluster id`:
  * 
  * ```sh
- * $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster location:kafka cluster uuid
+ * terraform import ionoscloud_kafka_cluster.mycluster location:kafka cluster uuid
  * ```
  * 
  */
@@ -188,7 +188,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * [list] IP address and port of cluster brokers.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Export(name="brokerAddresses", refs={List.class,String.class}, tree="[0,1]")
@@ -197,7 +197,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * @return [list] IP address and port of cluster brokers.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Output<List<String>> brokerAddresses() {
@@ -218,14 +218,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.connections;
     }
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * @return [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Output<Optional<String>> location() {
@@ -313,6 +313,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

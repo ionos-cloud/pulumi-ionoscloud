@@ -19,22 +19,22 @@ public final class RouteUpstream {
      */
     private String host;
     /**
-     * @return [string] The load balancer algorithm. Default value: `roundrobin`.
+     * @return [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
      * 
      */
     private @Nullable String loadbalancer;
     /**
-     * @return [int] The port of the upstream. Default value: `80`.
+     * @return [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
      * 
      */
     private @Nullable Integer port;
     /**
-     * @return [string] The target URL of the upstream. Default value: `http`.
+     * @return [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     private @Nullable String scheme;
     /**
-     * @return [int] Weight with which to split traffic to the upstream. Default value: `100`.
+     * @return [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
      * 
      */
     private @Nullable Integer weight;
@@ -48,28 +48,28 @@ public final class RouteUpstream {
         return this.host;
     }
     /**
-     * @return [string] The load balancer algorithm. Default value: `roundrobin`.
+     * @return [string] The load balancer algorithm. Default value: &lt;span pulumi-lang-nodejs=&#34;`roundrobin`&#34; pulumi-lang-dotnet=&#34;`Roundrobin`&#34; pulumi-lang-go=&#34;`roundrobin`&#34; pulumi-lang-python=&#34;`roundrobin`&#34; pulumi-lang-yaml=&#34;`roundrobin`&#34; pulumi-lang-java=&#34;`roundrobin`&#34;&gt;`roundrobin`&lt;/span&gt;.
      * 
      */
     public Optional<String> loadbalancer() {
         return Optional.ofNullable(this.loadbalancer);
     }
     /**
-     * @return [int] The port of the upstream. Default value: `80`.
+     * @return [int] The port of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`80`&#34; pulumi-lang-dotnet=&#34;`80`&#34; pulumi-lang-go=&#34;`80`&#34; pulumi-lang-python=&#34;`80`&#34; pulumi-lang-yaml=&#34;`80`&#34; pulumi-lang-java=&#34;`80`&#34;&gt;`80`&lt;/span&gt;.
      * 
      */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
     }
     /**
-     * @return [string] The target URL of the upstream. Default value: `http`.
+     * @return [string] The target URL of the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`http`&#34; pulumi-lang-dotnet=&#34;`Http`&#34; pulumi-lang-go=&#34;`http`&#34; pulumi-lang-python=&#34;`http`&#34; pulumi-lang-yaml=&#34;`http`&#34; pulumi-lang-java=&#34;`http`&#34;&gt;`http`&lt;/span&gt;.
      * 
      */
     public Optional<String> scheme() {
         return Optional.ofNullable(this.scheme);
     }
     /**
-     * @return [int] Weight with which to split traffic to the upstream. Default value: `100`.
+     * @return [int] Weight with which to split traffic to the upstream. Default value: &lt;span pulumi-lang-nodejs=&#34;`100`&#34; pulumi-lang-dotnet=&#34;`100`&#34; pulumi-lang-go=&#34;`100`&#34; pulumi-lang-python=&#34;`100`&#34; pulumi-lang-yaml=&#34;`100`&#34; pulumi-lang-java=&#34;`100`&#34;&gt;`100`&lt;/span&gt;.
      * 
      */
     public Optional<Integer> weight() {

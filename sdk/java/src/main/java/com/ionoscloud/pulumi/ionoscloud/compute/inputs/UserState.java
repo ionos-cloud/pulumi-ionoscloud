@@ -95,7 +95,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     /**
      * [Set] The groups that this user will be a member of
      * 
-     * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     @Import(name="groupIds")
@@ -104,7 +104,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [Set] The groups that this user will be a member of
      * 
-     * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     public Optional<Output<List<String>>> groupIds() {
@@ -312,7 +312,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param groupIds [Set] The groups that this user will be a member of
          * 
-         * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 
@@ -325,7 +325,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param groupIds [Set] The groups that this user will be a member of
          * 
-         * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 
@@ -337,7 +337,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param groupIds [Set] The groups that this user will be a member of
          * 
-         * **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
          * 
          * @return builder
          * 

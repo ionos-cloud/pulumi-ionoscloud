@@ -94,14 +94,14 @@ public final class LanState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      * 
      */
     @Import(name="pcc")
     private @Nullable Output<String> pcc;
 
     /**
-     * @return [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * @return [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      * 
      */
     public Optional<Output<String>> pcc() {
@@ -269,7 +269,7 @@ public final class LanState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pcc [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+         * @param pcc [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
          * 
          * @return builder
          * 
@@ -280,7 +280,7 @@ public final class LanState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pcc [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+         * @param pcc [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
          * 
          * @return builder
          * 

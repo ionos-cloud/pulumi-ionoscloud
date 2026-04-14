@@ -261,14 +261,14 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+     * (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+     * @return (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -652,7 +652,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+         * @param type (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
          * 
          * @return builder
          * 
@@ -663,7 +663,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+         * @param type (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
          * 
          * @return builder
          * 

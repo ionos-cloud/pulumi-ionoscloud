@@ -32,14 +32,14 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.nlb.Balancer;
- * import com.pulumi.ionoscloud.nlb.BalancerArgs;
- * import com.pulumi.ionoscloud.nlb.ForwardingRule;
- * import com.pulumi.ionoscloud.nlb.ForwardingRuleArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.Balancer;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.BalancerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.ForwardingRule;
+ * import com.ionoscloud.pulumi.ionoscloud.nlb.ForwardingRuleArgs;
  * import com.pulumi.ionoscloud.nlb.inputs.ForwardingRuleTargetArgs;
  * import com.pulumi.ionoscloud.nlb.inputs.ForwardingRuleTargetHealthCheckArgs;
  * import java.util.List;
@@ -90,11 +90,11 @@ import javax.annotation.Nullable;
  *             .algorithm("SOURCE_IP")
  *             .protocol("TCP")
  *             .listenerIp("10.12.118.224")
- *             .listenerPort("8081")
+ *             .listenerPort(8081)
  *             .targets(ForwardingRuleTargetArgs.builder()
  *                 .ip("22.231.2.2")
- *                 .port("8080")
- *                 .weight("123")
+ *                 .port(8080)
+ *                 .weight(123)
  *                 .proxyProtocol("v1")
  *                 .healthCheck(ForwardingRuleTargetHealthCheckArgs.builder()
  *                     .check(true)
@@ -114,7 +114,7 @@ import javax.annotation.Nullable;
  * A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
+ * terraform import ionoscloud_networkloadbalancer_forwardingrule.my_networkloadbalancer_forwardingrule datacenter uuid/networkloadbalancer uuid/networkloadbalancer_forwardingrule uuid
  * ```
  * 
  */
@@ -278,6 +278,7 @@ public class ForwardingRule extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

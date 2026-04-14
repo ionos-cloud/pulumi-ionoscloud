@@ -31,11 +31,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.User;
- * import com.pulumi.ionoscloud.compute.UserArgs;
- * import com.pulumi.ionoscloud.compute.Group;
- * import com.pulumi.ionoscloud.compute.GroupArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.User;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -110,10 +110,10 @@ import javax.annotation.Nullable;
  * Resource Group can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/group:Group mygroup group uuid
+ * terraform import ionoscloud_group.mygroup group uuid
  * ```
  * 
- * &gt; :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
+ * &gt; :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;to match the new structure, by renaming the field old field, **user_id**, to&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;and put the old value into an array. This is not backwards compatible.
  * 
  */
 @ResourceType(type="ionoscloud:compute/group:Group")
@@ -315,18 +315,18 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.s3Privilege);
     }
     /**
-     * [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      * @deprecated
-     * Please use user_ids for adding users to the group, since user_id will be removed in the future
+     * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
      * 
      */
-    @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
     @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
     /**
-     * @return [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * @return [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      */
     public Output<Optional<String>> userId() {
@@ -349,7 +349,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     /**
      * List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     @Export(name="users", refs={List.class,GroupUser.class}, tree="[0,1]")
@@ -358,7 +358,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     /**
      * @return List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     public Output<List<GroupUser>> users() {
@@ -404,6 +404,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -34,20 +34,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Volume;
- * import com.pulumi.ionoscloud.compute.VolumeArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  *             .ram(1024)
  *             .availabilityZone("ZONE_1")
  *             .cpuFamily("INTEL_XEON")
- *             .imageName(example.applyValue(getImageResult -> getImageResult.name()))
+ *             .imageName(example.name())
  *             .imagePassword(serverImagePassword.result())
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
@@ -117,16 +117,16 @@ import javax.annotation.Nullable;
  *                 .firewallActive(true)
  *                 .firewallType("BIDIRECTIONAL")
  *                 .ips(                
- *                     exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                     exampleIPBlock.ips().applyValue(ips -> ips[1]))
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
  *                 .firewalls(ServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")
  *                     .portRangeStart(22)
  *                     .portRangeEnd(22)
  *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(ips -> ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(ips -> ips[3]))
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
  *                     .type("EGRESS")
  *                     .build())
  *                 .build())
@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  *             .size(5)
  *             .diskType("SSD Standard")
  *             .bus("VIRTIO")
- *             .imageName(example.applyValue(getImageResult -> getImageResult.name()))
+ *             .imageName(example.name())
  *             .imagePassword(volumeImagePassword.result())
  *             .userData("foo")
  *             .build());
@@ -172,7 +172,7 @@ import javax.annotation.Nullable;
  * Resource Volume can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/volume:Volume myvolume datacenter uuid/server uuid/volume uuid
+ * terraform import ionoscloud_volume.myvolume datacenter uuid/server uuid/volume uuid
  * ```
  * 
  */
@@ -210,8 +210,8 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * [string] The UUID of the attached server.
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_key_path and ssh_keys fields are immutable.
-     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
      * 
      */
     @Export(name="bootServer", refs={String.class}, tree="[0]")
@@ -221,8 +221,8 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * @return [string] The UUID of the attached server.
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; ssh_key_path and ssh_keys fields are immutable.
-     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
      * 
      */
     public Output<String> bootServer() {
@@ -347,42 +347,42 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.imageId;
     }
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Export(name="imageName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Output<Optional<String>> imageName() {
         return Codegen.optional(this.imageName);
     }
     /**
-     * [string] Required if `sshkey_path` is not provided.
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="imagePassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> imagePassword;
 
     /**
-     * @return [string] Required if `sshkey_path` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public Output<Optional<String>> imagePassword() {
         return Codegen.optional(this.imagePassword);
     }
     /**
-     * [string] Required if `image_name` is not provided.
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`imageName`&#34; pulumi-lang-dotnet=&#34;`ImageName`&#34; pulumi-lang-go=&#34;`imageName`&#34; pulumi-lang-python=&#34;`image_name`&#34; pulumi-lang-yaml=&#34;`imageName`&#34; pulumi-lang-java=&#34;`imageName`&#34;&gt;`imageName`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="licenceType", refs={String.class}, tree="[0]")
     private Output<String> licenceType;
 
     /**
-     * @return [string] Required if `image_name` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`imageName`&#34; pulumi-lang-dotnet=&#34;`ImageName`&#34; pulumi-lang-go=&#34;`imageName`&#34; pulumi-lang-python=&#34;`image_name`&#34; pulumi-lang-yaml=&#34;`imageName`&#34; pulumi-lang-java=&#34;`imageName`&#34;&gt;`imageName`&lt;/span&gt; is not provided.
      * 
      */
     public Output<String> licenceType() {
@@ -487,28 +487,28 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.size;
     }
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Export(name="sshKeyPaths", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Output<Optional<List<String>>> sshKeyPaths() {
         return Codegen.optional(this.sshKeyPaths);
     }
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Export(name="sshKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeys;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Output<Optional<List<String>>> sshKeys() {
@@ -582,6 +582,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -34,7 +34,7 @@ public final class GetDistributionRoutingRuleUpstream {
      */
     private String rateLimitClass;
     /**
-     * @return The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+     * @return The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) &lt;span pulumi-lang-nodejs=&#34;`distribution`&#34; pulumi-lang-dotnet=&#34;`Distribution`&#34; pulumi-lang-go=&#34;`distribution`&#34; pulumi-lang-python=&#34;`distribution`&#34; pulumi-lang-yaml=&#34;`distribution`&#34; pulumi-lang-java=&#34;`distribution`&#34;&gt;`distribution`&lt;/span&gt;: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) &lt;span pulumi-lang-nodejs=&#34;`origin`&#34; pulumi-lang-dotnet=&#34;`Origin`&#34; pulumi-lang-go=&#34;`origin`&#34; pulumi-lang-python=&#34;`origin`&#34; pulumi-lang-yaml=&#34;`origin`&#34; pulumi-lang-java=&#34;`origin`&#34;&gt;`origin`&lt;/span&gt;: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
      * 
      */
     private String sniMode;
@@ -74,7 +74,7 @@ public final class GetDistributionRoutingRuleUpstream {
         return this.rateLimitClass;
     }
     /**
-     * @return The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+     * @return The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) &lt;span pulumi-lang-nodejs=&#34;`distribution`&#34; pulumi-lang-dotnet=&#34;`Distribution`&#34; pulumi-lang-go=&#34;`distribution`&#34; pulumi-lang-python=&#34;`distribution`&#34; pulumi-lang-yaml=&#34;`distribution`&#34; pulumi-lang-java=&#34;`distribution`&#34;&gt;`distribution`&lt;/span&gt;: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) &lt;span pulumi-lang-nodejs=&#34;`origin`&#34; pulumi-lang-dotnet=&#34;`Origin`&#34; pulumi-lang-go=&#34;`origin`&#34; pulumi-lang-python=&#34;`origin`&#34; pulumi-lang-yaml=&#34;`origin`&#34; pulumi-lang-java=&#34;`origin`&#34;&gt;`origin`&lt;/span&gt;: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
      * 
      */
     public String sniMode() {

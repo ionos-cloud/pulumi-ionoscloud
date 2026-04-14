@@ -29,8 +29,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.cdn.Distribution;
- * import com.pulumi.ionoscloud.cdn.DistributionArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.cdn.Distribution;
+ * import com.ionoscloud.pulumi.ionoscloud.cdn.DistributionArgs;
  * import com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleArgs;
  * import com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleUpstreamArgs;
  * import com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs;
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  * Resource Distribution can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution distribution uuid
+ * terraform import ionoscloud_cdn_distribution.myDistribution distribution uuid
  * ```
  * 
  */
@@ -226,6 +226,7 @@ public class Distribution extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }
