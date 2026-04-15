@@ -59,7 +59,7 @@ export class Accesskey extends pulumi.CustomResource {
     /**
      * Access key metadata is a string of 92 characters.
      */
-    declare public /*out*/ readonly accesskey: pulumi.Output<string>;
+    declare public /*out*/ readonly accessKey: pulumi.Output<string>;
     /**
      * The canonical user ID which is valid for user-owned buckets.
      */
@@ -94,7 +94,7 @@ export class Accesskey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccesskeyState | undefined;
-            resourceInputs["accesskey"] = state?.accesskey;
+            resourceInputs["accessKey"] = state?.accessKey;
             resourceInputs["canonicalUserId"] = state?.canonicalUserId;
             resourceInputs["contractUserId"] = state?.contractUserId;
             resourceInputs["description"] = state?.description;
@@ -104,7 +104,7 @@ export class Accesskey extends pulumi.CustomResource {
             const args = argsOrState as AccesskeyArgs | undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["timeouts"] = args?.timeouts;
-            resourceInputs["accesskey"] = undefined /*out*/;
+            resourceInputs["accessKey"] = undefined /*out*/;
             resourceInputs["canonicalUserId"] = undefined /*out*/;
             resourceInputs["contractUserId"] = undefined /*out*/;
             resourceInputs["secretkey"] = undefined /*out*/;
@@ -121,7 +121,7 @@ export interface AccesskeyState {
     /**
      * Access key metadata is a string of 92 characters.
      */
-    accesskey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
     /**
      * The canonical user ID which is valid for user-owned buckets.
      */

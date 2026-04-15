@@ -70,15 +70,15 @@ public class Accesskey extends com.pulumi.resources.CustomResource {
      * Access key metadata is a string of 92 characters.
      * 
      */
-    @Export(name="accesskey", refs={String.class}, tree="[0]")
-    private Output<String> accesskey;
+    @Export(name="accessKey", refs={String.class}, tree="[0]")
+    private Output<String> accessKey;
 
     /**
      * @return Access key metadata is a string of 92 characters.
      * 
      */
-    public Output<String> accesskey() {
-        return this.accesskey;
+    public Output<String> accessKey() {
+        return this.accessKey;
     }
     /**
      * The canonical user ID which is valid for user-owned buckets.

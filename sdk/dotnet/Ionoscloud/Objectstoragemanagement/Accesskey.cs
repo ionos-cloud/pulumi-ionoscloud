@@ -47,8 +47,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
         /// <summary>
         /// Access key metadata is a string of 92 characters.
         /// </summary>
-        [Output("accesskey")]
-        public Output<string> Accesskey { get; private set; } = null!;
+        [Output("accessKey")]
+        public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
         /// The canonical user ID which is valid for user-owned buckets.
@@ -150,8 +150,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
         /// <summary>
         /// Access key metadata is a string of 92 characters.
         /// </summary>
-        [Input("accesskey")]
-        public Input<string>? Accesskey { get; set; }
+        [Input("accessKey")]
+        public Input<string>? AccessKey { get; set; }
 
         /// <summary>
         /// The canonical user ID which is valid for user-owned buckets.

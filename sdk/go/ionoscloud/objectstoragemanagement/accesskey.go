@@ -52,7 +52,7 @@ type Accesskey struct {
 	pulumi.CustomResourceState
 
 	// Access key metadata is a string of 92 characters.
-	Accesskey pulumi.StringOutput `pulumi:"accesskey"`
+	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
 	// The canonical user ID which is valid for user-owned buckets.
 	CanonicalUserId pulumi.StringOutput `pulumi:"canonicalUserId"`
 	// The contract user ID which is valid for contract-owned buckets
@@ -96,7 +96,7 @@ func GetAccesskey(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Accesskey resources.
 type accesskeyState struct {
 	// Access key metadata is a string of 92 characters.
-	Accesskey *string `pulumi:"accesskey"`
+	AccessKey *string `pulumi:"accessKey"`
 	// The canonical user ID which is valid for user-owned buckets.
 	CanonicalUserId *string `pulumi:"canonicalUserId"`
 	// The contract user ID which is valid for contract-owned buckets
@@ -111,7 +111,7 @@ type accesskeyState struct {
 
 type AccesskeyState struct {
 	// Access key metadata is a string of 92 characters.
-	Accesskey pulumi.StringPtrInput
+	AccessKey pulumi.StringPtrInput
 	// The canonical user ID which is valid for user-owned buckets.
 	CanonicalUserId pulumi.StringPtrInput
 	// The contract user ID which is valid for contract-owned buckets
@@ -231,8 +231,8 @@ func (o AccesskeyOutput) ToAccesskeyOutputWithContext(ctx context.Context) Acces
 }
 
 // Access key metadata is a string of 92 characters.
-func (o AccesskeyOutput) Accesskey() pulumi.StringOutput {
-	return o.ApplyT(func(v *Accesskey) pulumi.StringOutput { return v.Accesskey }).(pulumi.StringOutput)
+func (o AccesskeyOutput) AccessKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accesskey) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
 // The canonical user ID which is valid for user-owned buckets.

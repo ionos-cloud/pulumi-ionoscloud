@@ -20,15 +20,15 @@ public final class AccesskeyState extends com.pulumi.resources.ResourceArgs {
      * Access key metadata is a string of 92 characters.
      * 
      */
-    @Import(name="accesskey")
-    private @Nullable Output<String> accesskey;
+    @Import(name="accessKey")
+    private @Nullable Output<String> accessKey;
 
     /**
      * @return Access key metadata is a string of 92 characters.
      * 
      */
-    public Optional<Output<String>> accesskey() {
-        return Optional.ofNullable(this.accesskey);
+    public Optional<Output<String>> accessKey() {
+        return Optional.ofNullable(this.accessKey);
     }
 
     /**
@@ -109,7 +109,7 @@ public final class AccesskeyState extends com.pulumi.resources.ResourceArgs {
     private AccesskeyState() {}
 
     private AccesskeyState(AccesskeyState $) {
-        this.accesskey = $.accesskey;
+        this.accessKey = $.accessKey;
         this.canonicalUserId = $.canonicalUserId;
         this.contractUserId = $.contractUserId;
         this.description = $.description;
@@ -136,24 +136,24 @@ public final class AccesskeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accesskey Access key metadata is a string of 92 characters.
+         * @param accessKey Access key metadata is a string of 92 characters.
          * 
          * @return builder
          * 
          */
-        public Builder accesskey(@Nullable Output<String> accesskey) {
-            $.accesskey = accesskey;
+        public Builder accessKey(@Nullable Output<String> accessKey) {
+            $.accessKey = accessKey;
             return this;
         }
 
         /**
-         * @param accesskey Access key metadata is a string of 92 characters.
+         * @param accessKey Access key metadata is a string of 92 characters.
          * 
          * @return builder
          * 
          */
-        public Builder accesskey(String accesskey) {
-            return accesskey(Output.of(accesskey));
+        public Builder accessKey(String accessKey) {
+            return accessKey(Output.of(accessKey));
         }
 
         /**

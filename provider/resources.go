@@ -724,6 +724,9 @@ func Provider() tfbridge.ProviderInfo {
 			// plugin-framework resources: object storage management
 			"ionoscloud_object_storage_accesskey": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageMgmtModule, "Accesskey"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"accesskey": {Name: "accessKey"},
+				},
 			},
 			// plugin-framework resources: monitoring
 			"ionoscloud_monitoring_pipeline": {

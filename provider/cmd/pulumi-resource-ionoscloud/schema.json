@@ -19991,7 +19991,7 @@
         "ionoscloud:objectstoragemanagement/accesskey:Accesskey": {
             "description": "Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstoragemanagement.Accesskey(\"example\", {description: \"my description\"});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstoragemanagement.Accesskey(\"example\", description=\"my description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstoragemanagement.Accesskey(\"example\", new()\n    {\n        Description = \"my description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstoragemanagement\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstoragemanagement.NewAccesskey(ctx, \"example\", \u0026objectstoragemanagement.AccesskeyArgs{\n\t\t\tDescription: pulumi.String(\"my description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.Accesskey;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.AccesskeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Accesskey(\"example\", AccesskeyArgs.builder()\n            .description(\"my description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstoragemanagement:Accesskey\n    properties:\n      description: my description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAn object storage accesskey resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:objectstoragemanagement/accesskey:Accesskey demo objectStorageAccesskeyid\n```\n\nThis can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.\n\n",
             "properties": {
-                "accesskey": {
+                "accessKey": {
                     "type": "string",
                     "description": "Access key metadata is a string of 92 characters.\n"
                 },
@@ -20017,7 +20017,7 @@
                 }
             },
             "required": [
-                "accesskey",
+                "accessKey",
                 "canonicalUserId",
                 "contractUserId",
                 "description",
@@ -20036,7 +20036,7 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Accesskey resources.\n",
                 "properties": {
-                    "accesskey": {
+                    "accessKey": {
                         "type": "string",
                         "description": "Access key metadata is a string of 92 characters.\n"
                     },

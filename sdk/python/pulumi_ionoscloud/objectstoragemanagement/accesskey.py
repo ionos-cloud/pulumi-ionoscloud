@@ -62,7 +62,7 @@ class AccesskeyArgs:
 @pulumi.input_type
 class _AccesskeyState:
     def __init__(__self__, *,
-                 accesskey: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  contract_user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -71,15 +71,15 @@ class _AccesskeyState:
         """
         Input properties used for looking up and filtering Accesskey resources.
 
-        :param pulumi.Input[_builtins.str] accesskey: Access key metadata is a string of 92 characters.
+        :param pulumi.Input[_builtins.str] access_key: Access key metadata is a string of 92 characters.
         :param pulumi.Input[_builtins.str] canonical_user_id: The canonical user ID which is valid for user-owned buckets.
         :param pulumi.Input[_builtins.str] contract_user_id: The contract user ID which is valid for contract-owned buckets
         :param pulumi.Input[_builtins.str] description: [string] Description of the Access key.
         :param pulumi.Input[_builtins.str] secretkey: The secret key of the Access key.
         :param pulumi.Input['AccesskeyTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
-        if accesskey is not None:
-            pulumi.set(__self__, "accesskey", accesskey)
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
         if canonical_user_id is not None:
             pulumi.set(__self__, "canonical_user_id", canonical_user_id)
         if contract_user_id is not None:
@@ -92,16 +92,16 @@ class _AccesskeyState:
             pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
-    @pulumi.getter
-    def accesskey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Access key metadata is a string of 92 characters.
         """
-        return pulumi.get(self, "accesskey")
+        return pulumi.get(self, "access_key")
 
-    @accesskey.setter
-    def accesskey(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "accesskey", value)
+    @access_key.setter
+    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="canonicalUserId")
@@ -258,7 +258,7 @@ class Accesskey(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["timeouts"] = timeouts
-            __props__.__dict__["accesskey"] = None
+            __props__.__dict__["access_key"] = None
             __props__.__dict__["canonical_user_id"] = None
             __props__.__dict__["contract_user_id"] = None
             __props__.__dict__["secretkey"] = None
@@ -272,7 +272,7 @@ class Accesskey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accesskey: Optional[pulumi.Input[_builtins.str]] = None,
+            access_key: Optional[pulumi.Input[_builtins.str]] = None,
             canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
             contract_user_id: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -285,7 +285,7 @@ class Accesskey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] accesskey: Access key metadata is a string of 92 characters.
+        :param pulumi.Input[_builtins.str] access_key: Access key metadata is a string of 92 characters.
         :param pulumi.Input[_builtins.str] canonical_user_id: The canonical user ID which is valid for user-owned buckets.
         :param pulumi.Input[_builtins.str] contract_user_id: The contract user ID which is valid for contract-owned buckets
         :param pulumi.Input[_builtins.str] description: [string] Description of the Access key.
@@ -296,7 +296,7 @@ class Accesskey(pulumi.CustomResource):
 
         __props__ = _AccesskeyState.__new__(_AccesskeyState)
 
-        __props__.__dict__["accesskey"] = accesskey
+        __props__.__dict__["access_key"] = access_key
         __props__.__dict__["canonical_user_id"] = canonical_user_id
         __props__.__dict__["contract_user_id"] = contract_user_id
         __props__.__dict__["description"] = description
@@ -305,12 +305,12 @@ class Accesskey(pulumi.CustomResource):
         return Accesskey(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter
-    def accesskey(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="accessKey")
+    def access_key(self) -> pulumi.Output[_builtins.str]:
         """
         Access key metadata is a string of 92 characters.
         """
-        return pulumi.get(self, "accesskey")
+        return pulumi.get(self, "access_key")
 
     @_builtins.property
     @pulumi.getter(name="canonicalUserId")
