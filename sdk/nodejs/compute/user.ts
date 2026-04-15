@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.compute.User("example", {
  *     firstName: "example",
  *     lastName: "example",
- *     email: "unique@email.com",
+ *     email: "unique@ionos.com",
  *     password: userPassword.result,
  *     administrator: false,
  *     forceSecAuth: false,
@@ -55,6 +55,32 @@ import * as utilities from "../utilities";
  *         group2.id,
  *         group3.id,
  *     ],
+ * });
+ * ```
+ *
+ * ### With Write Only Password That Is Not Saved In State:
+ *
+ * Note: Requires Terraform 1.11 or higher. In this way, the password is not saved in state. `passwordWo` must be used along with `passwordWoVersion`. Updating `passwordWoVersion` will trigger an update to the value of `passwordWo`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ * import * as random from "@pulumi/random";
+ *
+ * const userPassword = new random.index.Password("user_password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const example = new ionoscloud.compute.User("example", {
+ *     firstName: "example",
+ *     lastName: "example",
+ *     email: "unique@ionos.com",
+ *     passwordWo: userPassword.result,
+ *     passwordWoVersion: 1,
+ *     administrator: false,
+ *     forceSecAuth: false,
+ *     active: true,
  * });
  * ```
  *
@@ -116,8 +142,8 @@ export class User extends pulumi.CustomResource {
     declare public readonly forceSecAuth: pulumi.Output<boolean | undefined>;
     /**
      * [Set] The groups that this user will be a member of
-     *
      * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** `passwordWo` requires Teraform 1.11 or higher.
      */
     declare public readonly groupIds: pulumi.Output<string[] | undefined>;
     /**
@@ -125,9 +151,18 @@ export class User extends pulumi.CustomResource {
      */
     declare public readonly lastName: pulumi.Output<string>;
     /**
-     * [string] A password for the user.
+     * A password for the user. If you are using terraform 1.11 or higher, you can use `passwordWo` instead of `password` to avoid storing the password in the state file.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `passwordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Used together with `passwordWo` to trigger an update. Increment this value when an update to the `passwordWo` is required.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Canonical (IONOS Object Storage) id of the user for a given identity
      */
@@ -158,6 +193,8 @@ export class User extends pulumi.CustomResource {
             resourceInputs["groupIds"] = state?.groupIds;
             resourceInputs["lastName"] = state?.lastName;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["s3CanonicalUserId"] = state?.s3CanonicalUserId;
             resourceInputs["secAuthActive"] = state?.secAuthActive;
         } else {
@@ -171,9 +208,6 @@ export class User extends pulumi.CustomResource {
             if (args?.lastName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'lastName'");
             }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["administrator"] = args?.administrator;
             resourceInputs["email"] = args?.email;
@@ -182,11 +216,13 @@ export class User extends pulumi.CustomResource {
             resourceInputs["groupIds"] = args?.groupIds;
             resourceInputs["lastName"] = args?.lastName;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["s3CanonicalUserId"] = undefined /*out*/;
             resourceInputs["secAuthActive"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(User.__pulumiType, name, resourceInputs, opts);
     }
@@ -218,8 +254,8 @@ export interface UserState {
     forceSecAuth?: pulumi.Input<boolean>;
     /**
      * [Set] The groups that this user will be a member of
-     *
      * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** `passwordWo` requires Teraform 1.11 or higher.
      */
     groupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -227,9 +263,18 @@ export interface UserState {
      */
     lastName?: pulumi.Input<string>;
     /**
-     * [string] A password for the user.
+     * A password for the user. If you are using terraform 1.11 or higher, you can use `passwordWo` instead of `password` to avoid storing the password in the state file.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `passwordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Used together with `passwordWo` to trigger an update. Increment this value when an update to the `passwordWo` is required.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Canonical (IONOS Object Storage) id of the user for a given identity
      */
@@ -266,8 +311,8 @@ export interface UserArgs {
     forceSecAuth?: pulumi.Input<boolean>;
     /**
      * [Set] The groups that this user will be a member of
-     *
      * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** `passwordWo` requires Teraform 1.11 or higher.
      */
     groupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -275,7 +320,16 @@ export interface UserArgs {
      */
     lastName: pulumi.Input<string>;
     /**
-     * [string] A password for the user.
+     * A password for the user. If you are using terraform 1.11 or higher, you can use `passwordWo` instead of `password` to avoid storing the password in the state file.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `passwordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Used together with `passwordWo` to trigger an update. Increment this value when an update to the `passwordWo` is required.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
 }

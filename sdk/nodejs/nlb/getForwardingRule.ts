@@ -42,6 +42,7 @@ export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.Inv
     return pulumi.runtime.invoke("ionoscloud:nlb/getForwardingRule:getForwardingRule", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "networkloadbalancerId": args.networkloadbalancerId,
     }, opts);
@@ -61,6 +62,7 @@ export interface GetForwardingRuleArgs {
      * Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing network load balancer forwarding rule that you want to search for.
      */
@@ -96,6 +98,7 @@ export interface GetForwardingRuleResult {
      * Listening port number. (inbound) (range: 1 to 65535)
      */
     readonly listenerPort: number;
+    readonly location?: string;
     /**
      * The name of that Network Load Balancer forwarding rule.
      */
@@ -146,6 +149,7 @@ export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?
     return pulumi.runtime.invokeOutput("ionoscloud:nlb/getForwardingRule:getForwardingRule", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "networkloadbalancerId": args.networkloadbalancerId,
     }, opts);
@@ -165,6 +169,7 @@ export interface GetForwardingRuleOutputArgs {
      * Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing network load balancer forwarding rule that you want to search for.
      */

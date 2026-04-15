@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
 /**
  * Manages Lifecycle Configuration for Buckets on IonosCloud.
  *
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -22,7 +24,9 @@ import * as utilities from "../utilities";
  *         {
  *             id: "1",
  *             status: "Enabled",
- *             prefix: "/logs",
+ *             filter: [{
+ *                 prefix: "/logs",
+ *             }],
  *             expiration: [{
  *                 days: 90,
  *             }],
@@ -30,7 +34,9 @@ import * as utilities from "../utilities";
  *         {
  *             id: "2",
  *             status: "Enabled",
- *             prefix: "/logs",
+ *             filter: [{
+ *                 prefix: "/logs",
+ *             }],
  *             noncurrentVersionExpiration: [{
  *                 noncurrentDays: 90,
  *             }],
@@ -38,7 +44,9 @@ import * as utilities from "../utilities";
  *         {
  *             id: "3",
  *             status: "Enabled",
- *             prefix: "/logs",
+ *             filter: [{
+ *                 prefix: "/logs",
+ *             }],
  *             abortIncompleteMultipartUpload: [{
  *                 daysAfterInitiation: 90,
  *             }],

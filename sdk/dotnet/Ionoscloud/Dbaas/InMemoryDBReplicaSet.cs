@@ -11,89 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 {
     /// <summary>
-    /// Manages a **DBaaS InMemoryDB Replica Set**.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter for DBaaS InMemoryDB replica sets",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = false,
-    ///         Name = "example",
-    ///     });
-    /// 
-    ///     var exampleServer = new Ionoscloud.Compute.Server("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         DatacenterId = example.Id,
-    ///         Cores = 2,
-    ///         Ram = 2048,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_SKYLAKE",
-    ///         ImageName = "rockylinux-8-GenericCloud-20230518",
-    ///         ImagePassword = "password",
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "example",
-    ///             Size = 10,
-    ///             DiskType = "SSD Standard",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = exampleLan.Id,
-    ///             Name = "example",
-    ///             Dhcp = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleInMemoryDBReplicaSet = new Ionoscloud.Dbaas.InMemoryDBReplicaSet("example", new()
-    ///     {
-    ///         Location = example.Location,
-    ///         DisplayName = "ExampleReplicaSet",
-    ///         Version = "7.2",
-    ///         Replicas = 4,
-    ///         Resources = new Ionoscloud.Dbaas.Inputs.InMemoryDBReplicaSetResourcesArgs
-    ///         {
-    ///             Cores = 1,
-    ///             Ram = 6,
-    ///         },
-    ///         PersistenceMode = "RDB",
-    ///         EvictionPolicy = "noeviction",
-    ///         Connections = new Ionoscloud.Dbaas.Inputs.InMemoryDBReplicaSetConnectionsArgs
-    ///         {
-    ///             DatacenterId = example.Id,
-    ///             LanId = exampleLan.Id,
-    ///             Cidr = "database_ip_cidr_from_nic",
-    ///         },
-    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.InMemoryDBReplicaSetMaintenanceWindowArgs
-    ///         {
-    ///             DayOfTheWeek = "Monday",
-    ///             Time = "10:00:00",
-    ///         },
-    ///         Credentials = new Ionoscloud.Dbaas.Inputs.InMemoryDBReplicaSetCredentialsArgs
-    ///         {
-    ///             Username = "myuser",
-    ///             PlainTextPassword = "testpassword",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
+    /// Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
     /// 
     /// ## Import
     /// 
@@ -145,7 +63,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string?> InitialSnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -262,7 +180,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -348,7 +266,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

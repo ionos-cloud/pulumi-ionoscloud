@@ -232,7 +232,7 @@ class Registry(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an **Container Registry** on IonosCloud.
+        Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -277,7 +277,7 @@ class Registry(pulumi.CustomResource):
                  args: RegistryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Container Registry** on IonosCloud.
+        Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
 
         ## Example Usage
 

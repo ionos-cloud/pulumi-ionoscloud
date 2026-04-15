@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * The **Cube Server data source** can be used to search for and return existing servers.
+ * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
@@ -40,6 +40,7 @@ export function getCubeServer(args: GetCubeServerArgs, opts?: pulumi.InvokeOptio
     return pulumi.runtime.invoke("ionoscloud:compute/getCubeServer:getCubeServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "templateUuid": args.templateUuid,
     }, opts);
@@ -59,6 +60,10 @@ export interface GetCubeServerArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: string;
     /**
      * Name of an existing server that you want to search for.
      */
@@ -99,6 +104,10 @@ export interface GetCubeServerResult {
      */
     readonly id: string;
     /**
+     * Location of that image/snapshot
+     */
+    readonly location?: string;
+    /**
      * Name of the firewall rule
      */
     readonly name: string;
@@ -126,7 +135,7 @@ export interface GetCubeServerResult {
     readonly volumes: outputs.compute.GetCubeServerVolume[];
 }
 /**
- * The **Cube Server data source** can be used to search for and return existing servers.
+ * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
@@ -159,6 +168,7 @@ export function getCubeServerOutput(args: GetCubeServerOutputArgs, opts?: pulumi
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getCubeServer:getCubeServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "templateUuid": args.templateUuid,
     }, opts);
@@ -178,6 +188,10 @@ export interface GetCubeServerOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing server that you want to search for.
      */

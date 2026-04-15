@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Logging
 {
     /// <summary>
-    /// Manages a **Logging pipeline**.
+    /// Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
     /// 
     /// &gt; ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
     /// 
@@ -65,6 +65,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
     /// });
     /// ```
     /// 
+    /// For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+    /// plan, and used as presented below:
+    /// 
+    /// The content inside **vars.tfvars** file:
+    /// 
     /// ## Import
     /// 
     /// In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
@@ -92,13 +97,25 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
     public partial class Pipeline : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [string] The address of the client's grafana instance.
+        /// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
         /// </summary>
         [Output("grafanaAddress")]
         public Output<string> GrafanaAddress { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        /// </summary>
+        [Output("httpAddress")]
+        public Output<string> HttpAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        /// </summary>
+        [Output("key")]
+        public Output<string> Key { get; private set; } = null!;
+
+        /// <summary>
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -114,6 +131,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        /// </summary>
+        [Output("tcpAddress")]
+        public Output<string> TcpAddress { get; private set; } = null!;
 
 
         /// <summary>
@@ -139,6 +162,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                AdditionalSecretOutputs =
+                {
+                    "key",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -163,7 +190,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
     public sealed class PipelineArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -195,13 +222,35 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
     public sealed class PipelineState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The address of the client's grafana instance.
+        /// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
         /// </summary>
         [Input("grafanaAddress")]
         public Input<string>? GrafanaAddress { get; set; }
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        /// </summary>
+        [Input("httpAddress")]
+        public Input<string>? HttpAddress { get; set; }
+
+        [Input("key")]
+        private Input<string>? _key;
+
+        /// <summary>
+        /// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        /// </summary>
+        public Input<string>? Key
+        {
+            get => _key;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _key = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -223,6 +272,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        /// </summary>
+        [Input("tcpAddress")]
+        public Input<string>? TcpAddress { get; set; }
 
         public PipelineState()
         {

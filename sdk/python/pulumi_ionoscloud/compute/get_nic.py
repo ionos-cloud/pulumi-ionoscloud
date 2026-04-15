@@ -27,7 +27,7 @@ class GetNicResult:
     """
     A collection of values returned by getNic.
     """
-    def __init__(__self__, datacenter_id=None, device_number=None, dhcp=None, dhcpv6=None, firewall_active=None, firewall_type=None, flowlogs=None, id=None, ips=None, ipv6_cidr_block=None, ipv6_ips=None, lan=None, mac=None, name=None, pci_slot=None, security_groups_ids=None, server_id=None):
+    def __init__(__self__, datacenter_id=None, device_number=None, dhcp=None, dhcpv6=None, firewall_active=None, firewall_type=None, flowlogs=None, id=None, ips=None, ipv6_cidr_block=None, ipv6_ips=None, lan=None, location=None, mac=None, name=None, pci_slot=None, security_groups_ids=None, server_id=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -64,6 +64,9 @@ class GetNicResult:
         if lan and not isinstance(lan, int):
             raise TypeError("Expected argument 'lan' to be a int")
         pulumi.set(__self__, "lan", lan)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if mac and not isinstance(mac, str):
             raise TypeError("Expected argument 'mac' to be a str")
         pulumi.set(__self__, "mac", mac)
@@ -169,6 +172,11 @@ class GetNicResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def mac(self) -> _builtins.str:
         """
         The MAC address of the NIC.
@@ -226,6 +234,7 @@ class AwaitableGetNicResult(GetNicResult):
             ipv6_cidr_block=self.ipv6_cidr_block,
             ipv6_ips=self.ipv6_ips,
             lan=self.lan,
+            location=self.location,
             mac=self.mac,
             name=self.name,
             pci_slot=self.pci_slot,
@@ -235,6 +244,7 @@ class AwaitableGetNicResult(GetNicResult):
 
 def get_nic(datacenter_id: Optional[_builtins.str] = None,
             id: Optional[_builtins.str] = None,
+            location: Optional[_builtins.str] = None,
             name: Optional[_builtins.str] = None,
             server_id: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNicResult:
@@ -277,6 +287,7 @@ def get_nic(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -295,6 +306,7 @@ def get_nic(datacenter_id: Optional[_builtins.str] = None,
         ipv6_cidr_block=pulumi.get(__ret__, 'ipv6_cidr_block'),
         ipv6_ips=pulumi.get(__ret__, 'ipv6_ips'),
         lan=pulumi.get(__ret__, 'lan'),
+        location=pulumi.get(__ret__, 'location'),
         mac=pulumi.get(__ret__, 'mac'),
         name=pulumi.get(__ret__, 'name'),
         pci_slot=pulumi.get(__ret__, 'pci_slot'),
@@ -302,6 +314,7 @@ def get_nic(datacenter_id: Optional[_builtins.str] = None,
         server_id=pulumi.get(__ret__, 'server_id'))
 def get_nic_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                    id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                   location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    server_id: Optional[pulumi.Input[_builtins.str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNicResult]:
@@ -344,6 +357,7 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['serverId'] = server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -361,6 +375,7 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
         ipv6_cidr_block=pulumi.get(__response__, 'ipv6_cidr_block'),
         ipv6_ips=pulumi.get(__response__, 'ipv6_ips'),
         lan=pulumi.get(__response__, 'lan'),
+        location=pulumi.get(__response__, 'location'),
         mac=pulumi.get(__response__, 'mac'),
         name=pulumi.get(__response__, 'name'),
         pci_slot=pulumi.get(__response__, 'pci_slot'),

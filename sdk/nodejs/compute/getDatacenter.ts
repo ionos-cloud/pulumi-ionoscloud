@@ -54,7 +54,7 @@ export interface GetDatacenterArgs {
      */
     id?: string;
     /**
-     * Id of the existing Virtual Data Center's location.
+     * Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      *
      * Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
      */
@@ -87,7 +87,7 @@ export interface GetDatacenterResult {
     readonly id: string;
     readonly ipv6CidrBlock: string;
     /**
-     * The regional location where the Virtual Data Center will be created
+     * The regional location where the Virtual Data Center is created
      */
     readonly location?: string;
     /**
@@ -151,7 +151,7 @@ export interface GetDatacenterOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * Id of the existing Virtual Data Center's location.
+     * Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      *
      * Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
      */

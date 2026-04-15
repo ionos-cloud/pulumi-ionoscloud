@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **CM provider**.
+ * Manages a [CM provider](https://docs.ionos.com/cloud/network-services/certificate-manager).
  *
  * ## Example Usage
  *
@@ -72,7 +72,7 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
      */
     declare public readonly externalAccountBinding: pulumi.Output<outputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
-     * [string] The location of the provider.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -134,7 +134,7 @@ export interface AutoCertificateProviderState {
      */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
-     * [string] The location of the provider.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -160,7 +160,7 @@ export interface AutoCertificateProviderArgs {
      */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
-     * [string] The location of the provider.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      */
     location?: pulumi.Input<string>;
     /**

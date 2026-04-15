@@ -27,6 +27,7 @@ export function getIPFailover(args: GetIPFailoverArgs, opts?: pulumi.InvokeOptio
         "datacenterId": args.datacenterId,
         "ip": args.ip,
         "lanId": args.lanId,
+        "location": args.location,
     }, opts);
 }
 
@@ -46,6 +47,7 @@ export interface GetIPFailoverArgs {
      * The id of the lan of which the IP failover belongs
      */
     lanId: string;
+    location?: string;
 }
 
 /**
@@ -65,6 +67,7 @@ export interface GetIPFailoverResult {
      * The ID of a LAN.
      */
     readonly lanId: string;
+    readonly location?: string;
     /**
      * The ID of a NIC.
      */
@@ -93,6 +96,7 @@ export function getIPFailoverOutput(args: GetIPFailoverOutputArgs, opts?: pulumi
         "datacenterId": args.datacenterId,
         "ip": args.ip,
         "lanId": args.lanId,
+        "location": args.location,
     }, opts);
 }
 
@@ -112,4 +116,5 @@ export interface GetIPFailoverOutputArgs {
      * The id of the lan of which the IP failover belongs
      */
     lanId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
 }

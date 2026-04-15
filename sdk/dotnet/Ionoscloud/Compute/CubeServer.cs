@@ -11,7 +11,9 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **Cube Server** on IonosCloud.
+    /// A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+    /// 
+    /// Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
     /// 
     /// ## Example Usage
     /// 
@@ -55,7 +57,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     var exampleCubeServer = new Ionoscloud.Compute.CubeServer("example", new()
     ///     {
     ///         Name = "Server Example",
-    ///         AvailabilityZone = "ZONE_2",
     ///         ImageName = "ubuntu:latest",
     ///         TemplateUuid = example.Apply(getTemplateResult =&gt; getTemplateResult.Id),
     ///         ImagePassword = serverImagePassword.Result,
@@ -86,6 +87,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
     /// using Random = Pulumi.Random;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -112,7 +114,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Public = true,
     ///         Name = "Lan Example",
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_dc",
+    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         {
+    ///             Input = exampleDatacenter.Ipv6CidrBlock,
+    ///             Newbits = 8,
+    ///             Netnum = 10,
+    ///         }).Result,
     ///     });
     /// 
     ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
@@ -146,12 +153,44 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 webserverIpblock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
     ///             Dhcpv6 = false,
-    ///             Ipv6CidrBlock = "ipv6_cidr_block_from_lan",
+    ///             Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///             {
+    ///                 Input = exampleLan.Ipv6CidrBlock,
+    ///                 Newbits = 16,
+    ///                 Netnum = 5,
+    ///             }).Result,
     ///             Ipv6Ips = new[]
     ///             {
-    ///                 "ipv6_ip1",
-    ///                 "ipv6_ip2",
-    ///                 "ipv6_ip3",
+    ///                 Std.Index.Cidrhost.Invoke(new()
+    ///                 {
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 5,
+    ///                     }).Result,
+    ///                     Host = 1,
+    ///                 }).Result,
+    ///                 Std.Index.Cidrhost.Invoke(new()
+    ///                 {
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 5,
+    ///                     }).Result,
+    ///                     Host = 2,
+    ///                 }).Result,
+    ///                 Std.Index.Cidrhost.Invoke(new()
+    ///                 {
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 5,
+    ///                     }).Result,
+    ///                     Host = 3,
+    ///                 }).Result,
     ///             },
     ///             FirewallActive = true,
     ///         },
@@ -252,6 +291,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("inlineVolumeIds")]
         public Output<ImmutableArray<string>> InlineVolumeIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the server.
@@ -429,6 +474,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Input("name")]
@@ -583,6 +634,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             get => _inlineVolumeIds ?? (_inlineVolumeIds = new InputList<string>());
             set => _inlineVolumeIds = value;
         }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the server.

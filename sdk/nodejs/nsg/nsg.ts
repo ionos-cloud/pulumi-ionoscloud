@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Network Security Group** on IonosCloud.
+ * Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
  * ```
  *
- * Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
+ * Or by using an `import` block. Here is an example that allows you to import the default created nsg into terraform.
  */
 export class Nsg extends pulumi.CustomResource {
     /**
@@ -71,6 +71,10 @@ export class Nsg extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the Network Security Group.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -94,6 +98,7 @@ export class Nsg extends pulumi.CustomResource {
             const state = argsOrState as NsgState | undefined;
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["description"] = state?.description;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["ruleIds"] = state?.ruleIds;
         } else {
@@ -106,6 +111,7 @@ export class Nsg extends pulumi.CustomResource {
             }
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["description"] = args?.description;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["ruleIds"] = undefined /*out*/;
         }
@@ -126,6 +132,10 @@ export interface NsgState {
      * [string] Description for the Network Security Group.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the Network Security Group.
      */
@@ -148,6 +158,10 @@ export interface NsgArgs {
      * [string] Description for the Network Security Group.
      */
     description: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the Network Security Group.
      */

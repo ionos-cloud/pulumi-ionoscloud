@@ -39,34 +39,6 @@ import (
 //	}
 //
 // ```
-//
-// ## By Name
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nfs.LookupCluster(ctx, &nfs.LookupClusterArgs{
-//				Location:     "location",
-//				Name:         pulumi.StringRef("partial-name"),
-//				PartialMatch: pulumi.BoolRef(true),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.InvokeOption) (*LookupClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterResult
@@ -81,7 +53,7 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 type LookupClusterArgs struct {
 	// ID of the Network File Storage cluster.
 	Id *string `pulumi:"id"`
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location string `pulumi:"location"`
 	// Name of the Network File Storage cluster.
 	Name *string `pulumi:"name"`
@@ -119,7 +91,7 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 type LookupClusterOutputArgs struct {
 	// ID of the Network File Storage cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location where the Network File Storage cluster is located.
+	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// Name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput `pulumi:"name"`

@@ -27,7 +27,7 @@ class GetForwardingRuleResult:
     """
     A collection of values returned by getForwardingRule.
     """
-    def __init__(__self__, application_loadbalancer_id=None, client_timeout=None, datacenter_id=None, http_rules=None, id=None, listener_ip=None, listener_port=None, name=None, partial_match=None, protocol=None, server_certificates=None):
+    def __init__(__self__, application_loadbalancer_id=None, client_timeout=None, datacenter_id=None, http_rules=None, id=None, listener_ip=None, listener_port=None, location=None, name=None, partial_match=None, protocol=None, server_certificates=None):
         if application_loadbalancer_id and not isinstance(application_loadbalancer_id, str):
             raise TypeError("Expected argument 'application_loadbalancer_id' to be a str")
         pulumi.set(__self__, "application_loadbalancer_id", application_loadbalancer_id)
@@ -49,6 +49,9 @@ class GetForwardingRuleResult:
         if listener_port and not isinstance(listener_port, int):
             raise TypeError("Expected argument 'listener_port' to be a int")
         pulumi.set(__self__, "listener_port", listener_port)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -115,6 +118,14 @@ class GetForwardingRuleResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        The location for redirecting; mandatory and valid only for REDIRECT actions.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The unique name of the Application Load Balancer HTTP rule.
@@ -153,6 +164,7 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
             id=self.id,
             listener_ip=self.listener_ip,
             listener_port=self.listener_port,
+            location=self.location,
             name=self.name,
             partial_match=self.partial_match,
             protocol=self.protocol,
@@ -162,6 +174,7 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
 def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = None,
                         datacenter_id: Optional[_builtins.str] = None,
                         id: Optional[_builtins.str] = None,
+                        location: Optional[_builtins.str] = None,
                         name: Optional[_builtins.str] = None,
                         partial_match: Optional[_builtins.bool] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
@@ -208,6 +221,7 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = N
     :param _builtins.str application_loadbalancer_id: Application Load Balancer's UUID.
     :param _builtins.str datacenter_id: Datacenter's UUID.
     :param _builtins.str id: ID of the application load balancer you want to search for.
+    :param _builtins.str location: The location for redirecting; mandatory and valid only for REDIRECT actions.
     :param _builtins.str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
            
@@ -217,6 +231,7 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = N
     __args__['applicationLoadbalancerId'] = application_loadbalancer_id
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -230,6 +245,7 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = N
         id=pulumi.get(__ret__, 'id'),
         listener_ip=pulumi.get(__ret__, 'listener_ip'),
         listener_port=pulumi.get(__ret__, 'listener_port'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         protocol=pulumi.get(__ret__, 'protocol'),
@@ -237,6 +253,7 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = N
 def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
                                datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                                id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                               location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetForwardingRuleResult]:
@@ -283,6 +300,7 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
     :param _builtins.str application_loadbalancer_id: Application Load Balancer's UUID.
     :param _builtins.str datacenter_id: Datacenter's UUID.
     :param _builtins.str id: ID of the application load balancer you want to search for.
+    :param _builtins.str location: The location for redirecting; mandatory and valid only for REDIRECT actions.
     :param _builtins.str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
            
@@ -292,6 +310,7 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
     __args__['applicationLoadbalancerId'] = application_loadbalancer_id
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -304,6 +323,7 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
         id=pulumi.get(__response__, 'id'),
         listener_ip=pulumi.get(__response__, 'listener_ip'),
         listener_port=pulumi.get(__response__, 'listener_port'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         partial_match=pulumi.get(__response__, 'partial_match'),
         protocol=pulumi.get(__response__, 'protocol'),

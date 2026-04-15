@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Cert
 {
     /// <summary>
-    /// Manages a **CM provider**.
+    /// Manages a [CM provider](https://docs.ionos.com/cloud/network-services/certificate-manager).
     /// 
     /// ## Example Usage
     /// 
@@ -63,7 +63,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Output<Outputs.AutoCertificateProviderExternalAccountBinding?> ExternalAccountBinding { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the provider.
+        /// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -140,7 +140,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<Inputs.AutoCertificateProviderExternalAccountBindingArgs>? ExternalAccountBinding { get; set; }
 
         /// <summary>
-        /// [string] The location of the provider.
+        /// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -178,7 +178,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<Inputs.AutoCertificateProviderExternalAccountBindingGetArgs>? ExternalAccountBinding { get; set; }
 
         /// <summary>
-        /// [string] The location of the provider.
+        /// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

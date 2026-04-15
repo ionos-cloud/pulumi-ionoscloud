@@ -109,8 +109,7 @@ export class WireguardGateway extends pulumi.CustomResource {
     declare public readonly interfaceIpv6Cidr: pulumi.Output<string | undefined>;
     declare public readonly listenPort: pulumi.Output<number | undefined>;
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -224,8 +223,7 @@ export interface WireguardGatewayState {
     interfaceIpv6Cidr?: pulumi.Input<string>;
     listenPort?: pulumi.Input<number>;
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**
@@ -282,8 +280,7 @@ export interface WireguardGatewayArgs {
     interfaceIpv6Cidr?: pulumi.Input<string>;
     listenPort?: pulumi.Input<number>;
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**

@@ -85,7 +85,8 @@ type LookupLanArgs struct {
 	// ID of the lan you want to search for.
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// Name of an existing lan that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -101,7 +102,8 @@ type LookupLanResult struct {
 	// For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
 	Ipv4CidrBlock string `pulumi:"ipv4CidrBlock"`
 	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
-	Ipv6CidrBlock string `pulumi:"ipv6CidrBlock"`
+	Ipv6CidrBlock string  `pulumi:"ipv6CidrBlock"`
+	Location      *string `pulumi:"location"`
 	// The name of the LAN.
 	Name string `pulumi:"name"`
 	// The unique id of a `compute.Crossconnect` resource, in order.
@@ -126,7 +128,8 @@ type LookupLanOutputArgs struct {
 	// ID of the lan you want to search for.
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing lan that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -173,6 +176,10 @@ func (o LookupLanResultOutput) Ipv4CidrBlock() pulumi.StringOutput {
 // Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
 func (o LookupLanResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
+}
+
+func (o LookupLanResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLanResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the LAN.

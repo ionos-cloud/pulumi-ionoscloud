@@ -38,6 +38,7 @@ export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pro
     return pulumi.runtime.invoke("ionoscloud:compute/getVolume:getVolume", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -53,6 +54,7 @@ export interface GetVolumeArgs {
      * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing volume that you want to search for.
      */
@@ -101,6 +103,10 @@ export interface GetVolumeResult {
      */
     readonly diskType: string;
     /**
+     * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     */
+    readonly exposeSerial: boolean;
+    /**
      * The id of the volume.
      */
     readonly id: string;
@@ -116,6 +122,7 @@ export interface GetVolumeResult {
      * The type of the licence.
      */
     readonly licenceType: string;
+    readonly location?: string;
     /**
      * The name of the volume.
      */
@@ -132,6 +139,10 @@ export interface GetVolumeResult {
      * Is capable of memory hot plug (no reboot required)
      */
     readonly ramHotPlug: boolean;
+    /**
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     */
+    readonly requireLegacyBios: boolean;
     /**
      * The size of the volume in GB.
      */
@@ -179,6 +190,7 @@ export function getVolumeOutput(args: GetVolumeOutputArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getVolume:getVolume", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -194,6 +206,7 @@ export interface GetVolumeOutputArgs {
      * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing volume that you want to search for.
      */

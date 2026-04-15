@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages an **Application Load Balancer** on IonosCloud.
+ * Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -103,6 +103,7 @@ export class Balancer extends pulumi.CustomResource {
      * [int] ID of the listening (inbound) LAN.
      */
     declare public readonly listenerLan: pulumi.Output<number>;
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * Specifies the format of the logs.
      */
@@ -135,6 +136,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["ips"] = state?.ips;
             resourceInputs["lbPrivateIps"] = state?.lbPrivateIps;
             resourceInputs["listenerLan"] = state?.listenerLan;
+            resourceInputs["location"] = state?.location;
             resourceInputs["loggingFormat"] = state?.loggingFormat;
             resourceInputs["name"] = state?.name;
             resourceInputs["targetLan"] = state?.targetLan;
@@ -155,6 +157,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["ips"] = args?.ips;
             resourceInputs["lbPrivateIps"] = args?.lbPrivateIps;
             resourceInputs["listenerLan"] = args?.listenerLan;
+            resourceInputs["location"] = args?.location;
             resourceInputs["loggingFormat"] = args?.loggingFormat;
             resourceInputs["name"] = args?.name;
             resourceInputs["targetLan"] = args?.targetLan;
@@ -192,6 +195,7 @@ export interface BalancerState {
      * [int] ID of the listening (inbound) LAN.
      */
     listenerLan?: pulumi.Input<number>;
+    location?: pulumi.Input<string>;
     /**
      * Specifies the format of the logs.
      */
@@ -234,6 +238,7 @@ export interface BalancerArgs {
      * [int] ID of the listening (inbound) LAN.
      */
     listenerLan: pulumi.Input<number>;
+    location?: pulumi.Input<string>;
     /**
      * Specifies the format of the logs.
      */

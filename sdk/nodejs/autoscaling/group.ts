@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages an Autoscaling Group on IonosCloud.
+ * Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -34,6 +34,7 @@ import * as utilities from "../utilities";
  *     name: "Target Group Example",
  *     algorithm: "ROUND_ROBIN",
  *     protocol: "HTTP",
+ *     protocolVersion: "HTTP1",
  * });
  * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,

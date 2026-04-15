@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public static class GetVCPUServer
     {
         /// <summary>
-        /// The **VCPU Server data source** can be used to search for and return existing VCPU servers. 
+        /// The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -59,7 +59,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVCPUServerResult>("ionoscloud:compute/getVCPUServer:getVCPUServer", args ?? new GetVCPUServerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **VCPU Server data source** can be used to search for and return existing VCPU servers. 
+        /// The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -105,7 +105,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             => global::Pulumi.Deployment.Instance.Invoke<GetVCPUServerResult>("ionoscloud:compute/getVCPUServer:getVCPUServer", args ?? new GetVCPUServerInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **VCPU Server data source** can be used to search for and return existing VCPU servers. 
+        /// The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -169,6 +169,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public string? Id { get; set; }
 
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing server that you want to search for.
         /// </summary>
         [Input("name")]
@@ -195,6 +201,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing server that you want to search for.
@@ -248,9 +260,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly ImmutableArray<Outputs.GetVCPUServerLabelResult> Labels;
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// Name of the firewall rule
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Specifies whether the `NicMultiQueue` feature is enabled or not.
+        /// </summary>
+        public readonly bool NicMultiQueue;
         /// <summary>
         /// list of
         /// </summary>
@@ -301,7 +321,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             ImmutableArray<Outputs.GetVCPUServerLabelResult> labels,
 
+            string? location,
+
             string name,
+
+            bool nicMultiQueue,
 
             ImmutableArray<Outputs.GetVCPUServerNicResult> nics,
 
@@ -328,7 +352,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Hostname = hostname;
             Id = id;
             Labels = labels;
+            Location = location;
             Name = name;
+            NicMultiQueue = nicMultiQueue;
             Nics = nics;
             Ram = ram;
             SecurityGroupsIds = securityGroupsIds;

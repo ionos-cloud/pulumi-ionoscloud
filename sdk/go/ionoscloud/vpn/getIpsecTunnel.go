@@ -119,7 +119,7 @@ type LookupIpsecTunnelArgs struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
 	Id *string `pulumi:"id"`
-	// The location of the IPSec Gateway Tunnel.
+	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// Name of an existing IPSec Gateway Tunnel that you want to search for.
 	Name *string `pulumi:"name"`
@@ -155,7 +155,7 @@ type LookupIpsecTunnelOutputArgs struct {
 	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the IPSec Gateway Tunnel.
+	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing IPSec Gateway Tunnel that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`

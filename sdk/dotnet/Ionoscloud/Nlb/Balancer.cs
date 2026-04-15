@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
 {
     /// <summary>
-    /// Manages a **Network Load Balancer**  on IonosCloud.
+    /// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -153,6 +153,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         public Output<int> ListenerLan { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the format of the logs.
         /// </summary>
         [Output("loggingFormat")]
@@ -266,6 +272,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         public Input<int> ListenerLan { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// Specifies the format of the logs.
         /// </summary>
         [Input("loggingFormat")]
@@ -338,6 +350,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// </summary>
         [Input("listenerLan")]
         public Input<int>? ListenerLan { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Specifies the format of the logs.

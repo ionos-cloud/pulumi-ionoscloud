@@ -25,15 +25,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s.Outputs
         /// </summary>
         public readonly string K8sVersion;
         /// <summary>
-        /// Name of an existing node pool that you want to search for.
+        /// name of the node
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// private ip of the node
+        /// private ip of the node. Only present if the k8s cluster is private.
         /// </summary>
         public readonly string PrivateIp;
         /// <summary>
-        /// public ip of the node
+        /// public ip of the node. Only present if the k8s cluster is public
         /// </summary>
         public readonly string PublicIp;
 

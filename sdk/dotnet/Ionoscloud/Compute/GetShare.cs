@@ -109,7 +109,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// <summary>
         /// The ID of the specific resource to update.
         /// 
-        /// 
         /// `ResourceId` and `GroupId` must be provided. If any of them are missing, the datasource will return an error.
         /// </summary>
         [Input("resourceId", required: true)]
@@ -131,7 +130,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The ID of the specific resource to update.
-        /// 
         /// 
         /// `ResourceId` and `GroupId` must be provided. If any of them are missing, the datasource will return an error.
         /// </summary>

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
 {
     /// <summary>
-    /// Manages a **Network Security Group** on IonosCloud.
+    /// Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -47,7 +47,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
     /// terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
     /// ```
     /// 
-    /// Or by using an `Import` block. Here is an example that allows you to import the default created nsg into pulumi.
+    /// Or by using an `Import` block. Here is an example that allows you to import the default created nsg into terraform.
     /// </summary>
     [IonoscloudResourceType("ionoscloud:nsg/nsg:Nsg")]
     public partial class Nsg : global::Pulumi.CustomResource
@@ -63,6 +63,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the Network Security Group.
@@ -136,6 +142,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Input<string> Description { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the Network Security Group.
         /// </summary>
         [Input("name")]
@@ -160,6 +172,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the Network Security Group.

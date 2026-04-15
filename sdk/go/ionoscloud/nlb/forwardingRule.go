@@ -101,6 +101,8 @@ import (
 //
 // ```
 //
+// ### Usage with dynamic block for targets:
+//
 // ## Import
 //
 // A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
@@ -121,6 +123,8 @@ type ForwardingRule struct {
 	ListenerIp pulumi.StringOutput `pulumi:"listenerIp"`
 	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntOutput `pulumi:"listenerPort"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringOutput `pulumi:"name"`
 	NetworkloadbalancerId pulumi.StringOutput `pulumi:"networkloadbalancerId"`
@@ -191,6 +195,8 @@ type forwardingRuleState struct {
 	ListenerIp *string `pulumi:"listenerIp"`
 	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort *int `pulumi:"listenerPort"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  *string `pulumi:"name"`
 	NetworkloadbalancerId *string `pulumi:"networkloadbalancerId"`
@@ -211,6 +217,8 @@ type ForwardingRuleState struct {
 	ListenerIp pulumi.StringPtrInput
 	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringPtrInput
 	NetworkloadbalancerId pulumi.StringPtrInput
@@ -235,6 +243,8 @@ type forwardingRuleArgs struct {
 	ListenerIp string `pulumi:"listenerIp"`
 	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort int `pulumi:"listenerPort"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  *string `pulumi:"name"`
 	NetworkloadbalancerId string  `pulumi:"networkloadbalancerId"`
@@ -256,6 +266,8 @@ type ForwardingRuleArgs struct {
 	ListenerIp pulumi.StringInput
 	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringPtrInput
 	NetworkloadbalancerId pulumi.StringInput
@@ -375,6 +387,11 @@ func (o ForwardingRuleOutput) ListenerIp() pulumi.StringOutput {
 // [int] Listening port number. (inbound) (range: 1 to 65535)
 func (o ForwardingRuleOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.IntOutput { return v.ListenerPort }).(pulumi.IntOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o ForwardingRuleOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ForwardingRule) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] A name of that Network Load Balancer forwarding rule.

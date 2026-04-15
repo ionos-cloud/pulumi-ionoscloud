@@ -7,7 +7,8 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **NIC** on IonosCloud.
+ * Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -40,8 +41,6 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: "Ubuntu-20.04",
  *     imagePassword: serverImagePassword.result,
  *     volume: {
@@ -76,6 +75,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as random from "@pulumi/random";
+ * import * as std from "@pulumi/std";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Example",
@@ -87,7 +87,11 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     "public": true,
  *     name: "IPv6 Enabled LAN",
- *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ *     ipv6CidrBlock: std.cidrsubnet({
+ *         input: example.ipv6CidrBlock,
+ *         newbits: 8,
+ *         netnum: 2,
+ *     }).result,
  * });
  * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
@@ -98,8 +102,6 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: "Ubuntu-20.04",
  *     imagePassword: serverImagePassword.result,
  *     volume: {
@@ -122,11 +124,36 @@ import * as utilities from "../utilities";
  *     firewallActive: true,
  *     firewallType: "INGRESS",
  *     dhcpv6: false,
- *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *     ipv6CidrBlock: std.cidrsubnet({
+ *         input: exampleLan.ipv6CidrBlock,
+ *         newbits: 16,
+ *         netnum: 14,
+ *     }).result,
  *     ipv6Ips: [
- *         "ipv6_ip1",
- *         "ipv6_ip2",
- *         "ipv6_ip3",
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 10,
+ *         }).result,
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 20,
+ *         }).result,
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 30,
+ *         }).result,
  *     ],
  * });
  * ```
@@ -135,58 +162,47 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- * import * as random from "@pulumi/random";
+ * import * as std from "@pulumi/std";
  *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "Datacenter Example",
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": true,
- *     name: "IPv6 Enabled LAN",
- *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
- * });
- * const serverImagePassword = new random.index.Password("server_image_password", {
- *     length: 16,
- *     special: false,
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "Server Example",
- *     datacenterId: example.id,
- *     cores: 1,
- *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
- *     imageName: "Ubuntu-20.04",
- *     imagePassword: serverImagePassword.result,
- *     volume: {
- *         name: "system",
- *         size: 14,
- *         diskType: "SSD",
- *     },
- *     nic: {
- *         lan: 1,
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleNic = new ionoscloud.compute.Nic("example", {
- *     datacenterId: example.id,
- *     serverId: exampleServer.id,
- *     lan: exampleLan.id,
+ * const example = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     serverId: exampleIonoscloudServer.id,
+ *     lan: exampleIonoscloudLan.id,
  *     name: "IPV6 and Flowlog Enabled NIC",
  *     dhcp: true,
  *     firewallActive: true,
  *     firewallType: "INGRESS",
  *     dhcpv6: false,
- *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *     ipv6CidrBlock: std.cidrsubnet({
+ *         input: exampleIonoscloudLan.ipv6CidrBlock,
+ *         newbits: 16,
+ *         netnum: 14,
+ *     }).result,
  *     ipv6Ips: [
- *         "ipv6_ip1",
- *         "ipv6_ip2",
- *         "ipv6_ip3",
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleIonoscloudLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 10,
+ *         }).result,
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleIonoscloudLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 20,
+ *         }).result,
+ *         std.cidrhost({
+ *             input: std.cidrsubnet({
+ *                 input: exampleIonoscloudLan.ipv6CidrBlock,
+ *                 newbits: 16,
+ *                 netnum: 14,
+ *             }).result,
+ *             host: 30,
+ *         }).result,
  *     ],
  *     flowlog: {
  *         action: "ACCEPTED",
@@ -204,7 +220,7 @@ import * as utilities from "../utilities";
  *
  * Please be aware that when using a NIC in a load balancer, the load balancer will
  * change the NIC's ID behind the scenes, therefore the plan will always report this change
- * trying to revert the state to the one specified by your file.
+ * trying to revert the state to the one specified by your terraform file.
  * In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
  * in order to ignore changes to the `lan` attribute:
  *
@@ -305,6 +321,10 @@ export class Nic extends pulumi.CustomResource {
      */
     declare public readonly lan: pulumi.Output<number>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      */
     declare public readonly mac: pulumi.Output<string>;
@@ -351,6 +371,7 @@ export class Nic extends pulumi.CustomResource {
             resourceInputs["ipv6CidrBlock"] = state?.ipv6CidrBlock;
             resourceInputs["ipv6Ips"] = state?.ipv6Ips;
             resourceInputs["lan"] = state?.lan;
+            resourceInputs["location"] = state?.location;
             resourceInputs["mac"] = state?.mac;
             resourceInputs["name"] = state?.name;
             resourceInputs["pciSlot"] = state?.pciSlot;
@@ -377,6 +398,7 @@ export class Nic extends pulumi.CustomResource {
             resourceInputs["ipv6CidrBlock"] = args?.ipv6CidrBlock;
             resourceInputs["ipv6Ips"] = args?.ipv6Ips;
             resourceInputs["lan"] = args?.lan;
+            resourceInputs["location"] = args?.location;
             resourceInputs["mac"] = args?.mac;
             resourceInputs["name"] = args?.name;
             resourceInputs["securityGroupsIds"] = args?.securityGroupsIds;
@@ -437,6 +459,10 @@ export interface NicState {
      * [integer] The LAN ID the NIC will sit on.
      */
     lan?: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      */
@@ -505,6 +531,10 @@ export interface NicArgs {
      * [integer] The LAN ID the NIC will sit on.
      */
     lan: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      */

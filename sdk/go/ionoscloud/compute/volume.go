@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Volume** on IonosCloud.
+// Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -73,15 +73,13 @@ import (
 //				return err
 //			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("Server Example"),
-//				DatacenterId:     exampleDatacenter.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String(pulumi.String(example.Name)),
-//				ImagePassword:    serverImagePassword.Result,
-//				Type:             pulumi.String("ENTERPRISE"),
+//				Name:          pulumi.String("Server Example"),
+//				DatacenterId:  exampleDatacenter.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(1024),
+//				ImageName:     pulumi.String(pulumi.String(example.Name)),
+//				ImagePassword: serverImagePassword.Result,
+//				Type:          pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("system"),
 //					Size:             pulumi.Int(5),
@@ -104,21 +102,19 @@ import (
 //							return ips[1], nil
 //						}).(pulumi.StringOutput),
 //					},
-//					Firewalls: compute.ServerNicFirewallArray{
-//						&compute.ServerNicFirewallArgs{
-//							Protocol:       pulumi.String("TCP"),
-//							Name:           pulumi.String("SSH"),
-//							PortRangeStart: pulumi.Int(22),
-//							PortRangeEnd:   pulumi.Int(22),
-//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
-//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//								return ips[2], nil
-//							}).(pulumi.StringOutput),
-//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//								return ips[3], nil
-//							}).(pulumi.StringOutput),
-//							Type: pulumi.String("EGRESS"),
-//						},
+//					Firewall: map[string]interface{}{
+//						"protocol":       "TCP",
+//						"name":           "SSH",
+//						"portRangeStart": 22,
+//						"portRangeEnd":   22,
+//						"sourceMac":      "00:0a:95:9d:68:17",
+//						"sourceIp": exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[2], nil
+//						}).(pulumi.StringOutput),
+//						"targetIp": exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[3], nil
+//						}).(pulumi.StringOutput),
+//						"type": "EGRESS",
 //					},
 //				},
 //			})
@@ -181,10 +177,6 @@ type Volume struct {
 	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringOutput `pulumi:"backupUnitId"`
 	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
 	BootServer pulumi.StringOutput `pulumi:"bootServer"`
 	// [Boolean] The bus type of the volume: VIRTIO or IDE.
 	Bus pulumi.StringOutput `pulumi:"bus"`
@@ -200,6 +192,8 @@ type Volume struct {
 	DiscVirtioHotUnplug pulumi.BoolOutput `pulumi:"discVirtioHotUnplug"`
 	// [string] The volume type: HDD or SSD. This property is immutable.
 	DiskType pulumi.StringOutput `pulumi:"diskType"`
+	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial pulumi.BoolOutput `pulumi:"exposeSerial"`
 	// The image or snapshot UUID.
 	Image   pulumi.StringOutput `pulumi:"image"`
 	ImageId pulumi.StringOutput `pulumi:"imageId"`
@@ -209,6 +203,8 @@ type Volume struct {
 	ImagePassword pulumi.StringPtrOutput `pulumi:"imagePassword"`
 	// [string] Required if `imageName` is not provided.
 	LicenceType pulumi.StringOutput `pulumi:"licenceType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the volume.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] Is capable of nic hot plug (no reboot required)
@@ -219,6 +215,13 @@ type Volume struct {
 	PciSlot pulumi.IntOutput `pulumi:"pciSlot"`
 	// [string] Is capable of memory hot plug (no reboot required)
 	RamHotPlug pulumi.BoolOutput `pulumi:"ramHotPlug"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeyPath and sshKeys fields are immutable.
+	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+	RequireLegacyBios pulumi.BoolOutput `pulumi:"requireLegacyBios"`
 	// [string] The ID of a server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// [integer] The size of the volume in GB.
@@ -280,10 +283,6 @@ type volumeState struct {
 	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId *string `pulumi:"backupUnitId"`
 	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
 	BootServer *string `pulumi:"bootServer"`
 	// [Boolean] The bus type of the volume: VIRTIO or IDE.
 	Bus *string `pulumi:"bus"`
@@ -299,6 +298,8 @@ type volumeState struct {
 	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
 	// [string] The volume type: HDD or SSD. This property is immutable.
 	DiskType *string `pulumi:"diskType"`
+	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial *bool `pulumi:"exposeSerial"`
 	// The image or snapshot UUID.
 	Image   *string `pulumi:"image"`
 	ImageId *string `pulumi:"imageId"`
@@ -308,6 +309,8 @@ type volumeState struct {
 	ImagePassword *string `pulumi:"imagePassword"`
 	// [string] Required if `imageName` is not provided.
 	LicenceType *string `pulumi:"licenceType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the volume.
 	Name *string `pulumi:"name"`
 	// [string] Is capable of nic hot plug (no reboot required)
@@ -318,6 +321,13 @@ type volumeState struct {
 	PciSlot *int `pulumi:"pciSlot"`
 	// [string] Is capable of memory hot plug (no reboot required)
 	RamHotPlug *bool `pulumi:"ramHotPlug"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeyPath and sshKeys fields are immutable.
+	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
 	// [string] The ID of a server.
 	ServerId *string `pulumi:"serverId"`
 	// [integer] The size of the volume in GB.
@@ -338,10 +348,6 @@ type VolumeState struct {
 	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringPtrInput
 	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
 	BootServer pulumi.StringPtrInput
 	// [Boolean] The bus type of the volume: VIRTIO or IDE.
 	Bus pulumi.StringPtrInput
@@ -357,6 +363,8 @@ type VolumeState struct {
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
 	// [string] The volume type: HDD or SSD. This property is immutable.
 	DiskType pulumi.StringPtrInput
+	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial pulumi.BoolPtrInput
 	// The image or snapshot UUID.
 	Image   pulumi.StringPtrInput
 	ImageId pulumi.StringPtrInput
@@ -366,6 +374,8 @@ type VolumeState struct {
 	ImagePassword pulumi.StringPtrInput
 	// [string] Required if `imageName` is not provided.
 	LicenceType pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the volume.
 	Name pulumi.StringPtrInput
 	// [string] Is capable of nic hot plug (no reboot required)
@@ -376,6 +386,13 @@ type VolumeState struct {
 	PciSlot pulumi.IntPtrInput
 	// [string] Is capable of memory hot plug (no reboot required)
 	RamHotPlug pulumi.BoolPtrInput
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeyPath and sshKeys fields are immutable.
+	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+	RequireLegacyBios pulumi.BoolPtrInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringPtrInput
 	// [integer] The size of the volume in GB.
@@ -405,14 +422,25 @@ type volumeArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// [string] The volume type: HDD or SSD. This property is immutable.
 	DiskType string `pulumi:"diskType"`
+	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial *bool `pulumi:"exposeSerial"`
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName *string `pulumi:"imageName"`
 	// [string] Required if `sshkeyPath` is not provided.
 	ImagePassword *string `pulumi:"imagePassword"`
 	// [string] Required if `imageName` is not provided.
 	LicenceType *string `pulumi:"licenceType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the volume.
 	Name *string `pulumi:"name"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeyPath and sshKeys fields are immutable.
+	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
 	// [string] The ID of a server.
 	ServerId string `pulumi:"serverId"`
 	// [integer] The size of the volume in GB.
@@ -437,14 +465,25 @@ type VolumeArgs struct {
 	DatacenterId pulumi.StringInput
 	// [string] The volume type: HDD or SSD. This property is immutable.
 	DiskType pulumi.StringInput
+	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial pulumi.BoolPtrInput
 	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 	ImageName pulumi.StringPtrInput
 	// [string] Required if `sshkeyPath` is not provided.
 	ImagePassword pulumi.StringPtrInput
 	// [string] Required if `imageName` is not provided.
 	LicenceType pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the volume.
 	Name pulumi.StringPtrInput
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > sshKeyPath and sshKeys fields are immutable.
+	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+	RequireLegacyBios pulumi.BoolPtrInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringInput
 	// [integer] The size of the volume in GB.
@@ -555,10 +594,6 @@ func (o VolumeOutput) BackupUnitId() pulumi.StringOutput {
 }
 
 // [string] The UUID of the attached server.
-// > **⚠ WARNING**
-// >
-// > sshKeyPath and sshKeys fields are immutable.
-// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
 func (o VolumeOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.BootServer }).(pulumi.StringOutput)
 }
@@ -598,6 +633,11 @@ func (o VolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+func (o VolumeOutput) ExposeSerial() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.ExposeSerial }).(pulumi.BoolOutput)
+}
+
 // The image or snapshot UUID.
 func (o VolumeOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Image }).(pulumi.StringOutput)
@@ -620,6 +660,11 @@ func (o VolumeOutput) ImagePassword() pulumi.StringPtrOutput {
 // [string] Required if `imageName` is not provided.
 func (o VolumeOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.LicenceType }).(pulumi.StringOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o VolumeOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the volume.
@@ -645,6 +690,16 @@ func (o VolumeOutput) PciSlot() pulumi.IntOutput {
 // [string] Is capable of memory hot plug (no reboot required)
 func (o VolumeOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.RamHotPlug }).(pulumi.BoolOutput)
+}
+
+// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+//
+// > **⚠ WARNING**
+// >
+// > sshKeyPath and sshKeys fields are immutable.
+// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+func (o VolumeOutput) RequireLegacyBios() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.RequireLegacyBios }).(pulumi.BoolOutput)
 }
 
 // [string] The ID of a server.

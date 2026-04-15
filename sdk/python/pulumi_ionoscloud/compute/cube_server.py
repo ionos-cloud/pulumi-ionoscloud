@@ -32,6 +32,7 @@ class CubeServerArgs:
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -62,6 +63,7 @@ class CubeServerArgs:
         :param pulumi.Input[_builtins.str] hostname: (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
@@ -88,6 +90,8 @@ class CubeServerArgs:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
             pulumi.set(__self__, "image_password", image_password)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if security_groups_ids is not None:
@@ -244,6 +248,18 @@ class CubeServerArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the server.
@@ -305,6 +321,7 @@ class _CubeServerState:
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input['CubeServerNicArgs']] = None,
                  primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
@@ -340,6 +357,7 @@ class _CubeServerState:
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list that contains the IDs for the volumes defined inside the cube server resource.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input['CubeServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
@@ -375,6 +393,8 @@ class _CubeServerState:
             pulumi.set(__self__, "image_password", image_password)
         if inline_volume_ids is not None:
             pulumi.set(__self__, "inline_volume_ids", inline_volume_ids)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic is not None:
@@ -541,6 +561,18 @@ class _CubeServerState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the server.
@@ -662,6 +694,7 @@ class CubeServer(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -671,7 +704,9 @@ class CubeServer(pulumi.CustomResource):
                  volume: Optional[pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        Manages a **Cube Server** on IonosCloud.
+        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+
+        Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
 
         ## Example Usage
 
@@ -697,7 +732,6 @@ class CubeServer(pulumi.CustomResource):
             special=False)
         example_cube_server = ionoscloud.compute.CubeServer("example",
             name="Server Example",
-            availability_zone="ZONE_2",
             image_name="ubuntu:latest",
             template_uuid=example.id,
             image_password=server_image_password["result"],
@@ -721,6 +755,7 @@ class CubeServer(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.get_template(name="Basic Cube XS")
         example_datacenter = ionoscloud.compute.Datacenter("example",
@@ -734,7 +769,9 @@ class CubeServer(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             public=True,
             name="Lan Example",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
+            ipv6_cidr_block=std.cidrsubnet(input=example_datacenter.ipv6_cidr_block,
+                newbits=8,
+                netnum=10)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -759,11 +796,22 @@ class CubeServer(pulumi.CustomResource):
                     webserver_ipblock.ips[1],
                 ],
                 "dhcpv6": False,
-                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_cidr_block": std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                    newbits=16,
+                    netnum=5)["result"],
                 "ipv6_ips": [
-                    "ipv6_ip1",
-                    "ipv6_ip2",
-                    "ipv6_ip3",
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=1)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=2)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=3)["result"],
                 ],
                 "firewall_active": True,
             })
@@ -804,6 +852,7 @@ class CubeServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hostname: (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
@@ -819,7 +868,9 @@ class CubeServer(pulumi.CustomResource):
                  args: CubeServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Cube Server** on IonosCloud.
+        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+
+        Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
 
         ## Example Usage
 
@@ -845,7 +896,6 @@ class CubeServer(pulumi.CustomResource):
             special=False)
         example_cube_server = ionoscloud.compute.CubeServer("example",
             name="Server Example",
-            availability_zone="ZONE_2",
             image_name="ubuntu:latest",
             template_uuid=example.id,
             image_password=server_image_password["result"],
@@ -869,6 +919,7 @@ class CubeServer(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.get_template(name="Basic Cube XS")
         example_datacenter = ionoscloud.compute.Datacenter("example",
@@ -882,7 +933,9 @@ class CubeServer(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             public=True,
             name="Lan Example",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
+            ipv6_cidr_block=std.cidrsubnet(input=example_datacenter.ipv6_cidr_block,
+                newbits=8,
+                netnum=10)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -907,11 +960,22 @@ class CubeServer(pulumi.CustomResource):
                     webserver_ipblock.ips[1],
                 ],
                 "dhcpv6": False,
-                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_cidr_block": std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                    newbits=16,
+                    netnum=5)["result"],
                 "ipv6_ips": [
-                    "ipv6_ip1",
-                    "ipv6_ip2",
-                    "ipv6_ip3",
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=1)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=2)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=5)["result"],
+                        host=3)["result"],
                 ],
                 "firewall_active": True,
             })
@@ -953,6 +1017,7 @@ class CubeServer(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -979,6 +1044,7 @@ class CubeServer(pulumi.CustomResource):
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["image_name"] = image_name
             __props__.__dict__["image_password"] = None if image_password is None else pulumi.Output.secret(image_password)
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if nic is None and not opts.urn:
                 raise TypeError("Missing required property 'nic'")
@@ -1020,6 +1086,7 @@ class CubeServer(pulumi.CustomResource):
             image_name: Optional[pulumi.Input[_builtins.str]] = None,
             image_password: Optional[pulumi.Input[_builtins.str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
             primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1059,6 +1126,7 @@ class CubeServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list that contains the IDs for the volumes defined inside the cube server resource.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
@@ -1084,6 +1152,7 @@ class CubeServer(pulumi.CustomResource):
         __props__.__dict__["image_name"] = image_name
         __props__.__dict__["image_password"] = image_password
         __props__.__dict__["inline_volume_ids"] = inline_volume_ids
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["nic"] = nic
         __props__.__dict__["primary_ip"] = primary_ip
@@ -1195,6 +1264,14 @@ class CubeServer(pulumi.CustomResource):
         A list that contains the IDs for the volumes defined inside the cube server resource.
         """
         return pulumi.get(self, "inline_volume_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

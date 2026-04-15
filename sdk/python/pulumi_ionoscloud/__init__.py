@@ -6,14 +6,24 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .dns_reverse_record import *
+from .get_contracts import *
+from .get_dns_reverse_record import *
+from .get_dns_reverse_records import *
+from .get_gpu import *
+from .get_gpu_server import *
+from .get_gpus import *
+from .get_kafka_user_credentials import *
+from .get_kafka_users import *
+from .gpu_server import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
     import pulumi_ionoscloud.alb as __alb
     alb = __alb
-    import pulumi_ionoscloud.apigateway as __apigateway
-    apigateway = __apigateway
     import pulumi_ionoscloud.autoscaling as __autoscaling
     autoscaling = __autoscaling
     import pulumi_ionoscloud.cdn as __cdn
@@ -30,8 +40,6 @@ if typing.TYPE_CHECKING:
     dbaas = __dbaas
     import pulumi_ionoscloud.dns as __dns
     dns = __dns
-    import pulumi_ionoscloud.dsaas as __dsaas
-    dsaas = __dsaas
     import pulumi_ionoscloud.k8s as __k8s
     k8s = __k8s
     import pulumi_ionoscloud.kafka as __kafka
@@ -54,7 +62,6 @@ if typing.TYPE_CHECKING:
     vpn = __vpn
 else:
     alb = _utilities.lazy_import('pulumi_ionoscloud.alb')
-    apigateway = _utilities.lazy_import('pulumi_ionoscloud.apigateway')
     autoscaling = _utilities.lazy_import('pulumi_ionoscloud.autoscaling')
     cdn = _utilities.lazy_import('pulumi_ionoscloud.cdn')
     cert = _utilities.lazy_import('pulumi_ionoscloud.cert')
@@ -63,7 +70,6 @@ else:
     creg = _utilities.lazy_import('pulumi_ionoscloud.creg')
     dbaas = _utilities.lazy_import('pulumi_ionoscloud.dbaas')
     dns = _utilities.lazy_import('pulumi_ionoscloud.dns')
-    dsaas = _utilities.lazy_import('pulumi_ionoscloud.dsaas')
     k8s = _utilities.lazy_import('pulumi_ionoscloud.k8s')
     kafka = _utilities.lazy_import('pulumi_ionoscloud.kafka')
     logging = _utilities.lazy_import('pulumi_ionoscloud.logging')
@@ -92,22 +98,6 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.alb",
   "classes": {
    "ionoscloud:alb/forwardingRule:ForwardingRule": "ForwardingRule"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "apigateway/apigateway",
-  "fqn": "pulumi_ionoscloud.apigateway",
-  "classes": {
-   "ionoscloud:apigateway/apigateway:Apigateway": "Apigateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "apigateway/route",
-  "fqn": "pulumi_ionoscloud.apigateway",
-  "classes": {
-   "ionoscloud:apigateway/route:Route": "Route"
   }
  },
  {
@@ -204,6 +194,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/firewall:Firewall": "Firewall"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/gPUServer",
+  "fqn": "pulumi_ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/gPUServer:GPUServer": "GPUServer"
   }
  },
  {
@@ -416,18 +414,18 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "dsaas/cluster",
-  "fqn": "pulumi_ionoscloud.dsaas",
+  "mod": "index/dnsReverseRecord",
+  "fqn": "pulumi_ionoscloud",
   "classes": {
-   "ionoscloud:dsaas/cluster:Cluster": "Cluster"
+   "ionoscloud:index/dnsReverseRecord:DnsReverseRecord": "DnsReverseRecord"
   }
  },
  {
   "pkg": "ionoscloud",
-  "mod": "dsaas/nodePool",
-  "fqn": "pulumi_ionoscloud.dsaas",
+  "mod": "index/gpuServer",
+  "fqn": "pulumi_ionoscloud",
   "classes": {
-   "ionoscloud:dsaas/nodePool:NodePool": "NodePool"
+   "ionoscloud:index/gpuServer:GpuServer": "GpuServer"
   }
  },
  {

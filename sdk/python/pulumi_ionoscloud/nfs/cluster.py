@@ -31,7 +31,7 @@ class ClusterArgs:
 
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
         :param pulumi.Input[_builtins.int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
-        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[_builtins.str] name: The name of the Network File Storage cluster.
@@ -73,7 +73,7 @@ class ClusterArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         - `de/fra` - Frankfurt
         - `de/txl` - Berlin
         """
@@ -117,7 +117,7 @@ class _ClusterState:
         Input properties used for looking up and filtering Cluster resources.
 
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[_builtins.str] name: The name of the Network File Storage cluster.
@@ -150,7 +150,7 @@ class _ClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         - `de/fra` - Frankfurt
         - `de/txl` - Berlin
         """
@@ -207,7 +207,7 @@ class Cluster(pulumi.CustomResource):
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Create clusters of Network File Storage (NFS) on IonosCloud.
+        Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
 
         ## Example Usage
 
@@ -235,63 +235,6 @@ class Cluster(pulumi.CustomResource):
             connections={
                 "datacenter_id": nfs_dc.id,
                 "ip_address": "192.168.100.10/24",
-                "lan": nfs_lan.id,
-            })
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
-            name="NFS Datacenter",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
-            datacenter_id=nfs_dc.id,
-            public=False,
-            name="Lan for NFS")
-        h_dd_image = ionoscloud.compute.get_image(image_alias="ubuntu:20.04",
-            type="HDD",
-            cloud_init="V1",
-            location="de/txl")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        # needed for the NIC - which provides the IP address for the NFS cluster.
-        nfs_server = ionoscloud.compute.Server("nfs_server",
-            name="Server for NFS",
-            datacenter_id=nfs_dc.id,
-            cores=1,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name=h_dd_image.id,
-            image_password=password["result"],
-            volume={
-                "name": "system",
-                "size": 14,
-                "disk_type": "SSD",
-            },
-            nic={
-                "name": "NIC A",
-                "lan": nfs_lan.id,
-                "dhcp": True,
-                "firewall_active": True,
-            })
-        example = ionoscloud.nfs.Cluster("example",
-            name="test",
-            location="de/txl",
-            size=2,
-            nfs={
-                "min_version": "4.2",
-            },
-            connections={
-                "datacenter_id": nfs_dc.id,
-                "ip_address": "nfs_cluster_cidr_from_nic",
                 "lan": nfs_lan.id,
             })
         ```
@@ -308,7 +251,7 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[_builtins.str] name: The name of the Network File Storage cluster.
@@ -321,7 +264,7 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create clusters of Network File Storage (NFS) on IonosCloud.
+        Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
 
         ## Example Usage
 
@@ -349,63 +292,6 @@ class Cluster(pulumi.CustomResource):
             connections={
                 "datacenter_id": nfs_dc.id,
                 "ip_address": "192.168.100.10/24",
-                "lan": nfs_lan.id,
-            })
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
-            name="NFS Datacenter",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
-            datacenter_id=nfs_dc.id,
-            public=False,
-            name="Lan for NFS")
-        h_dd_image = ionoscloud.compute.get_image(image_alias="ubuntu:20.04",
-            type="HDD",
-            cloud_init="V1",
-            location="de/txl")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        # needed for the NIC - which provides the IP address for the NFS cluster.
-        nfs_server = ionoscloud.compute.Server("nfs_server",
-            name="Server for NFS",
-            datacenter_id=nfs_dc.id,
-            cores=1,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name=h_dd_image.id,
-            image_password=password["result"],
-            volume={
-                "name": "system",
-                "size": 14,
-                "disk_type": "SSD",
-            },
-            nic={
-                "name": "NIC A",
-                "lan": nfs_lan.id,
-                "dhcp": True,
-                "firewall_active": True,
-            })
-        example = ionoscloud.nfs.Cluster("example",
-            name="test",
-            location="de/txl",
-            size=2,
-            nfs={
-                "min_version": "4.2",
-            },
-            connections={
-                "datacenter_id": nfs_dc.id,
-                "ip_address": "nfs_cluster_cidr_from_nic",
                 "lan": nfs_lan.id,
             })
         ```
@@ -480,7 +366,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
         :param pulumi.Input[_builtins.str] name: The name of the Network File Storage cluster.
@@ -509,7 +395,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         - `de/fra` - Frankfurt
         - `de/txl` - Berlin
         """

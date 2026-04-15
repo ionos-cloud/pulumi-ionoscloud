@@ -253,7 +253,7 @@ class Group(pulumi.CustomResource):
                  replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         """
-        Manages an Autoscaling Group on IonosCloud.
+        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
 
         ## Example Usage
 
@@ -276,7 +276,8 @@ class Group(pulumi.CustomResource):
         autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscaling_target_group",
             name="Target Group Example",
             algorithm="ROUND_ROBIN",
-            protocol="HTTP")
+            protocol="HTTP",
+            protocol_version="HTTP1")
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -370,7 +371,7 @@ class Group(pulumi.CustomResource):
                  args: GroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an Autoscaling Group on IonosCloud.
+        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
 
         ## Example Usage
 
@@ -393,7 +394,8 @@ class Group(pulumi.CustomResource):
         autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscaling_target_group",
             name="Target Group Example",
             algorithm="ROUND_ROBIN",
-            protocol="HTTP")
+            protocol="HTTP",
+            protocol_version="HTTP1")
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)

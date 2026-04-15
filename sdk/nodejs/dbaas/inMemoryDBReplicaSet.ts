@@ -7,70 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **DBaaS InMemoryDB Replica Set**.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "example",
- *     location: "de/txl",
- *     description: "Datacenter for DBaaS InMemoryDB replica sets",
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "example",
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "example",
- *     datacenterId: example.id,
- *     cores: 2,
- *     ram: 2048,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_SKYLAKE",
- *     imageName: "rockylinux-8-GenericCloud-20230518",
- *     imagePassword: "password",
- *     volume: {
- *         name: "example",
- *         size: 10,
- *         diskType: "SSD Standard",
- *     },
- *     nic: {
- *         lan: exampleLan.id,
- *         name: "example",
- *         dhcp: true,
- *     },
- * });
- * const exampleInMemoryDBReplicaSet = new ionoscloud.dbaas.InMemoryDBReplicaSet("example", {
- *     location: example.location,
- *     displayName: "ExampleReplicaSet",
- *     version: "7.2",
- *     replicas: 4,
- *     resources: {
- *         cores: 1,
- *         ram: 6,
- *     },
- *     persistenceMode: "RDB",
- *     evictionPolicy: "noeviction",
- *     connections: {
- *         datacenterId: example.id,
- *         lanId: exampleLan.id,
- *         cidr: "database_ip_cidr_from_nic",
- *     },
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Monday",
- *         time: "10:00:00",
- *     },
- *     credentials: {
- *         username: "myuser",
- *         plainTextPassword: "testpassword",
- *     },
- * });
- * ```
+ * Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
  *
  * ## Import
  *
@@ -135,7 +72,7 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
      */
     declare public readonly initialSnapshotId: pulumi.Output<string | undefined>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -263,7 +200,7 @@ export interface InMemoryDBReplicaSetState {
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     location?: pulumi.Input<string>;
     /**
@@ -317,7 +254,7 @@ export interface InMemoryDBReplicaSetArgs {
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     location?: pulumi.Input<string>;
     /**

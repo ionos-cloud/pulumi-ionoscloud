@@ -309,6 +309,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             set => _filters = value;
         }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetServersArgs()
         {
         }
@@ -343,6 +346,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             set => _filters = value;
         }
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         public GetServersInvokeArgs()
         {
         }
@@ -359,6 +365,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         /// <summary>
         /// list of servers that matches the filters provided.
         /// For a full reference of all attributes returned, check out documentation
@@ -373,11 +380,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string id,
 
+            string? location,
+
             ImmutableArray<Outputs.GetServersServerResult> servers)
         {
             DatacenterId = datacenterId;
             Filters = filters;
             Id = id;
+            Location = location;
             Servers = servers;
         }
     }

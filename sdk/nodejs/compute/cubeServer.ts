@@ -7,7 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Cube Server** on IonosCloud.
+ * A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+ *
+ * Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
  *
  * ## Example Usage
  *
@@ -38,7 +40,6 @@ import * as utilities from "../utilities";
  * });
  * const exampleCubeServer = new ionoscloud.compute.CubeServer("example", {
  *     name: "Server Example",
- *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     templateUuid: example.then(example => example.id),
  *     imagePassword: serverImagePassword.result,
@@ -63,6 +64,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as random from "@pulumi/random";
+ * import * as std from "@pulumi/std";
  *
  * const example = ionoscloud.compute.getTemplate({
  *     name: "Basic Cube XS",
@@ -80,7 +82,11 @@ import * as utilities from "../utilities";
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
  *     name: "Lan Example",
- *     ipv6CidrBlock: "ipv6_cidr_block_from_dc",
+ *     ipv6CidrBlock: std.cidrsubnet({
+ *         input: exampleDatacenter.ipv6CidrBlock,
+ *         newbits: 8,
+ *         netnum: 10,
+ *     }).result,
  * });
  * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
@@ -107,11 +113,36 @@ import * as utilities from "../utilities";
  *             webserverIpblock.ips[1],
  *         ],
  *         dhcpv6: false,
- *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6CidrBlock: std.cidrsubnet({
+ *             input: exampleLan.ipv6CidrBlock,
+ *             newbits: 16,
+ *             netnum: 5,
+ *         }).result,
  *         ipv6Ips: [
- *             "ipv6_ip1",
- *             "ipv6_ip2",
- *             "ipv6_ip3",
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 5,
+ *                 }).result,
+ *                 host: 1,
+ *             }).result,
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 5,
+ *                 }).result,
+ *                 host: 2,
+ *             }).result,
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 5,
+ *                 }).result,
+ *                 host: 3,
+ *             }).result,
  *         ],
  *         firewallActive: true,
  *     },
@@ -217,6 +248,10 @@ export class CubeServer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly inlineVolumeIds: pulumi.Output<string[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the server.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -277,6 +312,7 @@ export class CubeServer extends pulumi.CustomResource {
             resourceInputs["imageName"] = state?.imageName;
             resourceInputs["imagePassword"] = state?.imagePassword;
             resourceInputs["inlineVolumeIds"] = state?.inlineVolumeIds;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nic"] = state?.nic;
             resourceInputs["primaryIp"] = state?.primaryIp;
@@ -308,6 +344,7 @@ export class CubeServer extends pulumi.CustomResource {
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["imageName"] = args?.imageName;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nic"] = args?.nic;
             resourceInputs["securityGroupsIds"] = args?.securityGroupsIds;
@@ -390,6 +427,10 @@ export interface CubeServerState {
      * A list that contains the IDs for the volumes defined inside the cube server resource.
      */
     inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the server.
      */
@@ -478,6 +519,10 @@ export interface CubeServerArgs {
      * [string] Required if `sshKeyPath` is not provided.
      */
     imagePassword?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the server.
      */

@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -55,6 +57,8 @@ export interface GetBucketPolicyResult {
  * The **Bucket Policy data source** can be used to search for and return existing bucket policies.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
  *
  * ## Example Usage
  *

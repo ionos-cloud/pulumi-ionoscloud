@@ -59,6 +59,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The ID of a Network Security Group.
         /// </summary>
         [Output("nsgId")]
@@ -118,6 +124,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The ID of a Network Security Group.
         /// </summary>
         [Input("nsgId", required: true)]
@@ -136,6 +148,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The ID of a Network Security Group.

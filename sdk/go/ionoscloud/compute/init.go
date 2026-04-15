@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Datacenter{}
 	case "ionoscloud:compute/firewall:Firewall":
 		r = &Firewall{}
+	case "ionoscloud:compute/gPUServer:GPUServer":
+		r = &GPUServer{}
 	case "ionoscloud:compute/group:Group":
 		r = &Group{}
 	case "ionoscloud:compute/iPBlock:IPBlock":
@@ -111,6 +113,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/firewall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/gPUServer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

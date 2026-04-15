@@ -21,6 +21,7 @@ __all__ = [
     'InMemoryDBReplicaSetCredentialsHashedPassword',
     'InMemoryDBReplicaSetMaintenanceWindow',
     'InMemoryDBReplicaSetResources',
+    'MariaDBClusterBackup',
     'MariaDBClusterConnections',
     'MariaDBClusterCredentials',
     'MariaDBClusterMaintenanceWindow',
@@ -41,6 +42,7 @@ __all__ = [
     'GetInmemorydbSnapshotMetadataResult',
     'GetMariaDBBackupsBackupResult',
     'GetMariaDBBackupsBackupBaseBackupResult',
+    'GetMariaDBClusterBackupResult',
     'GetMariaDBClusterConnectionResult',
     'GetMariaDBClusterMaintenanceWindowResult',
     'GetMongoClusterBackupResult',
@@ -291,6 +293,24 @@ class InMemoryDBReplicaSetResources(dict):
         [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class MariaDBClusterBackup(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str):
+        """
+        :param _builtins.str location: [string] The IONOS Object Storage location where the backups will be stored.
+        """
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The IONOS Object Storage location where the backups will be stored.
+        """
+        return pulumi.get(self, "location")
 
 
 @pulumi.output_type
@@ -1170,6 +1190,32 @@ class GetMariaDBBackupsBackupBaseBackupResult(dict):
         The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
         """
         return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetMariaDBClusterBackupResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str):
+        """
+        :param _builtins.str location: [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+               
+               > **⚠ WARNING:** `Location` attribute will become required in the future.
+               
+               Either `display_name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        """
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+
+        > **⚠ WARNING:** `Location` attribute will become required in the future.
+
+        Either `display_name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "location")
 
 
 @pulumi.output_type

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Network Load Balancer**  on IonosCloud.
+ * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -129,6 +129,10 @@ export class Balancer extends pulumi.CustomResource {
      */
     declare public readonly listenerLan: pulumi.Output<number>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * Specifies the format of the logs.
      */
     declare public readonly loggingFormat: pulumi.Output<string | undefined>;
@@ -160,6 +164,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["ips"] = state?.ips;
             resourceInputs["lbPrivateIps"] = state?.lbPrivateIps;
             resourceInputs["listenerLan"] = state?.listenerLan;
+            resourceInputs["location"] = state?.location;
             resourceInputs["loggingFormat"] = state?.loggingFormat;
             resourceInputs["name"] = state?.name;
             resourceInputs["targetLan"] = state?.targetLan;
@@ -180,6 +185,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["ips"] = args?.ips;
             resourceInputs["lbPrivateIps"] = args?.lbPrivateIps;
             resourceInputs["listenerLan"] = args?.listenerLan;
+            resourceInputs["location"] = args?.location;
             resourceInputs["loggingFormat"] = args?.loggingFormat;
             resourceInputs["name"] = args?.name;
             resourceInputs["targetLan"] = args?.targetLan;
@@ -217,6 +223,10 @@ export interface BalancerState {
      * [int] Id of the listening LAN. (inbound)
      */
     listenerLan?: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * Specifies the format of the logs.
      */
@@ -259,6 +269,10 @@ export interface BalancerArgs {
      * [int] Id of the listening LAN. (inbound)
      */
     listenerLan: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * Specifies the format of the logs.
      */

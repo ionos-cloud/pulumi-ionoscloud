@@ -288,6 +288,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly bool RamHotUnplug;
         /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool RequireLegacyBios;
+        /// <summary>
         /// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         /// </summary>
         public readonly bool SecAuthProtection;
@@ -328,6 +332,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             bool ramHotUnplug,
 
+            bool requireLegacyBios,
+
             bool secAuthProtection,
 
             int size)
@@ -347,6 +353,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             NicHotUnplug = nicHotUnplug;
             RamHotPlug = ramHotPlug;
             RamHotUnplug = ramHotUnplug;
+            RequireLegacyBios = requireLegacyBios;
             SecAuthProtection = secAuthProtection;
             Size = size;
         }

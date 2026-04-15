@@ -21,6 +21,8 @@ __all__ = [
     'BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict',
     'BucketLifecycleConfigurationRuleExpirationArgs',
     'BucketLifecycleConfigurationRuleExpirationArgsDict',
+    'BucketLifecycleConfigurationRuleFilterArgs',
+    'BucketLifecycleConfigurationRuleFilterArgsDict',
     'BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs',
     'BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict',
     'BucketServerSideEncryptionConfigurationRuleArgs',
@@ -52,10 +54,6 @@ __all__ = [
 ]
 
 class BucketLifecycleConfigurationRuleArgsDict(TypedDict):
-    prefix: pulumi.Input[_builtins.str]
-    """
-    Object key prefix identifying one or more objects to which the rule applies.
-    """
     status: pulumi.Input[_builtins.str]
     """
     Whether the rule is currently being applied. Valid values: Enabled or Disabled.
@@ -68,6 +66,10 @@ class BucketLifecycleConfigurationRuleArgsDict(TypedDict):
     """
     A lifecycle rule for when an object expires.
     """
+    filter: NotRequired[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgsDict']]
+    """
+    A filter.
+    """
     id: NotRequired[pulumi.Input[_builtins.str]]
     """
     Unique identifier for the rule.
@@ -76,46 +78,46 @@ class BucketLifecycleConfigurationRuleArgsDict(TypedDict):
     """
     A lifecycle rule for when non-current object versions expire.
     """
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Object key prefix identifying one or more objects to which the rule applies.
+    """
 
 @pulumi.input_type
 class BucketLifecycleConfigurationRuleArgs:
     def __init__(__self__, *,
-                 prefix: pulumi.Input[_builtins.str],
                  status: pulumi.Input[_builtins.str],
                  abort_incomplete_multipart_upload: Optional[pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']] = None,
                  expiration: Optional[pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgs']] = None,
+                 filter: Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
-                 noncurrent_version_expiration: Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']] = None):
+                 noncurrent_version_expiration: Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']] = None,
+                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param pulumi.Input[_builtins.str] status: Whether the rule is currently being applied. Valid values: Enabled or Disabled.
         :param pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs'] abort_incomplete_multipart_upload: Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
         :param pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgs'] expiration: A lifecycle rule for when an object expires.
+        :param pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs'] filter: A filter.
         :param pulumi.Input[_builtins.str] id: Unique identifier for the rule.
         :param pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expiration: A lifecycle rule for when non-current object versions expire.
+        :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
         """
-        pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "status", status)
         if abort_incomplete_multipart_upload is not None:
             pulumi.set(__self__, "abort_incomplete_multipart_upload", abort_incomplete_multipart_upload)
         if expiration is not None:
             pulumi.set(__self__, "expiration", expiration)
+        if filter is not None:
+            pulumi.set(__self__, "filter", filter)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if noncurrent_version_expiration is not None:
             pulumi.set(__self__, "noncurrent_version_expiration", noncurrent_version_expiration)
-
-    @_builtins.property
-    @pulumi.getter
-    def prefix(self) -> pulumi.Input[_builtins.str]:
-        """
-        Object key prefix identifying one or more objects to which the rule applies.
-        """
-        return pulumi.get(self, "prefix")
-
-    @prefix.setter
-    def prefix(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "prefix", value)
+        if prefix is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.""", DeprecationWarning)
+            pulumi.log.warn("""prefix is deprecated: This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.""")
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
 
     @_builtins.property
     @pulumi.getter
@@ -155,6 +157,18 @@ class BucketLifecycleConfigurationRuleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def filter(self) -> Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']]:
+        """
+        A filter.
+        """
+        return pulumi.get(self, "filter")
+
+    @filter.setter
+    def filter(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']]):
+        pulumi.set(self, "filter", value)
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Unique identifier for the rule.
@@ -176,6 +190,19 @@ class BucketLifecycleConfigurationRuleArgs:
     @noncurrent_version_expiration.setter
     def noncurrent_version_expiration(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']]):
         pulumi.set(self, "noncurrent_version_expiration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.""")
+    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "prefix", value)
 
 
 class BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict(TypedDict):
@@ -274,6 +301,35 @@ class BucketLifecycleConfigurationRuleExpirationArgs:
     @expired_object_delete_marker.setter
     def expired_object_delete_marker(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "expired_object_delete_marker", value)
+
+
+class BucketLifecycleConfigurationRuleFilterArgsDict(TypedDict):
+    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Object key prefix identifying one or more objects to which the rule applies.
+    """
+
+@pulumi.input_type
+class BucketLifecycleConfigurationRuleFilterArgs:
+    def __init__(__self__, *,
+                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
+        """
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "prefix", value)
 
 
 class BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict(TypedDict):
@@ -520,7 +576,6 @@ class CorsConfigurationCorsRuleArgsDict(TypedDict):
     """
     [int] Container for the Contract Number of the owner
 
-
     Days and years are mutually exclusive. You can only specify one of them.
     """
     max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
@@ -543,7 +598,6 @@ class CorsConfigurationCorsRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_headers: [list] Specifies which headers are allowed in a preflight OPTIONS request through the Access-Control-Request-Headers header
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] expose_headers: [list] Specifies which headers are exposed to the browser.
         :param pulumi.Input[_builtins.int] id: [int] Container for the Contract Number of the owner
-               
                
                Days and years are mutually exclusive. You can only specify one of them.
         :param pulumi.Input[_builtins.int] max_age_seconds: [int] Specifies how long the results of a pre-flight request can be cached in seconds.
@@ -612,7 +666,6 @@ class CorsConfigurationCorsRuleArgs:
     def id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         [int] Container for the Contract Number of the owner
-
 
         Days and years are mutually exclusive. You can only specify one of them.
         """

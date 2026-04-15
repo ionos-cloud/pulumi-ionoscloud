@@ -12,101 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **DBaaS MariaDB Cluster**.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Name:        pulumi.String("example"),
-//				Location:    pulumi.String("de/txl"),
-//				Description: pulumi.String("Datacenter for testing DBaaS cluster"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
-//				DatacenterId: example.ID(),
-//				Public:       pulumi.Bool(false),
-//				Name:         pulumi.String("example"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("example"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(2),
-//				Ram:              pulumi.Int(2048),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
-//				ImageName:        pulumi.String("rockylinux-8-GenericCloud-20230518"),
-//				ImagePassword:    pulumi.String("password"),
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:     pulumi.String("example"),
-//					Size:     pulumi.Int(10),
-//					DiskType: pulumi.String("SSD Standard"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:  exampleLan.ID(),
-//					Name: pulumi.String("example"),
-//					Dhcp: pulumi.Bool(true),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			clusterPassword, err := random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
-//				Length:          16,
-//				Special:         true,
-//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = dbaas.NewMariaDBCluster(ctx, "example", &dbaas.MariaDBClusterArgs{
-//				MariadbVersion: pulumi.String("10.6"),
-//				Location:       pulumi.String("de/txl"),
-//				Instances:      pulumi.Int(1),
-//				Cores:          pulumi.Int(4),
-//				Ram:            pulumi.Int(4),
-//				StorageSize:    pulumi.Int(10),
-//				Connections: &dbaas.MariaDBClusterConnectionsArgs{
-//					DatacenterId: example.ID(),
-//					LanId:        exampleLan.ID(),
-//					Cidr:         pulumi.String("database_ip_cidr_from_nic"),
-//				},
-//				DisplayName: pulumi.String("MariaDB_cluster"),
-//				MaintenanceWindow: &dbaas.MariaDBClusterMaintenanceWindowArgs{
-//					DayOfTheWeek: pulumi.String("Sunday"),
-//					Time:         pulumi.String("09:00:00"),
-//				},
-//				Credentials: &dbaas.MariaDBClusterCredentialsArgs{
-//					Username: pulumi.String("username"),
-//					Password: clusterPassword.Result,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
 //
 // ## Import
 //
@@ -118,6 +24,8 @@ import (
 type MariaDBCluster struct {
 	pulumi.CustomResourceState
 
+	// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+	Backup MariaDBClusterBackupOutput `pulumi:"backup"`
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsOutput `pulumi:"connections"`
 	// [int] The number of CPU cores per instance.
@@ -198,6 +106,8 @@ func GetMariaDBCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MariaDBCluster resources.
 type mariaDBClusterState struct {
+	// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+	Backup *MariaDBClusterBackup `pulumi:"backup"`
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections *MariaDBClusterConnections `pulumi:"connections"`
 	// [int] The number of CPU cores per instance.
@@ -225,6 +135,8 @@ type mariaDBClusterState struct {
 }
 
 type MariaDBClusterState struct {
+	// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+	Backup MariaDBClusterBackupPtrInput
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsPtrInput
 	// [int] The number of CPU cores per instance.
@@ -256,6 +168,8 @@ func (MariaDBClusterState) ElementType() reflect.Type {
 }
 
 type mariaDBClusterArgs struct {
+	// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+	Backup *MariaDBClusterBackup `pulumi:"backup"`
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnections `pulumi:"connections"`
 	// [int] The number of CPU cores per instance.
@@ -280,6 +194,8 @@ type mariaDBClusterArgs struct {
 
 // The set of arguments for constructing a MariaDBCluster resource.
 type MariaDBClusterArgs struct {
+	// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+	Backup MariaDBClusterBackupPtrInput
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsInput
 	// [int] The number of CPU cores per instance.
@@ -387,6 +303,11 @@ func (o MariaDBClusterOutput) ToMariaDBClusterOutput() MariaDBClusterOutput {
 
 func (o MariaDBClusterOutput) ToMariaDBClusterOutputWithContext(ctx context.Context) MariaDBClusterOutput {
 	return o
+}
+
+// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+func (o MariaDBClusterOutput) Backup() MariaDBClusterBackupOutput {
+	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterBackupOutput { return v.Backup }).(MariaDBClusterBackupOutput)
 }
 
 // The network connection for your cluster. Only one connection is allowed.

@@ -44,6 +44,7 @@ export function getMongoCluster(args?: GetMongoClusterArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("ionoscloud:dbaas/getMongoCluster:getMongoCluster", {
         "displayName": args.displayName,
         "id": args.id,
+        "location": args.location,
     }, opts);
 }
 
@@ -56,6 +57,10 @@ export interface GetMongoClusterArgs {
      */
     displayName?: string;
     id?: string;
+    /**
+     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     */
+    location?: string;
 }
 
 /**
@@ -158,6 +163,7 @@ export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: p
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getMongoCluster:getMongoCluster", {
         "displayName": args.displayName,
         "id": args.id,
+        "location": args.location,
     }, opts);
 }
 
@@ -170,4 +176,8 @@ export interface GetMongoClusterOutputArgs {
      */
     displayName?: pulumi.Input<string>;
     id?: pulumi.Input<string>;
+    /**
+     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     */
+    location?: pulumi.Input<string>;
 }

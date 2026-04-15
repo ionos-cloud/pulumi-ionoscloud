@@ -85,7 +85,8 @@ type LookupNodePoolArgs struct {
 	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
 	// K8s Cluster' UUID
-	K8sClusterId string `pulumi:"k8sClusterId"`
+	K8sClusterId string  `pulumi:"k8sClusterId"`
+	Location     *string `pulumi:"location"`
 	// Name of an existing node pool that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -115,7 +116,8 @@ type LookupNodePoolResult struct {
 	// A map of labels in the form of key > value
 	Labels map[string]string `pulumi:"labels"`
 	// A list of Local Area Networks the node pool is a part of
-	Lans []GetNodePoolLan `pulumi:"lans"`
+	Lans     []GetNodePoolLan `pulumi:"lans"`
+	Location *string          `pulumi:"location"`
 	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 	MaintenanceWindows []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// name of the node pool
@@ -126,6 +128,8 @@ type LookupNodePoolResult struct {
 	PublicIps []string `pulumi:"publicIps"`
 	// The amount of RAM in MB
 	RamSize int `pulumi:"ramSize"`
+	// The server type for the compute engine
+	ServerType string `pulumi:"serverType"`
 	// one of "AVAILABLE",
 	// "INACTIVE",
 	// "BUSY",
@@ -162,7 +166,8 @@ type LookupNodePoolOutputArgs struct {
 	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// K8s Cluster' UUID
-	K8sClusterId pulumi.StringInput `pulumi:"k8sClusterId"`
+	K8sClusterId pulumi.StringInput    `pulumi:"k8sClusterId"`
+	Location     pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing node pool that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -246,6 +251,10 @@ func (o LookupNodePoolResultOutput) Lans() GetNodePoolLanArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolLan { return v.Lans }).(GetNodePoolLanArrayOutput)
 }
 
+func (o LookupNodePoolResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
 // A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 func (o LookupNodePoolResultOutput) MaintenanceWindows() GetNodePoolMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolMaintenanceWindow { return v.MaintenanceWindows }).(GetNodePoolMaintenanceWindowArrayOutput)
@@ -269,6 +278,11 @@ func (o LookupNodePoolResultOutput) PublicIps() pulumi.StringArrayOutput {
 // The amount of RAM in MB
 func (o LookupNodePoolResultOutput) RamSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.RamSize }).(pulumi.IntOutput)
+}
+
+// The server type for the compute engine
+func (o LookupNodePoolResultOutput) ServerType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.ServerType }).(pulumi.StringOutput)
 }
 
 // one of "AVAILABLE",

@@ -34,8 +34,6 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: "Ubuntu-20.04",
  *     imagePassword: serverImagePassword.result,
  *     volume: {
@@ -121,6 +119,10 @@ export class Firewall extends pulumi.CustomResource {
      */
     declare public readonly icmpType: pulumi.Output<string | undefined>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the firewall rule.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -177,6 +179,7 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["icmpCode"] = state?.icmpCode;
             resourceInputs["icmpType"] = state?.icmpType;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nicId"] = state?.nicId;
             resourceInputs["portRangeEnd"] = state?.portRangeEnd;
@@ -204,6 +207,7 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["icmpCode"] = args?.icmpCode;
             resourceInputs["icmpType"] = args?.icmpType;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nicId"] = args?.nicId;
             resourceInputs["portRangeEnd"] = args?.portRangeEnd;
@@ -236,6 +240,10 @@ export interface FirewallState {
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
     icmpType?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the firewall rule.
      */
@@ -294,6 +302,10 @@ export interface FirewallArgs {
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
     icmpType?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the firewall rule.
      */

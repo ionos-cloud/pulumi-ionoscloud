@@ -166,7 +166,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public string? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the provider.
+        /// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -194,7 +194,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the provider.
+        /// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

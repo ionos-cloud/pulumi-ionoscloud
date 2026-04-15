@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Cross Connect** on IonosCloud.
+ * Manages a [Cross Connect](https://docs.ionos.com/cloud/network-services/cross-connect/overview) on IonosCloud.
  * Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
  * The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
  * You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
  * ```
  *
- * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
  */
 export class Crossconnect extends pulumi.CustomResource {
     /**
@@ -96,6 +96,10 @@ export class Crossconnect extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the cross-connection.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -119,12 +123,14 @@ export class Crossconnect extends pulumi.CustomResource {
             const state = argsOrState as CrossconnectState | undefined;
             resourceInputs["connectableDatacenters"] = state?.connectableDatacenters;
             resourceInputs["description"] = state?.description;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["peers"] = state?.peers;
         } else {
             const args = argsOrState as CrossconnectArgs | undefined;
             resourceInputs["connectableDatacenters"] = args?.connectableDatacenters;
             resourceInputs["description"] = args?.description;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["peers"] = args?.peers;
         }
@@ -146,6 +152,10 @@ export interface CrossconnectState {
      * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
     description?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the cross-connection.
      */
@@ -169,6 +179,10 @@ export interface CrossconnectArgs {
      * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
     description?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the cross-connection.
      */

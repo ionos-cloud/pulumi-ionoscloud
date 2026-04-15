@@ -26,7 +26,7 @@ class GetSnapshotResult:
     """
     A collection of values returned by getSnapshot.
     """
-    def __init__(__self__, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, id=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, ram_hot_plug=None, ram_hot_unplug=None, sec_auth_protection=None, size=None):
+    def __init__(__self__, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, id=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, ram_hot_plug=None, ram_hot_unplug=None, require_legacy_bios=None, sec_auth_protection=None, size=None):
         if cpu_hot_plug and not isinstance(cpu_hot_plug, bool):
             raise TypeError("Expected argument 'cpu_hot_plug' to be a bool")
         pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
@@ -72,6 +72,9 @@ class GetSnapshotResult:
         if ram_hot_unplug and not isinstance(ram_hot_unplug, bool):
             raise TypeError("Expected argument 'ram_hot_unplug' to be a bool")
         pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        if require_legacy_bios and not isinstance(require_legacy_bios, bool):
+            raise TypeError("Expected argument 'require_legacy_bios' to be a bool")
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if sec_auth_protection and not isinstance(sec_auth_protection, bool):
             raise TypeError("Expected argument 'sec_auth_protection' to be a bool")
         pulumi.set(__self__, "sec_auth_protection", sec_auth_protection)
@@ -200,6 +203,14 @@ class GetSnapshotResult:
         return pulumi.get(self, "ram_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @_builtins.property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> _builtins.bool:
         """
@@ -237,6 +248,7 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             nic_hot_unplug=self.nic_hot_unplug,
             ram_hot_plug=self.ram_hot_plug,
             ram_hot_unplug=self.ram_hot_unplug,
+            require_legacy_bios=self.require_legacy_bios,
             sec_auth_protection=self.sec_auth_protection,
             size=self.size)
 
@@ -305,6 +317,7 @@ def get_snapshot(id: Optional[_builtins.str] = None,
         nic_hot_unplug=pulumi.get(__ret__, 'nic_hot_unplug'),
         ram_hot_plug=pulumi.get(__ret__, 'ram_hot_plug'),
         ram_hot_unplug=pulumi.get(__ret__, 'ram_hot_unplug'),
+        require_legacy_bios=pulumi.get(__ret__, 'require_legacy_bios'),
         sec_auth_protection=pulumi.get(__ret__, 'sec_auth_protection'),
         size=pulumi.get(__ret__, 'size'))
 def get_snapshot_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -370,5 +383,6 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = No
         nic_hot_unplug=pulumi.get(__response__, 'nic_hot_unplug'),
         ram_hot_plug=pulumi.get(__response__, 'ram_hot_plug'),
         ram_hot_unplug=pulumi.get(__response__, 'ram_hot_unplug'),
+        require_legacy_bios=pulumi.get(__response__, 'require_legacy_bios'),
         sec_auth_protection=pulumi.get(__response__, 'sec_auth_protection'),
         size=pulumi.get(__response__, 'size')))

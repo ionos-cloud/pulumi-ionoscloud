@@ -14,6 +14,8 @@ import (
 
 // Manages Lifecycle Configuration for Buckets on IonosCloud.
 //
+// ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+//
 // ## Example Usage
 //
 // ```go
@@ -40,7 +42,11 @@ import (
 //					&objectstorage.BucketLifecycleConfigurationRuleArgs{
 //						Id:     pulumi.String("1"),
 //						Status: pulumi.String("Enabled"),
-//						Prefix: pulumi.String("/logs"),
+//						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
+//							map[string]interface{}{
+//								"prefix": "/logs",
+//							},
+//						},
 //						Expiration: objectstorage.BucketLifecycleConfigurationRuleExpirationArgs{
 //							map[string]interface{}{
 //								"days": 90,
@@ -50,7 +56,11 @@ import (
 //					&objectstorage.BucketLifecycleConfigurationRuleArgs{
 //						Id:     pulumi.String("2"),
 //						Status: pulumi.String("Enabled"),
-//						Prefix: pulumi.String("/logs"),
+//						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
+//							map[string]interface{}{
+//								"prefix": "/logs",
+//							},
+//						},
 //						NoncurrentVersionExpiration: objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs{
 //							map[string]interface{}{
 //								"noncurrentDays": 90,
@@ -60,7 +70,11 @@ import (
 //					&objectstorage.BucketLifecycleConfigurationRuleArgs{
 //						Id:     pulumi.String("3"),
 //						Status: pulumi.String("Enabled"),
-//						Prefix: pulumi.String("/logs"),
+//						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
+//							map[string]interface{}{
+//								"prefix": "/logs",
+//							},
+//						},
 //						AbortIncompleteMultipartUpload: objectstorage.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs{
 //							map[string]interface{}{
 //								"daysAfterInitiation": 90,

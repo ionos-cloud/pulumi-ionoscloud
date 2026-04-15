@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **DNS Record**.
+// Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
 //
 // > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
 //
@@ -94,13 +94,13 @@ type Record struct {
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Fully qualified domain name
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
-	// [string] The name of the DNS Record.
+	// [string] The name of the DNS Record. This property is immutable.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// [int] Time to live for the DNS Record. Default is `3600`.
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
-	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// [string] The DNS Zone ID in which the DNS Record will be created.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
@@ -151,13 +151,13 @@ type recordState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Fully qualified domain name
 	Fqdn *string `pulumi:"fqdn"`
-	// [string] The name of the DNS Record.
+	// [string] The name of the DNS Record. This property is immutable.
 	Name *string `pulumi:"name"`
 	// [int] The priority for the DNS Record.
 	Priority *int `pulumi:"priority"`
 	// [int] Time to live for the DNS Record. Default is `3600`.
 	Ttl *int `pulumi:"ttl"`
-	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 	Type *string `pulumi:"type"`
 	// [string] The DNS Zone ID in which the DNS Record will be created.
 	ZoneId *string `pulumi:"zoneId"`
@@ -170,13 +170,13 @@ type RecordState struct {
 	Enabled pulumi.BoolPtrInput
 	// Fully qualified domain name
 	Fqdn pulumi.StringPtrInput
-	// [string] The name of the DNS Record.
+	// [string] The name of the DNS Record. This property is immutable.
 	Name pulumi.StringPtrInput
 	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrInput
 	// [int] Time to live for the DNS Record. Default is `3600`.
 	Ttl pulumi.IntPtrInput
-	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 	Type pulumi.StringPtrInput
 	// [string] The DNS Zone ID in which the DNS Record will be created.
 	ZoneId pulumi.StringPtrInput
@@ -191,13 +191,13 @@ type recordArgs struct {
 	Content string `pulumi:"content"`
 	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// [string] The name of the DNS Record.
+	// [string] The name of the DNS Record. This property is immutable.
 	Name *string `pulumi:"name"`
 	// [int] The priority for the DNS Record.
 	Priority *int `pulumi:"priority"`
 	// [int] Time to live for the DNS Record. Default is `3600`.
 	Ttl *int `pulumi:"ttl"`
-	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 	Type string `pulumi:"type"`
 	// [string] The DNS Zone ID in which the DNS Record will be created.
 	ZoneId string `pulumi:"zoneId"`
@@ -209,13 +209,13 @@ type RecordArgs struct {
 	Content pulumi.StringInput
 	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
 	Enabled pulumi.BoolPtrInput
-	// [string] The name of the DNS Record.
+	// [string] The name of the DNS Record. This property is immutable.
 	Name pulumi.StringPtrInput
 	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrInput
 	// [int] Time to live for the DNS Record. Default is `3600`.
 	Ttl pulumi.IntPtrInput
-	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 	Type pulumi.StringInput
 	// [string] The DNS Zone ID in which the DNS Record will be created.
 	ZoneId pulumi.StringInput
@@ -323,7 +323,7 @@ func (o RecordOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
-// [string] The name of the DNS Record.
+// [string] The name of the DNS Record. This property is immutable.
 func (o RecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -338,7 +338,7 @@ func (o RecordOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Record) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
-// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
 func (o RecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

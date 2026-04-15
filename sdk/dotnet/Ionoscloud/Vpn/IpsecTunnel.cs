@@ -106,130 +106,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
     /// });
     /// ```
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Complete example
-    ///     var testDatacenter = new Ionoscloud.Compute.Datacenter("test_datacenter", new()
-    ///     {
-    ///         Name = "vpn_gateway_test",
-    ///         Location = "de/fra",
-    ///     });
-    /// 
-    ///     var testLan = new Ionoscloud.Compute.Lan("test_lan", new()
-    ///     {
-    ///         Name = "test_lan",
-    ///         Public = false,
-    ///         DatacenterId = testDatacenter.Id,
-    ///         Ipv6CidrBlock = lanIpv6CidrBlock,
-    ///     });
-    /// 
-    ///     var testIpblock = new Ionoscloud.Compute.IPBlock("test_ipblock", new()
-    ///     {
-    ///         Name = "test_ipblock",
-    ///         Location = "de/fra",
-    ///         Size = 1,
-    ///     });
-    /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = false,
-    ///     });
-    /// 
-    ///     var testServer = new Ionoscloud.Compute.Server("test_server", new()
-    ///     {
-    ///         Name = "test_server",
-    ///         DatacenterId = testDatacenter.Id,
-    ///         Cores = 1,
-    ///         Ram = 2048,
-    ///         ImageName = "ubuntu:latest",
-    ///         ImagePassword = serverImagePassword.Result,
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = testLan.Id,
-    ///             Name = "test_nic",
-    ///             Dhcp = true,
-    ///             Dhcpv6 = false,
-    ///             Ipv6CidrBlock = ipv6CidrBlock,
-    ///             FirewallActive = false,
-    ///         },
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "test_volume",
-    ///             DiskType = "HDD",
-    ///             Size = 10,
-    ///             LicenceType = "OTHER",
-    ///         },
-    ///     });
-    /// 
-    ///     var example = new Ionoscloud.Vpn.IpsecGateway("example", new()
-    ///     {
-    ///         Name = "ipsec-gateway",
-    ///         Location = "de/fra",
-    ///         GatewayIp = testIpblock.Ips.Apply(ips =&gt; ips[0]),
-    ///         Version = "IKEv2",
-    ///         Description = "This gateway connects site A to VDC X.",
-    ///         Connections = new[]
-    ///         {
-    ///             new Ionoscloud.Vpn.Inputs.IpsecGatewayConnectionArgs
-    ///             {
-    ///                 DatacenterId = testDatacenter.Id,
-    ///                 LanId = testLan.Id,
-    ///                 Ipv4Cidr = "ipv4_cidr_block_from_nic",
-    ///                 Ipv6Cidr = "ipv6_cidr_block_from_dc",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleIpsecTunnel = new Ionoscloud.Vpn.IpsecTunnel("example", new()
-    ///     {
-    ///         Location = "de/fra",
-    ///         GatewayId = example.Id,
-    ///         Name = "example-tunnel",
-    ///         RemoteHost = "vpn.mycompany.com",
-    ///         Description = "Allows local subnet X to connect to virtual network Y.",
-    ///         Auth = new Ionoscloud.Vpn.Inputs.IpsecTunnelAuthArgs
-    ///         {
-    ///             Method = "PSK",
-    ///             PskKey = "X2wosbaw74M8hQGbK3jCCaEusR6CCFRa",
-    ///         },
-    ///         Ike = new Ionoscloud.Vpn.Inputs.IpsecTunnelIkeArgs
-    ///         {
-    ///             DiffieHellmanGroup = "16-MODP4096",
-    ///             EncryptionAlgorithm = "AES256",
-    ///             IntegrityAlgorithm = "SHA256",
-    ///             Lifetime = 86400,
-    ///         },
-    ///         Esps = new[]
-    ///         {
-    ///             new Ionoscloud.Vpn.Inputs.IpsecTunnelEspArgs
-    ///             {
-    ///                 DiffieHellmanGroup = "16-MODP4096",
-    ///                 EncryptionAlgorithm = "AES256",
-    ///                 IntegrityAlgorithm = "SHA256",
-    ///                 Lifetime = 3600,
-    ///             },
-    ///         },
-    ///         CloudNetworkCidrs = new[]
-    ///         {
-    ///             "0.0.0.0/0",
-    ///         },
-    ///         PeerNetworkCidrs = new[]
-    ///         {
-    ///             "1.2.3.4/32",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// The resource can be imported using the `Location`, `GatewayId` and `TunnelId`, for example:
@@ -281,8 +157,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Output<Outputs.IpsecTunnelIke> Ike { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
+        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -405,8 +280,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<Inputs.IpsecTunnelIkeArgs> Ike { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
+        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -496,8 +370,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<Inputs.IpsecTunnelIkeGetArgs>? Ike { get; set; }
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
+        /// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

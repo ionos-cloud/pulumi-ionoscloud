@@ -29,6 +29,7 @@ class ForwardingRuleArgs:
                  protocol: pulumi.Input[_builtins.str],
                  targets: pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]],
                  health_check: Optional[pulumi.Input['ForwardingRuleHealthCheckArgs']] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ForwardingRule resource.
@@ -40,6 +41,7 @@ class ForwardingRuleArgs:
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
         :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: [Set] Array of items in that collection.
         :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         """
         pulumi.set(__self__, "algorithm", algorithm)
@@ -51,6 +53,8 @@ class ForwardingRuleArgs:
         pulumi.set(__self__, "targets", targets)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -149,6 +153,18 @@ class ForwardingRuleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] A name of that Network Load Balancer forwarding rule.
@@ -168,6 +184,7 @@ class _ForwardingRuleState:
                  health_check: Optional[pulumi.Input['ForwardingRuleHealthCheckArgs']] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networkloadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -180,6 +197,7 @@ class _ForwardingRuleState:
         :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening IP. (inbound)
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
         :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: [Set] Array of items in that collection.
@@ -194,6 +212,8 @@ class _ForwardingRuleState:
             pulumi.set(__self__, "listener_ip", listener_ip)
         if listener_port is not None:
             pulumi.set(__self__, "listener_port", listener_port)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if networkloadbalancer_id is not None:
@@ -265,6 +285,18 @@ class _ForwardingRuleState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] A name of that Network Load Balancer forwarding rule.
@@ -320,6 +352,7 @@ class ForwardingRule(pulumi.CustomResource):
                  health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networkloadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -376,6 +409,59 @@ class ForwardingRule(pulumi.CustomResource):
             }])
         ```
 
+        ### Usage with dynamic block for targets:
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example1 = ionoscloud.compute.Lan("example1",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 1")
+        example2 = ionoscloud.compute.Lan("example2",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 2")
+        example_balancer = ionoscloud.nlb.Balancer("example",
+            datacenter_id=example.id,
+            name="example",
+            listener_lan=example1.id,
+            target_lan=example2.id,
+            ips=["10.12.118.224"],
+            lb_private_ips=["10.13.72.225/24"])
+        config = pulumi.Config()
+        i_ps = config.get_object("iPs")
+        if i_ps is None:
+            i_ps = [
+                "22.231.2.2",
+                "22.231.2.3",
+                "22.231.2.4",
+            ]
+        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("example",
+            targets=[{
+                "ip": entry["value"],
+                "port": 31234,
+                "weight": 1,
+                "health_check": {
+                    "check": True,
+                    "check_interval": 1000,
+                    "maintenance": False,
+                },
+            } for entry in [{"key": k, "value": v} for k, v in i_ps.items()]],
+            datacenter_id=example.id,
+            networkloadbalancer_id=example_balancer.id,
+            name="example",
+            algorithm="SOURCE_IP",
+            protocol="TCP",
+            listener_ip="10.12.118.224",
+            listener_port=8081)
+        ```
+
         ## Import
 
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
@@ -392,6 +478,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening IP. (inbound)
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: [Set] Array of items in that collection.
@@ -453,6 +540,59 @@ class ForwardingRule(pulumi.CustomResource):
             }])
         ```
 
+        ### Usage with dynamic block for targets:
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example1 = ionoscloud.compute.Lan("example1",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 1")
+        example2 = ionoscloud.compute.Lan("example2",
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 2")
+        example_balancer = ionoscloud.nlb.Balancer("example",
+            datacenter_id=example.id,
+            name="example",
+            listener_lan=example1.id,
+            target_lan=example2.id,
+            ips=["10.12.118.224"],
+            lb_private_ips=["10.13.72.225/24"])
+        config = pulumi.Config()
+        i_ps = config.get_object("iPs")
+        if i_ps is None:
+            i_ps = [
+                "22.231.2.2",
+                "22.231.2.3",
+                "22.231.2.4",
+            ]
+        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("example",
+            targets=[{
+                "ip": entry["value"],
+                "port": 31234,
+                "weight": 1,
+                "health_check": {
+                    "check": True,
+                    "check_interval": 1000,
+                    "maintenance": False,
+                },
+            } for entry in [{"key": k, "value": v} for k, v in i_ps.items()]],
+            datacenter_id=example.id,
+            networkloadbalancer_id=example_balancer.id,
+            name="example",
+            algorithm="SOURCE_IP",
+            protocol="TCP",
+            listener_ip="10.12.118.224",
+            listener_port=8081)
+        ```
+
         ## Import
 
         A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
@@ -482,6 +622,7 @@ class ForwardingRule(pulumi.CustomResource):
                  health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  networkloadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -508,6 +649,7 @@ class ForwardingRule(pulumi.CustomResource):
             if listener_port is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_port'")
             __props__.__dict__["listener_port"] = listener_port
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if networkloadbalancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'networkloadbalancer_id'")
@@ -533,6 +675,7 @@ class ForwardingRule(pulumi.CustomResource):
             health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
             listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
             listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             networkloadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
             protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -549,6 +692,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening IP. (inbound)
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: [Set] Array of items in that collection.
@@ -562,6 +706,7 @@ class ForwardingRule(pulumi.CustomResource):
         __props__.__dict__["health_check"] = health_check
         __props__.__dict__["listener_ip"] = listener_ip
         __props__.__dict__["listener_port"] = listener_port
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["networkloadbalancer_id"] = networkloadbalancer_id
         __props__.__dict__["protocol"] = protocol
@@ -607,6 +752,14 @@ class ForwardingRule(pulumi.CustomResource):
         [int] Listening port number. (inbound) (range: 1 to 65535)
         """
         return pulumi.get(self, "listener_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

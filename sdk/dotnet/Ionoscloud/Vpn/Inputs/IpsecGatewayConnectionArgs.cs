@@ -20,15 +20,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn.Inputs
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-        /// VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        /// [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         /// </summary>
         [Input("ipv4Cidr", required: true)]
         public Input<string> Ipv4Cidr { get; set; } = null!;
 
         /// <summary>
-        /// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-        /// Gateway. **Note**: this should be the subnet already assigned to the LAN
+        /// [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         /// </summary>
         [Input("ipv6Cidr")]
         public Input<string>? Ipv6Cidr { get; set; }

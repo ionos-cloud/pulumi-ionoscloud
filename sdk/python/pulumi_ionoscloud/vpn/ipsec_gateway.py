@@ -37,8 +37,7 @@ class IpsecGatewayArgs:
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -102,8 +101,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -180,8 +178,7 @@ class _IpsecGatewayState:
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -247,8 +244,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -322,7 +318,7 @@ class IpsecGateway(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
         infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
         network resources.
 
@@ -355,67 +351,6 @@ class IpsecGateway(pulumi.CustomResource):
                 "lan_id": test_lan.id,
                 "ipv4_cidr": "192.168.100.10/24",
             }])
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
-            name="vpn_gateway_test",
-            location="de/fra")
-        test_lan = ionoscloud.compute.Lan("test_lan",
-            name="test_lan",
-            public=False,
-            datacenter_id=test_datacenter.id,
-            ipv6_cidr_block=lan_ipv6_cidr_block)
-        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
-            name="test_ipblock",
-            location="de/fra",
-            size=1)
-        server_image_password = random.Password("server_image_password",
-            length=16,
-            special=False)
-        test_server = ionoscloud.compute.Server("test_server",
-            name="test_server",
-            datacenter_id=test_datacenter.id,
-            cores=1,
-            ram=2048,
-            image_name="ubuntu:latest",
-            image_password=server_image_password["result"],
-            nic={
-                "lan": test_lan.id,
-                "name": "test_nic",
-                "dhcp": True,
-                "dhcpv6": False,
-                "ipv6_cidr_block": ipv6_cidr_block,
-                "firewall_active": False,
-            },
-            volume={
-                "name": "test_volume",
-                "disk_type": "HDD",
-                "size": 10,
-                "licence_type": "OTHER",
-            })
-        example = ionoscloud.vpn.IpsecGateway("example",
-            name="ipsec-gateway",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[{
-                "datacenter_id": test_datacenter.id,
-                "lan_id": test_lan.id,
-                "ipv4_cidr": "ipv4_cidr_block_from_nic",
-                "ipv6_cidr": "ipv6_cidr_block_from_dc",
-            }],
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "09:00:00",
-            },
-            tier="STANDARD")
         ```
 
         ## Import
@@ -434,8 +369,7 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -449,7 +383,7 @@ class IpsecGateway(pulumi.CustomResource):
                  args: IpsecGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
         infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
         network resources.
 
@@ -482,67 +416,6 @@ class IpsecGateway(pulumi.CustomResource):
                 "lan_id": test_lan.id,
                 "ipv4_cidr": "192.168.100.10/24",
             }])
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        test_datacenter = ionoscloud.compute.Datacenter("test_datacenter",
-            name="vpn_gateway_test",
-            location="de/fra")
-        test_lan = ionoscloud.compute.Lan("test_lan",
-            name="test_lan",
-            public=False,
-            datacenter_id=test_datacenter.id,
-            ipv6_cidr_block=lan_ipv6_cidr_block)
-        test_ipblock = ionoscloud.compute.IPBlock("test_ipblock",
-            name="test_ipblock",
-            location="de/fra",
-            size=1)
-        server_image_password = random.Password("server_image_password",
-            length=16,
-            special=False)
-        test_server = ionoscloud.compute.Server("test_server",
-            name="test_server",
-            datacenter_id=test_datacenter.id,
-            cores=1,
-            ram=2048,
-            image_name="ubuntu:latest",
-            image_password=server_image_password["result"],
-            nic={
-                "lan": test_lan.id,
-                "name": "test_nic",
-                "dhcp": True,
-                "dhcpv6": False,
-                "ipv6_cidr_block": ipv6_cidr_block,
-                "firewall_active": False,
-            },
-            volume={
-                "name": "test_volume",
-                "disk_type": "HDD",
-                "size": 10,
-                "licence_type": "OTHER",
-            })
-        example = ionoscloud.vpn.IpsecGateway("example",
-            name="ipsec-gateway",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[{
-                "datacenter_id": test_datacenter.id,
-                "lan_id": test_lan.id,
-                "ipv4_cidr": "ipv4_cidr_block_from_nic",
-                "ipv6_cidr": "ipv6_cidr_block_from_dc",
-            }],
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "09:00:00",
-            },
-            tier="STANDARD")
         ```
 
         ## Import
@@ -628,8 +501,7 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -680,8 +552,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 

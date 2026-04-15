@@ -318,6 +318,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
             set => _filters = value;
         }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetClustersArgs()
         {
         }
@@ -339,6 +342,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
             get => _filters ?? (_filters = new InputList<Inputs.GetClustersFilterInputArgs>());
             set => _filters = value;
         }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         public GetClustersInvokeArgs()
         {
@@ -364,6 +370,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
 
         [OutputConstructor]
         private GetClustersResult(
@@ -373,12 +380,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 
             ImmutableArray<Outputs.GetClustersFilterResult> filters,
 
-            string id)
+            string id,
+
+            string? location)
         {
             Clusters = clusters;
             Entries = entries;
             Filters = filters;
             Id = id;
+            Location = location;
         }
     }
 }

@@ -31,6 +31,7 @@ class PSQLClusterArgs:
                  storage_size: pulumi.Input[_builtins.int],
                  storage_type: pulumi.Input[_builtins.str],
                  synchronization_mode: pulumi.Input[_builtins.str],
+                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  backup_location: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_pooler: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']] = None,
                  connections: Optional[pulumi.Input['PSQLClusterConnectionsArgs']] = None,
@@ -43,12 +44,15 @@ class PSQLClusterArgs:
         :param pulumi.Input['PSQLClusterCredentialsArgs'] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+               
+               **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input['PSQLClusterConnectionPoolerArgs'] connection_pooler: [object]
         :param pulumi.Input['PSQLClusterConnectionsArgs'] connections: [string] Details about the network connection for your cluster.
@@ -65,6 +69,8 @@ class PSQLClusterArgs:
         pulumi.set(__self__, "storage_size", storage_size)
         pulumi.set(__self__, "storage_type", storage_type)
         pulumi.set(__self__, "synchronization_mode", synchronization_mode)
+        if allow_replace is not None:
+            pulumi.set(__self__, "allow_replace", allow_replace)
         if backup_location is not None:
             pulumi.set(__self__, "backup_location", backup_location)
         if connection_pooler is not None:
@@ -128,7 +134,7 @@ class PSQLClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 
@@ -197,6 +203,20 @@ class PSQLClusterArgs:
         pulumi.set(self, "synchronization_mode", value)
 
     @_builtins.property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+
+        **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        """
+        return pulumi.get(self, "allow_replace")
+
+    @allow_replace.setter
+    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_replace", value)
+
+    @_builtins.property
     @pulumi.getter(name="backupLocation")
     def backup_location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -260,6 +280,7 @@ class PSQLClusterArgs:
 @pulumi.input_type
 class _PSQLClusterState:
     def __init__(__self__, *,
+                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  backup_location: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_pooler: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']] = None,
                  connections: Optional[pulumi.Input['PSQLClusterConnectionsArgs']] = None,
@@ -279,6 +300,9 @@ class _PSQLClusterState:
         """
         Input properties used for looking up and filtering PSQLCluster resources.
 
+        :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+               
+               **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input['PSQLClusterConnectionPoolerArgs'] connection_pooler: [object]
         :param pulumi.Input['PSQLClusterConnectionsArgs'] connections: [string] Details about the network connection for your cluster.
@@ -288,7 +312,7 @@ class _PSQLClusterState:
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
         :param pulumi.Input['PSQLClusterFromBackupArgs'] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -296,6 +320,8 @@ class _PSQLClusterState:
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
         """
+        if allow_replace is not None:
+            pulumi.set(__self__, "allow_replace", allow_replace)
         if backup_location is not None:
             pulumi.set(__self__, "backup_location", backup_location)
         if connection_pooler is not None:
@@ -328,6 +354,20 @@ class _PSQLClusterState:
             pulumi.set(__self__, "storage_type", storage_type)
         if synchronization_mode is not None:
             pulumi.set(__self__, "synchronization_mode", synchronization_mode)
+
+    @_builtins.property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+
+        **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        """
+        return pulumi.get(self, "allow_replace")
+
+    @allow_replace.setter
+    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="backupLocation")
@@ -441,7 +481,7 @@ class _PSQLClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 
@@ -528,6 +568,7 @@ class PSQLCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  backup_location: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
                  connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
@@ -545,7 +586,7 @@ class PSQLCluster(pulumi.CustomResource):
                  synchronization_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **DbaaS PgSql Cluster**.
+        Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
 
         ## Example Usage
 
@@ -557,7 +598,7 @@ class PSQLCluster(pulumi.CustomResource):
         example = ionoscloud.compute.Datacenter("example",
             name="example",
             location="de/txl",
-            description="Datacenter for testing dbaas cluster")
+            description="Datacenter for testing psql cluster")
         example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example.id,
             public=False,
@@ -567,7 +608,7 @@ class PSQLCluster(pulumi.CustomResource):
             instances=1,
             cores=4,
             ram=2048,
-            storage_size=2048,
+            storage_size=10240,
             storage_type="HDD",
             connection_pooler={
                 "enabled": True,
@@ -591,76 +632,6 @@ class PSQLCluster(pulumi.CustomResource):
             synchronization_mode="ASYNCHRONOUS")
         ```
 
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for testing dbaas cluster")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        cluster_password = random.Password("cluster_password",
-            length=16,
-            special=True,
-            override_special=!#$%&*()-_=+[]{}<>:?)
-        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
-            postgres_version="12",
-            instances=1,
-            cores=4,
-            ram=2048,
-            storage_size=2048,
-            storage_type="HDD",
-            connection_pooler={
-                "enabled": True,
-                "pool_mode": "session",
-            },
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            location=example.location,
-            display_name="PostgreSQL_cluster",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00",
-            },
-            credentials={
-                "username": "username",
-                "password": cluster_password["result"],
-            },
-            synchronization_mode="ASYNCHRONOUS",
-            from_backup={
-                "backup_id": "backup_uuid",
-                "recovery_target_time": "2021-12-06T13:54:08Z",
-            })
-        ```
-
         ## Import
 
         Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
@@ -672,6 +643,9 @@ class PSQLCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+               
+               **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: [object]
         :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: [string] Details about the network connection for your cluster.
@@ -680,7 +654,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -695,7 +669,7 @@ class PSQLCluster(pulumi.CustomResource):
                  args: PSQLClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DbaaS PgSql Cluster**.
+        Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
 
         ## Example Usage
 
@@ -707,7 +681,7 @@ class PSQLCluster(pulumi.CustomResource):
         example = ionoscloud.compute.Datacenter("example",
             name="example",
             location="de/txl",
-            description="Datacenter for testing dbaas cluster")
+            description="Datacenter for testing psql cluster")
         example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example.id,
             public=False,
@@ -717,7 +691,7 @@ class PSQLCluster(pulumi.CustomResource):
             instances=1,
             cores=4,
             ram=2048,
-            storage_size=2048,
+            storage_size=10240,
             storage_type="HDD",
             connection_pooler={
                 "enabled": True,
@@ -739,76 +713,6 @@ class PSQLCluster(pulumi.CustomResource):
                 "password": "strongPassword",
             },
             synchronization_mode="ASYNCHRONOUS")
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for testing dbaas cluster")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        cluster_password = random.Password("cluster_password",
-            length=16,
-            special=True,
-            override_special=!#$%&*()-_=+[]{}<>:?)
-        example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
-            postgres_version="12",
-            instances=1,
-            cores=4,
-            ram=2048,
-            storage_size=2048,
-            storage_type="HDD",
-            connection_pooler={
-                "enabled": True,
-                "pool_mode": "session",
-            },
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            location=example.location,
-            display_name="PostgreSQL_cluster",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00",
-            },
-            credentials={
-                "username": "username",
-                "password": cluster_password["result"],
-            },
-            synchronization_mode="ASYNCHRONOUS",
-            from_backup={
-                "backup_id": "backup_uuid",
-                "recovery_target_time": "2021-12-06T13:54:08Z",
-            })
         ```
 
         ## Import
@@ -835,6 +739,7 @@ class PSQLCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  backup_location: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
                  connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
@@ -859,6 +764,7 @@ class PSQLCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PSQLClusterArgs.__new__(PSQLClusterArgs)
 
+            __props__.__dict__["allow_replace"] = allow_replace
             __props__.__dict__["backup_location"] = backup_location
             __props__.__dict__["connection_pooler"] = connection_pooler
             __props__.__dict__["connections"] = connections
@@ -905,6 +811,7 @@ class PSQLCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
             backup_location: Optional[pulumi.Input[_builtins.str]] = None,
             connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
             connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
@@ -928,6 +835,9 @@ class PSQLCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+               
+               **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: [object]
         :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: [string] Details about the network connection for your cluster.
@@ -937,7 +847,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -949,6 +859,7 @@ class PSQLCluster(pulumi.CustomResource):
 
         __props__ = _PSQLClusterState.__new__(_PSQLClusterState)
 
+        __props__.__dict__["allow_replace"] = allow_replace
         __props__.__dict__["backup_location"] = backup_location
         __props__.__dict__["connection_pooler"] = connection_pooler
         __props__.__dict__["connections"] = connections
@@ -966,6 +877,16 @@ class PSQLCluster(pulumi.CustomResource):
         __props__.__dict__["storage_type"] = storage_type
         __props__.__dict__["synchronization_mode"] = synchronization_mode
         return PSQLCluster(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="allowReplace")
+    def allow_replace(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+
+        **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        """
+        return pulumi.get(self, "allow_replace")
 
     @_builtins.property
     @pulumi.getter(name="backupLocation")
@@ -1043,7 +964,7 @@ class PSQLCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 

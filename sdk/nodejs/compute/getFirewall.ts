@@ -43,6 +43,7 @@ export function getFirewall(args: GetFirewallArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("ionoscloud:compute/getFirewall:getFirewall", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "nicId": args.nicId,
         "serverId": args.serverId,
@@ -61,6 +62,7 @@ export interface GetFirewallArgs {
      * ID of the firewall rule you want to search for.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing firewall rule that you want to search for.
      */
@@ -94,6 +96,7 @@ export interface GetFirewallResult {
      * The id of the firewall rule.
      */
     readonly id: string;
+    readonly location?: string;
     /**
      * The name of the firewall rule.
      */
@@ -165,6 +168,7 @@ export function getFirewallOutput(args: GetFirewallOutputArgs, opts?: pulumi.Inv
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getFirewall:getFirewall", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "nicId": args.nicId,
         "serverId": args.serverId,
@@ -183,6 +187,7 @@ export interface GetFirewallOutputArgs {
      * ID of the firewall rule you want to search for.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing firewall rule that you want to search for.
      */

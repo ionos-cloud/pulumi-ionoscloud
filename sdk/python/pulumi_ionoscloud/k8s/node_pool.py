@@ -23,7 +23,6 @@ class NodePoolArgs:
     def __init__(__self__, *,
                  availability_zone: pulumi.Input[_builtins.str],
                  cores_count: pulumi.Input[_builtins.int],
-                 cpu_family: pulumi.Input[_builtins.str],
                  datacenter_id: pulumi.Input[_builtins.str],
                  k8s_cluster_id: pulumi.Input[_builtins.str],
                  k8s_version: pulumi.Input[_builtins.str],
@@ -34,17 +33,19 @@ class NodePoolArgs:
                  allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
+                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  lans: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodePool resource.
 
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] A Datacenter's UUID
         :param pulumi.Input[_builtins.str] k8s_cluster_id: [string] A k8s cluster's UUID
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
@@ -62,21 +63,21 @@ class NodePoolArgs:
                ⚠️ **Note**:
                
                Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-               This will also ignore the manual changes for `node_count` made in the `tf` plan.
-               You can read more details about the `ignore_changes` attribute here.
+               `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[_builtins.str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+        :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "cores_count", cores_count)
-        pulumi.set(__self__, "cpu_family", cpu_family)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "k8s_cluster_id", k8s_cluster_id)
         pulumi.set(__self__, "k8s_version", k8s_version)
@@ -90,16 +91,22 @@ class NodePoolArgs:
             pulumi.set(__self__, "annotations", annotations)
         if auto_scaling is not None:
             pulumi.set(__self__, "auto_scaling", auto_scaling)
+        if cpu_family is not None:
+            pulumi.set(__self__, "cpu_family", cpu_family)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if lans is not None:
             pulumi.set(__self__, "lans", lans)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if maintenance_window is not None:
             pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if public_ips is not None:
             pulumi.set(__self__, "public_ips", public_ips)
+        if server_type is not None:
+            pulumi.set(__self__, "server_type", server_type)
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
@@ -124,18 +131,6 @@ class NodePoolArgs:
     @cores_count.setter
     def cores_count(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "cores_count", value)
-
-    @_builtins.property
-    @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> pulumi.Input[_builtins.str]:
-        """
-        [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-        """
-        return pulumi.get(self, "cpu_family")
-
-    @cpu_family.setter
-    def cpu_family(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "cpu_family", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
@@ -235,10 +230,8 @@ class NodePoolArgs:
         ⚠️ **Note**:
 
         Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-        This will also ignore the manual changes for `node_count` made in the `tf` plan.
-        You can read more details about the `ignore_changes` attribute here.
+        `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use:
         """
         return pulumi.get(self, "allow_replace")
 
@@ -271,6 +264,18 @@ class NodePoolArgs:
         pulumi.set(self, "auto_scaling", value)
 
     @_builtins.property
+    @pulumi.getter(name="cpuFamily")
+    def cpu_family(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+        """
+        return pulumi.get(self, "cpu_family")
+
+    @cpu_family.setter
+    def cpu_family(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cpu_family", value)
+
+    @_builtins.property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -293,6 +298,18 @@ class NodePoolArgs:
     @lans.setter
     def lans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]):
         pulumi.set(self, "lans", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
@@ -330,6 +347,18 @@ class NodePoolArgs:
     def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "public_ips", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        """
+        return pulumi.get(self, "server_type")
+
+    @server_type.setter
+    def server_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_type", value)
+
 
 @pulumi.input_type
 class _NodePoolState:
@@ -345,11 +374,13 @@ class _NodePoolState:
                  k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  lans: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ram_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_size: Optional[pulumi.Input[_builtins.int]] = None,
                  storage_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -365,10 +396,8 @@ class _NodePoolState:
                ⚠️ **Note**:
                
                Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-               This will also ignore the manual changes for `node_count` made in the `tf` plan.
-               You can read more details about the `ignore_changes` attribute here.
+               `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
@@ -379,11 +408,13 @@ class _NodePoolState:
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         :param pulumi.Input[_builtins.int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
@@ -409,6 +440,8 @@ class _NodePoolState:
             pulumi.set(__self__, "labels", labels)
         if lans is not None:
             pulumi.set(__self__, "lans", lans)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if maintenance_window is not None:
             pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
@@ -419,6 +452,8 @@ class _NodePoolState:
             pulumi.set(__self__, "public_ips", public_ips)
         if ram_size is not None:
             pulumi.set(__self__, "ram_size", ram_size)
+        if server_type is not None:
+            pulumi.set(__self__, "server_type", server_type)
         if storage_size is not None:
             pulumi.set(__self__, "storage_size", storage_size)
         if storage_type is not None:
@@ -438,10 +473,8 @@ class _NodePoolState:
         ⚠️ **Note**:
 
         Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-        This will also ignore the manual changes for `node_count` made in the `tf` plan.
-        You can read more details about the `ignore_changes` attribute here.
+        `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use:
         """
         return pulumi.get(self, "allow_replace")
 
@@ -570,6 +603,18 @@ class _NodePoolState:
         pulumi.set(self, "lans", value)
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]:
         """
@@ -630,6 +675,18 @@ class _NodePoolState:
         pulumi.set(self, "ram_size", value)
 
     @_builtins.property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        """
+        return pulumi.get(self, "server_type")
+
+    @server_type.setter
+    def server_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "server_type", value)
+
+    @_builtins.property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -671,90 +728,18 @@ class NodePool(pulumi.CustomResource):
                  k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ram_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_size: Optional[pulumi.Input[_builtins.int]] = None,
                  storage_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="datacenter description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example")
-        example_ip_block = ionoscloud.compute.IPBlock("example",
-            location="us/las",
-            size=3,
-            name="IP Block Example")
-        example_cluster = ionoscloud.k8s.Cluster("example",
-            name="k8sClusterExample",
-            k8s_version="1.31.2",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00Z",
-            },
-            api_subnet_allow_lists=["1.2.3.4/32"],
-            s3_buckets=[{
-                "name": "globally_unique_s3_bucket_name",
-            }])
-        example_node_pool = ionoscloud.k8s.NodePool("example",
-            datacenter_id=example.id,
-            k8s_cluster_id=example_cluster.id,
-            name="k8sNodePoolExample",
-            k8s_version=example_cluster.k8s_version,
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "09:00:00Z",
-            },
-            auto_scaling={
-                "min_node_count": 1,
-                "max_node_count": 2,
-            },
-            cpu_family="INTEL_XEON",
-            availability_zone="AUTO",
-            storage_type="SSD",
-            node_count=1,
-            cores_count=2,
-            ram_size=2048,
-            storage_size=40,
-            public_ips=[
-                example_ip_block.ips[0],
-                example_ip_block.ips[1],
-                example_ip_block.ips[2],
-            ],
-            lans=[{
-                "id": example_lan.id,
-                "dhcp": True,
-                "routes": [{
-                    "network": "1.2.3.5/24",
-                    "gateway_ip": "10.1.5.17",
-                }],
-            }],
-            labels={
-                "lab1": "value1",
-                "lab2": "value2",
-            },
-            annotations={
-                "ann1": "value1",
-                "ann2": "value2",
-            })
-        ```
-        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
 
         ## Import
 
@@ -764,10 +749,10 @@ class NodePool(pulumi.CustomResource):
         $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
-        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
         ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 
@@ -784,10 +769,8 @@ class NodePool(pulumi.CustomResource):
                ⚠️ **Note**:
                
                Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-               This will also ignore the manual changes for `node_count` made in the `tf` plan.
-               You can read more details about the `ignore_changes` attribute here.
+               `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
         :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
@@ -798,11 +781,13 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         :param pulumi.Input[_builtins.int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
@@ -815,80 +800,6 @@ class NodePool(pulumi.CustomResource):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="datacenter description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="Lan Example")
-        example_ip_block = ionoscloud.compute.IPBlock("example",
-            location="us/las",
-            size=3,
-            name="IP Block Example")
-        example_cluster = ionoscloud.k8s.Cluster("example",
-            name="k8sClusterExample",
-            k8s_version="1.31.2",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00Z",
-            },
-            api_subnet_allow_lists=["1.2.3.4/32"],
-            s3_buckets=[{
-                "name": "globally_unique_s3_bucket_name",
-            }])
-        example_node_pool = ionoscloud.k8s.NodePool("example",
-            datacenter_id=example.id,
-            k8s_cluster_id=example_cluster.id,
-            name="k8sNodePoolExample",
-            k8s_version=example_cluster.k8s_version,
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "09:00:00Z",
-            },
-            auto_scaling={
-                "min_node_count": 1,
-                "max_node_count": 2,
-            },
-            cpu_family="INTEL_XEON",
-            availability_zone="AUTO",
-            storage_type="SSD",
-            node_count=1,
-            cores_count=2,
-            ram_size=2048,
-            storage_size=40,
-            public_ips=[
-                example_ip_block.ips[0],
-                example_ip_block.ips[1],
-                example_ip_block.ips[2],
-            ],
-            lans=[{
-                "id": example_lan.id,
-                "dhcp": True,
-                "routes": [{
-                    "network": "1.2.3.5/24",
-                    "gateway_ip": "10.1.5.17",
-                }],
-            }],
-            labels={
-                "lab1": "value1",
-                "lab2": "value2",
-            },
-            annotations={
-                "ann1": "value1",
-                "ann2": "value2",
-            })
-        ```
-        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
-
         ## Import
 
         A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
@@ -897,10 +808,10 @@ class NodePool(pulumi.CustomResource):
         $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
         ```
 
-        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
         ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 
@@ -931,11 +842,13 @@ class NodePool(pulumi.CustomResource):
                  k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ram_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_size: Optional[pulumi.Input[_builtins.int]] = None,
                  storage_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -956,8 +869,6 @@ class NodePool(pulumi.CustomResource):
             if cores_count is None and not opts.urn:
                 raise TypeError("Missing required property 'cores_count'")
             __props__.__dict__["cores_count"] = cores_count
-            if cpu_family is None and not opts.urn:
-                raise TypeError("Missing required property 'cpu_family'")
             __props__.__dict__["cpu_family"] = cpu_family
             if datacenter_id is None and not opts.urn:
                 raise TypeError("Missing required property 'datacenter_id'")
@@ -970,6 +881,7 @@ class NodePool(pulumi.CustomResource):
             __props__.__dict__["k8s_version"] = k8s_version
             __props__.__dict__["labels"] = labels
             __props__.__dict__["lans"] = lans
+            __props__.__dict__["location"] = location
             __props__.__dict__["maintenance_window"] = maintenance_window
             __props__.__dict__["name"] = name
             if node_count is None and not opts.urn:
@@ -979,6 +891,7 @@ class NodePool(pulumi.CustomResource):
             if ram_size is None and not opts.urn:
                 raise TypeError("Missing required property 'ram_size'")
             __props__.__dict__["ram_size"] = ram_size
+            __props__.__dict__["server_type"] = server_type
             if storage_size is None and not opts.urn:
                 raise TypeError("Missing required property 'storage_size'")
             __props__.__dict__["storage_size"] = storage_size
@@ -1006,11 +919,13 @@ class NodePool(pulumi.CustomResource):
             k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             node_count: Optional[pulumi.Input[_builtins.int]] = None,
             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ram_size: Optional[pulumi.Input[_builtins.int]] = None,
+            server_type: Optional[pulumi.Input[_builtins.str]] = None,
             storage_size: Optional[pulumi.Input[_builtins.int]] = None,
             storage_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'NodePool':
         """
@@ -1030,10 +945,8 @@ class NodePool(pulumi.CustomResource):
                ⚠️ **Note**:
                
                Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-               `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-               from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-               This will also ignore the manual changes for `node_count` made in the `tf` plan.
-               You can read more details about the `ignore_changes` attribute here.
+               `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+               from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
         :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
@@ -1044,11 +957,13 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
         :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         :param pulumi.Input[_builtins.int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
@@ -1067,11 +982,13 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["k8s_version"] = k8s_version
         __props__.__dict__["labels"] = labels
         __props__.__dict__["lans"] = lans
+        __props__.__dict__["location"] = location
         __props__.__dict__["maintenance_window"] = maintenance_window
         __props__.__dict__["name"] = name
         __props__.__dict__["node_count"] = node_count
         __props__.__dict__["public_ips"] = public_ips
         __props__.__dict__["ram_size"] = ram_size
+        __props__.__dict__["server_type"] = server_type
         __props__.__dict__["storage_size"] = storage_size
         __props__.__dict__["storage_type"] = storage_type
         return NodePool(resource_name, opts=opts, __props__=__props__)
@@ -1090,10 +1007,8 @@ class NodePool(pulumi.CustomResource):
         ⚠️ **Note**:
 
         Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-        `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-        from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-        This will also ignore the manual changes for `node_count` made in the `tf` plan.
-        You can read more details about the `ignore_changes` attribute here.
+        `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
+        from the number of nodes set by the scheduler). To avoid that, you can use:
         """
         return pulumi.get(self, "allow_replace")
 
@@ -1131,7 +1046,7 @@ class NodePool(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> pulumi.Output[_builtins.str]:
+    def cpu_family(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
@@ -1178,6 +1093,14 @@ class NodePool(pulumi.CustomResource):
         return pulumi.get(self, "lans")
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.NodePoolMaintenanceWindow']:
         """
@@ -1216,6 +1139,14 @@ class NodePool(pulumi.CustomResource):
         [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         """
         return pulumi.get(self, "ram_size")
+
+    @_builtins.property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        """
+        return pulumi.get(self, "server_type")
 
     @_builtins.property
     @pulumi.getter(name="storageSize")

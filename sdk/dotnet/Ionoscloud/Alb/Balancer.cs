@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Alb
 {
     /// <summary>
-    /// Manages an **Application Load Balancer** on IonosCloud.
+    /// Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -112,6 +112,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         [Output("listenerLan")]
         public Output<int> ListenerLan { get; private set; } = null!;
+
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the format of the logs.
@@ -226,6 +229,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         [Input("listenerLan", required: true)]
         public Input<int> ListenerLan { get; set; } = null!;
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// Specifies the format of the logs.
         /// </summary>
@@ -299,6 +305,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         [Input("listenerLan")]
         public Input<int>? ListenerLan { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Specifies the format of the logs.

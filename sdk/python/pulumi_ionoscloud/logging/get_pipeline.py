@@ -27,10 +27,13 @@ class GetPipelineResult:
     """
     A collection of values returned by getPipeline.
     """
-    def __init__(__self__, grafana_address=None, id=None, location=None, logs=None, name=None):
+    def __init__(__self__, grafana_address=None, http_address=None, id=None, location=None, logs=None, name=None, tcp_address=None):
         if grafana_address and not isinstance(grafana_address, str):
             raise TypeError("Expected argument 'grafana_address' to be a str")
         pulumi.set(__self__, "grafana_address", grafana_address)
+        if http_address and not isinstance(http_address, str):
+            raise TypeError("Expected argument 'http_address' to be a str")
+        pulumi.set(__self__, "http_address", http_address)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -43,14 +46,25 @@ class GetPipelineResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if tcp_address and not isinstance(tcp_address, str):
+            raise TypeError("Expected argument 'tcp_address' to be a str")
+        pulumi.set(__self__, "tcp_address", tcp_address)
 
     @_builtins.property
     @pulumi.getter(name="grafanaAddress")
     def grafana_address(self) -> _builtins.str:
         """
-        The address of the client's grafana instance.
+        The Grafana address is where user can access their logs, create dashboards, and set up alerts.
         """
         return pulumi.get(self, "grafana_address")
+
+    @_builtins.property
+    @pulumi.getter(name="httpAddress")
+    def http_address(self) -> _builtins.str:
+        """
+        The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        """
+        return pulumi.get(self, "http_address")
 
     @_builtins.property
     @pulumi.getter
@@ -81,6 +95,14 @@ class GetPipelineResult:
         """
         return pulumi.get(self, "name")
 
+    @_builtins.property
+    @pulumi.getter(name="tcpAddress")
+    def tcp_address(self) -> _builtins.str:
+        """
+        The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        """
+        return pulumi.get(self, "tcp_address")
+
 
 class AwaitableGetPipelineResult(GetPipelineResult):
     # pylint: disable=using-constant-test
@@ -89,10 +111,12 @@ class AwaitableGetPipelineResult(GetPipelineResult):
             yield self
         return GetPipelineResult(
             grafana_address=self.grafana_address,
+            http_address=self.http_address,
             id=self.id,
             location=self.location,
             logs=self.logs,
-            name=self.name)
+            name=self.name,
+            tcp_address=self.tcp_address)
 
 
 def get_pipeline(id: Optional[_builtins.str] = None,
@@ -127,7 +151,7 @@ def get_pipeline(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: [string] The ID of the Logging pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
     :param _builtins.str name: [string] The name of the Logging pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
@@ -141,10 +165,12 @@ def get_pipeline(id: Optional[_builtins.str] = None,
 
     return AwaitableGetPipelineResult(
         grafana_address=pulumi.get(__ret__, 'grafana_address'),
+        http_address=pulumi.get(__ret__, 'http_address'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         logs=pulumi.get(__ret__, 'logs'),
-        name=pulumi.get(__ret__, 'name'))
+        name=pulumi.get(__ret__, 'name'),
+        tcp_address=pulumi.get(__ret__, 'tcp_address'))
 def get_pipeline_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -177,7 +203,7 @@ def get_pipeline_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = No
 
 
     :param _builtins.str id: [string] The ID of the Logging pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
     :param _builtins.str name: [string] The name of the Logging pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
@@ -190,7 +216,9 @@ def get_pipeline_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = No
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:logging/getPipeline:getPipeline', __args__, opts=opts, typ=GetPipelineResult)
     return __ret__.apply(lambda __response__: GetPipelineResult(
         grafana_address=pulumi.get(__response__, 'grafana_address'),
+        http_address=pulumi.get(__response__, 'http_address'),
         id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location'),
         logs=pulumi.get(__response__, 'logs'),
-        name=pulumi.get(__response__, 'name')))
+        name=pulumi.get(__response__, 'name'),
+        tcp_address=pulumi.get(__response__, 'tcp_address')))

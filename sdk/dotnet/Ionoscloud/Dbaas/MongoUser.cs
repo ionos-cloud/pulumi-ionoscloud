@@ -199,6 +199,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] User password. Updates to the value of the field force the cluster to be re-created.
         /// </summary>
         [Output("password")]
@@ -273,6 +279,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         [Input("password", required: true)]
         private Input<string>? _password;
 
@@ -320,6 +332,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         [Input("password")]
         private Input<string>? _password;

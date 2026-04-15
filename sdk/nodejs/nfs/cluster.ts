@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Create clusters of Network File Storage (NFS) on IonosCloud.
+ * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -37,70 +37,6 @@ import * as utilities from "../utilities";
  *     connections: {
  *         datacenterId: nfsDc.id,
  *         ipAddress: "192.168.100.10/24",
- *         lan: nfsLan.id,
- *     },
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- * import * as random from "@pulumi/random";
- *
- * // Complete example
- * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
- *     name: "NFS Datacenter",
- *     location: "de/txl",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
- *     datacenterId: nfsDc.id,
- *     "public": false,
- *     name: "Lan for NFS",
- * });
- * const hDDImage = ionoscloud.compute.getImage({
- *     imageAlias: "ubuntu:20.04",
- *     type: "HDD",
- *     cloudInit: "V1",
- *     location: "de/txl",
- * });
- * const password = new random.index.Password("password", {
- *     length: 16,
- *     special: false,
- * });
- * // needed for the NIC - which provides the IP address for the NFS cluster.
- * const nfsServer = new ionoscloud.compute.Server("nfs_server", {
- *     name: "Server for NFS",
- *     datacenterId: nfsDc.id,
- *     cores: 1,
- *     ram: 2048,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_SKYLAKE",
- *     imageName: hDDImage.then(hDDImage => hDDImage.id),
- *     imagePassword: password.result,
- *     volume: {
- *         name: "system",
- *         size: 14,
- *         diskType: "SSD",
- *     },
- *     nic: {
- *         name: "NIC A",
- *         lan: nfsLan.id,
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const example = new ionoscloud.nfs.Cluster("example", {
- *     name: "test",
- *     location: "de/txl",
- *     size: 2,
- *     nfs: {
- *         minVersion: "4.2",
- *     },
- *     connections: {
- *         datacenterId: nfsDc.id,
- *         ipAddress: "nfs_cluster_cidr_from_nic",
  *         lan: nfsLan.id,
  *     },
  * });
@@ -147,7 +83,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly connections: pulumi.Output<outputs.nfs.ClusterConnections>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
@@ -208,7 +144,7 @@ export interface ClusterState {
      */
     connections?: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
@@ -233,7 +169,7 @@ export interface ClusterArgs {
      */
     connections: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */

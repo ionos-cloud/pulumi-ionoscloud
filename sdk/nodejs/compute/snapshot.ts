@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages **Snapshots** on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -39,8 +39,6 @@ import * as utilities from "../utilities";
  *     datacenterId: exampleDatacenter.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: example.then(example => example.id),
  *     imagePassword: serverImagePassword.result,
  *     type: "ENTERPRISE",
@@ -135,7 +133,7 @@ export class Snapshot extends pulumi.CustomResource {
     /**
      * Location of that image/snapshot
      */
-    declare public /*out*/ readonly location: pulumi.Output<string>;
+    declare public readonly location: pulumi.Output<string>;
     /**
      * [string] The name of the snapshot.
      */
@@ -156,6 +154,10 @@ export class Snapshot extends pulumi.CustomResource {
      * Is capable of memory hot unplug (no reboot required)
      */
     declare public /*out*/ readonly ramHotUnplug: pulumi.Output<boolean>;
+    /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     */
+    declare public readonly requireLegacyBios: pulumi.Output<boolean>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
@@ -197,6 +199,7 @@ export class Snapshot extends pulumi.CustomResource {
             resourceInputs["nicHotUnplug"] = state?.nicHotUnplug;
             resourceInputs["ramHotPlug"] = state?.ramHotPlug;
             resourceInputs["ramHotUnplug"] = state?.ramHotUnplug;
+            resourceInputs["requireLegacyBios"] = state?.requireLegacyBios;
             resourceInputs["secAuthProtection"] = state?.secAuthProtection;
             resourceInputs["size"] = state?.size;
             resourceInputs["volumeId"] = state?.volumeId;
@@ -214,16 +217,17 @@ export class Snapshot extends pulumi.CustomResource {
             resourceInputs["discVirtioHotPlug"] = args?.discVirtioHotPlug;
             resourceInputs["discVirtioHotUnplug"] = args?.discVirtioHotUnplug;
             resourceInputs["licenceType"] = args?.licenceType;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nicHotPlug"] = args?.nicHotPlug;
             resourceInputs["nicHotUnplug"] = args?.nicHotUnplug;
             resourceInputs["ramHotPlug"] = args?.ramHotPlug;
+            resourceInputs["requireLegacyBios"] = args?.requireLegacyBios;
             resourceInputs["secAuthProtection"] = args?.secAuthProtection;
             resourceInputs["volumeId"] = args?.volumeId;
             resourceInputs["cpuHotUnplug"] = undefined /*out*/;
             resourceInputs["discScsiHotPlug"] = undefined /*out*/;
             resourceInputs["discScsiHotUnplug"] = undefined /*out*/;
-            resourceInputs["location"] = undefined /*out*/;
             resourceInputs["ramHotUnplug"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
         }
@@ -297,6 +301,10 @@ export interface SnapshotState {
      */
     ramHotUnplug?: pulumi.Input<boolean>;
     /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     */
+    requireLegacyBios?: pulumi.Input<boolean>;
+    /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
     secAuthProtection?: pulumi.Input<boolean>;
@@ -339,6 +347,10 @@ export interface SnapshotArgs {
      */
     licenceType?: pulumi.Input<string>;
     /**
+     * Location of that image/snapshot
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the snapshot.
      */
     name?: pulumi.Input<string>;
@@ -354,6 +366,10 @@ export interface SnapshotArgs {
      * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
      */
     ramHotPlug?: pulumi.Input<boolean>;
+    /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     */
+    requireLegacyBios?: pulumi.Input<boolean>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */

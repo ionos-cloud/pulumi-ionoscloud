@@ -7,14 +7,28 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **CDN Distribution** on IonosCloud.
+ * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
  *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ * import * as std from "@pulumi/std";
  *
+ * //optionally you can add a certificate to the distribution
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     name: "add_name_here",
+ *     certificate: std.file({
+ *         input: "path_to_cert",
+ *     }).result,
+ *     certificateChain: std.file({
+ *         input: "path_to_cert_chain",
+ *     }).result,
+ *     privateKey: std.file({
+ *         input: "path_to_private_key",
+ *     }).result,
+ * });
  * const example = new ionoscloud.cdn.Distribution("example", {
  *     domain: "example.com",
  *     certificateId: cert.id,

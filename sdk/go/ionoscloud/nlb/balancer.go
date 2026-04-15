@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Network Load Balancer**  on IonosCloud.
+// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -143,6 +143,8 @@ type Balancer struct {
 	LbPrivateIps pulumi.StringArrayOutput `pulumi:"lbPrivateIps"`
 	// [int] Id of the listening LAN. (inbound)
 	ListenerLan pulumi.IntOutput `pulumi:"listenerLan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrOutput `pulumi:"loggingFormat"`
 	// [string] A name of that Network Load Balancer.
@@ -202,6 +204,8 @@ type balancerState struct {
 	LbPrivateIps []string `pulumi:"lbPrivateIps"`
 	// [int] Id of the listening LAN. (inbound)
 	ListenerLan *int `pulumi:"listenerLan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
 	// [string] A name of that Network Load Balancer.
@@ -223,6 +227,8 @@ type BalancerState struct {
 	LbPrivateIps pulumi.StringArrayInput
 	// [int] Id of the listening LAN. (inbound)
 	ListenerLan pulumi.IntPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
 	// [string] A name of that Network Load Balancer.
@@ -248,6 +254,8 @@ type balancerArgs struct {
 	LbPrivateIps []string `pulumi:"lbPrivateIps"`
 	// [int] Id of the listening LAN. (inbound)
 	ListenerLan int `pulumi:"listenerLan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
 	// [string] A name of that Network Load Balancer.
@@ -270,6 +278,8 @@ type BalancerArgs struct {
 	LbPrivateIps pulumi.StringArrayInput
 	// [int] Id of the listening LAN. (inbound)
 	ListenerLan pulumi.IntInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
 	// [string] A name of that Network Load Balancer.
@@ -393,6 +403,11 @@ func (o BalancerOutput) LbPrivateIps() pulumi.StringArrayOutput {
 // [int] Id of the listening LAN. (inbound)
 func (o BalancerOutput) ListenerLan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.IntOutput { return v.ListenerLan }).(pulumi.IntOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o BalancerOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Balancer) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the format of the logs.

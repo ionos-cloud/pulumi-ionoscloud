@@ -65,11 +65,9 @@ class IpsecGatewayConnection(dict):
                  ipv6_cidr: Optional[_builtins.str] = None):
         """
         :param _builtins.str datacenter_id: [string] The datacenter to connect your VPN Gateway to.
-        :param _builtins.str ipv4_cidr: [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-               VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        :param _builtins.str ipv4_cidr: [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         :param _builtins.str lan_id: [string] The numeric LAN ID to connect your VPN Gateway to.
-        :param _builtins.str ipv6_cidr: [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-               Gateway. **Note**: this should be the subnet already assigned to the LAN
+        :param _builtins.str ipv6_cidr: [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "ipv4_cidr", ipv4_cidr)
@@ -89,8 +87,7 @@ class IpsecGatewayConnection(dict):
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> _builtins.str:
         """
-        [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-        VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv4_cidr")
 
@@ -106,8 +103,7 @@ class IpsecGatewayConnection(dict):
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> Optional[_builtins.str]:
         """
-        [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-        Gateway. **Note**: this should be the subnet already assigned to the LAN
+        [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 
@@ -419,8 +415,8 @@ class WireguardGatewayConnection(dict):
         """
         :param _builtins.str datacenter_id: [String] The ID of the datacenter where the WireGuard Gateway is located.
         :param _builtins.str lan_id: [String] The ID of the LAN where the WireGuard Gateway is connected.
-        :param _builtins.str ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway connection.
-        :param _builtins.str ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        :param _builtins.str ipv4_cidr: [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
+        :param _builtins.str ipv6_cidr: [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "lan_id", lan_id)
@@ -449,7 +445,7 @@ class WireguardGatewayConnection(dict):
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> Optional[_builtins.str]:
         """
-        [String] The IPv4 CIDR for the WireGuard Gateway connection.
+        [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv4_cidr")
 
@@ -457,7 +453,7 @@ class WireguardGatewayConnection(dict):
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> Optional[_builtins.str]:
         """
-        [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 
@@ -547,9 +543,8 @@ class GetIpsecGatewayConnectionResult(dict):
                  lan_id: _builtins.str):
         """
         :param _builtins.str datacenter_id: The datacenter to connect your VPN Gateway to.
-        :param _builtins.str ipv4_cidr: Describes the private ipv4 subnet in your LAN that should be accessible by the
-               VPN Gateway.
-        :param _builtins.str ipv6_cidr: Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+        :param _builtins.str ipv4_cidr: The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
+        :param _builtins.str ipv6_cidr: The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         :param _builtins.str lan_id: The numeric LAN ID to connect your VPN Gateway to.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -569,8 +564,7 @@ class GetIpsecGatewayConnectionResult(dict):
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> _builtins.str:
         """
-        Describes the private ipv4 subnet in your LAN that should be accessible by the
-        VPN Gateway.
+        The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv4_cidr")
 
@@ -578,7 +572,7 @@ class GetIpsecGatewayConnectionResult(dict):
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> _builtins.str:
         """
-        Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+        The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 
@@ -749,8 +743,8 @@ class GetWireguardGatewayConnectionResult(dict):
                  lan_id: _builtins.str):
         """
         :param _builtins.str datacenter_id: The ID of the datacenter where the WireGuard Gateway is located.
-        :param _builtins.str ipv4_cidr: The IPv4 CIDR for the WireGuard Gateway connection.
-        :param _builtins.str ipv6_cidr: The IPv6 CIDR for the WireGuard Gateway connection.
+        :param _builtins.str ipv4_cidr: The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
+        :param _builtins.str ipv6_cidr: The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         :param _builtins.str lan_id: The ID of the LAN where the WireGuard Gateway is connected.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -770,7 +764,7 @@ class GetWireguardGatewayConnectionResult(dict):
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> _builtins.str:
         """
-        The IPv4 CIDR for the WireGuard Gateway connection.
+        The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv4_cidr")
 
@@ -778,7 +772,7 @@ class GetWireguardGatewayConnectionResult(dict):
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> _builtins.str:
         """
-        The IPv6 CIDR for the WireGuard Gateway connection.
+        The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 

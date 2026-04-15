@@ -47,7 +47,7 @@ import (
 //			}
 //			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
 //				DatacenterId: example.ID(),
-//				Public:       pulumi.Bool(true),
+//				Public:       pulumi.Bool(false),
 //				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
@@ -112,7 +112,8 @@ type NatGatewayRule struct {
 	pulumi.CustomResourceState
 
 	// [string] A Datacenter's UUID.
-	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	DatacenterId pulumi.StringOutput    `pulumi:"datacenterId"`
+	Location     pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] Name of the NAT gateway rule.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] Nat Gateway's UUID.
@@ -175,6 +176,7 @@ func GetNatGatewayRule(ctx *pulumi.Context,
 type natGatewayRuleState struct {
 	// [string] A Datacenter's UUID.
 	DatacenterId *string `pulumi:"datacenterId"`
+	Location     *string `pulumi:"location"`
 	// [string] Name of the NAT gateway rule.
 	Name *string `pulumi:"name"`
 	// [string] Nat Gateway's UUID.
@@ -196,6 +198,7 @@ type natGatewayRuleState struct {
 type NatGatewayRuleState struct {
 	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringPtrInput
+	Location     pulumi.StringPtrInput
 	// [string] Name of the NAT gateway rule.
 	Name pulumi.StringPtrInput
 	// [string] Nat Gateway's UUID.
@@ -220,7 +223,8 @@ func (NatGatewayRuleState) ElementType() reflect.Type {
 
 type natGatewayRuleArgs struct {
 	// [string] A Datacenter's UUID.
-	DatacenterId string `pulumi:"datacenterId"`
+	DatacenterId string  `pulumi:"datacenterId"`
+	Location     *string `pulumi:"location"`
 	// [string] Name of the NAT gateway rule.
 	Name *string `pulumi:"name"`
 	// [string] Nat Gateway's UUID.
@@ -243,6 +247,7 @@ type natGatewayRuleArgs struct {
 type NatGatewayRuleArgs struct {
 	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringInput
+	Location     pulumi.StringPtrInput
 	// [string] Name of the NAT gateway rule.
 	Name pulumi.StringPtrInput
 	// [string] Nat Gateway's UUID.
@@ -351,6 +356,10 @@ func (o NatGatewayRuleOutput) ToNatGatewayRuleOutputWithContext(ctx context.Cont
 // [string] A Datacenter's UUID.
 func (o NatGatewayRuleOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NatGatewayRule) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+func (o NatGatewayRuleOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NatGatewayRule) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] Name of the NAT gateway rule.

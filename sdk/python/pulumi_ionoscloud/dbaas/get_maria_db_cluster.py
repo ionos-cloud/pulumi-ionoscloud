@@ -27,7 +27,10 @@ class GetMariaDBClusterResult:
     """
     A collection of values returned by getMariaDBCluster.
     """
-    def __init__(__self__, connections=None, cores=None, display_name=None, dns_name=None, id=None, instances=None, location=None, maintenance_windows=None, mariadb_version=None, ram=None, storage_size=None):
+    def __init__(__self__, backups=None, connections=None, cores=None, display_name=None, dns_name=None, id=None, instances=None, location=None, maintenance_windows=None, mariadb_version=None, ram=None, storage_size=None):
+        if backups and not isinstance(backups, list):
+            raise TypeError("Expected argument 'backups' to be a list")
+        pulumi.set(__self__, "backups", backups)
         if connections and not isinstance(connections, list):
             raise TypeError("Expected argument 'connections' to be a list")
         pulumi.set(__self__, "connections", connections)
@@ -61,6 +64,14 @@ class GetMariaDBClusterResult:
         if storage_size and not isinstance(storage_size, int):
             raise TypeError("Expected argument 'storage_size' to be a int")
         pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def backups(self) -> Sequence['outputs.GetMariaDBClusterBackupResult']:
+        """
+        Properties configuring the backup of the cluster.
+        """
+        return pulumi.get(self, "backups")
 
     @_builtins.property
     @pulumi.getter
@@ -110,6 +121,9 @@ class GetMariaDBClusterResult:
     @_builtins.property
     @pulumi.getter
     def location(self) -> Optional[_builtins.str]:
+        """
+        [string] The IONOS Object Storage location where the backups will be stored.
+        """
         return pulumi.get(self, "location")
 
     @_builtins.property
@@ -151,6 +165,7 @@ class AwaitableGetMariaDBClusterResult(GetMariaDBClusterResult):
         if False:
             yield self
         return GetMariaDBClusterResult(
+            backups=self.backups,
             connections=self.connections,
             cores=self.cores,
             display_name=self.display_name,
@@ -209,6 +224,7 @@ def get_maria_db_cluster(display_name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster', __args__, opts=opts, typ=GetMariaDBClusterResult).value
 
     return AwaitableGetMariaDBClusterResult(
+        backups=pulumi.get(__ret__, 'backups'),
         connections=pulumi.get(__ret__, 'connections'),
         cores=pulumi.get(__ret__, 'cores'),
         display_name=pulumi.get(__ret__, 'display_name'),
@@ -264,6 +280,7 @@ def get_maria_db_cluster_output(display_name: Optional[pulumi.Input[Optional[_bu
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster', __args__, opts=opts, typ=GetMariaDBClusterResult)
     return __ret__.apply(lambda __response__: GetMariaDBClusterResult(
+        backups=pulumi.get(__response__, 'backups'),
         connections=pulumi.get(__response__, 'connections'),
         cores=pulumi.get(__response__, 'cores'),
         display_name=pulumi.get(__response__, 'display_name'),

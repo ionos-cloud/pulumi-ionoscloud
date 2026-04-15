@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Certificate** on IonosCloud.
+// Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -22,17 +22,78 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_cert_chain",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile2, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_private_key",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
 //				Name:             pulumi.String("add_name_here"),
-//				Certificate:      pulumi.String("tour_certificate"),
-//				CertificateChain: pulumi.String("your_certificate_chain"),
-//				PrivateKey:       pulumi.String("your_private_key"),
+//				Certificate:      invokeFile.Result,
+//				CertificateChain: invokeFile1.Result,
+//				PrivateKey:       invokeFile2.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **NOTE**: You can also provide the values as multiline strings, as seen below:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_cert_chain",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_private_key",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      pulumi.String("-----BEGIN CERTIFICATE-----\ncert_body_here\n-----END CERTIFICATE-----\n"),
+//				CertificateChain: invokeFile.Result,
+//				PrivateKey:       invokeFile1.Result,
 //			})
 //			if err != nil {
 //				return err

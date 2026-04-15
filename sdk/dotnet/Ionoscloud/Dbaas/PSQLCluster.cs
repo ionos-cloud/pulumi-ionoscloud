@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 {
     /// <summary>
-    /// Manages a **DbaaS PgSql Cluster**.
+    /// Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
     /// 
     /// ## Example Usage
     /// 
@@ -28,7 +28,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///     {
     ///         Name = "example",
     ///         Location = "de/txl",
-    ///         Description = "Datacenter for testing dbaas cluster",
+    ///         Description = "Datacenter for testing psql cluster",
     ///     });
     /// 
     ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
@@ -44,7 +44,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///         Instances = 1,
     ///         Cores = 4,
     ///         Ram = 2048,
-    ///         StorageSize = 2048,
+    ///         StorageSize = 10240,
     ///         StorageType = "HDD",
     ///         ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs
     ///         {
@@ -75,103 +75,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     /// });
     /// ```
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Complete example
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter for testing dbaas cluster",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = false,
-    ///         Name = "example",
-    ///     });
-    /// 
-    ///     var exampleServer = new Ionoscloud.Compute.Server("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         DatacenterId = example.Id,
-    ///         Cores = 2,
-    ///         Ram = 2048,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_SKYLAKE",
-    ///         ImageName = "rockylinux-8-GenericCloud-20230518",
-    ///         ImagePassword = "password",
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "example",
-    ///             Size = 6,
-    ///             DiskType = "SSD Standard",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = exampleLan.Id,
-    ///             Name = "example",
-    ///             Dhcp = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var clusterPassword = new Random.Index.Password("cluster_password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = true,
-    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
-    ///     });
-    /// 
-    ///     var examplePSQLCluster = new Ionoscloud.Dbaas.PSQLCluster("example", new()
-    ///     {
-    ///         PostgresVersion = "12",
-    ///         Instances = 1,
-    ///         Cores = 4,
-    ///         Ram = 2048,
-    ///         StorageSize = 2048,
-    ///         StorageType = "HDD",
-    ///         ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs
-    ///         {
-    ///             Enabled = true,
-    ///             PoolMode = "session",
-    ///         },
-    ///         Connections = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = example.Id,
-    ///             LanId = exampleLan.Id,
-    ///             Cidr = "database_ip_cidr_from_nic",
-    ///         },
-    ///         Location = example.Location,
-    ///         DisplayName = "PostgreSQL_cluster",
-    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.PSQLClusterMaintenanceWindowArgs
-    ///         {
-    ///             DayOfTheWeek = "Sunday",
-    ///             Time = "09:00:00",
-    ///         },
-    ///         Credentials = new Ionoscloud.Dbaas.Inputs.PSQLClusterCredentialsArgs
-    ///         {
-    ///             Username = "username",
-    ///             Password = clusterPassword.Result,
-    ///         },
-    ///         SynchronizationMode = "ASYNCHRONOUS",
-    ///         FromBackup = new Ionoscloud.Dbaas.Inputs.PSQLClusterFromBackupArgs
-    ///         {
-    ///             BackupId = "backup_uuid",
-    ///             RecoveryTargetTime = "2021-12-06T13:54:08Z",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Resource DbaaS Postgres Cluster can be imported using the `ClusterId`, e.g.
@@ -183,6 +86,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     [IonoscloudResourceType("ionoscloud:dbaas/pSQLCluster:PSQLCluster")]
     public partial class PSQLCluster : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+        /// 
+        /// **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        /// </summary>
+        [Output("allowReplace")]
+        public Output<bool?> AllowReplace { get; private set; } = null!;
+
         /// <summary>
         /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `De`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
@@ -238,7 +149,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<int> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -327,6 +238,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class PSQLClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+        /// 
+        /// **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        /// </summary>
+        [Input("allowReplace")]
+        public Input<bool>? AllowReplace { get; set; }
+
+        /// <summary>
         /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `De`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Input("backupLocation")]
@@ -375,7 +294,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<int> Instances { get; set; } = null!;
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -424,6 +343,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
     public sealed class PSQLClusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+        /// 
+        /// **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+        /// </summary>
+        [Input("allowReplace")]
+        public Input<bool>? AllowReplace { get; set; }
+
         /// <summary>
         /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `De`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
@@ -479,7 +406,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<int>? Instances { get; set; }
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

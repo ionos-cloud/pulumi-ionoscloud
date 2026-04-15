@@ -20,7 +20,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? ForceSecAuth;
         public readonly string? Id;
         public readonly string? LastName;
-        public readonly string? Password;
 
         [OutputConstructor]
         private GroupUser(
@@ -34,9 +33,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             string? id,
 
-            string? lastName,
-
-            string? password)
+            string? lastName)
         {
             Administrator = administrator;
             Email = email;
@@ -44,7 +41,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             ForceSecAuth = forceSecAuth;
             Id = id;
             LastName = lastName;
-            Password = password;
         }
     }
 }

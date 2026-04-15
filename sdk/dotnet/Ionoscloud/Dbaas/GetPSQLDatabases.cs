@@ -151,6 +151,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// [string] Filter using a specific owner.
         /// </summary>
@@ -170,6 +173,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] Filter using a specific owner.
@@ -196,6 +202,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         /// <summary>
         /// [string] The owner of the database.
         /// </summary>
@@ -209,11 +216,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             string id,
 
+            string? location,
+
             string? owner)
         {
             ClusterId = clusterId;
             Databases = databases;
             Id = id;
+            Location = location;
             Owner = owner;
         }
     }

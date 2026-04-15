@@ -118,6 +118,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The name of the LAN.
         /// </summary>
         [Output("name")]
@@ -207,6 +213,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Ipv6CidrBlock { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the LAN.
         /// </summary>
         [Input("name")]
@@ -261,6 +273,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the LAN.

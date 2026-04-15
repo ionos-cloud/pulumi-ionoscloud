@@ -32,6 +32,7 @@ class NicArgs:
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  mac: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -49,6 +50,7 @@ class NicArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource. 
@@ -74,6 +76,8 @@ class NicArgs:
             pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if ipv6_ips is not None:
             pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if name is not None:
@@ -215,6 +219,18 @@ class NicArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
@@ -266,6 +282,7 @@ class _NicState:
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  mac: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
@@ -285,6 +302,7 @@ class _NicState:
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         :param pulumi.Input[_builtins.int] lan: [integer] The LAN ID the NIC will sit on.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.int] pci_slot: The PCI slot number of the Nic.
@@ -315,6 +333,8 @@ class _NicState:
             pulumi.set(__self__, "ipv6_ips", ipv6_ips)
         if lan is not None:
             pulumi.set(__self__, "lan", lan)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if name is not None:
@@ -460,6 +480,18 @@ class _NicState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
@@ -537,13 +569,15 @@ class Nic(pulumi.CustomResource):
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  mac: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **NIC** on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+
         ## Example Usage
 
         ```python
@@ -572,8 +606,6 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -606,6 +638,7 @@ class Nic(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -616,7 +649,9 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             public=True,
             name="IPv6 Enabled LAN",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
+            ipv6_cidr_block=std.cidrsubnet(input=example.ipv6_cidr_block,
+                newbits=8,
+                netnum=2)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -625,8 +660,6 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -648,11 +681,22 @@ class Nic(pulumi.CustomResource):
             firewall_active=True,
             firewall_type="INGRESS",
             dhcpv6=False,
-            ipv6_cidr_block="ipv6_cidr_block_from_lan",
+            ipv6_cidr_block=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                newbits=16,
+                netnum=14)["result"],
             ipv6_ips=[
-                "ipv6_ip1",
-                "ipv6_ip2",
-                "ipv6_ip3",
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=10)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=20)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=30)["result"],
             ])
         ```
         ## Example configuring Flowlog
@@ -660,54 +704,33 @@ class Nic(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
+        import pulumi_std as std
 
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=True,
-            name="IPv6 Enabled LAN",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
-        server_image_password = random.Password("server_image_password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="Server Example",
-            datacenter_id=example.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password["result"],
-            volume={
-                "name": "system",
-                "size": 14,
-                "disk_type": "SSD",
-            },
-            nic={
-                "lan": 1,
-                "dhcp": True,
-                "firewall_active": True,
-            })
-        example_nic = ionoscloud.compute.Nic("example",
-            datacenter_id=example.id,
-            server_id=example_server.id,
-            lan=example_lan.id,
+        example = ionoscloud.compute.Nic("example",
+            datacenter_id=example_ionoscloud_datacenter["id"],
+            server_id=example_ionoscloud_server["id"],
+            lan=example_ionoscloud_lan["id"],
             name="IPV6 and Flowlog Enabled NIC",
             dhcp=True,
             firewall_active=True,
             firewall_type="INGRESS",
             dhcpv6=False,
-            ipv6_cidr_block="ipv6_cidr_block_from_lan",
+            ipv6_cidr_block=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                newbits=16,
+                netnum=14)["result"],
             ipv6_ips=[
-                "ipv6_ip1",
-                "ipv6_ip2",
-                "ipv6_ip3",
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=10)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=20)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=30)["result"],
             ],
             flowlog={
                 "action": "ACCEPTED",
@@ -724,7 +747,7 @@ class Nic(pulumi.CustomResource):
 
         Please be aware that when using a NIC in a load balancer, the load balancer will
         change the NIC's ID behind the scenes, therefore the plan will always report this change
-        trying to revert the state to the one specified by your file.
+        trying to revert the state to the one specified by your terraform file.
         In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
         in order to ignore changes to the `lan` attribute:
 
@@ -764,6 +787,7 @@ class Nic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         :param pulumi.Input[_builtins.int] lan: [integer] The LAN ID the NIC will sit on.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource. 
@@ -778,7 +802,8 @@ class Nic(pulumi.CustomResource):
                  args: NicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **NIC** on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+
         ## Example Usage
 
         ```python
@@ -807,8 +832,6 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -841,6 +864,7 @@ class Nic(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -851,7 +875,9 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             public=True,
             name="IPv6 Enabled LAN",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
+            ipv6_cidr_block=std.cidrsubnet(input=example.ipv6_cidr_block,
+                newbits=8,
+                netnum=2)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -860,8 +886,6 @@ class Nic(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -883,11 +907,22 @@ class Nic(pulumi.CustomResource):
             firewall_active=True,
             firewall_type="INGRESS",
             dhcpv6=False,
-            ipv6_cidr_block="ipv6_cidr_block_from_lan",
+            ipv6_cidr_block=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                newbits=16,
+                netnum=14)["result"],
             ipv6_ips=[
-                "ipv6_ip1",
-                "ipv6_ip2",
-                "ipv6_ip3",
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=10)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=20)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=30)["result"],
             ])
         ```
         ## Example configuring Flowlog
@@ -895,54 +930,33 @@ class Nic(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
+        import pulumi_std as std
 
-        example = ionoscloud.compute.Datacenter("example",
-            name="Datacenter Example",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=True,
-            name="IPv6 Enabled LAN",
-            ipv6_cidr_block="ipv6_cidr_block_from_dc")
-        server_image_password = random.Password("server_image_password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="Server Example",
-            datacenter_id=example.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password["result"],
-            volume={
-                "name": "system",
-                "size": 14,
-                "disk_type": "SSD",
-            },
-            nic={
-                "lan": 1,
-                "dhcp": True,
-                "firewall_active": True,
-            })
-        example_nic = ionoscloud.compute.Nic("example",
-            datacenter_id=example.id,
-            server_id=example_server.id,
-            lan=example_lan.id,
+        example = ionoscloud.compute.Nic("example",
+            datacenter_id=example_ionoscloud_datacenter["id"],
+            server_id=example_ionoscloud_server["id"],
+            lan=example_ionoscloud_lan["id"],
             name="IPV6 and Flowlog Enabled NIC",
             dhcp=True,
             firewall_active=True,
             firewall_type="INGRESS",
             dhcpv6=False,
-            ipv6_cidr_block="ipv6_cidr_block_from_lan",
+            ipv6_cidr_block=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                newbits=16,
+                netnum=14)["result"],
             ipv6_ips=[
-                "ipv6_ip1",
-                "ipv6_ip2",
-                "ipv6_ip3",
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=10)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=20)["result"],
+                std.cidrhost(input=std.cidrsubnet(input=example_ionoscloud_lan["ipv6CidrBlock"],
+                        newbits=16,
+                        netnum=14)["result"],
+                    host=30)["result"],
             ],
             flowlog={
                 "action": "ACCEPTED",
@@ -959,7 +973,7 @@ class Nic(pulumi.CustomResource):
 
         Please be aware that when using a NIC in a load balancer, the load balancer will
         change the NIC's ID behind the scenes, therefore the plan will always report this change
-        trying to revert the state to the one specified by your file.
+        trying to revert the state to the one specified by your terraform file.
         In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
         in order to ignore changes to the `lan` attribute:
 
@@ -1012,6 +1026,7 @@ class Nic(pulumi.CustomResource):
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  mac: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1039,6 +1054,7 @@ class Nic(pulumi.CustomResource):
             if lan is None and not opts.urn:
                 raise TypeError("Missing required property 'lan'")
             __props__.__dict__["lan"] = lan
+            __props__.__dict__["location"] = location
             __props__.__dict__["mac"] = mac
             __props__.__dict__["name"] = name
             __props__.__dict__["security_groups_ids"] = security_groups_ids
@@ -1068,6 +1084,7 @@ class Nic(pulumi.CustomResource):
             ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
             ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             lan: Optional[pulumi.Input[_builtins.int]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             mac: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1091,6 +1108,7 @@ class Nic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         :param pulumi.Input[_builtins.int] lan: [integer] The LAN ID the NIC will sit on.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] mac: The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.int] pci_slot: The PCI slot number of the Nic.
@@ -1114,6 +1132,7 @@ class Nic(pulumi.CustomResource):
         __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
         __props__.__dict__["ipv6_ips"] = ipv6_ips
         __props__.__dict__["lan"] = lan
+        __props__.__dict__["location"] = location
         __props__.__dict__["mac"] = mac
         __props__.__dict__["name"] = name
         __props__.__dict__["pci_slot"] = pci_slot
@@ -1208,6 +1227,14 @@ class Nic(pulumi.CustomResource):
         [integer] The LAN ID the NIC will sit on.
         """
         return pulumi.get(self, "lan")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

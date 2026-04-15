@@ -28,6 +28,7 @@ class BalancerArgs:
                  flowlog: Optional[pulumi.Input['BalancerFlowlogArgs']] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  logging_format: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -40,6 +41,7 @@ class BalancerArgs:
         :param pulumi.Input['BalancerFlowlogArgs'] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] logging_format: Specifies the format of the logs.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer.
         """
@@ -54,6 +56,8 @@ class BalancerArgs:
             pulumi.set(__self__, "ips", ips)
         if lb_private_ips is not None:
             pulumi.set(__self__, "lb_private_ips", lb_private_ips)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if logging_format is not None:
             pulumi.set(__self__, "logging_format", logging_format)
         if name is not None:
@@ -144,6 +148,18 @@ class BalancerArgs:
         pulumi.set(self, "lb_private_ips", value)
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
     @pulumi.getter(name="loggingFormat")
     def logging_format(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -177,6 +193,7 @@ class _BalancerState:
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  logging_format: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  target_lan: Optional[pulumi.Input[_builtins.int]] = None):
@@ -189,6 +206,7 @@ class _BalancerState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         :param pulumi.Input[_builtins.int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] logging_format: Specifies the format of the logs.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer.
         :param pulumi.Input[_builtins.int] target_lan: [int] Id of the balanced private target LAN. (outbound)
@@ -205,6 +223,8 @@ class _BalancerState:
             pulumi.set(__self__, "lb_private_ips", lb_private_ips)
         if listener_lan is not None:
             pulumi.set(__self__, "listener_lan", listener_lan)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if logging_format is not None:
             pulumi.set(__self__, "logging_format", logging_format)
         if name is not None:
@@ -285,6 +305,18 @@ class _BalancerState:
         pulumi.set(self, "listener_lan", value)
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
     @pulumi.getter(name="loggingFormat")
     def logging_format(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -333,12 +365,13 @@ class Balancer(pulumi.CustomResource):
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  logging_format: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  target_lan: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a **Network Load Balancer**  on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
 
         ## Example Usage
 
@@ -411,6 +444,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         :param pulumi.Input[_builtins.int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] logging_format: Specifies the format of the logs.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer.
         :param pulumi.Input[_builtins.int] target_lan: [int] Id of the balanced private target LAN. (outbound)
@@ -422,7 +456,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Load Balancer**  on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
 
         ## Example Usage
 
@@ -508,6 +542,7 @@ class Balancer(pulumi.CustomResource):
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  logging_format: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  target_lan: Optional[pulumi.Input[_builtins.int]] = None,
@@ -530,6 +565,7 @@ class Balancer(pulumi.CustomResource):
             if listener_lan is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_lan'")
             __props__.__dict__["listener_lan"] = listener_lan
+            __props__.__dict__["location"] = location
             __props__.__dict__["logging_format"] = logging_format
             __props__.__dict__["name"] = name
             if target_lan is None and not opts.urn:
@@ -551,6 +587,7 @@ class Balancer(pulumi.CustomResource):
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             logging_format: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             target_lan: Optional[pulumi.Input[_builtins.int]] = None) -> 'Balancer':
@@ -567,6 +604,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         :param pulumi.Input[_builtins.int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] logging_format: Specifies the format of the logs.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer.
         :param pulumi.Input[_builtins.int] target_lan: [int] Id of the balanced private target LAN. (outbound)
@@ -581,6 +619,7 @@ class Balancer(pulumi.CustomResource):
         __props__.__dict__["ips"] = ips
         __props__.__dict__["lb_private_ips"] = lb_private_ips
         __props__.__dict__["listener_lan"] = listener_lan
+        __props__.__dict__["location"] = location
         __props__.__dict__["logging_format"] = logging_format
         __props__.__dict__["name"] = name
         __props__.__dict__["target_lan"] = target_lan
@@ -633,6 +672,14 @@ class Balancer(pulumi.CustomResource):
         [int] Id of the listening LAN. (inbound)
         """
         return pulumi.get(self, "listener_lan")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter(name="loggingFormat")

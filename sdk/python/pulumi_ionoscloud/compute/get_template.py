@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetTemplateResult',
@@ -26,10 +28,16 @@ class GetTemplateResult:
     """
     A collection of values returned by getTemplate.
     """
-    def __init__(__self__, cores=None, id=None, name=None, ram=None, storage_size=None):
+    def __init__(__self__, category=None, cores=None, gpuses=None, id=None, name=None, ram=None, storage_size=None):
+        if category and not isinstance(category, str):
+            raise TypeError("Expected argument 'category' to be a str")
+        pulumi.set(__self__, "category", category)
         if cores and not isinstance(cores, float):
             raise TypeError("Expected argument 'cores' to be a float")
         pulumi.set(__self__, "cores", cores)
+        if gpuses and not isinstance(gpuses, list):
+            raise TypeError("Expected argument 'gpuses' to be a list")
+        pulumi.set(__self__, "gpuses", gpuses)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -45,11 +53,27 @@ class GetTemplateResult:
 
     @_builtins.property
     @pulumi.getter
+    def category(self) -> _builtins.str:
+        """
+        The category of the template
+        """
+        return pulumi.get(self, "category")
+
+    @_builtins.property
+    @pulumi.getter
     def cores(self) -> _builtins.float:
         """
         The CPU cores count
         """
         return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def gpuses(self) -> Sequence['outputs.GetTemplateGpusResult']:
+        """
+        List of GPUs in the template
+        """
+        return pulumi.get(self, "gpuses")
 
     @_builtins.property
     @pulumi.getter
@@ -90,14 +114,18 @@ class AwaitableGetTemplateResult(GetTemplateResult):
         if False:
             yield self
         return GetTemplateResult(
+            category=self.category,
             cores=self.cores,
+            gpuses=self.gpuses,
             id=self.id,
             name=self.name,
             ram=self.ram,
             storage_size=self.storage_size)
 
 
-def get_template(cores: Optional[_builtins.float] = None,
+def get_template(category: Optional[_builtins.str] = None,
+                 cores: Optional[_builtins.float] = None,
+                 gpuses: Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]] = None,
                  name: Optional[_builtins.str] = None,
                  ram: Optional[_builtins.float] = None,
                  storage_size: Optional[_builtins.float] = None,
@@ -142,15 +170,19 @@ def get_template(cores: Optional[_builtins.float] = None,
     ```
 
 
+    :param _builtins.str category: The category of the template.
+           
+           Any of the arguments ca be provided. If none, the datasource will return an error.
     :param _builtins.float cores: The CPU cores count.
+    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']] gpuses: List of GPUs in the template
     :param _builtins.str name: A name of that resource.
     :param _builtins.float ram: The RAM size in MB.
     :param _builtins.float storage_size: The storage size in GB.
-           
-           Any of the arguments ca be provided. If none, the datasource will return an error.
     """
     __args__ = dict()
+    __args__['category'] = category
     __args__['cores'] = cores
+    __args__['gpuses'] = gpuses
     __args__['name'] = name
     __args__['ram'] = ram
     __args__['storageSize'] = storage_size
@@ -158,12 +190,16 @@ def get_template(cores: Optional[_builtins.float] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getTemplate:getTemplate', __args__, opts=opts, typ=GetTemplateResult).value
 
     return AwaitableGetTemplateResult(
+        category=pulumi.get(__ret__, 'category'),
         cores=pulumi.get(__ret__, 'cores'),
+        gpuses=pulumi.get(__ret__, 'gpuses'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         ram=pulumi.get(__ret__, 'ram'),
         storage_size=pulumi.get(__ret__, 'storage_size'))
-def get_template_output(cores: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
+def get_template_output(category: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                        cores: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
+                        gpuses: Optional[pulumi.Input[Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]]]] = None,
                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         ram: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
                         storage_size: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
@@ -208,22 +244,28 @@ def get_template_output(cores: Optional[pulumi.Input[Optional[_builtins.float]]]
     ```
 
 
+    :param _builtins.str category: The category of the template.
+           
+           Any of the arguments ca be provided. If none, the datasource will return an error.
     :param _builtins.float cores: The CPU cores count.
+    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']] gpuses: List of GPUs in the template
     :param _builtins.str name: A name of that resource.
     :param _builtins.float ram: The RAM size in MB.
     :param _builtins.float storage_size: The storage size in GB.
-           
-           Any of the arguments ca be provided. If none, the datasource will return an error.
     """
     __args__ = dict()
+    __args__['category'] = category
     __args__['cores'] = cores
+    __args__['gpuses'] = gpuses
     __args__['name'] = name
     __args__['ram'] = ram
     __args__['storageSize'] = storage_size
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getTemplate:getTemplate', __args__, opts=opts, typ=GetTemplateResult)
     return __ret__.apply(lambda __response__: GetTemplateResult(
+        category=pulumi.get(__response__, 'category'),
         cores=pulumi.get(__response__, 'cores'),
+        gpuses=pulumi.get(__response__, 'gpuses'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         ram=pulumi.get(__response__, 'ram'),

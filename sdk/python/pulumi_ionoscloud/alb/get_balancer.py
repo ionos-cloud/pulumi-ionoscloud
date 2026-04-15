@@ -27,7 +27,7 @@ class GetBalancerResult:
     """
     A collection of values returned by getBalancer.
     """
-    def __init__(__self__, central_logging=None, datacenter_id=None, flowlogs=None, id=None, ips=None, lb_private_ips=None, listener_lan=None, logging_format=None, name=None, partial_match=None, target_lan=None):
+    def __init__(__self__, central_logging=None, datacenter_id=None, flowlogs=None, id=None, ips=None, lb_private_ips=None, listener_lan=None, location=None, logging_format=None, name=None, partial_match=None, target_lan=None):
         if central_logging and not isinstance(central_logging, bool):
             raise TypeError("Expected argument 'central_logging' to be a bool")
         pulumi.set(__self__, "central_logging", central_logging)
@@ -49,6 +49,9 @@ class GetBalancerResult:
         if listener_lan and not isinstance(listener_lan, int):
             raise TypeError("Expected argument 'listener_lan' to be a int")
         pulumi.set(__self__, "listener_lan", listener_lan)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if logging_format and not isinstance(logging_format, str):
             raise TypeError("Expected argument 'logging_format' to be a str")
         pulumi.set(__self__, "logging_format", logging_format)
@@ -116,6 +119,11 @@ class GetBalancerResult:
         return pulumi.get(self, "listener_lan")
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
     @pulumi.getter(name="loggingFormat")
     def logging_format(self) -> _builtins.str:
         return pulumi.get(self, "logging_format")
@@ -155,6 +163,7 @@ class AwaitableGetBalancerResult(GetBalancerResult):
             ips=self.ips,
             lb_private_ips=self.lb_private_ips,
             listener_lan=self.listener_lan,
+            location=self.location,
             logging_format=self.logging_format,
             name=self.name,
             partial_match=self.partial_match,
@@ -163,6 +172,7 @@ class AwaitableGetBalancerResult(GetBalancerResult):
 
 def get_balancer(datacenter_id: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
+                 location: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  partial_match: Optional[_builtins.bool] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBalancerResult:
@@ -213,6 +223,7 @@ def get_balancer(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -226,12 +237,14 @@ def get_balancer(datacenter_id: Optional[_builtins.str] = None,
         ips=pulumi.get(__ret__, 'ips'),
         lb_private_ips=pulumi.get(__ret__, 'lb_private_ips'),
         listener_lan=pulumi.get(__ret__, 'listener_lan'),
+        location=pulumi.get(__ret__, 'location'),
         logging_format=pulumi.get(__ret__, 'logging_format'),
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         target_lan=pulumi.get(__ret__, 'target_lan'))
 def get_balancer_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                         id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBalancerResult]:
@@ -282,6 +295,7 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = N
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -294,6 +308,7 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = N
         ips=pulumi.get(__response__, 'ips'),
         lb_private_ips=pulumi.get(__response__, 'lb_private_ips'),
         listener_lan=pulumi.get(__response__, 'listener_lan'),
+        location=pulumi.get(__response__, 'location'),
         logging_format=pulumi.get(__response__, 'logging_format'),
         name=pulumi.get(__response__, 'name'),
         partial_match=pulumi.get(__response__, 'partial_match'),

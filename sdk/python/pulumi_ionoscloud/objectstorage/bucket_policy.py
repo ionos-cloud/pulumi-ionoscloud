@@ -108,6 +108,8 @@ class BucketPolicy(pulumi.CustomResource):
         """
         Manages **Buckets policies** on IonosCloud.
 
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+
         ## Example Usage
 
         ```python
@@ -139,6 +141,8 @@ class BucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
+
+        ⚠️ **Note:** For more information about the bucket policy or the policy format, please see the [IonosCloud Object Storage documentation](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/settings/bucket-policy#policy-format).
 
         ## Import
 
@@ -163,6 +167,8 @@ class BucketPolicy(pulumi.CustomResource):
         """
         Manages **Buckets policies** on IonosCloud.
 
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+
         ## Example Usage
 
         ```python
@@ -194,6 +200,8 @@ class BucketPolicy(pulumi.CustomResource):
                 }],
             }))
         ```
+
+        ⚠️ **Note:** For more information about the bucket policy or the policy format, please see the [IonosCloud Object Storage documentation](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/settings/bucket-policy#policy-format).
 
         ## Import
 

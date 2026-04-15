@@ -16,6 +16,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
     {
         public readonly int? DeviceNumber;
         public readonly bool? Dhcp;
+        /// <summary>
+        /// Indicates whether this NIC receives an IPv6 address through DHCP.
+        /// </summary>
         public readonly bool? Dhcpv6;
         public readonly bool? FirewallActive;
         public readonly string? FirewallType;
@@ -28,7 +31,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         /// </summary>
         public readonly ImmutableArray<string> Ips;
+        /// <summary>
+        /// IPv6 CIDR block assigned to the NIC.
+        /// </summary>
         public readonly string? Ipv6CidrBlock;
+        /// <summary>
+        /// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        /// </summary>
         public readonly ImmutableArray<string> Ipv6Ips;
         public readonly int Lan;
         public readonly string? Mac;
@@ -39,10 +48,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly int? PciSlot;
         /// <summary>
         /// The list of Security Group IDs for the resource.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeys field is immutable.
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupsIds;
 

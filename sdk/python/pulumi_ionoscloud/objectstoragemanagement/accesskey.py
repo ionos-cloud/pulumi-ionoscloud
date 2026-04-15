@@ -174,7 +174,7 @@ class Accesskey(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages an **Object Storage Accesskey** on IonosCloud.
+        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
 
         ## Example Usage
 
@@ -208,7 +208,7 @@ class Accesskey(pulumi.CustomResource):
                  args: Optional[AccesskeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Object Storage Accesskey** on IonosCloud.
+        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
 
         ## Example Usage
 

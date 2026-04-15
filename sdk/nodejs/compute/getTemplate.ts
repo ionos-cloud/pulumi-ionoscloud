@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -55,7 +57,9 @@ export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions)
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getTemplate:getTemplate", {
+        "category": args.category,
         "cores": args.cores,
+        "gpuses": args.gpuses,
         "name": args.name,
         "ram": args.ram,
         "storageSize": args.storageSize,
@@ -67,9 +71,19 @@ export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetTemplateArgs {
     /**
+     * The category of the template.
+     *
+     * Any of the arguments ca be provided. If none, the datasource will return an error.
+     */
+    category?: string;
+    /**
      * The CPU cores count.
      */
     cores?: number;
+    /**
+     * List of GPUs in the template
+     */
+    gpuses?: inputs.compute.GetTemplateGpus[];
     /**
      * A name of that resource.
      */
@@ -80,8 +94,6 @@ export interface GetTemplateArgs {
     ram?: number;
     /**
      * The storage size in GB.
-     *
-     * Any of the arguments ca be provided. If none, the datasource will return an error.
      */
     storageSize?: number;
 }
@@ -91,9 +103,17 @@ export interface GetTemplateArgs {
  */
 export interface GetTemplateResult {
     /**
+     * The category of the template
+     */
+    readonly category: string;
+    /**
      * The CPU cores count
      */
     readonly cores: number;
+    /**
+     * List of GPUs in the template
+     */
+    readonly gpuses: outputs.compute.GetTemplateGpus[];
     /**
      * Id of template
      */
@@ -162,7 +182,9 @@ export function getTemplateOutput(args?: GetTemplateOutputArgs, opts?: pulumi.In
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getTemplate:getTemplate", {
+        "category": args.category,
         "cores": args.cores,
+        "gpuses": args.gpuses,
         "name": args.name,
         "ram": args.ram,
         "storageSize": args.storageSize,
@@ -174,9 +196,19 @@ export function getTemplateOutput(args?: GetTemplateOutputArgs, opts?: pulumi.In
  */
 export interface GetTemplateOutputArgs {
     /**
+     * The category of the template.
+     *
+     * Any of the arguments ca be provided. If none, the datasource will return an error.
+     */
+    category?: pulumi.Input<string>;
+    /**
      * The CPU cores count.
      */
     cores?: pulumi.Input<number>;
+    /**
+     * List of GPUs in the template
+     */
+    gpuses?: pulumi.Input<pulumi.Input<inputs.compute.GetTemplateGpusArgs>[]>;
     /**
      * A name of that resource.
      */
@@ -187,8 +219,6 @@ export interface GetTemplateOutputArgs {
     ram?: pulumi.Input<number>;
     /**
      * The storage size in GB.
-     *
-     * Any of the arguments ca be provided. If none, the datasource will return an error.
      */
     storageSize?: pulumi.Input<number>;
 }

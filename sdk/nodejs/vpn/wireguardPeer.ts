@@ -86,7 +86,7 @@ export class WireguardPeer extends pulumi.CustomResource {
      */
     declare public readonly gatewayId: pulumi.Output<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -169,7 +169,7 @@ export interface WireguardPeerState {
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**
@@ -207,7 +207,7 @@ export interface WireguardPeerArgs {
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**

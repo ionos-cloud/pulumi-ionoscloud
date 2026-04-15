@@ -226,6 +226,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
         /// </summary>
@@ -259,6 +262,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
@@ -309,6 +315,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// ID of the listening (inbound) LAN.
         /// </summary>
         public readonly int ListenerLan;
+        public readonly string? Location;
         public readonly string LoggingFormat;
         /// <summary>
         /// Specifies the name of the flow log.
@@ -336,6 +343,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
 
             int listenerLan,
 
+            string? location,
+
             string loggingFormat,
 
             string name,
@@ -351,6 +360,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
             Ips = ips;
             LbPrivateIps = lbPrivateIps;
             ListenerLan = listenerLan;
+            Location = location;
             LoggingFormat = loggingFormat;
             Name = name;
             PartialMatch = partialMatch;

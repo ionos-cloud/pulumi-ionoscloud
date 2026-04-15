@@ -14,8 +14,24 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg.Inputs
     public sealed class RegistryTokenCredentialGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        private Input<string>? _password;
 
+        /// <summary>
+        /// [string] The password/token of the container registry token which will also be saved to a file if `SavePasswordToFile` is set
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// [string] The username of the container registry token
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

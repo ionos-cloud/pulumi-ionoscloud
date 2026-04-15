@@ -20,19 +20,6 @@ import * as utilities from "../utilities";
  *     id: "cluster-id",
  * });
  * ```
- *
- * ## By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- *
- * const example = ionoscloud.nfs.getCluster({
- *     location: "location",
- *     name: "partial-name",
- *     partialMatch: true,
- * });
- * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -53,7 +40,7 @@ export interface GetClusterArgs {
      */
     id?: string;
     /**
-     * The location where the Network File Storage cluster is located.
+     * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location: string;
     /**
@@ -110,19 +97,6 @@ export interface GetClusterResult {
  *     id: "cluster-id",
  * });
  * ```
- *
- * ## By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- *
- * const example = ionoscloud.nfs.getCluster({
- *     location: "location",
- *     name: "partial-name",
- *     partialMatch: true,
- * });
- * ```
  */
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -143,7 +117,7 @@ export interface GetClusterOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * The location where the Network File Storage cluster is located.
+     * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location: pulumi.Input<string>;
     /**

@@ -168,6 +168,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing network load balancer that you want to search for.
         /// </summary>
@@ -195,6 +198,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing network load balancer that you want to search for.
@@ -237,6 +243,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// Id of the listening LAN. (inbound)
         /// </summary>
         public readonly int ListenerLan;
+        public readonly string? Location;
         public readonly string LoggingFormat;
         /// <summary>
         /// Specifies the name of the flow log.
@@ -263,6 +270,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
 
             int listenerLan,
 
+            string? location,
+
             string loggingFormat,
 
             string name,
@@ -276,6 +285,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
             Ips = ips;
             LbPrivateIps = lbPrivateIps;
             ListenerLan = listenerLan;
+            Location = location;
             LoggingFormat = loggingFormat;
             Name = name;
             TargetLan = targetLan;

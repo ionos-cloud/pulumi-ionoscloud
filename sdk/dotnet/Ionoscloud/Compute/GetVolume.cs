@@ -165,6 +165,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing volume that you want to search for.
         /// </summary>
@@ -189,6 +192,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing volume that you want to search for.
@@ -244,6 +250,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly string DiskType;
         /// <summary>
+        /// If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        public readonly bool ExposeSerial;
+        /// <summary>
         /// The id of the volume.
         /// </summary>
         public readonly string Id;
@@ -259,6 +269,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The type of the licence.
         /// </summary>
         public readonly string LicenceType;
+        public readonly string? Location;
         /// <summary>
         /// The name of the volume.
         /// </summary>
@@ -275,6 +286,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// Is capable of memory hot plug (no reboot required)
         /// </summary>
         public readonly bool RamHotPlug;
+        /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool RequireLegacyBios;
         /// <summary>
         /// The size of the volume in GB.
         /// </summary>
@@ -310,6 +325,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string diskType,
 
+            bool exposeSerial,
+
             string id,
 
             string image,
@@ -318,6 +335,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string licenceType,
 
+            string? location,
+
             string name,
 
             bool nicHotPlug,
@@ -325,6 +344,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             bool nicHotUnplug,
 
             bool ramHotPlug,
+
+            bool requireLegacyBios,
 
             int size,
 
@@ -342,14 +363,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             DiscVirtioHotPlug = discVirtioHotPlug;
             DiscVirtioHotUnplug = discVirtioHotUnplug;
             DiskType = diskType;
+            ExposeSerial = exposeSerial;
             Id = id;
             Image = image;
             ImagePassword = imagePassword;
             LicenceType = licenceType;
+            Location = location;
             Name = name;
             NicHotPlug = nicHotPlug;
             NicHotUnplug = nicHotUnplug;
             RamHotPlug = ramHotPlug;
+            RequireLegacyBios = requireLegacyBios;
             Size = size;
             Sshkey = sshkey;
             UserData = userData;

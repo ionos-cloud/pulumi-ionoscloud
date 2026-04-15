@@ -200,7 +200,7 @@ def get_in_memory_db_replica_set(display_name: Optional[_builtins.str] = None,
 
     :param _builtins.str display_name: The display name of the InMemoryDB Replica Set.
     :param _builtins.str id: The ID of the InMemoryDB Replica Set.
-    :param _builtins.str location: The location of the InMemoryDB Replica Set.
+    :param _builtins.str location: The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
            
            > **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
     """
@@ -247,7 +247,7 @@ def get_in_memory_db_replica_set_output(display_name: Optional[pulumi.Input[Opti
 
     :param _builtins.str display_name: The display name of the InMemoryDB Replica Set.
     :param _builtins.str id: The ID of the InMemoryDB Replica Set.
-    :param _builtins.str location: The location of the InMemoryDB Replica Set.
+    :param _builtins.str location: The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
            
            > **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
     """

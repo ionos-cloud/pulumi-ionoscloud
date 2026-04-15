@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+ * An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
  * infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
  * network resources.
  *
@@ -43,73 +43,6 @@ import * as utilities from "../utilities";
  *         lanId: testLan.id,
  *         ipv4Cidr: "192.168.100.10/24",
  *     }],
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- * import * as random from "@pulumi/random";
- *
- * // Complete example
- * const testDatacenter = new ionoscloud.compute.Datacenter("test_datacenter", {
- *     name: "vpn_gateway_test",
- *     location: "de/fra",
- * });
- * const testLan = new ionoscloud.compute.Lan("test_lan", {
- *     name: "test_lan",
- *     "public": false,
- *     datacenterId: testDatacenter.id,
- *     ipv6CidrBlock: lanIpv6CidrBlock,
- * });
- * const testIpblock = new ionoscloud.compute.IPBlock("test_ipblock", {
- *     name: "test_ipblock",
- *     location: "de/fra",
- *     size: 1,
- * });
- * const serverImagePassword = new random.index.Password("server_image_password", {
- *     length: 16,
- *     special: false,
- * });
- * const testServer = new ionoscloud.compute.Server("test_server", {
- *     name: "test_server",
- *     datacenterId: testDatacenter.id,
- *     cores: 1,
- *     ram: 2048,
- *     imageName: "ubuntu:latest",
- *     imagePassword: serverImagePassword.result,
- *     nic: {
- *         lan: testLan.id,
- *         name: "test_nic",
- *         dhcp: true,
- *         dhcpv6: false,
- *         ipv6CidrBlock: ipv6CidrBlock,
- *         firewallActive: false,
- *     },
- *     volume: {
- *         name: "test_volume",
- *         diskType: "HDD",
- *         size: 10,
- *         licenceType: "OTHER",
- *     },
- * });
- * const example = new ionoscloud.vpn.IpsecGateway("example", {
- *     name: "ipsec-gateway",
- *     location: "de/fra",
- *     gatewayIp: testIpblock.ips[0],
- *     version: "IKEv2",
- *     description: "This gateway connects site A to VDC X.",
- *     connections: [{
- *         datacenterId: testDatacenter.id,
- *         lanId: testLan.id,
- *         ipv4Cidr: "ipv4_cidr_block_from_nic",
- *         ipv6Cidr: "ipv6_cidr_block_from_dc",
- *     }],
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Monday",
- *         time: "09:00:00",
- *     },
- *     tier: "STANDARD",
  * });
  * ```
  *
@@ -164,8 +97,7 @@ export class IpsecGateway extends pulumi.CustomResource {
      */
     declare public readonly gatewayIp: pulumi.Output<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -248,8 +180,7 @@ export interface IpsecGatewayState {
      */
     gatewayIp?: pulumi.Input<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**
@@ -290,8 +221,7 @@ export interface IpsecGatewayArgs {
      */
     gatewayIp: pulumi.Input<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**

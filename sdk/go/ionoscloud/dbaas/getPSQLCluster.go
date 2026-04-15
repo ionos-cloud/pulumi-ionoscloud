@@ -85,6 +85,8 @@ type LookupPSQLClusterArgs struct {
 	//
 	// Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
+	// The physical location where the cluster will be created. This will be where all of your instances live.
+	Location *string `pulumi:"location"`
 }
 
 // A collection of values returned by getPSQLCluster.
@@ -139,6 +141,8 @@ type LookupPSQLClusterOutputArgs struct {
 	//
 	// Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The physical location where the cluster will be created. This will be where all of your instances live.
+	Location pulumi.StringPtrInput `pulumi:"location"`
 }
 
 func (LookupPSQLClusterOutputArgs) ElementType() reflect.Type {

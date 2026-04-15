@@ -220,6 +220,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
         /// </summary>
@@ -253,6 +256,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
@@ -290,6 +296,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         /// Id of the container registry token.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         public readonly string Name;
         public readonly bool? PartialMatch;
         public readonly string RegistryId;
@@ -304,6 +311,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
 
             string id,
 
+            string? location,
+
             string name,
 
             bool? partialMatch,
@@ -317,6 +326,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
             Credentials = credentials;
             ExpiryDate = expiryDate;
             Id = id;
+            Location = location;
             Name = name;
             PartialMatch = partialMatch;
             RegistryId = registryId;

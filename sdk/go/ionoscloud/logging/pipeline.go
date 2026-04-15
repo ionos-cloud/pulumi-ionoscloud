@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Logging pipeline**.
+// Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
 //
 // > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
 //
@@ -67,6 +67,11 @@ import (
 //
 // ```
 //
+// For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+// plan, and used as presented below:
+//
+// The content inside **vars.tfvars** file:
+//
 // ## Import
 //
 // In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
@@ -101,14 +106,20 @@ import (
 type Pipeline struct {
 	pulumi.CustomResourceState
 
-	// [string] The address of the client's grafana instance.
+	// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
 	GrafanaAddress pulumi.StringOutput `pulumi:"grafanaAddress"`
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+	HttpAddress pulumi.StringOutput `pulumi:"httpAddress"`
+	// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+	Key pulumi.StringOutput `pulumi:"key"`
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayOutput `pulumi:"logs"`
 	// [string] The name of the Logging pipeline.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+	TcpAddress pulumi.StringOutput `pulumi:"tcpAddress"`
 }
 
 // NewPipeline registers a new resource with the given unique name, arguments, and options.
@@ -121,6 +132,10 @@ func NewPipeline(ctx *pulumi.Context,
 	if args.Logs == nil {
 		return nil, errors.New("invalid value for required argument 'Logs'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Pipeline
 	err := ctx.RegisterResource("ionoscloud:logging/pipeline:Pipeline", name, args, &resource, opts...)
@@ -144,25 +159,37 @@ func GetPipeline(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Pipeline resources.
 type pipelineState struct {
-	// [string] The address of the client's grafana instance.
+	// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
 	GrafanaAddress *string `pulumi:"grafanaAddress"`
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+	HttpAddress *string `pulumi:"httpAddress"`
+	// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+	Key *string `pulumi:"key"`
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs []PipelineLog `pulumi:"logs"`
 	// [string] The name of the Logging pipeline.
 	Name *string `pulumi:"name"`
+	// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+	TcpAddress *string `pulumi:"tcpAddress"`
 }
 
 type PipelineState struct {
-	// [string] The address of the client's grafana instance.
+	// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
 	GrafanaAddress pulumi.StringPtrInput
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+	HttpAddress pulumi.StringPtrInput
+	// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+	Key pulumi.StringPtrInput
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayInput
 	// [string] The name of the Logging pipeline.
 	Name pulumi.StringPtrInput
+	// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+	TcpAddress pulumi.StringPtrInput
 }
 
 func (PipelineState) ElementType() reflect.Type {
@@ -170,7 +197,7 @@ func (PipelineState) ElementType() reflect.Type {
 }
 
 type pipelineArgs struct {
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs []PipelineLog `pulumi:"logs"`
@@ -180,7 +207,7 @@ type pipelineArgs struct {
 
 // The set of arguments for constructing a Pipeline resource.
 type PipelineArgs struct {
-	// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [list] Pipeline logs, a list that contains elements with the following structure:
 	Logs PipelineLogArrayInput
@@ -275,12 +302,22 @@ func (o PipelineOutput) ToPipelineOutputWithContext(ctx context.Context) Pipelin
 	return o
 }
 
-// [string] The address of the client's grafana instance.
+// [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
 func (o PipelineOutput) GrafanaAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.GrafanaAddress }).(pulumi.StringOutput)
 }
 
-// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+// [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+func (o PipelineOutput) HttpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.HttpAddress }).(pulumi.StringOutput)
+}
+
+// [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+func (o PipelineOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 func (o PipelineOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
@@ -293,6 +330,11 @@ func (o PipelineOutput) Logs() PipelineLogArrayOutput {
 // [string] The name of the Logging pipeline.
 func (o PipelineOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+func (o PipelineOutput) TcpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pipeline) pulumi.StringOutput { return v.TcpAddress }).(pulumi.StringOutput)
 }
 
 type PipelineArrayOutput struct{ *pulumi.OutputState }

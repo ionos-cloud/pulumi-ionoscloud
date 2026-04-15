@@ -61,7 +61,7 @@ export interface GetIpsecGatewayArgs {
      */
     id?: string;
     /**
-     * The location of the IPSec Gateway.
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: string;
     /**
@@ -167,7 +167,7 @@ export interface GetIpsecGatewayOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * The location of the IPSec Gateway.
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string>;
     /**

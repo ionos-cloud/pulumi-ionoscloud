@@ -111,6 +111,8 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
         """
         Manages Lifecycle Configuration for Buckets on IonosCloud.
 
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+
         ## Example Usage
 
         ```python
@@ -124,7 +126,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "1",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "expiration": [{
                         "days": 90,
                     }],
@@ -132,7 +136,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "2",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "noncurrent_version_expiration": [{
                         "noncurrentDays": 90,
                     }],
@@ -140,7 +146,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "3",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "abort_incomplete_multipart_upload": [{
                         "daysAfterInitiation": 90,
                     }],
@@ -171,6 +179,8 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
         """
         Manages Lifecycle Configuration for Buckets on IonosCloud.
 
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+
         ## Example Usage
 
         ```python
@@ -184,7 +194,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "1",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "expiration": [{
                         "days": 90,
                     }],
@@ -192,7 +204,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "2",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "noncurrent_version_expiration": [{
                         "noncurrentDays": 90,
                     }],
@@ -200,7 +214,9 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                 {
                     "id": "3",
                     "status": "Enabled",
-                    "prefix": "/logs",
+                    "filter": [{
+                        "prefix": "/logs",
+                    }],
                     "abort_incomplete_multipart_upload": [{
                         "daysAfterInitiation": 90,
                     }],

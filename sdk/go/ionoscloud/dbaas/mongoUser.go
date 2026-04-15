@@ -217,6 +217,8 @@ type MongoUser struct {
 
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] User password. Updates to the value of the field force the cluster to be re-created.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -273,6 +275,8 @@ func GetMongoUser(ctx *pulumi.Context,
 type mongoUserState struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId *string `pulumi:"clusterId"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] User password. Updates to the value of the field force the cluster to be re-created.
 	Password *string `pulumi:"password"`
 	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -284,6 +288,8 @@ type mongoUserState struct {
 type MongoUserState struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] User password. Updates to the value of the field force the cluster to be re-created.
 	Password pulumi.StringPtrInput
 	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -299,6 +305,8 @@ func (MongoUserState) ElementType() reflect.Type {
 type mongoUserArgs struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId string `pulumi:"clusterId"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] User password. Updates to the value of the field force the cluster to be re-created.
 	Password string `pulumi:"password"`
 	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -311,6 +319,8 @@ type mongoUserArgs struct {
 type MongoUserArgs struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] User password. Updates to the value of the field force the cluster to be re-created.
 	Password pulumi.StringInput
 	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -409,6 +419,11 @@ func (o MongoUserOutput) ToMongoUserOutputWithContext(ctx context.Context) Mongo
 // [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 func (o MongoUserOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoUser) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o MongoUserOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoUser) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] User password. Updates to the value of the field force the cluster to be re-created.

@@ -33,6 +33,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? DiscVirtioHotUnplug;
         public readonly string DiskType;
         /// <summary>
+        /// If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        public readonly bool? ExposeSerial;
+        /// <summary>
         /// [string] Required if `SshKeyPath` is not provided.
         /// </summary>
         public readonly string? ImagePassword;
@@ -48,6 +52,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? NicHotUnplug;
         public readonly int? PciSlot;
         public readonly bool? RamHotPlug;
+        /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool? RequireLegacyBios;
         /// <summary>
         /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
@@ -77,6 +85,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             string diskType,
 
+            bool? exposeSerial,
+
             string? imagePassword,
 
             string? licenceType,
@@ -91,6 +101,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             bool? ramHotPlug,
 
+            bool? requireLegacyBios,
+
             ImmutableArray<string> sshKeyPaths,
 
             string? userData)
@@ -104,6 +116,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             DiscVirtioHotPlug = discVirtioHotPlug;
             DiscVirtioHotUnplug = discVirtioHotUnplug;
             DiskType = diskType;
+            ExposeSerial = exposeSerial;
             ImagePassword = imagePassword;
             LicenceType = licenceType;
             Name = name;
@@ -111,6 +124,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             NicHotUnplug = nicHotUnplug;
             PciSlot = pciSlot;
             RamHotPlug = ramHotPlug;
+            RequireLegacyBios = requireLegacyBios;
             SshKeyPaths = sshKeyPaths;
             UserData = userData;
         }

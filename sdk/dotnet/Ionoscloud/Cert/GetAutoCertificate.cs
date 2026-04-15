@@ -166,7 +166,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public string? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the auto-certificate.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
@@ -194,7 +194,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the auto-certificate.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;

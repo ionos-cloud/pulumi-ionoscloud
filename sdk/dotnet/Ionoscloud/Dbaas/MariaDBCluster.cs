@@ -11,93 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 {
     /// <summary>
-    /// Manages a **DBaaS MariaDB Cluster**.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter for testing DBaaS cluster",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = false,
-    ///         Name = "example",
-    ///     });
-    /// 
-    ///     var exampleServer = new Ionoscloud.Compute.Server("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         DatacenterId = example.Id,
-    ///         Cores = 2,
-    ///         Ram = 2048,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_SKYLAKE",
-    ///         ImageName = "rockylinux-8-GenericCloud-20230518",
-    ///         ImagePassword = "password",
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "example",
-    ///             Size = 10,
-    ///             DiskType = "SSD Standard",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = exampleLan.Id,
-    ///             Name = "example",
-    ///             Dhcp = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var clusterPassword = new Random.Index.Password("cluster_password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = true,
-    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
-    ///     });
-    /// 
-    ///     var exampleMariaDBCluster = new Ionoscloud.Dbaas.MariaDBCluster("example", new()
-    ///     {
-    ///         MariadbVersion = "10.6",
-    ///         Location = "de/txl",
-    ///         Instances = 1,
-    ///         Cores = 4,
-    ///         Ram = 4,
-    ///         StorageSize = 10,
-    ///         Connections = new Ionoscloud.Dbaas.Inputs.MariaDBClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = example.Id,
-    ///             LanId = exampleLan.Id,
-    ///             Cidr = "database_ip_cidr_from_nic",
-    ///         },
-    ///         DisplayName = "MariaDB_cluster",
-    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.MariaDBClusterMaintenanceWindowArgs
-    ///         {
-    ///             DayOfTheWeek = "Sunday",
-    ///             Time = "09:00:00",
-    ///         },
-    ///         Credentials = new Ionoscloud.Dbaas.Inputs.MariaDBClusterCredentialsArgs
-    ///         {
-    ///             Username = "username",
-    ///             Password = clusterPassword.Result,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
+    /// Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
     /// 
     /// ## Import
     /// 
@@ -110,6 +24,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     [IonoscloudResourceType("ionoscloud:dbaas/mariaDBCluster:MariaDBCluster")]
     public partial class MariaDBCluster : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        /// </summary>
+        [Output("backup")]
+        public Output<Outputs.MariaDBClusterBackup> Backup { get; private set; } = null!;
+
         /// <summary>
         /// The network connection for your cluster. Only one connection is allowed.
         /// </summary>
@@ -226,6 +146,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class MariaDBClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        /// </summary>
+        [Input("backup")]
+        public Input<Inputs.MariaDBClusterBackupArgs>? Backup { get; set; }
+
+        /// <summary>
         /// The network connection for your cluster. Only one connection is allowed.
         /// </summary>
         [Input("connections", required: true)]
@@ -293,6 +219,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
     public sealed class MariaDBClusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        /// </summary>
+        [Input("backup")]
+        public Input<Inputs.MariaDBClusterBackupGetArgs>? Backup { get; set; }
+
         /// <summary>
         /// The network connection for your cluster. Only one connection is allowed.
         /// </summary>

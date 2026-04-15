@@ -25,6 +25,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         [Input("dhcpv6")]
         public Input<bool>? Dhcpv6 { get; set; }
 
+        /// <summary>
+        /// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        /// </summary>
         [Input("firewall")]
         public Input<Inputs.CubeServerNicFirewallGetArgs>? Firewall { get; set; }
 
@@ -34,8 +37,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         [Input("firewallType")]
         public Input<string>? FirewallType { get; set; }
 
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("ips")]
         private InputList<string>? _ips;
+
+        /// <summary>
+        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        /// </summary>
         public InputList<string> Ips
         {
             get => _ips ?? (_ips = new InputList<string>());

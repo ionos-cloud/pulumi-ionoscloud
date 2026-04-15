@@ -82,7 +82,7 @@ func LookupDatacenter(ctx *pulumi.Context, args *LookupDatacenterArgs, opts ...p
 type LookupDatacenterArgs struct {
 	// Id of an existing Virtual Data Center that you want to search for.
 	Id *string `pulumi:"id"`
-	// Id of the existing Virtual Data Center's location.
+	// Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	//
 	// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
 	Location *string `pulumi:"location"`
@@ -101,7 +101,7 @@ type LookupDatacenterResult struct {
 	// UUID of the Virtual Data Center
 	Id            string `pulumi:"id"`
 	Ipv6CidrBlock string `pulumi:"ipv6CidrBlock"`
-	// The regional location where the Virtual Data Center will be created
+	// The regional location where the Virtual Data Center is created
 	Location *string `pulumi:"location"`
 	// The name of the Virtual Data Center
 	Name string `pulumi:"name"`
@@ -124,7 +124,7 @@ func LookupDatacenterOutput(ctx *pulumi.Context, args LookupDatacenterOutputArgs
 type LookupDatacenterOutputArgs struct {
 	// Id of an existing Virtual Data Center that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Id of the existing Virtual Data Center's location.
+	// Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	//
 	// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
 	Location pulumi.StringPtrInput `pulumi:"location"`
@@ -175,7 +175,7 @@ func (o LookupDatacenterResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
-// The regional location where the Virtual Data Center will be created
+// The regional location where the Virtual Data Center is created
 func (o LookupDatacenterResultOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }

@@ -27,13 +27,16 @@ class GetNodePoolNodesResult:
     """
     A collection of values returned by getNodePoolNodes.
     """
-    def __init__(__self__, id=None, k8s_cluster_id=None, node_pool_id=None, nodes=None):
+    def __init__(__self__, id=None, k8s_cluster_id=None, location=None, node_pool_id=None, nodes=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if k8s_cluster_id and not isinstance(k8s_cluster_id, str):
             raise TypeError("Expected argument 'k8s_cluster_id' to be a str")
         pulumi.set(__self__, "k8s_cluster_id", k8s_cluster_id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if node_pool_id and not isinstance(node_pool_id, str):
             raise TypeError("Expected argument 'node_pool_id' to be a str")
         pulumi.set(__self__, "node_pool_id", node_pool_id)
@@ -53,6 +56,11 @@ class GetNodePoolNodesResult:
     @pulumi.getter(name="k8sClusterId")
     def k8s_cluster_id(self) -> _builtins.str:
         return pulumi.get(self, "k8s_cluster_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter(name="nodePoolId")
@@ -76,11 +84,13 @@ class AwaitableGetNodePoolNodesResult(GetNodePoolNodesResult):
         return GetNodePoolNodesResult(
             id=self.id,
             k8s_cluster_id=self.k8s_cluster_id,
+            location=self.location,
             node_pool_id=self.node_pool_id,
             nodes=self.nodes)
 
 
 def get_node_pool_nodes(k8s_cluster_id: Optional[_builtins.str] = None,
+                        location: Optional[_builtins.str] = None,
                         node_pool_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodePoolNodesResult:
     """
@@ -101,6 +111,7 @@ def get_node_pool_nodes(k8s_cluster_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['k8sClusterId'] = k8s_cluster_id
+    __args__['location'] = location
     __args__['nodePoolId'] = node_pool_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes', __args__, opts=opts, typ=GetNodePoolNodesResult).value
@@ -108,9 +119,11 @@ def get_node_pool_nodes(k8s_cluster_id: Optional[_builtins.str] = None,
     return AwaitableGetNodePoolNodesResult(
         id=pulumi.get(__ret__, 'id'),
         k8s_cluster_id=pulumi.get(__ret__, 'k8s_cluster_id'),
+        location=pulumi.get(__ret__, 'location'),
         node_pool_id=pulumi.get(__ret__, 'node_pool_id'),
         nodes=pulumi.get(__ret__, 'nodes'))
 def get_node_pool_nodes_output(k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                               location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolNodesResult]:
     """
@@ -131,11 +144,13 @@ def get_node_pool_nodes_output(k8s_cluster_id: Optional[pulumi.Input[_builtins.s
     """
     __args__ = dict()
     __args__['k8sClusterId'] = k8s_cluster_id
+    __args__['location'] = location
     __args__['nodePoolId'] = node_pool_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes', __args__, opts=opts, typ=GetNodePoolNodesResult)
     return __ret__.apply(lambda __response__: GetNodePoolNodesResult(
         id=pulumi.get(__response__, 'id'),
         k8s_cluster_id=pulumi.get(__response__, 'k8s_cluster_id'),
+        location=pulumi.get(__response__, 'location'),
         node_pool_id=pulumi.get(__response__, 'node_pool_id'),
         nodes=pulumi.get(__response__, 'nodes')))

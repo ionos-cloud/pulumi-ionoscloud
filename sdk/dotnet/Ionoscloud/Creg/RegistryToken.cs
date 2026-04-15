@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Creg
 {
     /// <summary>
-    /// Manages an **Container Registry Token** on IonosCloud.
+    /// Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -73,11 +73,20 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
     [IonoscloudResourceType("ionoscloud:creg/registryToken:RegistryToken")]
     public partial class RegistryToken : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [map]
+        /// </summary>
         [Output("credentials")]
         public Output<ImmutableArray<Outputs.RegistryTokenCredential>> Credentials { get; private set; } = null!;
 
         [Output("expiryDate")]
         public Output<string?> ExpiryDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
@@ -86,6 +95,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of the container registry
+        /// </summary>
         [Output("registryId")]
         public Output<string> RegistryId { get; private set; } = null!;
 
@@ -99,13 +111,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         public Output<string?> SavePasswordToFile { get; private set; } = null!;
 
         /// <summary>
-        /// [map]
+        /// (Computed) [map]
         /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<Outputs.RegistryTokenScope>> Scopes { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Must have on of the values: `Enabled`, `Disabled`
+        /// [string] Must have one of the values: `Enabled`, `Disabled`
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -161,12 +173,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         public Input<string>? ExpiryDate { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
         /// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of the container registry
+        /// </summary>
         [Input("registryId", required: true)]
         public Input<string> RegistryId { get; set; } = null!;
 
@@ -183,7 +204,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         private InputList<Inputs.RegistryTokenScopeArgs>? _scopes;
 
         /// <summary>
-        /// [map]
+        /// (Computed) [map]
         /// </summary>
         public InputList<Inputs.RegistryTokenScopeArgs> Scopes
         {
@@ -192,7 +213,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         }
 
         /// <summary>
-        /// [string] Must have on of the values: `Enabled`, `Disabled`
+        /// [string] Must have one of the values: `Enabled`, `Disabled`
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -207,6 +228,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
     {
         [Input("credentials")]
         private InputList<Inputs.RegistryTokenCredentialGetArgs>? _credentials;
+
+        /// <summary>
+        /// [map]
+        /// </summary>
         public InputList<Inputs.RegistryTokenCredentialGetArgs> Credentials
         {
             get => _credentials ?? (_credentials = new InputList<Inputs.RegistryTokenCredentialGetArgs>());
@@ -217,12 +242,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         public Input<string>? ExpiryDate { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
         /// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of the container registry
+        /// </summary>
         [Input("registryId")]
         public Input<string>? RegistryId { get; set; }
 
@@ -239,7 +273,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         private InputList<Inputs.RegistryTokenScopeGetArgs>? _scopes;
 
         /// <summary>
-        /// [map]
+        /// (Computed) [map]
         /// </summary>
         public InputList<Inputs.RegistryTokenScopeGetArgs> Scopes
         {
@@ -248,7 +282,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg
         }
 
         /// <summary>
-        /// [string] Must have on of the values: `Enabled`, `Disabled`
+        /// [string] Must have one of the values: `Enabled`, `Disabled`
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

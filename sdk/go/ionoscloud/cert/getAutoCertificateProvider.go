@@ -85,7 +85,7 @@ type LookupAutoCertificateProviderArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
 	Location *string `pulumi:"location"`
 	// [string] Name of an existing provider that you want to search for.
 	Name *string `pulumi:"name"`
@@ -119,7 +119,7 @@ type LookupAutoCertificateProviderOutputArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [string] Name of an existing provider that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`

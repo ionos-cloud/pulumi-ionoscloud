@@ -40,7 +40,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb.Inputs
         /// <summary>
         /// [string] Specifies the name of the flow log.
         /// 
-        /// ⚠️ **Note:**: Removing the `Flowlog` forces re-creation of the application load balancer resource.
+        /// ⚠️ **Note:** Removing the `Flowlog` forces re-creation of the application load balancer resource.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

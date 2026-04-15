@@ -27,7 +27,7 @@ class ZoneArgs:
 
         :param pulumi.Input[_builtins.str] description: [string] The description for the DNS Zone.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone. This property is immutable.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -64,7 +64,7 @@ class ZoneArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the DNS Zone.
+        [string] The name of the DNS Zone. This property is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -85,7 +85,7 @@ class _ZoneState:
 
         :param pulumi.Input[_builtins.str] description: [string] The description for the DNS Zone.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nameservers: A list of available name servers.
         """
         if description is not None:
@@ -125,7 +125,7 @@ class _ZoneState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the DNS Zone.
+        [string] The name of the DNS Zone. This property is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -195,7 +195,7 @@ class Zone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: [string] The description for the DNS Zone.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone. This property is immutable.
         """
         ...
     @overload
@@ -292,7 +292,7 @@ class Zone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: [string] The description for the DNS Zone.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Zone. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nameservers: A list of available name servers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -325,7 +325,7 @@ class Zone(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The name of the DNS Zone.
+        [string] The name of the DNS Zone. This property is immutable.
         """
         return pulumi.get(self, "name")
 

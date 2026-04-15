@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+// The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
@@ -86,6 +86,8 @@ type LookupVCPUServerArgs struct {
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
+	// Location of that image/snapshot
+	Location *string `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -111,8 +113,12 @@ type LookupVCPUServerResult struct {
 	Id string `pulumi:"id"`
 	// list of
 	Labels []GetVCPUServerLabel `pulumi:"labels"`
+	// Location of that image/snapshot
+	Location *string `pulumi:"location"`
 	// Name of the firewall rule
 	Name string `pulumi:"name"`
+	// Specifies whether the `nicMultiQueue` feature is enabled or not.
+	NicMultiQueue bool `pulumi:"nicMultiQueue"`
 	// list of
 	Nics []GetVCPUServerNic `pulumi:"nics"`
 	// The amount of memory for the server in MB
@@ -145,6 +151,8 @@ type LookupVCPUServerOutputArgs struct {
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Location of that image/snapshot
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -220,9 +228,19 @@ func (o LookupVCPUServerResultOutput) Labels() GetVCPUServerLabelArrayOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) []GetVCPUServerLabel { return v.Labels }).(GetVCPUServerLabelArrayOutput)
 }
 
+// Location of that image/snapshot
+func (o LookupVCPUServerResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
 // Name of the firewall rule
 func (o LookupVCPUServerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies whether the `nicMultiQueue` feature is enabled or not.
+func (o LookupVCPUServerResultOutput) NicMultiQueue() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) bool { return v.NicMultiQueue }).(pulumi.BoolOutput)
 }
 
 // list of

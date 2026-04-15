@@ -53,6 +53,7 @@ export function getBalancer(args: GetBalancerArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("ionoscloud:alb/getBalancer:getBalancer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
     }, opts);
@@ -70,6 +71,7 @@ export interface GetBalancerArgs {
      * ID of the application load balancer you want to search for.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */
@@ -111,6 +113,7 @@ export interface GetBalancerResult {
      * ID of the listening (inbound) LAN.
      */
     readonly listenerLan: number;
+    readonly location?: string;
     readonly loggingFormat: string;
     /**
      * Specifies the name of the flow log.
@@ -169,6 +172,7 @@ export function getBalancerOutput(args: GetBalancerOutputArgs, opts?: pulumi.Inv
     return pulumi.runtime.invokeOutput("ionoscloud:alb/getBalancer:getBalancer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
     }, opts);
@@ -186,6 +190,7 @@ export interface GetBalancerOutputArgs {
      * ID of the application load balancer you want to search for.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */

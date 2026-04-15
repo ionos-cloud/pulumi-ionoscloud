@@ -86,6 +86,8 @@ type LookupServerArgs struct {
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
+	// Location of that image/snapshot
+	Location *string `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name *string `pulumi:"name"`
 	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -115,8 +117,12 @@ type LookupServerResult struct {
 	Id string `pulumi:"id"`
 	// list of
 	Labels []GetServerLabel `pulumi:"labels"`
+	// Location of that image/snapshot
+	Location *string `pulumi:"location"`
 	// Name of the firewall rule
 	Name string `pulumi:"name"`
+	// Specifies whether the `nicMultiQueue` feature is enabled or not.
+	NicMultiQueue bool `pulumi:"nicMultiQueue"`
 	// list of
 	Nics []GetServerNic `pulumi:"nics"`
 	// The amount of memory for the server in MB
@@ -151,6 +157,8 @@ type LookupServerOutputArgs struct {
 	//
 	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Location of that image/snapshot
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
@@ -230,9 +238,19 @@ func (o LookupServerResultOutput) Labels() GetServerLabelArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []GetServerLabel { return v.Labels }).(GetServerLabelArrayOutput)
 }
 
+// Location of that image/snapshot
+func (o LookupServerResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupServerResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
 // Name of the firewall rule
 func (o LookupServerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Specifies whether the `nicMultiQueue` feature is enabled or not.
+func (o LookupServerResultOutput) NicMultiQueue() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerResult) bool { return v.NicMultiQueue }).(pulumi.BoolOutput)
 }
 
 // list of

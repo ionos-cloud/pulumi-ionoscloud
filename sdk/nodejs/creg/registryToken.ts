@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages an **Container Registry Token** on IonosCloud.
+ * Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -76,13 +76,23 @@ export class RegistryToken extends pulumi.CustomResource {
         return obj['__pulumiType'] === RegistryToken.__pulumiType;
     }
 
+    /**
+     * [map]
+     */
     declare public /*out*/ readonly credentials: pulumi.Output<outputs.creg.RegistryTokenCredential[]>;
     declare public readonly expiryDate: pulumi.Output<string | undefined>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
      * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * [string] The ID of the container registry
+     */
     declare public readonly registryId: pulumi.Output<string>;
     /**
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -92,11 +102,11 @@ export class RegistryToken extends pulumi.CustomResource {
      */
     declare public readonly savePasswordToFile: pulumi.Output<string | undefined>;
     /**
-     * [map]
+     * (Computed) [map]
      */
     declare public readonly scopes: pulumi.Output<outputs.creg.RegistryTokenScope[]>;
     /**
-     * [string] Must have on of the values: `enabled`, `disabled`
+     * [string] Must have one of the values: `enabled`, `disabled`
      */
     declare public readonly status: pulumi.Output<string>;
 
@@ -115,6 +125,7 @@ export class RegistryToken extends pulumi.CustomResource {
             const state = argsOrState as RegistryTokenState | undefined;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["expiryDate"] = state?.expiryDate;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["registryId"] = state?.registryId;
             resourceInputs["savePasswordToFile"] = state?.savePasswordToFile;
@@ -126,6 +137,7 @@ export class RegistryToken extends pulumi.CustomResource {
                 throw new Error("Missing required property 'registryId'");
             }
             resourceInputs["expiryDate"] = args?.expiryDate;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["registryId"] = args?.registryId;
             resourceInputs["savePasswordToFile"] = args?.savePasswordToFile;
@@ -142,13 +154,23 @@ export class RegistryToken extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RegistryToken resources.
  */
 export interface RegistryTokenState {
+    /**
+     * [map]
+     */
     credentials?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenCredential>[]>;
     expiryDate?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
      * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     name?: pulumi.Input<string>;
+    /**
+     * [string] The ID of the container registry
+     */
     registryId?: pulumi.Input<string>;
     /**
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -158,11 +180,11 @@ export interface RegistryTokenState {
      */
     savePasswordToFile?: pulumi.Input<string>;
     /**
-     * [map]
+     * (Computed) [map]
      */
     scopes?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenScope>[]>;
     /**
-     * [string] Must have on of the values: `enabled`, `disabled`
+     * [string] Must have one of the values: `enabled`, `disabled`
      */
     status?: pulumi.Input<string>;
 }
@@ -173,10 +195,17 @@ export interface RegistryTokenState {
 export interface RegistryTokenArgs {
     expiryDate?: pulumi.Input<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
      * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     name?: pulumi.Input<string>;
+    /**
+     * [string] The ID of the container registry
+     */
     registryId: pulumi.Input<string>;
     /**
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -186,11 +215,11 @@ export interface RegistryTokenArgs {
      */
     savePasswordToFile?: pulumi.Input<string>;
     /**
-     * [map]
+     * (Computed) [map]
      */
     scopes?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenScope>[]>;
     /**
-     * [string] Must have on of the values: `enabled`, `disabled`
+     * [string] Must have one of the values: `enabled`, `disabled`
      */
     status?: pulumi.Input<string>;
 }

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a Virtual **Data Center** on IonosCloud.
+    /// Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -36,8 +36,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// ## Attaching a NSG to a Datacenter
     /// 
-    /// #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
-    /// #### Deleting the resource or setting the empty string for the `NsgId` field will de-attach any previously linked NSG from the Datacenter.
+    /// A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+    /// Deleting the resource or setting the empty string for the `NsgId` field will de-attach any previously linked NSG from the Datacenter.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -74,6 +74,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// Resource Datacenter can be imported using the `resource id`, e.g.
     /// 
     /// ```sh
+    /// import {
+    ///   to = ionoscloud_datacenter.example
+    ///   id = "datacenter uuid" 
+    /// }
+    /// ```
+    /// Auto-generate the datacenter resource in the `dc.tf` file using the following command:
+    /// ```sh
+    /// pulumi preview -generate-config-out=dc.tf
+    /// ```
+    /// The older syntax can be for importing the resource is still supported:
+    /// 
+    /// ```sh
     /// terraform import ionoscloud_datacenter.mydc datacenter uuid
     /// ```
     /// </summary>
@@ -105,7 +117,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -182,7 +194,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -244,7 +256,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Ipv6CidrBlock { get; set; }
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

@@ -27,7 +27,7 @@ class GetPSQLDatabasesResult:
     """
     A collection of values returned by getPSQLDatabases.
     """
-    def __init__(__self__, cluster_id=None, databases=None, id=None, owner=None):
+    def __init__(__self__, cluster_id=None, databases=None, id=None, location=None, owner=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -37,6 +37,9 @@ class GetPSQLDatabasesResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if owner and not isinstance(owner, str):
             raise TypeError("Expected argument 'owner' to be a str")
         pulumi.set(__self__, "owner", owner)
@@ -64,6 +67,11 @@ class GetPSQLDatabasesResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def owner(self) -> Optional[_builtins.str]:
         """
         [string] The owner of the database.
@@ -80,10 +88,12 @@ class AwaitableGetPSQLDatabasesResult(GetPSQLDatabasesResult):
             cluster_id=self.cluster_id,
             databases=self.databases,
             id=self.id,
+            location=self.location,
             owner=self.owner)
 
 
 def get_psql_databases(cluster_id: Optional[_builtins.str] = None,
+                       location: Optional[_builtins.str] = None,
                        owner: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLDatabasesResult:
     """
@@ -114,6 +124,7 @@ def get_psql_databases(cluster_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     __args__['owner'] = owner
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases', __args__, opts=opts, typ=GetPSQLDatabasesResult).value
@@ -122,8 +133,10 @@ def get_psql_databases(cluster_id: Optional[_builtins.str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         databases=pulumi.get(__ret__, 'databases'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         owner=pulumi.get(__ret__, 'owner'))
 def get_psql_databases_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                              location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                               owner: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLDatabasesResult]:
     """
@@ -154,6 +167,7 @@ def get_psql_databases_output(cluster_id: Optional[pulumi.Input[_builtins.str]] 
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     __args__['owner'] = owner
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases', __args__, opts=opts, typ=GetPSQLDatabasesResult)
@@ -161,4 +175,5 @@ def get_psql_databases_output(cluster_id: Optional[pulumi.Input[_builtins.str]] 
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         databases=pulumi.get(__response__, 'databases'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         owner=pulumi.get(__response__, 'owner')))

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Cdn
 {
     /// <summary>
-    /// Manages a **CDN Distribution** on IonosCloud.
+    /// Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -20,9 +20,28 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cdn
     /// using System.Linq;
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //optionally you can add a certificate to the distribution
+    ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
+    ///     {
+    ///         Name = "add_name_here",
+    ///         Certificate = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert",
+    ///         }).Result,
+    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert_chain",
+    ///         }).Result,
+    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_private_key",
+    ///         }).Result,
+    ///     });
+    /// 
     ///     var example = new Ionoscloud.Cdn.Distribution("example", new()
     ///     {
     ///         Domain = "example.com",

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a Virtual **Data Center** on IonosCloud.
+ * Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -25,8 +25,8 @@ import * as utilities from "../utilities";
  *
  * ## Attaching a NSG to a Datacenter
  *
- * #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
- * #### Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
+ * A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `ionoscloud.nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+ * Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,6 +50,18 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * Resource Datacenter can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * import {
+ *   to = ionoscloud_datacenter.example
+ *   id = "datacenter uuid" 
+ * }
+ * ```
+ * Auto-generate the datacenter resource in the `dc.tf` file using the following command:
+ * ```sh
+ * pulumi preview -generate-config-out=dc.tf
+ * ```
+ * The older syntax can be for importing the resource is still supported:
  *
  * ```sh
  * terraform import ionoscloud_datacenter.mydc datacenter uuid
@@ -100,7 +112,7 @@ export class Datacenter extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly ipv6CidrBlock: pulumi.Output<string>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -177,7 +189,7 @@ export interface DatacenterState {
      */
     ipv6CidrBlock?: pulumi.Input<string>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      */
     location?: pulumi.Input<string>;
     /**
@@ -203,7 +215,7 @@ export interface DatacenterArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      */
     location: pulumi.Input<string>;
     /**

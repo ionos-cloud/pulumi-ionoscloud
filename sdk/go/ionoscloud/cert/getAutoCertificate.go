@@ -85,7 +85,7 @@ type LookupAutoCertificateArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
-	// [string] The location of the auto-certificate.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
 	Location string `pulumi:"location"`
 	// [string] Name of an existing auto-certificate that you want to search for.
 	Name *string `pulumi:"name"`
@@ -122,7 +122,7 @@ type LookupAutoCertificateOutputArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] The location of the auto-certificate.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// [string] Name of an existing auto-certificate that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`

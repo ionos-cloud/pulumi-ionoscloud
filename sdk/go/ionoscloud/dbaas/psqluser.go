@@ -92,6 +92,8 @@ type PSQLUser struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 	IsSystemUser pulumi.BoolOutput `pulumi:"isSystemUser"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] User password.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -148,6 +150,8 @@ type psqluserState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 	IsSystemUser *bool `pulumi:"isSystemUser"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] User password.
 	Password *string `pulumi:"password"`
 	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -159,6 +163,8 @@ type PSQLUserState struct {
 	ClusterId pulumi.StringPtrInput
 	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 	IsSystemUser pulumi.BoolPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] User password.
 	Password pulumi.StringPtrInput
 	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -172,6 +178,8 @@ func (PSQLUserState) ElementType() reflect.Type {
 type psqluserArgs struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId string `pulumi:"clusterId"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] User password.
 	Password string `pulumi:"password"`
 	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -182,6 +190,8 @@ type psqluserArgs struct {
 type PSQLUserArgs struct {
 	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] User password.
 	Password pulumi.StringInput
 	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -283,6 +293,11 @@ func (o PSQLUserOutput) ClusterId() pulumi.StringOutput {
 // [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 func (o PSQLUserOutput) IsSystemUser() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PSQLUser) pulumi.BoolOutput { return v.IsSystemUser }).(pulumi.BoolOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o PSQLUserOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLUser) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] User password.

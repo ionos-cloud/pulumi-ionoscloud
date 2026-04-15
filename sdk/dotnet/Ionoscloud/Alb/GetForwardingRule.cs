@@ -242,6 +242,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         public string? Id { get; set; }
 
         /// <summary>
+        /// The location for redirecting; mandatory and valid only for REDIRECT actions.
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
         /// </summary>
         [Input("name")]
@@ -280,6 +286,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The location for redirecting; mandatory and valid only for REDIRECT actions.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `PartialMatch` parameter is not set to true.
@@ -329,6 +341,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         public readonly int ListenerPort;
         /// <summary>
+        /// The location for redirecting; mandatory and valid only for REDIRECT actions.
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// The unique name of the Application Load Balancer HTTP rule.
         /// </summary>
         public readonly string Name;
@@ -355,6 +371,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
 
             int listenerPort,
 
+            string? location,
+
             string name,
 
             bool? partialMatch,
@@ -370,6 +388,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
             Id = id;
             ListenerIp = listenerIp;
             ListenerPort = listenerPort;
+            Location = location;
             Name = name;
             PartialMatch = partialMatch;
             Protocol = protocol;

@@ -78,7 +78,7 @@ class GetRegionResult:
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        The data center location of the region as per [Get Location](https://www.terraform.io/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
+        The data center location of the region as per [Get Location](https://api.ionos.com/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
         """
         return pulumi.get(self, "location")
 

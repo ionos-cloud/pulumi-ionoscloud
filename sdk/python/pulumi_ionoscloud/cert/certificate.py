@@ -172,19 +172,37 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Certificate** on IonosCloud.
+        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
 
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",
-            certificate="tour_certificate",
-            certificate_chain="your_certificate_chain",
-            private_key="your_private_key")
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
+        ```
+
+        **NOTE**: You can also provide the values as multiline strings, as seen below:
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
+
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+        cert_body_here
+        -----END CERTIFICATE-----
+        \"\"\",
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         ```
 
         ## Import
@@ -210,19 +228,37 @@ class Certificate(pulumi.CustomResource):
                  args: CertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Certificate** on IonosCloud.
+        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
 
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",
-            certificate="tour_certificate",
-            certificate_chain="your_certificate_chain",
-            private_key="your_private_key")
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
+        ```
+
+        **NOTE**: You can also provide the values as multiline strings, as seen below:
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
+
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+        cert_body_here
+        -----END CERTIFICATE-----
+        \"\"\",
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         ```
 
         ## Import

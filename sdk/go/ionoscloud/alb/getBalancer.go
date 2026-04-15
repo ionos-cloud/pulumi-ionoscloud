@@ -111,7 +111,8 @@ type LookupBalancerArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the application load balancer you want to search for.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name *string `pulumi:"name"`
 	// Whether partial matching is allowed or not when using name argument. Default value is false.
@@ -134,8 +135,9 @@ type LookupBalancerResult struct {
 	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps []string `pulumi:"lbPrivateIps"`
 	// ID of the listening (inbound) LAN.
-	ListenerLan   int    `pulumi:"listenerLan"`
-	LoggingFormat string `pulumi:"loggingFormat"`
+	ListenerLan   int     `pulumi:"listenerLan"`
+	Location      *string `pulumi:"location"`
+	LoggingFormat string  `pulumi:"loggingFormat"`
 	// Specifies the name of the flow log.
 	Name         string `pulumi:"name"`
 	PartialMatch *bool  `pulumi:"partialMatch"`
@@ -157,7 +159,8 @@ type LookupBalancerOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the application load balancer you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Whether partial matching is allowed or not when using name argument. Default value is false.
@@ -217,6 +220,10 @@ func (o LookupBalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
 // ID of the listening (inbound) LAN.
 func (o LookupBalancerResultOutput) ListenerLan() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
+}
+
+func (o LookupBalancerResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBalancerResultOutput) LoggingFormat() pulumi.StringOutput {

@@ -103,8 +103,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// <summary>
         /// ID of the IONOS Object Storage key you want to search for.
         /// </summary>
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
 
         /// <summary>
         /// [string] The UUID of the user owning the IONOS Object Storage Key.
@@ -123,8 +123,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// <summary>
         /// ID of the IONOS Object Storage key you want to search for.
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// [string] The UUID of the user owning the IONOS Object Storage Key.

@@ -952,9 +952,9 @@ class GetNodePoolNodesNodeResult(dict):
                
                `k8s_cluster_id` and `node_pool_id` must be provided.
         :param _builtins.str k8s_version: The kubernetes version
-        :param _builtins.str name: Name of an existing node pool that you want to search for.
-        :param _builtins.str private_ip: private ip of the node
-        :param _builtins.str public_ip: public ip of the node
+        :param _builtins.str name: name of the node
+        :param _builtins.str private_ip: private ip of the node. Only present if the k8s cluster is private.
+        :param _builtins.str public_ip: public ip of the node. Only present if the k8s cluster is public
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "k8s_version", k8s_version)
@@ -984,7 +984,7 @@ class GetNodePoolNodesNodeResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Name of an existing node pool that you want to search for.
+        name of the node
         """
         return pulumi.get(self, "name")
 
@@ -992,7 +992,7 @@ class GetNodePoolNodesNodeResult(dict):
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> _builtins.str:
         """
-        private ip of the node
+        private ip of the node. Only present if the k8s cluster is private.
         """
         return pulumi.get(self, "private_ip")
 
@@ -1000,7 +1000,7 @@ class GetNodePoolNodesNodeResult(dict):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> _builtins.str:
         """
-        public ip of the node
+        public ip of the node. Only present if the k8s cluster is public
         """
         return pulumi.get(self, "public_ip")
 

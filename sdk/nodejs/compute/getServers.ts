@@ -64,6 +64,7 @@ export function getServers(args: GetServersArgs, opts?: pulumi.InvokeOptions): P
     return pulumi.runtime.invoke("ionoscloud:compute/getServers:getServers", {
         "datacenterId": args.datacenterId,
         "filters": args.filters,
+        "location": args.location,
     }, opts);
 }
 
@@ -87,6 +88,7 @@ export interface GetServersArgs {
      * **NOTE:** You cannot search by `imageName` by providing an alias like `ubuntu`.
      */
     filters?: inputs.compute.GetServersFilter[];
+    location?: string;
 }
 
 /**
@@ -99,6 +101,7 @@ export interface GetServersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly location?: string;
     /**
      * list of servers that matches the filters provided.
      * For a full reference of all attributes returned, check out documentation
@@ -163,6 +166,7 @@ export function getServersOutput(args: GetServersOutputArgs, opts?: pulumi.Invok
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getServers:getServers", {
         "datacenterId": args.datacenterId,
         "filters": args.filters,
+        "location": args.location,
     }, opts);
 }
 
@@ -186,4 +190,5 @@ export interface GetServersOutputArgs {
      * **NOTE:** You cannot search by `imageName` by providing an alias like `ubuntu`.
      */
     filters?: pulumi.Input<pulumi.Input<inputs.compute.GetServersFilterArgs>[]>;
+    location?: pulumi.Input<string>;
 }

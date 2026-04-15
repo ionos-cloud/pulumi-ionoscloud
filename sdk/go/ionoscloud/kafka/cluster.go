@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Kafka Cluster** on IonosCloud.
+// Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -50,7 +50,7 @@ import (
 //			_, err = kafka.NewCluster(ctx, "example", &kafka.ClusterArgs{
 //				Name:     pulumi.String("example-kafka-cluster"),
 //				Location: pulumi.String("de/fra"),
-//				Version:  pulumi.String("3.7.0"),
+//				Version:  pulumi.String("3.9.0"),
 //				Size:     pulumi.String("S"),
 //				Connections: &kafka.ClusterConnectionsArgs{
 //					DatacenterId: example.ID(),
@@ -60,86 +60,6 @@ import (
 //						pulumi.String("192.168.1.102/24"),
 //						pulumi.String("192.168.1.103/24"),
 //					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/kafka"
-//	"github.com/pulumi/pulumi-random/sdk/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Complete example
-//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Name:     pulumi.String("example-kafka-datacenter"),
-//				Location: pulumi.String("de/fra"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
-//				DatacenterId: example.ID(),
-//				Public:       pulumi.Bool(false),
-//				Name:         pulumi.String("example-kafka-lan"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			password, err := random.NewPassword(ctx, "password", &random.PasswordArgs{
-//				Length:  16,
-//				Special: false,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("example-kafka-server"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              int(2 * 1024),
-//				AvailabilityZone: pulumi.String("AUTO"),
-//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
-//				ImageName:        pulumi.String("ubuntu:latest"),
-//				ImagePassword:    password.Result,
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:     pulumi.String("example-kafka-volume"),
-//					Size:     pulumi.Int(6),
-//					DiskType: pulumi.String("SSD Standard"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:  exampleLan.ID(),
-//					Name: pulumi.String("example-kafka-nic"),
-//					Dhcp: pulumi.Bool(true),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kafka.NewCluster(ctx, "example", &kafka.ClusterArgs{
-//				Name:     pulumi.String("example-kafka-cluster"),
-//				Location: example.Location,
-//				Version:  pulumi.String("3.7.0"),
-//				Size:     pulumi.String("S"),
-//				Connections: &kafka.ClusterConnectionsArgs{
-//					DatacenterId:    example.ID(),
-//					LanId:           exampleLan.ID(),
-//					BrokerAddresses: pulumi.StringArray("kafka_cluster_broker_ips_cidr_list"),
 //				},
 //			})
 //			if err != nil {
@@ -167,13 +87,13 @@ type Cluster struct {
 	BrokerAddresses pulumi.StringArrayOutput `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
 	Size pulumi.StringOutput `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -222,13 +142,13 @@ type clusterState struct {
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
 	Size *string `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 	Version *string `pulumi:"version"`
 }
 
@@ -239,13 +159,13 @@ type ClusterState struct {
 	BrokerAddresses pulumi.StringArrayInput
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsPtrInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
 	Size pulumi.StringPtrInput
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 	Version pulumi.StringPtrInput
 }
 
@@ -256,13 +176,13 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
 	Size string `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 	Version string `pulumi:"version"`
 }
 
@@ -270,13 +190,13 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
 	Size pulumi.StringInput
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 	Version pulumi.StringInput
 }
 
@@ -379,7 +299,7 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 func (o ClusterOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
@@ -394,7 +314,7 @@ func (o ClusterOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }
 
-// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
 func (o ClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

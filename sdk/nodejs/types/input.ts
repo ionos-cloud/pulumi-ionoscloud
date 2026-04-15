@@ -5,6 +5,134 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetKafkaUserCredentialsTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    read?: string;
+}
+
+export interface GetKafkaUserCredentialsTimeoutsArgs {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    read?: pulumi.Input<string>;
+}
+
+export interface GetKafkaUsersTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    read?: string;
+}
+
+export interface GetKafkaUsersTimeoutsArgs {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    read?: pulumi.Input<string>;
+}
+
+export interface GpuServerNic {
+    deviceNumber?: pulumi.Input<number>;
+    dhcp?: pulumi.Input<boolean>;
+    /**
+     * Indicates whether this NIC receives an IPv6 address through DHCP.
+     */
+    dhcpv6?: pulumi.Input<boolean>;
+    /**
+     * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+     */
+    firewall?: pulumi.Input<inputs.GpuServerNicFirewall>;
+    firewallActive?: pulumi.Input<boolean>;
+    firewallType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     */
+    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IPv6 CIDR block assigned to the NIC.
+     */
+    ipv6CidrBlock?: pulumi.Input<string>;
+    /**
+     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+     */
+    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+    lan: pulumi.Input<number>;
+    mac?: pulumi.Input<string>;
+    /**
+     * [string] The name of the server.
+     */
+    name?: pulumi.Input<string>;
+    pciSlot?: pulumi.Input<number>;
+    /**
+     * The list of Security Group IDs for the resource.
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GpuServerNicFirewall {
+    icmpCode?: pulumi.Input<string>;
+    icmpType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * [string] The name of the server.
+     */
+    name?: pulumi.Input<string>;
+    portRangeEnd?: pulumi.Input<number>;
+    portRangeStart?: pulumi.Input<number>;
+    protocol: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string>;
+    sourceMac?: pulumi.Input<string>;
+    targetIp?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+}
+
+export interface GpuServerVolume {
+    /**
+     * [string] The availability zone in which the server should exist. This property is immutable.
+     */
+    availabilityZone?: pulumi.Input<string>;
+    /**
+     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+     */
+    backupUnitId?: pulumi.Input<string>;
+    /**
+     * The UUID of the attached server.
+     */
+    bootServer?: pulumi.Input<string>;
+    bus?: pulumi.Input<string>;
+    cpuHotPlug?: pulumi.Input<boolean>;
+    deviceNumber?: pulumi.Input<number>;
+    discVirtioHotPlug?: pulumi.Input<boolean>;
+    discVirtioHotUnplug?: pulumi.Input<boolean>;
+    diskType?: pulumi.Input<string>;
+    /**
+     * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     */
+    exposeSerial?: pulumi.Input<boolean>;
+    /**
+     * [string] Sets the OS type of the server.
+     */
+    licenceType?: pulumi.Input<string>;
+    /**
+     * [string] The name of the server.
+     */
+    name?: pulumi.Input<string>;
+    nicHotPlug?: pulumi.Input<boolean>;
+    nicHotUnplug?: pulumi.Input<boolean>;
+    pciSlot?: pulumi.Input<number>;
+    ramHotPlug?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     */
+    requireLegacyBios?: pulumi.Input<boolean>;
+    /**
+     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+     */
+    userData?: pulumi.Input<string>;
+}
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -26,7 +154,7 @@ export namespace alb {
         /**
          * [string] Specifies the name of the flow log.
          *
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         * ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
          */
         name: pulumi.Input<string>;
     }
@@ -93,42 +221,6 @@ export namespace alb {
         value?: pulumi.Input<string>;
     }
 
-}
-
-export namespace apigateway {
-    export interface ApigatewayCustomDomain {
-        /**
-         * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
-         */
-        certificateId?: pulumi.Input<string>;
-        /**
-         * [string] The domain name. Externally reachable.
-         */
-        name: pulumi.Input<string>;
-    }
-
-    export interface RouteUpstream {
-        /**
-         * [string] The host of the upstream.
-         */
-        host: pulumi.Input<string>;
-        /**
-         * [string] The load balancer algorithm. Default value: `roundrobin`.
-         */
-        loadbalancer?: pulumi.Input<string>;
-        /**
-         * [int] The port of the upstream. Default value: `80`.
-         */
-        port?: pulumi.Input<number>;
-        /**
-         * [string] The target URL of the upstream. Default value: `http`.
-         */
-        scheme?: pulumi.Input<string>;
-        /**
-         * [int] Weight with which to split traffic to the upstream. Default value: `100`.
-         */
-        weight?: pulumi.Input<number>;
-    }
 }
 
 export namespace autoscaling {
@@ -211,7 +303,7 @@ export namespace autoscaling {
          */
         cores: pulumi.Input<number>;
         /**
-         * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         * [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
          */
         cpuFamily?: pulumi.Input<string>;
         /**
@@ -509,9 +601,16 @@ export namespace compute {
          * Indicates whether this NIC receives an IPv6 address through DHCP.
          */
         dhcpv6?: pulumi.Input<boolean>;
+        /**
+         * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         */
         firewall?: pulumi.Input<inputs.compute.CubeServerNicFirewall>;
         firewallActive?: pulumi.Input<boolean>;
         firewallType?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        /**
+         * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         */
         ips?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * IPv6 CIDR block assigned to the NIC.
@@ -537,6 +636,7 @@ export namespace compute {
     export interface CubeServerNicFirewall {
         icmpCode?: pulumi.Input<string>;
         icmpType?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
         /**
          * [string] The name of the server.
          */
@@ -570,6 +670,10 @@ export namespace compute {
         discVirtioHotUnplug?: pulumi.Input<boolean>;
         diskType: pulumi.Input<string>;
         /**
+         * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         */
+        exposeSerial?: pulumi.Input<boolean>;
+        /**
          * [string] Required if `sshKeyPath` is not provided.
          *
          * @deprecated Please use imagePassword under server level
@@ -587,6 +691,10 @@ export namespace compute {
         nicHotUnplug?: pulumi.Input<boolean>;
         pciSlot?: pulumi.Input<number>;
         ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         */
+        requireLegacyBios?: pulumi.Input<boolean>;
         /**
          * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
          *
@@ -618,6 +726,107 @@ export namespace compute {
         vendor?: pulumi.Input<string>;
     }
 
+    export interface GPUServerNic {
+        deviceNumber?: pulumi.Input<number>;
+        dhcp?: pulumi.Input<boolean>;
+        /**
+         * Indicates whether this NIC receives an IPv6 address through DHCP.
+         */
+        dhcpv6?: pulumi.Input<boolean>;
+        /**
+         * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         */
+        firewall?: pulumi.Input<inputs.compute.GPUServerNicFirewall>;
+        firewallActive?: pulumi.Input<boolean>;
+        firewallType?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        /**
+         * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         */
+        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * IPv6 CIDR block assigned to the NIC.
+         */
+        ipv6CidrBlock?: pulumi.Input<string>;
+        /**
+         * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         */
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        lan: pulumi.Input<number>;
+        mac?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        pciSlot?: pulumi.Input<number>;
+        /**
+         * The list of Security Group IDs for the resource.
+         */
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GPUServerNicFirewall {
+        icmpCode?: pulumi.Input<string>;
+        icmpType?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        portRangeEnd?: pulumi.Input<number>;
+        portRangeStart?: pulumi.Input<number>;
+        protocol: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string>;
+        sourceMac?: pulumi.Input<string>;
+        targetIp?: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+    }
+
+    export interface GPUServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. This property is immutable.
+         */
+        availabilityZone?: pulumi.Input<string>;
+        /**
+         * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+         */
+        backupUnitId?: pulumi.Input<string>;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer?: pulumi.Input<string>;
+        bus?: pulumi.Input<string>;
+        cpuHotPlug?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number>;
+        discVirtioHotPlug?: pulumi.Input<boolean>;
+        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        diskType?: pulumi.Input<string>;
+        /**
+         * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         */
+        exposeSerial?: pulumi.Input<boolean>;
+        /**
+         * [string] Sets the OS type of the server.
+         */
+        licenceType?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        nicHotPlug?: pulumi.Input<boolean>;
+        nicHotUnplug?: pulumi.Input<boolean>;
+        pciSlot?: pulumi.Input<number>;
+        ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         */
+        requireLegacyBios?: pulumi.Input<boolean>;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+         */
+        userData?: pulumi.Input<string>;
+    }
+
     export interface GetServersFilter {
         name: string;
         value: string;
@@ -628,6 +837,44 @@ export namespace compute {
         value: pulumi.Input<string>;
     }
 
+    export interface GetTemplateGpus {
+        /**
+         * The number of GPUs
+         */
+        count?: number;
+        /**
+         * The model of the GPU
+         */
+        model?: string;
+        /**
+         * The type of the GPU
+         */
+        type?: string;
+        /**
+         * The vendor of the GPU
+         */
+        vendor?: string;
+    }
+
+    export interface GetTemplateGpusArgs {
+        /**
+         * The number of GPUs
+         */
+        count?: pulumi.Input<number>;
+        /**
+         * The model of the GPU
+         */
+        model?: pulumi.Input<string>;
+        /**
+         * The type of the GPU
+         */
+        type?: pulumi.Input<string>;
+        /**
+         * The vendor of the GPU
+         */
+        vendor?: pulumi.Input<string>;
+    }
+
     export interface GroupUser {
         administrator?: pulumi.Input<boolean>;
         email?: pulumi.Input<string>;
@@ -635,7 +882,6 @@ export namespace compute {
         forceSecAuth?: pulumi.Input<boolean>;
         id?: pulumi.Input<string>;
         lastName?: pulumi.Input<string>;
-        password?: pulumi.Input<string>;
     }
 
     export interface IPBlockIpConsumer {
@@ -765,7 +1011,7 @@ export namespace compute {
         sourceMac?: pulumi.Input<string>;
         targetIp?: pulumi.Input<string>;
         /**
-         * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         * (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          */
         type?: pulumi.Input<string>;
     }
@@ -790,6 +1036,10 @@ export namespace compute {
         discVirtioHotUnplug?: pulumi.Input<boolean>;
         diskType: pulumi.Input<string>;
         /**
+         * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         */
+        exposeSerial?: pulumi.Input<boolean>;
+        /**
          * [string] Required if `sshKeyPath` is not provided.
          *
          * @deprecated Please use imagePassword under server level
@@ -807,6 +1057,10 @@ export namespace compute {
         nicHotUnplug?: pulumi.Input<boolean>;
         pciSlot?: pulumi.Input<number>;
         ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         */
+        requireLegacyBios?: pulumi.Input<boolean>;
         /**
          * The size of the volume in GB.
          */
@@ -906,6 +1160,9 @@ export namespace compute {
     export interface VCPUServerNic {
         deviceNumber?: pulumi.Input<number>;
         dhcp?: pulumi.Input<boolean>;
+        /**
+         * Indicates whether this NIC receives an IPv6 address through DHCP.
+         */
         dhcpv6?: pulumi.Input<boolean>;
         firewallActive?: pulumi.Input<boolean>;
         firewallType?: pulumi.Input<string>;
@@ -918,7 +1175,13 @@ export namespace compute {
          * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
          */
         ips?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * IPv6 CIDR block assigned to the NIC.
+         */
         ipv6CidrBlock?: pulumi.Input<string>;
+        /**
+         * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         */
         ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
         lan: pulumi.Input<number>;
         mac?: pulumi.Input<string>;
@@ -929,10 +1192,6 @@ export namespace compute {
         pciSlot?: pulumi.Input<number>;
         /**
          * The list of Security Group IDs for the resource.
-         *
-         * > **⚠ WARNING**
-         * >
-         * > sshKeys field is immutable.
          */
         securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     }
@@ -974,6 +1233,10 @@ export namespace compute {
         discVirtioHotUnplug?: pulumi.Input<boolean>;
         diskType: pulumi.Input<string>;
         /**
+         * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         */
+        exposeSerial?: pulumi.Input<boolean>;
+        /**
          * [string] Sets the OS type of the server.
          */
         licenceType?: pulumi.Input<string>;
@@ -985,6 +1248,10 @@ export namespace compute {
         nicHotUnplug?: pulumi.Input<boolean>;
         pciSlot?: pulumi.Input<number>;
         ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         */
+        requireLegacyBios?: pulumi.Input<boolean>;
         /**
          * The size of the volume in GB.
          */
@@ -1023,7 +1290,13 @@ export namespace creg {
     }
 
     export interface RegistryTokenCredential {
+        /**
+         * [string] The password/token of the container registry token which will also be saved to a file if `savePasswordToFile` is set
+         */
         password: pulumi.Input<string>;
+        /**
+         * [string] The username of the container registry token
+         */
         username: pulumi.Input<string>;
     }
 
@@ -1135,6 +1408,13 @@ export namespace dbaas {
          * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage?: pulumi.Input<number>;
+    }
+
+    export interface MariaDBClusterBackup {
+        /**
+         * [string] The IONOS Object Storage location where the backups will be stored.
+         */
+        location: pulumi.Input<string>;
     }
 
     export interface MariaDBClusterConnections {
@@ -1303,67 +1583,6 @@ export namespace dbaas {
     }
 }
 
-export namespace dsaas {
-    export interface ClusterLan {
-        /**
-         * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-         */
-        dhcp?: pulumi.Input<boolean>;
-        /**
-         * [string] The LAN ID of an existing LAN at the related data center.
-         */
-        lanId: pulumi.Input<string>;
-        /**
-         * [list] An array of additional LANs attached to worker nodes.
-         */
-        routes?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLanRoute>[]>;
-    }
-
-    export interface ClusterLanRoute {
-        /**
-         * [string] IPv4 or IPv6 gateway IP for the route.
-         */
-        gateway: pulumi.Input<string>;
-        /**
-         * [string] IPv4 or IPv6 CIDR to be routed via the interface.
-         */
-        network: pulumi.Input<string>;
-    }
-
-    export interface ClusterMaintenanceWindow {
-        /**
-         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-         */
-        dayOfTheWeek: pulumi.Input<string>;
-        /**
-         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
-         */
-        time: pulumi.Input<string>;
-    }
-
-    export interface NodePoolAutoScaling {
-        /**
-         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-         */
-        maxNodeCount: pulumi.Input<number>;
-        /**
-         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-         */
-        minNodeCount: pulumi.Input<number>;
-    }
-
-    export interface NodePoolMaintenanceWindow {
-        /**
-         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-         */
-        dayOfTheWeek: pulumi.Input<string>;
-        /**
-         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
-         */
-        time: pulumi.Input<string>;
-    }
-}
-
 export namespace k8s {
     export interface ClusterMaintenanceWindow {
         /**
@@ -1471,9 +1690,6 @@ export namespace logging {
          * [string] "Protocol to use as intake. Possible values are: http, tcp."
          */
         protocol: pulumi.Input<string>;
-        /**
-         * [bool]
-         */
         public?: pulumi.Input<boolean>;
         /**
          * [string] The source parser to be used.
@@ -1643,7 +1859,7 @@ export namespace nlb {
         /**
          * [string] Specifies the name of the flow log.
          *
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+         * ⚠️ **Note:** Removing the `flowlog` forces re-creation of the network load balancer resource.
          */
         name: pulumi.Input<string>;
     }
@@ -1721,6 +1937,10 @@ export namespace objectstorage {
          */
         expiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleExpiration>;
         /**
+         * A filter.
+         */
+        filter?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleFilter>;
+        /**
          * Unique identifier for the rule.
          */
         id?: pulumi.Input<string>;
@@ -1730,8 +1950,10 @@ export namespace objectstorage {
         noncurrentVersionExpiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration>;
         /**
          * Object key prefix identifying one or more objects to which the rule applies.
+         *
+         * @deprecated This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.
          */
-        prefix: pulumi.Input<string>;
+        prefix?: pulumi.Input<string>;
         /**
          * Whether the rule is currently being applied. Valid values: Enabled or Disabled.
          */
@@ -1758,6 +1980,13 @@ export namespace objectstorage {
          * Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
          */
         expiredObjectDeleteMarker?: pulumi.Input<boolean>;
+    }
+
+    export interface BucketLifecycleConfigurationRuleFilter {
+        /**
+         * Object key prefix identifying one or more objects to which the rule applies.
+         */
+        prefix?: pulumi.Input<string>;
     }
 
     export interface BucketLifecycleConfigurationRuleNoncurrentVersionExpiration {
@@ -1830,7 +2059,6 @@ export namespace objectstorage {
         exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * [int] Container for the Contract Number of the owner
-         *
          *
          * Days and years are mutually exclusive. You can only specify one of them.
          */
@@ -1944,6 +2172,8 @@ export namespace objectstoragemanagement {
         create?: pulumi.Input<string>;
         /**
          * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         *
+         * > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
         delete?: pulumi.Input<string>;
         /**
@@ -1961,13 +2191,11 @@ export namespace vpn {
          */
         datacenterId: pulumi.Input<string>;
         /**
-         * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
         ipv4Cidr: pulumi.Input<string>;
         /**
-         * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-         * Gateway. **Note**: this should be the subnet already assigned to the LAN
+         * [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
         ipv6Cidr?: pulumi.Input<string>;
         /**
@@ -2056,11 +2284,11 @@ export namespace vpn {
          */
         datacenterId: pulumi.Input<string>;
         /**
-         * [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         * [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
         ipv4Cidr?: pulumi.Input<string>;
         /**
-         * [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         * [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
         ipv6Cidr?: pulumi.Input<string>;
         /**

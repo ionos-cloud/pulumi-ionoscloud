@@ -73,6 +73,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         CreateFlowLog = true,
     ///         AccessAndManageMonitoring = true,
     ///         AccessAndManageCertificates = true,
+    ///         AccessAndManageLogging = true,
+    ///         AccessAndManageCdn = true,
+    ///         AccessAndManageVpn = true,
+    ///         AccessAndManageApiGateway = true,
+    ///         AccessAndManageKaas = true,
+    ///         AccessAndManageNetworkFileStorage = true,
+    ///         AccessAndManageAiModelHub = true,
+    ///         AccessAndManageIamResources = true,
+    ///         CreateNetworkSecurityGroups = true,
     ///         ManageDbaas = true,
     ///         UserIds = new[]
     ///         {
@@ -104,16 +113,70 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<bool?> AccessActivityLog { get; private set; } = null!;
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage ai model hub.
+        /// </summary>
+        [Output("accessAndManageAiModelHub")]
+        public Output<bool?> AccessAndManageAiModelHub { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage api gateway.
+        /// </summary>
+        [Output("accessAndManageApiGateway")]
+        public Output<bool?> AccessAndManageApiGateway { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage cdn.
+        /// </summary>
+        [Output("accessAndManageCdn")]
+        public Output<bool?> AccessAndManageCdn { get; private set; } = null!;
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage certificates.
         /// </summary>
         [Output("accessAndManageCertificates")]
         public Output<bool?> AccessAndManageCertificates { get; private set; } = null!;
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage dns records.
+        /// </summary>
+        [Output("accessAndManageDns")]
+        public Output<bool?> AccessAndManageDns { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage iam resources.
+        /// </summary>
+        [Output("accessAndManageIamResources")]
+        public Output<bool?> AccessAndManageIamResources { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage kaas.
+        /// </summary>
+        [Output("accessAndManageKaas")]
+        public Output<bool?> AccessAndManageKaas { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage logging.
+        /// </summary>
+        [Output("accessAndManageLogging")]
+        public Output<bool?> AccessAndManageLogging { get; private set; } = null!;
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage monitoring.
         /// </summary>
         [Output("accessAndManageMonitoring")]
         public Output<bool?> AccessAndManageMonitoring { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage network file storage.
+        /// </summary>
+        [Output("accessAndManageNetworkFileStorage")]
+        public Output<bool?> AccessAndManageNetworkFileStorage { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage vpn.
+        /// </summary>
+        [Output("accessAndManageVpn")]
+        public Output<bool?> AccessAndManageVpn { get; private set; } = null!;
 
         /// <summary>
         /// [Boolean] The group will be allowed to create backup unit privilege.
@@ -146,6 +209,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<bool?> CreateK8sCluster { get; private set; } = null!;
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to create network security groups.
+        /// </summary>
+        [Output("createNetworkSecurityGroups")]
+        public Output<bool?> CreateNetworkSecurityGroups { get; private set; } = null!;
+
+        /// <summary>
         /// [Boolean] The group will be allowed to create Cross Connects privilege.
         /// </summary>
         [Output("createPcc")]
@@ -158,10 +227,28 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<bool?> CreateSnapshot { get; private set; } = null!;
 
         /// <summary>
+        /// [Boolean] When set to true, information about users will be stored in state under `Users` attribute, default value is `True`.
+        /// </summary>
+        [Output("getUsersData")]
+        public Output<bool?> GetUsersData { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage the Data Platform.
+        /// </summary>
+        [Output("manageDataplatform")]
+        public Output<bool?> ManageDataplatform { get; private set; } = null!;
+
+        /// <summary>
         /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
         /// </summary>
         [Output("manageDbaas")]
         public Output<bool?> ManageDbaas { get; private set; } = null!;
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access container registry related functionality.
+        /// </summary>
+        [Output("manageRegistry")]
+        public Output<bool?> ManageRegistry { get; private set; } = null!;
 
         /// <summary>
         /// [string] A name for the group.
@@ -255,16 +342,70 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? AccessActivityLog { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage ai model hub.
+        /// </summary>
+        [Input("accessAndManageAiModelHub")]
+        public Input<bool>? AccessAndManageAiModelHub { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage api gateway.
+        /// </summary>
+        [Input("accessAndManageApiGateway")]
+        public Input<bool>? AccessAndManageApiGateway { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage cdn.
+        /// </summary>
+        [Input("accessAndManageCdn")]
+        public Input<bool>? AccessAndManageCdn { get; set; }
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage certificates.
         /// </summary>
         [Input("accessAndManageCertificates")]
         public Input<bool>? AccessAndManageCertificates { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage dns records.
+        /// </summary>
+        [Input("accessAndManageDns")]
+        public Input<bool>? AccessAndManageDns { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage iam resources.
+        /// </summary>
+        [Input("accessAndManageIamResources")]
+        public Input<bool>? AccessAndManageIamResources { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage kaas.
+        /// </summary>
+        [Input("accessAndManageKaas")]
+        public Input<bool>? AccessAndManageKaas { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage logging.
+        /// </summary>
+        [Input("accessAndManageLogging")]
+        public Input<bool>? AccessAndManageLogging { get; set; }
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage monitoring.
         /// </summary>
         [Input("accessAndManageMonitoring")]
         public Input<bool>? AccessAndManageMonitoring { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage network file storage.
+        /// </summary>
+        [Input("accessAndManageNetworkFileStorage")]
+        public Input<bool>? AccessAndManageNetworkFileStorage { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage vpn.
+        /// </summary>
+        [Input("accessAndManageVpn")]
+        public Input<bool>? AccessAndManageVpn { get; set; }
 
         /// <summary>
         /// [Boolean] The group will be allowed to create backup unit privilege.
@@ -297,6 +438,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? CreateK8sCluster { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to create network security groups.
+        /// </summary>
+        [Input("createNetworkSecurityGroups")]
+        public Input<bool>? CreateNetworkSecurityGroups { get; set; }
+
+        /// <summary>
         /// [Boolean] The group will be allowed to create Cross Connects privilege.
         /// </summary>
         [Input("createPcc")]
@@ -309,10 +456,28 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? CreateSnapshot { get; set; }
 
         /// <summary>
+        /// [Boolean] When set to true, information about users will be stored in state under `Users` attribute, default value is `True`.
+        /// </summary>
+        [Input("getUsersData")]
+        public Input<bool>? GetUsersData { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage the Data Platform.
+        /// </summary>
+        [Input("manageDataplatform")]
+        public Input<bool>? ManageDataplatform { get; set; }
+
+        /// <summary>
         /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
         /// </summary>
         [Input("manageDbaas")]
         public Input<bool>? ManageDbaas { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access container registry related functionality.
+        /// </summary>
+        [Input("manageRegistry")]
+        public Input<bool>? ManageRegistry { get; set; }
 
         /// <summary>
         /// [string] A name for the group.
@@ -365,16 +530,70 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? AccessActivityLog { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage ai model hub.
+        /// </summary>
+        [Input("accessAndManageAiModelHub")]
+        public Input<bool>? AccessAndManageAiModelHub { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage api gateway.
+        /// </summary>
+        [Input("accessAndManageApiGateway")]
+        public Input<bool>? AccessAndManageApiGateway { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage cdn.
+        /// </summary>
+        [Input("accessAndManageCdn")]
+        public Input<bool>? AccessAndManageCdn { get; set; }
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage certificates.
         /// </summary>
         [Input("accessAndManageCertificates")]
         public Input<bool>? AccessAndManageCertificates { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage dns records.
+        /// </summary>
+        [Input("accessAndManageDns")]
+        public Input<bool>? AccessAndManageDns { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage iam resources.
+        /// </summary>
+        [Input("accessAndManageIamResources")]
+        public Input<bool>? AccessAndManageIamResources { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage kaas.
+        /// </summary>
+        [Input("accessAndManageKaas")]
+        public Input<bool>? AccessAndManageKaas { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage logging.
+        /// </summary>
+        [Input("accessAndManageLogging")]
+        public Input<bool>? AccessAndManageLogging { get; set; }
+
+        /// <summary>
         /// [Boolean]  The group will be allowed to access and manage monitoring.
         /// </summary>
         [Input("accessAndManageMonitoring")]
         public Input<bool>? AccessAndManageMonitoring { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage network file storage.
+        /// </summary>
+        [Input("accessAndManageNetworkFileStorage")]
+        public Input<bool>? AccessAndManageNetworkFileStorage { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage vpn.
+        /// </summary>
+        [Input("accessAndManageVpn")]
+        public Input<bool>? AccessAndManageVpn { get; set; }
 
         /// <summary>
         /// [Boolean] The group will be allowed to create backup unit privilege.
@@ -407,6 +626,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? CreateK8sCluster { get; set; }
 
         /// <summary>
+        /// [Boolean]  The group will be allowed to create network security groups.
+        /// </summary>
+        [Input("createNetworkSecurityGroups")]
+        public Input<bool>? CreateNetworkSecurityGroups { get; set; }
+
+        /// <summary>
         /// [Boolean] The group will be allowed to create Cross Connects privilege.
         /// </summary>
         [Input("createPcc")]
@@ -419,10 +644,28 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? CreateSnapshot { get; set; }
 
         /// <summary>
+        /// [Boolean] When set to true, information about users will be stored in state under `Users` attribute, default value is `True`.
+        /// </summary>
+        [Input("getUsersData")]
+        public Input<bool>? GetUsersData { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access and manage the Data Platform.
+        /// </summary>
+        [Input("manageDataplatform")]
+        public Input<bool>? ManageDataplatform { get; set; }
+
+        /// <summary>
         /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
         /// </summary>
         [Input("manageDbaas")]
         public Input<bool>? ManageDbaas { get; set; }
+
+        /// <summary>
+        /// [Boolean]  The group will be allowed to access container registry related functionality.
+        /// </summary>
+        [Input("manageRegistry")]
+        public Input<bool>? ManageRegistry { get; set; }
 
         /// <summary>
         /// [string] A name for the group.

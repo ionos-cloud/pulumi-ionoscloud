@@ -48,7 +48,7 @@ class InMemoryDBReplicaSetArgs:
         :param pulumi.Input['InMemoryDBReplicaSetResourcesArgs'] resources: [object] The resources of the individual replicas.
         :param pulumi.Input[_builtins.str] version: [string] The InMemoryDB version of your replica set.
         :param pulumi.Input[_builtins.str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         pulumi.set(__self__, "connections", connections)
@@ -182,7 +182,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         """
         return pulumi.get(self, "location")
 
@@ -229,7 +229,7 @@ class _InMemoryDBReplicaSetState:
                > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
         :param pulumi.Input[_builtins.str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
                * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
@@ -343,7 +343,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         """
         return pulumi.get(self, "location")
 
@@ -435,66 +435,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **DBaaS InMemoryDB Replica Set**.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for DBaaS InMemoryDB replica sets")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 10,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        example_in_memory_db_replica_set = ionoscloud.dbaas.InMemoryDBReplicaSet("example",
-            location=example.location,
-            display_name="ExampleReplicaSet",
-            version="7.2",
-            replicas=4,
-            resources={
-                "cores": 1,
-                "ram": 6,
-            },
-            persistence_mode="RDB",
-            eviction_policy="noeviction",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "10:00:00",
-            },
-            credentials={
-                "username": "myuser",
-                "plain_text_password": "testpassword",
-            })
-        ```
+        Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
 
         ## Import
 
@@ -512,7 +453,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: [string] The human-readable name of your replica set.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
         :param pulumi.Input[_builtins.str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
                * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
@@ -530,66 +471,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
                  args: InMemoryDBReplicaSetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DBaaS InMemoryDB Replica Set**.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for DBaaS InMemoryDB replica sets")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 10,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        example_in_memory_db_replica_set = ionoscloud.dbaas.InMemoryDBReplicaSet("example",
-            location=example.location,
-            display_name="ExampleReplicaSet",
-            version="7.2",
-            replicas=4,
-            resources={
-                "cores": 1,
-                "ram": 6,
-            },
-            persistence_mode="RDB",
-            eviction_policy="noeviction",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            maintenance_window={
-                "day_of_the_week": "Monday",
-                "time": "10:00:00",
-            },
-            credentials={
-                "username": "myuser",
-                "plain_text_password": "testpassword",
-            })
-        ```
+        Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
 
         ## Import
 
@@ -700,7 +582,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
                > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
         :param pulumi.Input[_builtins.str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
                * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
@@ -783,7 +665,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         """
         return pulumi.get(self, "location")
 

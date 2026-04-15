@@ -84,7 +84,8 @@ type LookupVolumeArgs struct {
 	// ID of the volume you want to search for.
 	//
 	// Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// Name of an existing volume that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -110,6 +111,8 @@ type LookupVolumeResult struct {
 	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
 	// The volume type: HDD or SSD.
 	DiskType string `pulumi:"diskType"`
+	// If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+	ExposeSerial bool `pulumi:"exposeSerial"`
 	// The id of the volume.
 	Id string `pulumi:"id"`
 	// The image or snapshot UUID.
@@ -117,7 +120,8 @@ type LookupVolumeResult struct {
 	// Required if `sshkeyPath` is not provided.
 	ImagePassword string `pulumi:"imagePassword"`
 	// The type of the licence.
-	LicenceType string `pulumi:"licenceType"`
+	LicenceType string  `pulumi:"licenceType"`
+	Location    *string `pulumi:"location"`
 	// The name of the volume.
 	Name string `pulumi:"name"`
 	// Is capable of nic hot plug (no reboot required)
@@ -126,6 +130,8 @@ type LookupVolumeResult struct {
 	NicHotUnplug bool `pulumi:"nicHotUnplug"`
 	// Is capable of memory hot plug (no reboot required)
 	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+	RequireLegacyBios bool `pulumi:"requireLegacyBios"`
 	// The size of the volume in GB.
 	Size int `pulumi:"size"`
 	// The associated public SSH key.
@@ -149,7 +155,8 @@ type LookupVolumeOutputArgs struct {
 	// ID of the volume you want to search for.
 	//
 	// Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing volume that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -222,6 +229,11 @@ func (o LookupVolumeResultOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+func (o LookupVolumeResultOutput) ExposeSerial() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVolumeResult) bool { return v.ExposeSerial }).(pulumi.BoolOutput)
+}
+
 // The id of the volume.
 func (o LookupVolumeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.Id }).(pulumi.StringOutput)
@@ -242,6 +254,10 @@ func (o LookupVolumeResultOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+func (o LookupVolumeResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
 // The name of the volume.
 func (o LookupVolumeResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.Name }).(pulumi.StringOutput)
@@ -260,6 +276,11 @@ func (o LookupVolumeResultOutput) NicHotUnplug() pulumi.BoolOutput {
 // Is capable of memory hot plug (no reboot required)
 func (o LookupVolumeResultOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
+}
+
+// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+func (o LookupVolumeResultOutput) RequireLegacyBios() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVolumeResult) bool { return v.RequireLegacyBios }).(pulumi.BoolOutput)
 }
 
 // The size of the volume in GB.

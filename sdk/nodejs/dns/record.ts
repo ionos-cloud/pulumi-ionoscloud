@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **DNS Record**.
+ * Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
  *
  * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
  *
@@ -87,7 +87,7 @@ export class Record extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly fqdn: pulumi.Output<string>;
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -99,7 +99,7 @@ export class Record extends pulumi.CustomResource {
      */
     declare public readonly ttl: pulumi.Output<number>;
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      */
     declare public readonly type: pulumi.Output<string>;
     /**
@@ -170,7 +170,7 @@ export interface RecordState {
      */
     fqdn?: pulumi.Input<string>;
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      */
     name?: pulumi.Input<string>;
     /**
@@ -182,7 +182,7 @@ export interface RecordState {
      */
     ttl?: pulumi.Input<number>;
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      */
     type?: pulumi.Input<string>;
     /**
@@ -204,7 +204,7 @@ export interface RecordArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      */
     name?: pulumi.Input<string>;
     /**
@@ -216,7 +216,7 @@ export interface RecordArgs {
      */
     ttl?: pulumi.Input<number>;
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      */
     type: pulumi.Input<string>;
     /**

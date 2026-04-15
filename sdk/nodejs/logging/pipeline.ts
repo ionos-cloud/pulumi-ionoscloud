@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Logging pipeline**.
+ * Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
  *
  * > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
  *
@@ -42,6 +42,11 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+ * plan, and used as presented below:
+ *
+ * The content inside **vars.tfvars** file:
  *
  * ## Import
  *
@@ -89,11 +94,19 @@ export class Pipeline extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The address of the client's grafana instance.
+     * [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      */
     declare public /*out*/ readonly grafanaAddress: pulumi.Output<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     */
+    declare public /*out*/ readonly httpAddress: pulumi.Output<string>;
+    /**
+     * [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     */
+    declare public /*out*/ readonly key: pulumi.Output<string>;
+    /**
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -104,6 +117,10 @@ export class Pipeline extends pulumi.CustomResource {
      * [string] The name of the Logging pipeline.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     */
+    declare public /*out*/ readonly tcpAddress: pulumi.Output<string>;
 
     /**
      * Create a Pipeline resource with the given unique name, arguments, and options.
@@ -119,9 +136,12 @@ export class Pipeline extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PipelineState | undefined;
             resourceInputs["grafanaAddress"] = state?.grafanaAddress;
+            resourceInputs["httpAddress"] = state?.httpAddress;
+            resourceInputs["key"] = state?.key;
             resourceInputs["location"] = state?.location;
             resourceInputs["logs"] = state?.logs;
             resourceInputs["name"] = state?.name;
+            resourceInputs["tcpAddress"] = state?.tcpAddress;
         } else {
             const args = argsOrState as PipelineArgs | undefined;
             if (args?.logs === undefined && !opts.urn) {
@@ -131,8 +151,13 @@ export class Pipeline extends pulumi.CustomResource {
             resourceInputs["logs"] = args?.logs;
             resourceInputs["name"] = args?.name;
             resourceInputs["grafanaAddress"] = undefined /*out*/;
+            resourceInputs["httpAddress"] = undefined /*out*/;
+            resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["tcpAddress"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Pipeline.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -142,11 +167,19 @@ export class Pipeline extends pulumi.CustomResource {
  */
 export interface PipelineState {
     /**
-     * [string] The address of the client's grafana instance.
+     * [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      */
     grafanaAddress?: pulumi.Input<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     */
+    httpAddress?: pulumi.Input<string>;
+    /**
+     * [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -157,6 +190,10 @@ export interface PipelineState {
      * [string] The name of the Logging pipeline.
      */
     name?: pulumi.Input<string>;
+    /**
+     * [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     */
+    tcpAddress?: pulumi.Input<string>;
 }
 
 /**
@@ -164,7 +201,7 @@ export interface PipelineState {
  */
 export interface PipelineArgs {
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string>;
     /**

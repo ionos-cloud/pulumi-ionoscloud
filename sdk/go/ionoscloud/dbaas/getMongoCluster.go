@@ -86,6 +86,8 @@ type LookupMongoClusterArgs struct {
 	// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName *string `pulumi:"displayName"`
 	Id          *string `pulumi:"id"`
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+	Location *string `pulumi:"location"`
 }
 
 // A collection of values returned by getMongoCluster.
@@ -137,6 +139,8 @@ type LookupMongoClusterOutputArgs struct {
 	// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+	Location pulumi.StringPtrInput `pulumi:"location"`
 }
 
 func (LookupMongoClusterOutputArgs) ElementType() reflect.Type {

@@ -204,7 +204,7 @@ def get_wireguard_gateway(description: Optional[_builtins.str] = None,
 
     :param _builtins.str description: The description of the WireGuard Gateway.
     :param _builtins.str id: [String] The ID of the WireGuard Gateway.
-    :param _builtins.str location: [String] The location of the WireGuard Gateway.
+    :param _builtins.str location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: [String] The name of the WireGuard Gateway.
     """
     __args__ = dict()
@@ -251,7 +251,7 @@ def get_wireguard_gateway_output(description: Optional[pulumi.Input[Optional[_bu
 
     :param _builtins.str description: The description of the WireGuard Gateway.
     :param _builtins.str id: [String] The ID of the WireGuard Gateway.
-    :param _builtins.str location: [String] The location of the WireGuard Gateway.
+    :param _builtins.str location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: [String] The name of the WireGuard Gateway.
     """
     __args__ = dict()

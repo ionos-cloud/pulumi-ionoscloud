@@ -97,6 +97,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// [string] Name of an existing user that you want to search for.
         /// </summary>
@@ -116,6 +119,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] Name of an existing user that you want to search for.
@@ -142,6 +148,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         /// </summary>
         public readonly bool IsSystemUser;
+        public readonly string? Location;
         public readonly string Username;
 
         [OutputConstructor]
@@ -152,11 +159,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             bool isSystemUser,
 
+            string? location,
+
             string username)
         {
             ClusterId = clusterId;
             Id = id;
             IsSystemUser = isSystemUser;
+            Location = location;
             Username = username;
         }
     }

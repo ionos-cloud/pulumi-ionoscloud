@@ -71,6 +71,10 @@ export interface GetMariaDBClusterArgs {
  */
 export interface GetMariaDBClusterResult {
     /**
+     * Properties configuring the backup of the cluster.
+     */
+    readonly backups: outputs.dbaas.GetMariaDBClusterBackup[];
+    /**
      * The network connection for your cluster. Only one connection is allowed.
      */
     readonly connections: outputs.dbaas.GetMariaDBClusterConnection[];
@@ -91,6 +95,9 @@ export interface GetMariaDBClusterResult {
      * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
     readonly instances: number;
+    /**
+     * [string] The IONOS Object Storage location where the backups will be stored.
+     */
     readonly location?: string;
     /**
      * A weekly 4 hour-long window, during which maintenance might occur.

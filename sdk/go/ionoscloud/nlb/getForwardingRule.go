@@ -87,7 +87,8 @@ type LookupForwardingRuleArgs struct {
 	// ID of the network load balancer forwarding rule you want to search for.
 	//
 	// Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// Name of an existing network load balancer forwarding rule that you want to search for.
 	Name *string `pulumi:"name"`
 	// Network Load Balancer's UUID.
@@ -106,7 +107,8 @@ type LookupForwardingRuleResult struct {
 	// Listening IP. (inbound)
 	ListenerIp string `pulumi:"listenerIp"`
 	// Listening port number. (inbound) (range: 1 to 65535)
-	ListenerPort int `pulumi:"listenerPort"`
+	ListenerPort int     `pulumi:"listenerPort"`
+	Location     *string `pulumi:"location"`
 	// The name of that Network Load Balancer forwarding rule.
 	Name                  string `pulumi:"name"`
 	NetworkloadbalancerId string `pulumi:"networkloadbalancerId"`
@@ -132,7 +134,8 @@ type LookupForwardingRuleOutputArgs struct {
 	// ID of the network load balancer forwarding rule you want to search for.
 	//
 	// Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing network load balancer forwarding rule that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Network Load Balancer's UUID.
@@ -185,6 +188,10 @@ func (o LookupForwardingRuleResultOutput) ListenerIp() pulumi.StringOutput {
 // Listening port number. (inbound) (range: 1 to 65535)
 func (o LookupForwardingRuleResultOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) int { return v.ListenerPort }).(pulumi.IntOutput)
+}
+
+func (o LookupForwardingRuleResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of that Network Load Balancer forwarding rule.

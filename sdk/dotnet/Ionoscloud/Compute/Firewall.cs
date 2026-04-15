@@ -51,8 +51,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = "Ubuntu-20.04",
     ///         ImagePassword = serverImagePassword.Result,
     ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
@@ -125,6 +123,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("icmpType")]
         public Output<string?> IcmpType { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the firewall rule.
@@ -252,6 +256,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? IcmpType { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the firewall rule.
         /// </summary>
         [Input("name")]
@@ -336,6 +346,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("icmpType")]
         public Input<string>? IcmpType { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the firewall rule.

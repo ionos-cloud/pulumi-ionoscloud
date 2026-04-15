@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+ * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
@@ -40,6 +40,7 @@ export function getVCPUServer(args: GetVCPUServerArgs, opts?: pulumi.InvokeOptio
     return pulumi.runtime.invoke("ionoscloud:compute/getVCPUServer:getVCPUServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -58,6 +59,10 @@ export interface GetVCPUServerArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: string;
     /**
      * Name of an existing server that you want to search for.
      */
@@ -104,9 +109,17 @@ export interface GetVCPUServerResult {
      */
     readonly labels: outputs.compute.GetVCPUServerLabel[];
     /**
+     * Location of that image/snapshot
+     */
+    readonly location?: string;
+    /**
      * Name of the firewall rule
      */
     readonly name: string;
+    /**
+     * Specifies whether the `nicMultiQueue` feature is enabled or not.
+     */
+    readonly nicMultiQueue: boolean;
     /**
      * list of
      */
@@ -134,7 +147,7 @@ export interface GetVCPUServerResult {
     readonly volumes: outputs.compute.GetVCPUServerVolume[];
 }
 /**
- * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+ * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  *
@@ -167,6 +180,7 @@ export function getVCPUServerOutput(args: GetVCPUServerOutputArgs, opts?: pulumi
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getVCPUServer:getVCPUServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -185,6 +199,10 @@ export interface GetVCPUServerOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing server that you want to search for.
      */

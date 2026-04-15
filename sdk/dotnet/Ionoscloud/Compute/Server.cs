@@ -11,13 +11,15 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **Server** on IonosCloud.
+    /// Dedicated Core Servers or [Enterprise Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) are provisioned and hosted in one of IONOS' physical data centers. Dedicated Core Servers behave exactly like physical servers. They can be configured and managed with your choice of the operating system.
+    /// 
+    /// Check out [Limitations](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core#limitations).
     /// 
     /// ## Example Usage
     /// 
     /// This resource will create an operational server. After this section completes, the provisioner can be called.
     /// 
-    /// ### ENTERPRISE Server
+    /// ### Dedicated Core Server
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -70,8 +72,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = example.Apply(getImageResult =&gt; getImageResult.Name),
     ///         ImagePassword = serverImagePassword.Result,
     ///         Type = "ENTERPRISE",
@@ -96,19 +96,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewalls = new[]
+    ///             Firewall = 
     ///             {
-    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
-    ///                 {
-    ///                     Protocol = "TCP",
-    ///                     Name = "SSH",
-    ///                     PortRangeStart = 22,
-    ///                     PortRangeEnd = 22,
-    ///                     SourceMac = "00:0a:95:9d:68:17",
-    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
-    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
-    ///                     Type = "EGRESS",
-    ///                 },
+    ///                 { "protocol", "TCP" },
+    ///                 { "name", "SSH" },
+    ///                 { "portRangeStart", 22 },
+    ///                 { "portRangeEnd", 22 },
+    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
+    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
+    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
+    ///                 { "type", "EGRESS" },
     ///             },
     ///         },
     ///         Labels = new[]
@@ -136,6 +133,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
     /// using Random = Pulumi.Random;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -157,7 +155,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Public = true,
     ///         Name = "public",
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_lan",
+    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         {
+    ///             Input = example.Ipv6CidrBlock,
+    ///             Newbits = 8,
+    ///             Netnum = 10,
+    ///         }).Result,
     ///     });
     /// 
     ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
@@ -172,8 +175,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = "ubuntu:latest",
     ///         ImagePassword = serverImagePassword.Result,
     ///         Type = "ENTERPRISE",
@@ -199,26 +200,55 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 webserverIpblock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
     ///             Dhcpv6 = true,
-    ///             Ipv6CidrBlock = "ipv6_cidr_block_from_lan",
+    ///             Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///             {
+    ///                 Input = exampleLan.Ipv6CidrBlock,
+    ///                 Newbits = 16,
+    ///                 Netnum = 24,
+    ///             }).Result,
     ///             Ipv6Ips = new[]
     ///             {
-    ///                 "ipv6_ip1",
-    ///                 "ipv6_ip2",
-    ///                 "ipv6_ip3",
-    ///             },
-    ///             Firewalls = new[]
-    ///             {
-    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
+    ///                 Std.Index.Cidrhost.Invoke(new()
     ///                 {
-    ///                     Protocol = "TCP",
-    ///                     Name = "SSH",
-    ///                     PortRangeStart = 22,
-    ///                     PortRangeEnd = 22,
-    ///                     SourceMac = "00:0a:95:9d:68:17",
-    ///                     SourceIp = webserverIpblock.Ips.Apply(ips =&gt; ips[2]),
-    ///                     TargetIp = webserverIpblock.Ips.Apply(ips =&gt; ips[3]),
-    ///                     Type = "EGRESS",
-    ///                 },
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 24,
+    ///                     }).Result,
+    ///                     Host = 10,
+    ///                 }).Result,
+    ///                 Std.Index.Cidrhost.Invoke(new()
+    ///                 {
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 24,
+    ///                     }).Result,
+    ///                     Host = 20,
+    ///                 }).Result,
+    ///                 Std.Index.Cidrhost.Invoke(new()
+    ///                 {
+    ///                     Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                     {
+    ///                         Input = exampleLan.Ipv6CidrBlock,
+    ///                         Newbits = 16,
+    ///                         Netnum = 24,
+    ///                     }).Result,
+    ///                     Host = 30,
+    ///                 }).Result,
+    ///             },
+    ///             Firewall = 
+    ///             {
+    ///                 { "protocol", "TCP" },
+    ///                 { "name", "SSH" },
+    ///                 { "portRangeStart", 22 },
+    ///                 { "portRangeEnd", 22 },
+    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
+    ///                 { "sourceIp", webserverIpblock.Ips.Apply(ips =&gt; ips[2]) },
+    ///                 { "targetIp", webserverIpblock.Ips.Apply(ips =&gt; ips[3]) },
+    ///                 { "type", "EGRESS" },
     ///             },
     ///         },
     ///     });
@@ -352,39 +382,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
     /// 
     /// ⚠️ **Note:** Important for deleting an `Firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
-    /// from the middle of the list of `Firewall` rules. The existing rules will be modified and the last one will be deleted.
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
-    /// 
-    /// ```sh
-    /// terraform import ionoscloud_server.myserver datacenter uuid/server uuid
-    /// ```
-    /// Optionally, you can pass `PrimaryNic` and `FirewallruleId` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
-    /// ```sh
-    /// terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
-    /// ```
+    /// from the middle of the list of `Firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+    /// More details here. There is a workaround described in the issue
+    /// that involves moving the resources in the list prior to deletion.
+    /// `terraform state mv &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;i&gt;] &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;j&gt;]`
     /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/server:Server")]
     public partial class Server : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Output("allowReplace")]
         public Output<bool?> AllowReplace { get; private set; } = null!;
@@ -474,6 +481,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<Outputs.ServerLabel>> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Output("name")]
@@ -484,6 +497,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("nic")]
         public Output<Outputs.ServerNic?> Nic { get; private set; } = null!;
+
+        /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Output("nicMultiQueue")]
+        public Output<bool?> NicMultiQueue { get; private set; } = null!;
 
         /// <summary>
         /// The associated IP address.
@@ -528,13 +561,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string?> TemplateUuid { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// (Computed)[string] Server usages: * `Type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         /// </summary>
         [Output("vmState")]
         public Output<string> VmState { get; private set; } = null!;
@@ -543,7 +576,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// See the Volume section.
         /// </summary>
         [Output("volume")]
-        public Output<Outputs.ServerVolume> Volume { get; private set; } = null!;
+        public Output<Outputs.ServerVolume?> Volume { get; private set; } = null!;
 
 
         /// <summary>
@@ -598,20 +631,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     {
         /// <summary>
         /// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Input("allowReplace")]
         public Input<bool>? AllowReplace { get; set; }
@@ -705,6 +724,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Input("name")]
@@ -715,6 +740,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("nic")]
         public Input<Inputs.ServerNicArgs>? Nic { get; set; }
+
+        /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Input("nicMultiQueue")]
+        public Input<bool>? NicMultiQueue { get; set; }
 
         /// <summary>
         /// (Computed)[integer] The amount of memory for the server in MB.
@@ -766,13 +811,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? TemplateUuid { get; set; }
 
         /// <summary>
-        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// (Computed)[string] Server usages: * `Type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         /// </summary>
         [Input("vmState")]
         public Input<string>? VmState { get; set; }
@@ -780,8 +825,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// <summary>
         /// See the Volume section.
         /// </summary>
-        [Input("volume", required: true)]
-        public Input<Inputs.ServerVolumeArgs> Volume { get; set; } = null!;
+        [Input("volume")]
+        public Input<Inputs.ServerVolumeArgs>? Volume { get; set; }
 
         public ServerArgs()
         {
@@ -793,20 +838,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     {
         /// <summary>
         /// [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Input("allowReplace")]
         public Input<bool>? AllowReplace { get; set; }
@@ -924,6 +955,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Input("name")]
@@ -934,6 +971,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("nic")]
         public Input<Inputs.ServerNicGetArgs>? Nic { get; set; }
+
+        /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Input("nicMultiQueue")]
+        public Input<bool>? NicMultiQueue { get; set; }
 
         /// <summary>
         /// The associated IP address.
@@ -997,13 +1054,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? TemplateUuid { get; set; }
 
         /// <summary>
-        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// (Computed)[string] Server usages: * `Type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        /// [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         /// </summary>
         [Input("vmState")]
         public Input<string>? VmState { get; set; }

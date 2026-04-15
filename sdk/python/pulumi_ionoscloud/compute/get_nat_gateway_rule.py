@@ -27,13 +27,16 @@ class GetNatGatewayRuleResult:
     """
     A collection of values returned by getNatGatewayRule.
     """
-    def __init__(__self__, datacenter_id=None, id=None, name=None, natgateway_id=None, protocol=None, public_ip=None, source_subnet=None, target_port_ranges=None, target_subnet=None, type=None):
+    def __init__(__self__, datacenter_id=None, id=None, location=None, name=None, natgateway_id=None, protocol=None, public_ip=None, source_subnet=None, target_port_ranges=None, target_subnet=None, type=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -71,6 +74,11 @@ class GetNatGatewayRuleResult:
         Id of the NAT gateway rule
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter
@@ -142,6 +150,7 @@ class AwaitableGetNatGatewayRuleResult(GetNatGatewayRuleResult):
         return GetNatGatewayRuleResult(
             datacenter_id=self.datacenter_id,
             id=self.id,
+            location=self.location,
             name=self.name,
             natgateway_id=self.natgateway_id,
             protocol=self.protocol,
@@ -154,6 +163,7 @@ class AwaitableGetNatGatewayRuleResult(GetNatGatewayRuleResult):
 
 def get_nat_gateway_rule(datacenter_id: Optional[_builtins.str] = None,
                          id: Optional[_builtins.str] = None,
+                         location: Optional[_builtins.str] = None,
                          name: Optional[_builtins.str] = None,
                          natgateway_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNatGatewayRuleResult:
@@ -195,6 +205,7 @@ def get_nat_gateway_rule(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['natgatewayId'] = natgateway_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -203,6 +214,7 @@ def get_nat_gateway_rule(datacenter_id: Optional[_builtins.str] = None,
     return AwaitableGetNatGatewayRuleResult(
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         natgateway_id=pulumi.get(__ret__, 'natgateway_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
@@ -213,6 +225,7 @@ def get_nat_gateway_rule(datacenter_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_nat_gateway_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                                location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                 name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                 natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNatGatewayRuleResult]:
@@ -254,6 +267,7 @@ def get_nat_gateway_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.s
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['natgatewayId'] = natgateway_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -261,6 +275,7 @@ def get_nat_gateway_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.s
     return __ret__.apply(lambda __response__: GetNatGatewayRuleResult(
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         natgateway_id=pulumi.get(__response__, 'natgateway_id'),
         protocol=pulumi.get(__response__, 'protocol'),

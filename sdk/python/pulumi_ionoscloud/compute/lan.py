@@ -24,6 +24,7 @@ class LanArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pcc: Optional[pulumi.Input[_builtins.str]] = None,
                  public: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -33,6 +34,7 @@ class LanArgs:
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[_builtins.bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
@@ -42,6 +44,8 @@ class LanArgs:
             pulumi.set(__self__, "ip_failovers", ip_failovers)
         if ipv6_cidr_block is not None:
             pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pcc is not None:
@@ -87,6 +91,18 @@ class LanArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the LAN.
@@ -129,6 +145,7 @@ class _LanState:
                  ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
                  ipv4_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pcc: Optional[pulumi.Input[_builtins.str]] = None,
                  public: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -139,6 +156,7 @@ class _LanState:
         :param pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv4_cidr_block: [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[_builtins.bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
@@ -151,6 +169,8 @@ class _LanState:
             pulumi.set(__self__, "ipv4_cidr_block", ipv4_cidr_block)
         if ipv6_cidr_block is not None:
             pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pcc is not None:
@@ -208,6 +228,18 @@ class _LanState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the LAN.
@@ -252,6 +284,7 @@ class Lan(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pcc: Optional[pulumi.Input[_builtins.str]] = None,
                  public: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -317,6 +350,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[_builtins.bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
@@ -401,6 +435,7 @@ class Lan(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pcc: Optional[pulumi.Input[_builtins.str]] = None,
                  public: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -418,6 +453,7 @@ class Lan(pulumi.CustomResource):
             __props__.__dict__["datacenter_id"] = datacenter_id
             __props__.__dict__["ip_failovers"] = ip_failovers
             __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["pcc"] = pcc
             __props__.__dict__["public"] = public
@@ -436,6 +472,7 @@ class Lan(pulumi.CustomResource):
             ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
             ipv4_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
             ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             pcc: Optional[pulumi.Input[_builtins.str]] = None,
             public: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Lan':
@@ -450,6 +487,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv4_cidr_block: [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
         :param pulumi.Input[_builtins.str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[_builtins.bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
@@ -462,6 +500,7 @@ class Lan(pulumi.CustomResource):
         __props__.__dict__["ip_failovers"] = ip_failovers
         __props__.__dict__["ipv4_cidr_block"] = ipv4_cidr_block
         __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["pcc"] = pcc
         __props__.__dict__["public"] = public
@@ -498,6 +537,14 @@ class Lan(pulumi.CustomResource):
         Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         """
         return pulumi.get(self, "ipv6_cidr_block")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

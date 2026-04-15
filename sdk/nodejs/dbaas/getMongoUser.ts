@@ -30,6 +30,7 @@ export function getMongoUser(args: GetMongoUserArgs, opts?: pulumi.InvokeOptions
         "clusterId": args.clusterId,
         "database": args.database,
         "id": args.id,
+        "location": args.location,
         "roles": args.roles,
         "username": args.username,
     }, opts);
@@ -48,6 +49,7 @@ export interface GetMongoUserArgs {
      */
     database?: string;
     id?: string;
+    location?: string;
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      */
@@ -65,6 +67,7 @@ export interface GetMongoUserResult {
     readonly clusterId: string;
     readonly database: string;
     readonly id: string;
+    readonly location?: string;
     readonly roles: outputs.dbaas.GetMongoUserRole[];
     readonly username: string;
 }
@@ -92,6 +95,7 @@ export function getMongoUserOutput(args: GetMongoUserOutputArgs, opts?: pulumi.I
         "clusterId": args.clusterId,
         "database": args.database,
         "id": args.id,
+        "location": args.location,
         "roles": args.roles,
         "username": args.username,
     }, opts);
@@ -110,6 +114,7 @@ export interface GetMongoUserOutputArgs {
      */
     database?: pulumi.Input<string>;
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      */

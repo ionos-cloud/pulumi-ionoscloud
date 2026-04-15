@@ -47,7 +47,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         public Input<string>? TargetIp { get; set; }
 
         /// <summary>
-        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// (Computed)[string] Server usages: * `Type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

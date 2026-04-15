@@ -107,7 +107,7 @@ export class Share extends pulumi.CustomResource {
      */
     declare public readonly gid: pulumi.Output<number | undefined>;
     /**
-     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -187,7 +187,7 @@ export interface ShareState {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -225,7 +225,7 @@ export interface ShareArgs {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: pulumi.Input<string>;
     /**

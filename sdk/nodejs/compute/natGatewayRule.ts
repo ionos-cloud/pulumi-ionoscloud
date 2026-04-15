@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  * });
  * const exampleLan = new ionoscloud.compute.Lan("example", {
  *     datacenterId: example.id,
- *     "public": true,
+ *     "public": false,
  *     name: "Lan Example",
  * });
  * const exampleNatGateway = new ionoscloud.compute.NatGateway("example", {
@@ -99,6 +99,7 @@ export class NatGatewayRule extends pulumi.CustomResource {
      * [string] A Datacenter's UUID.
      */
     declare public readonly datacenterId: pulumi.Output<string>;
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * [string] Name of the NAT gateway rule.
      */
@@ -146,6 +147,7 @@ export class NatGatewayRule extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NatGatewayRuleState | undefined;
             resourceInputs["datacenterId"] = state?.datacenterId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["natgatewayId"] = state?.natgatewayId;
             resourceInputs["protocol"] = state?.protocol;
@@ -169,6 +171,7 @@ export class NatGatewayRule extends pulumi.CustomResource {
                 throw new Error("Missing required property 'sourceSubnet'");
             }
             resourceInputs["datacenterId"] = args?.datacenterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["natgatewayId"] = args?.natgatewayId;
             resourceInputs["protocol"] = args?.protocol;
@@ -191,6 +194,7 @@ export interface NatGatewayRuleState {
      * [string] A Datacenter's UUID.
      */
     datacenterId?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the NAT gateway rule.
      */
@@ -233,6 +237,7 @@ export interface NatGatewayRuleArgs {
      * [string] A Datacenter's UUID.
      */
     datacenterId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the NAT gateway rule.
      */

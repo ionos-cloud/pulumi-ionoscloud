@@ -27,7 +27,7 @@ class GetNodePoolResult:
     """
     A collection of values returned by getNodePool.
     """
-    def __init__(__self__, annotations=None, auto_scalings=None, availability_zone=None, available_upgrade_versions=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, k8s_cluster_id=None, k8s_version=None, labels=None, lans=None, maintenance_windows=None, name=None, node_count=None, public_ips=None, ram_size=None, state=None, storage_size=None, storage_type=None):
+    def __init__(__self__, annotations=None, auto_scalings=None, availability_zone=None, available_upgrade_versions=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, k8s_cluster_id=None, k8s_version=None, labels=None, lans=None, location=None, maintenance_windows=None, name=None, node_count=None, public_ips=None, ram_size=None, server_type=None, state=None, storage_size=None, storage_type=None):
         if annotations and not isinstance(annotations, dict):
             raise TypeError("Expected argument 'annotations' to be a dict")
         pulumi.set(__self__, "annotations", annotations)
@@ -64,6 +64,9 @@ class GetNodePoolResult:
         if lans and not isinstance(lans, list):
             raise TypeError("Expected argument 'lans' to be a list")
         pulumi.set(__self__, "lans", lans)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if maintenance_windows and not isinstance(maintenance_windows, list):
             raise TypeError("Expected argument 'maintenance_windows' to be a list")
         pulumi.set(__self__, "maintenance_windows", maintenance_windows)
@@ -79,6 +82,9 @@ class GetNodePoolResult:
         if ram_size and not isinstance(ram_size, int):
             raise TypeError("Expected argument 'ram_size' to be a int")
         pulumi.set(__self__, "ram_size", ram_size)
+        if server_type and not isinstance(server_type, str):
+            raise TypeError("Expected argument 'server_type' to be a str")
+        pulumi.set(__self__, "server_type", server_type)
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
@@ -186,6 +192,11 @@ class GetNodePoolResult:
         return pulumi.get(self, "lans")
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetNodePoolMaintenanceWindowResult']:
         """
@@ -224,6 +235,14 @@ class GetNodePoolResult:
         The amount of RAM in MB
         """
         return pulumi.get(self, "ram_size")
+
+    @_builtins.property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> _builtins.str:
+        """
+        The server type for the compute engine
+        """
+        return pulumi.get(self, "server_type")
 
     @_builtins.property
     @pulumi.getter
@@ -280,11 +299,13 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
             k8s_version=self.k8s_version,
             labels=self.labels,
             lans=self.lans,
+            location=self.location,
             maintenance_windows=self.maintenance_windows,
             name=self.name,
             node_count=self.node_count,
             public_ips=self.public_ips,
             ram_size=self.ram_size,
+            server_type=self.server_type,
             state=self.state,
             storage_size=self.storage_size,
             storage_type=self.storage_type)
@@ -292,6 +313,7 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
 
 def get_node_pool(id: Optional[_builtins.str] = None,
                   k8s_cluster_id: Optional[_builtins.str] = None,
+                  location: Optional[_builtins.str] = None,
                   name: Optional[_builtins.str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodePoolResult:
     """
@@ -329,6 +351,7 @@ def get_node_pool(id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['k8sClusterId'] = k8s_cluster_id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:k8s/getNodePool:getNodePool', __args__, opts=opts, typ=GetNodePoolResult).value
@@ -346,16 +369,19 @@ def get_node_pool(id: Optional[_builtins.str] = None,
         k8s_version=pulumi.get(__ret__, 'k8s_version'),
         labels=pulumi.get(__ret__, 'labels'),
         lans=pulumi.get(__ret__, 'lans'),
+        location=pulumi.get(__ret__, 'location'),
         maintenance_windows=pulumi.get(__ret__, 'maintenance_windows'),
         name=pulumi.get(__ret__, 'name'),
         node_count=pulumi.get(__ret__, 'node_count'),
         public_ips=pulumi.get(__ret__, 'public_ips'),
         ram_size=pulumi.get(__ret__, 'ram_size'),
+        server_type=pulumi.get(__ret__, 'server_type'),
         state=pulumi.get(__ret__, 'state'),
         storage_size=pulumi.get(__ret__, 'storage_size'),
         storage_type=pulumi.get(__ret__, 'storage_type'))
 def get_node_pool_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                          k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                         location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                          name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
     """
@@ -393,6 +419,7 @@ def get_node_pool_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     __args__ = dict()
     __args__['id'] = id
     __args__['k8sClusterId'] = k8s_cluster_id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:k8s/getNodePool:getNodePool', __args__, opts=opts, typ=GetNodePoolResult)
@@ -409,11 +436,13 @@ def get_node_pool_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = N
         k8s_version=pulumi.get(__response__, 'k8s_version'),
         labels=pulumi.get(__response__, 'labels'),
         lans=pulumi.get(__response__, 'lans'),
+        location=pulumi.get(__response__, 'location'),
         maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
         name=pulumi.get(__response__, 'name'),
         node_count=pulumi.get(__response__, 'node_count'),
         public_ips=pulumi.get(__response__, 'public_ips'),
         ram_size=pulumi.get(__response__, 'ram_size'),
+        server_type=pulumi.get(__response__, 'server_type'),
         state=pulumi.get(__response__, 'state'),
         storage_size=pulumi.get(__response__, 'storage_size'),
         storage_type=pulumi.get(__response__, 'storage_type')))

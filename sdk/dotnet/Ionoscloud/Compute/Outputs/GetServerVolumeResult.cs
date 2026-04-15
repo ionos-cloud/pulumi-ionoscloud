@@ -47,6 +47,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly bool DiscVirtioHotUnplug;
         /// <summary>
+        /// If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        public readonly bool ExposeSerial;
+        /// <summary>
         /// ID of the server you want to search for.
         /// 
         /// `DatacenterId` and either `Name` or `Id` must be provided. If none, or both of `Name` and `Id` are provided, the datasource will return an error.
@@ -82,6 +86,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly bool RamHotPlug;
         /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool RequireLegacyBios;
+        /// <summary>
         /// The size of the volume in GB
         /// </summary>
         public readonly int Size;
@@ -116,6 +124,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             bool discVirtioHotUnplug,
 
+            bool exposeSerial,
+
             string id,
 
             string imageName,
@@ -134,6 +144,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             bool ramHotPlug,
 
+            bool requireLegacyBios,
+
             int size,
 
             ImmutableArray<string> sshKeys,
@@ -150,6 +162,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             DeviceNumber = deviceNumber;
             DiscVirtioHotPlug = discVirtioHotPlug;
             DiscVirtioHotUnplug = discVirtioHotUnplug;
+            ExposeSerial = exposeSerial;
             Id = id;
             ImageName = imageName;
             ImagePassword = imagePassword;
@@ -159,6 +172,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             NicHotUnplug = nicHotUnplug;
             PciSlot = pciSlot;
             RamHotPlug = ramHotPlug;
+            RequireLegacyBios = requireLegacyBios;
             Size = size;
             SshKeys = sshKeys;
             Type = type;

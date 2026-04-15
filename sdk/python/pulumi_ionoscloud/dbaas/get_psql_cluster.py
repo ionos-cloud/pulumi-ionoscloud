@@ -229,6 +229,7 @@ class AwaitableGetPSQLClusterResult(GetPSQLClusterResult):
 
 def get_psql_cluster(display_name: Optional[_builtins.str] = None,
                      id: Optional[_builtins.str] = None,
+                     location: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLClusterResult:
     """
     The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
@@ -259,10 +260,12 @@ def get_psql_cluster(display_name: Optional[_builtins.str] = None,
     :param _builtins.str id: ID of the cluster you want to search for.
            
            Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: The physical location where the cluster will be created. This will be where all of your instances live.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['id'] = id
+    __args__['location'] = location
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getPSQLCluster:getPSQLCluster', __args__, opts=opts, typ=GetPSQLClusterResult).value
 
@@ -285,6 +288,7 @@ def get_psql_cluster(display_name: Optional[_builtins.str] = None,
         synchronization_mode=pulumi.get(__ret__, 'synchronization_mode'))
 def get_psql_cluster_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLClusterResult]:
     """
     The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
@@ -315,10 +319,12 @@ def get_psql_cluster_output(display_name: Optional[pulumi.Input[Optional[_builti
     :param _builtins.str id: ID of the cluster you want to search for.
            
            Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: The physical location where the cluster will be created. This will be where all of your instances live.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['id'] = id
+    __args__['location'] = location
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLCluster:getPSQLCluster', __args__, opts=opts, typ=GetPSQLClusterResult)
     return __ret__.apply(lambda __response__: GetPSQLClusterResult(

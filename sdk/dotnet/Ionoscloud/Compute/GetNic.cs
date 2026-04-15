@@ -175,6 +175,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// [string] The name of the LAN.
         /// </summary>
@@ -209,6 +212,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the LAN.
@@ -271,6 +277,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The LAN ID the NIC will sit on.
         /// </summary>
         public readonly int Lan;
+        public readonly string? Location;
         /// <summary>
         /// The MAC address of the NIC.
         /// </summary>
@@ -318,6 +325,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             int lan,
 
+            string? location,
+
             string mac,
 
             string name,
@@ -340,6 +349,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Ipv6CidrBlock = ipv6CidrBlock;
             Ipv6Ips = ipv6Ips;
             Lan = lan;
+            Location = location;
             Mac = mac;
             Name = name;
             PciSlot = pciSlot;

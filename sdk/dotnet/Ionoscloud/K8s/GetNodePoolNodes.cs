@@ -97,6 +97,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         [Input("k8sClusterId", required: true)]
         public string K8sClusterId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         [Input("nodePoolId", required: true)]
         public string NodePoolId { get; set; } = null!;
 
@@ -113,6 +116,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Input("k8sClusterId", required: true)]
         public Input<string> K8sClusterId { get; set; } = null!;
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         [Input("nodePoolId", required: true)]
         public Input<string> NodePoolId { get; set; } = null!;
@@ -132,6 +138,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         public readonly string Id;
         public readonly string K8sClusterId;
+        public readonly string? Location;
         public readonly string NodePoolId;
         /// <summary>
         /// a list of the nodes that are in the nodepool
@@ -144,12 +151,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 
             string k8sClusterId,
 
+            string? location,
+
             string nodePoolId,
 
             ImmutableArray<Outputs.GetNodePoolNodesNodeResult> nodes)
         {
             Id = id;
             K8sClusterId = k8sClusterId;
+            Location = location;
             NodePoolId = nodePoolId;
             Nodes = nodes;
         }

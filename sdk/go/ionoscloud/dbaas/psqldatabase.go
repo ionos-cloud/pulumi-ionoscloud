@@ -79,11 +79,13 @@ import (
 type PSQLDatabase struct {
 	pulumi.CustomResourceState
 
-	// [string] The unique ID of the cluster.
+	// [string] The unique ID of the cluster. Immutable, forces re-creation.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// [string] The name of the database.
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
+	// [string] The name of the database. Immutable, forces re-creation.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] The owner of the database.
+	// [string] The owner of the database. Immutable, forces re-creation.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 }
 
@@ -123,20 +125,24 @@ func GetPSQLDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PSQLDatabase resources.
 type psqldatabaseState struct {
-	// [string] The unique ID of the cluster.
+	// [string] The unique ID of the cluster. Immutable, forces re-creation.
 	ClusterId *string `pulumi:"clusterId"`
-	// [string] The name of the database.
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
+	// [string] The name of the database. Immutable, forces re-creation.
 	Name *string `pulumi:"name"`
-	// [string] The owner of the database.
+	// [string] The owner of the database. Immutable, forces re-creation.
 	Owner *string `pulumi:"owner"`
 }
 
 type PSQLDatabaseState struct {
-	// [string] The unique ID of the cluster.
+	// [string] The unique ID of the cluster. Immutable, forces re-creation.
 	ClusterId pulumi.StringPtrInput
-	// [string] The name of the database.
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
+	// [string] The name of the database. Immutable, forces re-creation.
 	Name pulumi.StringPtrInput
-	// [string] The owner of the database.
+	// [string] The owner of the database. Immutable, forces re-creation.
 	Owner pulumi.StringPtrInput
 }
 
@@ -145,21 +151,25 @@ func (PSQLDatabaseState) ElementType() reflect.Type {
 }
 
 type psqldatabaseArgs struct {
-	// [string] The unique ID of the cluster.
+	// [string] The unique ID of the cluster. Immutable, forces re-creation.
 	ClusterId string `pulumi:"clusterId"`
-	// [string] The name of the database.
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
+	// [string] The name of the database. Immutable, forces re-creation.
 	Name *string `pulumi:"name"`
-	// [string] The owner of the database.
+	// [string] The owner of the database. Immutable, forces re-creation.
 	Owner string `pulumi:"owner"`
 }
 
 // The set of arguments for constructing a PSQLDatabase resource.
 type PSQLDatabaseArgs struct {
-	// [string] The unique ID of the cluster.
+	// [string] The unique ID of the cluster. Immutable, forces re-creation.
 	ClusterId pulumi.StringInput
-	// [string] The name of the database.
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
+	// [string] The name of the database. Immutable, forces re-creation.
 	Name pulumi.StringPtrInput
-	// [string] The owner of the database.
+	// [string] The owner of the database. Immutable, forces re-creation.
 	Owner pulumi.StringInput
 }
 
@@ -250,17 +260,22 @@ func (o PSQLDatabaseOutput) ToPSQLDatabaseOutputWithContext(ctx context.Context)
 	return o
 }
 
-// [string] The unique ID of the cluster.
+// [string] The unique ID of the cluster. Immutable, forces re-creation.
 func (o PSQLDatabaseOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// [string] The name of the database.
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o PSQLDatabaseOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the database. Immutable, forces re-creation.
 func (o PSQLDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] The owner of the database.
+// [string] The owner of the database. Immutable, forces re-creation.
 func (o PSQLDatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }

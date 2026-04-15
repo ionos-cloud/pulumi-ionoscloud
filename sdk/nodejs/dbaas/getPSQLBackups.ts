@@ -26,6 +26,7 @@ export function getPSQLBackups(args: GetPSQLBackupsArgs, opts?: pulumi.InvokeOpt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", {
         "clusterId": args.clusterId,
+        "location": args.location,
     }, opts);
 }
 
@@ -39,6 +40,10 @@ export interface GetPSQLBackupsArgs {
      * `clusterId` must be provided. If it is not provided, the datasource will return an error.
      */
     clusterId: string;
+    /**
+     * The IONOS Object Storage location where the backups will be stored.
+     */
+    location?: string;
 }
 
 /**
@@ -57,6 +62,10 @@ export interface GetPSQLBackupsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The IONOS Object Storage location where the backups will be stored.
+     */
+    readonly location?: string;
 }
 /**
  * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
@@ -78,6 +87,7 @@ export function getPSQLBackupsOutput(args: GetPSQLBackupsOutputArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", {
         "clusterId": args.clusterId,
+        "location": args.location,
     }, opts);
 }
 
@@ -91,4 +101,8 @@ export interface GetPSQLBackupsOutputArgs {
      * `clusterId` must be provided. If it is not provided, the datasource will return an error.
      */
     clusterId: pulumi.Input<string>;
+    /**
+     * The IONOS Object Storage location where the backups will be stored.
+     */
+    location?: pulumi.Input<string>;
 }

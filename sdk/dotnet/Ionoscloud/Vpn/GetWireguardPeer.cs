@@ -119,7 +119,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public string? Id { get; set; }
 
         /// <summary>
-        /// [String] The location of the WireGuard Gateway.
+        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -151,7 +151,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [String] The location of the WireGuard Gateway.
+        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

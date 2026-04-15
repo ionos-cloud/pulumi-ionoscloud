@@ -36,10 +36,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Resource Server can be imported using the `resource id`, `nsg id` and `datacenter id`, e.g.
+ * A Network Security Group firewall rule can be imported using the `datacenter id`, `nsg id` and `firewall rule id`, e.g.
  *
  * ```sh
- * terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid/firewall uuid
+ * $ pulumi import ionoscloud:nsg/firewall:Firewall mynsg_firewallrule datacenter_uuid/nsg_uuid/firewall_uuid
  * ```
  *
  * Or by using an `import` block.
@@ -84,6 +84,10 @@ export class Firewall extends pulumi.CustomResource {
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
     declare public readonly icmpType: pulumi.Output<string | undefined>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * [string] The name of the firewall rule.
      */
@@ -137,6 +141,7 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["icmpCode"] = state?.icmpCode;
             resourceInputs["icmpType"] = state?.icmpType;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nsgId"] = state?.nsgId;
             resourceInputs["portRangeEnd"] = state?.portRangeEnd;
@@ -160,6 +165,7 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["icmpCode"] = args?.icmpCode;
             resourceInputs["icmpType"] = args?.icmpType;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nsgId"] = args?.nsgId;
             resourceInputs["portRangeEnd"] = args?.portRangeEnd;
@@ -191,6 +197,10 @@ export interface FirewallState {
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
     icmpType?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the firewall rule.
      */
@@ -245,6 +255,10 @@ export interface FirewallArgs {
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
     icmpType?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the firewall rule.
      */

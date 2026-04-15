@@ -28,7 +28,7 @@ class DatacenterArgs:
         """
         The set of arguments for constructing a Datacenter resource.
 
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
@@ -45,7 +45,7 @@ class DatacenterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 
@@ -108,7 +108,7 @@ class _DatacenterState:
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: List of features supported by the location this data center is part of
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] version: The version of that Data Center. Gets incremented with every change
@@ -182,7 +182,7 @@ class _DatacenterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 
@@ -239,7 +239,7 @@ class Datacenter(pulumi.CustomResource):
                  sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages a Virtual **Data Center** on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
 
         ## Example Usage
 
@@ -256,8 +256,8 @@ class Datacenter(pulumi.CustomResource):
 
         ## Attaching a NSG to a Datacenter
 
-        #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
-        #### Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
+        A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+        Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
 
         ```python
         import pulumi
@@ -280,6 +280,18 @@ class Datacenter(pulumi.CustomResource):
         Resource Datacenter can be imported using the `resource id`, e.g.
 
         ```sh
+        import {
+          to = ionoscloud_datacenter.example
+          id = "datacenter uuid" 
+        }
+        ```
+        Auto-generate the datacenter resource in the `dc.tf` file using the following command:
+        ```sh
+        pulumi preview -generate-config-out=dc.tf
+        ```
+        The older syntax can be for importing the resource is still supported:
+
+        ```sh
         terraform import ionoscloud_datacenter.mydc datacenter uuid
         ```
 
@@ -287,7 +299,7 @@ class Datacenter(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
@@ -298,7 +310,7 @@ class Datacenter(pulumi.CustomResource):
                  args: DatacenterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Virtual **Data Center** on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
 
         ## Example Usage
 
@@ -315,8 +327,8 @@ class Datacenter(pulumi.CustomResource):
 
         ## Attaching a NSG to a Datacenter
 
-        #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
-        #### Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
+        A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+        Deleting the resource or setting the empty string for the `nsg_id` field will de-attach any previously linked NSG from the Datacenter.
 
         ```python
         import pulumi
@@ -337,6 +349,18 @@ class Datacenter(pulumi.CustomResource):
         ## Import
 
         Resource Datacenter can be imported using the `resource id`, e.g.
+
+        ```sh
+        import {
+          to = ionoscloud_datacenter.example
+          id = "datacenter uuid" 
+        }
+        ```
+        Auto-generate the datacenter resource in the `dc.tf` file using the following command:
+        ```sh
+        pulumi preview -generate-config-out=dc.tf
+        ```
+        The older syntax can be for importing the resource is still supported:
 
         ```sh
         terraform import ionoscloud_datacenter.mydc datacenter uuid
@@ -410,7 +434,7 @@ class Datacenter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: List of features supported by the location this data center is part of
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] version: The version of that Data Center. Gets incremented with every change
@@ -465,7 +489,7 @@ class Datacenter(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 

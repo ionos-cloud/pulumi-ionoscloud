@@ -40,6 +40,7 @@ export function getNatGateway(args: GetNatGatewayArgs, opts?: pulumi.InvokeOptio
     return pulumi.runtime.invoke("ionoscloud:compute/getNatGateway:getNatGateway", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -58,6 +59,7 @@ export interface GetNatGatewayArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing network load balancer forwarding rule that you want to search for.
      */
@@ -77,6 +79,7 @@ export interface GetNatGatewayResult {
      * Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
      */
     readonly lans: outputs.compute.GetNatGatewayLan[];
+    readonly location?: string;
     /**
      * Name of that natgateway
      */
@@ -120,6 +123,7 @@ export function getNatGatewayOutput(args: GetNatGatewayOutputArgs, opts?: pulumi
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNatGateway:getNatGateway", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -138,6 +142,7 @@ export interface GetNatGatewayOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing network load balancer forwarding rule that you want to search for.
      */

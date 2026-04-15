@@ -18,8 +18,7 @@ type PipelineLog struct {
 	Destinations []PipelineLogDestination `pulumi:"destinations"`
 	// [string] "Protocol to use as intake. Possible values are: http, tcp."
 	Protocol string `pulumi:"protocol"`
-	// [bool]
-	Public *bool `pulumi:"public"`
+	Public   *bool  `pulumi:"public"`
 	// [string] The source parser to be used.
 	Source string `pulumi:"source"`
 	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
@@ -41,9 +40,8 @@ type PipelineLogArgs struct {
 	// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
 	Destinations PipelineLogDestinationArrayInput `pulumi:"destinations"`
 	// [string] "Protocol to use as intake. Possible values are: http, tcp."
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// [bool]
-	Public pulumi.BoolPtrInput `pulumi:"public"`
+	Protocol pulumi.StringInput  `pulumi:"protocol"`
+	Public   pulumi.BoolPtrInput `pulumi:"public"`
 	// [string] The source parser to be used.
 	Source pulumi.StringInput `pulumi:"source"`
 	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
@@ -111,7 +109,6 @@ func (o PipelineLogOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v PipelineLog) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// [bool]
 func (o PipelineLogOutput) Public() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v PipelineLog) *bool { return v.Public }).(pulumi.BoolPtrOutput)
 }

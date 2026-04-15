@@ -115,6 +115,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         [Input("roles")]
         private List<Inputs.GetMongoUserRoleArgs>? _roles;
 
@@ -156,6 +159,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         [Input("roles")]
         private InputList<Inputs.GetMongoUserRoleInputArgs>? _roles;
 
@@ -187,6 +193,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public readonly string ClusterId;
         public readonly string Database;
         public readonly string Id;
+        public readonly string? Location;
         public readonly ImmutableArray<Outputs.GetMongoUserRoleResult> Roles;
         public readonly string Username;
 
@@ -198,6 +205,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             string id,
 
+            string? location,
+
             ImmutableArray<Outputs.GetMongoUserRoleResult> roles,
 
             string username)
@@ -205,6 +214,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
             ClusterId = clusterId;
             Database = database;
             Id = id;
+            Location = location;
             Roles = roles;
             Username = username;
         }

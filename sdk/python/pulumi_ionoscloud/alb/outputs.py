@@ -38,7 +38,7 @@ class BalancerFlowlog(dict):
         :param _builtins.str direction: [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         :param _builtins.str name: [string] Specifies the name of the flow log.
                
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+               ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
         :param _builtins.str id: The resource's unique identifier.
         """
         pulumi.set(__self__, "action", action)
@@ -78,7 +78,7 @@ class BalancerFlowlog(dict):
         """
         [string] Specifies the name of the flow log.
 
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
         """
         return pulumi.get(self, "name")
 

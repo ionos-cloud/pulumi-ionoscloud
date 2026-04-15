@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Target Group** on IonosCloud.
+// Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
 //
 // ## Example Usage
 //

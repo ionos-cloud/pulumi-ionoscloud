@@ -40,6 +40,7 @@ export function getServer(args: GetServerArgs, opts?: pulumi.InvokeOptions): Pro
     return pulumi.runtime.invoke("ionoscloud:compute/getServer:getServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "templateUuid": args.templateUuid,
         "type": args.type,
@@ -60,6 +61,10 @@ export interface GetServerArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: string;
     /**
      * Name of an existing server that you want to search for.
      */
@@ -114,9 +119,17 @@ export interface GetServerResult {
      */
     readonly labels: outputs.compute.GetServerLabel[];
     /**
+     * Location of that image/snapshot
+     */
+    readonly location?: string;
+    /**
      * Name of the firewall rule
      */
     readonly name: string;
+    /**
+     * Specifies whether the `nicMultiQueue` feature is enabled or not.
+     */
+    readonly nicMultiQueue: boolean;
     /**
      * list of
      */
@@ -181,6 +194,7 @@ export function getServerOutput(args: GetServerOutputArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getServer:getServer", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "templateUuid": args.templateUuid,
         "type": args.type,
@@ -201,6 +215,10 @@ export interface GetServerOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * Location of that image/snapshot
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing server that you want to search for.
      */

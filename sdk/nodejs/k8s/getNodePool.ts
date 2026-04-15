@@ -40,6 +40,7 @@ export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("ionoscloud:k8s/getNodePool:getNodePool", {
         "id": args.id,
         "k8sClusterId": args.k8sClusterId,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -58,6 +59,7 @@ export interface GetNodePoolArgs {
      * K8s Cluster' UUID
      */
     k8sClusterId: string;
+    location?: string;
     /**
      * Name of an existing node pool that you want to search for.
      */
@@ -116,6 +118,7 @@ export interface GetNodePoolResult {
      * A list of Local Area Networks the node pool is a part of
      */
     readonly lans: outputs.k8s.GetNodePoolLan[];
+    readonly location?: string;
     /**
      * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
@@ -136,6 +139,10 @@ export interface GetNodePoolResult {
      * The amount of RAM in MB
      */
     readonly ramSize: number;
+    /**
+     * The server type for the compute engine
+     */
+    readonly serverType: string;
     /**
      * one of "AVAILABLE",
      * "INACTIVE",
@@ -195,6 +202,7 @@ export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.Inv
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getNodePool:getNodePool", {
         "id": args.id,
         "k8sClusterId": args.k8sClusterId,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -213,6 +221,7 @@ export interface GetNodePoolOutputArgs {
      * K8s Cluster' UUID
      */
     k8sClusterId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing node pool that you want to search for.
      */

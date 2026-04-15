@@ -20,8 +20,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool ForceSecAuth;
         /// <summary>
         /// ID of the group you want to search for.
-        /// 
-        /// Either `Name` or `Id` must be provided. If none, or both are provided, the datasource will return an error.
         /// </summary>
         public readonly string Id;
         public readonly string LastName;

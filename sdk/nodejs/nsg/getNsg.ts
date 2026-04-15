@@ -40,6 +40,7 @@ export function getNsg(args: GetNsgArgs, opts?: pulumi.InvokeOptions): Promise<G
     return pulumi.runtime.invoke("ionoscloud:nsg/getNsg:getNsg", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -56,6 +57,7 @@ export interface GetNsgArgs {
      * Id of an existing Network Security Group that you want to search for.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing Network Security Group that you want to search for.
      *
@@ -80,6 +82,7 @@ export interface GetNsgResult {
      * UUID of the Network Security Group
      */
     readonly id: string;
+    readonly location?: string;
     /**
      * The name of the Network Security Group
      */
@@ -127,6 +130,7 @@ export function getNsgOutput(args: GetNsgOutputArgs, opts?: pulumi.InvokeOutputO
     return pulumi.runtime.invokeOutput("ionoscloud:nsg/getNsg:getNsg", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -143,6 +147,7 @@ export interface GetNsgOutputArgs {
      * Id of an existing Network Security Group that you want to search for.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing Network Security Group that you want to search for.
      *

@@ -1,30 +1,6 @@
 {
     "auto-aliasing": {
         "resources": {
-            "ionoscloud_apigateway": {
-                "current": "ionoscloud:apigateway/apigateway:Apigateway",
-                "majorVersion": 1,
-                "fields": {
-                    "custom_domains": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "ionoscloud_apigateway_route": {
-                "current": "ionoscloud:apigateway/route:Route",
-                "majorVersion": 1,
-                "fields": {
-                    "methods": {
-                        "maxItemsOne": false
-                    },
-                    "paths": {
-                        "maxItemsOne": false
-                    },
-                    "upstreams": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "ionoscloud_application_loadbalancer": {
                 "current": "ionoscloud:alb/balancer:Balancer",
                 "majorVersion": 1,
@@ -274,39 +250,12 @@
                 "current": "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection",
                 "majorVersion": 1
             },
-            "ionoscloud_dataplatform_cluster": {
-                "current": "ionoscloud:dsaas/cluster:Cluster",
-                "majorVersion": 1,
-                "fields": {
-                    "lans": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "routes": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "maintenance_window": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "ionoscloud_dataplatform_node_pool": {
-                "current": "ionoscloud:dsaas/nodePool:NodePool",
-                "majorVersion": 1,
-                "fields": {
-                    "auto_scaling": {
-                        "maxItemsOne": true
-                    },
-                    "maintenance_window": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "ionoscloud_dns_record": {
                 "current": "ionoscloud:dns/record:Record",
+                "majorVersion": 1
+            },
+            "ionoscloud_dns_reverse_record": {
+                "current": "ionoscloud:index/dnsReverseRecord:DnsReverseRecord",
                 "majorVersion": 1
             },
             "ionoscloud_dns_zone": {
@@ -321,6 +270,50 @@
             "ionoscloud_firewall": {
                 "current": "ionoscloud:compute/firewall:Firewall",
                 "majorVersion": 1
+            },
+            "ionoscloud_gpu_server": {
+                "current": "ionoscloud:compute/gPUServer:GPUServer",
+                "past": [
+                    {
+                        "name": "ionoscloud:index/gpuServer:GpuServer",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
+                "majorVersion": 1,
+                "fields": {
+                    "inline_volume_ids": {
+                        "maxItemsOne": false
+                    },
+                    "nic": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "firewall": {
+                                    "maxItemsOne": true
+                                },
+                                "ips": {
+                                    "maxItemsOne": false
+                                },
+                                "ipv6_ips": {
+                                    "maxItemsOne": false
+                                },
+                                "security_groups_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "security_groups_ids": {
+                        "maxItemsOne": false
+                    },
+                    "ssh_key_path": {
+                        "maxItemsOne": false
+                    },
+                    "volume": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "ionoscloud_group": {
                 "current": "ionoscloud:compute/group:Group",
@@ -479,6 +472,9 @@
                 "current": "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster",
                 "majorVersion": 1,
                 "fields": {
+                    "backup": {
+                        "maxItemsOne": true
+                    },
                     "connections": {
                         "maxItemsOne": true
                     },
@@ -990,30 +986,6 @@
             }
         },
         "datasources": {
-            "ionoscloud_apigateway": {
-                "current": "ionoscloud:apigateway/getApigateway:getApigateway",
-                "majorVersion": 1,
-                "fields": {
-                    "custom_domains": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "ionoscloud_apigateway_route": {
-                "current": "ionoscloud:apigateway/getRoute:getRoute",
-                "majorVersion": 1,
-                "fields": {
-                    "methods": {
-                        "maxItemsOne": false
-                    },
-                    "paths": {
-                        "maxItemsOne": false
-                    },
-                    "upstreams": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "ionoscloud_application_loadbalancer": {
                 "current": "ionoscloud:alb/getBalancer:getBalancer",
                 "majorVersion": 1,
@@ -1231,6 +1203,15 @@
                     }
                 }
             },
+            "ionoscloud_contracts": {
+                "current": "ionoscloud:index/getContracts:getContracts",
+                "majorVersion": 1,
+                "fields": {
+                    "contracts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_cube_server": {
                 "current": "ionoscloud:compute/getCubeServer:getCubeServer",
                 "majorVersion": 1,
@@ -1291,81 +1272,25 @@
                     }
                 }
             },
-            "ionoscloud_dataplatform_cluster": {
-                "current": "ionoscloud:dsaas/getCluster:getCluster",
-                "majorVersion": 1,
-                "fields": {
-                    "config": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "clusters": {
-                                    "maxItemsOne": false
-                                },
-                                "contexts": {
-                                    "maxItemsOne": false
-                                },
-                                "users": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "lans": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "routes": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "maintenance_window": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "ionoscloud_dataplatform_node_pool": {
-                "current": "ionoscloud:dsaas/getNodePool:getNodePool",
-                "majorVersion": 1,
-                "fields": {
-                    "auto_scaling": {
-                        "maxItemsOne": false
-                    },
-                    "maintenance_window": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "ionoscloud_dataplatform_node_pools": {
-                "current": "ionoscloud:dsaas/getNodePools:getNodePools",
-                "majorVersion": 1,
-                "fields": {
-                    "node_pools": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "maintenance_window": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "ionoscloud_dataplatform_versions": {
-                "current": "ionoscloud:dsaas/getVersions:getVersions",
-                "majorVersion": 1,
-                "fields": {
-                    "versions": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
             "ionoscloud_dns_record": {
                 "current": "ionoscloud:dns/getRecord:getRecord",
                 "majorVersion": 1
+            },
+            "ionoscloud_dns_reverse_record": {
+                "current": "ionoscloud:index/getDnsReverseRecord:getDnsReverseRecord",
+                "majorVersion": 1
+            },
+            "ionoscloud_dns_reverse_records": {
+                "current": "ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords",
+                "majorVersion": 1,
+                "fields": {
+                    "ips": {
+                        "maxItemsOne": false
+                    },
+                    "reverse_records": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "ionoscloud_dns_zone": {
                 "current": "ionoscloud:dns/getZone:getZone",
@@ -1379,6 +1304,88 @@
             "ionoscloud_firewall": {
                 "current": "ionoscloud:compute/getFirewall:getFirewall",
                 "majorVersion": 1
+            },
+            "ionoscloud_gpu": {
+                "current": "ionoscloud:compute/getGpu:getGpu",
+                "past": [
+                    {
+                        "name": "ionoscloud:index/getGpu:getGpu",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
+                "majorVersion": 1
+            },
+            "ionoscloud_gpu_server": {
+                "current": "ionoscloud:compute/getGPUServer:getGPUServer",
+                "past": [
+                    {
+                        "name": "ionoscloud:index/getGpuServer:getGpuServer",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
+                "majorVersion": 1,
+                "fields": {
+                    "cdroms": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "image_aliases": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "nics": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "firewall_rules": {
+                                    "maxItemsOne": false
+                                },
+                                "ips": {
+                                    "maxItemsOne": false
+                                },
+                                "ipv6_ips": {
+                                    "maxItemsOne": false
+                                },
+                                "security_groups_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "security_groups_ids": {
+                        "maxItemsOne": false
+                    },
+                    "volumes": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "ssh_keys": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ionoscloud_gpus": {
+                "current": "ionoscloud:compute/getGpus:getGpus",
+                "past": [
+                    {
+                        "name": "ionoscloud:index/getGpus:getGpus",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
+                "majorVersion": 1,
+                "fields": {
+                    "gpus": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "ionoscloud_group": {
                 "current": "ionoscloud:compute/getGroup:getGroup",
@@ -1591,6 +1598,19 @@
                 "current": "ionoscloud:kafka/getTopic:getTopic",
                 "majorVersion": 1
             },
+            "ionoscloud_kafka_user_credentials": {
+                "current": "ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials",
+                "majorVersion": 1
+            },
+            "ionoscloud_kafka_users": {
+                "current": "ionoscloud:index/getKafkaUsers:getKafkaUsers",
+                "majorVersion": 1,
+                "fields": {
+                    "users": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_lan": {
                 "current": "ionoscloud:compute/getLan:getLan",
                 "majorVersion": 1,
@@ -1648,6 +1668,9 @@
                 "current": "ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster",
                 "majorVersion": 1,
                 "fields": {
+                    "backup": {
+                        "maxItemsOne": false
+                    },
                     "connections": {
                         "maxItemsOne": false
                     },
@@ -2078,7 +2101,12 @@
             },
             "ionoscloud_template": {
                 "current": "ionoscloud:compute/getTemplate:getTemplate",
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "gpus": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "ionoscloud_user": {
                 "current": "ionoscloud:compute/getUser:getUser",
@@ -2203,13 +2231,46 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "ionoscloud_gpu_server": {
+                "aliases": [
+                    "ionoscloud:index/gpuServer:GpuServer"
+                ]
+            },
+            "ionoscloud_server": {
+                "maxItemsOneOverrides": {
+                    "nic.$.firewall": false
+                }
+            },
+            "ionoscloud_vcpu_server": {
+                "maxItemsOneOverrides": {
+                    "nic.$.firewall": false
+                }
+            }
+        },
+        "datasources": {
+            "ionoscloud_gpu": {
+                "renames": [
+                    "ionoscloud:index/getGpu:getGpu"
+                ]
+            },
+            "ionoscloud_gpu_server": {
+                "renames": [
+                    "ionoscloud:index/getGpuServer:getGpuServer"
+                ]
+            },
+            "ionoscloud_gpus": {
+                "renames": [
+                    "ionoscloud:index/getGpus:getGpus"
+                ]
+            }
+        }
+    },
     "mux": {
         "resources": {
             "ionoscloud:alb/balancer:Balancer": 0,
             "ionoscloud:alb/forwardingRule:ForwardingRule": 0,
-            "ionoscloud:apigateway/apigateway:Apigateway": 0,
-            "ionoscloud:apigateway/route:Route": 0,
             "ionoscloud:autoscaling/group:Group": 0,
             "ionoscloud:cdn/distribution:Distribution": 0,
             "ionoscloud:cert/autoCertificate:AutoCertificate": 0,
@@ -2222,6 +2283,7 @@
             "ionoscloud:compute/cubeServer:CubeServer": 0,
             "ionoscloud:compute/datacenter:Datacenter": 0,
             "ionoscloud:compute/firewall:Firewall": 0,
+            "ionoscloud:compute/gPUServer:GPUServer": 0,
             "ionoscloud:compute/group:Group": 0,
             "ionoscloud:compute/iPBlock:IPBlock": 0,
             "ionoscloud:compute/iPFailover:IPFailover": 0,
@@ -2248,8 +2310,8 @@
             "ionoscloud:dbaas/pSQLUser:PSQLUser": 0,
             "ionoscloud:dns/record:Record": 0,
             "ionoscloud:dns/zone:Zone": 0,
-            "ionoscloud:dsaas/cluster:Cluster": 0,
-            "ionoscloud:dsaas/nodePool:NodePool": 0,
+            "ionoscloud:index/dnsReverseRecord:DnsReverseRecord": 0,
+            "ionoscloud:index/gpuServer:GpuServer": 0,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
             "ionoscloud:kafka/cluster:Cluster": 0,
@@ -2283,8 +2345,6 @@
         "functions": {
             "ionoscloud:alb/getBalancer:getBalancer": 0,
             "ionoscloud:alb/getForwardingRule:getForwardingRule": 0,
-            "ionoscloud:apigateway/getApigateway:getApigateway": 0,
-            "ionoscloud:apigateway/getRoute:getRoute": 0,
             "ionoscloud:autoscaling/getGroup:getGroup": 0,
             "ionoscloud:autoscaling/getServers:getServers": 0,
             "ionoscloud:cdn/getDistribution:getDistribution": 0,
@@ -2296,6 +2356,9 @@
             "ionoscloud:compute/getCubeServer:getCubeServer": 0,
             "ionoscloud:compute/getDatacenter:getDatacenter": 0,
             "ionoscloud:compute/getFirewall:getFirewall": 0,
+            "ionoscloud:compute/getGPUServer:getGPUServer": 0,
+            "ionoscloud:compute/getGpu:getGpu": 0,
+            "ionoscloud:compute/getGpus:getGpus": 0,
             "ionoscloud:compute/getGroup:getGroup": 0,
             "ionoscloud:compute/getIPBlock:getIPBlock": 0,
             "ionoscloud:compute/getIPFailover:getIPFailover": 0,
@@ -2334,10 +2397,14 @@
             "ionoscloud:dbaas/getPSQLVersions:getPSQLVersions": 0,
             "ionoscloud:dns/getRecord:getRecord": 0,
             "ionoscloud:dns/getZone:getZone": 0,
-            "ionoscloud:dsaas/getCluster:getCluster": 0,
-            "ionoscloud:dsaas/getNodePool:getNodePool": 0,
-            "ionoscloud:dsaas/getNodePools:getNodePools": 0,
-            "ionoscloud:dsaas/getVersions:getVersions": 0,
+            "ionoscloud:index/getContracts:getContracts": 1,
+            "ionoscloud:index/getDnsReverseRecord:getDnsReverseRecord": 0,
+            "ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords": 0,
+            "ionoscloud:index/getGpu:getGpu": 0,
+            "ionoscloud:index/getGpuServer:getGpuServer": 0,
+            "ionoscloud:index/getGpus:getGpus": 0,
+            "ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials": 1,
+            "ionoscloud:index/getKafkaUsers:getKafkaUsers": 1,
             "ionoscloud:k8s/getCluster:getCluster": 0,
             "ionoscloud:k8s/getClusters:getClusters": 0,
             "ionoscloud:k8s/getNodePool:getNodePool": 0,

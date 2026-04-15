@@ -12,95 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **DBaaS InMemoryDB Replica Set**.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Name:        pulumi.String("example"),
-//				Location:    pulumi.String("de/txl"),
-//				Description: pulumi.String("Datacenter for DBaaS InMemoryDB replica sets"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
-//				DatacenterId: example.ID(),
-//				Public:       pulumi.Bool(false),
-//				Name:         pulumi.String("example"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("example"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(2),
-//				Ram:              pulumi.Int(2048),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
-//				ImageName:        pulumi.String("rockylinux-8-GenericCloud-20230518"),
-//				ImagePassword:    pulumi.String("password"),
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:     pulumi.String("example"),
-//					Size:     pulumi.Int(10),
-//					DiskType: pulumi.String("SSD Standard"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:  exampleLan.ID(),
-//					Name: pulumi.String("example"),
-//					Dhcp: pulumi.Bool(true),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = dbaas.NewInMemoryDBReplicaSet(ctx, "example", &dbaas.InMemoryDBReplicaSetArgs{
-//				Location:    example.Location,
-//				DisplayName: pulumi.String("ExampleReplicaSet"),
-//				Version:     pulumi.String("7.2"),
-//				Replicas:    pulumi.Int(4),
-//				Resources: &dbaas.InMemoryDBReplicaSetResourcesArgs{
-//					Cores: pulumi.Int(1),
-//					Ram:   pulumi.Int(6),
-//				},
-//				PersistenceMode: pulumi.String("RDB"),
-//				EvictionPolicy:  pulumi.String("noeviction"),
-//				Connections: &dbaas.InMemoryDBReplicaSetConnectionsArgs{
-//					DatacenterId: example.ID(),
-//					LanId:        exampleLan.ID(),
-//					Cidr:         pulumi.String("database_ip_cidr_from_nic"),
-//				},
-//				MaintenanceWindow: &dbaas.InMemoryDBReplicaSetMaintenanceWindowArgs{
-//					DayOfTheWeek: pulumi.String("Monday"),
-//					Time:         pulumi.String("10:00:00"),
-//				},
-//				Credentials: &dbaas.InMemoryDBReplicaSetCredentialsArgs{
-//					Username:          pulumi.String("myuser"),
-//					PlainTextPassword: pulumi.String("testpassword"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
 //
 // ## Import
 //
@@ -126,7 +38,7 @@ type InMemoryDBReplicaSet struct {
 	EvictionPolicy pulumi.StringOutput `pulumi:"evictionPolicy"`
 	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrOutput `pulumi:"initialSnapshotId"`
-	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
@@ -212,7 +124,7 @@ type inMemoryDBReplicaSetState struct {
 	EvictionPolicy *string `pulumi:"evictionPolicy"`
 	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId *string `pulumi:"initialSnapshotId"`
-	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *InMemoryDBReplicaSetMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -245,7 +157,7 @@ type InMemoryDBReplicaSetState struct {
 	EvictionPolicy pulumi.StringPtrInput
 	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrInput
-	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowPtrInput
@@ -278,7 +190,7 @@ type inMemoryDBReplicaSetArgs struct {
 	EvictionPolicy string `pulumi:"evictionPolicy"`
 	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId *string `pulumi:"initialSnapshotId"`
-	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *InMemoryDBReplicaSetMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -308,7 +220,7 @@ type InMemoryDBReplicaSetArgs struct {
 	EvictionPolicy pulumi.StringInput
 	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrInput
-	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowPtrInput
@@ -445,7 +357,7 @@ func (o InMemoryDBReplicaSetOutput) InitialSnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringPtrOutput { return v.InitialSnapshotId }).(pulumi.StringPtrOutput)
 }
 
-// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 func (o InMemoryDBReplicaSetOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

@@ -7,73 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **DBaaS MariaDB Cluster**.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- * import * as random from "@pulumi/random";
- *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "example",
- *     location: "de/txl",
- *     description: "Datacenter for testing DBaaS cluster",
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "example",
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "example",
- *     datacenterId: example.id,
- *     cores: 2,
- *     ram: 2048,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_SKYLAKE",
- *     imageName: "rockylinux-8-GenericCloud-20230518",
- *     imagePassword: "password",
- *     volume: {
- *         name: "example",
- *         size: 10,
- *         diskType: "SSD Standard",
- *     },
- *     nic: {
- *         lan: exampleLan.id,
- *         name: "example",
- *         dhcp: true,
- *     },
- * });
- * const clusterPassword = new random.index.Password("cluster_password", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const exampleMariaDBCluster = new ionoscloud.dbaas.MariaDBCluster("example", {
- *     mariadbVersion: "10.6",
- *     location: "de/txl",
- *     instances: 1,
- *     cores: 4,
- *     ram: 4,
- *     storageSize: 10,
- *     connections: {
- *         datacenterId: example.id,
- *         lanId: exampleLan.id,
- *         cidr: "database_ip_cidr_from_nic",
- *     },
- *     displayName: "MariaDB_cluster",
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Sunday",
- *         time: "09:00:00",
- *     },
- *     credentials: {
- *         username: "username",
- *         password: clusterPassword.result,
- *     },
- * });
- * ```
+ * Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
  *
  * ## Import
  *
@@ -111,6 +45,10 @@ export class MariaDBCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === MariaDBCluster.__pulumiType;
     }
 
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     */
+    declare public readonly backup: pulumi.Output<outputs.dbaas.MariaDBClusterBackup>;
     /**
      * The network connection for your cluster. Only one connection is allowed.
      */
@@ -171,6 +109,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MariaDBClusterState | undefined;
+            resourceInputs["backup"] = state?.backup;
             resourceInputs["connections"] = state?.connections;
             resourceInputs["cores"] = state?.cores;
             resourceInputs["credentials"] = state?.credentials;
@@ -208,6 +147,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
             if (args?.storageSize === undefined && !opts.urn) {
                 throw new Error("Missing required property 'storageSize'");
             }
+            resourceInputs["backup"] = args?.backup;
             resourceInputs["connections"] = args?.connections;
             resourceInputs["cores"] = args?.cores;
             resourceInputs["credentials"] = args?.credentials;
@@ -229,6 +169,10 @@ export class MariaDBCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MariaDBCluster resources.
  */
 export interface MariaDBClusterState {
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     */
+    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup>;
     /**
      * The network connection for your cluster. Only one connection is allowed.
      */
@@ -281,6 +225,10 @@ export interface MariaDBClusterState {
  * The set of arguments for constructing a MariaDBCluster resource.
  */
 export interface MariaDBClusterArgs {
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     */
+    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup>;
     /**
      * The network connection for your cluster. Only one connection is allowed.
      */

@@ -21,16 +21,20 @@ class PSQLDatabaseArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[_builtins.str],
                  owner: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PSQLDatabase resource.
 
-        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster.
-        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the database.
+        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the database. Immutable, forces re-creation.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "owner", owner)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -38,7 +42,7 @@ class PSQLDatabaseArgs:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The unique ID of the cluster.
+        [string] The unique ID of the cluster. Immutable, forces re-creation.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -50,7 +54,7 @@ class PSQLDatabaseArgs:
     @pulumi.getter
     def owner(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The owner of the database.
+        [string] The owner of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "owner")
 
@@ -60,9 +64,21 @@ class PSQLDatabaseArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the database.
+        [string] The name of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "name")
 
@@ -75,17 +91,21 @@ class PSQLDatabaseArgs:
 class _PSQLDatabaseState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  owner: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PSQLDatabase resources.
 
-        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the database.
-        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database.
+        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the database. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database. Immutable, forces re-creation.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if owner is not None:
@@ -95,7 +115,7 @@ class _PSQLDatabaseState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The unique ID of the cluster.
+        [string] The unique ID of the cluster. Immutable, forces re-creation.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -105,9 +125,21 @@ class _PSQLDatabaseState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the database.
+        [string] The name of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "name")
 
@@ -119,7 +151,7 @@ class _PSQLDatabaseState:
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The owner of the database.
+        [string] The owner of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "owner")
 
@@ -135,6 +167,7 @@ class PSQLDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  owner: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -176,9 +209,10 @@ class PSQLDatabase(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the database.
-        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database.
+        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the database. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database. Immutable, forces re-creation.
         """
         ...
     @overload
@@ -238,6 +272,7 @@ class PSQLDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  owner: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -252,6 +287,7 @@ class PSQLDatabase(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if owner is None and not opts.urn:
                 raise TypeError("Missing required property 'owner'")
@@ -267,6 +303,7 @@ class PSQLDatabase(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             owner: Optional[pulumi.Input[_builtins.str]] = None) -> 'PSQLDatabase':
         """
@@ -276,15 +313,17 @@ class PSQLDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the database.
-        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database.
+        :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the database. Immutable, forces re-creation.
+        :param pulumi.Input[_builtins.str] owner: [string] The owner of the database. Immutable, forces re-creation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PSQLDatabaseState.__new__(_PSQLDatabaseState)
 
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["owner"] = owner
         return PSQLDatabase(resource_name, opts=opts, __props__=__props__)
@@ -293,15 +332,23 @@ class PSQLDatabase(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The unique ID of the cluster.
+        [string] The unique ID of the cluster. Immutable, forces re-creation.
         """
         return pulumi.get(self, "cluster_id")
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The name of the database.
+        [string] The name of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "name")
 
@@ -309,7 +356,7 @@ class PSQLDatabase(pulumi.CustomResource):
     @pulumi.getter
     def owner(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The owner of the database.
+        [string] The owner of the database. Immutable, forces re-creation.
         """
         return pulumi.get(self, "owner")
 

@@ -21,16 +21,20 @@ class NsgArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
                  description: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Nsg resource.
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Network Security Group.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Network Security Group.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "description", description)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -60,6 +64,18 @@ class NsgArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the Network Security Group.
@@ -76,6 +92,7 @@ class _NsgState:
     def __init__(__self__, *,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -83,6 +100,7 @@ class _NsgState:
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Network Security Group.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Network Security Group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rule_ids: List of Firewall Rules that are part of the Network Security Group
         """
@@ -90,6 +108,8 @@ class _NsgState:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if rule_ids is not None:
@@ -118,6 +138,18 @@ class _NsgState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -152,10 +184,11 @@ class Nsg(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Network Security Group** on IonosCloud.
+        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -180,13 +213,14 @@ class Nsg(pulumi.CustomResource):
         terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
         ```
 
-        Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
+        Or by using an `import` block. Here is an example that allows you to import the default created nsg into terraform.
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Network Security Group.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Network Security Group.
         """
         ...
@@ -196,7 +230,7 @@ class Nsg(pulumi.CustomResource):
                  args: NsgArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Security Group** on IonosCloud.
+        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -221,7 +255,7 @@ class Nsg(pulumi.CustomResource):
         terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
         ```
 
-        Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
+        Or by using an `import` block. Here is an example that allows you to import the default created nsg into terraform.
 
 
         :param str resource_name: The name of the resource.
@@ -241,6 +275,7 @@ class Nsg(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -257,6 +292,7 @@ class Nsg(pulumi.CustomResource):
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["rule_ids"] = None
         super(Nsg, __self__).__init__(
@@ -271,6 +307,7 @@ class Nsg(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Nsg':
         """
@@ -282,6 +319,7 @@ class Nsg(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Network Security Group.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Network Security Group.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] rule_ids: List of Firewall Rules that are part of the Network Security Group
         """
@@ -291,6 +329,7 @@ class Nsg(pulumi.CustomResource):
 
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["description"] = description
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["rule_ids"] = rule_ids
         return Nsg(resource_name, opts=opts, __props__=__props__)
@@ -310,6 +349,14 @@ class Nsg(pulumi.CustomResource):
         [string] Description for the Network Security Group.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

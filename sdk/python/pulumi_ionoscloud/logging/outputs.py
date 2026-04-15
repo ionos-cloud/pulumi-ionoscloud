@@ -35,7 +35,6 @@ class PipelineLog(dict):
         :param _builtins.str source: [string] The source parser to be used.
         :param _builtins.str tag: [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
         :param Sequence['PipelineLogDestinationArgs'] destinations: [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-        :param _builtins.bool public: [bool]
         """
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "source", source)
@@ -80,9 +79,6 @@ class PipelineLog(dict):
     @_builtins.property
     @pulumi.getter
     def public(self) -> Optional[_builtins.bool]:
-        """
-        [bool]
-        """
         return pulumi.get(self, "public")
 
 

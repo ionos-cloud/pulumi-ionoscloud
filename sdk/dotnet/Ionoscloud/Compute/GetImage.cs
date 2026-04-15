@@ -418,6 +418,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly bool RamHotUnplug;
         /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool RequireLegacyBios;
+        /// <summary>
         /// The size of the image in GB
         /// </summary>
         public readonly double Size;
@@ -469,6 +473,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             bool ramHotUnplug,
 
+            bool requireLegacyBios,
+
             double size,
 
             string type,
@@ -495,6 +501,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Public = @public;
             RamHotPlug = ramHotPlug;
             RamHotUnplug = ramHotUnplug;
+            RequireLegacyBios = requireLegacyBios;
             Size = size;
             Type = type;
             Version = version;

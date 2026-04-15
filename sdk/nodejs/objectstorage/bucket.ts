@@ -7,7 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages **IONOS Object Storage Buckets** on IonosCloud.
+ * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
+ *
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
  *
  * ## Example Usage
  *
@@ -29,10 +31,16 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Resource Bucket can be imported using the `bucket name`
+ * A bucket can be imported using the `bucket name` and the `region`:
  *
  * ```sh
- * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example example
+ * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name
+ * ```
+ *
+ * The `region` can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name
  * ```
  */
 export class Bucket extends pulumi.CustomResource {
@@ -76,7 +84,7 @@ export class Bucket extends pulumi.CustomResource {
      */
     declare public readonly objectLockEnabled: pulumi.Output<boolean>;
     /**
-     * [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3Region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      */
     declare public readonly region: pulumi.Output<string>;
     /**
@@ -138,7 +146,7 @@ export interface BucketState {
      */
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
-     * [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3Region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      */
     region?: pulumi.Input<string>;
     /**
@@ -168,7 +176,7 @@ export interface BucketArgs {
      */
     objectLockEnabled?: pulumi.Input<boolean>;
     /**
-     * [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3Region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      */
     region?: pulumi.Input<string>;
     /**

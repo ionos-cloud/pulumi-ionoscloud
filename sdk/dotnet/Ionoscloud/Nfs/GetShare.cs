@@ -34,27 +34,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         /// 
         /// });
         /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetShare.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         ClusterId = "cluster-id",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetShareResult> InvokeAsync(GetShareArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetShareResult>("ionoscloud:nfs/getShare:getShare", args ?? new GetShareArgs(), options.WithDefaults());
@@ -81,27 +60,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         /// 
         /// });
         /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetShare.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         ClusterId = "cluster-id",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetShareResult> Invoke(GetShareInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:nfs/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
@@ -124,27 +82,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         ///         Location = "location",
         ///         ClusterId = "cluster-id",
         ///         Id = "share-id",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetShare.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         ClusterId = "cluster-id",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
         ///     });
         /// 
         /// });
@@ -188,7 +125,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage share is located.
+        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -256,7 +193,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage share is located.
+        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

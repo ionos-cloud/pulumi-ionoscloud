@@ -25,6 +25,7 @@ export function getNodePoolNodes(args: GetNodePoolNodesArgs, opts?: pulumi.Invok
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", {
         "k8sClusterId": args.k8sClusterId,
+        "location": args.location,
         "nodePoolId": args.nodePoolId,
     }, opts);
 }
@@ -37,6 +38,7 @@ export interface GetNodePoolNodesArgs {
      * K8s Cluster' UUID
      */
     k8sClusterId: string;
+    location?: string;
     nodePoolId: string;
 }
 
@@ -49,6 +51,7 @@ export interface GetNodePoolNodesResult {
      */
     readonly id: string;
     readonly k8sClusterId: string;
+    readonly location?: string;
     readonly nodePoolId: string;
     /**
      * a list of the nodes that are in the nodepool
@@ -74,6 +77,7 @@ export function getNodePoolNodesOutput(args: GetNodePoolNodesOutputArgs, opts?: 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", {
         "k8sClusterId": args.k8sClusterId,
+        "location": args.location,
         "nodePoolId": args.nodePoolId,
     }, opts);
 }
@@ -86,5 +90,6 @@ export interface GetNodePoolNodesOutputArgs {
      * K8s Cluster' UUID
      */
     k8sClusterId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     nodePoolId: pulumi.Input<string>;
 }

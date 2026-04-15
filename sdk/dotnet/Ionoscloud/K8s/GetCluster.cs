@@ -325,6 +325,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         public string? Id { get; set; }
 
         /// <summary>
+        /// this attribute is mandatory if the cluster is private.
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing cluster that you want to search for.
         /// </summary>
         [Input("name")]
@@ -345,6 +351,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// this attribute is mandatory if the cluster is private.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing cluster that you want to search for.

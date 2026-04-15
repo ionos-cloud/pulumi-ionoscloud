@@ -40,6 +40,7 @@ export function getPSQLCluster(args?: GetPSQLClusterArgs, opts?: pulumi.InvokeOp
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLCluster:getPSQLCluster", {
         "displayName": args.displayName,
         "id": args.id,
+        "location": args.location,
     }, opts);
 }
 
@@ -57,6 +58,10 @@ export interface GetPSQLClusterArgs {
      * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * The physical location where the cluster will be created. This will be where all of your instances live.
+     */
+    location?: string;
 }
 
 /**
@@ -159,6 +164,7 @@ export function getPSQLClusterOutput(args?: GetPSQLClusterOutputArgs, opts?: pul
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLCluster:getPSQLCluster", {
         "displayName": args.displayName,
         "id": args.id,
+        "location": args.location,
     }, opts);
 }
 
@@ -176,4 +182,8 @@ export interface GetPSQLClusterOutputArgs {
      * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The physical location where the cluster will be created. This will be where all of your instances live.
+     */
+    location?: pulumi.Input<string>;
 }

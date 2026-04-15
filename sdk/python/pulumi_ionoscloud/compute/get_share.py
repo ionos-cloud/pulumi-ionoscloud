@@ -120,7 +120,6 @@ def get_share(group_id: Optional[_builtins.str] = None,
     :param _builtins.str group_id: The ID of the specific group containing the resource to update.
     :param _builtins.str resource_id: The ID of the specific resource to update.
            
-           
            `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
     """
     __args__ = dict()
@@ -157,7 +156,6 @@ def get_share_output(group_id: Optional[pulumi.Input[_builtins.str]] = None,
 
     :param _builtins.str group_id: The ID of the specific group containing the resource to update.
     :param _builtins.str resource_id: The ID of the specific resource to update.
-           
            
            `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
     """

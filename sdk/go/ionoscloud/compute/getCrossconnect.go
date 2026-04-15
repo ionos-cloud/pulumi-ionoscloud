@@ -84,6 +84,8 @@ type LookupCrossconnectArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
+	// The physical location of the connectable datacenter
+	Location *string `pulumi:"location"`
 	// Name of an existing cross connect that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -96,6 +98,8 @@ type LookupCrossconnectResult struct {
 	Description string `pulumi:"description"`
 	// The UUID of the connectable datacenter
 	Id string `pulumi:"id"`
+	// The physical location of the connectable datacenter
+	Location *string `pulumi:"location"`
 	// The name of the connectable datacenter
 	Name string `pulumi:"name"`
 	// Lists LAN's joined to this cross connect
@@ -119,6 +123,8 @@ type LookupCrossconnectOutputArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The physical location of the connectable datacenter
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing cross connect that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -157,6 +163,11 @@ func (o LookupCrossconnectResultOutput) Description() pulumi.StringOutput {
 // The UUID of the connectable datacenter
 func (o LookupCrossconnectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The physical location of the connectable datacenter
+func (o LookupCrossconnectResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The name of the connectable datacenter

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Nat Gateway** on IonosCloud.
+ * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  * });
  * const exampleLan = new ionoscloud.compute.Lan("example", {
  *     datacenterId: example.id,
- *     "public": true,
+ *     "public": false,
  *     name: "Lan Example",
  * });
  * const exampleNatGateway = new ionoscloud.compute.NatGateway("example", {
@@ -90,6 +90,10 @@ export class NatGateway extends pulumi.CustomResource {
      */
     declare public readonly lans: pulumi.Output<outputs.compute.NatGatewayLan[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] Name of the NAT gateway.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -113,6 +117,7 @@ export class NatGateway extends pulumi.CustomResource {
             const state = argsOrState as NatGatewayState | undefined;
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["lans"] = state?.lans;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["publicIps"] = state?.publicIps;
         } else {
@@ -128,6 +133,7 @@ export class NatGateway extends pulumi.CustomResource {
             }
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["lans"] = args?.lans;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["publicIps"] = args?.publicIps;
         }
@@ -148,6 +154,10 @@ export interface NatGatewayState {
      * [list] A list of Local Area Networks the node pool should be part of.
      */
     lans?: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the NAT gateway.
      */
@@ -170,6 +180,10 @@ export interface NatGatewayArgs {
      * [list] A list of Local Area Networks the node pool should be part of.
      */
     lans: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of the NAT gateway.
      */

@@ -117,6 +117,8 @@ type Balancer struct {
 	Dhcp pulumi.BoolPtrOutput `pulumi:"dhcp"`
 	// [string] IPv4 address of the load balancer.
 	Ip pulumi.StringOutput `pulumi:"ip"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the load balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [list] A list of NIC IDs that are part of the load balancer.
@@ -165,6 +167,8 @@ type balancerState struct {
 	Dhcp *bool `pulumi:"dhcp"`
 	// [string] IPv4 address of the load balancer.
 	Ip *string `pulumi:"ip"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the load balancer.
 	Name *string `pulumi:"name"`
 	// [list] A list of NIC IDs that are part of the load balancer.
@@ -178,6 +182,8 @@ type BalancerState struct {
 	Dhcp pulumi.BoolPtrInput
 	// [string] IPv4 address of the load balancer.
 	Ip pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the load balancer.
 	Name pulumi.StringPtrInput
 	// [list] A list of NIC IDs that are part of the load balancer.
@@ -195,6 +201,8 @@ type balancerArgs struct {
 	Dhcp *bool `pulumi:"dhcp"`
 	// [string] IPv4 address of the load balancer.
 	Ip *string `pulumi:"ip"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the load balancer.
 	Name *string `pulumi:"name"`
 	// [list] A list of NIC IDs that are part of the load balancer.
@@ -209,6 +217,8 @@ type BalancerArgs struct {
 	Dhcp pulumi.BoolPtrInput
 	// [string] IPv4 address of the load balancer.
 	Ip pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the load balancer.
 	Name pulumi.StringPtrInput
 	// [list] A list of NIC IDs that are part of the load balancer.
@@ -315,6 +325,11 @@ func (o BalancerOutput) Dhcp() pulumi.BoolPtrOutput {
 // [string] IPv4 address of the load balancer.
 func (o BalancerOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o BalancerOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Balancer) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the load balancer.

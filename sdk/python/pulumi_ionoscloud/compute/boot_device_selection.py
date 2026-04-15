@@ -21,7 +21,8 @@ class BootDeviceSelectionArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
                  server_id: pulumi.Input[_builtins.str],
-                 boot_device_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 boot_device_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BootDeviceSelection resource.
 
@@ -29,11 +30,14 @@ class BootDeviceSelectionArgs:
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "server_id", server_id)
         if boot_device_id is not None:
             pulumi.set(__self__, "boot_device_id", boot_device_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
@@ -72,6 +76,18 @@ class BootDeviceSelectionArgs:
     def boot_device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "boot_device_id", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
 
 @pulumi.input_type
 class _BootDeviceSelectionState:
@@ -79,6 +95,7 @@ class _BootDeviceSelectionState:
                  boot_device_id: Optional[pulumi.Input[_builtins.str]] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  default_boot_volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BootDeviceSelection resources.
@@ -87,6 +104,7 @@ class _BootDeviceSelectionState:
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         """
         if boot_device_id is not None:
@@ -95,6 +113,8 @@ class _BootDeviceSelectionState:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
         if default_boot_volume_id is not None:
             pulumi.set(__self__, "default_boot_volume_id", default_boot_volume_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
 
@@ -136,6 +156,18 @@ class _BootDeviceSelectionState:
         pulumi.set(self, "default_boot_volume_id", value)
 
     @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -156,6 +188,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  boot_device_id: Optional[pulumi.Input[_builtins.str]] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -164,7 +197,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ## Example Usage
 
         The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
-        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
         This resource also allows switching between a `volume` and a `compute_get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
@@ -280,7 +313,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             type="CDROM")
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
-            server_id=example_server.inline_volume_ids[0],
+            server_id=example_server.id,
             boot_device_id=example.id)
         example_volume = ionoscloud.compute.Volume("example",
             server_id=example_server.id,
@@ -321,7 +354,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
-            server_id=example_server.inline_volume_ids[0])
+            server_id=example_server.id)
         example_volume = ionoscloud.compute.Volume("example",
             server_id=example_server.id,
             datacenter_id=example_ionoscloud_datacenter["id"],
@@ -342,6 +375,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         """
         ...
@@ -356,7 +390,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         ## Example Usage
 
         The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
-        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
         This resource also allows switching between a `volume` and a `compute_get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
@@ -472,7 +506,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             type="CDROM")
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
-            server_id=example_server.inline_volume_ids[0],
+            server_id=example_server.id,
             boot_device_id=example.id)
         example_volume = ionoscloud.compute.Volume("example",
             server_id=example_server.id,
@@ -513,7 +547,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
-            server_id=example_server.inline_volume_ids[0])
+            server_id=example_server.id)
         example_volume = ionoscloud.compute.Volume("example",
             server_id=example_server.id,
             datacenter_id=example_ionoscloud_datacenter["id"],
@@ -546,6 +580,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  boot_device_id: Optional[pulumi.Input[_builtins.str]] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -560,6 +595,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             if datacenter_id is None and not opts.urn:
                 raise TypeError("Missing required property 'datacenter_id'")
             __props__.__dict__["datacenter_id"] = datacenter_id
+            __props__.__dict__["location"] = location
             if server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_id'")
             __props__.__dict__["server_id"] = server_id
@@ -577,6 +613,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             boot_device_id: Optional[pulumi.Input[_builtins.str]] = None,
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
             default_boot_volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             server_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'BootDeviceSelection':
         """
         Get an existing BootDeviceSelection resource's state with the given name, id, and optional extra
@@ -589,6 +626,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -598,6 +636,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         __props__.__dict__["boot_device_id"] = boot_device_id
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["default_boot_volume_id"] = default_boot_volume_id
+        __props__.__dict__["location"] = location
         __props__.__dict__["server_id"] = server_id
         return BootDeviceSelection(resource_name, opts=opts, __props__=__props__)
 
@@ -625,6 +664,14 @@ class BootDeviceSelection(pulumi.CustomResource):
         ID of the first attached volume of the Server, which will be the default boot volume.
         """
         return pulumi.get(self, "default_boot_volume_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter(name="serverId")

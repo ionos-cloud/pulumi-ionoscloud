@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Cert
 {
     /// <summary>
-    /// Manages a **Certificate** on IonosCloud.
+    /// Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -20,15 +20,56 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     /// using System.Linq;
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
     ///     {
     ///         Name = "add_name_here",
-    ///         Certificate = "tour_certificate",
-    ///         CertificateChain = "your_certificate_chain",
-    ///         PrivateKey = "your_private_key",
+    ///         Certificate = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert",
+    ///         }).Result,
+    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert_chain",
+    ///         }).Result,
+    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_private_key",
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **NOTE**: You can also provide the values as multiline strings, as seen below:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
+    ///     {
+    ///         Name = "add_name_here",
+    ///         Certificate = @"-----BEGIN CERTIFICATE-----
+    /// cert_body_here
+    /// -----END CERTIFICATE-----
+    /// ",
+    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert_chain",
+    ///         }).Result,
+    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_private_key",
+    ///         }).Result,
     ///     });
     /// 
     /// });

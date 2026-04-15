@@ -7,7 +7,11 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **VCPU Server** on IonosCloud.
+ * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+ *
+ * These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
+ *
+ * This section lists the limitations of [vCPU Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server#limitations-of-vcpu-servers)
  *
  * ## Example Usage
  *
@@ -21,7 +25,7 @@ import * as utilities from "../utilities";
  * const example = ionoscloud.compute.getImage({
  *     type: "HDD",
  *     imageAlias: "ubuntu:latest",
- *     location: "us/las",
+ *     location: "de/txl",
  * });
  * const exampleDatacenter = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Example",
@@ -48,7 +52,6 @@ import * as utilities from "../utilities";
  *     datacenterId: exampleDatacenter.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
  *     imageName: example.then(example => example.id),
  *     imagePassword: serverImagePassword.result,
  *     volume: {
@@ -57,7 +60,6 @@ import * as utilities from "../utilities";
  *         diskType: "SSD Standard",
  *         userData: "foo",
  *         bus: "VIRTIO",
- *         availabilityZone: "ZONE_1",
  *     },
  *     nic: {
  *         lan: exampleLan.id,
@@ -69,7 +71,7 @@ import * as utilities from "../utilities";
  *             exampleIPBlock.ips[0],
  *             exampleIPBlock.ips[1],
  *         ],
- *         firewalls: [{
+ *         firewall: {
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -78,7 +80,7 @@ import * as utilities from "../utilities";
  *             sourceIp: exampleIPBlock.ips[2],
  *             targetIp: exampleIPBlock.ips[3],
  *             type: "EGRESS",
- *         }],
+ *         },
  *     },
  *     labels: [
  *         {
@@ -98,7 +100,10 @@ import * as utilities from "../utilities";
  * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
  *
  * ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
- * from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+ * from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+ * More details here. There is a workaround described in the issue
+ * that involves moving the resources in the list prior to deletion.
+ * `terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
  *
  * ## Import
  *
@@ -107,7 +112,7 @@ import * as utilities from "../utilities";
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid
  * ```
- * Optionally, you can pass `primaryNic` and `firewallruleId` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass `primaryNic` and `firewallruleId` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
  * ```
@@ -196,6 +201,10 @@ export class VCPUServer extends pulumi.CustomResource {
      */
     declare public readonly labels: pulumi.Output<outputs.compute.VCPUServerLabel[] | undefined>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the server.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -203,6 +212,15 @@ export class VCPUServer extends pulumi.CustomResource {
      * See the Nic section.
      */
     declare public readonly nic: pulumi.Output<outputs.compute.VCPUServerNic | undefined>;
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > sshKeys field is immutable.
+     */
+    declare public readonly nicMultiQueue: pulumi.Output<boolean | undefined>;
     /**
      * The associated IP address.
      */
@@ -217,10 +235,6 @@ export class VCPUServer extends pulumi.CustomResource {
     declare public readonly ram: pulumi.Output<number>;
     /**
      * The list of Security Group IDs for the resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > sshKeys field is immutable.
      */
     declare public readonly securityGroupsIds: pulumi.Output<string[] | undefined>;
     /**
@@ -264,8 +278,10 @@ export class VCPUServer extends pulumi.CustomResource {
             resourceInputs["imagePassword"] = state?.imagePassword;
             resourceInputs["inlineVolumeIds"] = state?.inlineVolumeIds;
             resourceInputs["labels"] = state?.labels;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nic"] = state?.nic;
+            resourceInputs["nicMultiQueue"] = state?.nicMultiQueue;
             resourceInputs["primaryIp"] = state?.primaryIp;
             resourceInputs["primaryNic"] = state?.primaryNic;
             resourceInputs["ram"] = state?.ram;
@@ -298,8 +314,10 @@ export class VCPUServer extends pulumi.CustomResource {
             resourceInputs["imageName"] = args?.imageName;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["labels"] = args?.labels;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nic"] = args?.nic;
+            resourceInputs["nicMultiQueue"] = args?.nicMultiQueue;
             resourceInputs["ram"] = args?.ram;
             resourceInputs["securityGroupsIds"] = args?.securityGroupsIds;
             resourceInputs["sshKeys"] = args?.sshKeys;
@@ -380,6 +398,10 @@ export interface VCPUServerState {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -387,6 +409,15 @@ export interface VCPUServerState {
      * See the Nic section.
      */
     nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > sshKeys field is immutable.
+     */
+    nicMultiQueue?: pulumi.Input<boolean>;
     /**
      * The associated IP address.
      */
@@ -401,10 +432,6 @@ export interface VCPUServerState {
     ram?: pulumi.Input<number>;
     /**
      * The list of Security Group IDs for the resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > sshKeys field is immutable.
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -469,6 +496,10 @@ export interface VCPUServerArgs {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -477,15 +508,20 @@ export interface VCPUServerArgs {
      */
     nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
     /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > sshKeys field is immutable.
+     */
+    nicMultiQueue?: pulumi.Input<boolean>;
+    /**
      * [integer] The amount of memory for the server in MB.
      */
     ram: pulumi.Input<number>;
     /**
      * The list of Security Group IDs for the resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > sshKeys field is immutable.
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

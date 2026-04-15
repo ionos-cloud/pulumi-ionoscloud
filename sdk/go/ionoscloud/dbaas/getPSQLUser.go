@@ -52,7 +52,8 @@ func LookupPSQLUser(ctx *pulumi.Context, args *LookupPSQLUserArgs, opts ...pulum
 // A collection of arguments for invoking getPSQLUser.
 type LookupPSQLUserArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId string `pulumi:"clusterId"`
+	ClusterId string  `pulumi:"clusterId"`
+	Location  *string `pulumi:"location"`
 	// [string] Name of an existing user that you want to search for.
 	Username string `pulumi:"username"`
 }
@@ -63,8 +64,9 @@ type LookupPSQLUserResult struct {
 	// [string] The id of the user.
 	Id string `pulumi:"id"`
 	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
-	IsSystemUser bool   `pulumi:"isSystemUser"`
-	Username     string `pulumi:"username"`
+	IsSystemUser bool    `pulumi:"isSystemUser"`
+	Location     *string `pulumi:"location"`
+	Username     string  `pulumi:"username"`
 }
 
 func LookupPSQLUserOutput(ctx *pulumi.Context, args LookupPSQLUserOutputArgs, opts ...pulumi.InvokeOption) LookupPSQLUserResultOutput {
@@ -79,7 +81,8 @@ func LookupPSQLUserOutput(ctx *pulumi.Context, args LookupPSQLUserOutputArgs, op
 // A collection of arguments for invoking getPSQLUser.
 type LookupPSQLUserOutputArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	ClusterId pulumi.StringInput    `pulumi:"clusterId"`
+	Location  pulumi.StringPtrInput `pulumi:"location"`
 	// [string] Name of an existing user that you want to search for.
 	Username pulumi.StringInput `pulumi:"username"`
 }
@@ -115,6 +118,10 @@ func (o LookupPSQLUserResultOutput) Id() pulumi.StringOutput {
 // [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 func (o LookupPSQLUserResultOutput) IsSystemUser() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupPSQLUserResult) bool { return v.IsSystemUser }).(pulumi.BoolOutput)
+}
+
+func (o LookupPSQLUserResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPSQLUserResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupPSQLUserResultOutput) Username() pulumi.StringOutput {

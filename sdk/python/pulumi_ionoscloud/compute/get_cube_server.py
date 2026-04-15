@@ -27,7 +27,7 @@ class GetCubeServerResult:
     """
     A collection of values returned by getCubeServer.
     """
-    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, name=None, nics=None, ram=None, security_groups_ids=None, template_uuid=None, token=None, vm_state=None, volumes=None):
+    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, location=None, name=None, nics=None, ram=None, security_groups_ids=None, template_uuid=None, token=None, vm_state=None, volumes=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -58,6 +58,9 @@ class GetCubeServerResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -150,6 +153,14 @@ class GetCubeServerResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         Name of the firewall rule
@@ -223,6 +234,7 @@ class AwaitableGetCubeServerResult(GetCubeServerResult):
             datacenter_id=self.datacenter_id,
             hostname=self.hostname,
             id=self.id,
+            location=self.location,
             name=self.name,
             nics=self.nics,
             ram=self.ram,
@@ -235,11 +247,12 @@ class AwaitableGetCubeServerResult(GetCubeServerResult):
 
 def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
                     id: Optional[_builtins.str] = None,
+                    location: Optional[_builtins.str] = None,
                     name: Optional[_builtins.str] = None,
                     template_uuid: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCubeServerResult:
     """
-    The **Cube Server data source** can be used to search for and return existing servers.
+    The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
@@ -268,12 +281,14 @@ def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
     :param _builtins.str id: ID of the server you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
     :param _builtins.str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['templateUuid'] = template_uuid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -290,6 +305,7 @@ def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         nics=pulumi.get(__ret__, 'nics'),
         ram=pulumi.get(__ret__, 'ram'),
@@ -300,11 +316,12 @@ def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
         volumes=pulumi.get(__ret__, 'volumes'))
 def get_cube_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            template_uuid: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCubeServerResult]:
     """
-    The **Cube Server data source** can be used to search for and return existing servers.
+    The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
@@ -333,12 +350,14 @@ def get_cube_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
     :param _builtins.str id: ID of the server you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
     :param _builtins.str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['templateUuid'] = template_uuid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -354,6 +373,7 @@ def get_cube_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         nics=pulumi.get(__response__, 'nics'),
         ram=pulumi.get(__response__, 'ram'),

@@ -20,6 +20,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
     /// using System.Linq;
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -65,9 +66,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
     ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
     ///     {
     ///         Name = "add_name_here",
-    ///         Certificate = "your_certificate",
-    ///         CertificateChain = "your_certificate_chain",
-    ///         PrivateKey = "your_private_key",
+    ///         Certificate = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert",
+    ///         }).Result,
+    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_cert_chain",
+    ///         }).Result,
+    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "path_to_private_key",
+    ///         }).Result,
     ///     });
     /// 
     ///     var exampleForwardingRule = new Ionoscloud.Alb.ForwardingRule("example", new()
@@ -178,6 +188,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         public Output<int> ListenerPort { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Output("name")]
@@ -285,6 +301,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         public Input<int> ListenerPort { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
@@ -357,6 +379,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
         /// </summary>
         [Input("listenerPort")]
         public Input<int>? ListenerPort { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the Application Load Balancer forwarding rule.

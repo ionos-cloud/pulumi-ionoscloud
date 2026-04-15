@@ -251,10 +251,30 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public sealed class GetTemplateArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The category of the template.
+        /// 
+        /// Any of the arguments ca be provided. If none, the datasource will return an error.
+        /// </summary>
+        [Input("category")]
+        public string? Category { get; set; }
+
+        /// <summary>
         /// The CPU cores count.
         /// </summary>
         [Input("cores")]
         public double? Cores { get; set; }
+
+        [Input("gpuses")]
+        private List<Inputs.GetTemplateGpusArgs>? _gpuses;
+
+        /// <summary>
+        /// List of GPUs in the template
+        /// </summary>
+        public List<Inputs.GetTemplateGpusArgs> Gpuses
+        {
+            get => _gpuses ?? (_gpuses = new List<Inputs.GetTemplateGpusArgs>());
+            set => _gpuses = value;
+        }
 
         /// <summary>
         /// A name of that resource.
@@ -270,8 +290,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The storage size in GB.
-        /// 
-        /// Any of the arguments ca be provided. If none, the datasource will return an error.
         /// </summary>
         [Input("storageSize")]
         public double? StorageSize { get; set; }
@@ -285,10 +303,30 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public sealed class GetTemplateInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The category of the template.
+        /// 
+        /// Any of the arguments ca be provided. If none, the datasource will return an error.
+        /// </summary>
+        [Input("category")]
+        public Input<string>? Category { get; set; }
+
+        /// <summary>
         /// The CPU cores count.
         /// </summary>
         [Input("cores")]
         public Input<double>? Cores { get; set; }
+
+        [Input("gpuses")]
+        private InputList<Inputs.GetTemplateGpusInputArgs>? _gpuses;
+
+        /// <summary>
+        /// List of GPUs in the template
+        /// </summary>
+        public InputList<Inputs.GetTemplateGpusInputArgs> Gpuses
+        {
+            get => _gpuses ?? (_gpuses = new InputList<Inputs.GetTemplateGpusInputArgs>());
+            set => _gpuses = value;
+        }
 
         /// <summary>
         /// A name of that resource.
@@ -304,8 +342,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The storage size in GB.
-        /// 
-        /// Any of the arguments ca be provided. If none, the datasource will return an error.
         /// </summary>
         [Input("storageSize")]
         public Input<double>? StorageSize { get; set; }
@@ -321,9 +357,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public sealed class GetTemplateResult
     {
         /// <summary>
+        /// The category of the template
+        /// </summary>
+        public readonly string Category;
+        /// <summary>
         /// The CPU cores count
         /// </summary>
         public readonly double Cores;
+        /// <summary>
+        /// List of GPUs in the template
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetTemplateGpusResult> Gpuses;
         /// <summary>
         /// Id of template
         /// </summary>
@@ -343,7 +387,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         [OutputConstructor]
         private GetTemplateResult(
+            string category,
+
             double cores,
+
+            ImmutableArray<Outputs.GetTemplateGpusResult> gpuses,
 
             string id,
 
@@ -353,7 +401,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             double storageSize)
         {
+            Category = category;
             Cores = cores;
+            Gpuses = gpuses;
             Id = id;
             Name = name;
             Ram = ram;

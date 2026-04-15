@@ -30,7 +30,7 @@ class TopicArgs:
         The set of arguments for constructing a Topic resource.
 
         :param pulumi.Input[_builtins.str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -75,7 +75,7 @@ class TopicArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -166,7 +166,7 @@ class _TopicState:
         Input properties used for looking up and filtering Topic resources.
 
         :param pulumi.Input[_builtins.str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -212,7 +212,7 @@ class _TopicState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -326,7 +326,7 @@ class Topic(pulumi.CustomResource):
         example_cluster = ionoscloud.kafka.Cluster("example",
             name="example-kafka-cluster",
             location=example.location,
-            version="3.7.0",
+            version="3.9.0",
             size="S",
             connections={
                 "datacenter_id": example.id,
@@ -336,61 +336,6 @@ class Topic(pulumi.CustomResource):
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            })
-        example_topic = ionoscloud.kafka.Topic("example",
-            cluster_id=example_cluster.id,
-            name="kafka-cluster-topic",
-            location=example_cluster.location,
-            replication_factor=1,
-            number_of_partitions=1,
-            retention_time=86400000,
-            segment_bytes=1073741824)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example-kafka-datacenter",
-            location="de/fra")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example-kafka-lan")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="example-kafka-server",
-            datacenter_id=example.id,
-            cores=1,
-            ram=2 * 1024,
-            availability_zone="AUTO",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="ubuntu:latest",
-            image_password=password["result"],
-            volume={
-                "name": "example-kafka-volume",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example-kafka-nic",
-                "dhcp": True,
-            })
-        example_cluster = ionoscloud.kafka.Cluster("example",
-            name="example-kafka-cluster",
-            location=example.location,
-            version="3.7.0",
-            size="S",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "broker_addresses": "kafka_cluster_broker_ips_cidr_list",
             })
         example_topic = ionoscloud.kafka.Topic("example",
             cluster_id=example_cluster.id,
@@ -414,7 +359,7 @@ class Topic(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -458,7 +403,7 @@ class Topic(pulumi.CustomResource):
         example_cluster = ionoscloud.kafka.Cluster("example",
             name="example-kafka-cluster",
             location=example.location,
-            version="3.7.0",
+            version="3.9.0",
             size="S",
             connections={
                 "datacenter_id": example.id,
@@ -468,61 +413,6 @@ class Topic(pulumi.CustomResource):
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            })
-        example_topic = ionoscloud.kafka.Topic("example",
-            cluster_id=example_cluster.id,
-            name="kafka-cluster-topic",
-            location=example_cluster.location,
-            replication_factor=1,
-            number_of_partitions=1,
-            retention_time=86400000,
-            segment_bytes=1073741824)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example-kafka-datacenter",
-            location="de/fra")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example-kafka-lan")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="example-kafka-server",
-            datacenter_id=example.id,
-            cores=1,
-            ram=2 * 1024,
-            availability_zone="AUTO",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="ubuntu:latest",
-            image_password=password["result"],
-            volume={
-                "name": "example-kafka-volume",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example-kafka-nic",
-                "dhcp": True,
-            })
-        example_cluster = ionoscloud.kafka.Cluster("example",
-            name="example-kafka-cluster",
-            location=example.location,
-            version="3.7.0",
-            size="S",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "broker_addresses": "kafka_cluster_broker_ips_cidr_list",
             })
         example_topic = ionoscloud.kafka.Topic("example",
             cluster_id=example_cluster.id,
@@ -608,7 +498,7 @@ class Topic(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
                processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -648,7 +538,7 @@ class Topic(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 

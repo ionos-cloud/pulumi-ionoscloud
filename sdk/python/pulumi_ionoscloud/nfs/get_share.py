@@ -180,24 +180,12 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
         id="share-id")
     ```
 
-    ## By Name
-
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    example = ionoscloud.nfs.get_share(location="location",
-        cluster_id="cluster-id",
-        name="partial-name",
-        partial_match=True)
-    ```
-
 
     :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
     :param _builtins.str cluster_id: The ID of the Network File Storage cluster.
     :param _builtins.int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     :param _builtins.str id: ID of the Network File Storage share.
-    :param _builtins.str location: The location where the Network File Storage share is located.
+    :param _builtins.str location: The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
     :param _builtins.str name: Name of the Network File Storage share.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     :param _builtins.int quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
@@ -251,24 +239,12 @@ def get_share_output(client_groups: Optional[pulumi.Input[Optional[Sequence[Unio
         id="share-id")
     ```
 
-    ## By Name
-
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    example = ionoscloud.nfs.get_share(location="location",
-        cluster_id="cluster-id",
-        name="partial-name",
-        partial_match=True)
-    ```
-
 
     :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
     :param _builtins.str cluster_id: The ID of the Network File Storage cluster.
     :param _builtins.int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     :param _builtins.str id: ID of the Network File Storage share.
-    :param _builtins.str location: The location where the Network File Storage share is located.
+    :param _builtins.str location: The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
     :param _builtins.str name: Name of the Network File Storage share.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     :param _builtins.int quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.

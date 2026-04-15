@@ -27,7 +27,7 @@ class GetLanResult:
     """
     A collection of values returned by getLan.
     """
-    def __init__(__self__, datacenter_id=None, id=None, ip_failovers=None, ipv4_cidr_block=None, ipv6_cidr_block=None, name=None, pcc=None, public=None):
+    def __init__(__self__, datacenter_id=None, id=None, ip_failovers=None, ipv4_cidr_block=None, ipv6_cidr_block=None, location=None, name=None, pcc=None, public=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -43,6 +43,9 @@ class GetLanResult:
         if ipv6_cidr_block and not isinstance(ipv6_cidr_block, str):
             raise TypeError("Expected argument 'ipv6_cidr_block' to be a str")
         pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -95,6 +98,11 @@ class GetLanResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The name of the LAN.
@@ -129,6 +137,7 @@ class AwaitableGetLanResult(GetLanResult):
             ip_failovers=self.ip_failovers,
             ipv4_cidr_block=self.ipv4_cidr_block,
             ipv6_cidr_block=self.ipv6_cidr_block,
+            location=self.location,
             name=self.name,
             pcc=self.pcc,
             public=self.public)
@@ -136,6 +145,7 @@ class AwaitableGetLanResult(GetLanResult):
 
 def get_lan(datacenter_id: Optional[_builtins.str] = None,
             id: Optional[_builtins.str] = None,
+            location: Optional[_builtins.str] = None,
             name: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLanResult:
     """
@@ -173,6 +183,7 @@ def get_lan(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getLan:getLan', __args__, opts=opts, typ=GetLanResult).value
@@ -183,11 +194,13 @@ def get_lan(datacenter_id: Optional[_builtins.str] = None,
         ip_failovers=pulumi.get(__ret__, 'ip_failovers'),
         ipv4_cidr_block=pulumi.get(__ret__, 'ipv4_cidr_block'),
         ipv6_cidr_block=pulumi.get(__ret__, 'ipv6_cidr_block'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         pcc=pulumi.get(__ret__, 'pcc'),
         public=pulumi.get(__ret__, 'public'))
 def get_lan_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                    id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                   location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLanResult]:
     """
@@ -225,6 +238,7 @@ def get_lan_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getLan:getLan', __args__, opts=opts, typ=GetLanResult)
@@ -234,6 +248,7 @@ def get_lan_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
         ip_failovers=pulumi.get(__response__, 'ip_failovers'),
         ipv4_cidr_block=pulumi.get(__response__, 'ipv4_cidr_block'),
         ipv6_cidr_block=pulumi.get(__response__, 'ipv6_cidr_block'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         pcc=pulumi.get(__response__, 'pcc'),
         public=pulumi.get(__response__, 'public')))

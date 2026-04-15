@@ -39,8 +39,6 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: "Ubuntu-20.04",
  *     imagePassword: serverImagePassword.result,
  *     volume: {
@@ -79,10 +77,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Resource IpFailover can be imported using the `resource id`, e.g.
+ * Resource IpFailover can be imported using the `datacenter id`, `lan id` and `ip address`, e.g.
  *
  * ```sh
- * terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
+ * $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter_uuid/lan_uuid/ip_address
  * ```
  */
 export class IPFailover extends pulumi.CustomResource {
@@ -125,12 +123,13 @@ export class IPFailover extends pulumi.CustomResource {
      * [string] The ID of a LAN.
      */
     declare public readonly lanId: pulumi.Output<string>;
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * [string] The ID of a NIC.
      *
-     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * > an IP failover group using Terraform, please use only Terraform in order to manage the created
      * > IP failover group.
      *
      * > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -177,6 +176,7 @@ export class IPFailover extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["ip"] = state?.ip;
             resourceInputs["lanId"] = state?.lanId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["nicuuid"] = state?.nicuuid;
         } else {
             const args = argsOrState as IPFailoverArgs | undefined;
@@ -195,6 +195,7 @@ export class IPFailover extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["ip"] = args?.ip;
             resourceInputs["lanId"] = args?.lanId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["nicuuid"] = args?.nicuuid;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -218,12 +219,13 @@ export interface IPFailoverState {
      * [string] The ID of a LAN.
      */
     lanId?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] The ID of a NIC.
      *
-     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * > an IP failover group using Terraform, please use only Terraform in order to manage the created
      * > IP failover group.
      *
      * > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -271,12 +273,13 @@ export interface IPFailoverArgs {
      * [string] The ID of a LAN.
      */
     lanId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] The ID of a NIC.
      *
-     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * > an IP failover group using Terraform, please use only Terraform in order to manage the created
      * > IP failover group.
      *
      * > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the

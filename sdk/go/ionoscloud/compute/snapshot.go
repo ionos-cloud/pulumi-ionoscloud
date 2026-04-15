@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **Snapshots** on IonosCloud.
+// Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -62,15 +62,13 @@ import (
 //				return err
 //			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("Server Example"),
-//				DatacenterId:     exampleDatacenter.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String(pulumi.String(example.Id)),
-//				ImagePassword:    serverImagePassword.Result,
-//				Type:             pulumi.String("ENTERPRISE"),
+//				Name:          pulumi.String("Server Example"),
+//				DatacenterId:  exampleDatacenter.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(1024),
+//				ImageName:     pulumi.String(pulumi.String(example.Id)),
+//				ImagePassword: serverImagePassword.Result,
+//				Type:          pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:             pulumi.String("system"),
 //					Size:             pulumi.Int(5),
@@ -137,6 +135,8 @@ type Snapshot struct {
 	RamHotPlug pulumi.BoolOutput `pulumi:"ramHotPlug"`
 	// Is capable of memory hot unplug (no reboot required)
 	RamHotUnplug pulumi.BoolOutput `pulumi:"ramHotUnplug"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	RequireLegacyBios pulumi.BoolOutput `pulumi:"requireLegacyBios"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolOutput `pulumi:"secAuthProtection"`
 	// The size of the image in GB
@@ -211,6 +211,8 @@ type snapshotState struct {
 	RamHotPlug *bool `pulumi:"ramHotPlug"`
 	// Is capable of memory hot unplug (no reboot required)
 	RamHotUnplug *bool `pulumi:"ramHotUnplug"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection *bool `pulumi:"secAuthProtection"`
 	// The size of the image in GB
@@ -250,6 +252,8 @@ type SnapshotState struct {
 	RamHotPlug pulumi.BoolPtrInput
 	// Is capable of memory hot unplug (no reboot required)
 	RamHotUnplug pulumi.BoolPtrInput
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	RequireLegacyBios pulumi.BoolPtrInput
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
 	// The size of the image in GB
@@ -275,6 +279,8 @@ type snapshotArgs struct {
 	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
 	// (Computed)[string] OS type of this Snapshot
 	LicenceType *string `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location *string `pulumi:"location"`
 	// [string] The name of the snapshot.
 	Name *string `pulumi:"name"`
 	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
@@ -283,6 +289,8 @@ type snapshotArgs struct {
 	NicHotUnplug *bool `pulumi:"nicHotUnplug"`
 	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
 	RamHotPlug *bool `pulumi:"ramHotPlug"`
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection *bool `pulumi:"secAuthProtection"`
 	// [string] The ID of the specific volume to take the snapshot from.
@@ -303,6 +311,8 @@ type SnapshotArgs struct {
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
 	// (Computed)[string] OS type of this Snapshot
 	LicenceType pulumi.StringPtrInput
+	// Location of that image/snapshot
+	Location pulumi.StringPtrInput
 	// [string] The name of the snapshot.
 	Name pulumi.StringPtrInput
 	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
@@ -311,6 +321,8 @@ type SnapshotArgs struct {
 	NicHotUnplug pulumi.BoolPtrInput
 	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
 	RamHotPlug pulumi.BoolPtrInput
+	// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+	RequireLegacyBios pulumi.BoolPtrInput
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
 	// [string] The ID of the specific volume to take the snapshot from.
@@ -477,6 +489,11 @@ func (o SnapshotOutput) RamHotPlug() pulumi.BoolOutput {
 // Is capable of memory hot unplug (no reboot required)
 func (o SnapshotOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.RamHotUnplug }).(pulumi.BoolOutput)
+}
+
+// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+func (o SnapshotOutput) RequireLegacyBios() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.RequireLegacyBios }).(pulumi.BoolOutput)
 }
 
 // Boolean value representing if the snapshot requires extra protection e.g. two factor protection

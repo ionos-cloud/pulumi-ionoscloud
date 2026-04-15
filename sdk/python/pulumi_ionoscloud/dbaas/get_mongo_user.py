@@ -28,7 +28,7 @@ class GetMongoUserResult:
     """
     A collection of values returned by getMongoUser.
     """
-    def __init__(__self__, cluster_id=None, database=None, id=None, roles=None, username=None):
+    def __init__(__self__, cluster_id=None, database=None, id=None, location=None, roles=None, username=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -38,6 +38,9 @@ class GetMongoUserResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if roles and not isinstance(roles, list):
             raise TypeError("Expected argument 'roles' to be a list")
         pulumi.set(__self__, "roles", roles)
@@ -62,6 +65,11 @@ class GetMongoUserResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def roles(self) -> Sequence['outputs.GetMongoUserRoleResult']:
         return pulumi.get(self, "roles")
 
@@ -80,6 +88,7 @@ class AwaitableGetMongoUserResult(GetMongoUserResult):
             cluster_id=self.cluster_id,
             database=self.database,
             id=self.id,
+            location=self.location,
             roles=self.roles,
             username=self.username)
 
@@ -87,6 +96,7 @@ class AwaitableGetMongoUserResult(GetMongoUserResult):
 def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
                    database: Optional[_builtins.str] = None,
                    id: Optional[_builtins.str] = None,
+                   location: Optional[_builtins.str] = None,
                    roles: Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]] = None,
                    username: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongoUserResult:
@@ -116,6 +126,7 @@ def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
     __args__['clusterId'] = cluster_id
     __args__['database'] = database
     __args__['id'] = id
+    __args__['location'] = location
     __args__['roles'] = roles
     __args__['username'] = username
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -125,11 +136,13 @@ def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         database=pulumi.get(__ret__, 'database'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         roles=pulumi.get(__ret__, 'roles'),
         username=pulumi.get(__ret__, 'username'))
 def get_mongo_user_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
                           database: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                          location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           roles: Optional[pulumi.Input[Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]]]] = None,
                           username: Optional[pulumi.Input[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoUserResult]:
@@ -159,6 +172,7 @@ def get_mongo_user_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = No
     __args__['clusterId'] = cluster_id
     __args__['database'] = database
     __args__['id'] = id
+    __args__['location'] = location
     __args__['roles'] = roles
     __args__['username'] = username
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -167,5 +181,6 @@ def get_mongo_user_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = No
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         database=pulumi.get(__response__, 'database'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         roles=pulumi.get(__response__, 'roles'),
         username=pulumi.get(__response__, 'username')))

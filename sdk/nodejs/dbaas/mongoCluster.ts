@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **DbaaS Mongo Cluster**.
+ * Manages a [DbaaS Mongo Cluster](https://docs.ionos.com/cloud/databases/mongodb/overview).
  *
  * ## Example Usage
  *
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00",
  *     },
- *     mongodbVersion: "5.0",
+ *     mongodbVersion: "6.0",
  *     instances: 1,
  *     displayName: "example_mongo_cluster",
  *     location: datacenterExample.location,
@@ -75,7 +75,7 @@ import * as utilities from "../utilities";
  *         dayOfTheWeek: "Sunday",
  *         time: "09:00:00",
  *     },
- *     mongodbVersion: "5.0",
+ *     mongodbVersion: "6.0",
  *     instances: 3,
  *     displayName: "example_mongo_cluster",
  *     location: datacenterExample.location,
@@ -172,7 +172,7 @@ export class MongoCluster extends pulumi.CustomResource {
      */
     declare public readonly instances: pulumi.Output<number>;
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -180,7 +180,7 @@ export class MongoCluster extends pulumi.CustomResource {
      */
     declare public readonly maintenanceWindow: pulumi.Output<outputs.dbaas.MongoClusterMaintenanceWindow>;
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      */
     declare public readonly mongodbVersion: pulumi.Output<string>;
     /**
@@ -315,7 +315,7 @@ export interface MongoClusterState {
      */
     instances?: pulumi.Input<number>;
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      */
     location?: pulumi.Input<string>;
     /**
@@ -323,7 +323,7 @@ export interface MongoClusterState {
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      */
     mongodbVersion?: pulumi.Input<string>;
     /**
@@ -385,7 +385,7 @@ export interface MongoClusterArgs {
      */
     instances: pulumi.Input<number>;
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      */
     location: pulumi.Input<string>;
     /**
@@ -393,7 +393,7 @@ export interface MongoClusterArgs {
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      */
     mongodbVersion: pulumi.Input<string>;
     /**

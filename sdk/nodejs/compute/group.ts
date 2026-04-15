@@ -56,6 +56,15 @@ import * as utilities from "../utilities";
  *     createFlowLog: true,
  *     accessAndManageMonitoring: true,
  *     accessAndManageCertificates: true,
+ *     accessAndManageLogging: true,
+ *     accessAndManageCdn: true,
+ *     accessAndManageVpn: true,
+ *     accessAndManageApiGateway: true,
+ *     accessAndManageKaas: true,
+ *     accessAndManageNetworkFileStorage: true,
+ *     accessAndManageAiModelHub: true,
+ *     accessAndManageIamResources: true,
+ *     createNetworkSecurityGroups: true,
  *     manageDbaas: true,
  *     userIds: [
  *         example1.id,
@@ -107,13 +116,49 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly accessActivityLog: pulumi.Output<boolean | undefined>;
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     */
+    declare public readonly accessAndManageAiModelHub: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     */
+    declare public readonly accessAndManageApiGateway: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     */
+    declare public readonly accessAndManageCdn: pulumi.Output<boolean | undefined>;
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      */
     declare public readonly accessAndManageCertificates: pulumi.Output<boolean | undefined>;
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     */
+    declare public readonly accessAndManageDns: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     */
+    declare public readonly accessAndManageIamResources: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     */
+    declare public readonly accessAndManageKaas: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     */
+    declare public readonly accessAndManageLogging: pulumi.Output<boolean | undefined>;
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     declare public readonly accessAndManageMonitoring: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     */
+    declare public readonly accessAndManageNetworkFileStorage: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     */
+    declare public readonly accessAndManageVpn: pulumi.Output<boolean | undefined>;
     /**
      * [Boolean] The group will be allowed to create backup unit privilege.
      */
@@ -135,6 +180,10 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly createK8sCluster: pulumi.Output<boolean | undefined>;
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     */
+    declare public readonly createNetworkSecurityGroups: pulumi.Output<boolean | undefined>;
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      */
     declare public readonly createPcc: pulumi.Output<boolean | undefined>;
@@ -143,9 +192,21 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly createSnapshot: pulumi.Output<boolean | undefined>;
     /**
+     * [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
+     */
+    declare public readonly getUsersData: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     */
+    declare public readonly manageDataplatform: pulumi.Output<boolean | undefined>;
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     declare public readonly manageDbaas: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     */
+    declare public readonly manageRegistry: pulumi.Output<boolean | undefined>;
     /**
      * [string] A name for the group.
      */
@@ -189,16 +250,29 @@ export class Group extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
             resourceInputs["accessActivityLog"] = state?.accessActivityLog;
+            resourceInputs["accessAndManageAiModelHub"] = state?.accessAndManageAiModelHub;
+            resourceInputs["accessAndManageApiGateway"] = state?.accessAndManageApiGateway;
+            resourceInputs["accessAndManageCdn"] = state?.accessAndManageCdn;
             resourceInputs["accessAndManageCertificates"] = state?.accessAndManageCertificates;
+            resourceInputs["accessAndManageDns"] = state?.accessAndManageDns;
+            resourceInputs["accessAndManageIamResources"] = state?.accessAndManageIamResources;
+            resourceInputs["accessAndManageKaas"] = state?.accessAndManageKaas;
+            resourceInputs["accessAndManageLogging"] = state?.accessAndManageLogging;
             resourceInputs["accessAndManageMonitoring"] = state?.accessAndManageMonitoring;
+            resourceInputs["accessAndManageNetworkFileStorage"] = state?.accessAndManageNetworkFileStorage;
+            resourceInputs["accessAndManageVpn"] = state?.accessAndManageVpn;
             resourceInputs["createBackupUnit"] = state?.createBackupUnit;
             resourceInputs["createDatacenter"] = state?.createDatacenter;
             resourceInputs["createFlowLog"] = state?.createFlowLog;
             resourceInputs["createInternetAccess"] = state?.createInternetAccess;
             resourceInputs["createK8sCluster"] = state?.createK8sCluster;
+            resourceInputs["createNetworkSecurityGroups"] = state?.createNetworkSecurityGroups;
             resourceInputs["createPcc"] = state?.createPcc;
             resourceInputs["createSnapshot"] = state?.createSnapshot;
+            resourceInputs["getUsersData"] = state?.getUsersData;
+            resourceInputs["manageDataplatform"] = state?.manageDataplatform;
             resourceInputs["manageDbaas"] = state?.manageDbaas;
+            resourceInputs["manageRegistry"] = state?.manageRegistry;
             resourceInputs["name"] = state?.name;
             resourceInputs["reserveIp"] = state?.reserveIp;
             resourceInputs["s3Privilege"] = state?.s3Privilege;
@@ -208,16 +282,29 @@ export class Group extends pulumi.CustomResource {
         } else {
             const args = argsOrState as GroupArgs | undefined;
             resourceInputs["accessActivityLog"] = args?.accessActivityLog;
+            resourceInputs["accessAndManageAiModelHub"] = args?.accessAndManageAiModelHub;
+            resourceInputs["accessAndManageApiGateway"] = args?.accessAndManageApiGateway;
+            resourceInputs["accessAndManageCdn"] = args?.accessAndManageCdn;
             resourceInputs["accessAndManageCertificates"] = args?.accessAndManageCertificates;
+            resourceInputs["accessAndManageDns"] = args?.accessAndManageDns;
+            resourceInputs["accessAndManageIamResources"] = args?.accessAndManageIamResources;
+            resourceInputs["accessAndManageKaas"] = args?.accessAndManageKaas;
+            resourceInputs["accessAndManageLogging"] = args?.accessAndManageLogging;
             resourceInputs["accessAndManageMonitoring"] = args?.accessAndManageMonitoring;
+            resourceInputs["accessAndManageNetworkFileStorage"] = args?.accessAndManageNetworkFileStorage;
+            resourceInputs["accessAndManageVpn"] = args?.accessAndManageVpn;
             resourceInputs["createBackupUnit"] = args?.createBackupUnit;
             resourceInputs["createDatacenter"] = args?.createDatacenter;
             resourceInputs["createFlowLog"] = args?.createFlowLog;
             resourceInputs["createInternetAccess"] = args?.createInternetAccess;
             resourceInputs["createK8sCluster"] = args?.createK8sCluster;
+            resourceInputs["createNetworkSecurityGroups"] = args?.createNetworkSecurityGroups;
             resourceInputs["createPcc"] = args?.createPcc;
             resourceInputs["createSnapshot"] = args?.createSnapshot;
+            resourceInputs["getUsersData"] = args?.getUsersData;
+            resourceInputs["manageDataplatform"] = args?.manageDataplatform;
             resourceInputs["manageDbaas"] = args?.manageDbaas;
+            resourceInputs["manageRegistry"] = args?.manageRegistry;
             resourceInputs["name"] = args?.name;
             resourceInputs["reserveIp"] = args?.reserveIp;
             resourceInputs["s3Privilege"] = args?.s3Privilege;
@@ -239,13 +326,49 @@ export interface GroupState {
      */
     accessActivityLog?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     */
+    accessAndManageAiModelHub?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     */
+    accessAndManageApiGateway?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     */
+    accessAndManageCdn?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      */
     accessAndManageCertificates?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     */
+    accessAndManageDns?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     */
+    accessAndManageIamResources?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     */
+    accessAndManageKaas?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     */
+    accessAndManageLogging?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     accessAndManageMonitoring?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     */
+    accessAndManageNetworkFileStorage?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     */
+    accessAndManageVpn?: pulumi.Input<boolean>;
     /**
      * [Boolean] The group will be allowed to create backup unit privilege.
      */
@@ -267,6 +390,10 @@ export interface GroupState {
      */
     createK8sCluster?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     */
+    createNetworkSecurityGroups?: pulumi.Input<boolean>;
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      */
     createPcc?: pulumi.Input<boolean>;
@@ -275,9 +402,21 @@ export interface GroupState {
      */
     createSnapshot?: pulumi.Input<boolean>;
     /**
+     * [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
+     */
+    getUsersData?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     */
+    manageDataplatform?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     manageDbaas?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     */
+    manageRegistry?: pulumi.Input<boolean>;
     /**
      * [string] A name for the group.
      */
@@ -317,13 +456,49 @@ export interface GroupArgs {
      */
     accessActivityLog?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     */
+    accessAndManageAiModelHub?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     */
+    accessAndManageApiGateway?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     */
+    accessAndManageCdn?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      */
     accessAndManageCertificates?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     */
+    accessAndManageDns?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     */
+    accessAndManageIamResources?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     */
+    accessAndManageKaas?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     */
+    accessAndManageLogging?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     accessAndManageMonitoring?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     */
+    accessAndManageNetworkFileStorage?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     */
+    accessAndManageVpn?: pulumi.Input<boolean>;
     /**
      * [Boolean] The group will be allowed to create backup unit privilege.
      */
@@ -345,6 +520,10 @@ export interface GroupArgs {
      */
     createK8sCluster?: pulumi.Input<boolean>;
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     */
+    createNetworkSecurityGroups?: pulumi.Input<boolean>;
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      */
     createPcc?: pulumi.Input<boolean>;
@@ -353,9 +532,21 @@ export interface GroupArgs {
      */
     createSnapshot?: pulumi.Input<boolean>;
     /**
+     * [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
+     */
+    getUsersData?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     */
+    manageDataplatform?: pulumi.Input<boolean>;
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     manageDbaas?: pulumi.Input<boolean>;
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     */
+    manageRegistry?: pulumi.Input<boolean>;
     /**
      * [string] A name for the group.
      */

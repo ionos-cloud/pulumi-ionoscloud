@@ -21,20 +21,6 @@ import * as utilities from "../utilities";
  *     id: "share-id",
  * });
  * ```
- *
- * ## By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- *
- * const example = ionoscloud.nfs.getShare({
- *     location: "location",
- *     clusterId: "cluster-id",
- *     name: "partial-name",
- *     partialMatch: true,
- * });
- * ```
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -72,7 +58,7 @@ export interface GetShareArgs {
      */
     id?: string;
     /**
-     * The location where the Network File Storage share is located.
+     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: string;
     /**
@@ -150,20 +136,6 @@ export interface GetShareResult {
  *     id: "share-id",
  * });
  * ```
- *
- * ## By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- *
- * const example = ionoscloud.nfs.getShare({
- *     location: "location",
- *     clusterId: "cluster-id",
- *     name: "partial-name",
- *     partialMatch: true,
- * });
- * ```
  */
 export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetShareResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -201,7 +173,7 @@ export interface GetShareOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * The location where the Network File Storage share is located.
+     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: pulumi.Input<string>;
     /**

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
 {
     /// <summary>
-    /// Manages a **Kafka Cluster** on IonosCloud.
+    /// Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -43,7 +43,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
     ///     {
     ///         Name = "example-kafka-cluster",
     ///         Location = "de/fra",
-    ///         Version = "3.7.0",
+    ///         Version = "3.9.0",
     ///         Size = "S",
     ///         Connections = new Ionoscloud.Kafka.Inputs.ClusterConnectionsArgs
     ///         {
@@ -55,76 +55,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
     ///                 "192.168.1.102/24",
     ///                 "192.168.1.103/24",
     ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Complete example
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Name = "example-kafka-datacenter",
-    ///         Location = "de/fra",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = false,
-    ///         Name = "example-kafka-lan",
-    ///     });
-    /// 
-    ///     var password = new Random.Index.Password("password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = false,
-    ///     });
-    /// 
-    ///     var exampleServer = new Ionoscloud.Compute.Server("example", new()
-    ///     {
-    ///         Name = "example-kafka-server",
-    ///         DatacenterId = example.Id,
-    ///         Cores = 1,
-    ///         Ram = 2 * 1024,
-    ///         AvailabilityZone = "AUTO",
-    ///         CpuFamily = "INTEL_SKYLAKE",
-    ///         ImageName = "ubuntu:latest",
-    ///         ImagePassword = password.Result,
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "example-kafka-volume",
-    ///             Size = 6,
-    ///             DiskType = "SSD Standard",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = exampleLan.Id,
-    ///             Name = "example-kafka-nic",
-    ///             Dhcp = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleCluster = new Ionoscloud.Kafka.Cluster("example", new()
-    ///     {
-    ///         Name = "example-kafka-cluster",
-    ///         Location = example.Location,
-    ///         Version = "3.7.0",
-    ///         Size = "S",
-    ///         Connections = new Ionoscloud.Kafka.Inputs.ClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = example.Id,
-    ///             LanId = exampleLan.Id,
-    ///             BrokerAddresses = "kafka_cluster_broker_ips_cidr_list",
     ///         },
     ///     });
     /// 
@@ -157,7 +87,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Output<Outputs.ClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -175,7 +105,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Output<string> Size { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -234,7 +164,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<Inputs.ClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -252,7 +182,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<string> Size { get; set; } = null!;
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -286,7 +216,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<Inputs.ClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -304,7 +234,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<string>? Size { get; set; }
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

@@ -27,7 +27,7 @@ class GetVCPUServerResult:
     """
     A collection of values returned by getVCPUServer.
     """
-    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, labels=None, name=None, nics=None, ram=None, security_groups_ids=None, token=None, type=None, vm_state=None, volumes=None):
+    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, labels=None, location=None, name=None, nic_multi_queue=None, nics=None, ram=None, security_groups_ids=None, token=None, type=None, vm_state=None, volumes=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -61,9 +61,15 @@ class GetVCPUServerResult:
         if labels and not isinstance(labels, list):
             raise TypeError("Expected argument 'labels' to be a list")
         pulumi.set(__self__, "labels", labels)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if nic_multi_queue and not isinstance(nic_multi_queue, bool):
+            raise TypeError("Expected argument 'nic_multi_queue' to be a bool")
+        pulumi.set(__self__, "nic_multi_queue", nic_multi_queue)
         if nics and not isinstance(nics, list):
             raise TypeError("Expected argument 'nics' to be a list")
         pulumi.set(__self__, "nics", nics)
@@ -167,11 +173,27 @@ class GetVCPUServerResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         Name of the firewall rule
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nicMultiQueue")
+    def nic_multi_queue(self) -> _builtins.bool:
+        """
+        Specifies whether the `nic_multi_queue` feature is enabled or not.
+        """
+        return pulumi.get(self, "nic_multi_queue")
 
     @_builtins.property
     @pulumi.getter
@@ -244,7 +266,9 @@ class AwaitableGetVCPUServerResult(GetVCPUServerResult):
             hostname=self.hostname,
             id=self.id,
             labels=self.labels,
+            location=self.location,
             name=self.name,
+            nic_multi_queue=self.nic_multi_queue,
             nics=self.nics,
             ram=self.ram,
             security_groups_ids=self.security_groups_ids,
@@ -256,10 +280,11 @@ class AwaitableGetVCPUServerResult(GetVCPUServerResult):
 
 def get_vcpu_server(datacenter_id: Optional[_builtins.str] = None,
                     id: Optional[_builtins.str] = None,
+                    location: Optional[_builtins.str] = None,
                     name: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVCPUServerResult:
     """
-    The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+    The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
@@ -288,11 +313,13 @@ def get_vcpu_server(datacenter_id: Optional[_builtins.str] = None,
     :param _builtins.str id: ID of the server you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getVCPUServer:getVCPUServer', __args__, opts=opts, typ=GetVCPUServerResult).value
@@ -309,7 +336,9 @@ def get_vcpu_server(datacenter_id: Optional[_builtins.str] = None,
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
+        nic_multi_queue=pulumi.get(__ret__, 'nic_multi_queue'),
         nics=pulumi.get(__ret__, 'nics'),
         ram=pulumi.get(__ret__, 'ram'),
         security_groups_ids=pulumi.get(__ret__, 'security_groups_ids'),
@@ -319,10 +348,11 @@ def get_vcpu_server(datacenter_id: Optional[_builtins.str] = None,
         volumes=pulumi.get(__ret__, 'volumes'))
 def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVCPUServerResult]:
     """
-    The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+    The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
@@ -351,11 +381,13 @@ def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
     :param _builtins.str id: ID of the server you want to search for.
            
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getVCPUServer:getVCPUServer', __args__, opts=opts, typ=GetVCPUServerResult)
@@ -371,7 +403,9 @@ def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
         hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
         labels=pulumi.get(__response__, 'labels'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
+        nic_multi_queue=pulumi.get(__response__, 'nic_multi_queue'),
         nics=pulumi.get(__response__, 'nics'),
         ram=pulumi.get(__response__, 'ram'),
         security_groups_ids=pulumi.get(__response__, 'security_groups_ids'),

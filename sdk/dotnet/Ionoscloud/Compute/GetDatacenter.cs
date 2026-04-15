@@ -161,7 +161,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public string? Id { get; set; }
 
         /// <summary>
-        /// Id of the existing Virtual Data Center's location.
+        /// Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         /// 
         /// Either `Name`, `Location` or `Id` must be provided. If none, the datasource will return an error.
         /// </summary>
@@ -189,7 +189,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Id of the existing Virtual Data Center's location.
+        /// Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         /// 
         /// Either `Name`, `Location` or `Id` must be provided. If none, the datasource will return an error.
         /// </summary>
@@ -230,7 +230,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public readonly string Id;
         public readonly string Ipv6CidrBlock;
         /// <summary>
-        /// The regional location where the Virtual Data Center will be created
+        /// The regional location where the Virtual Data Center is created
         /// </summary>
         public readonly string? Location;
         /// <summary>

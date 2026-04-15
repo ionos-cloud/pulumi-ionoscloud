@@ -23,6 +23,7 @@ class BalancerArgs:
                  nic_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Balancer resource.
@@ -31,6 +32,7 @@ class BalancerArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         :param pulumi.Input[_builtins.bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
         :param pulumi.Input[_builtins.str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the load balancer.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -39,6 +41,8 @@ class BalancerArgs:
             pulumi.set(__self__, "dhcp", dhcp)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -92,6 +96,18 @@ class BalancerArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the load balancer.
@@ -109,6 +125,7 @@ class _BalancerState:
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -117,6 +134,7 @@ class _BalancerState:
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
         :param pulumi.Input[_builtins.str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
@@ -126,6 +144,8 @@ class _BalancerState:
             pulumi.set(__self__, "dhcp", dhcp)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic_ids is not None:
@@ -169,6 +189,18 @@ class _BalancerState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the load balancer.
@@ -201,6 +233,7 @@ class Balancer(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -274,6 +307,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
         :param pulumi.Input[_builtins.str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
@@ -366,6 +400,7 @@ class Balancer(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -382,6 +417,7 @@ class Balancer(pulumi.CustomResource):
             __props__.__dict__["datacenter_id"] = datacenter_id
             __props__.__dict__["dhcp"] = dhcp
             __props__.__dict__["ip"] = ip
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if nic_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'nic_ids'")
@@ -399,6 +435,7 @@ class Balancer(pulumi.CustomResource):
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
             dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
             ip: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Balancer':
         """
@@ -411,6 +448,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
         :param pulumi.Input[_builtins.str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the load balancer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
@@ -421,6 +459,7 @@ class Balancer(pulumi.CustomResource):
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["dhcp"] = dhcp
         __props__.__dict__["ip"] = ip
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["nic_ids"] = nic_ids
         return Balancer(resource_name, opts=opts, __props__=__props__)
@@ -448,6 +487,14 @@ class Balancer(pulumi.CustomResource):
         [string] IPv4 address of the load balancer.
         """
         return pulumi.get(self, "ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

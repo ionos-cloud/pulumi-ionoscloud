@@ -272,7 +272,7 @@ class TargetGroup(pulumi.CustomResource):
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **Target Group** on IonosCloud.
+        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
 
         ## Example Usage
 
@@ -344,7 +344,7 @@ class TargetGroup(pulumi.CustomResource):
                  args: TargetGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Target Group** on IonosCloud.
+        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
 
         ## Example Usage
 

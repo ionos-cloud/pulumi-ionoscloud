@@ -63,19 +63,25 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public partial class PSQLDatabase : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [string] The unique ID of the cluster.
+        /// [string] The unique ID of the cluster. Immutable, forces re-creation.
         /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The name of the database.
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
+        /// [string] The name of the database. Immutable, forces re-creation.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The owner of the database.
+        /// [string] The owner of the database. Immutable, forces re-creation.
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
@@ -128,19 +134,25 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class PSQLDatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The unique ID of the cluster.
+        /// [string] The unique ID of the cluster. Immutable, forces re-creation.
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] The name of the database.
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
+        /// [string] The name of the database. Immutable, forces re-creation.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] The owner of the database.
+        /// [string] The owner of the database. Immutable, forces re-creation.
         /// </summary>
         [Input("owner", required: true)]
         public Input<string> Owner { get; set; } = null!;
@@ -154,19 +166,25 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class PSQLDatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The unique ID of the cluster.
+        /// [string] The unique ID of the cluster. Immutable, forces re-creation.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// [string] The name of the database.
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
+        /// [string] The name of the database. Immutable, forces re-creation.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] The owner of the database.
+        /// [string] The owner of the database. Immutable, forces re-creation.
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }

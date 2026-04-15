@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 {
     /// <summary>
-    /// Manages a **DbaaS Mongo Cluster**.
+    /// Manages a [DbaaS Mongo Cluster](https://docs.ionos.com/cloud/databases/mongodb/overview).
     /// 
     /// ## Example Usage
     /// 
@@ -47,7 +47,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///             DayOfTheWeek = "Sunday",
     ///             Time = "09:00:00",
     ///         },
-    ///         MongodbVersion = "5.0",
+    ///         MongodbVersion = "6.0",
     ///         Instances = 1,
     ///         DisplayName = "example_mongo_cluster",
     ///         Location = datacenterExample.Location,
@@ -107,7 +107,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///             DayOfTheWeek = "Sunday",
     ///             Time = "09:00:00",
     ///         },
-    ///         MongodbVersion = "5.0",
+    ///         MongodbVersion = "6.0",
     ///         Instances = 3,
     ///         DisplayName = "example_mongo_cluster",
     ///         Location = datacenterExample.Location,
@@ -201,7 +201,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<int> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -213,7 +213,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.MongoClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         /// </summary>
         [Output("mongodbVersion")]
         public Output<string> MongodbVersion { get; private set; } = null!;
@@ -344,7 +344,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<int> Instances { get; set; } = null!;
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -356,7 +356,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MongoClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         /// </summary>
         [Input("mongodbVersion", required: true)]
         public Input<string> MongodbVersion { get; set; } = null!;
@@ -454,7 +454,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<int>? Instances { get; set; }
 
         /// <summary>
-        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        /// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -466,7 +466,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MongoClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         /// </summary>
         [Input("mongodbVersion")]
         public Input<string>? MongodbVersion { get; set; }

@@ -27,7 +27,7 @@ class GetCrossconnectResult:
     """
     A collection of values returned by getCrossconnect.
     """
-    def __init__(__self__, connectable_datacenters=None, description=None, id=None, name=None, peers=None):
+    def __init__(__self__, connectable_datacenters=None, description=None, id=None, location=None, name=None, peers=None):
         if connectable_datacenters and not isinstance(connectable_datacenters, list):
             raise TypeError("Expected argument 'connectable_datacenters' to be a list")
         pulumi.set(__self__, "connectable_datacenters", connectable_datacenters)
@@ -37,6 +37,9 @@ class GetCrossconnectResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -70,6 +73,14 @@ class GetCrossconnectResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        The physical location of the connectable datacenter
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The name of the connectable datacenter
@@ -94,12 +105,14 @@ class AwaitableGetCrossconnectResult(GetCrossconnectResult):
             connectable_datacenters=self.connectable_datacenters,
             description=self.description,
             id=self.id,
+            location=self.location,
             name=self.name,
             peers=self.peers)
 
 
 def get_crossconnect(description: Optional[_builtins.str] = None,
                      id: Optional[_builtins.str] = None,
+                     location: Optional[_builtins.str] = None,
                      name: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCrossconnectResult:
     """
@@ -130,11 +143,13 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
     :param _builtins.str id: ID of the cross connect you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: The physical location of the connectable datacenter
     :param _builtins.str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
     __args__['description'] = description
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getCrossconnect:getCrossconnect', __args__, opts=opts, typ=GetCrossconnectResult).value
@@ -143,10 +158,12 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
         connectable_datacenters=pulumi.get(__ret__, 'connectable_datacenters'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         peers=pulumi.get(__ret__, 'peers'))
 def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCrossconnectResult]:
     """
@@ -177,11 +194,13 @@ def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtin
     :param _builtins.str id: ID of the cross connect you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: The physical location of the connectable datacenter
     :param _builtins.str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
     __args__['description'] = description
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getCrossconnect:getCrossconnect', __args__, opts=opts, typ=GetCrossconnectResult)
@@ -189,5 +208,6 @@ def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtin
         connectable_datacenters=pulumi.get(__response__, 'connectable_datacenters'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         peers=pulumi.get(__response__, 'peers')))

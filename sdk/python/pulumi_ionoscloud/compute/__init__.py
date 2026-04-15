@@ -18,6 +18,9 @@ from .get_crossconnect import *
 from .get_cube_server import *
 from .get_datacenter import *
 from .get_firewall import *
+from .get_gpu import *
+from .get_gpu_server import *
+from .get_gpus import *
 from .get_group import *
 from .get_image import *
 from .get_ip_block import *
@@ -38,6 +41,7 @@ from .get_template import *
 from .get_user import *
 from .get_vcpu_server import *
 from .get_volume import *
+from .gpu_server import *
 from .group import *
 from .ip_block import *
 from .ip_failover import *

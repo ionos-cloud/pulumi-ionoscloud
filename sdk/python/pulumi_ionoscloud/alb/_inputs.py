@@ -40,7 +40,7 @@ class BalancerFlowlogArgsDict(TypedDict):
     """
     [string] Specifies the name of the flow log.
 
-    ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+    ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
     """
     id: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -61,7 +61,7 @@ class BalancerFlowlogArgs:
         :param pulumi.Input[_builtins.str] direction: [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         :param pulumi.Input[_builtins.str] name: [string] Specifies the name of the flow log.
                
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+               ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
         :param pulumi.Input[_builtins.str] id: The resource's unique identifier.
         """
         pulumi.set(__self__, "action", action)
@@ -113,7 +113,7 @@ class BalancerFlowlogArgs:
         """
         [string] Specifies the name of the flow log.
 
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
         """
         return pulumi.get(self, "name")
 

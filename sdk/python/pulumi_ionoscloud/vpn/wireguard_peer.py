@@ -36,7 +36,7 @@ class WireguardPeerArgs:
         :param pulumi.Input[_builtins.str] public_key: [string] The public key for the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] description: [string] A description of the WireGuard Gateway.
         :param pulumi.Input['WireguardPeerEndpointArgs'] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
-        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The human-readable name of the WireGuard Gateway.
         """
         pulumi.set(__self__, "allowed_ips", allowed_ips)
@@ -115,7 +115,7 @@ class WireguardPeerArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the WireGuard Gateway.
+        [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -154,7 +154,7 @@ class _WireguardPeerState:
         :param pulumi.Input[_builtins.str] description: [string] A description of the WireGuard Gateway.
         :param pulumi.Input['WireguardPeerEndpointArgs'] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The human-readable name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] public_key: [string] The public key for the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] status: The current status of the WireGuard Gateway Peer.
@@ -228,7 +228,7 @@ class _WireguardPeerState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the WireGuard Gateway.
+        [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -328,7 +328,7 @@ class WireguardPeer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] A description of the WireGuard Gateway.
         :param pulumi.Input[Union['WireguardPeerEndpointArgs', 'WireguardPeerEndpointArgsDict']] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The human-readable name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] public_key: [string] The public key for the WireGuard Gateway.
         """
@@ -447,7 +447,7 @@ class WireguardPeer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] A description of the WireGuard Gateway.
         :param pulumi.Input[Union['WireguardPeerEndpointArgs', 'WireguardPeerEndpointArgsDict']] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The human-readable name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] public_key: [string] The public key for the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] status: The current status of the WireGuard Gateway Peer.
@@ -502,7 +502,7 @@ class WireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the WireGuard Gateway.
+        [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 

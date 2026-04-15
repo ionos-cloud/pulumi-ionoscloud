@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public static class GetCubeServer
     {
         /// <summary>
-        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -59,7 +59,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCubeServerResult>("ionoscloud:compute/getCubeServer:getCubeServer", args ?? new GetCubeServerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -105,7 +105,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             => global::Pulumi.Deployment.Instance.Invoke<GetCubeServerResult>("ionoscloud:compute/getCubeServer:getCubeServer", args ?? new GetCubeServerInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers. 
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -169,6 +169,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public string? Id { get; set; }
 
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing server that you want to search for.
         /// </summary>
         [Input("name")]
@@ -201,6 +207,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing server that you want to search for.
@@ -250,6 +262,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// Name of the firewall rule
         /// </summary>
         public readonly string Name;
@@ -298,6 +314,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string id,
 
+            string? location,
+
             string name,
 
             ImmutableArray<Outputs.GetCubeServerNicResult> nics,
@@ -324,6 +342,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             DatacenterId = datacenterId;
             Hostname = hostname;
             Id = id;
+            Location = location;
             Name = name;
             Nics = nics;
             Ram = ram;

@@ -22,9 +22,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging.Outputs
         /// [string] "Protocol to use as intake. Possible values are: http, tcp."
         /// </summary>
         public readonly string Protocol;
-        /// <summary>
-        /// [bool]
-        /// </summary>
         public readonly bool? Public;
         /// <summary>
         /// [string] The source parser to be used.

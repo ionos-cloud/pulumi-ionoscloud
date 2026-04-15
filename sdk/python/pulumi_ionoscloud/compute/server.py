@@ -22,7 +22,6 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
-                 volume: pulumi.Input['ServerVolumeArgs'],
                  allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,21 +33,37 @@ class ServerArgs:
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input['ServerNicArgs']] = None,
+                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram: Optional[pulumi.Input[_builtins.int]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_uuid: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None):
+                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 volume: Optional[pulumi.Input['ServerVolumeArgs']] = None):
         """
         The set of arguments for constructing a Server resource.
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+        :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
+        :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -63,28 +78,16 @@ class ServerArgs:
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
-        :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
-        :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
-        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
+        :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
-        pulumi.set(__self__, "volume", volume)
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
         if availability_zone is not None:
@@ -110,10 +113,14 @@ class ServerArgs:
             pulumi.set(__self__, "image_password", image_password)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic is not None:
             pulumi.set(__self__, "nic", nic)
+        if nic_multi_queue is not None:
+            pulumi.set(__self__, "nic_multi_queue", nic_multi_queue)
         if ram is not None:
             pulumi.set(__self__, "ram", ram)
         if security_groups_ids is not None:
@@ -131,6 +138,8 @@ class ServerArgs:
             pulumi.set(__self__, "type", type)
         if vm_state is not None:
             pulumi.set(__self__, "vm_state", vm_state)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
@@ -145,36 +154,10 @@ class ServerArgs:
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
-    @pulumi.getter
-    def volume(self) -> pulumi.Input['ServerVolumeArgs']:
-        """
-        See the Volume section.
-        """
-        return pulumi.get(self, "volume")
-
-    @volume.setter
-    def volume(self, value: pulumi.Input['ServerVolumeArgs']):
-        pulumi.set(self, "volume", value)
-
-    @_builtins.property
     @pulumi.getter(name="allowReplace")
     def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -305,6 +288,18 @@ class ServerArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the server.
@@ -326,6 +321,32 @@ class ServerArgs:
     @nic.setter
     def nic(self, value: Optional[pulumi.Input['ServerNicArgs']]):
         pulumi.set(self, "nic", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nicMultiQueue")
+    def nic_multi_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "nic_multi_queue")
+
+    @nic_multi_queue.setter
+    def nic_multi_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "nic_multi_queue", value)
 
     @_builtins.property
     @pulumi.getter
@@ -392,7 +413,7 @@ class ServerArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         """
         return pulumi.get(self, "type")
 
@@ -404,13 +425,25 @@ class ServerArgs:
     @pulumi.getter(name="vmState")
     def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         """
         return pulumi.get(self, "vm_state")
 
     @vm_state.setter
     def vm_state(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "vm_state", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def volume(self) -> Optional[pulumi.Input['ServerVolumeArgs']]:
+        """
+        See the Volume section.
+        """
+        return pulumi.get(self, "volume")
+
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input['ServerVolumeArgs']]):
+        pulumi.set(self, "volume", value)
 
 
 @pulumi.input_type
@@ -431,8 +464,10 @@ class _ServerState:
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input['ServerNicArgs']] = None,
+                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
                  primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
                  ram: Optional[pulumi.Input[_builtins.int]] = None,
@@ -447,20 +482,6 @@ class _ServerState:
         Input properties used for looking up and filtering Server resources.
 
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-               
-               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               > ssh_key_path and ssh_keys fields are immutable.
-               
-               
-               > **⚠ WARNING**
-               >
-               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-               >
-               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -475,8 +496,24 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               > ssh_key_path and ssh_keys fields are immutable.
+               
+               
+               > **⚠ WARNING**
+               >
+               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+               >
+               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
@@ -484,8 +521,8 @@ class _ServerState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
-        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         """
         if allow_replace is not None:
@@ -521,10 +558,14 @@ class _ServerState:
             pulumi.set(__self__, "inline_volume_ids", inline_volume_ids)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic is not None:
             pulumi.set(__self__, "nic", nic)
+        if nic_multi_queue is not None:
+            pulumi.set(__self__, "nic_multi_queue", nic_multi_queue)
         if primary_ip is not None:
             pulumi.set(__self__, "primary_ip", primary_ip)
         if primary_nic is not None:
@@ -554,20 +595,6 @@ class _ServerState:
     def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -746,6 +773,18 @@ class _ServerState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the server.
@@ -767,6 +806,32 @@ class _ServerState:
     @nic.setter
     def nic(self, value: Optional[pulumi.Input['ServerNicArgs']]):
         pulumi.set(self, "nic", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nicMultiQueue")
+    def nic_multi_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "nic_multi_queue")
+
+    @nic_multi_queue.setter
+    def nic_multi_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "nic_multi_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryIp")
@@ -857,7 +922,7 @@ class _ServerState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         """
         return pulumi.get(self, "type")
 
@@ -869,7 +934,7 @@ class _ServerState:
     @pulumi.getter(name="vmState")
     def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         """
         return pulumi.get(self, "vm_state")
 
@@ -908,8 +973,10 @@ class Server(pulumi.CustomResource):
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
+                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram: Optional[pulumi.Input[_builtins.int]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -920,13 +987,15 @@ class Server(pulumi.CustomResource):
                  volume: Optional[pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        Manages a **Server** on IonosCloud.
+        Dedicated Core Servers or [Enterprise Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) are provisioned and hosted in one of IONOS' physical data centers. Dedicated Core Servers behave exactly like physical servers. They can be configured and managed with your choice of the operating system.
+
+        Check out [Limitations](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core#limitations).
 
         ## Example Usage
 
         This resource will create an operational server. After this section completes, the provisioner can be called.
 
-        ### ENTERPRISE Server
+        ### Dedicated Core Server
 
         ```python
         import pulumi
@@ -958,8 +1027,6 @@ class Server(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.name,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -981,16 +1048,16 @@ class Server(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": example_ip_block.ips[2],
-                    "target_ip": example_ip_block.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": example_ip_block.ips[2],
+                    "targetIp": example_ip_block.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             },
             labels=[
                 {
@@ -1009,6 +1076,7 @@ class Server(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Resource Server Test",
@@ -1021,7 +1089,9 @@ class Server(pulumi.CustomResource):
             datacenter_id=example.id,
             public=True,
             name="public",
-            ipv6_cidr_block="ipv6_cidr_block_from_lan")
+            ipv6_cidr_block=std.cidrsubnet(input=example.ipv6_cidr_block,
+                newbits=8,
+                netnum=10)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -1030,8 +1100,6 @@ class Server(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="ubuntu:latest",
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -1054,22 +1122,33 @@ class Server(pulumi.CustomResource):
                     webserver_ipblock.ips[1],
                 ],
                 "dhcpv6": True,
-                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_cidr_block": std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                    newbits=16,
+                    netnum=24)["result"],
                 "ipv6_ips": [
-                    "ipv6_ip1",
-                    "ipv6_ip2",
-                    "ipv6_ip3",
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=10)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=20)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=30)["result"],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": webserver_ipblock.ips[2],
-                    "target_ip": webserver_ipblock.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": webserver_ipblock.ips[2],
+                    "targetIp": webserver_ipblock.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             })
         ```
 
@@ -1156,24 +1235,30 @@ class Server(pulumi.CustomResource):
         Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
 
         ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
-        from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
-
-        ## Import
-
-        Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
-
-        ```sh
-        terraform import ionoscloud_server.myserver datacenter uuid/server uuid
-        ```
-        Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
-        ```sh
-        terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
-        ```
+        from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+        More details here. There is a workaround described in the issue
+        that involves moving the resources in the list prior to deletion.
+        `terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
+        :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
+        :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -1188,26 +1273,13 @@ class Server(pulumi.CustomResource):
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
-        :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
-        :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
-        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         :param pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']] volume: See the Volume section.
         """
         ...
@@ -1217,13 +1289,15 @@ class Server(pulumi.CustomResource):
                  args: ServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Server** on IonosCloud.
+        Dedicated Core Servers or [Enterprise Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) are provisioned and hosted in one of IONOS' physical data centers. Dedicated Core Servers behave exactly like physical servers. They can be configured and managed with your choice of the operating system.
+
+        Check out [Limitations](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core#limitations).
 
         ## Example Usage
 
         This resource will create an operational server. After this section completes, the provisioner can be called.
 
-        ### ENTERPRISE Server
+        ### Dedicated Core Server
 
         ```python
         import pulumi
@@ -1255,8 +1329,6 @@ class Server(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.name,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -1278,16 +1350,16 @@ class Server(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": example_ip_block.ips[2],
-                    "target_ip": example_ip_block.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": example_ip_block.ips[2],
+                    "targetIp": example_ip_block.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             },
             labels=[
                 {
@@ -1306,6 +1378,7 @@ class Server(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Resource Server Test",
@@ -1318,7 +1391,9 @@ class Server(pulumi.CustomResource):
             datacenter_id=example.id,
             public=True,
             name="public",
-            ipv6_cidr_block="ipv6_cidr_block_from_lan")
+            ipv6_cidr_block=std.cidrsubnet(input=example.ipv6_cidr_block,
+                newbits=8,
+                netnum=10)["result"])
         server_image_password = random.Password("server_image_password",
             length=16,
             special=False)
@@ -1327,8 +1402,6 @@ class Server(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="ubuntu:latest",
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -1351,22 +1424,33 @@ class Server(pulumi.CustomResource):
                     webserver_ipblock.ips[1],
                 ],
                 "dhcpv6": True,
-                "ipv6_cidr_block": "ipv6_cidr_block_from_lan",
+                "ipv6_cidr_block": std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                    newbits=16,
+                    netnum=24)["result"],
                 "ipv6_ips": [
-                    "ipv6_ip1",
-                    "ipv6_ip2",
-                    "ipv6_ip3",
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=10)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=20)["result"],
+                    std.cidrhost(input=std.cidrsubnet(input=example_lan.ipv6_cidr_block,
+                            newbits=16,
+                            netnum=24)["result"],
+                        host=30)["result"],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": webserver_ipblock.ips[2],
-                    "target_ip": webserver_ipblock.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": webserver_ipblock.ips[2],
+                    "targetIp": webserver_ipblock.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             })
         ```
 
@@ -1453,19 +1537,10 @@ class Server(pulumi.CustomResource):
         Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
 
         ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
-        from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
-
-        ## Import
-
-        Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
-
-        ```sh
-        terraform import ionoscloud_server.myserver datacenter uuid/server uuid
-        ```
-        Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
-        ```sh
-        terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
-        ```
+        from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+        More details here. There is a workaround described in the issue
+        that involves moving the resources in the list prior to deletion.
+        `terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
 
 
         :param str resource_name: The name of the resource.
@@ -1495,8 +1570,10 @@ class Server(pulumi.CustomResource):
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
+                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram: Optional[pulumi.Input[_builtins.int]] = None,
                  security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1528,8 +1605,10 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["image_name"] = image_name
             __props__.__dict__["image_password"] = None if image_password is None else pulumi.Output.secret(image_password)
             __props__.__dict__["labels"] = labels
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["nic"] = nic
+            __props__.__dict__["nic_multi_queue"] = nic_multi_queue
             __props__.__dict__["ram"] = ram
             __props__.__dict__["security_groups_ids"] = security_groups_ids
             __props__.__dict__["ssh_key_paths"] = ssh_key_paths
@@ -1537,8 +1616,6 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["template_uuid"] = template_uuid
             __props__.__dict__["type"] = type
             __props__.__dict__["vm_state"] = vm_state
-            if volume is None and not opts.urn:
-                raise TypeError("Missing required property 'volume'")
             __props__.__dict__["volume"] = volume
             __props__.__dict__["boot_volume"] = None
             __props__.__dict__["firewallrule_id"] = None
@@ -1572,8 +1649,10 @@ class Server(pulumi.CustomResource):
             image_password: Optional[pulumi.Input[_builtins.str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
+            nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
             primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
             primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
             ram: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1592,20 +1671,6 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-               
-               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               > ssh_key_path and ssh_keys fields are immutable.
-               
-               
-               > **⚠ WARNING**
-               >
-               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-               >
-               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -1620,8 +1685,24 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+               
+               ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               > ssh_key_path and ssh_keys fields are immutable.
+               
+               
+               > **⚠ WARNING**
+               >
+               > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+               >
+               > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
@@ -1629,8 +1710,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
-        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+        :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         :param pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']] volume: See the Volume section.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1652,8 +1733,10 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["image_password"] = image_password
         __props__.__dict__["inline_volume_ids"] = inline_volume_ids
         __props__.__dict__["labels"] = labels
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["nic"] = nic
+        __props__.__dict__["nic_multi_queue"] = nic_multi_queue
         __props__.__dict__["primary_ip"] = primary_ip
         __props__.__dict__["primary_nic"] = primary_nic
         __props__.__dict__["ram"] = ram
@@ -1671,20 +1754,6 @@ class Server(pulumi.CustomResource):
     def allow_replace(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "allow_replace")
 
@@ -1803,6 +1872,14 @@ class Server(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
         [string] The name of the server.
@@ -1816,6 +1893,28 @@ class Server(pulumi.CustomResource):
         See the Nic section.
         """
         return pulumi.get(self, "nic")
+
+    @_builtins.property
+    @pulumi.getter(name="nicMultiQueue")
+    def nic_multi_queue(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "nic_multi_queue")
 
     @_builtins.property
     @pulumi.getter(name="primaryIp")
@@ -1878,7 +1977,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         """
         return pulumi.get(self, "type")
 
@@ -1886,13 +1985,13 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="vmState")
     def vm_state(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+        [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
         """
         return pulumi.get(self, "vm_state")
 
     @_builtins.property
     @pulumi.getter
-    def volume(self) -> pulumi.Output['outputs.ServerVolume']:
+    def volume(self) -> pulumi.Output[Optional['outputs.ServerVolume']]:
         """
         See the Volume section.
         """

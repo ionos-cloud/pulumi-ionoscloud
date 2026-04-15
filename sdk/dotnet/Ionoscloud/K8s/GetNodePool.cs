@@ -168,6 +168,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         [Input("k8sClusterId", required: true)]
         public string K8sClusterId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing node pool that you want to search for.
         /// </summary>
@@ -195,6 +198,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Input("k8sClusterId", required: true)]
         public Input<string> K8sClusterId { get; set; } = null!;
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing node pool that you want to search for.
@@ -260,6 +266,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// A list of Local Area Networks the node pool is a part of
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNodePoolLanResult> Lans;
+        public readonly string? Location;
         /// <summary>
         /// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
         /// </summary>
@@ -280,6 +287,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// The amount of RAM in MB
         /// </summary>
         public readonly int RamSize;
+        /// <summary>
+        /// The server type for the compute engine
+        /// </summary>
+        public readonly string ServerType;
         /// <summary>
         /// one of "AVAILABLE",
         /// "INACTIVE",
@@ -331,6 +342,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 
             ImmutableArray<Outputs.GetNodePoolLanResult> lans,
 
+            string? location,
+
             ImmutableArray<Outputs.GetNodePoolMaintenanceWindowResult> maintenanceWindows,
 
             string name,
@@ -340,6 +353,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
             ImmutableArray<string> publicIps,
 
             int ramSize,
+
+            string serverType,
 
             string state,
 
@@ -359,11 +374,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
             K8sVersion = k8sVersion;
             Labels = labels;
             Lans = lans;
+            Location = location;
             MaintenanceWindows = maintenanceWindows;
             Name = name;
             NodeCount = nodeCount;
             PublicIps = publicIps;
             RamSize = ramSize;
+            ServerType = serverType;
             State = state;
             StorageSize = storageSize;
             StorageType = storageType;

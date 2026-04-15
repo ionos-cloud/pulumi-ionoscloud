@@ -19,6 +19,7 @@ __all__ = [
     'BucketLifecycleConfigurationRule',
     'BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload',
     'BucketLifecycleConfigurationRuleExpiration',
+    'BucketLifecycleConfigurationRuleFilter',
     'BucketLifecycleConfigurationRuleNoncurrentVersionExpiration',
     'BucketServerSideEncryptionConfigurationRule',
     'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault',
@@ -57,38 +58,35 @@ class BucketLifecycleConfigurationRule(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 prefix: _builtins.str,
                  status: _builtins.str,
                  abort_incomplete_multipart_upload: Optional['outputs.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload'] = None,
                  expiration: Optional['outputs.BucketLifecycleConfigurationRuleExpiration'] = None,
+                 filter: Optional['outputs.BucketLifecycleConfigurationRuleFilter'] = None,
                  id: Optional[_builtins.str] = None,
-                 noncurrent_version_expiration: Optional['outputs.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration'] = None):
+                 noncurrent_version_expiration: Optional['outputs.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration'] = None,
+                 prefix: Optional[_builtins.str] = None):
         """
-        :param _builtins.str prefix: Object key prefix identifying one or more objects to which the rule applies.
         :param _builtins.str status: Whether the rule is currently being applied. Valid values: Enabled or Disabled.
         :param 'BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs' abort_incomplete_multipart_upload: Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
         :param 'BucketLifecycleConfigurationRuleExpirationArgs' expiration: A lifecycle rule for when an object expires.
+        :param 'BucketLifecycleConfigurationRuleFilterArgs' filter: A filter.
         :param _builtins.str id: Unique identifier for the rule.
         :param 'BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs' noncurrent_version_expiration: A lifecycle rule for when non-current object versions expire.
+        :param _builtins.str prefix: Object key prefix identifying one or more objects to which the rule applies.
         """
-        pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "status", status)
         if abort_incomplete_multipart_upload is not None:
             pulumi.set(__self__, "abort_incomplete_multipart_upload", abort_incomplete_multipart_upload)
         if expiration is not None:
             pulumi.set(__self__, "expiration", expiration)
+        if filter is not None:
+            pulumi.set(__self__, "filter", filter)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if noncurrent_version_expiration is not None:
             pulumi.set(__self__, "noncurrent_version_expiration", noncurrent_version_expiration)
-
-    @_builtins.property
-    @pulumi.getter
-    def prefix(self) -> _builtins.str:
-        """
-        Object key prefix identifying one or more objects to which the rule applies.
-        """
-        return pulumi.get(self, "prefix")
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
 
     @_builtins.property
     @pulumi.getter
@@ -116,6 +114,14 @@ class BucketLifecycleConfigurationRule(dict):
 
     @_builtins.property
     @pulumi.getter
+    def filter(self) -> Optional['outputs.BucketLifecycleConfigurationRuleFilter']:
+        """
+        A filter.
+        """
+        return pulumi.get(self, "filter")
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
         Unique identifier for the rule.
@@ -129,6 +135,15 @@ class BucketLifecycleConfigurationRule(dict):
         A lifecycle rule for when non-current object versions expire.
         """
         return pulumi.get(self, "noncurrent_version_expiration")
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.""")
+    def prefix(self) -> Optional[_builtins.str]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
+        return pulumi.get(self, "prefix")
 
 
 @pulumi.output_type
@@ -225,6 +240,25 @@ class BucketLifecycleConfigurationRuleExpiration(dict):
         Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
         """
         return pulumi.get(self, "expired_object_delete_marker")
+
+
+@pulumi.output_type
+class BucketLifecycleConfigurationRuleFilter(dict):
+    def __init__(__self__, *,
+                 prefix: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str prefix: Object key prefix identifying one or more objects to which the rule applies.
+        """
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix(self) -> Optional[_builtins.str]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
+        return pulumi.get(self, "prefix")
 
 
 @pulumi.output_type
@@ -477,7 +511,6 @@ class CorsConfigurationCorsRule(dict):
         :param Sequence[_builtins.str] expose_headers: [list] Specifies which headers are exposed to the browser.
         :param _builtins.int id: [int] Container for the Contract Number of the owner
                
-               
                Days and years are mutually exclusive. You can only specify one of them.
         :param _builtins.int max_age_seconds: [int] Specifies how long the results of a pre-flight request can be cached in seconds.
         """
@@ -529,7 +562,6 @@ class CorsConfigurationCorsRule(dict):
     def id(self) -> Optional[_builtins.int]:
         """
         [int] Container for the Contract Number of the owner
-
 
         Days and years are mutually exclusive. You can only specify one of them.
         """

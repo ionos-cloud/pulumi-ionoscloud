@@ -33,7 +33,7 @@ class BucketArgs:
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Default is `false`.By setting force_destroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If force_destroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. [ 3 .. 63 ] characters
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
-        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
         :param pulumi.Input['BucketTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
@@ -90,7 +90,7 @@ class BucketArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         """
         return pulumi.get(self, "region")
 
@@ -138,7 +138,7 @@ class _BucketState:
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Default is `false`.By setting force_destroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If force_destroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. [ 3 .. 63 ] characters
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
-        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
         :param pulumi.Input['BucketTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
@@ -195,7 +195,7 @@ class _BucketState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         """
         return pulumi.get(self, "region")
 
@@ -242,7 +242,9 @@ class Bucket(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages **IONOS Object Storage Buckets** on IonosCloud.
+        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
+
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
 
         ## Example Usage
 
@@ -263,10 +265,16 @@ class Bucket(pulumi.CustomResource):
 
         ## Import
 
-        Resource Bucket can be imported using the `bucket name`
+        A bucket can be imported using the `bucket name` and the `region`:
 
         ```sh
-        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example example
+        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name
+        ```
+
+        The `region` can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
+
+        ```sh
+        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name
         ```
 
 
@@ -275,7 +283,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Default is `false`.By setting force_destroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If force_destroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. [ 3 .. 63 ] characters
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
-        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
         :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
@@ -286,7 +294,9 @@ class Bucket(pulumi.CustomResource):
                  args: Optional[BucketArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IONOS Object Storage Buckets** on IonosCloud.
+        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
+
+        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
 
         ## Example Usage
 
@@ -307,10 +317,16 @@ class Bucket(pulumi.CustomResource):
 
         ## Import
 
-        Resource Bucket can be imported using the `bucket name`
+        A bucket can be imported using the `bucket name` and the `region`:
 
         ```sh
-        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example example
+        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name
+        ```
+
+        The `region` can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
+
+        ```sh
+        $ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name
         ```
 
 
@@ -376,7 +392,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Default is `false`.By setting force_destroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If force_destroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. [ 3 .. 63 ] characters
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
-        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
         :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
@@ -420,7 +436,7 @@ class Bucket(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+        [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         """
         return pulumi.get(self, "region")
 

@@ -97,6 +97,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// [string] Name of an existing database that you want to search for.
         /// </summary>
@@ -116,6 +119,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] Name of an existing database that you want to search for.
@@ -138,6 +144,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// [string] The id of the database.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         public readonly string Name;
         /// <summary>
         /// [string] The owner of the database.
@@ -150,12 +157,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             string id,
 
+            string? location,
+
             string name,
 
             string owner)
         {
             ClusterId = clusterId;
             Id = id;
+            Location = location;
             Name = name;
             Owner = owner;
         }

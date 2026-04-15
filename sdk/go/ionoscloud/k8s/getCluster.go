@@ -154,6 +154,8 @@ type LookupClusterArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
+	// this attribute is mandatory if the cluster is private.
+	Location *string `pulumi:"location"`
 	// Name of an existing cluster that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -246,6 +248,8 @@ type LookupClusterOutputArgs struct {
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// this attribute is mandatory if the cluster is private.
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing cluster that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }

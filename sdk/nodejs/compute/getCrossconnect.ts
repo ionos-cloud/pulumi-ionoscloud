@@ -39,6 +39,7 @@ export function getCrossconnect(args?: GetCrossconnectArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("ionoscloud:compute/getCrossconnect:getCrossconnect", {
         "description": args.description,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -57,6 +58,10 @@ export interface GetCrossconnectArgs {
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * The physical location of the connectable datacenter
+     */
+    location?: string;
     /**
      * Name of an existing cross connect that you want to search for.
      */
@@ -79,6 +84,10 @@ export interface GetCrossconnectResult {
      * The UUID of the connectable datacenter
      */
     readonly id: string;
+    /**
+     * The physical location of the connectable datacenter
+     */
+    readonly location?: string;
     /**
      * The name of the connectable datacenter
      */
@@ -121,6 +130,7 @@ export function getCrossconnectOutput(args?: GetCrossconnectOutputArgs, opts?: p
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getCrossconnect:getCrossconnect", {
         "description": args.description,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -139,6 +149,10 @@ export interface GetCrossconnectOutputArgs {
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The physical location of the connectable datacenter
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing cross connect that you want to search for.
      */

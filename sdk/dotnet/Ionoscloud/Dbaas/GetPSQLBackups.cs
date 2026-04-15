@@ -102,6 +102,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// The IONOS Object Storage location where the backups will be stored.
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetPSQLBackupsArgs()
         {
         }
@@ -117,6 +123,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
+
+        /// <summary>
+        /// The IONOS Object Storage location where the backups will be stored.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         public GetPSQLBackupsInvokeArgs()
         {
@@ -140,6 +152,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The IONOS Object Storage location where the backups will be stored.
+        /// </summary>
+        public readonly string? Location;
 
         [OutputConstructor]
         private GetPSQLBackupsResult(
@@ -147,11 +163,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             string clusterId,
 
-            string id)
+            string id,
+
+            string? location)
         {
             ClusterBackups = clusterBackups;
             ClusterId = clusterId;
             Id = id;
+            Location = location;
         }
     }
 }

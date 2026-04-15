@@ -23,6 +23,7 @@ class RegistryTokenArgs:
     def __init__(__self__, *,
                  registry_id: pulumi.Input[_builtins.str],
                  expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  save_password_to_file: Optional[pulumi.Input[_builtins.str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]]] = None,
@@ -30,18 +31,22 @@ class RegistryTokenArgs:
         """
         The set of arguments for constructing a RegistryToken resource.
 
+        :param pulumi.Input[_builtins.str] registry_id: [string] The ID of the container registry
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
                * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         :param pulumi.Input[_builtins.str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
                
                > **⚠ WARNING** `save_password_to_file` must be used with caution.
                > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]] scopes: [map]
-        :param pulumi.Input[_builtins.str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]] scopes: (Computed) [map]
+        :param pulumi.Input[_builtins.str] status: [string] Must have one of the values: `enabled`, `disabled`
         """
         pulumi.set(__self__, "registry_id", registry_id)
         if expiry_date is not None:
             pulumi.set(__self__, "expiry_date", expiry_date)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if save_password_to_file is not None:
@@ -54,6 +59,9 @@ class RegistryTokenArgs:
     @_builtins.property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The ID of the container registry
+        """
         return pulumi.get(self, "registry_id")
 
     @registry_id.setter
@@ -68,6 +76,18 @@ class RegistryTokenArgs:
     @expiry_date.setter
     def expiry_date(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "expiry_date", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -101,7 +121,7 @@ class RegistryTokenArgs:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]]]:
         """
-        [map]
+        (Computed) [map]
         """
         return pulumi.get(self, "scopes")
 
@@ -113,7 +133,7 @@ class RegistryTokenArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        [string] Must have one of the values: `enabled`, `disabled`
         """
         return pulumi.get(self, "status")
 
@@ -127,6 +147,7 @@ class _RegistryTokenState:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input[Sequence[pulumi.Input['RegistryTokenCredentialArgs']]]] = None,
                  expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  registry_id: Optional[pulumi.Input[_builtins.str]] = None,
                  save_password_to_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -135,19 +156,24 @@ class _RegistryTokenState:
         """
         Input properties used for looking up and filtering RegistryToken resources.
 
+        :param pulumi.Input[Sequence[pulumi.Input['RegistryTokenCredentialArgs']]] credentials: [map]
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
                * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+        :param pulumi.Input[_builtins.str] registry_id: [string] The ID of the container registry
         :param pulumi.Input[_builtins.str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
                
                > **⚠ WARNING** `save_password_to_file` must be used with caution.
                > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]] scopes: [map]
-        :param pulumi.Input[_builtins.str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]] scopes: (Computed) [map]
+        :param pulumi.Input[_builtins.str] status: [string] Must have one of the values: `enabled`, `disabled`
         """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if expiry_date is not None:
             pulumi.set(__self__, "expiry_date", expiry_date)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if registry_id is not None:
@@ -162,6 +188,9 @@ class _RegistryTokenState:
     @_builtins.property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryTokenCredentialArgs']]]]:
+        """
+        [map]
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -179,6 +208,18 @@ class _RegistryTokenState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
@@ -193,6 +234,9 @@ class _RegistryTokenState:
     @_builtins.property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The ID of the container registry
+        """
         return pulumi.get(self, "registry_id")
 
     @registry_id.setter
@@ -218,7 +262,7 @@ class _RegistryTokenState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistryTokenScopeArgs']]]]:
         """
-        [map]
+        (Computed) [map]
         """
         return pulumi.get(self, "scopes")
 
@@ -230,7 +274,7 @@ class _RegistryTokenState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        [string] Must have one of the values: `enabled`, `disabled`
         """
         return pulumi.get(self, "status")
 
@@ -246,6 +290,7 @@ class RegistryToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  registry_id: Optional[pulumi.Input[_builtins.str]] = None,
                  save_password_to_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -253,7 +298,7 @@ class RegistryToken(pulumi.CustomResource):
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an **Container Registry Token** on IonosCloud.
+        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -295,14 +340,16 @@ class RegistryToken(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
                * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+        :param pulumi.Input[_builtins.str] registry_id: [string] The ID of the container registry
         :param pulumi.Input[_builtins.str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
                
                > **⚠ WARNING** `save_password_to_file` must be used with caution.
                > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenScopeArgs', 'RegistryTokenScopeArgsDict']]]] scopes: [map]
-        :param pulumi.Input[_builtins.str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenScopeArgs', 'RegistryTokenScopeArgsDict']]]] scopes: (Computed) [map]
+        :param pulumi.Input[_builtins.str] status: [string] Must have one of the values: `enabled`, `disabled`
         """
         ...
     @overload
@@ -311,7 +358,7 @@ class RegistryToken(pulumi.CustomResource):
                  args: RegistryTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Container Registry Token** on IonosCloud.
+        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -367,6 +414,7 @@ class RegistryToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  registry_id: Optional[pulumi.Input[_builtins.str]] = None,
                  save_password_to_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -382,6 +430,7 @@ class RegistryToken(pulumi.CustomResource):
             __props__ = RegistryTokenArgs.__new__(RegistryTokenArgs)
 
             __props__.__dict__["expiry_date"] = expiry_date
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if registry_id is None and not opts.urn:
                 raise TypeError("Missing required property 'registry_id'")
@@ -402,6 +451,7 @@ class RegistryToken(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             credentials: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenCredentialArgs', 'RegistryTokenCredentialArgsDict']]]]] = None,
             expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             registry_id: Optional[pulumi.Input[_builtins.str]] = None,
             save_password_to_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -414,14 +464,17 @@ class RegistryToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenCredentialArgs', 'RegistryTokenCredentialArgsDict']]]] credentials: [map]
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
                * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+        :param pulumi.Input[_builtins.str] registry_id: [string] The ID of the container registry
         :param pulumi.Input[_builtins.str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
                
                > **⚠ WARNING** `save_password_to_file` must be used with caution.
                > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenScopeArgs', 'RegistryTokenScopeArgsDict']]]] scopes: [map]
-        :param pulumi.Input[_builtins.str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistryTokenScopeArgs', 'RegistryTokenScopeArgsDict']]]] scopes: (Computed) [map]
+        :param pulumi.Input[_builtins.str] status: [string] Must have one of the values: `enabled`, `disabled`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -429,6 +482,7 @@ class RegistryToken(pulumi.CustomResource):
 
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["expiry_date"] = expiry_date
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["registry_id"] = registry_id
         __props__.__dict__["save_password_to_file"] = save_password_to_file
@@ -439,12 +493,23 @@ class RegistryToken(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Sequence['outputs.RegistryTokenCredential']]:
+        """
+        [map]
+        """
         return pulumi.get(self, "credentials")
 
     @_builtins.property
     @pulumi.getter(name="expiryDate")
     def expiry_date(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "expiry_date")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter
@@ -458,6 +523,9 @@ class RegistryToken(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        [string] The ID of the container registry
+        """
         return pulumi.get(self, "registry_id")
 
     @_builtins.property
@@ -475,7 +543,7 @@ class RegistryToken(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence['outputs.RegistryTokenScope']]:
         """
-        [map]
+        (Computed) [map]
         """
         return pulumi.get(self, "scopes")
 
@@ -483,7 +551,7 @@ class RegistryToken(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        [string] Must have one of the values: `enabled`, `disabled`
         """
         return pulumi.get(self, "status")
 

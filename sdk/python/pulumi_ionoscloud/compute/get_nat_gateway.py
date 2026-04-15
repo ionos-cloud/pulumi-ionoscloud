@@ -27,7 +27,7 @@ class GetNatGatewayResult:
     """
     A collection of values returned by getNatGateway.
     """
-    def __init__(__self__, datacenter_id=None, id=None, lans=None, name=None, public_ips=None):
+    def __init__(__self__, datacenter_id=None, id=None, lans=None, location=None, name=None, public_ips=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -37,6 +37,9 @@ class GetNatGatewayResult:
         if lans and not isinstance(lans, list):
             raise TypeError("Expected argument 'lans' to be a list")
         pulumi.set(__self__, "lans", lans)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -67,6 +70,11 @@ class GetNatGatewayResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         Name of that natgateway
@@ -91,12 +99,14 @@ class AwaitableGetNatGatewayResult(GetNatGatewayResult):
             datacenter_id=self.datacenter_id,
             id=self.id,
             lans=self.lans,
+            location=self.location,
             name=self.name,
             public_ips=self.public_ips)
 
 
 def get_nat_gateway(datacenter_id: Optional[_builtins.str] = None,
                     id: Optional[_builtins.str] = None,
+                    location: Optional[_builtins.str] = None,
                     name: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNatGatewayResult:
     """
@@ -134,6 +144,7 @@ def get_nat_gateway(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getNatGateway:getNatGateway', __args__, opts=opts, typ=GetNatGatewayResult).value
@@ -142,10 +153,12 @@ def get_nat_gateway(datacenter_id: Optional[_builtins.str] = None,
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         id=pulumi.get(__ret__, 'id'),
         lans=pulumi.get(__ret__, 'lans'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         public_ips=pulumi.get(__ret__, 'public_ips'))
 def get_nat_gateway_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNatGatewayResult]:
     """
@@ -183,6 +196,7 @@ def get_nat_gateway_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getNatGateway:getNatGateway', __args__, opts=opts, typ=GetNatGatewayResult)
@@ -190,5 +204,6 @@ def get_nat_gateway_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         id=pulumi.get(__response__, 'id'),
         lans=pulumi.get(__response__, 'lans'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         public_ips=pulumi.get(__response__, 'public_ips')))

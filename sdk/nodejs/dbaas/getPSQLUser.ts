@@ -23,6 +23,7 @@ export function getPSQLUser(args: GetPSQLUserArgs, opts?: pulumi.InvokeOptions):
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLUser:getPSQLUser", {
         "clusterId": args.clusterId,
+        "location": args.location,
         "username": args.username,
     }, opts);
 }
@@ -35,6 +36,7 @@ export interface GetPSQLUserArgs {
      * [string] The ID of the cluster.
      */
     clusterId: string;
+    location?: string;
     /**
      * [string] Name of an existing user that you want to search for.
      */
@@ -54,6 +56,7 @@ export interface GetPSQLUserResult {
      * [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
      */
     readonly isSystemUser: boolean;
+    readonly location?: string;
     readonly username: string;
 }
 /**
@@ -75,6 +78,7 @@ export function getPSQLUserOutput(args: GetPSQLUserOutputArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLUser:getPSQLUser", {
         "clusterId": args.clusterId,
+        "location": args.location,
         "username": args.username,
     }, opts);
 }
@@ -87,6 +91,7 @@ export interface GetPSQLUserOutputArgs {
      * [string] The ID of the cluster.
      */
     clusterId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Name of an existing user that you want to search for.
      */

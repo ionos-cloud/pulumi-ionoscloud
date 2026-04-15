@@ -12,7 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **NIC** on IonosCloud.
+// Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+//
 // ## Example Usage
 //
 // ```go
@@ -61,14 +62,12 @@ import (
 //				return err
 //			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("Server Example"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    serverImagePassword.Result,
+//				Name:          pulumi.String("Server Example"),
+//				DatacenterId:  example.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(1024),
+//				ImageName:     pulumi.String("Ubuntu-20.04"),
+//				ImagePassword: serverImagePassword.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),
@@ -118,6 +117,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -133,11 +133,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			invokeCidrsubnet, err := std.Cidrsubnet(ctx, map[string]interface{}{
+//				"input":   example.Ipv6CidrBlock,
+//				"newbits": 8,
+//				"netnum":  2,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
 //				DatacenterId:  example.ID(),
 //				Public:        pulumi.Bool(true),
 //				Name:          pulumi.String("IPv6 Enabled LAN"),
-//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_dc"),
+//				Ipv6CidrBlock: invokeCidrsubnet.Result,
 //			})
 //			if err != nil {
 //				return err
@@ -150,14 +158,12 @@ import (
 //				return err
 //			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("Server Example"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    serverImagePassword.Result,
+//				Name:          pulumi.String("Server Example"),
+//				DatacenterId:  example.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(1024),
+//				ImageName:     pulumi.String("Ubuntu-20.04"),
+//				ImagePassword: serverImagePassword.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),
@@ -172,6 +178,47 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			invokeCidrsubnet1, err := std.Cidrsubnet(ctx, map[string]interface{}{
+//				"input":   exampleLan.Ipv6CidrBlock,
+//				"newbits": 16,
+//				"netnum":  14,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeCidrhost2, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 10,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeCidrhost3, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 20,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeCidrhost4, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 30,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
 //				DatacenterId:   example.ID(),
 //				ServerId:       exampleServer.ID(),
@@ -181,11 +228,11 @@ import (
 //				FirewallActive: pulumi.Bool(true),
 //				FirewallType:   pulumi.String("INGRESS"),
 //				Dhcpv6:         pulumi.Bool(false),
-//				Ipv6CidrBlock:  pulumi.String("ipv6_cidr_block_from_lan"),
+//				Ipv6CidrBlock:  invokeCidrsubnet1.Result,
 //				Ipv6Ips: pulumi.StringArray{
-//					pulumi.String("ipv6_ip1"),
-//					pulumi.String("ipv6_ip2"),
-//					pulumi.String("ipv6_ip3"),
+//					invokeCidrhost2.Result,
+//					invokeCidrhost3.Result,
+//					invokeCidrhost4.Result,
 //				},
 //			})
 //			if err != nil {
@@ -204,75 +251,68 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Name:              pulumi.String("Datacenter Example"),
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("Datacenter Description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
+//			invokeCidrsubnet, err := std.Cidrsubnet(ctx, map[string]interface{}{
+//				"input":   exampleIonoscloudLan.Ipv6CidrBlock,
+//				"newbits": 16,
+//				"netnum":  14,
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
-//				DatacenterId:  example.ID(),
-//				Public:        pulumi.Bool(true),
-//				Name:          pulumi.String("IPv6 Enabled LAN"),
-//				Ipv6CidrBlock: pulumi.String("ipv6_cidr_block_from_dc"),
-//			})
+//			invokeCidrhost1, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleIonoscloudLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 10,
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
-//				Length:  16,
-//				Special: false,
-//			})
+//			invokeCidrhost2, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleIonoscloudLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 20,
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
-//				Name:             pulumi.String("Server Example"),
-//				DatacenterId:     example.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    serverImagePassword.Result,
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:     pulumi.String("system"),
-//					Size:     pulumi.Int(14),
-//					DiskType: pulumi.String("SSD"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Int(1),
-//					Dhcp:           pulumi.Bool(true),
-//					FirewallActive: pulumi.Bool(true),
-//				},
-//			})
+//			invokeCidrhost3, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": std.Cidrsubnet(ctx, map[string]interface{}{
+//					"input":   exampleIonoscloudLan.Ipv6CidrBlock,
+//					"newbits": 16,
+//					"netnum":  14,
+//				}, nil).Result,
+//				"host": 30,
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
-//				DatacenterId:   example.ID(),
-//				ServerId:       exampleServer.ID(),
-//				Lan:            exampleLan.ID(),
+//				DatacenterId:   pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				ServerId:       pulumi.Any(exampleIonoscloudServer.Id),
+//				Lan:            pulumi.Any(exampleIonoscloudLan.Id),
 //				Name:           pulumi.String("IPV6 and Flowlog Enabled NIC"),
 //				Dhcp:           pulumi.Bool(true),
 //				FirewallActive: pulumi.Bool(true),
 //				FirewallType:   pulumi.String("INGRESS"),
 //				Dhcpv6:         pulumi.Bool(false),
-//				Ipv6CidrBlock:  pulumi.String("ipv6_cidr_block_from_lan"),
+//				Ipv6CidrBlock:  invokeCidrsubnet.Result,
 //				Ipv6Ips: pulumi.StringArray{
-//					pulumi.String("ipv6_ip1"),
-//					pulumi.String("ipv6_ip2"),
-//					pulumi.String("ipv6_ip3"),
+//					invokeCidrhost1.Result,
+//					invokeCidrhost2.Result,
+//					invokeCidrhost3.Result,
 //				},
 //				Flowlog: &compute.NicFlowlogArgs{
 //					Action:    pulumi.String("ACCEPTED"),
@@ -297,7 +337,7 @@ import (
 //
 // Please be aware that when using a NIC in a load balancer, the load balancer will
 // change the NIC's ID behind the scenes, therefore the plan will always report this change
-// trying to revert the state to the one specified by your file.
+// trying to revert the state to the one specified by your terraform file.
 // In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
 // in order to ignore changes to the `lan` attribute:
 //
@@ -364,6 +404,8 @@ type Nic struct {
 	Ipv6Ips pulumi.StringArrayOutput `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntOutput `pulumi:"lan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringOutput `pulumi:"mac"`
 	// [string] The name of the LAN.
@@ -439,6 +481,8 @@ type nicState struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan *int `pulumi:"lan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
@@ -476,6 +520,8 @@ type NicState struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
@@ -515,6 +561,8 @@ type nicArgs struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan int `pulumi:"lan"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
@@ -549,6 +597,8 @@ type NicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
@@ -701,6 +751,11 @@ func (o NicOutput) Ipv6Ips() pulumi.StringArrayOutput {
 // [integer] The LAN ID the NIC will sit on.
 func (o NicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nic) pulumi.IntOutput { return v.Lan }).(pulumi.IntOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o NicOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Nic) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.

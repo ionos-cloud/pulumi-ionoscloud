@@ -135,7 +135,7 @@ def get_auto_certificate_provider(id: Optional[_builtins.str] = None,
     :param _builtins.str id: [string] ID of the provider you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-    :param _builtins.str location: [string] The location of the provider.
+    :param _builtins.str location: [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
     :param _builtins.str name: [string] Name of an existing provider that you want to search for.
     """
     __args__ = dict()
@@ -186,7 +186,7 @@ def get_auto_certificate_provider_output(id: Optional[pulumi.Input[Optional[_bui
     :param _builtins.str id: [string] ID of the provider you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-    :param _builtins.str location: [string] The location of the provider.
+    :param _builtins.str location: [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
     :param _builtins.str name: [string] Name of an existing provider that you want to search for.
     """
     __args__ = dict()

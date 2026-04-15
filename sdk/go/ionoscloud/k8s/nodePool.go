@@ -14,127 +14,6 @@ import (
 
 // Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Name:              pulumi.String("Datacenter Example"),
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("datacenter description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
-//				DatacenterId: example.ID(),
-//				Public:       pulumi.Bool(false),
-//				Name:         pulumi.String("Lan Example"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
-//				Location: pulumi.String("us/las"),
-//				Size:     pulumi.Int(3),
-//				Name:     pulumi.String("IP Block Example"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleCluster, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
-//				Name:       pulumi.String("k8sClusterExample"),
-//				K8sVersion: pulumi.String("1.31.2"),
-//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
-//					DayOfTheWeek: pulumi.String("Sunday"),
-//					Time:         pulumi.String("09:00:00Z"),
-//				},
-//				ApiSubnetAllowLists: pulumi.StringArray{
-//					pulumi.String("1.2.3.4/32"),
-//				},
-//				S3Buckets: k8s.ClusterS3BucketArray{
-//					&k8s.ClusterS3BucketArgs{
-//						Name: pulumi.String("globally_unique_s3_bucket_name"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = k8s.NewNodePool(ctx, "example", &k8s.NodePoolArgs{
-//				DatacenterId: example.ID(),
-//				K8sClusterId: exampleCluster.ID(),
-//				Name:         pulumi.String("k8sNodePoolExample"),
-//				K8sVersion:   exampleCluster.K8sVersion,
-//				MaintenanceWindow: &k8s.NodePoolMaintenanceWindowArgs{
-//					DayOfTheWeek: pulumi.String("Monday"),
-//					Time:         pulumi.String("09:00:00Z"),
-//				},
-//				AutoScaling: &k8s.NodePoolAutoScalingArgs{
-//					MinNodeCount: pulumi.Int(1),
-//					MaxNodeCount: pulumi.Int(2),
-//				},
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				AvailabilityZone: pulumi.String("AUTO"),
-//				StorageType:      pulumi.String("SSD"),
-//				NodeCount:        pulumi.Int(1),
-//				CoresCount:       pulumi.Int(2),
-//				RamSize:          pulumi.Int(2048),
-//				StorageSize:      pulumi.Int(40),
-//				PublicIps: pulumi.StringArray{
-//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//						return ips[0], nil
-//					}).(pulumi.StringOutput),
-//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//						return ips[1], nil
-//					}).(pulumi.StringOutput),
-//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//						return ips[2], nil
-//					}).(pulumi.StringOutput),
-//				},
-//				Lans: k8s.NodePoolLanArray{
-//					&k8s.NodePoolLanArgs{
-//						Id:   exampleLan.ID(),
-//						Dhcp: pulumi.Bool(true),
-//						Routes: k8s.NodePoolLanRouteArray{
-//							&k8s.NodePoolLanRouteArgs{
-//								Network:   pulumi.String("1.2.3.5/24"),
-//								GatewayIp: pulumi.String("10.1.5.17"),
-//							},
-//						},
-//					},
-//				},
-//				Labels: pulumi.StringMap{
-//					"lab1": pulumi.String("value1"),
-//					"lab2": pulumi.String("value2"),
-//				},
-//				Annotations: pulumi.StringMap{
-//					"ann1": pulumi.String("value1"),
-//					"ann2": pulumi.String("value2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// **Note:** Set `createBeforeDestroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
-//
 // ## Import
 //
 // A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
@@ -143,10 +22,10 @@ import (
 // $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
 // ```
 //
-// # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+// # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
 //
 // ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8sVersion` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-// pulumi from doing a downgrade, as downgrading `k8sVersion` is not supported._**
+// terraform from doing a downgrade, as downgrading `k8sVersion` is not supported._**
 //
 // ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
 type NodePool struct {
@@ -162,10 +41,8 @@ type NodePool struct {
 	// ⚠️ **Note**:
 	//
 	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-	// You can read more details about the `ignoreChanges` attribute here.
+	// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use:
 	AllowReplace pulumi.BoolPtrOutput `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
@@ -176,7 +53,7 @@ type NodePool struct {
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
 	CoresCount pulumi.IntOutput `pulumi:"coresCount"`
 	// [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-	CpuFamily pulumi.StringOutput `pulumi:"cpuFamily"`
+	CpuFamily pulumi.StringPtrOutput `pulumi:"cpuFamily"`
 	// [string] A Datacenter's UUID
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// [string] A k8s cluster's UUID
@@ -187,6 +64,8 @@ type NodePool struct {
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
 	Lans NodePoolLanArrayOutput `pulumi:"lans"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// See the **maintenance_window** section in the example above
 	MaintenanceWindow NodePoolMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
@@ -197,6 +76,8 @@ type NodePool struct {
 	PublicIps pulumi.StringArrayOutput `pulumi:"publicIps"`
 	// [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 	RamSize pulumi.IntOutput `pulumi:"ramSize"`
+	// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+	ServerType pulumi.StringPtrOutput `pulumi:"serverType"`
 	// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
@@ -215,9 +96,6 @@ func NewNodePool(ctx *pulumi.Context,
 	}
 	if args.CoresCount == nil {
 		return nil, errors.New("invalid value for required argument 'CoresCount'")
-	}
-	if args.CpuFamily == nil {
-		return nil, errors.New("invalid value for required argument 'CpuFamily'")
 	}
 	if args.DatacenterId == nil {
 		return nil, errors.New("invalid value for required argument 'DatacenterId'")
@@ -273,10 +151,8 @@ type nodePoolState struct {
 	// ⚠️ **Note**:
 	//
 	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-	// You can read more details about the `ignoreChanges` attribute here.
+	// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use:
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
@@ -298,6 +174,8 @@ type nodePoolState struct {
 	Labels map[string]string `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
 	Lans []NodePoolLan `pulumi:"lans"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// See the **maintenance_window** section in the example above
 	MaintenanceWindow *NodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
@@ -308,6 +186,8 @@ type nodePoolState struct {
 	PublicIps []string `pulumi:"publicIps"`
 	// [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 	RamSize *int `pulumi:"ramSize"`
+	// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+	ServerType *string `pulumi:"serverType"`
 	// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
 	StorageSize *int `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
@@ -325,10 +205,8 @@ type NodePoolState struct {
 	// ⚠️ **Note**:
 	//
 	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-	// You can read more details about the `ignoreChanges` attribute here.
+	// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use:
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
@@ -350,6 +228,8 @@ type NodePoolState struct {
 	Labels pulumi.StringMapInput
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
 	Lans NodePoolLanArrayInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// See the **maintenance_window** section in the example above
 	MaintenanceWindow NodePoolMaintenanceWindowPtrInput
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
@@ -360,6 +240,8 @@ type NodePoolState struct {
 	PublicIps pulumi.StringArrayInput
 	// [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 	RamSize pulumi.IntPtrInput
+	// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+	ServerType pulumi.StringPtrInput
 	// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
 	StorageSize pulumi.IntPtrInput
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
@@ -381,10 +263,8 @@ type nodePoolArgs struct {
 	// ⚠️ **Note**:
 	//
 	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-	// You can read more details about the `ignoreChanges` attribute here.
+	// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use:
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
@@ -395,7 +275,7 @@ type nodePoolArgs struct {
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
 	CoresCount int `pulumi:"coresCount"`
 	// [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-	CpuFamily string `pulumi:"cpuFamily"`
+	CpuFamily *string `pulumi:"cpuFamily"`
 	// [string] A Datacenter's UUID
 	DatacenterId string `pulumi:"datacenterId"`
 	// [string] A k8s cluster's UUID
@@ -406,6 +286,8 @@ type nodePoolArgs struct {
 	Labels map[string]string `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
 	Lans []NodePoolLan `pulumi:"lans"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// See the **maintenance_window** section in the example above
 	MaintenanceWindow *NodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
@@ -416,6 +298,8 @@ type nodePoolArgs struct {
 	PublicIps []string `pulumi:"publicIps"`
 	// [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 	RamSize int `pulumi:"ramSize"`
+	// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+	ServerType *string `pulumi:"serverType"`
 	// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
 	StorageSize int `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
@@ -434,10 +318,8 @@ type NodePoolArgs struct {
 	// ⚠️ **Note**:
 	//
 	// Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-	// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-	// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-	// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-	// You can read more details about the `ignoreChanges` attribute here.
+	// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+	// from the number of nodes set by the scheduler). To avoid that, you can use:
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
@@ -448,7 +330,7 @@ type NodePoolArgs struct {
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
 	CoresCount pulumi.IntInput
 	// [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-	CpuFamily pulumi.StringInput
+	CpuFamily pulumi.StringPtrInput
 	// [string] A Datacenter's UUID
 	DatacenterId pulumi.StringInput
 	// [string] A k8s cluster's UUID
@@ -459,6 +341,8 @@ type NodePoolArgs struct {
 	Labels pulumi.StringMapInput
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
 	Lans NodePoolLanArrayInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// See the **maintenance_window** section in the example above
 	MaintenanceWindow NodePoolMaintenanceWindowPtrInput
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
@@ -469,6 +353,8 @@ type NodePoolArgs struct {
 	PublicIps pulumi.StringArrayInput
 	// [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 	RamSize pulumi.IntInput
+	// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+	ServerType pulumi.StringPtrInput
 	// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
 	StorageSize pulumi.IntInput
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
@@ -572,10 +458,8 @@ func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoo
 // ⚠️ **Note**:
 //
 // Be careful when using `autoScaling` since the number of nodes can change. Because of that, when running
-// `pulumi preview`, An update will be considered required (since `nodeCount` from the `tf` plan will be different
-// from the number of nodes set by the scheduler). To avoid that, you can use `ignoreChanges`.
-// This will also ignore the manual changes for `nodeCount` made in the `tf` plan.
-// You can read more details about the `ignoreChanges` attribute here.
+// `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
+// from the number of nodes set by the scheduler). To avoid that, you can use:
 func (o NodePoolOutput) AllowReplace() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
 }
@@ -601,8 +485,8 @@ func (o NodePoolOutput) CoresCount() pulumi.IntOutput {
 }
 
 // [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-func (o NodePoolOutput) CpuFamily() pulumi.StringOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.CpuFamily }).(pulumi.StringOutput)
+func (o NodePoolOutput) CpuFamily() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringPtrOutput { return v.CpuFamily }).(pulumi.StringPtrOutput)
 }
 
 // [string] A Datacenter's UUID
@@ -630,6 +514,11 @@ func (o NodePoolOutput) Lans() NodePoolLanArrayOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolLanArrayOutput { return v.Lans }).(NodePoolLanArrayOutput)
 }
 
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o NodePoolOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
+}
+
 // See the **maintenance_window** section in the example above
 func (o NodePoolOutput) MaintenanceWindow() NodePoolMaintenanceWindowOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolMaintenanceWindowOutput { return v.MaintenanceWindow }).(NodePoolMaintenanceWindowOutput)
@@ -653,6 +542,11 @@ func (o NodePoolOutput) PublicIps() pulumi.StringArrayOutput {
 // [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
 func (o NodePoolOutput) RamSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.RamSize }).(pulumi.IntOutput)
+}
+
+// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+func (o NodePoolOutput) ServerType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringPtrOutput { return v.ServerType }).(pulumi.StringPtrOutput)
 }
 
 // [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.

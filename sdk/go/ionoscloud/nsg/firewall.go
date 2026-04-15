@@ -65,10 +65,10 @@ import (
 //
 // ## Import
 //
-// Resource Server can be imported using the `resource id`, `nsg id` and `datacenter id`, e.g.
+// A Network Security Group firewall rule can be imported using the `datacenter id`, `nsg id` and `firewall rule id`, e.g.
 //
 // ```sh
-// terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid/firewall uuid
+// $ pulumi import ionoscloud:nsg/firewall:Firewall mynsg_firewallrule datacenter_uuid/nsg_uuid/firewall_uuid
 // ```
 //
 // Or by using an `import` block.
@@ -81,6 +81,8 @@ type Firewall struct {
 	IcmpCode pulumi.StringPtrOutput `pulumi:"icmpCode"`
 	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 	IcmpType pulumi.StringPtrOutput `pulumi:"icmpType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the firewall rule.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] The ID of a Network Security Group.
@@ -146,6 +148,8 @@ type firewallState struct {
 	IcmpCode *string `pulumi:"icmpCode"`
 	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 	IcmpType *string `pulumi:"icmpType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the firewall rule.
 	Name *string `pulumi:"name"`
 	// [string] The ID of a Network Security Group.
@@ -173,6 +177,8 @@ type FirewallState struct {
 	IcmpCode pulumi.StringPtrInput
 	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 	IcmpType pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the firewall rule.
 	Name pulumi.StringPtrInput
 	// [string] The ID of a Network Security Group.
@@ -204,6 +210,8 @@ type firewallArgs struct {
 	IcmpCode *string `pulumi:"icmpCode"`
 	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 	IcmpType *string `pulumi:"icmpType"`
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location *string `pulumi:"location"`
 	// [string] The name of the firewall rule.
 	Name *string `pulumi:"name"`
 	// [string] The ID of a Network Security Group.
@@ -232,6 +240,8 @@ type FirewallArgs struct {
 	IcmpCode pulumi.StringPtrInput
 	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 	IcmpType pulumi.StringPtrInput
+	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+	Location pulumi.StringPtrInput
 	// [string] The name of the firewall rule.
 	Name pulumi.StringPtrInput
 	// [string] The ID of a Network Security Group.
@@ -352,6 +362,11 @@ func (o FirewallOutput) IcmpCode() pulumi.StringPtrOutput {
 // [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 func (o FirewallOutput) IcmpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.IcmpType }).(pulumi.StringPtrOutput)
+}
+
+// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+func (o FirewallOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the firewall rule.

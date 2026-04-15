@@ -33,26 +33,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         /// 
         /// });
         /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetCluster.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
@@ -74,26 +54,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         ///     {
         ///         Location = "location",
         ///         Id = "cluster-id",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetCluster.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
         ///     });
         /// 
         /// });
@@ -123,26 +83,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         /// 
         /// });
         /// ```
-        /// 
-        /// ## By Name
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.Nfs.GetCluster.Invoke(new()
-        ///     {
-        ///         Location = "location",
-        ///         Name = "partial-name",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
@@ -158,7 +98,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located.
+        /// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
@@ -190,7 +130,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located.
+        /// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;

@@ -137,20 +137,9 @@ def get_cluster(id: Optional[_builtins.str] = None,
         id="cluster-id")
     ```
 
-    ## By Name
-
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    example = ionoscloud.nfs.get_cluster(location="location",
-        name="partial-name",
-        partial_match=True)
-    ```
-
 
     :param _builtins.str id: ID of the Network File Storage cluster.
-    :param _builtins.str location: The location where the Network File Storage cluster is located.
+    :param _builtins.str location: The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
     :param _builtins.str name: Name of the Network File Storage cluster.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
@@ -188,20 +177,9 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
         id="cluster-id")
     ```
 
-    ## By Name
-
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    example = ionoscloud.nfs.get_cluster(location="location",
-        name="partial-name",
-        partial_match=True)
-    ```
-
 
     :param _builtins.str id: ID of the Network File Storage cluster.
-    :param _builtins.str location: The location where the Network File Storage cluster is located.
+    :param _builtins.str location: The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
     :param _builtins.str name: Name of the Network File Storage cluster.
     :param _builtins.bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """

@@ -131,7 +131,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location of the InMemoryDB Replica Set.
+        /// The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// 
         /// &gt; **Note:** Either `Id` or `DisplayName` must be provided. If none, or both are provided, the datasource will return an error.
         /// </summary>
@@ -159,7 +159,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location of the InMemoryDB Replica Set.
+        /// The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// 
         /// &gt; **Note:** Either `Id` or `DisplayName` must be provided. If none, or both are provided, the datasource will return an error.
         /// </summary>

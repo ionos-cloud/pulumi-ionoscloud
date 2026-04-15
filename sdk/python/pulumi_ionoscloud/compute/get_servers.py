@@ -28,7 +28,7 @@ class GetServersResult:
     """
     A collection of values returned by getServers.
     """
-    def __init__(__self__, datacenter_id=None, filters=None, id=None, servers=None):
+    def __init__(__self__, datacenter_id=None, filters=None, id=None, location=None, servers=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -38,6 +38,9 @@ class GetServersResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if servers and not isinstance(servers, list):
             raise TypeError("Expected argument 'servers' to be a list")
         pulumi.set(__self__, "servers", servers)
@@ -62,6 +65,11 @@ class GetServersResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def servers(self) -> Sequence['outputs.GetServersServerResult']:
         """
         list of servers that matches the filters provided.
@@ -79,11 +87,13 @@ class AwaitableGetServersResult(GetServersResult):
             datacenter_id=self.datacenter_id,
             filters=self.filters,
             id=self.id,
+            location=self.location,
             servers=self.servers)
 
 
 def get_servers(datacenter_id: Optional[_builtins.str] = None,
                 filters: Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]] = None,
+                location: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServersResult:
     """
     The **Servers data source** can be used to search for and return existing servers based on filters used.
@@ -147,6 +157,7 @@ def get_servers(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['filters'] = filters
+    __args__['location'] = location
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
 
@@ -154,9 +165,11 @@ def get_servers(datacenter_id: Optional[_builtins.str] = None,
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         filters=pulumi.get(__ret__, 'filters'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         servers=pulumi.get(__ret__, 'servers'))
 def get_servers_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                        filters: Optional[pulumi.Input[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]]]] = None,
+                       location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
     The **Servers data source** can be used to search for and return existing servers based on filters used.
@@ -220,10 +233,12 @@ def get_servers_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = No
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['filters'] = filters
+    __args__['location'] = location
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getServers:getServers', __args__, opts=opts, typ=GetServersResult)
     return __ret__.apply(lambda __response__: GetServersResult(
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         filters=pulumi.get(__response__, 'filters'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         servers=pulumi.get(__response__, 'servers')))

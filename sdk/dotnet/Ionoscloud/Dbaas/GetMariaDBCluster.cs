@@ -214,6 +214,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetMariaDBClusterResult
     {
         /// <summary>
+        /// Properties configuring the backup of the cluster.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetMariaDBClusterBackupResult> Backups;
+        /// <summary>
         /// The network connection for your cluster. Only one connection is allowed.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMariaDBClusterConnectionResult> Connections;
@@ -234,6 +238,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// [int] The total number of instances in the cluster (one primary and n-1 secondary).
         /// </summary>
         public readonly int Instances;
+        /// <summary>
+        /// [string] The IONOS Object Storage location where the backups will be stored.
+        /// </summary>
         public readonly string? Location;
         /// <summary>
         /// A weekly 4 hour-long window, during which maintenance might occur.
@@ -254,6 +261,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [OutputConstructor]
         private GetMariaDBClusterResult(
+            ImmutableArray<Outputs.GetMariaDBClusterBackupResult> backups,
+
             ImmutableArray<Outputs.GetMariaDBClusterConnectionResult> connections,
 
             int cores,
@@ -276,6 +285,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             int storageSize)
         {
+            Backups = backups;
             Connections = connections;
             Cores = cores;
             DisplayName = displayName;

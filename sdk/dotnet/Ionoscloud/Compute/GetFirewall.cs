@@ -181,6 +181,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing firewall rule that you want to search for.
         /// </summary>
@@ -220,6 +223,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing firewall rule that you want to search for.
@@ -264,6 +270,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The id of the firewall rule.
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         /// <summary>
         /// The name of the firewall rule.
         /// </summary>
@@ -306,6 +313,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string id,
 
+            string? location,
+
             string name,
 
             string nicId,
@@ -330,6 +339,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             IcmpCode = icmpCode;
             IcmpType = icmpType;
             Id = id;
+            Location = location;
             Name = name;
             NicId = nicId;
             PortRangeEnd = portRangeEnd;

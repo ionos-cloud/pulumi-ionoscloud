@@ -27,6 +27,8 @@ class AccesskeyTimeoutsArgsDict(TypedDict):
     delete: NotRequired[pulumi.Input[_builtins.str]]
     """
     [string] Time to wait for the bucket to be deleted. Default is `10m`.
+
+    > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
     """
     read: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -42,6 +44,8 @@ class AccesskeyTimeoutsArgs:
         """
         :param pulumi.Input[_builtins.str] create: [string] Time to wait for the bucket to be created. Default is `10m`.
         :param pulumi.Input[_builtins.str] delete: [string] Time to wait for the bucket to be deleted. Default is `10m`.
+               
+               > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[_builtins.str] read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         if create is not None:
@@ -68,6 +72,8 @@ class AccesskeyTimeoutsArgs:
     def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] Time to wait for the bucket to be deleted. Default is `10m`.
+
+        > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         """
         return pulumi.get(self, "delete")
 

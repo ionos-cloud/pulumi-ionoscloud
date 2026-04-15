@@ -56,6 +56,8 @@ type GetPSQLBackupsArgs struct {
 	//
 	// `clusterId` must be provided. If it is not provided, the datasource will return an error.
 	ClusterId string `pulumi:"clusterId"`
+	// The IONOS Object Storage location where the backups will be stored.
+	Location *string `pulumi:"location"`
 }
 
 // A collection of values returned by getPSQLBackups.
@@ -66,6 +68,8 @@ type GetPSQLBackupsResult struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// The IONOS Object Storage location where the backups will be stored.
+	Location *string `pulumi:"location"`
 }
 
 func GetPSQLBackupsOutput(ctx *pulumi.Context, args GetPSQLBackupsOutputArgs, opts ...pulumi.InvokeOption) GetPSQLBackupsResultOutput {
@@ -83,6 +87,8 @@ type GetPSQLBackupsOutputArgs struct {
 	//
 	// `clusterId` must be provided. If it is not provided, the datasource will return an error.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The IONOS Object Storage location where the backups will be stored.
+	Location pulumi.StringPtrInput `pulumi:"location"`
 }
 
 func (GetPSQLBackupsOutputArgs) ElementType() reflect.Type {
@@ -117,6 +123,11 @@ func (o GetPSQLBackupsResultOutput) ClusterId() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetPSQLBackupsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLBackupsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IONOS Object Storage location where the backups will be stored.
+func (o GetPSQLBackupsResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPSQLBackupsResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func init() {

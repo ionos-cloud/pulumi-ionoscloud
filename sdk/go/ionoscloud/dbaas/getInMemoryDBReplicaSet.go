@@ -58,7 +58,7 @@ type LookupInMemoryDBReplicaSetArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The ID of the InMemoryDB Replica Set.
 	Id *string `pulumi:"id"`
-	// The location of the InMemoryDB Replica Set.
+	// The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	//
 	// > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
 	Location *string `pulumi:"location"`
@@ -108,7 +108,7 @@ type LookupInMemoryDBReplicaSetOutputArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The ID of the InMemoryDB Replica Set.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the InMemoryDB Replica Set.
+	// The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
 	//
 	// > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
 	Location pulumi.StringPtrInput `pulumi:"location"`

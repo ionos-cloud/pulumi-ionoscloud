@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Creg
 {
     /// <summary>
-    /// Manages an **Container Registry** on IonosCloud.
+    /// Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 

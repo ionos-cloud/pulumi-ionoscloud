@@ -42,6 +42,7 @@ export function getNatGatewayRule(args: GetNatGatewayRuleArgs, opts?: pulumi.Inv
     return pulumi.runtime.invoke("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "natgatewayId": args.natgatewayId,
     }, opts);
@@ -61,6 +62,7 @@ export interface GetNatGatewayRuleArgs {
      * Both `datacenterId` and `natgatewayId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing NAT gateway rule that you want to search for.
      */
@@ -80,6 +82,7 @@ export interface GetNatGatewayRuleResult {
      * Id of the NAT gateway rule
      */
     readonly id: string;
+    readonly location?: string;
     /**
      * Name of the NAT gateway rule
      */
@@ -146,6 +149,7 @@ export function getNatGatewayRuleOutput(args: GetNatGatewayRuleOutputArgs, opts?
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "natgatewayId": args.natgatewayId,
     }, opts);
@@ -165,6 +169,7 @@ export interface GetNatGatewayRuleOutputArgs {
      * Both `datacenterId` and `natgatewayId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing NAT gateway rule that you want to search for.
      */

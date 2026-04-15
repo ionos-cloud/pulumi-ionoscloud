@@ -166,6 +166,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing Network Security Group that you want to search for.
         /// 
@@ -193,6 +196,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing Network Security Group that you want to search for.
@@ -224,6 +230,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// UUID of the Network Security Group
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         /// <summary>
         /// The name of the Network Security Group
         /// </summary>
@@ -245,6 +252,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
 
             string id,
 
+            string? location,
+
             string name,
 
             ImmutableArray<string> ruleIds,
@@ -254,6 +263,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
             DatacenterId = datacenterId;
             Description = description;
             Id = id;
+            Location = location;
             Name = name;
             RuleIds = ruleIds;
             Rules = rules;

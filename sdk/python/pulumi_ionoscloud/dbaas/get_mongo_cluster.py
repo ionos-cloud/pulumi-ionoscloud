@@ -241,6 +241,7 @@ class AwaitableGetMongoClusterResult(GetMongoClusterResult):
 
 def get_mongo_cluster(display_name: Optional[_builtins.str] = None,
                       id: Optional[_builtins.str] = None,
+                      location: Optional[_builtins.str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongoClusterResult:
     """
     The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
@@ -272,10 +273,12 @@ def get_mongo_cluster(display_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+    :param _builtins.str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['id'] = id
+    __args__['location'] = location
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getMongoCluster:getMongoCluster', __args__, opts=opts, typ=GetMongoClusterResult).value
 
@@ -300,6 +303,7 @@ def get_mongo_cluster(display_name: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_mongo_cluster_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                              id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                             location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoClusterResult]:
     """
     The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
@@ -331,10 +335,12 @@ def get_mongo_cluster_output(display_name: Optional[pulumi.Input[Optional[_built
 
 
     :param _builtins.str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+    :param _builtins.str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
     __args__['id'] = id
+    __args__['location'] = location
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getMongoCluster:getMongoCluster', __args__, opts=opts, typ=GetMongoClusterResult)
     return __ret__.apply(lambda __response__: GetMongoClusterResult(

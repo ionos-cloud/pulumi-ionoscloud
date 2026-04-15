@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **CDN Distribution** on IonosCloud.
+// Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -22,15 +22,45 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_cert_chain",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile2, err := std.File(ctx, map[string]interface{}{
+//				"input": "path_to_private_key",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// optionally you can add a certificate to the distribution
+//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      invokeFile.Result,
+//				CertificateChain: invokeFile1.Result,
+//				PrivateKey:       invokeFile2.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
 //				Domain:        pulumi.String("example.com"),
-//				CertificateId: pulumi.Any(cert.Id),
+//				CertificateId: cert.ID(),
 //				RoutingRules: cdn.DistributionRoutingRuleArray{
 //					&cdn.DistributionRoutingRuleArgs{
 //						Scheme: pulumi.String("https"),

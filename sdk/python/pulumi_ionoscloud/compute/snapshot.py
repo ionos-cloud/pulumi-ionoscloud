@@ -26,10 +26,12 @@ class SnapshotArgs:
                  disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
@@ -41,10 +43,12 @@ class SnapshotArgs:
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
         :param pulumi.Input[_builtins.str] licence_type: (Computed)[string] OS type of this Snapshot
+        :param pulumi.Input[_builtins.str] location: Location of that image/snapshot
         :param pulumi.Input[_builtins.str] name: [string] The name of the snapshot.
         :param pulumi.Input[_builtins.bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -59,6 +63,8 @@ class SnapshotArgs:
             pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
         if licence_type is not None:
             pulumi.set(__self__, "licence_type", licence_type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic_hot_plug is not None:
@@ -67,6 +73,8 @@ class SnapshotArgs:
             pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
         if ram_hot_plug is not None:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if sec_auth_protection is not None:
             pulumi.set(__self__, "sec_auth_protection", sec_auth_protection)
 
@@ -156,6 +164,18 @@ class SnapshotArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the snapshot.
@@ -203,6 +223,18 @@ class SnapshotArgs:
         pulumi.set(self, "ram_hot_plug", value)
 
     @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @require_legacy_bios.setter
+    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_legacy_bios", value)
+
+    @_builtins.property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -233,6 +265,7 @@ class _SnapshotState:
                  nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
@@ -254,6 +287,7 @@ class _SnapshotState:
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] size: The size of the image in GB
         :param pulumi.Input[_builtins.str] volume_id: [string] The ID of the specific volume to take the snapshot from.
@@ -288,6 +322,8 @@ class _SnapshotState:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
         if ram_hot_unplug is not None:
             pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if sec_auth_protection is not None:
             pulumi.set(__self__, "sec_auth_protection", sec_auth_protection)
         if size is not None:
@@ -476,6 +512,18 @@ class _SnapshotState:
         pulumi.set(self, "ram_hot_unplug", value)
 
     @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @require_legacy_bios.setter
+    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_legacy_bios", value)
+
+    @_builtins.property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -524,15 +572,17 @@ class Snapshot(pulumi.CustomResource):
                  disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages **Snapshots** on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
 
         ## Example Usage
 
@@ -561,8 +611,6 @@ class Snapshot(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.id,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -597,10 +645,12 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
         :param pulumi.Input[_builtins.str] licence_type: (Computed)[string] OS type of this Snapshot
+        :param pulumi.Input[_builtins.str] location: Location of that image/snapshot
         :param pulumi.Input[_builtins.str] name: [string] The name of the snapshot.
         :param pulumi.Input[_builtins.bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.str] volume_id: [string] The ID of the specific volume to take the snapshot from.
         """
@@ -611,7 +661,7 @@ class Snapshot(pulumi.CustomResource):
                  args: SnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **Snapshots** on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
 
         ## Example Usage
 
@@ -640,8 +690,6 @@ class Snapshot(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.id,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -689,10 +737,12 @@ class Snapshot(pulumi.CustomResource):
                  disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -712,10 +762,12 @@ class Snapshot(pulumi.CustomResource):
             __props__.__dict__["disc_virtio_hot_plug"] = disc_virtio_hot_plug
             __props__.__dict__["disc_virtio_hot_unplug"] = disc_virtio_hot_unplug
             __props__.__dict__["licence_type"] = licence_type
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             __props__.__dict__["nic_hot_plug"] = nic_hot_plug
             __props__.__dict__["nic_hot_unplug"] = nic_hot_unplug
             __props__.__dict__["ram_hot_plug"] = ram_hot_plug
+            __props__.__dict__["require_legacy_bios"] = require_legacy_bios
             __props__.__dict__["sec_auth_protection"] = sec_auth_protection
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")
@@ -723,7 +775,6 @@ class Snapshot(pulumi.CustomResource):
             __props__.__dict__["cpu_hot_unplug"] = None
             __props__.__dict__["disc_scsi_hot_plug"] = None
             __props__.__dict__["disc_scsi_hot_unplug"] = None
-            __props__.__dict__["location"] = None
             __props__.__dict__["ram_hot_unplug"] = None
             __props__.__dict__["size"] = None
         super(Snapshot, __self__).__init__(
@@ -751,6 +802,7 @@ class Snapshot(pulumi.CustomResource):
             nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
             ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
             ram_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
+            require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
             sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
             size: Optional[pulumi.Input[_builtins.int]] = None,
             volume_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Snapshot':
@@ -776,6 +828,7 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
         :param pulumi.Input[_builtins.bool] ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] size: The size of the image in GB
         :param pulumi.Input[_builtins.str] volume_id: [string] The ID of the specific volume to take the snapshot from.
@@ -799,6 +852,7 @@ class Snapshot(pulumi.CustomResource):
         __props__.__dict__["nic_hot_unplug"] = nic_hot_unplug
         __props__.__dict__["ram_hot_plug"] = ram_hot_plug
         __props__.__dict__["ram_hot_unplug"] = ram_hot_unplug
+        __props__.__dict__["require_legacy_bios"] = require_legacy_bios
         __props__.__dict__["sec_auth_protection"] = sec_auth_protection
         __props__.__dict__["size"] = size
         __props__.__dict__["volume_id"] = volume_id
@@ -923,6 +977,14 @@ class Snapshot(pulumi.CustomResource):
         Is capable of memory hot unplug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> pulumi.Output[_builtins.bool]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter(name="secAuthProtection")

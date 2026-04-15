@@ -53,10 +53,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
     /// 
     /// ## Import
     /// 
-    /// Resource Server can be imported using the `resource id`, `nsg id` and `datacenter id`, e.g.
+    /// A Network Security Group firewall rule can be imported using the `datacenter id`, `nsg id` and `firewall rule id`, e.g.
     /// 
     /// ```sh
-    /// terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid/firewall uuid
+    /// $ pulumi import ionoscloud:nsg/firewall:Firewall mynsg_firewallrule datacenter_uuid/nsg_uuid/firewall_uuid
     /// ```
     /// 
     /// Or by using an `Import` block.
@@ -81,6 +81,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Output("icmpType")]
         public Output<string?> IcmpType { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the firewall rule.
@@ -202,6 +208,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Input<string>? IcmpType { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the firewall rule.
         /// </summary>
         [Input("name")]
@@ -280,6 +292,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         /// </summary>
         [Input("icmpType")]
         public Input<string>? IcmpType { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the firewall rule.

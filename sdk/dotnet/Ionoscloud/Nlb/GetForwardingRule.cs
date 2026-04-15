@@ -177,6 +177,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing network load balancer forwarding rule that you want to search for.
         /// </summary>
@@ -210,6 +213,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing network load balancer forwarding rule that you want to search for.
@@ -254,6 +260,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// Listening port number. (inbound) (range: 1 to 65535)
         /// </summary>
         public readonly int ListenerPort;
+        public readonly string? Location;
         /// <summary>
         /// The name of that Network Load Balancer forwarding rule.
         /// </summary>
@@ -282,6 +289,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
 
             int listenerPort,
 
+            string? location,
+
             string name,
 
             string networkloadbalancerId,
@@ -296,6 +305,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
             Id = id;
             ListenerIp = listenerIp;
             ListenerPort = listenerPort;
+            Location = location;
             Name = name;
             NetworkloadbalancerId = networkloadbalancerId;
             Protocol = protocol;

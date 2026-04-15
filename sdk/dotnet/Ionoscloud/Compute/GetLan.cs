@@ -168,6 +168,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing lan that you want to search for.
         /// </summary>
@@ -195,6 +198,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing lan that you want to search for.
@@ -232,6 +238,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
         /// </summary>
         public readonly string Ipv6CidrBlock;
+        public readonly string? Location;
         /// <summary>
         /// The name of the LAN.
         /// </summary>
@@ -257,6 +264,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string ipv6CidrBlock,
 
+            string? location,
+
             string name,
 
             string pcc,
@@ -268,6 +277,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             IpFailovers = ipFailovers;
             Ipv4CidrBlock = ipv4CidrBlock;
             Ipv6CidrBlock = ipv6CidrBlock;
+            Location = location;
             Name = name;
             Pcc = pcc;
             Public = @public;

@@ -16,7 +16,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// ## Example Usage
     /// 
     /// The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
-    /// Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+    /// Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
     /// This resource also allows switching between a `Volume` and a `ionoscloud.compute.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
     /// 
     /// ### Select an external volume
@@ -178,7 +178,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("example", new()
     ///     {
     ///         DatacenterId = exampleIonoscloudDatacenter.Id,
-    ///         ServerId = exampleServer.InlineVolumeIds.Apply(inlineVolumeIds =&gt; inlineVolumeIds[0]),
+    ///         ServerId = exampleServer.Id,
     ///         BootDeviceId = example.Apply(getImageResult =&gt; getImageResult.Id),
     ///     });
     /// 
@@ -235,7 +235,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("example", new()
     ///     {
     ///         DatacenterId = exampleIonoscloudDatacenter.Id,
-    ///         ServerId = exampleServer.InlineVolumeIds.Apply(inlineVolumeIds =&gt; inlineVolumeIds[0]),
+    ///         ServerId = exampleServer.Id,
     ///     });
     /// 
     ///     var exampleVolume = new Ionoscloud.Compute.Volume("example", new()
@@ -281,6 +281,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("defaultBootVolumeId")]
         public Output<string> DefaultBootVolumeId { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The ID of a server.
@@ -349,6 +355,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The ID of a server.
         /// </summary>
         [Input("serverId", required: true)]
@@ -380,6 +392,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("defaultBootVolumeId")]
         public Input<string>? DefaultBootVolumeId { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The ID of a server.

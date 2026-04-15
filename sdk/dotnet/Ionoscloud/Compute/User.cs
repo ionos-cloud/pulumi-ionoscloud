@@ -64,7 +64,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     {
     ///         FirstName = "example",
     ///         LastName = "example",
-    ///         Email = "unique@email.com",
+    ///         Email = "unique@ionos.com",
     ///         Password = userPassword.Result,
     ///         Administrator = false,
     ///         ForceSecAuth = false,
@@ -75,6 +75,41 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///             group2.Id,
     ///             group3.Id,
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Write Only Password That Is Not Saved In State:
+    /// 
+    /// Note: Requires Terraform 1.11 or higher. In this way, the password is not saved in state. `PasswordWo` must be used along with `PasswordWoVersion`. Updating `PasswordWoVersion` will trigger an update to the value of `PasswordWo`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var userPassword = new Random.Index.Password("user_password", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
+    ///     });
+    /// 
+    ///     var example = new Ionoscloud.Compute.User("example", new()
+    ///     {
+    ///         FirstName = "example",
+    ///         LastName = "example",
+    ///         Email = "unique@ionos.com",
+    ///         PasswordWo = userPassword.Result,
+    ///         PasswordWoVersion = 1,
+    ///         Administrator = false,
+    ///         ForceSecAuth = false,
+    ///         Active = true,
     ///     });
     /// 
     /// });
@@ -123,8 +158,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [Set] The groups that this user will be a member of
-        /// 
         /// **NOTE:** Group_ids field cannot be used at the same time with UserIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        /// **NOTE:** `PasswordWo` requires Teraform 1.11 or higher.
         /// </summary>
         [Output("groupIds")]
         public Output<ImmutableArray<string>> GroupIds { get; private set; } = null!;
@@ -136,10 +171,23 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> LastName { get; private set; } = null!;
 
         /// <summary>
-        /// [string] A password for the user.
+        /// A password for the user. If you are using terraform 1.11 or higher, you can use `PasswordWo` instead of `Password` to avoid storing the password in the state file.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// user password. This value is always marked as sensitive in the plan output, regardless of `Type`. Additionally, `write-only` values are never stored to state. `PasswordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Used together with `PasswordWo` to trigger an update. Increment this value when an update to the `PasswordWo` is required.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Canonical (IONOS Object Storage) id of the user for a given identity
@@ -180,6 +228,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -239,8 +288,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [Set] The groups that this user will be a member of
-        /// 
         /// **NOTE:** Group_ids field cannot be used at the same time with UserIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        /// **NOTE:** `PasswordWo` requires Teraform 1.11 or higher.
         /// </summary>
         public InputList<string> GroupIds
         {
@@ -254,11 +303,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("lastName", required: true)]
         public Input<string> LastName { get; set; } = null!;
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// [string] A password for the user.
+        /// A password for the user. If you are using terraform 1.11 or higher, you can use `PasswordWo` instead of `Password` to avoid storing the password in the state file.
         /// </summary>
         public Input<string>? Password
         {
@@ -269,6 +318,29 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// user password. This value is always marked as sensitive in the plan output, regardless of `Type`. Additionally, `write-only` values are never stored to state. `PasswordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Used together with `PasswordWo` to trigger an update. Increment this value when an update to the `PasswordWo` is required.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         public UserArgs()
         {
@@ -313,8 +385,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [Set] The groups that this user will be a member of
-        /// 
         /// **NOTE:** Group_ids field cannot be used at the same time with UserIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        /// **NOTE:** `PasswordWo` requires Teraform 1.11 or higher.
         /// </summary>
         public InputList<string> GroupIds
         {
@@ -332,7 +404,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private Input<string>? _password;
 
         /// <summary>
-        /// [string] A password for the user.
+        /// A password for the user. If you are using terraform 1.11 or higher, you can use `PasswordWo` instead of `Password` to avoid storing the password in the state file.
         /// </summary>
         public Input<string>? Password
         {
@@ -343,6 +415,29 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// user password. This value is always marked as sensitive in the plan output, regardless of `Type`. Additionally, `write-only` values are never stored to state. `PasswordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Used together with `PasswordWo` to trigger an update. Increment this value when an update to the `PasswordWo` is required.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Canonical (IONOS Object Storage) id of the user for a given identity

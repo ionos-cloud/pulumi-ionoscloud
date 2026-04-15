@@ -36,6 +36,7 @@ export function getPSQLDatabases(args: GetPSQLDatabasesArgs, opts?: pulumi.Invok
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", {
         "clusterId": args.clusterId,
+        "location": args.location,
         "owner": args.owner,
     }, opts);
 }
@@ -48,6 +49,7 @@ export interface GetPSQLDatabasesArgs {
      * [string] The ID of the cluster.
      */
     clusterId: string;
+    location?: string;
     /**
      * [string] Filter using a specific owner.
      */
@@ -67,6 +69,7 @@ export interface GetPSQLDatabasesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly location?: string;
     /**
      * [string] The owner of the database.
      */
@@ -102,6 +105,7 @@ export function getPSQLDatabasesOutput(args: GetPSQLDatabasesOutputArgs, opts?: 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", {
         "clusterId": args.clusterId,
+        "location": args.location,
         "owner": args.owner,
     }, opts);
 }
@@ -114,6 +118,7 @@ export interface GetPSQLDatabasesOutputArgs {
      * [string] The ID of the cluster.
      */
     clusterId: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] Filter using a specific owner.
      */

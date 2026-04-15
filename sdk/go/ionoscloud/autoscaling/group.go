@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages an Autoscaling Group on IonosCloud.
+// Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -54,9 +54,10 @@ import (
 //				return err
 //			}
 //			autoscalingTargetGroup, err := compute.NewTargetGroup(ctx, "autoscaling_target_group", &compute.TargetGroupArgs{
-//				Name:      pulumi.String("Target Group Example"),
-//				Algorithm: pulumi.String("ROUND_ROBIN"),
-//				Protocol:  pulumi.String("HTTP"),
+//				Name:            pulumi.String("Target Group Example"),
+//				Algorithm:       pulumi.String("ROUND_ROBIN"),
+//				Protocol:        pulumi.String("HTTP"),
+//				ProtocolVersion: pulumi.String("HTTP1"),
 //			})
 //			if err != nil {
 //				return err

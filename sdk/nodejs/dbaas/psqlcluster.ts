@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **DbaaS PgSql Cluster**.
+ * Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
  *
  * ## Example Usage
  *
@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "example",
  *     location: "de/txl",
- *     description: "Datacenter for testing dbaas cluster",
+ *     description: "Datacenter for testing psql cluster",
  * });
  * const exampleLan = new ionoscloud.compute.Lan("example", {
  *     datacenterId: example.id,
@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     instances: 1,
  *     cores: 4,
  *     ram: 2048,
- *     storageSize: 2048,
+ *     storageSize: 10240,
  *     storageType: "HDD",
  *     connectionPooler: {
  *         enabled: true,
@@ -53,81 +53,6 @@ import * as utilities from "../utilities";
  *         password: "strongPassword",
  *     },
  *     synchronizationMode: "ASYNCHRONOUS",
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
- * import * as random from "@pulumi/random";
- *
- * // Complete example
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "example",
- *     location: "de/txl",
- *     description: "Datacenter for testing dbaas cluster",
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "example",
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "example",
- *     datacenterId: example.id,
- *     cores: 2,
- *     ram: 2048,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_SKYLAKE",
- *     imageName: "rockylinux-8-GenericCloud-20230518",
- *     imagePassword: "password",
- *     volume: {
- *         name: "example",
- *         size: 6,
- *         diskType: "SSD Standard",
- *     },
- *     nic: {
- *         lan: exampleLan.id,
- *         name: "example",
- *         dhcp: true,
- *     },
- * });
- * const clusterPassword = new random.index.Password("cluster_password", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("example", {
- *     postgresVersion: "12",
- *     instances: 1,
- *     cores: 4,
- *     ram: 2048,
- *     storageSize: 2048,
- *     storageType: "HDD",
- *     connectionPooler: {
- *         enabled: true,
- *         poolMode: "session",
- *     },
- *     connections: {
- *         datacenterId: example.id,
- *         lanId: exampleLan.id,
- *         cidr: "database_ip_cidr_from_nic",
- *     },
- *     location: example.location,
- *     displayName: "PostgreSQL_cluster",
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Sunday",
- *         time: "09:00:00",
- *     },
- *     credentials: {
- *         username: "username",
- *         password: clusterPassword.result,
- *     },
- *     synchronizationMode: "ASYNCHRONOUS",
- *     fromBackup: {
- *         backupId: "backup_uuid",
- *         recoveryTargetTime: "2021-12-06T13:54:08Z",
- *     },
  * });
  * ```
  *
@@ -168,6 +93,12 @@ export class PSQLCluster extends pulumi.CustomResource {
     }
 
     /**
+     * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+     *
+     * **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     */
+    declare public readonly allowReplace: pulumi.Output<boolean | undefined>;
+    /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     declare public readonly backupLocation: pulumi.Output<string>;
@@ -204,7 +135,7 @@ export class PSQLCluster extends pulumi.CustomResource {
      */
     declare public readonly instances: pulumi.Output<number>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -245,6 +176,7 @@ export class PSQLCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PSQLClusterState | undefined;
+            resourceInputs["allowReplace"] = state?.allowReplace;
             resourceInputs["backupLocation"] = state?.backupLocation;
             resourceInputs["connectionPooler"] = state?.connectionPooler;
             resourceInputs["connections"] = state?.connections;
@@ -293,6 +225,7 @@ export class PSQLCluster extends pulumi.CustomResource {
             if (args?.synchronizationMode === undefined && !opts.urn) {
                 throw new Error("Missing required property 'synchronizationMode'");
             }
+            resourceInputs["allowReplace"] = args?.allowReplace;
             resourceInputs["backupLocation"] = args?.backupLocation;
             resourceInputs["connectionPooler"] = args?.connectionPooler;
             resourceInputs["connections"] = args?.connections;
@@ -319,6 +252,12 @@ export class PSQLCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PSQLCluster resources.
  */
 export interface PSQLClusterState {
+    /**
+     * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+     *
+     * **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     */
+    allowReplace?: pulumi.Input<boolean>;
     /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
@@ -356,7 +295,7 @@ export interface PSQLClusterState {
      */
     instances?: pulumi.Input<number>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     location?: pulumi.Input<string>;
     /**
@@ -390,6 +329,12 @@ export interface PSQLClusterState {
  */
 export interface PSQLClusterArgs {
     /**
+     * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
+     *
+     * **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     */
+    allowReplace?: pulumi.Input<boolean>;
+    /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     backupLocation?: pulumi.Input<string>;
@@ -422,7 +367,7 @@ export interface PSQLClusterArgs {
      */
     instances: pulumi.Input<number>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     location: pulumi.Input<string>;
     /**

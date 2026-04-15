@@ -5,19 +5,48 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Certificate** on IonosCloud.
+ * Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
  *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ * import * as std from "@pulumi/std";
  *
  * const cert = new ionoscloud.cert.Certificate("cert", {
  *     name: "add_name_here",
- *     certificate: "tour_certificate",
- *     certificateChain: "your_certificate_chain",
- *     privateKey: "your_private_key",
+ *     certificate: std.file({
+ *         input: "path_to_cert",
+ *     }).result,
+ *     certificateChain: std.file({
+ *         input: "path_to_cert_chain",
+ *     }).result,
+ *     privateKey: std.file({
+ *         input: "path_to_private_key",
+ *     }).result,
+ * });
+ * ```
+ *
+ * **NOTE**: You can also provide the values as multiline strings, as seen below:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ * import * as std from "@pulumi/std";
+ *
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     name: "add_name_here",
+ *     certificate: `-----BEGIN CERTIFICATE-----
+ * cert_body_here
+ * -----END CERTIFICATE-----
+ * `,
+ *     certificateChain: std.file({
+ *         input: "path_to_cert_chain",
+ *     }).result,
+ *     privateKey: std.file({
+ *         input: "path_to_private_key",
+ *     }).result,
  * });
  * ```
  *

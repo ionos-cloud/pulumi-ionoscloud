@@ -52,7 +52,8 @@ func LookupPSQLDatabase(ctx *pulumi.Context, args *LookupPSQLDatabaseArgs, opts 
 // A collection of arguments for invoking getPSQLDatabase.
 type LookupPSQLDatabaseArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId string `pulumi:"clusterId"`
+	ClusterId string  `pulumi:"clusterId"`
+	Location  *string `pulumi:"location"`
 	// [string] Name of an existing database that you want to search for.
 	Name string `pulumi:"name"`
 }
@@ -61,8 +62,9 @@ type LookupPSQLDatabaseArgs struct {
 type LookupPSQLDatabaseResult struct {
 	ClusterId string `pulumi:"clusterId"`
 	// [string] The id of the database.
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id       string  `pulumi:"id"`
+	Location *string `pulumi:"location"`
+	Name     string  `pulumi:"name"`
 	// [string] The owner of the database.
 	Owner string `pulumi:"owner"`
 }
@@ -79,7 +81,8 @@ func LookupPSQLDatabaseOutput(ctx *pulumi.Context, args LookupPSQLDatabaseOutput
 // A collection of arguments for invoking getPSQLDatabase.
 type LookupPSQLDatabaseOutputArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	ClusterId pulumi.StringInput    `pulumi:"clusterId"`
+	Location  pulumi.StringPtrInput `pulumi:"location"`
 	// [string] Name of an existing database that you want to search for.
 	Name pulumi.StringInput `pulumi:"name"`
 }
@@ -110,6 +113,10 @@ func (o LookupPSQLDatabaseResultOutput) ClusterId() pulumi.StringOutput {
 // [string] The id of the database.
 func (o LookupPSQLDatabaseResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupPSQLDatabaseResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupPSQLDatabaseResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupPSQLDatabaseResultOutput) Name() pulumi.StringOutput {

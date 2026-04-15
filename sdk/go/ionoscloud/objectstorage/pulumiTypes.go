@@ -18,12 +18,16 @@ type BucketLifecycleConfigurationRule struct {
 	AbortIncompleteMultipartUpload *BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload `pulumi:"abortIncompleteMultipartUpload"`
 	// A lifecycle rule for when an object expires.
 	Expiration *BucketLifecycleConfigurationRuleExpiration `pulumi:"expiration"`
+	// A filter.
+	Filter *BucketLifecycleConfigurationRuleFilter `pulumi:"filter"`
 	// Unique identifier for the rule.
 	Id *string `pulumi:"id"`
 	// A lifecycle rule for when non-current object versions expire.
 	NoncurrentVersionExpiration *BucketLifecycleConfigurationRuleNoncurrentVersionExpiration `pulumi:"noncurrentVersionExpiration"`
 	// Object key prefix identifying one or more objects to which the rule applies.
-	Prefix string `pulumi:"prefix"`
+	//
+	// Deprecated: This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.
+	Prefix *string `pulumi:"prefix"`
 	// Whether the rule is currently being applied. Valid values: Enabled or Disabled.
 	Status string `pulumi:"status"`
 }
@@ -44,12 +48,16 @@ type BucketLifecycleConfigurationRuleArgs struct {
 	AbortIncompleteMultipartUpload BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadPtrInput `pulumi:"abortIncompleteMultipartUpload"`
 	// A lifecycle rule for when an object expires.
 	Expiration BucketLifecycleConfigurationRuleExpirationPtrInput `pulumi:"expiration"`
+	// A filter.
+	Filter BucketLifecycleConfigurationRuleFilterPtrInput `pulumi:"filter"`
 	// Unique identifier for the rule.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// A lifecycle rule for when non-current object versions expire.
 	NoncurrentVersionExpiration BucketLifecycleConfigurationRuleNoncurrentVersionExpirationPtrInput `pulumi:"noncurrentVersionExpiration"`
 	// Object key prefix identifying one or more objects to which the rule applies.
-	Prefix pulumi.StringInput `pulumi:"prefix"`
+	//
+	// Deprecated: This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Whether the rule is currently being applied. Valid values: Enabled or Disabled.
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -119,6 +127,11 @@ func (o BucketLifecycleConfigurationRuleOutput) Expiration() BucketLifecycleConf
 	}).(BucketLifecycleConfigurationRuleExpirationPtrOutput)
 }
 
+// A filter.
+func (o BucketLifecycleConfigurationRuleOutput) Filter() BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleConfigurationRule) *BucketLifecycleConfigurationRuleFilter { return v.Filter }).(BucketLifecycleConfigurationRuleFilterPtrOutput)
+}
+
 // Unique identifier for the rule.
 func (o BucketLifecycleConfigurationRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketLifecycleConfigurationRule) *string { return v.Id }).(pulumi.StringPtrOutput)
@@ -132,8 +145,10 @@ func (o BucketLifecycleConfigurationRuleOutput) NoncurrentVersionExpiration() Bu
 }
 
 // Object key prefix identifying one or more objects to which the rule applies.
-func (o BucketLifecycleConfigurationRuleOutput) Prefix() pulumi.StringOutput {
-	return o.ApplyT(func(v BucketLifecycleConfigurationRule) string { return v.Prefix }).(pulumi.StringOutput)
+//
+// Deprecated: This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.
+func (o BucketLifecycleConfigurationRuleOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleConfigurationRule) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
 
 // Whether the rule is currently being applied. Valid values: Enabled or Disabled.
@@ -473,6 +488,143 @@ func (o BucketLifecycleConfigurationRuleExpirationPtrOutput) ExpiredObjectDelete
 		}
 		return v.ExpiredObjectDeleteMarker
 	}).(pulumi.BoolPtrOutput)
+}
+
+type BucketLifecycleConfigurationRuleFilter struct {
+	// Object key prefix identifying one or more objects to which the rule applies.
+	Prefix *string `pulumi:"prefix"`
+}
+
+// BucketLifecycleConfigurationRuleFilterInput is an input type that accepts BucketLifecycleConfigurationRuleFilterArgs and BucketLifecycleConfigurationRuleFilterOutput values.
+// You can construct a concrete instance of `BucketLifecycleConfigurationRuleFilterInput` via:
+//
+//	BucketLifecycleConfigurationRuleFilterArgs{...}
+type BucketLifecycleConfigurationRuleFilterInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleConfigurationRuleFilterOutput() BucketLifecycleConfigurationRuleFilterOutput
+	ToBucketLifecycleConfigurationRuleFilterOutputWithContext(context.Context) BucketLifecycleConfigurationRuleFilterOutput
+}
+
+type BucketLifecycleConfigurationRuleFilterArgs struct {
+	// Object key prefix identifying one or more objects to which the rule applies.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+}
+
+func (BucketLifecycleConfigurationRuleFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleConfigurationRuleFilter)(nil)).Elem()
+}
+
+func (i BucketLifecycleConfigurationRuleFilterArgs) ToBucketLifecycleConfigurationRuleFilterOutput() BucketLifecycleConfigurationRuleFilterOutput {
+	return i.ToBucketLifecycleConfigurationRuleFilterOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleConfigurationRuleFilterArgs) ToBucketLifecycleConfigurationRuleFilterOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleConfigurationRuleFilterOutput)
+}
+
+func (i BucketLifecycleConfigurationRuleFilterArgs) ToBucketLifecycleConfigurationRuleFilterPtrOutput() BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return i.ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (i BucketLifecycleConfigurationRuleFilterArgs) ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleConfigurationRuleFilterOutput).ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(ctx)
+}
+
+// BucketLifecycleConfigurationRuleFilterPtrInput is an input type that accepts BucketLifecycleConfigurationRuleFilterArgs, BucketLifecycleConfigurationRuleFilterPtr and BucketLifecycleConfigurationRuleFilterPtrOutput values.
+// You can construct a concrete instance of `BucketLifecycleConfigurationRuleFilterPtrInput` via:
+//
+//	        BucketLifecycleConfigurationRuleFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketLifecycleConfigurationRuleFilterPtrInput interface {
+	pulumi.Input
+
+	ToBucketLifecycleConfigurationRuleFilterPtrOutput() BucketLifecycleConfigurationRuleFilterPtrOutput
+	ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(context.Context) BucketLifecycleConfigurationRuleFilterPtrOutput
+}
+
+type bucketLifecycleConfigurationRuleFilterPtrType BucketLifecycleConfigurationRuleFilterArgs
+
+func BucketLifecycleConfigurationRuleFilterPtr(v *BucketLifecycleConfigurationRuleFilterArgs) BucketLifecycleConfigurationRuleFilterPtrInput {
+	return (*bucketLifecycleConfigurationRuleFilterPtrType)(v)
+}
+
+func (*bucketLifecycleConfigurationRuleFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleConfigurationRuleFilter)(nil)).Elem()
+}
+
+func (i *bucketLifecycleConfigurationRuleFilterPtrType) ToBucketLifecycleConfigurationRuleFilterPtrOutput() BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return i.ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketLifecycleConfigurationRuleFilterPtrType) ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketLifecycleConfigurationRuleFilterPtrOutput)
+}
+
+type BucketLifecycleConfigurationRuleFilterOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleConfigurationRuleFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketLifecycleConfigurationRuleFilter)(nil)).Elem()
+}
+
+func (o BucketLifecycleConfigurationRuleFilterOutput) ToBucketLifecycleConfigurationRuleFilterOutput() BucketLifecycleConfigurationRuleFilterOutput {
+	return o
+}
+
+func (o BucketLifecycleConfigurationRuleFilterOutput) ToBucketLifecycleConfigurationRuleFilterOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterOutput {
+	return o
+}
+
+func (o BucketLifecycleConfigurationRuleFilterOutput) ToBucketLifecycleConfigurationRuleFilterPtrOutput() BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return o.ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(context.Background())
+}
+
+func (o BucketLifecycleConfigurationRuleFilterOutput) ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketLifecycleConfigurationRuleFilter) *BucketLifecycleConfigurationRuleFilter {
+		return &v
+	}).(BucketLifecycleConfigurationRuleFilterPtrOutput)
+}
+
+// Object key prefix identifying one or more objects to which the rule applies.
+func (o BucketLifecycleConfigurationRuleFilterOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketLifecycleConfigurationRuleFilter) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+type BucketLifecycleConfigurationRuleFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketLifecycleConfigurationRuleFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketLifecycleConfigurationRuleFilter)(nil)).Elem()
+}
+
+func (o BucketLifecycleConfigurationRuleFilterPtrOutput) ToBucketLifecycleConfigurationRuleFilterPtrOutput() BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleConfigurationRuleFilterPtrOutput) ToBucketLifecycleConfigurationRuleFilterPtrOutputWithContext(ctx context.Context) BucketLifecycleConfigurationRuleFilterPtrOutput {
+	return o
+}
+
+func (o BucketLifecycleConfigurationRuleFilterPtrOutput) Elem() BucketLifecycleConfigurationRuleFilterOutput {
+	return o.ApplyT(func(v *BucketLifecycleConfigurationRuleFilter) BucketLifecycleConfigurationRuleFilter {
+		if v != nil {
+			return *v
+		}
+		var ret BucketLifecycleConfigurationRuleFilter
+		return ret
+	}).(BucketLifecycleConfigurationRuleFilterOutput)
+}
+
+// Object key prefix identifying one or more objects to which the rule applies.
+func (o BucketLifecycleConfigurationRuleFilterPtrOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketLifecycleConfigurationRuleFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Prefix
+	}).(pulumi.StringPtrOutput)
 }
 
 type BucketLifecycleConfigurationRuleNoncurrentVersionExpiration struct {
@@ -2582,6 +2734,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadPtrInput)(nil)).Elem(), BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleExpirationInput)(nil)).Elem(), BucketLifecycleConfigurationRuleExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleExpirationPtrInput)(nil)).Elem(), BucketLifecycleConfigurationRuleExpirationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleFilterInput)(nil)).Elem(), BucketLifecycleConfigurationRuleFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleFilterPtrInput)(nil)).Elem(), BucketLifecycleConfigurationRuleFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleNoncurrentVersionExpirationInput)(nil)).Elem(), BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLifecycleConfigurationRuleNoncurrentVersionExpirationPtrInput)(nil)).Elem(), BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleInput)(nil)).Elem(), BucketServerSideEncryptionConfigurationRuleArgs{})
@@ -2616,6 +2770,8 @@ func init() {
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadPtrOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleExpirationOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleExpirationPtrOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleFilterOutput{})
+	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleFilterPtrOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleNoncurrentVersionExpirationOutput{})
 	pulumi.RegisterOutputType(BucketLifecycleConfigurationRuleNoncurrentVersionExpirationPtrOutput{})
 	pulumi.RegisterOutputType(BucketServerSideEncryptionConfigurationRuleOutput{})

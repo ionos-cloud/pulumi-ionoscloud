@@ -74,7 +74,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The name of the DNS Zone.
+        /// [string] The name of the DNS Zone. This property is immutable.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -145,7 +145,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// [string] The name of the DNS Zone.
+        /// [string] The name of the DNS Zone. This property is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -171,7 +171,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// [string] The name of the DNS Zone.
+        /// [string] The name of the DNS Zone. This property is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

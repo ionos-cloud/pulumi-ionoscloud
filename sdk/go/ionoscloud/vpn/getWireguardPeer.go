@@ -57,7 +57,7 @@ type LookupWireguardPeerArgs struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// [String] The ID of the WireGuard Peer.
 	Id *string `pulumi:"id"`
-	// [String] The location of the WireGuard Gateway.
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// [String] The name of the WireGuard Peer.
 	Name *string `pulumi:"name"`
@@ -98,7 +98,7 @@ type LookupWireguardPeerOutputArgs struct {
 	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
 	// [String] The ID of the WireGuard Peer.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [String] The location of the WireGuard Gateway.
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [String] The name of the WireGuard Peer.
 	Name pulumi.StringPtrInput `pulumi:"name"`

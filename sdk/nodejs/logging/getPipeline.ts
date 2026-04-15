@@ -55,7 +55,7 @@ export interface GetPipelineArgs {
      */
     id?: string;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
      */
     location?: string;
     /**
@@ -71,9 +71,13 @@ export interface GetPipelineArgs {
  */
 export interface GetPipelineResult {
     /**
-     * The address of the client's grafana instance.
+     * The Grafana address is where user can access their logs, create dashboards, and set up alerts.
      */
     readonly grafanaAddress: string;
+    /**
+     * The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     */
+    readonly httpAddress: string;
     /**
      * The UUID of the Logging pipeline.
      */
@@ -87,6 +91,10 @@ export interface GetPipelineResult {
      * The name of the Logging pipeline.
      */
     readonly name: string;
+    /**
+     * The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     */
+    readonly tcpAddress: string;
 }
 /**
  * The **Logging pipeline** datasource can be used to search for and return an existing Logging pipeline.
@@ -137,7 +145,7 @@ export interface GetPipelineOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
      */
     location?: pulumi.Input<string>;
     /**

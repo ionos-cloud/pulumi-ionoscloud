@@ -11,7 +11,8 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **NIC** on IonosCloud.
+    /// Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -57,8 +58,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = "Ubuntu-20.04",
     ///         ImagePassword = serverImagePassword.Result,
     ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
@@ -102,6 +101,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
     /// using Random = Pulumi.Random;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -118,7 +118,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Public = true,
     ///         Name = "IPv6 Enabled LAN",
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_dc",
+    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         {
+    ///             Input = example.Ipv6CidrBlock,
+    ///             Newbits = 8,
+    ///             Netnum = 2,
+    ///         }).Result,
     ///     });
     /// 
     ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
@@ -133,8 +138,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = "Ubuntu-20.04",
     ///         ImagePassword = serverImagePassword.Result,
     ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
@@ -161,12 +164,44 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         FirewallActive = true,
     ///         FirewallType = "INGRESS",
     ///         Dhcpv6 = false,
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_lan",
+    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         {
+    ///             Input = exampleLan.Ipv6CidrBlock,
+    ///             Newbits = 16,
+    ///             Netnum = 14,
+    ///         }).Result,
     ///         Ipv6Ips = new[]
     ///         {
-    ///             "ipv6_ip1",
-    ///             "ipv6_ip2",
-    ///             "ipv6_ip3",
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 10,
+    ///             }).Result,
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 20,
+    ///             }).Result,
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 30,
+    ///             }).Result,
     ///         },
     ///     });
     /// 
@@ -179,72 +214,58 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// using System.Linq;
     /// using Pulumi;
     /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
+    ///     var example = new Ionoscloud.Compute.Nic("example", new()
     ///     {
-    ///         Name = "Datacenter Example",
-    ///         Location = "us/las",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = true,
-    ///         Name = "IPv6 Enabled LAN",
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_dc",
-    ///     });
-    /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = false,
-    ///     });
-    /// 
-    ///     var exampleServer = new Ionoscloud.Compute.Server("example", new()
-    ///     {
-    ///         Name = "Server Example",
-    ///         DatacenterId = example.Id,
-    ///         Cores = 1,
-    ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
-    ///         ImageName = "Ubuntu-20.04",
-    ///         ImagePassword = serverImagePassword.Result,
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "system",
-    ///             Size = 14,
-    ///             DiskType = "SSD",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Lan = 1,
-    ///             Dhcp = true,
-    ///             FirewallActive = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleNic = new Ionoscloud.Compute.Nic("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         ServerId = exampleServer.Id,
-    ///         Lan = exampleLan.Id,
+    ///         DatacenterId = exampleIonoscloudDatacenter.Id,
+    ///         ServerId = exampleIonoscloudServer.Id,
+    ///         Lan = exampleIonoscloudLan.Id,
     ///         Name = "IPV6 and Flowlog Enabled NIC",
     ///         Dhcp = true,
     ///         FirewallActive = true,
     ///         FirewallType = "INGRESS",
     ///         Dhcpv6 = false,
-    ///         Ipv6CidrBlock = "ipv6_cidr_block_from_lan",
+    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         {
+    ///             Input = exampleIonoscloudLan.Ipv6CidrBlock,
+    ///             Newbits = 16,
+    ///             Netnum = 14,
+    ///         }).Result,
     ///         Ipv6Ips = new[]
     ///         {
-    ///             "ipv6_ip1",
-    ///             "ipv6_ip2",
-    ///             "ipv6_ip3",
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 10,
+    ///             }).Result,
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 20,
+    ///             }).Result,
+    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             {
+    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 {
+    ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
+    ///                     Newbits = 16,
+    ///                     Netnum = 14,
+    ///                 }).Result,
+    ///                 Host = 30,
+    ///             }).Result,
     ///         },
     ///         Flowlog = new Ionoscloud.Compute.Inputs.NicFlowlogArgs
     ///         {
@@ -265,7 +286,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// Please be aware that when using a NIC in a load balancer, the load balancer will
     /// change the NIC's ID behind the scenes, therefore the plan will always report this change
-    /// trying to revert the state to the one specified by your file.
+    /// trying to revert the state to the one specified by your terraform file.
     /// In order to prevent this, use the "lifecycle meta-argument" when declaring your NIC,
     /// in order to ignore changes to the `Lan` attribute:
     /// 
@@ -368,6 +389,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("lan")]
         public Output<int> Lan { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
@@ -521,6 +548,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<int> Lan { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         /// </summary>
         [Input("mac")]
@@ -637,6 +670,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("lan")]
         public Input<int>? Lan { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.

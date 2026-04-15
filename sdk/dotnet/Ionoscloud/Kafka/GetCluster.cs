@@ -179,7 +179,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
         /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
@@ -208,7 +208,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;

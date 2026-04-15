@@ -62,6 +62,62 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Usage with dynamic block for targets:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ *
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const example1 = new ionoscloud.compute.Lan("example1", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 1",
+ * });
+ * const example2 = new ionoscloud.compute.Lan("example2", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "Lan Example 2",
+ * });
+ * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
+ *     datacenterId: example.id,
+ *     name: "example",
+ *     listenerLan: example1.id,
+ *     targetLan: example2.id,
+ *     ips: ["10.12.118.224"],
+ *     lbPrivateIps: ["10.13.72.225/24"],
+ * });
+ * const config = new pulumi.Config();
+ * const iPs = config.getObject<Array<any>>("iPs") || [
+ *     "22.231.2.2",
+ *     "22.231.2.3",
+ *     "22.231.2.4",
+ * ];
+ * const exampleForwardingRule = new ionoscloud.nlb.ForwardingRule("example", {
+ *     targets: iPs.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         ip: entry.value,
+ *         port: 31234,
+ *         weight: 1,
+ *         healthCheck: {
+ *             check: true,
+ *             checkInterval: 1000,
+ *             maintenance: false,
+ *         },
+ *     })),
+ *     datacenterId: example.id,
+ *     networkloadbalancerId: exampleBalancer.id,
+ *     name: "example",
+ *     algorithm: "SOURCE_IP",
+ *     protocol: "TCP",
+ *     listenerIp: "10.12.118.224",
+ *     listenerPort: 8081,
+ * });
+ * ```
+ *
  * ## Import
  *
  * A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
@@ -119,6 +175,10 @@ export class ForwardingRule extends pulumi.CustomResource {
      */
     declare public readonly listenerPort: pulumi.Output<number>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] A name of that Network Load Balancer forwarding rule.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -150,6 +210,7 @@ export class ForwardingRule extends pulumi.CustomResource {
             resourceInputs["healthCheck"] = state?.healthCheck;
             resourceInputs["listenerIp"] = state?.listenerIp;
             resourceInputs["listenerPort"] = state?.listenerPort;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["networkloadbalancerId"] = state?.networkloadbalancerId;
             resourceInputs["protocol"] = state?.protocol;
@@ -182,6 +243,7 @@ export class ForwardingRule extends pulumi.CustomResource {
             resourceInputs["healthCheck"] = args?.healthCheck;
             resourceInputs["listenerIp"] = args?.listenerIp;
             resourceInputs["listenerPort"] = args?.listenerPort;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["networkloadbalancerId"] = args?.networkloadbalancerId;
             resourceInputs["protocol"] = args?.protocol;
@@ -216,6 +278,10 @@ export interface ForwardingRuleState {
      * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
     listenerPort?: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] A name of that Network Load Balancer forwarding rule.
      */
@@ -255,6 +321,10 @@ export interface ForwardingRuleArgs {
      * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
     listenerPort: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] A name of that Network Load Balancer forwarding rule.
      */

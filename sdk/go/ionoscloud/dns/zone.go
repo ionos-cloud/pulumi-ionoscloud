@@ -81,7 +81,7 @@ type Zone struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
+	// [string] The name of the DNS Zone. This property is immutable.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// A list of available name servers.
 	Nameservers pulumi.StringArrayOutput `pulumi:"nameservers"`
@@ -121,7 +121,7 @@ type zoneState struct {
 	Description *string `pulumi:"description"`
 	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
+	// [string] The name of the DNS Zone. This property is immutable.
 	Name *string `pulumi:"name"`
 	// A list of available name servers.
 	Nameservers []string `pulumi:"nameservers"`
@@ -132,7 +132,7 @@ type ZoneState struct {
 	Description pulumi.StringPtrInput
 	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 	Enabled pulumi.BoolPtrInput
-	// [string] The name of the DNS Zone.
+	// [string] The name of the DNS Zone. This property is immutable.
 	Name pulumi.StringPtrInput
 	// A list of available name servers.
 	Nameservers pulumi.StringArrayInput
@@ -147,7 +147,7 @@ type zoneArgs struct {
 	Description *string `pulumi:"description"`
 	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 	Enabled *bool `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
+	// [string] The name of the DNS Zone. This property is immutable.
 	Name *string `pulumi:"name"`
 }
 
@@ -157,7 +157,7 @@ type ZoneArgs struct {
 	Description pulumi.StringPtrInput
 	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 	Enabled pulumi.BoolPtrInput
-	// [string] The name of the DNS Zone.
+	// [string] The name of the DNS Zone. This property is immutable.
 	Name pulumi.StringPtrInput
 }
 
@@ -258,7 +258,7 @@ func (o ZoneOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Zone) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// [string] The name of the DNS Zone.
+// [string] The name of the DNS Zone. This property is immutable.
 func (o ZoneOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Zone) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

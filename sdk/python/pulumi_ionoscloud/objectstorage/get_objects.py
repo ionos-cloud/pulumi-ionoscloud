@@ -156,6 +156,8 @@ def get_objects(bucket: Optional[_builtins.str] = None,
     """
     The **Objects data source** can be used to search for and return existing objects.
 
+    ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+
     ## Example Usage
 
     ```python
@@ -211,6 +213,8 @@ def get_objects_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectsResult]:
     """
     The **Objects data source** can be used to search for and return existing objects.
+
+    ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
 
     ## Example Usage
 

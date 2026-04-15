@@ -26,10 +26,13 @@ class VolumeArgs:
                  availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
                  backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
                  bus: Optional[pulumi.Input[_builtins.str]] = None,
+                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_data: Optional[pulumi.Input[_builtins.str]] = None):
@@ -43,10 +46,18 @@ class VolumeArgs:
         :param pulumi.Input[_builtins.str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
         :param pulumi.Input[_builtins.str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param pulumi.Input[_builtins.str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
+        :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `sshkey_path` is not provided.
         :param pulumi.Input[_builtins.str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the volume.
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
@@ -61,14 +72,20 @@ class VolumeArgs:
             pulumi.set(__self__, "backup_unit_id", backup_unit_id)
         if bus is not None:
             pulumi.set(__self__, "bus", bus)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
         if image_name is not None:
             pulumi.set(__self__, "image_name", image_name)
         if image_password is not None:
             pulumi.set(__self__, "image_password", image_password)
         if licence_type is not None:
             pulumi.set(__self__, "licence_type", licence_type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if ssh_key_paths is not None:
             pulumi.set(__self__, "ssh_key_paths", ssh_key_paths)
         if ssh_keys is not None:
@@ -161,6 +178,18 @@ class VolumeArgs:
         pulumi.set(self, "bus", value)
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @expose_serial.setter
+    def expose_serial(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "expose_serial", value)
+
+    @_builtins.property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -198,6 +227,18 @@ class VolumeArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the volume.
@@ -207,6 +248,23 @@ class VolumeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+
+        > **⚠ WARNING**
+        >
+        > ssh_key_path and ssh_keys fields are immutable.
+        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @require_legacy_bios.setter
+    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
@@ -258,16 +316,19 @@ class _VolumeState:
                  disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  disk_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
                  image: Optional[pulumi.Input[_builtins.str]] = None,
                  image_id: Optional[pulumi.Input[_builtins.str]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
                  nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
                  pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
                  ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -280,10 +341,6 @@ class _VolumeState:
         :param pulumi.Input[_builtins.str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
         :param pulumi.Input[_builtins.str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param pulumi.Input[_builtins.str] boot_server: [string] The UUID of the attached server.
-               > **⚠ WARNING**
-               >
-               > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
         :param pulumi.Input[_builtins.bool] cpu_hot_plug: [string] Is capable of CPU hot plug (no reboot required)
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
@@ -291,15 +348,23 @@ class _VolumeState:
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
         :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image: The image or snapshot UUID.
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `sshkey_path` is not provided.
         :param pulumi.Input[_builtins.str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the volume.
         :param pulumi.Input[_builtins.bool] nic_hot_plug: [string] Is capable of nic hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: [string] Is capable of nic hot unplug (no reboot required)
         :param pulumi.Input[_builtins.int] pci_slot: The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: [string] Is capable of memory hot plug (no reboot required)
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -327,6 +392,8 @@ class _VolumeState:
             pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
         if disk_type is not None:
             pulumi.set(__self__, "disk_type", disk_type)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
         if image is not None:
             pulumi.set(__self__, "image", image)
         if image_id is not None:
@@ -337,6 +404,8 @@ class _VolumeState:
             pulumi.set(__self__, "image_password", image_password)
         if licence_type is not None:
             pulumi.set(__self__, "licence_type", licence_type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic_hot_plug is not None:
@@ -347,6 +416,8 @@ class _VolumeState:
             pulumi.set(__self__, "pci_slot", pci_slot)
         if ram_hot_plug is not None:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
         if size is not None:
@@ -389,10 +460,6 @@ class _VolumeState:
     def boot_server(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The UUID of the attached server.
-        > **⚠ WARNING**
-        >
-        > ssh_key_path and ssh_keys fields are immutable.
-        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "boot_server")
 
@@ -485,6 +552,18 @@ class _VolumeState:
         pulumi.set(self, "disk_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @expose_serial.setter
+    def expose_serial(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "expose_serial", value)
+
+    @_builtins.property
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -540,6 +619,18 @@ class _VolumeState:
     @licence_type.setter
     def licence_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "licence_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -600,6 +691,23 @@ class _VolumeState:
     @ram_hot_plug.setter
     def ram_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "ram_hot_plug", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+
+        > **⚠ WARNING**
+        >
+        > ssh_key_path and ssh_keys fields are immutable.
+        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @require_legacy_bios.setter
+    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
@@ -685,10 +793,13 @@ class Volume(pulumi.CustomResource):
                  bus: Optional[pulumi.Input[_builtins.str]] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -696,7 +807,7 @@ class Volume(pulumi.CustomResource):
                  user_data: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Volume** on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
 
         ## Example Usage
 
@@ -732,8 +843,6 @@ class Volume(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.name,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -755,16 +864,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": example_ip_block.ips[2],
-                    "target_ip": example_ip_block.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": example_ip_block.ips[2],
+                    "targetIp": example_ip_block.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -807,10 +916,18 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `sshkey_path` is not provided.
         :param pulumi.Input[_builtins.str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the volume.
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -824,7 +941,7 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Volume** on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
 
         ## Example Usage
 
@@ -860,8 +977,6 @@ class Volume(pulumi.CustomResource):
             datacenter_id=example_datacenter.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name=example.name,
             image_password=server_image_password["result"],
             type="ENTERPRISE",
@@ -883,16 +998,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewalls": [{
+                "firewall": {
                     "protocol": "TCP",
                     "name": "SSH",
-                    "port_range_start": 22,
-                    "port_range_end": 22,
-                    "source_mac": "00:0a:95:9d:68:17",
-                    "source_ip": example_ip_block.ips[2],
-                    "target_ip": example_ip_block.ips[3],
+                    "portRangeStart": 22,
+                    "portRangeEnd": 22,
+                    "sourceMac": "00:0a:95:9d:68:17",
+                    "sourceIp": example_ip_block.ips[2],
+                    "targetIp": example_ip_block.ips[3],
                     "type": "EGRESS",
-                }],
+                },
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -948,10 +1063,13 @@ class Volume(pulumi.CustomResource):
                  bus: Optional[pulumi.Input[_builtins.str]] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  disk_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
                  image_name: Optional[pulumi.Input[_builtins.str]] = None,
                  image_password: Optional[pulumi.Input[_builtins.str]] = None,
                  licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
                  server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -975,10 +1093,13 @@ class Volume(pulumi.CustomResource):
             if disk_type is None and not opts.urn:
                 raise TypeError("Missing required property 'disk_type'")
             __props__.__dict__["disk_type"] = disk_type
+            __props__.__dict__["expose_serial"] = expose_serial
             __props__.__dict__["image_name"] = image_name
             __props__.__dict__["image_password"] = image_password
             __props__.__dict__["licence_type"] = licence_type
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
+            __props__.__dict__["require_legacy_bios"] = require_legacy_bios
             if server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_id'")
             __props__.__dict__["server_id"] = server_id
@@ -1020,16 +1141,19 @@ class Volume(pulumi.CustomResource):
             disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
             disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
             disk_type: Optional[pulumi.Input[_builtins.str]] = None,
+            expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
             image: Optional[pulumi.Input[_builtins.str]] = None,
             image_id: Optional[pulumi.Input[_builtins.str]] = None,
             image_name: Optional[pulumi.Input[_builtins.str]] = None,
             image_password: Optional[pulumi.Input[_builtins.str]] = None,
             licence_type: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
             nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
             pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
             ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
+            require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
             server_id: Optional[pulumi.Input[_builtins.str]] = None,
             size: Optional[pulumi.Input[_builtins.int]] = None,
             ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1046,10 +1170,6 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
         :param pulumi.Input[_builtins.str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param pulumi.Input[_builtins.str] boot_server: [string] The UUID of the attached server.
-               > **⚠ WARNING**
-               >
-               > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
         :param pulumi.Input[_builtins.bool] cpu_hot_plug: [string] Is capable of CPU hot plug (no reboot required)
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
@@ -1057,15 +1177,23 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
         :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image: The image or snapshot UUID.
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `sshkey_path` is not provided.
         :param pulumi.Input[_builtins.str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the volume.
         :param pulumi.Input[_builtins.bool] nic_hot_plug: [string] Is capable of nic hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] nic_hot_unplug: [string] Is capable of nic hot unplug (no reboot required)
         :param pulumi.Input[_builtins.int] pci_slot: The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
         :param pulumi.Input[_builtins.bool] ram_hot_plug: [string] Is capable of memory hot plug (no reboot required)
+        :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+               
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -1087,16 +1215,19 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["disc_virtio_hot_plug"] = disc_virtio_hot_plug
         __props__.__dict__["disc_virtio_hot_unplug"] = disc_virtio_hot_unplug
         __props__.__dict__["disk_type"] = disk_type
+        __props__.__dict__["expose_serial"] = expose_serial
         __props__.__dict__["image"] = image
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["image_name"] = image_name
         __props__.__dict__["image_password"] = image_password
         __props__.__dict__["licence_type"] = licence_type
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["nic_hot_plug"] = nic_hot_plug
         __props__.__dict__["nic_hot_unplug"] = nic_hot_unplug
         __props__.__dict__["pci_slot"] = pci_slot
         __props__.__dict__["ram_hot_plug"] = ram_hot_plug
+        __props__.__dict__["require_legacy_bios"] = require_legacy_bios
         __props__.__dict__["server_id"] = server_id
         __props__.__dict__["size"] = size
         __props__.__dict__["ssh_key_paths"] = ssh_key_paths
@@ -1126,10 +1257,6 @@ class Volume(pulumi.CustomResource):
     def boot_server(self) -> pulumi.Output[_builtins.str]:
         """
         [string] The UUID of the attached server.
-        > **⚠ WARNING**
-        >
-        > ssh_key_path and ssh_keys fields are immutable.
-        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "boot_server")
 
@@ -1190,6 +1317,14 @@ class Volume(pulumi.CustomResource):
         return pulumi.get(self, "disk_type")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> pulumi.Output[_builtins.bool]:
+        """
+        (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter
     def image(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1225,6 +1360,14 @@ class Volume(pulumi.CustomResource):
         [string] Required if `image_name` is not provided.
         """
         return pulumi.get(self, "licence_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter
@@ -1265,6 +1408,19 @@ class Volume(pulumi.CustomResource):
         [string] Is capable of memory hot plug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> pulumi.Output[_builtins.bool]:
+        """
+        (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+
+        > **⚠ WARNING**
+        >
+        > ssh_key_path and ssh_keys fields are immutable.
+        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter(name="serverId")

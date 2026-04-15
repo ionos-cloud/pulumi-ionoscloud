@@ -57,6 +57,7 @@ export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.Inv
         "applicationLoadbalancerId": args.applicationLoadbalancerId,
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
     }, opts);
@@ -78,6 +79,10 @@ export interface GetForwardingRuleArgs {
      * ID of the application load balancer you want to search for.
      */
     id?: string;
+    /**
+     * The location for redirecting; mandatory and valid only for REDIRECT actions.
+     */
+    location?: string;
     /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */
@@ -117,6 +122,10 @@ export interface GetForwardingRuleResult {
      * Listening (inbound) port number; valid range is 1 to 65535.
      */
     readonly listenerPort: number;
+    /**
+     * The location for redirecting; mandatory and valid only for REDIRECT actions.
+     */
+    readonly location?: string;
     /**
      * The unique name of the Application Load Balancer HTTP rule.
      */
@@ -179,6 +188,7 @@ export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?
         "applicationLoadbalancerId": args.applicationLoadbalancerId,
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
     }, opts);
@@ -200,6 +210,10 @@ export interface GetForwardingRuleOutputArgs {
      * ID of the application load balancer you want to search for.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The location for redirecting; mandatory and valid only for REDIRECT actions.
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */

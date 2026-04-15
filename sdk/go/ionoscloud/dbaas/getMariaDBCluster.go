@@ -93,6 +93,8 @@ type LookupMariaDBClusterArgs struct {
 
 // A collection of values returned by getMariaDBCluster.
 type LookupMariaDBClusterResult struct {
+	// Properties configuring the backup of the cluster.
+	Backups []GetMariaDBClusterBackup `pulumi:"backups"`
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections []GetMariaDBClusterConnection `pulumi:"connections"`
 	// [int] The number of CPU cores per instance.
@@ -103,8 +105,9 @@ type LookupMariaDBClusterResult struct {
 	DnsName string `pulumi:"dnsName"`
 	Id      string `pulumi:"id"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
-	Instances int     `pulumi:"instances"`
-	Location  *string `pulumi:"location"`
+	Instances int `pulumi:"instances"`
+	// [string] The IONOS Object Storage location where the backups will be stored.
+	Location *string `pulumi:"location"`
 	// A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindows []GetMariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] The MariaDB version of your cluster.
@@ -157,6 +160,11 @@ func (o LookupMariaDBClusterResultOutput) ToLookupMariaDBClusterResultOutputWith
 	return o
 }
 
+// Properties configuring the backup of the cluster.
+func (o LookupMariaDBClusterResultOutput) Backups() GetMariaDBClusterBackupArrayOutput {
+	return o.ApplyT(func(v LookupMariaDBClusterResult) []GetMariaDBClusterBackup { return v.Backups }).(GetMariaDBClusterBackupArrayOutput)
+}
+
 // The network connection for your cluster. Only one connection is allowed.
 func (o LookupMariaDBClusterResultOutput) Connections() GetMariaDBClusterConnectionArrayOutput {
 	return o.ApplyT(func(v LookupMariaDBClusterResult) []GetMariaDBClusterConnection { return v.Connections }).(GetMariaDBClusterConnectionArrayOutput)
@@ -186,6 +194,7 @@ func (o LookupMariaDBClusterResultOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMariaDBClusterResult) int { return v.Instances }).(pulumi.IntOutput)
 }
 
+// [string] The IONOS Object Storage location where the backups will be stored.
 func (o LookupMariaDBClusterResultOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMariaDBClusterResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }

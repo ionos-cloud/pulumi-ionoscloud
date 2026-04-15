@@ -26,7 +26,7 @@ class GetFirewallResult:
     """
     A collection of values returned by getFirewall.
     """
-    def __init__(__self__, datacenter_id=None, icmp_code=None, icmp_type=None, id=None, name=None, nic_id=None, port_range_end=None, port_range_start=None, protocol=None, server_id=None, source_ip=None, source_mac=None, target_ip=None, type=None):
+    def __init__(__self__, datacenter_id=None, icmp_code=None, icmp_type=None, id=None, location=None, name=None, nic_id=None, port_range_end=None, port_range_start=None, protocol=None, server_id=None, source_ip=None, source_mac=None, target_ip=None, type=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -39,6 +39,9 @@ class GetFirewallResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -98,6 +101,11 @@ class GetFirewallResult:
         The id of the firewall rule.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter
@@ -181,6 +189,7 @@ class AwaitableGetFirewallResult(GetFirewallResult):
             icmp_code=self.icmp_code,
             icmp_type=self.icmp_type,
             id=self.id,
+            location=self.location,
             name=self.name,
             nic_id=self.nic_id,
             port_range_end=self.port_range_end,
@@ -195,6 +204,7 @@ class AwaitableGetFirewallResult(GetFirewallResult):
 
 def get_firewall(datacenter_id: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None,
+                 location: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  nic_id: Optional[_builtins.str] = None,
                  server_id: Optional[_builtins.str] = None,
@@ -241,6 +251,7 @@ def get_firewall(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['nicId'] = nic_id
     __args__['serverId'] = server_id
@@ -252,6 +263,7 @@ def get_firewall(datacenter_id: Optional[_builtins.str] = None,
         icmp_code=pulumi.get(__ret__, 'icmp_code'),
         icmp_type=pulumi.get(__ret__, 'icmp_type'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         nic_id=pulumi.get(__ret__, 'nic_id'),
         port_range_end=pulumi.get(__ret__, 'port_range_end'),
@@ -264,6 +276,7 @@ def get_firewall(datacenter_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_firewall_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                         id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         nic_id: Optional[pulumi.Input[_builtins.str]] = None,
                         server_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -310,6 +323,7 @@ def get_firewall_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = N
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['nicId'] = nic_id
     __args__['serverId'] = server_id
@@ -320,6 +334,7 @@ def get_firewall_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = N
         icmp_code=pulumi.get(__response__, 'icmp_code'),
         icmp_type=pulumi.get(__response__, 'icmp_type'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         nic_id=pulumi.get(__response__, 'nic_id'),
         port_range_end=pulumi.get(__response__, 'port_range_end'),

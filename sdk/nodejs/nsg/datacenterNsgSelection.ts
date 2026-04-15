@@ -65,6 +65,10 @@ export class DatacenterNsgSelection extends pulumi.CustomResource {
      */
     declare public readonly datacenterId: pulumi.Output<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The ID of a Network Security Group.
      */
     declare public readonly nsgId: pulumi.Output<string>;
@@ -83,6 +87,7 @@ export class DatacenterNsgSelection extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as DatacenterNsgSelectionState | undefined;
             resourceInputs["datacenterId"] = state?.datacenterId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["nsgId"] = state?.nsgId;
         } else {
             const args = argsOrState as DatacenterNsgSelectionArgs | undefined;
@@ -93,6 +98,7 @@ export class DatacenterNsgSelection extends pulumi.CustomResource {
                 throw new Error("Missing required property 'nsgId'");
             }
             resourceInputs["datacenterId"] = args?.datacenterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["nsgId"] = args?.nsgId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -109,6 +115,10 @@ export interface DatacenterNsgSelectionState {
      */
     datacenterId?: pulumi.Input<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The ID of a Network Security Group.
      */
     nsgId?: pulumi.Input<string>;
@@ -122,6 +132,10 @@ export interface DatacenterNsgSelectionArgs {
      * [string] The ID of a Virtual Data Center.
      */
     datacenterId: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The ID of a Network Security Group.
      */

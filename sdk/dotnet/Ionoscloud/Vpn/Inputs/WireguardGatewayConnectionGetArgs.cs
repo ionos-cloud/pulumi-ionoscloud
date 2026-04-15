@@ -20,13 +20,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn.Inputs
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+        /// [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         /// </summary>
         [Input("ipv4Cidr")]
         public Input<string>? Ipv4Cidr { get; set; }
 
         /// <summary>
-        /// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        /// [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         /// </summary>
         [Input("ipv6Cidr")]
         public Input<string>? Ipv6Cidr { get; set; }

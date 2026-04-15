@@ -27,7 +27,7 @@ class GetNsgResult:
     """
     A collection of values returned by getNsg.
     """
-    def __init__(__self__, datacenter_id=None, description=None, id=None, name=None, rule_ids=None, rules=None):
+    def __init__(__self__, datacenter_id=None, description=None, id=None, location=None, name=None, rule_ids=None, rules=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -37,6 +37,9 @@ class GetNsgResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -73,6 +76,11 @@ class GetNsgResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The name of the Network Security Group
@@ -105,6 +113,7 @@ class AwaitableGetNsgResult(GetNsgResult):
             datacenter_id=self.datacenter_id,
             description=self.description,
             id=self.id,
+            location=self.location,
             name=self.name,
             rule_ids=self.rule_ids,
             rules=self.rules)
@@ -112,6 +121,7 @@ class AwaitableGetNsgResult(GetNsgResult):
 
 def get_nsg(datacenter_id: Optional[_builtins.str] = None,
             id: Optional[_builtins.str] = None,
+            location: Optional[_builtins.str] = None,
             name: Optional[_builtins.str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNsgResult:
     """
@@ -149,6 +159,7 @@ def get_nsg(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:nsg/getNsg:getNsg', __args__, opts=opts, typ=GetNsgResult).value
@@ -157,11 +168,13 @@ def get_nsg(datacenter_id: Optional[_builtins.str] = None,
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         rule_ids=pulumi.get(__ret__, 'rule_ids'),
         rules=pulumi.get(__ret__, 'rules'))
 def get_nsg_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                    id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                   location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNsgResult]:
     """
@@ -199,6 +212,7 @@ def get_nsg_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:nsg/getNsg:getNsg', __args__, opts=opts, typ=GetNsgResult)
@@ -206,6 +220,7 @@ def get_nsg_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         rule_ids=pulumi.get(__response__, 'rule_ids'),
         rules=pulumi.get(__response__, 'rules')))

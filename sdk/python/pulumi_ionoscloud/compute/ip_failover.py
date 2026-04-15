@@ -22,7 +22,8 @@ class IPFailoverArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  ip: pulumi.Input[_builtins.str],
                  lan_id: pulumi.Input[_builtins.str],
-                 nicuuid: pulumi.Input[_builtins.str]):
+                 nicuuid: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IPFailover resource.
 
@@ -31,9 +32,9 @@ class IPFailoverArgs:
         :param pulumi.Input[_builtins.str] lan_id: [string] The ID of a LAN.
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
-               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
                > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > an IP failover group using Terraform, please use only Terraform in order to manage the created
                > IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -66,6 +67,8 @@ class IPFailoverArgs:
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "lan_id", lan_id)
         pulumi.set(__self__, "nicuuid", nicuuid)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
@@ -109,9 +112,9 @@ class IPFailoverArgs:
         """
         [string] The ID of a NIC.
 
-        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > an IP failover group using Terraform, please use only Terraform in order to manage the created
         > IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -146,6 +149,15 @@ class IPFailoverArgs:
     def nicuuid(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "nicuuid", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
 
 @pulumi.input_type
 class _IPFailoverState:
@@ -153,6 +165,7 @@ class _IPFailoverState:
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
                  lan_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  nicuuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IPFailover resources.
@@ -162,9 +175,9 @@ class _IPFailoverState:
         :param pulumi.Input[_builtins.str] lan_id: [string] The ID of a LAN.
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
-               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
                > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > an IP failover group using Terraform, please use only Terraform in order to manage the created
                > IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -199,6 +212,8 @@ class _IPFailoverState:
             pulumi.set(__self__, "ip", ip)
         if lan_id is not None:
             pulumi.set(__self__, "lan_id", lan_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if nicuuid is not None:
             pulumi.set(__self__, "nicuuid", nicuuid)
 
@@ -240,13 +255,22 @@ class _IPFailoverState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def nicuuid(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The ID of a NIC.
 
-        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > an IP failover group using Terraform, please use only Terraform in order to manage the created
         > IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -291,6 +315,7 @@ class IPFailover(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
                  lan_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  nicuuid: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -324,8 +349,6 @@ class IPFailover(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -361,10 +384,10 @@ class IPFailover(pulumi.CustomResource):
 
         ## Import
 
-        Resource IpFailover can be imported using the `resource id`, e.g.
+        Resource IpFailover can be imported using the `datacenter id`, `lan id` and `ip address`, e.g.
 
         ```sh
-        terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter_uuid/lan_uuid/ip_address
         ```
 
 
@@ -375,9 +398,9 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] lan_id: [string] The ID of a LAN.
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
-               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
                > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > an IP failover group using Terraform, please use only Terraform in order to manage the created
                > IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -443,8 +466,6 @@ class IPFailover(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -480,10 +501,10 @@ class IPFailover(pulumi.CustomResource):
 
         ## Import
 
-        Resource IpFailover can be imported using the `resource id`, e.g.
+        Resource IpFailover can be imported using the `datacenter id`, `lan id` and `ip address`, e.g.
 
         ```sh
-        terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
+        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter_uuid/lan_uuid/ip_address
         ```
 
 
@@ -505,6 +526,7 @@ class IPFailover(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
                  lan_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  nicuuid: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -524,6 +546,7 @@ class IPFailover(pulumi.CustomResource):
             if lan_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lan_id'")
             __props__.__dict__["lan_id"] = lan_id
+            __props__.__dict__["location"] = location
             if nicuuid is None and not opts.urn:
                 raise TypeError("Missing required property 'nicuuid'")
             __props__.__dict__["nicuuid"] = nicuuid
@@ -540,6 +563,7 @@ class IPFailover(pulumi.CustomResource):
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
             ip: Optional[pulumi.Input[_builtins.str]] = None,
             lan_id: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             nicuuid: Optional[pulumi.Input[_builtins.str]] = None) -> 'IPFailover':
         """
         Get an existing IPFailover resource's state with the given name, id, and optional extra
@@ -553,9 +577,9 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] lan_id: [string] The ID of a LAN.
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
-               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+               > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
                > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+               > an IP failover group using Terraform, please use only Terraform in order to manage the created
                > IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -591,6 +615,7 @@ class IPFailover(pulumi.CustomResource):
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["ip"] = ip
         __props__.__dict__["lan_id"] = lan_id
+        __props__.__dict__["location"] = location
         __props__.__dict__["nicuuid"] = nicuuid
         return IPFailover(resource_name, opts=opts, __props__=__props__)
 
@@ -620,13 +645,18 @@ class IPFailover(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def nicuuid(self) -> pulumi.Output[_builtins.str]:
         """
         [string] The ID of a NIC.
 
-        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        > an IP failover group using Terraform, please use only Terraform in order to manage the created
         > IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the

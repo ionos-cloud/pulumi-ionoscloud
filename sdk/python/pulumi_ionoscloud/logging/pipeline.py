@@ -28,7 +28,7 @@ class PipelineArgs:
         The set of arguments for constructing a Pipeline resource.
 
         :param pulumi.Input[Sequence[pulumi.Input['PipelineLogArgs']]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
         """
         pulumi.set(__self__, "logs", logs)
@@ -53,7 +53,7 @@ class PipelineArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -78,31 +78,43 @@ class PipelineArgs:
 class _PipelineState:
     def __init__(__self__, *,
                  grafana_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 http_address: Optional[pulumi.Input[_builtins.str]] = None,
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
                  location: Optional[pulumi.Input[_builtins.str]] = None,
                  logs: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLogArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 tcp_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Pipeline resources.
 
-        :param pulumi.Input[_builtins.str] grafana_address: [string] The address of the client's grafana instance.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] grafana_address: [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
+        :param pulumi.Input[_builtins.str] http_address: [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        :param pulumi.Input[_builtins.str] key: [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineLogArgs']]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
+        :param pulumi.Input[_builtins.str] tcp_address: [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
         """
         if grafana_address is not None:
             pulumi.set(__self__, "grafana_address", grafana_address)
+        if http_address is not None:
+            pulumi.set(__self__, "http_address", http_address)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
         if location is not None:
             pulumi.set(__self__, "location", location)
         if logs is not None:
             pulumi.set(__self__, "logs", logs)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tcp_address is not None:
+            pulumi.set(__self__, "tcp_address", tcp_address)
 
     @_builtins.property
     @pulumi.getter(name="grafanaAddress")
     def grafana_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The address of the client's grafana instance.
+        [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
         """
         return pulumi.get(self, "grafana_address")
 
@@ -111,10 +123,34 @@ class _PipelineState:
         pulumi.set(self, "grafana_address", value)
 
     @_builtins.property
+    @pulumi.getter(name="httpAddress")
+    def http_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        """
+        return pulumi.get(self, "http_address")
+
+    @http_address.setter
+    def http_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "http_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -146,6 +182,18 @@ class _PipelineState:
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="tcpAddress")
+    def tcp_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        """
+        return pulumi.get(self, "tcp_address")
+
+    @tcp_address.setter
+    def tcp_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tcp_address", value)
+
 
 @pulumi.type_token("ionoscloud:logging/pipeline:Pipeline")
 class Pipeline(pulumi.CustomResource):
@@ -158,7 +206,7 @@ class Pipeline(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Logging pipeline**.
+        Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
 
         > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
 
@@ -192,6 +240,11 @@ class Pipeline(pulumi.CustomResource):
                 },
             ])
         ```
+
+        For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+        plan, and used as presented below:
+
+        The content inside **vars.tfvars** file:
 
         ## Import
 
@@ -213,7 +266,7 @@ class Pipeline(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
         """
@@ -224,7 +277,7 @@ class Pipeline(pulumi.CustomResource):
                  args: PipelineArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Logging pipeline**.
+        Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
 
         > ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
 
@@ -258,6 +311,11 @@ class Pipeline(pulumi.CustomResource):
                 },
             ])
         ```
+
+        For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+        plan, and used as presented below:
+
+        The content inside **vars.tfvars** file:
 
         ## Import
 
@@ -310,6 +368,11 @@ class Pipeline(pulumi.CustomResource):
             __props__.__dict__["logs"] = logs
             __props__.__dict__["name"] = name
             __props__.__dict__["grafana_address"] = None
+            __props__.__dict__["http_address"] = None
+            __props__.__dict__["key"] = None
+            __props__.__dict__["tcp_address"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Pipeline, __self__).__init__(
             'ionoscloud:logging/pipeline:Pipeline',
             resource_name,
@@ -321,9 +384,12 @@ class Pipeline(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             grafana_address: Optional[pulumi.Input[_builtins.str]] = None,
+            http_address: Optional[pulumi.Input[_builtins.str]] = None,
+            key: Optional[pulumi.Input[_builtins.str]] = None,
             location: Optional[pulumi.Input[_builtins.str]] = None,
             logs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'Pipeline':
+            name: Optional[pulumi.Input[_builtins.str]] = None,
+            tcp_address: Optional[pulumi.Input[_builtins.str]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -331,34 +397,56 @@ class Pipeline(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] grafana_address: [string] The address of the client's grafana instance.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] grafana_address: [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
+        :param pulumi.Input[_builtins.str] http_address: [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        :param pulumi.Input[_builtins.str] key: [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
+        :param pulumi.Input[_builtins.str] tcp_address: [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _PipelineState.__new__(_PipelineState)
 
         __props__.__dict__["grafana_address"] = grafana_address
+        __props__.__dict__["http_address"] = http_address
+        __props__.__dict__["key"] = key
         __props__.__dict__["location"] = location
         __props__.__dict__["logs"] = logs
         __props__.__dict__["name"] = name
+        __props__.__dict__["tcp_address"] = tcp_address
         return Pipeline(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="grafanaAddress")
     def grafana_address(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The address of the client's grafana instance.
+        [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
         """
         return pulumi.get(self, "grafana_address")
+
+    @_builtins.property
+    @pulumi.getter(name="httpAddress")
+    def http_address(self) -> pulumi.Output[_builtins.str]:
+        """
+        [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        """
+        return pulumi.get(self, "http_address")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Output[_builtins.str]:
+        """
+        [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+        """
+        return pulumi.get(self, "key")
 
     @_builtins.property
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -377,4 +465,12 @@ class Pipeline(pulumi.CustomResource):
         [string] The name of the Logging pipeline.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="tcpAddress")
+    def tcp_address(self) -> pulumi.Output[_builtins.str]:
+        """
+        [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        """
+        return pulumi.get(self, "tcp_address")
 

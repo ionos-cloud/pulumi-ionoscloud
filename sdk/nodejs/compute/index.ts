@@ -65,6 +65,21 @@ export const getFirewall: typeof import("./getFirewall").getFirewall = null as a
 export const getFirewallOutput: typeof import("./getFirewall").getFirewallOutput = null as any;
 utilities.lazyLoad(exports, ["getFirewall","getFirewallOutput"], () => require("./getFirewall"));
 
+export { GetGPUServerArgs, GetGPUServerResult, GetGPUServerOutputArgs } from "./getGPUServer";
+export const getGPUServer: typeof import("./getGPUServer").getGPUServer = null as any;
+export const getGPUServerOutput: typeof import("./getGPUServer").getGPUServerOutput = null as any;
+utilities.lazyLoad(exports, ["getGPUServer","getGPUServerOutput"], () => require("./getGPUServer"));
+
+export { GetGpuArgs, GetGpuResult, GetGpuOutputArgs } from "./getGpu";
+export const getGpu: typeof import("./getGpu").getGpu = null as any;
+export const getGpuOutput: typeof import("./getGpu").getGpuOutput = null as any;
+utilities.lazyLoad(exports, ["getGpu","getGpuOutput"], () => require("./getGpu"));
+
+export { GetGpusArgs, GetGpusResult, GetGpusOutputArgs } from "./getGpus";
+export const getGpus: typeof import("./getGpus").getGpus = null as any;
+export const getGpusOutput: typeof import("./getGpus").getGpusOutput = null as any;
+utilities.lazyLoad(exports, ["getGpus","getGpusOutput"], () => require("./getGpus"));
+
 export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
 export const getGroup: typeof import("./getGroup").getGroup = null as any;
 export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
@@ -165,6 +180,11 @@ export const getVolume: typeof import("./getVolume").getVolume = null as any;
 export const getVolumeOutput: typeof import("./getVolume").getVolumeOutput = null as any;
 utilities.lazyLoad(exports, ["getVolume","getVolumeOutput"], () => require("./getVolume"));
 
+export { GPUServerArgs, GPUServerState } from "./gpuserver";
+export type GPUServer = import("./gpuserver").GPUServer;
+export const GPUServer: typeof import("./gpuserver").GPUServer = null as any;
+utilities.lazyLoad(exports, ["GPUServer"], () => require("./gpuserver"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
@@ -259,6 +279,8 @@ const _module = {
                 return new Datacenter(name, <any>undefined, { urn })
             case "ionoscloud:compute/firewall:Firewall":
                 return new Firewall(name, <any>undefined, { urn })
+            case "ionoscloud:compute/gPUServer:GPUServer":
+                return new GPUServer(name, <any>undefined, { urn })
             case "ionoscloud:compute/group:Group":
                 return new Group(name, <any>undefined, { urn })
             case "ionoscloud:compute/iPBlock:IPBlock":
@@ -301,6 +323,7 @@ pulumi.runtime.registerResourceModule("ionoscloud", "compute/crossconnect", _mod
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/cubeServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/datacenter", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/firewall", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/gPUServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/group", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPBlock", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPFailover", _module)

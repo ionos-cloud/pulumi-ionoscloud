@@ -165,6 +165,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The physical location where the cluster will be created. This will be where all of your instances live.
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetPSQLClusterArgs()
         {
         }
@@ -186,6 +192,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The physical location where the cluster will be created. This will be where all of your instances live.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         public GetPSQLClusterInvokeArgs()
         {

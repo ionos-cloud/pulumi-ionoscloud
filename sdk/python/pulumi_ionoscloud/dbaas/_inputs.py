@@ -25,6 +25,8 @@ __all__ = [
     'InMemoryDBReplicaSetMaintenanceWindowArgsDict',
     'InMemoryDBReplicaSetResourcesArgs',
     'InMemoryDBReplicaSetResourcesArgsDict',
+    'MariaDBClusterBackupArgs',
+    'MariaDBClusterBackupArgsDict',
     'MariaDBClusterConnectionsArgs',
     'MariaDBClusterConnectionsArgsDict',
     'MariaDBClusterCredentialsArgs',
@@ -348,6 +350,34 @@ class InMemoryDBReplicaSetResourcesArgs:
     @storage.setter
     def storage(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "storage", value)
+
+
+class MariaDBClusterBackupArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    [string] The IONOS Object Storage location where the backups will be stored.
+    """
+
+@pulumi.input_type
+class MariaDBClusterBackupArgs:
+    def __init__(__self__, *,
+                 location: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] location: [string] The IONOS Object Storage location where the backups will be stored.
+        """
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The IONOS Object Storage location where the backups will be stored.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "location", value)
 
 
 class MariaDBClusterConnectionsArgsDict(TypedDict):

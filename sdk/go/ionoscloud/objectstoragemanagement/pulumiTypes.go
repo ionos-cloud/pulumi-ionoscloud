@@ -17,6 +17,8 @@ type AccesskeyTimeouts struct {
 	// [string] Time to wait for the bucket to be created. Default is `10m`.
 	Create *string `pulumi:"create"`
 	// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+	//
+	// > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	Delete *string `pulumi:"delete"`
 	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read *string `pulumi:"read"`
@@ -37,6 +39,8 @@ type AccesskeyTimeoutsArgs struct {
 	// [string] Time to wait for the bucket to be created. Default is `10m`.
 	Create pulumi.StringPtrInput `pulumi:"create"`
 	// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+	//
+	// > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
 	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read pulumi.StringPtrInput `pulumi:"read"`
@@ -125,6 +129,8 @@ func (o AccesskeyTimeoutsOutput) Create() pulumi.StringPtrOutput {
 }
 
 // [string] Time to wait for the bucket to be deleted. Default is `10m`.
+//
+// > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o AccesskeyTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccesskeyTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
@@ -169,6 +175,8 @@ func (o AccesskeyTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 }
 
 // [string] Time to wait for the bucket to be deleted. Default is `10m`.
+//
+// > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o AccesskeyTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AccesskeyTimeouts) *string {
 		if v == nil {

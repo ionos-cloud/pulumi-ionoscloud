@@ -27,7 +27,7 @@ class GetForwardingRuleResult:
     """
     A collection of values returned by getForwardingRule.
     """
-    def __init__(__self__, algorithm=None, datacenter_id=None, health_checks=None, id=None, listener_ip=None, listener_port=None, name=None, networkloadbalancer_id=None, protocol=None, targets=None):
+    def __init__(__self__, algorithm=None, datacenter_id=None, health_checks=None, id=None, listener_ip=None, listener_port=None, location=None, name=None, networkloadbalancer_id=None, protocol=None, targets=None):
         if algorithm and not isinstance(algorithm, str):
             raise TypeError("Expected argument 'algorithm' to be a str")
         pulumi.set(__self__, "algorithm", algorithm)
@@ -46,6 +46,9 @@ class GetForwardingRuleResult:
         if listener_port and not isinstance(listener_port, int):
             raise TypeError("Expected argument 'listener_port' to be a int")
         pulumi.set(__self__, "listener_port", listener_port)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -106,6 +109,11 @@ class GetForwardingRuleResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The name of that Network Load Balancer forwarding rule.
@@ -146,6 +154,7 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
             id=self.id,
             listener_ip=self.listener_ip,
             listener_port=self.listener_port,
+            location=self.location,
             name=self.name,
             networkloadbalancer_id=self.networkloadbalancer_id,
             protocol=self.protocol,
@@ -154,6 +163,7 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
 
 def get_forwarding_rule(datacenter_id: Optional[_builtins.str] = None,
                         id: Optional[_builtins.str] = None,
+                        location: Optional[_builtins.str] = None,
                         name: Optional[_builtins.str] = None,
                         networkloadbalancer_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
@@ -195,6 +205,7 @@ def get_forwarding_rule(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['networkloadbalancerId'] = networkloadbalancer_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -207,12 +218,14 @@ def get_forwarding_rule(datacenter_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         listener_ip=pulumi.get(__ret__, 'listener_ip'),
         listener_port=pulumi.get(__ret__, 'listener_port'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         networkloadbalancer_id=pulumi.get(__ret__, 'networkloadbalancer_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
         targets=pulumi.get(__ret__, 'targets'))
 def get_forwarding_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                                id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                               location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                networkloadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetForwardingRuleResult]:
@@ -254,6 +267,7 @@ def get_forwarding_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.st
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['networkloadbalancerId'] = networkloadbalancer_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -265,6 +279,7 @@ def get_forwarding_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.st
         id=pulumi.get(__response__, 'id'),
         listener_ip=pulumi.get(__response__, 'listener_ip'),
         listener_port=pulumi.get(__response__, 'listener_port'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         networkloadbalancer_id=pulumi.get(__response__, 'networkloadbalancer_id'),
         protocol=pulumi.get(__response__, 'protocol'),

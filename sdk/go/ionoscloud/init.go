@@ -11,6 +11,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type module struct {
+	version semver.Version
+}
+
+func (m *module) Version() semver.Version {
+	return m.version
+}
+
+func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
+	switch typ {
+	case "ionoscloud:index/dnsReverseRecord:DnsReverseRecord":
+		r = &DnsReverseRecord{}
+	case "ionoscloud:index/gpuServer:GpuServer":
+		r = &GpuServer{}
+	default:
+		return nil, fmt.Errorf("unknown resource type: %s", typ)
+	}
+
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return
+}
+
 type pkg struct {
 	version semver.Version
 }
@@ -34,6 +56,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/dnsReverseRecord",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/gpuServer",
+		&module{version},
+	)
 	pulumi.RegisterResourcePackage(
 		"ionoscloud",
 		&pkg{version},

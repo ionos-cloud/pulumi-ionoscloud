@@ -7,13 +7,15 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Server** on IonosCloud.
+ * Dedicated Core Servers or [Enterprise Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) are provisioned and hosted in one of IONOS' physical data centers. Dedicated Core Servers behave exactly like physical servers. They can be configured and managed with your choice of the operating system.
+ *
+ * Check out [Limitations](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core#limitations).
  *
  * ## Example Usage
  *
  * This resource will create an operational server. After this section completes, the provisioner can be called.
  *
- * ### ENTERPRISE Server
+ * ### Dedicated Core Server
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,8 +53,6 @@ import * as utilities from "../utilities";
  *     datacenterId: exampleDatacenter.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: example.then(example => example.name),
  *     imagePassword: serverImagePassword.result,
  *     type: "ENTERPRISE",
@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  *             exampleIPBlock.ips[0],
  *             exampleIPBlock.ips[1],
  *         ],
- *         firewalls: [{
+ *         firewall: {
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -83,7 +83,7 @@ import * as utilities from "../utilities";
  *             sourceIp: exampleIPBlock.ips[2],
  *             targetIp: exampleIPBlock.ips[3],
  *             type: "EGRESS",
- *         }],
+ *         },
  *     },
  *     labels: [
  *         {
@@ -103,6 +103,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  * import * as random from "@pulumi/random";
+ * import * as std from "@pulumi/std";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Resource Server Test",
@@ -117,7 +118,11 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     "public": true,
  *     name: "public",
- *     ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *     ipv6CidrBlock: std.cidrsubnet({
+ *         input: example.ipv6CidrBlock,
+ *         newbits: 8,
+ *         netnum: 10,
+ *     }).result,
  * });
  * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
@@ -128,8 +133,6 @@ import * as utilities from "../utilities";
  *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
  *     imageName: "ubuntu:latest",
  *     imagePassword: serverImagePassword.result,
  *     type: "ENTERPRISE",
@@ -152,13 +155,38 @@ import * as utilities from "../utilities";
  *             webserverIpblock.ips[1],
  *         ],
  *         dhcpv6: true,
- *         ipv6CidrBlock: "ipv6_cidr_block_from_lan",
+ *         ipv6CidrBlock: std.cidrsubnet({
+ *             input: exampleLan.ipv6CidrBlock,
+ *             newbits: 16,
+ *             netnum: 24,
+ *         }).result,
  *         ipv6Ips: [
- *             "ipv6_ip1",
- *             "ipv6_ip2",
- *             "ipv6_ip3",
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 24,
+ *                 }).result,
+ *                 host: 10,
+ *             }).result,
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 24,
+ *                 }).result,
+ *                 host: 20,
+ *             }).result,
+ *             std.cidrhost({
+ *                 input: std.cidrsubnet({
+ *                     input: exampleLan.ipv6CidrBlock,
+ *                     newbits: 16,
+ *                     netnum: 24,
+ *                 }).result,
+ *                 host: 30,
+ *             }).result,
  *         ],
- *         firewalls: [{
+ *         firewall: {
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -167,7 +195,7 @@ import * as utilities from "../utilities";
  *             sourceIp: webserverIpblock.ips[2],
  *             targetIp: webserverIpblock.ips[3],
  *             type: "EGRESS",
- *         }],
+ *         },
  *     },
  * });
  * ```
@@ -266,19 +294,10 @@ import * as utilities from "../utilities";
  * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
  *
  * ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
- * from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
- *
- * ## Import
- *
- * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
- *
- * ```sh
- * terraform import ionoscloud_server.myserver datacenter uuid/server uuid
- * ```
- * Optionally, you can pass `primaryNic` and `firewallruleId` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
- * ```sh
- * terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
- * ```
+ * from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+ * More details here. There is a workaround described in the issue
+ * that involves moving the resources in the list prior to deletion.
+ * `terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
  */
 export class Server extends pulumi.CustomResource {
     /**
@@ -310,20 +329,6 @@ export class Server extends pulumi.CustomResource {
 
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     declare public readonly allowReplace: pulumi.Output<boolean | undefined>;
     /**
@@ -385,6 +390,10 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly labels: pulumi.Output<outputs.compute.ServerLabel[] | undefined>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the server.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -392,6 +401,24 @@ export class Server extends pulumi.CustomResource {
      * See the Nic section.
      */
     declare public readonly nic: pulumi.Output<outputs.compute.ServerNic | undefined>;
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    declare public readonly nicMultiQueue: pulumi.Output<boolean | undefined>;
     /**
      * The associated IP address.
      */
@@ -423,17 +450,17 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly templateUuid: pulumi.Output<string | undefined>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
      */
     declare public readonly vmState: pulumi.Output<string>;
     /**
      * See the Volume section.
      */
-    declare public readonly volume: pulumi.Output<outputs.compute.ServerVolume>;
+    declare public readonly volume: pulumi.Output<outputs.compute.ServerVolume | undefined>;
 
     /**
      * Create a Server resource with the given unique name, arguments, and options.
@@ -463,8 +490,10 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["imagePassword"] = state?.imagePassword;
             resourceInputs["inlineVolumeIds"] = state?.inlineVolumeIds;
             resourceInputs["labels"] = state?.labels;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nic"] = state?.nic;
+            resourceInputs["nicMultiQueue"] = state?.nicMultiQueue;
             resourceInputs["primaryIp"] = state?.primaryIp;
             resourceInputs["primaryNic"] = state?.primaryNic;
             resourceInputs["ram"] = state?.ram;
@@ -480,9 +509,6 @@ export class Server extends pulumi.CustomResource {
             if (args?.datacenterId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'datacenterId'");
             }
-            if (args?.volume === undefined && !opts.urn) {
-                throw new Error("Missing required property 'volume'");
-            }
             resourceInputs["allowReplace"] = args?.allowReplace;
             resourceInputs["availabilityZone"] = args?.availabilityZone;
             resourceInputs["bootCdrom"] = args?.bootCdrom;
@@ -495,8 +521,10 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["imageName"] = args?.imageName;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["labels"] = args?.labels;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nic"] = args?.nic;
+            resourceInputs["nicMultiQueue"] = args?.nicMultiQueue;
             resourceInputs["ram"] = args?.ram;
             resourceInputs["securityGroupsIds"] = args?.securityGroupsIds;
             resourceInputs["sshKeyPaths"] = args?.sshKeyPaths;
@@ -524,20 +552,6 @@ export class Server extends pulumi.CustomResource {
 export interface ServerState {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     allowReplace?: pulumi.Input<boolean>;
     /**
@@ -599,6 +613,10 @@ export interface ServerState {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.ServerLabel>[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -606,6 +624,24 @@ export interface ServerState {
      * See the Nic section.
      */
     nic?: pulumi.Input<inputs.compute.ServerNic>;
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    nicMultiQueue?: pulumi.Input<boolean>;
     /**
      * The associated IP address.
      */
@@ -637,11 +673,11 @@ export interface ServerState {
      */
     templateUuid?: pulumi.Input<string>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      */
     type?: pulumi.Input<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
      */
     vmState?: pulumi.Input<string>;
     /**
@@ -656,20 +692,6 @@ export interface ServerState {
 export interface ServerArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     allowReplace?: pulumi.Input<boolean>;
     /**
@@ -719,6 +741,10 @@ export interface ServerArgs {
      */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.ServerLabel>[]>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -726,6 +752,24 @@ export interface ServerArgs {
      * See the Nic section.
      */
     nic?: pulumi.Input<inputs.compute.ServerNic>;
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    nicMultiQueue?: pulumi.Input<boolean>;
     /**
      * (Computed)[integer] The amount of memory for the server in MB.
      */
@@ -749,15 +793,15 @@ export interface ServerArgs {
      */
     templateUuid?: pulumi.Input<string>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      */
     type?: pulumi.Input<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
      */
     vmState?: pulumi.Input<string>;
     /**
      * See the Volume section.
      */
-    volume: pulumi.Input<inputs.compute.ServerVolume>;
+    volume?: pulumi.Input<inputs.compute.ServerVolume>;
 }

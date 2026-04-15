@@ -50,6 +50,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         public Input<string> DiskType { get; set; } = null!;
 
         /// <summary>
+        /// If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        [Input("exposeSerial")]
+        public Input<bool>? ExposeSerial { get; set; }
+
+        /// <summary>
         /// [string] Required if `SshKeyPath` is not provided.
         /// </summary>
         [Input("imagePassword")]
@@ -78,6 +84,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
 
         [Input("ramHotPlug")]
         public Input<bool>? RamHotPlug { get; set; }
+
+        /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        [Input("requireLegacyBios")]
+        public Input<bool>? RequireLegacyBios { get; set; }
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;

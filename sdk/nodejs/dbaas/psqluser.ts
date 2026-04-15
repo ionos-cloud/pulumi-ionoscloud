@@ -83,6 +83,10 @@ export class PSQLUser extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly isSystemUser: pulumi.Output<boolean>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] User password.
      */
     declare public readonly password: pulumi.Output<string>;
@@ -106,6 +110,7 @@ export class PSQLUser extends pulumi.CustomResource {
             const state = argsOrState as PSQLUserState | undefined;
             resourceInputs["clusterId"] = state?.clusterId;
             resourceInputs["isSystemUser"] = state?.isSystemUser;
+            resourceInputs["location"] = state?.location;
             resourceInputs["password"] = state?.password;
             resourceInputs["username"] = state?.username;
         } else {
@@ -120,6 +125,7 @@ export class PSQLUser extends pulumi.CustomResource {
                 throw new Error("Missing required property 'username'");
             }
             resourceInputs["clusterId"] = args?.clusterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["username"] = args?.username;
             resourceInputs["isSystemUser"] = undefined /*out*/;
@@ -144,6 +150,10 @@ export interface PSQLUserState {
      */
     isSystemUser?: pulumi.Input<boolean>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] User password.
      */
     password?: pulumi.Input<string>;
@@ -161,6 +171,10 @@ export interface PSQLUserArgs {
      * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
      */
     clusterId: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] User password.
      */

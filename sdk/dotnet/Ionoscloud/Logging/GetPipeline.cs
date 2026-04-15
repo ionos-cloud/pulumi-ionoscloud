@@ -164,7 +164,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         public string? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -192,7 +192,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -216,9 +216,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
     public sealed class GetPipelineResult
     {
         /// <summary>
-        /// The address of the client's grafana instance.
+        /// The Grafana address is where user can access their logs, create dashboards, and set up alerts.
         /// </summary>
         public readonly string GrafanaAddress;
+        /// <summary>
+        /// The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+        /// </summary>
+        public readonly string HttpAddress;
         /// <summary>
         /// The UUID of the Logging pipeline.
         /// </summary>
@@ -232,10 +236,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         /// The name of the Logging pipeline.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+        /// </summary>
+        public readonly string TcpAddress;
 
         [OutputConstructor]
         private GetPipelineResult(
             string grafanaAddress,
+
+            string httpAddress,
 
             string id,
 
@@ -243,13 +253,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
 
             ImmutableArray<Outputs.GetPipelineLogResult> logs,
 
-            string name)
+            string name,
+
+            string tcpAddress)
         {
             GrafanaAddress = grafanaAddress;
+            HttpAddress = httpAddress;
             Id = id;
             Location = location;
             Logs = logs;
             Name = name;
+            TcpAddress = tcpAddress;
         }
     }
 }

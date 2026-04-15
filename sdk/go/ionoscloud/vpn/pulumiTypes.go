@@ -16,11 +16,9 @@ var _ = internal.GetEnvOrDefault
 type IpsecGatewayConnection struct {
 	// [string] The datacenter to connect your VPN Gateway to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-	// Gateway. **Note**: this should be the subnet already assigned to the LAN
+	// [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr *string `pulumi:"ipv6Cidr"`
 	// [string] The numeric LAN ID to connect your VPN Gateway to.
 	LanId string `pulumi:"lanId"`
@@ -40,11 +38,9 @@ type IpsecGatewayConnectionInput interface {
 type IpsecGatewayConnectionArgs struct {
 	// [string] The datacenter to connect your VPN Gateway to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-	// Gateway. **Note**: this should be the subnet already assigned to the LAN
+	// [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr pulumi.StringPtrInput `pulumi:"ipv6Cidr"`
 	// [string] The numeric LAN ID to connect your VPN Gateway to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -106,14 +102,12 @@ func (o IpsecGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-// VPN Gateway. Note: this should be the subnet already assigned to the LAN
+// [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o IpsecGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
-// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-// Gateway. **Note**: this should be the subnet already assigned to the LAN
+// [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o IpsecGatewayConnectionOutput) Ipv6Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) *string { return v.Ipv6Cidr }).(pulumi.StringPtrOutput)
 }
@@ -826,9 +820,9 @@ func (o IpsecTunnelIkePtrOutput) Lifetime() pulumi.IntPtrOutput {
 type WireguardGatewayConnection struct {
 	// [String] The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+	// [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr *string `pulumi:"ipv4Cidr"`
-	// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+	// [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr *string `pulumi:"ipv6Cidr"`
 	// [String] The ID of the LAN where the WireGuard Gateway is connected.
 	LanId string `pulumi:"lanId"`
@@ -848,9 +842,9 @@ type WireguardGatewayConnectionInput interface {
 type WireguardGatewayConnectionArgs struct {
 	// [String] The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+	// [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr pulumi.StringPtrInput `pulumi:"ipv4Cidr"`
-	// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+	// [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr pulumi.StringPtrInput `pulumi:"ipv6Cidr"`
 	// [String] The ID of the LAN where the WireGuard Gateway is connected.
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -912,12 +906,12 @@ func (o WireguardGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+// [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o WireguardGatewayConnectionOutput) Ipv4Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) *string { return v.Ipv4Cidr }).(pulumi.StringPtrOutput)
 }
 
-// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+// [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o WireguardGatewayConnectionOutput) Ipv6Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) *string { return v.Ipv6Cidr }).(pulumi.StringPtrOutput)
 }
@@ -1262,10 +1256,9 @@ func (o WireguardPeerEndpointPtrOutput) Port() pulumi.IntPtrOutput {
 type GetIpsecGatewayConnection struct {
 	// The datacenter to connect your VPN Gateway to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway.
+	// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+	// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr string `pulumi:"ipv6Cidr"`
 	// The numeric LAN ID to connect your VPN Gateway to.
 	LanId string `pulumi:"lanId"`
@@ -1285,10 +1278,9 @@ type GetIpsecGatewayConnectionInput interface {
 type GetIpsecGatewayConnectionArgs struct {
 	// The datacenter to connect your VPN Gateway to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway.
+	// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+	// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
 	// The numeric LAN ID to connect your VPN Gateway to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -1350,13 +1342,12 @@ func (o GetIpsecGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Describes the private ipv4 subnet in your LAN that should be accessible by the
-// VPN Gateway.
+// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o GetIpsecGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
-// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o GetIpsecGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
 }
@@ -1840,9 +1831,9 @@ func (o GetIpsecTunnelIkeArrayOutput) Index(i pulumi.IntInput) GetIpsecTunnelIke
 type GetWireguardGatewayConnection struct {
 	// The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The IPv4 CIDR for the WireGuard Gateway connection.
+	// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// The IPv6 CIDR for the WireGuard Gateway connection.
+	// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr string `pulumi:"ipv6Cidr"`
 	// The ID of the LAN where the WireGuard Gateway is connected.
 	LanId string `pulumi:"lanId"`
@@ -1862,9 +1853,9 @@ type GetWireguardGatewayConnectionInput interface {
 type GetWireguardGatewayConnectionArgs struct {
 	// The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IPv4 CIDR for the WireGuard Gateway connection.
+	// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// The IPv6 CIDR for the WireGuard Gateway connection.
+	// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
 	// The ID of the LAN where the WireGuard Gateway is connected.
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -1926,12 +1917,12 @@ func (o GetWireguardGatewayConnectionOutput) DatacenterId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The IPv4 CIDR for the WireGuard Gateway connection.
+// The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o GetWireguardGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
-// The IPv6 CIDR for the WireGuard Gateway connection.
+// The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
 func (o GetWireguardGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
 }

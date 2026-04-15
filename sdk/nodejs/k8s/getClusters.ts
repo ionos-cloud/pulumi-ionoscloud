@@ -71,6 +71,7 @@ export function getClusters(args?: GetClustersArgs, opts?: pulumi.InvokeOptions)
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:k8s/getClusters:getClusters", {
         "filters": args.filters,
+        "location": args.location,
     }, opts);
 }
 
@@ -84,6 +85,7 @@ export interface GetClustersArgs {
      * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
      */
     filters?: inputs.k8s.GetClustersFilter[];
+    location?: string;
 }
 
 /**
@@ -104,6 +106,7 @@ export interface GetClustersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly location?: string;
 }
 /**
  * The **k8s_clusters data source** can be used to search for and return existing kubernetes clusters based on filters used.
@@ -170,6 +173,7 @@ export function getClustersOutput(args?: GetClustersOutputArgs, opts?: pulumi.In
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getClusters:getClusters", {
         "filters": args.filters,
+        "location": args.location,
     }, opts);
 }
 
@@ -183,4 +187,5 @@ export interface GetClustersOutputArgs {
      * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
      */
     filters?: pulumi.Input<pulumi.Input<inputs.k8s.GetClustersFilterArgs>[]>;
+    location?: pulumi.Input<string>;
 }

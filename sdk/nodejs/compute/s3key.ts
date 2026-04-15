@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     password: "abc123-321CBA",
  *     administrator: false,
  *     forceSecAuth: false,
+ *     active: true,
  * });
  * const exampleS3Key = new ionoscloud.compute.S3Key("example", {
  *     userId: example.id,
@@ -35,7 +36,11 @@ import * as utilities from "../utilities";
  * $ pulumi import ionoscloud:compute/s3Key:S3Key demo userid/s3Keyid
  * ```
  *
- * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+ *
+ * ⚠️ **Note:** Due to eventual consistency in the IONOS Cloud API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
+ * To mitigate this, set the environment variable `IONOS_S3_KEY_CREATION_RETRY=true` to enable automatic retries during S3 key creation. The provider will retry the creation until it succeeds or the configured timeout is reached.
+ * This is a temporary workaround until the API consistency issue is resolved.
  */
 export class S3Key extends pulumi.CustomResource {
     /**

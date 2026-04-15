@@ -140,17 +140,27 @@ class RegistryTokenCredential(dict):
     def __init__(__self__, *,
                  password: _builtins.str,
                  username: _builtins.str):
+        """
+        :param _builtins.str password: [string] The password/token of the container registry token which will also be saved to a file if `save_password_to_file` is set
+        :param _builtins.str username: [string] The username of the container registry token
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
 
     @_builtins.property
     @pulumi.getter
     def password(self) -> _builtins.str:
+        """
+        [string] The password/token of the container registry token which will also be saved to a file if `save_password_to_file` is set
+        """
         return pulumi.get(self, "password")
 
     @_builtins.property
     @pulumi.getter
     def username(self) -> _builtins.str:
+        """
+        [string] The username of the container registry token
+        """
         return pulumi.get(self, "username")
 
 

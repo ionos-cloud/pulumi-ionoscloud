@@ -11,7 +11,11 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **VCPU Server** on IonosCloud.
+    /// A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+    /// 
+    /// These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
+    /// 
+    /// This section lists the limitations of [vCPU Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server#limitations-of-vcpu-servers)
     /// 
     /// ## Example Usage
     /// 
@@ -30,7 +34,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     {
     ///         Type = "HDD",
     ///         ImageAlias = "ubuntu:latest",
-    ///         Location = "us/las",
+    ///         Location = "de/txl",
     ///     });
     /// 
     ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("example", new()
@@ -67,7 +71,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
     ///         ImageName = example.Apply(getImageResult =&gt; getImageResult.Id),
     ///         ImagePassword = serverImagePassword.Result,
     ///         Volume = new Ionoscloud.Compute.Inputs.VCPUServerVolumeArgs
@@ -77,7 +80,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///             DiskType = "SSD Standard",
     ///             UserData = "foo",
     ///             Bus = "VIRTIO",
-    ///             AvailabilityZone = "ZONE_1",
     ///         },
     ///         Nic = new Ionoscloud.Compute.Inputs.VCPUServerNicArgs
     ///         {
@@ -91,19 +93,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewalls = new[]
+    ///             Firewall = 
     ///             {
-    ///                 new Ionoscloud.Compute.Inputs.VCPUServerNicFirewallArgs
-    ///                 {
-    ///                     Protocol = "TCP",
-    ///                     Name = "SSH",
-    ///                     PortRangeStart = 22,
-    ///                     PortRangeEnd = 22,
-    ///                     SourceMac = "00:0a:95:9d:68:17",
-    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
-    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
-    ///                     Type = "EGRESS",
-    ///                 },
+    ///                 { "protocol", "TCP" },
+    ///                 { "name", "SSH" },
+    ///                 { "portRangeStart", 22 },
+    ///                 { "portRangeEnd", 22 },
+    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
+    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
+    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
+    ///                 { "type", "EGRESS" },
     ///             },
     ///         },
     ///         Labels = new[]
@@ -129,7 +128,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
     /// 
     /// ⚠️ **Note:** Important for deleting an `Firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
-    /// from the middle of the list of `Firewall` rules. The existing rules will be modified and the last one will be deleted.
+    /// from the middle of the list of `Firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+    /// More details here. There is a workaround described in the issue
+    /// that involves moving the resources in the list prior to deletion.
+    /// `terraform state mv &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;i&gt;] &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;j&gt;]`
     /// 
     /// ## Import
     /// 
@@ -138,7 +140,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// ```sh
     /// terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid
     /// ```
-    /// Optionally, you can pass `PrimaryNic` and `FirewallruleId` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
+    /// Optionally, you can pass `PrimaryNic` and `FirewallruleId` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
     /// ```sh
     /// terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
     /// ```
@@ -228,6 +230,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<Outputs.VCPUServerLabel>> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Output("name")]
@@ -238,6 +246,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("nic")]
         public Output<Outputs.VCPUServerNic?> Nic { get; private set; } = null!;
+
+        /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeys field is immutable.
+        /// </summary>
+        [Output("nicMultiQueue")]
+        public Output<bool?> NicMultiQueue { get; private set; } = null!;
 
         /// <summary>
         /// The associated IP address.
@@ -259,10 +278,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The list of Security Group IDs for the resource.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeys field is immutable.
         /// </summary>
         [Output("securityGroupsIds")]
         public Output<ImmutableArray<string>> SecurityGroupsIds { get; private set; } = null!;
@@ -422,6 +437,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Input("name")]
@@ -434,6 +455,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<Inputs.VCPUServerNicArgs>? Nic { get; set; }
 
         /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeys field is immutable.
+        /// </summary>
+        [Input("nicMultiQueue")]
+        public Input<bool>? NicMultiQueue { get; set; }
+
+        /// <summary>
         /// [integer] The amount of memory for the server in MB.
         /// </summary>
         [Input("ram", required: true)]
@@ -444,10 +476,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The list of Security Group IDs for the resource.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeys field is immutable.
         /// </summary>
         public InputList<string> SecurityGroupsIds
         {
@@ -597,6 +625,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the server.
         /// </summary>
         [Input("name")]
@@ -607,6 +641,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("nic")]
         public Input<Inputs.VCPUServerNicGetArgs>? Nic { get; set; }
+
+        /// <summary>
+        /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeys field is immutable.
+        /// </summary>
+        [Input("nicMultiQueue")]
+        public Input<bool>? NicMultiQueue { get; set; }
 
         /// <summary>
         /// The associated IP address.
@@ -631,10 +676,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The list of Security Group IDs for the resource.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeys field is immutable.
         /// </summary>
         public InputList<string> SecurityGroupsIds
         {

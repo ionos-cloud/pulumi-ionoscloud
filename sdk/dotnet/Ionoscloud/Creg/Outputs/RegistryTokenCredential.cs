@@ -14,7 +14,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Creg.Outputs
     [OutputType]
     public sealed class RegistryTokenCredential
     {
+        /// <summary>
+        /// [string] The password/token of the container registry token which will also be saved to a file if `SavePasswordToFile` is set
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// [string] The username of the container registry token
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

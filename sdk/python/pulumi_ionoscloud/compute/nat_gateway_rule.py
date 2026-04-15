@@ -25,6 +25,7 @@ class NatGatewayRuleArgs:
                  natgateway_id: pulumi.Input[_builtins.str],
                  public_ip: pulumi.Input[_builtins.str],
                  source_subnet: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  target_port_range: Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']] = None,
@@ -47,6 +48,8 @@ class NatGatewayRuleArgs:
         pulumi.set(__self__, "natgateway_id", natgateway_id)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "source_subnet", source_subnet)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if protocol is not None:
@@ -105,6 +108,15 @@ class NatGatewayRuleArgs:
     @source_subnet.setter
     def source_subnet(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "source_subnet", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -171,6 +183,7 @@ class NatGatewayRuleArgs:
 class _NatGatewayRuleState:
     def __init__(__self__, *,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -194,6 +207,8 @@ class _NatGatewayRuleState:
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if natgateway_id is not None:
@@ -222,6 +237,15 @@ class _NatGatewayRuleState:
     @datacenter_id.setter
     def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -327,6 +351,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -356,7 +381,7 @@ class NatGatewayRule(pulumi.CustomResource):
             name="IP Block Example")
         example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example.id,
-            public=True,
+            public=False,
             name="Lan Example")
         example_nat_gateway = ionoscloud.compute.NatGateway("example",
             datacenter_id=example.id,
@@ -431,7 +456,7 @@ class NatGatewayRule(pulumi.CustomResource):
             name="IP Block Example")
         example_lan = ionoscloud.compute.Lan("example",
             datacenter_id=example.id,
-            public=True,
+            public=False,
             name="Lan Example")
         example_nat_gateway = ionoscloud.compute.NatGateway("example",
             datacenter_id=example.id,
@@ -484,6 +509,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -504,6 +530,7 @@ class NatGatewayRule(pulumi.CustomResource):
             if datacenter_id is None and not opts.urn:
                 raise TypeError("Missing required property 'datacenter_id'")
             __props__.__dict__["datacenter_id"] = datacenter_id
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if natgateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'natgateway_id'")
@@ -529,6 +556,7 @@ class NatGatewayRule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
             protocol: Optional[pulumi.Input[_builtins.str]] = None,
@@ -559,6 +587,7 @@ class NatGatewayRule(pulumi.CustomResource):
         __props__ = _NatGatewayRuleState.__new__(_NatGatewayRuleState)
 
         __props__.__dict__["datacenter_id"] = datacenter_id
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["natgateway_id"] = natgateway_id
         __props__.__dict__["protocol"] = protocol
@@ -576,6 +605,11 @@ class NatGatewayRule(pulumi.CustomResource):
         [string] A Datacenter's UUID.
         """
         return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

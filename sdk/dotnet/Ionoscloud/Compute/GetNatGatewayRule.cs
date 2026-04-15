@@ -174,6 +174,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing NAT gateway rule that you want to search for.
         /// </summary>
@@ -208,6 +211,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// Name of an existing NAT gateway rule that you want to search for.
         /// </summary>
@@ -235,6 +241,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// Id of the NAT gateway rule
         /// </summary>
         public readonly string Id;
+        public readonly string? Location;
         /// <summary>
         /// Name of the NAT gateway rule
         /// </summary>
@@ -271,6 +278,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string id,
 
+            string? location,
+
             string name,
 
             string natgatewayId,
@@ -289,6 +298,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         {
             DatacenterId = datacenterId;
             Id = id;
+            Location = location;
             Name = name;
             NatgatewayId = natgatewayId;
             Protocol = protocol;

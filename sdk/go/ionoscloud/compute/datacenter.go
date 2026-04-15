@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a Virtual **Data Center** on IonosCloud.
+// Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
 //
 // ## Example Usage
 //
@@ -45,8 +45,8 @@ import (
 //
 // ## Attaching a NSG to a Datacenter
 //
-// #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
-// #### Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
+// A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+// Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
 //
 // ```go
 // package main
@@ -94,6 +94,20 @@ import (
 // Resource Datacenter can be imported using the `resource id`, e.g.
 //
 // ```sh
+//
+//	import {
+//	  to = ionoscloud_datacenter.example
+//	  id = "datacenter uuid"
+//	}
+//
+// ```
+// Auto-generate the datacenter resource in the `dc.tf` file using the following command:
+// ```sh
+// pulumi preview -generate-config-out=dc.tf
+// ```
+// The older syntax can be for importing the resource is still supported:
+//
+// ```sh
 // terraform import ionoscloud_datacenter.mydc datacenter uuid
 // ```
 type Datacenter struct {
@@ -107,7 +121,7 @@ type Datacenter struct {
 	Features pulumi.StringArrayOutput `pulumi:"features"`
 	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
 	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
-	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	Location pulumi.StringOutput `pulumi:"location"`
 	// [string] The name of the Virtual Data Center.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -158,7 +172,7 @@ type datacenterState struct {
 	Features []string `pulumi:"features"`
 	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
-	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	Location *string `pulumi:"location"`
 	// [string] The name of the Virtual Data Center.
 	Name *string `pulumi:"name"`
@@ -177,7 +191,7 @@ type DatacenterState struct {
 	Features pulumi.StringArrayInput
 	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
 	Ipv6CidrBlock pulumi.StringPtrInput
-	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	Location pulumi.StringPtrInput
 	// [string] The name of the Virtual Data Center.
 	Name pulumi.StringPtrInput
@@ -194,7 +208,7 @@ func (DatacenterState) ElementType() reflect.Type {
 type datacenterArgs struct {
 	// [string] Description for the Virtual Data Center.
 	Description *string `pulumi:"description"`
-	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	Location string `pulumi:"location"`
 	// [string] The name of the Virtual Data Center.
 	Name *string `pulumi:"name"`
@@ -206,7 +220,7 @@ type datacenterArgs struct {
 type DatacenterArgs struct {
 	// [string] Description for the Virtual Data Center.
 	Description pulumi.StringPtrInput
-	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 	Location pulumi.StringInput
 	// [string] The name of the Virtual Data Center.
 	Name pulumi.StringPtrInput
@@ -321,7 +335,7 @@ func (o DatacenterOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
-// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
 func (o DatacenterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

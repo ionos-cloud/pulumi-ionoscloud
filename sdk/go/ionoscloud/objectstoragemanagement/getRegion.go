@@ -63,7 +63,7 @@ type GetRegionResult struct {
 	Endpoint string `pulumi:"endpoint"`
 	// The id of the region
 	Id string `pulumi:"id"`
-	// The data center location of the region as per [Get Location](https://www.terraform.io/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
+	// The data center location of the region as per [Get Location](https://api.ionos.com/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
 	Location string `pulumi:"location"`
 	// The available classes in the region
 	StorageClasses []string `pulumi:"storageClasses"`
@@ -122,7 +122,7 @@ func (o GetRegionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The data center location of the region as per [Get Location](https://www.terraform.io/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
+// The data center location of the region as per [Get Location](https://api.ionos.com/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can't be used as `LocationConstraint` on bucket creation.*
 func (o GetRegionResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegionResult) string { return v.Location }).(pulumi.StringOutput)
 }

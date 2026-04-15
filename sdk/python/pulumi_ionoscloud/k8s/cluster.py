@@ -398,7 +398,7 @@ class Cluster(pulumi.CustomResource):
                  s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **Managed Kubernetes Cluster** on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -460,10 +460,10 @@ class Cluster(pulumi.CustomResource):
         terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
         ```
 
-        This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+        This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
 
         :param str resource_name: The name of the resource.
@@ -488,7 +488,7 @@ class Cluster(pulumi.CustomResource):
                  args: Optional[ClusterArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Managed Kubernetes Cluster** on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -550,10 +550,10 @@ class Cluster(pulumi.CustomResource):
         terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
         ```
 
-        This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+        This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
 
         ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-        pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 
 
         :param str resource_name: The name of the resource.

@@ -181,7 +181,7 @@ def get_ipsec_gateway(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: ID of an existing IPSec Gateway that you want to search for.
-    :param _builtins.str location: The location of the IPSec Gateway.
+    :param _builtins.str location: The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: Name of an existing IPSec Gateway that you want to search for.
     :param _builtins.str version: The IKE version that is permitted for the VPN tunnels.
     """
@@ -241,7 +241,7 @@ def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[_builtins.str]]]
 
 
     :param _builtins.str id: ID of an existing IPSec Gateway that you want to search for.
-    :param _builtins.str location: The location of the IPSec Gateway.
+    :param _builtins.str location: The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: Name of an existing IPSec Gateway that you want to search for.
     :param _builtins.str version: The IKE version that is permitted for the VPN tunnels.
     """

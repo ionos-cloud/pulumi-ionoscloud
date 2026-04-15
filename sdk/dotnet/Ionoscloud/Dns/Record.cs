@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Dns
 {
     /// <summary>
-    /// Manages a **DNS Record**.
+    /// Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
     /// 
     /// &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
     /// 
@@ -89,7 +89,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Output<string> Fqdn { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The name of the DNS Record.
+        /// [string] The name of the DNS Record. This property is immutable.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -107,7 +107,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Output<int> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// [string] The name of the DNS Record.
+        /// [string] The name of the DNS Record. This property is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -196,7 +196,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -234,7 +234,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
-        /// [string] The name of the DNS Record.
+        /// [string] The name of the DNS Record. This property is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -252,7 +252,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dns
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

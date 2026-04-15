@@ -168,6 +168,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         /// <summary>
         /// Name of an existing network load balancer forwarding rule that you want to search for.
         /// </summary>
@@ -196,6 +199,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// Name of an existing network load balancer forwarding rule that you want to search for.
         /// </summary>
@@ -221,6 +227,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNatGatewayLanResult> Lans;
+        public readonly string? Location;
         /// <summary>
         /// Name of that natgateway
         /// </summary>
@@ -238,6 +245,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             ImmutableArray<Outputs.GetNatGatewayLanResult> lans,
 
+            string? location,
+
             string name,
 
             ImmutableArray<string> publicIps)
@@ -245,6 +254,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             DatacenterId = datacenterId;
             Id = id;
             Lans = lans;
+            Location = location;
             Name = name;
             PublicIps = publicIps;
         }

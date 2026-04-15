@@ -121,6 +121,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// [string] The name of the load balancer.
         /// </summary>
         [Output("name")]
@@ -198,6 +204,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Ip { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the load balancer.
         /// </summary>
         [Input("name")]
@@ -240,6 +252,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the load balancer.

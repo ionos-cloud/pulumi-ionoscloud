@@ -37,7 +37,7 @@ export interface GetS3KeyArgs {
     /**
      * ID of the IONOS Object Storage key you want to search for.
      */
-    id: string;
+    id?: string;
     /**
      * [string] The UUID of the user owning the IONOS Object Storage Key.
      */
@@ -98,7 +98,7 @@ export interface GetS3KeyOutputArgs {
     /**
      * ID of the IONOS Object Storage key you want to search for.
      */
-    id: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
     /**
      * [string] The UUID of the user owning the IONOS Object Storage Key.
      */

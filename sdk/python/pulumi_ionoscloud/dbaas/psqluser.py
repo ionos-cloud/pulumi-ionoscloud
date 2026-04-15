@@ -21,17 +21,21 @@ class PSQLUserArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
-                 username: pulumi.Input[_builtins.str]):
+                 username: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PSQLUser resource.
 
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] password: [string] User password.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
@@ -69,12 +73,25 @@ class PSQLUserArgs:
     def username(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "username", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
 
 @pulumi.input_type
 class _PSQLUserState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_system_user: Optional[pulumi.Input[_builtins.bool]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -82,6 +99,7 @@ class _PSQLUserState:
 
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.bool] is_system_user: [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
@@ -89,6 +107,8 @@ class _PSQLUserState:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if is_system_user is not None:
             pulumi.set(__self__, "is_system_user", is_system_user)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if username is not None:
@@ -117,6 +137,18 @@ class _PSQLUserState:
     @is_system_user.setter
     def is_system_user(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "is_system_user", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -150,6 +182,7 @@ class PSQLUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -197,6 +230,7 @@ class PSQLUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
@@ -263,6 +297,7 @@ class PSQLUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -277,6 +312,7 @@ class PSQLUser(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["location"] = location
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -298,6 +334,7 @@ class PSQLUser(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
             is_system_user: Optional[pulumi.Input[_builtins.bool]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
             username: Optional[pulumi.Input[_builtins.str]] = None) -> 'PSQLUser':
         """
@@ -309,6 +346,7 @@ class PSQLUser(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.bool] is_system_user: [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
@@ -318,6 +356,7 @@ class PSQLUser(pulumi.CustomResource):
 
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["is_system_user"] = is_system_user
+        __props__.__dict__["location"] = location
         __props__.__dict__["password"] = password
         __props__.__dict__["username"] = username
         return PSQLUser(resource_name, opts=opts, __props__=__props__)
@@ -337,6 +376,14 @@ class PSQLUser(pulumi.CustomResource):
         [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         """
         return pulumi.get(self, "is_system_user")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

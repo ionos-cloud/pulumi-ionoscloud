@@ -69,15 +69,19 @@ export class PSQLDatabase extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      */
     declare public readonly clusterId: pulumi.Output<string>;
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      */
     declare public readonly owner: pulumi.Output<string>;
 
@@ -95,6 +99,7 @@ export class PSQLDatabase extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PSQLDatabaseState | undefined;
             resourceInputs["clusterId"] = state?.clusterId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["owner"] = state?.owner;
         } else {
@@ -106,6 +111,7 @@ export class PSQLDatabase extends pulumi.CustomResource {
                 throw new Error("Missing required property 'owner'");
             }
             resourceInputs["clusterId"] = args?.clusterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["owner"] = args?.owner;
         }
@@ -119,15 +125,19 @@ export class PSQLDatabase extends pulumi.CustomResource {
  */
 export interface PSQLDatabaseState {
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      */
     owner?: pulumi.Input<string>;
 }
@@ -137,15 +147,19 @@ export interface PSQLDatabaseState {
  */
 export interface PSQLDatabaseArgs {
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      */
     owner: pulumi.Input<string>;
 }

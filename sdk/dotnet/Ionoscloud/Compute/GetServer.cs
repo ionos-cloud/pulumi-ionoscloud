@@ -169,6 +169,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public string? Id { get; set; }
 
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing server that you want to search for.
         /// </summary>
         [Input("name")]
@@ -207,6 +213,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing server that you want to search for.
@@ -272,9 +284,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerLabelResult> Labels;
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// Name of the firewall rule
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Specifies whether the `NicMultiQueue` feature is enabled or not.
+        /// </summary>
+        public readonly bool NicMultiQueue;
         /// <summary>
         /// list of
         /// </summary>
@@ -329,7 +349,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             ImmutableArray<Outputs.GetServerLabelResult> labels,
 
+            string? location,
+
             string name,
+
+            bool nicMultiQueue,
 
             ImmutableArray<Outputs.GetServerNicResult> nics,
 
@@ -358,7 +382,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Hostname = hostname;
             Id = id;
             Labels = labels;
+            Location = location;
             Name = name;
+            NicMultiQueue = nicMultiQueue;
             Nics = nics;
             Ram = ram;
             SecurityGroupsIds = securityGroupsIds;

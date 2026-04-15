@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
 {
     /// <summary>
-    /// Manages an Autoscaling Group on IonosCloud.
+    /// Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -49,6 +49,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
     ///         Name = "Target Group Example",
     ///         Algorithm = "ROUND_ROBIN",
     ///         Protocol = "HTTP",
+    ///         ProtocolVersion = "HTTP1",
     ///     });
     /// 
     ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()

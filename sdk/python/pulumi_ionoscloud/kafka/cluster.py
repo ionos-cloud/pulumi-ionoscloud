@@ -31,8 +31,8 @@ class ClusterArgs:
 
         :param pulumi.Input['ClusterConnectionsArgs'] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
         :param pulumi.Input[_builtins.str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.9.0`
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         """
         pulumi.set(__self__, "connections", connections)
@@ -71,7 +71,7 @@ class ClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         return pulumi.get(self, "version")
 
@@ -83,7 +83,7 @@ class ClusterArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -120,10 +120,10 @@ class _ClusterState:
                
                > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input['ClusterConnectionsArgs'] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         if broker_addresses is not None:
             pulumi.set(__self__, "broker_addresses", broker_addresses)
@@ -168,7 +168,7 @@ class _ClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -204,7 +204,7 @@ class _ClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         return pulumi.get(self, "version")
 
@@ -226,7 +226,7 @@ class Cluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Kafka Cluster** on IonosCloud.
+        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -247,7 +247,7 @@ class Cluster(pulumi.CustomResource):
         example_cluster = ionoscloud.kafka.Cluster("example",
             name="example-kafka-cluster",
             location="de/fra",
-            version="3.7.0",
+            version="3.9.0",
             size="S",
             connections={
                 "datacenter_id": example.id,
@@ -257,53 +257,6 @@ class Cluster(pulumi.CustomResource):
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            })
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example-kafka-datacenter",
-            location="de/fra")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example-kafka-lan")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="example-kafka-server",
-            datacenter_id=example.id,
-            cores=1,
-            ram=2 * 1024,
-            availability_zone="AUTO",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="ubuntu:latest",
-            image_password=password["result"],
-            volume={
-                "name": "example-kafka-volume",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example-kafka-nic",
-                "dhcp": True,
-            })
-        example_cluster = ionoscloud.kafka.Cluster("example",
-            name="example-kafka-cluster",
-            location=example.location,
-            version="3.7.0",
-            size="S",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "broker_addresses": "kafka_cluster_broker_ips_cidr_list",
             })
         ```
 
@@ -319,10 +272,10 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         ...
     @overload
@@ -331,7 +284,7 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Kafka Cluster** on IonosCloud.
+        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
 
         ## Example Usage
 
@@ -352,7 +305,7 @@ class Cluster(pulumi.CustomResource):
         example_cluster = ionoscloud.kafka.Cluster("example",
             name="example-kafka-cluster",
             location="de/fra",
-            version="3.7.0",
+            version="3.9.0",
             size="S",
             connections={
                 "datacenter_id": example.id,
@@ -362,53 +315,6 @@ class Cluster(pulumi.CustomResource):
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            })
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        # Complete example
-        example = ionoscloud.compute.Datacenter("example",
-            name="example-kafka-datacenter",
-            location="de/fra")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example-kafka-lan")
-        password = random.Password("password",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("example",
-            name="example-kafka-server",
-            datacenter_id=example.id,
-            cores=1,
-            ram=2 * 1024,
-            availability_zone="AUTO",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="ubuntu:latest",
-            image_password=password["result"],
-            volume={
-                "name": "example-kafka-volume",
-                "size": 6,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example-kafka-nic",
-                "dhcp": True,
-            })
-        example_cluster = ionoscloud.kafka.Cluster("example",
-            name="example-kafka-cluster",
-            location=example.location,
-            version="3.7.0",
-            size="S",
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "broker_addresses": "kafka_cluster_broker_ips_cidr_list",
             })
         ```
 
@@ -489,10 +395,10 @@ class Cluster(pulumi.CustomResource):
                
                > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
         :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[_builtins.str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[_builtins.str] version: [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -528,7 +434,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -552,7 +458,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        [string] Version of the Kafka Cluster. Possible values: `3.9.0`
         """
         return pulumi.get(self, "version")
 

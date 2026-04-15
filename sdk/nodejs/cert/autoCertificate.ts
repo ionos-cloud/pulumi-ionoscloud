@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **CM AutoCertificate**.
+ * Manages a [CM AutoCertificate](https://docs.ionos.com/cloud/network-services/certificate-manager/auto-certificate/create-auto-certificate).
  *
  * ## Example Usage
  *
@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  *
  * const example = new ionoscloud.cert.AutoCertificateProvider("example", {
  *     name: "Let's Encrypt",
- *     email: "user@example.com",
+ *     email: "user@ionos.com",
  *     location: "de/fra",
  *     server: "https://acme-v02.api.letsencrypt.org/directory",
  *     externalAccountBinding: {
@@ -82,7 +82,7 @@ export class AutoCertificate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly lastIssuedCertificateId: pulumi.Output<string>;
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -162,7 +162,7 @@ export interface AutoCertificateState {
      */
     lastIssuedCertificateId?: pulumi.Input<string>;
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      */
     location?: pulumi.Input<string>;
     /**
@@ -192,7 +192,7 @@ export interface AutoCertificateArgs {
      */
     keyAlgorithm: pulumi.Input<string>;
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      */
     location: pulumi.Input<string>;
     /**

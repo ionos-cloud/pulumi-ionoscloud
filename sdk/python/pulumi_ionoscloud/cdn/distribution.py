@@ -189,17 +189,24 @@ class Distribution(pulumi.CustomResource):
                  routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **CDN Distribution** on IonosCloud.
+        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
 
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         example = ionoscloud.cdn.Distribution("example",
             domain="example.com",
-            certificate_id=cert["id"],
+            certificate_id=cert.id,
             routing_rules=[
                 {
                     "scheme": "https",
@@ -260,17 +267,24 @@ class Distribution(pulumi.CustomResource):
                  args: DistributionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **CDN Distribution** on IonosCloud.
+        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
 
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            name="add_name_here",
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         example = ionoscloud.cdn.Distribution("example",
             domain="example.com",
-            certificate_id=cert["id"],
+            certificate_id=cert.id,
             routing_rules=[
                 {
                     "scheme": "https",

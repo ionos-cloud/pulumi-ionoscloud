@@ -26,7 +26,7 @@ class GetPSQLUserResult:
     """
     A collection of values returned by getPSQLUser.
     """
-    def __init__(__self__, cluster_id=None, id=None, is_system_user=None, username=None):
+    def __init__(__self__, cluster_id=None, id=None, is_system_user=None, location=None, username=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -36,6 +36,9 @@ class GetPSQLUserResult:
         if is_system_user and not isinstance(is_system_user, bool):
             raise TypeError("Expected argument 'is_system_user' to be a bool")
         pulumi.set(__self__, "is_system_user", is_system_user)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
@@ -63,6 +66,11 @@ class GetPSQLUserResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def username(self) -> _builtins.str:
         return pulumi.get(self, "username")
 
@@ -76,10 +84,12 @@ class AwaitableGetPSQLUserResult(GetPSQLUserResult):
             cluster_id=self.cluster_id,
             id=self.id,
             is_system_user=self.is_system_user,
+            location=self.location,
             username=self.username)
 
 
 def get_psqluser(cluster_id: Optional[_builtins.str] = None,
+                 location: Optional[_builtins.str] = None,
                  username: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLUserResult:
     """
@@ -101,6 +111,7 @@ def get_psqluser(cluster_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     __args__['username'] = username
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getPSQLUser:getPSQLUser', __args__, opts=opts, typ=GetPSQLUserResult).value
@@ -109,8 +120,10 @@ def get_psqluser(cluster_id: Optional[_builtins.str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         id=pulumi.get(__ret__, 'id'),
         is_system_user=pulumi.get(__ret__, 'is_system_user'),
+        location=pulumi.get(__ret__, 'location'),
         username=pulumi.get(__ret__, 'username'))
 def get_psqluser_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                         username: Optional[pulumi.Input[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLUserResult]:
     """
@@ -132,6 +145,7 @@ def get_psqluser_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     __args__['username'] = username
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLUser:getPSQLUser', __args__, opts=opts, typ=GetPSQLUserResult)
@@ -139,4 +153,5 @@ def get_psqluser_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         id=pulumi.get(__response__, 'id'),
         is_system_user=pulumi.get(__response__, 'is_system_user'),
+        location=pulumi.get(__response__, 'location'),
         username=pulumi.get(__response__, 'username')))

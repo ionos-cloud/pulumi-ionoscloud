@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **Nat Gateway** on IonosCloud.
+    /// Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -41,7 +41,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
     ///     {
     ///         DatacenterId = example.Id,
-    ///         Public = true,
+    ///         Public = false,
     ///         Name = "Lan Example",
     ///     });
     /// 
@@ -92,6 +92,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("lans")]
         public Output<ImmutableArray<Outputs.NatGatewayLan>> Lans { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] Name of the NAT gateway.
@@ -171,6 +177,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] Name of the NAT gateway.
         /// </summary>
         [Input("name")]
@@ -213,6 +225,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             get => _lans ?? (_lans = new InputList<Inputs.NatGatewayLanGetArgs>());
             set => _lans = value;
         }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] Name of the NAT gateway.

@@ -16,6 +16,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
     {
         public readonly string? IcmpCode;
         public readonly string? IcmpType;
+        public readonly string? Id;
         /// <summary>
         /// [string] The name of the server.
         /// </summary>
@@ -33,6 +34,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             string? icmpCode,
 
             string? icmpType,
+
+            string? id,
 
             string? name,
 
@@ -52,6 +55,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         {
             IcmpCode = icmpCode;
             IcmpType = icmpType;
+            Id = id;
             Name = name;
             PortRangeEnd = portRangeEnd;
             PortRangeStart = portRangeStart;

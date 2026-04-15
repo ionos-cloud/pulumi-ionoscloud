@@ -109,7 +109,8 @@ func LookupRegistryToken(ctx *pulumi.Context, args *LookupRegistryTokenArgs, opt
 // A collection of arguments for invoking getRegistryToken.
 type LookupRegistryTokenArgs struct {
 	// ID of the container registry token you want to search for.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name *string `pulumi:"name"`
 	// Whether partial matching is allowed or not when using name argument. Default value is false.
@@ -126,6 +127,7 @@ type LookupRegistryTokenResult struct {
 	ExpiryDate  string                       `pulumi:"expiryDate"`
 	// Id of the container registry token.
 	Id           string                  `pulumi:"id"`
+	Location     *string                 `pulumi:"location"`
 	Name         string                  `pulumi:"name"`
 	PartialMatch *bool                   `pulumi:"partialMatch"`
 	RegistryId   string                  `pulumi:"registryId"`
@@ -145,7 +147,8 @@ func LookupRegistryTokenOutput(ctx *pulumi.Context, args LookupRegistryTokenOutp
 // A collection of arguments for invoking getRegistryToken.
 type LookupRegistryTokenOutputArgs struct {
 	// ID of the container registry token you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Whether partial matching is allowed or not when using name argument. Default value is false.
@@ -186,6 +189,10 @@ func (o LookupRegistryTokenResultOutput) ExpiryDate() pulumi.StringOutput {
 // Id of the container registry token.
 func (o LookupRegistryTokenResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupRegistryTokenResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRegistryTokenResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupRegistryTokenResultOutput) Name() pulumi.StringOutput {

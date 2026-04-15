@@ -31,9 +31,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging.Inputs
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
 
-        /// <summary>
-        /// [bool]
-        /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
 

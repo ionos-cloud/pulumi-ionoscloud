@@ -115,6 +115,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("lanId", required: true)]
         public string LanId { get; set; } = null!;
 
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetIPFailoverArgs()
         {
         }
@@ -141,6 +144,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         public GetIPFailoverInvokeArgs()
         {
         }
@@ -164,6 +170,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The ID of a LAN.
         /// </summary>
         public readonly string LanId;
+        public readonly string? Location;
         /// <summary>
         /// The ID of a NIC.
         /// </summary>
@@ -179,12 +186,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string lanId,
 
+            string? location,
+
             string nicuuid)
         {
             DatacenterId = datacenterId;
             Id = id;
             Ip = ip;
             LanId = lanId;
+            Location = location;
             Nicuuid = nicuuid;
         }
     }

@@ -58,8 +58,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = "Ubuntu-20.04",
     ///         ImagePassword = serverImagePassword.Result,
     ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
@@ -111,10 +109,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// ## Import
     /// 
-    /// Resource IpFailover can be imported using the `resource id`, e.g.
+    /// Resource IpFailover can be imported using the `datacenter id`, `lan id` and `ip address`, e.g.
     /// 
     /// ```sh
-    /// terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
+    /// $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter_uuid/lan_uuid/ip_address
     /// ```
     /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/iPFailover:IPFailover")]
@@ -138,12 +136,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Output("lanId")]
         public Output<string> LanId { get; private set; } = null!;
 
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
         /// <summary>
         /// [string] The ID of a NIC.
         /// 
-        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         /// &gt; using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        /// &gt; an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        /// &gt; an IP failover group using Terraform, please use only Terraform in order to manage the created
         /// &gt; IP failover group.
         /// 
         /// &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -240,12 +241,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// [string] The ID of a NIC.
         /// 
-        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         /// &gt; using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        /// &gt; an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        /// &gt; an IP failover group using Terraform, please use only Terraform in order to manage the created
         /// &gt; IP failover group.
         /// 
         /// &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -303,12 +307,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("lanId")]
         public Input<string>? LanId { get; set; }
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// [string] The ID of a NIC.
         /// 
-        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+        /// &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
         /// &gt; using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        /// &gt; an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+        /// &gt; an IP failover group using Terraform, please use only Terraform in order to manage the created
         /// &gt; IP failover group.
         /// 
         /// &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the

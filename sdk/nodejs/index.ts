@@ -5,13 +5,62 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { DnsReverseRecordArgs, DnsReverseRecordState } from "./dnsReverseRecord";
+export type DnsReverseRecord = import("./dnsReverseRecord").DnsReverseRecord;
+export const DnsReverseRecord: typeof import("./dnsReverseRecord").DnsReverseRecord = null as any;
+utilities.lazyLoad(exports, ["DnsReverseRecord"], () => require("./dnsReverseRecord"));
+
+export { GetContractsResult } from "./getContracts";
+export const getContracts: typeof import("./getContracts").getContracts = null as any;
+export const getContractsOutput: typeof import("./getContracts").getContractsOutput = null as any;
+utilities.lazyLoad(exports, ["getContracts","getContractsOutput"], () => require("./getContracts"));
+
+export { GetDnsReverseRecordArgs, GetDnsReverseRecordResult, GetDnsReverseRecordOutputArgs } from "./getDnsReverseRecord";
+export const getDnsReverseRecord: typeof import("./getDnsReverseRecord").getDnsReverseRecord = null as any;
+export const getDnsReverseRecordOutput: typeof import("./getDnsReverseRecord").getDnsReverseRecordOutput = null as any;
+utilities.lazyLoad(exports, ["getDnsReverseRecord","getDnsReverseRecordOutput"], () => require("./getDnsReverseRecord"));
+
+export { GetDnsReverseRecordsArgs, GetDnsReverseRecordsResult, GetDnsReverseRecordsOutputArgs } from "./getDnsReverseRecords";
+export const getDnsReverseRecords: typeof import("./getDnsReverseRecords").getDnsReverseRecords = null as any;
+export const getDnsReverseRecordsOutput: typeof import("./getDnsReverseRecords").getDnsReverseRecordsOutput = null as any;
+utilities.lazyLoad(exports, ["getDnsReverseRecords","getDnsReverseRecordsOutput"], () => require("./getDnsReverseRecords"));
+
+export { GetGpuArgs, GetGpuResult, GetGpuOutputArgs } from "./getGpu";
+export const getGpu: typeof import("./getGpu").getGpu = null as any;
+export const getGpuOutput: typeof import("./getGpu").getGpuOutput = null as any;
+utilities.lazyLoad(exports, ["getGpu","getGpuOutput"], () => require("./getGpu"));
+
+export { GetGpuServerArgs, GetGpuServerResult, GetGpuServerOutputArgs } from "./getGpuServer";
+export const getGpuServer: typeof import("./getGpuServer").getGpuServer = null as any;
+export const getGpuServerOutput: typeof import("./getGpuServer").getGpuServerOutput = null as any;
+utilities.lazyLoad(exports, ["getGpuServer","getGpuServerOutput"], () => require("./getGpuServer"));
+
+export { GetGpusArgs, GetGpusResult, GetGpusOutputArgs } from "./getGpus";
+export const getGpus: typeof import("./getGpus").getGpus = null as any;
+export const getGpusOutput: typeof import("./getGpus").getGpusOutput = null as any;
+utilities.lazyLoad(exports, ["getGpus","getGpusOutput"], () => require("./getGpus"));
+
+export { GetKafkaUserCredentialsArgs, GetKafkaUserCredentialsResult, GetKafkaUserCredentialsOutputArgs } from "./getKafkaUserCredentials";
+export const getKafkaUserCredentials: typeof import("./getKafkaUserCredentials").getKafkaUserCredentials = null as any;
+export const getKafkaUserCredentialsOutput: typeof import("./getKafkaUserCredentials").getKafkaUserCredentialsOutput = null as any;
+utilities.lazyLoad(exports, ["getKafkaUserCredentials","getKafkaUserCredentialsOutput"], () => require("./getKafkaUserCredentials"));
+
+export { GetKafkaUsersArgs, GetKafkaUsersResult, GetKafkaUsersOutputArgs } from "./getKafkaUsers";
+export const getKafkaUsers: typeof import("./getKafkaUsers").getKafkaUsers = null as any;
+export const getKafkaUsersOutput: typeof import("./getKafkaUsers").getKafkaUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getKafkaUsers","getKafkaUsersOutput"], () => require("./getKafkaUsers"));
+
+export { GpuServerArgs, GpuServerState } from "./gpuServer";
+export type GpuServer = import("./gpuServer").GpuServer;
+export const GpuServer: typeof import("./gpuServer").GpuServer = null as any;
+utilities.lazyLoad(exports, ["GpuServer"], () => require("./gpuServer"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
 
 // Export sub-modules:
 import * as alb from "./alb";
-import * as apigateway from "./apigateway";
 import * as autoscaling from "./autoscaling";
 import * as cdn from "./cdn";
 import * as cert from "./cert";
@@ -20,7 +69,6 @@ import * as config from "./config";
 import * as creg from "./creg";
 import * as dbaas from "./dbaas";
 import * as dns from "./dns";
-import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
 import * as kafka from "./kafka";
 import * as logging from "./logging";
@@ -35,7 +83,6 @@ import * as vpn from "./vpn";
 
 export {
     alb,
-    apigateway,
     autoscaling,
     cdn,
     cert,
@@ -44,7 +91,6 @@ export {
     creg,
     dbaas,
     dns,
-    dsaas,
     k8s,
     kafka,
     logging,
@@ -57,6 +103,22 @@ export {
     types,
     vpn,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "ionoscloud:index/dnsReverseRecord:DnsReverseRecord":
+                return new DnsReverseRecord(name, <any>undefined, { urn })
+            case "ionoscloud:index/gpuServer:GpuServer":
+                return new GpuServer(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsReverseRecord", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/gpuServer", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

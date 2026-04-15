@@ -27,7 +27,7 @@ class GetPSQLBackupsResult:
     """
     A collection of values returned by getPSQLBackups.
     """
-    def __init__(__self__, cluster_backups=None, cluster_id=None, id=None):
+    def __init__(__self__, cluster_backups=None, cluster_id=None, id=None, location=None):
         if cluster_backups and not isinstance(cluster_backups, list):
             raise TypeError("Expected argument 'cluster_backups' to be a list")
         pulumi.set(__self__, "cluster_backups", cluster_backups)
@@ -37,6 +37,9 @@ class GetPSQLBackupsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
 
     @_builtins.property
     @pulumi.getter(name="clusterBackups")
@@ -62,6 +65,14 @@ class GetPSQLBackupsResult:
         """
         return pulumi.get(self, "id")
 
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        """
+        The IONOS Object Storage location where the backups will be stored.
+        """
+        return pulumi.get(self, "location")
+
 
 class AwaitableGetPSQLBackupsResult(GetPSQLBackupsResult):
     # pylint: disable=using-constant-test
@@ -71,10 +82,12 @@ class AwaitableGetPSQLBackupsResult(GetPSQLBackupsResult):
         return GetPSQLBackupsResult(
             cluster_backups=self.cluster_backups,
             cluster_id=self.cluster_id,
-            id=self.id)
+            id=self.id,
+            location=self.location)
 
 
 def get_psql_backups(cluster_id: Optional[_builtins.str] = None,
+                     location: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLBackupsResult:
     """
     The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
@@ -94,17 +107,21 @@ def get_psql_backups(cluster_id: Optional[_builtins.str] = None,
     :param _builtins.str cluster_id: The unique ID of the cluster.
            
            `cluster_id` must be provided. If it is not provided, the datasource will return an error.
+    :param _builtins.str location: The IONOS Object Storage location where the backups will be stored.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getPSQLBackups:getPSQLBackups', __args__, opts=opts, typ=GetPSQLBackupsResult).value
 
     return AwaitableGetPSQLBackupsResult(
         cluster_backups=pulumi.get(__ret__, 'cluster_backups'),
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
-        id=pulumi.get(__ret__, 'id'))
+        id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'))
 def get_psql_backups_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLBackupsResult]:
     """
     The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
@@ -124,12 +141,15 @@ def get_psql_backups_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = 
     :param _builtins.str cluster_id: The unique ID of the cluster.
            
            `cluster_id` must be provided. If it is not provided, the datasource will return an error.
+    :param _builtins.str location: The IONOS Object Storage location where the backups will be stored.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
+    __args__['location'] = location
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLBackups:getPSQLBackups', __args__, opts=opts, typ=GetPSQLBackupsResult)
     return __ret__.apply(lambda __response__: GetPSQLBackupsResult(
         cluster_backups=pulumi.get(__response__, 'cluster_backups'),
         cluster_id=pulumi.get(__response__, 'cluster_id'),
-        id=pulumi.get(__response__, 'id')))
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location')))

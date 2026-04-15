@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
 {
     /// <summary>
-    /// Create clusters of Network File Storage (NFS) on IonosCloud.
+    /// Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -59,91 +59,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
     /// });
     /// ```
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Complete example
-    ///     var nfsDc = new Ionoscloud.Compute.Datacenter("nfs_dc", new()
-    ///     {
-    ///         Name = "NFS Datacenter",
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var nfsLan = new Ionoscloud.Compute.Lan("nfs_lan", new()
-    ///     {
-    ///         DatacenterId = nfsDc.Id,
-    ///         Public = false,
-    ///         Name = "Lan for NFS",
-    ///     });
-    /// 
-    ///     var hDDImage = Ionoscloud.Compute.GetImage.Invoke(new()
-    ///     {
-    ///         ImageAlias = "ubuntu:20.04",
-    ///         Type = "HDD",
-    ///         CloudInit = "V1",
-    ///         Location = "de/txl",
-    ///     });
-    /// 
-    ///     var password = new Random.Index.Password("password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = false,
-    ///     });
-    /// 
-    ///     // needed for the NIC - which provides the IP address for the NFS cluster.
-    ///     var nfsServer = new Ionoscloud.Compute.Server("nfs_server", new()
-    ///     {
-    ///         Name = "Server for NFS",
-    ///         DatacenterId = nfsDc.Id,
-    ///         Cores = 1,
-    ///         Ram = 2048,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_SKYLAKE",
-    ///         ImageName = hDDImage.Apply(getImageResult =&gt; getImageResult.Id),
-    ///         ImagePassword = password.Result,
-    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
-    ///         {
-    ///             Name = "system",
-    ///             Size = 14,
-    ///             DiskType = "SSD",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
-    ///         {
-    ///             Name = "NIC A",
-    ///             Lan = nfsLan.Id,
-    ///             Dhcp = true,
-    ///             FirewallActive = true,
-    ///         },
-    ///     });
-    /// 
-    ///     var example = new Ionoscloud.Nfs.Cluster("example", new()
-    ///     {
-    ///         Name = "test",
-    ///         Location = "de/txl",
-    ///         Size = 2,
-    ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
-    ///         {
-    ///             MinVersion = "4.2",
-    ///         },
-    ///         Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = nfsDc.Id,
-    ///             IpAddress = "nfs_cluster_cidr_from_nic",
-    ///             Lan = nfsLan.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// A Network File Storage Cluster resource can be imported using its `Location` and `resource id`:
@@ -162,7 +77,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Output<Outputs.ClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// - `de/fra` - Frankfurt
         /// - `de/txl` - Berlin
         /// </summary>
@@ -238,7 +153,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// - `de/fra` - Frankfurt
         /// - `de/txl` - Berlin
         /// </summary>
@@ -275,7 +190,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// - `de/fra` - Frankfurt
         /// - `de/txl` - Berlin
         /// </summary>

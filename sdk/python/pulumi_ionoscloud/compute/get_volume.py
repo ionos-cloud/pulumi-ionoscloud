@@ -26,7 +26,7 @@ class GetVolumeResult:
     """
     A collection of values returned by getVolume.
     """
-    def __init__(__self__, availability_zone=None, backup_unit_id=None, boot_server=None, bus=None, cpu_hot_plug=None, datacenter_id=None, device_number=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, disk_type=None, id=None, image=None, image_password=None, licence_type=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, ram_hot_plug=None, size=None, sshkey=None, user_data=None):
+    def __init__(__self__, availability_zone=None, backup_unit_id=None, boot_server=None, bus=None, cpu_hot_plug=None, datacenter_id=None, device_number=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, disk_type=None, expose_serial=None, id=None, image=None, image_password=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, ram_hot_plug=None, require_legacy_bios=None, size=None, sshkey=None, user_data=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -57,6 +57,9 @@ class GetVolumeResult:
         if disk_type and not isinstance(disk_type, str):
             raise TypeError("Expected argument 'disk_type' to be a str")
         pulumi.set(__self__, "disk_type", disk_type)
+        if expose_serial and not isinstance(expose_serial, bool):
+            raise TypeError("Expected argument 'expose_serial' to be a bool")
+        pulumi.set(__self__, "expose_serial", expose_serial)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -69,6 +72,9 @@ class GetVolumeResult:
         if licence_type and not isinstance(licence_type, str):
             raise TypeError("Expected argument 'licence_type' to be a str")
         pulumi.set(__self__, "licence_type", licence_type)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -81,6 +87,9 @@ class GetVolumeResult:
         if ram_hot_plug and not isinstance(ram_hot_plug, bool):
             raise TypeError("Expected argument 'ram_hot_plug' to be a bool")
         pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios and not isinstance(require_legacy_bios, bool):
+            raise TypeError("Expected argument 'require_legacy_bios' to be a bool")
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
@@ -169,6 +178,14 @@ class GetVolumeResult:
         return pulumi.get(self, "disk_type")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> _builtins.bool:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -202,6 +219,11 @@ class GetVolumeResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         """
         The name of the volume.
@@ -231,6 +253,14 @@ class GetVolumeResult:
         Is capable of memory hot plug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter
@@ -273,14 +303,17 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             disc_virtio_hot_plug=self.disc_virtio_hot_plug,
             disc_virtio_hot_unplug=self.disc_virtio_hot_unplug,
             disk_type=self.disk_type,
+            expose_serial=self.expose_serial,
             id=self.id,
             image=self.image,
             image_password=self.image_password,
             licence_type=self.licence_type,
+            location=self.location,
             name=self.name,
             nic_hot_plug=self.nic_hot_plug,
             nic_hot_unplug=self.nic_hot_unplug,
             ram_hot_plug=self.ram_hot_plug,
+            require_legacy_bios=self.require_legacy_bios,
             size=self.size,
             sshkey=self.sshkey,
             user_data=self.user_data)
@@ -288,6 +321,7 @@ class AwaitableGetVolumeResult(GetVolumeResult):
 
 def get_volume(datacenter_id: Optional[_builtins.str] = None,
                id: Optional[_builtins.str] = None,
+               location: Optional[_builtins.str] = None,
                name: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
@@ -324,6 +358,7 @@ def get_volume(datacenter_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult).value
@@ -339,19 +374,23 @@ def get_volume(datacenter_id: Optional[_builtins.str] = None,
         disc_virtio_hot_plug=pulumi.get(__ret__, 'disc_virtio_hot_plug'),
         disc_virtio_hot_unplug=pulumi.get(__ret__, 'disc_virtio_hot_unplug'),
         disk_type=pulumi.get(__ret__, 'disk_type'),
+        expose_serial=pulumi.get(__ret__, 'expose_serial'),
         id=pulumi.get(__ret__, 'id'),
         image=pulumi.get(__ret__, 'image'),
         image_password=pulumi.get(__ret__, 'image_password'),
         licence_type=pulumi.get(__ret__, 'licence_type'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         nic_hot_plug=pulumi.get(__ret__, 'nic_hot_plug'),
         nic_hot_unplug=pulumi.get(__ret__, 'nic_hot_unplug'),
         ram_hot_plug=pulumi.get(__ret__, 'ram_hot_plug'),
+        require_legacy_bios=pulumi.get(__ret__, 'require_legacy_bios'),
         size=pulumi.get(__ret__, 'size'),
         sshkey=pulumi.get(__ret__, 'sshkey'),
         user_data=pulumi.get(__ret__, 'user_data'))
 def get_volume_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                       id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                      location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumeResult]:
     """
@@ -388,6 +427,7 @@ def get_volume_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = Non
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult)
@@ -402,14 +442,17 @@ def get_volume_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = Non
         disc_virtio_hot_plug=pulumi.get(__response__, 'disc_virtio_hot_plug'),
         disc_virtio_hot_unplug=pulumi.get(__response__, 'disc_virtio_hot_unplug'),
         disk_type=pulumi.get(__response__, 'disk_type'),
+        expose_serial=pulumi.get(__response__, 'expose_serial'),
         id=pulumi.get(__response__, 'id'),
         image=pulumi.get(__response__, 'image'),
         image_password=pulumi.get(__response__, 'image_password'),
         licence_type=pulumi.get(__response__, 'licence_type'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         nic_hot_plug=pulumi.get(__response__, 'nic_hot_plug'),
         nic_hot_unplug=pulumi.get(__response__, 'nic_hot_unplug'),
         ram_hot_plug=pulumi.get(__response__, 'ram_hot_plug'),
+        require_legacy_bios=pulumi.get(__response__, 'require_legacy_bios'),
         size=pulumi.get(__response__, 'size'),
         sshkey=pulumi.get(__response__, 'sshkey'),
         user_data=pulumi.get(__response__, 'user_data')))

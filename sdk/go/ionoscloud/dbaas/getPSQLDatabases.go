@@ -78,7 +78,8 @@ func GetPSQLDatabases(ctx *pulumi.Context, args *GetPSQLDatabasesArgs, opts ...p
 // A collection of arguments for invoking getPSQLDatabases.
 type GetPSQLDatabasesArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId string `pulumi:"clusterId"`
+	ClusterId string  `pulumi:"clusterId"`
+	Location  *string `pulumi:"location"`
 	// [string] Filter using a specific owner.
 	Owner *string `pulumi:"owner"`
 }
@@ -89,7 +90,8 @@ type GetPSQLDatabasesResult struct {
 	// [list] A list that contains either all databases, either some of them (filter by owner). A database from list has the following format:
 	Databases []GetPSQLDatabasesDatabase `pulumi:"databases"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id       string  `pulumi:"id"`
+	Location *string `pulumi:"location"`
 	// [string] The owner of the database.
 	Owner *string `pulumi:"owner"`
 }
@@ -106,7 +108,8 @@ func GetPSQLDatabasesOutput(ctx *pulumi.Context, args GetPSQLDatabasesOutputArgs
 // A collection of arguments for invoking getPSQLDatabases.
 type GetPSQLDatabasesOutputArgs struct {
 	// [string] The ID of the cluster.
-	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	ClusterId pulumi.StringInput    `pulumi:"clusterId"`
+	Location  pulumi.StringPtrInput `pulumi:"location"`
 	// [string] Filter using a specific owner.
 	Owner pulumi.StringPtrInput `pulumi:"owner"`
 }
@@ -142,6 +145,10 @@ func (o GetPSQLDatabasesResultOutput) Databases() GetPSQLDatabasesDatabaseArrayO
 // The provider-assigned unique ID for this managed resource.
 func (o GetPSQLDatabasesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLDatabasesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPSQLDatabasesResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPSQLDatabasesResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The owner of the database.

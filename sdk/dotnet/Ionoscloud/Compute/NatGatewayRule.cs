@@ -41,7 +41,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
     ///     {
     ///         DatacenterId = example.Id,
-    ///         Public = true,
+    ///         Public = false,
     ///         Name = "Lan Example",
     ///     });
     /// 
@@ -103,6 +103,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
+
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] Name of the NAT gateway rule.
@@ -205,6 +208,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
         /// <summary>
         /// [string] Name of the NAT gateway rule.
         /// </summary>
@@ -266,6 +272,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
+
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] Name of the NAT gateway rule.

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Cert
 {
     /// <summary>
-    /// Manages a **CM AutoCertificate**.
+    /// Manages a [CM AutoCertificate](https://docs.ionos.com/cloud/network-services/certificate-manager/auto-certificate/create-auto-certificate).
     /// 
     /// ## Example Usage
     /// 
@@ -26,7 +26,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     ///     var example = new Ionoscloud.Cert.AutoCertificateProvider("example", new()
     ///     {
     ///         Name = "Let's Encrypt",
-    ///         Email = "user@example.com",
+    ///         Email = "user@ionos.com",
     ///         Location = "de/fra",
     ///         Server = "https://acme-v02.api.letsencrypt.org/directory",
     ///         ExternalAccountBinding = new Ionoscloud.Cert.Inputs.AutoCertificateProviderExternalAccountBindingArgs
@@ -82,7 +82,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Output<string> LastIssuedCertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the auto-certificate.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string> KeyAlgorithm { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the auto-certificate.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -221,7 +221,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string>? LastIssuedCertificateId { get; set; }
 
         /// <summary>
-        /// [string] The location of the auto-certificate.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

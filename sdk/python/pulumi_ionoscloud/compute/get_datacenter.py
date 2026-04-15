@@ -97,7 +97,7 @@ class GetDatacenterResult:
     @pulumi.getter
     def location(self) -> Optional[_builtins.str]:
         """
-        The regional location where the Virtual Data Center will be created
+        The regional location where the Virtual Data Center is created
         """
         return pulumi.get(self, "location")
 
@@ -174,7 +174,7 @@ def get_datacenter(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: Id of an existing Virtual Data Center that you want to search for.
-    :param _builtins.str location: Id of the existing Virtual Data Center's location.
+    :param _builtins.str location: Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
            
            Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
     :param _builtins.str name: Name of an existing Virtual Data Center that you want to search for.
@@ -227,7 +227,7 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = 
 
 
     :param _builtins.str id: Id of an existing Virtual Data Center that you want to search for.
-    :param _builtins.str location: Id of the existing Virtual Data Center's location.
+    :param _builtins.str location: Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
            
            Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
     :param _builtins.str name: Name of an existing Virtual Data Center that you want to search for.

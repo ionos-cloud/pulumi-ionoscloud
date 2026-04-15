@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Managed Kubernetes Cluster** on IonosCloud.
+ * Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
  *
  * ## Example Usage
  *
@@ -73,10 +73,10 @@ import * as utilities from "../utilities";
  * terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
  * ```
  *
- * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
  *
  * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8sVersion` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- * pulumi from doing a downgrade, as downgrading `k8sVersion` is not supported._**
+ * terraform from doing a downgrade, as downgrading `k8sVersion` is not supported._**
  */
 export class Cluster extends pulumi.CustomResource {
     /**

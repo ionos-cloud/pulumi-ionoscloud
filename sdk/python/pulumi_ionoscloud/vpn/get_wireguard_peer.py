@@ -163,7 +163,7 @@ def get_wireguard_peer(gateway_id: Optional[_builtins.str] = None,
 
     :param _builtins.str gateway_id: [String] The ID of the WireGuard Gateway.
     :param _builtins.str id: [String] The ID of the WireGuard Peer.
-    :param _builtins.str location: [String] The location of the WireGuard Gateway.
+    :param _builtins.str location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: [String] The name of the WireGuard Peer.
     """
     __args__ = dict()
@@ -207,7 +207,7 @@ def get_wireguard_peer_output(gateway_id: Optional[pulumi.Input[_builtins.str]] 
 
     :param _builtins.str gateway_id: [String] The ID of the WireGuard Gateway.
     :param _builtins.str id: [String] The ID of the WireGuard Peer.
-    :param _builtins.str location: [String] The location of the WireGuard Gateway.
+    :param _builtins.str location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: [String] The name of the WireGuard Peer.
     """
     __args__ = dict()

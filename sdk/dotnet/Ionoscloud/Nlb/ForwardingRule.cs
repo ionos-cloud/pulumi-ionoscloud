@@ -92,6 +92,89 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
     /// });
     /// ```
     /// 
+    /// ### Usage with dynamic block for targets:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
+    ///     {
+    ///         Name = "Datacenter Example",
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var example1 = new Ionoscloud.Compute.Lan("example1", new()
+    ///     {
+    ///         DatacenterId = example.Id,
+    ///         Public = false,
+    ///         Name = "Lan Example 1",
+    ///     });
+    /// 
+    ///     var example2 = new Ionoscloud.Compute.Lan("example2", new()
+    ///     {
+    ///         DatacenterId = example.Id,
+    ///         Public = false,
+    ///         Name = "Lan Example 2",
+    ///     });
+    /// 
+    ///     var exampleBalancer = new Ionoscloud.Nlb.Balancer("example", new()
+    ///     {
+    ///         DatacenterId = example.Id,
+    ///         Name = "example",
+    ///         ListenerLan = example1.Id,
+    ///         TargetLan = example2.Id,
+    ///         Ips = new[]
+    ///         {
+    ///             "10.12.118.224",
+    ///         },
+    ///         LbPrivateIps = new[]
+    ///         {
+    ///             "10.13.72.225/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var iPs = config.GetObject&lt;dynamic[]&gt;("iPs") ?? new[]
+    ///     {
+    ///         "22.231.2.2",
+    ///         "22.231.2.3",
+    ///         "22.231.2.4",
+    ///     };
+    ///     var exampleForwardingRule = new Ionoscloud.Nlb.ForwardingRule("example", new()
+    ///     {
+    ///         Targets = iPs.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         {
+    ///             return new Ionoscloud.Nlb.Inputs.ForwardingRuleTargetArgs
+    ///             {
+    ///                 Ip = entry.Value,
+    ///                 Port = 31234,
+    ///                 Weight = 1,
+    ///                 HealthCheck = new Ionoscloud.Nlb.Inputs.ForwardingRuleTargetHealthCheckArgs
+    ///                 {
+    ///                     Check = true,
+    ///                     CheckInterval = 1000,
+    ///                     Maintenance = false,
+    ///                 },
+    ///             };
+    ///         }).ToList(),
+    ///         DatacenterId = example.Id,
+    ///         NetworkloadbalancerId = exampleBalancer.Id,
+    ///         Name = "example",
+    ///         Algorithm = "SOURCE_IP",
+    ///         Protocol = "TCP",
+    ///         ListenerIp = "10.12.118.224",
+    ///         ListenerPort = 8081,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
@@ -132,6 +215,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// </summary>
         [Output("listenerPort")]
         public Output<int> ListenerPort { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] A name of that Network Load Balancer forwarding rule.
@@ -232,6 +321,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         public Input<int> ListenerPort { get; set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] A name of that Network Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
@@ -295,6 +390,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// </summary>
         [Input("listenerPort")]
         public Input<int>? ListenerPort { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] A name of that Network Load Balancer forwarding rule.

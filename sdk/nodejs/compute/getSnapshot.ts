@@ -135,6 +135,10 @@ export interface GetSnapshotResult {
      */
     readonly ramHotUnplug: boolean;
     /**
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     */
+    readonly requireLegacyBios: boolean;
+    /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
     readonly secAuthProtection: boolean;

@@ -27,7 +27,7 @@ class GetRegistryTokenResult:
     """
     A collection of values returned by getRegistryToken.
     """
-    def __init__(__self__, credentials=None, expiry_date=None, id=None, name=None, partial_match=None, registry_id=None, scopes=None, status=None):
+    def __init__(__self__, credentials=None, expiry_date=None, id=None, location=None, name=None, partial_match=None, registry_id=None, scopes=None, status=None):
         if credentials and not isinstance(credentials, list):
             raise TypeError("Expected argument 'credentials' to be a list")
         pulumi.set(__self__, "credentials", credentials)
@@ -37,6 +37,9 @@ class GetRegistryTokenResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -73,6 +76,11 @@ class GetRegistryTokenResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
 
@@ -106,6 +114,7 @@ class AwaitableGetRegistryTokenResult(GetRegistryTokenResult):
             credentials=self.credentials,
             expiry_date=self.expiry_date,
             id=self.id,
+            location=self.location,
             name=self.name,
             partial_match=self.partial_match,
             registry_id=self.registry_id,
@@ -114,6 +123,7 @@ class AwaitableGetRegistryTokenResult(GetRegistryTokenResult):
 
 
 def get_registry_token(id: Optional[_builtins.str] = None,
+                       location: Optional[_builtins.str] = None,
                        name: Optional[_builtins.str] = None,
                        partial_match: Optional[_builtins.bool] = None,
                        registry_id: Optional[_builtins.str] = None,
@@ -164,6 +174,7 @@ def get_registry_token(id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     __args__['registryId'] = registry_id
@@ -174,12 +185,14 @@ def get_registry_token(id: Optional[_builtins.str] = None,
         credentials=pulumi.get(__ret__, 'credentials'),
         expiry_date=pulumi.get(__ret__, 'expiry_date'),
         id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         registry_id=pulumi.get(__ret__, 'registry_id'),
         scopes=pulumi.get(__ret__, 'scopes'),
         status=pulumi.get(__ret__, 'status'))
 def get_registry_token_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                              location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                               partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                               registry_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -230,6 +243,7 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[_builtins.str]]
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     __args__['partialMatch'] = partial_match
     __args__['registryId'] = registry_id
@@ -239,6 +253,7 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[_builtins.str]]
         credentials=pulumi.get(__response__, 'credentials'),
         expiry_date=pulumi.get(__response__, 'expiry_date'),
         id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name'),
         partial_match=pulumi.get(__response__, 'partial_match'),
         registry_id=pulumi.get(__response__, 'registry_id'),

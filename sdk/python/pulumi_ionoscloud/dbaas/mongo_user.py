@@ -24,6 +24,7 @@ class MongoUserArgs:
                  cluster_id: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]] = None):
         """
         The set of arguments for constructing a MongoUser resource.
@@ -31,11 +32,14 @@ class MongoUserArgs:
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
 
@@ -77,6 +81,18 @@ class MongoUserArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]]:
         """
         [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
@@ -92,6 +108,7 @@ class MongoUserArgs:
 class _MongoUserState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
@@ -99,12 +116,15 @@ class _MongoUserState:
         Input properties used for looking up and filtering MongoUser resources.
 
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if roles is not None:
@@ -123,6 +143,18 @@ class _MongoUserState:
     @cluster_id.setter
     def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -168,6 +200,7 @@ class MongoUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -293,6 +326,7 @@ class MongoUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -437,6 +471,7 @@ class MongoUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -452,6 +487,7 @@ class MongoUser(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["location"] = location
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -472,6 +508,7 @@ class MongoUser(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
             roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
             username: Optional[pulumi.Input[_builtins.str]] = None) -> 'MongoUser':
@@ -483,6 +520,7 @@ class MongoUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
@@ -492,6 +530,7 @@ class MongoUser(pulumi.CustomResource):
         __props__ = _MongoUserState.__new__(_MongoUserState)
 
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["location"] = location
         __props__.__dict__["password"] = password
         __props__.__dict__["roles"] = roles
         __props__.__dict__["username"] = username
@@ -504,6 +543,14 @@ class MongoUser(pulumi.CustomResource):
         [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

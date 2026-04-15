@@ -22,6 +22,9 @@ __all__ = [
     'CubeServerNicFirewall',
     'CubeServerVolume',
     'DatacenterCpuArchitecture',
+    'GPUServerNic',
+    'GPUServerNicFirewall',
+    'GPUServerVolume',
     'GroupUser',
     'IPBlockIpConsumer',
     'LanIpFailover',
@@ -46,6 +49,11 @@ __all__ = [
     'GetCubeServerNicFirewallRuleResult',
     'GetCubeServerVolumeResult',
     'GetDatacenterCpuArchitectureResult',
+    'GetGPUServerCdromResult',
+    'GetGPUServerNicResult',
+    'GetGPUServerNicFirewallRuleResult',
+    'GetGPUServerVolumeResult',
+    'GetGpusGpusResult',
     'GetGroupUserResult',
     'GetIPBlockIpConsumerResult',
     'GetLanIpFailoverResult',
@@ -68,6 +76,7 @@ __all__ = [
     'GetTargetGroupHealthCheckResult',
     'GetTargetGroupHttpHealthCheckResult',
     'GetTargetGroupTargetResult',
+    'GetTemplateGpusResult',
     'GetUserGroupResult',
     'GetVCPUServerCdromResult',
     'GetVCPUServerLabelResult',
@@ -248,6 +257,7 @@ class CubeServerNic(dict):
                  firewall: Optional['outputs.CubeServerNicFirewall'] = None,
                  firewall_active: Optional[_builtins.bool] = None,
                  firewall_type: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
                  ips: Optional[Sequence[_builtins.str]] = None,
                  ipv6_cidr_block: Optional[_builtins.str] = None,
                  ipv6_ips: Optional[Sequence[_builtins.str]] = None,
@@ -257,6 +267,8 @@ class CubeServerNic(dict):
                  security_groups_ids: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param 'CubeServerNicFirewallArgs' firewall: Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        :param Sequence[_builtins.str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         :param _builtins.str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
         :param Sequence[_builtins.str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param _builtins.str name: [string] The name of the server.
@@ -275,6 +287,8 @@ class CubeServerNic(dict):
             pulumi.set(__self__, "firewall_active", firewall_active)
         if firewall_type is not None:
             pulumi.set(__self__, "firewall_type", firewall_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if ipv6_cidr_block is not None:
@@ -316,6 +330,9 @@ class CubeServerNic(dict):
     @_builtins.property
     @pulumi.getter
     def firewall(self) -> Optional['outputs.CubeServerNicFirewall']:
+        """
+        Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        """
         return pulumi.get(self, "firewall")
 
     @_builtins.property
@@ -330,7 +347,15 @@ class CubeServerNic(dict):
 
     @_builtins.property
     @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
     def ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
         return pulumi.get(self, "ips")
 
     @_builtins.property
@@ -411,6 +436,7 @@ class CubeServerNicFirewall(dict):
                  protocol: _builtins.str,
                  icmp_code: Optional[_builtins.str] = None,
                  icmp_type: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  port_range_end: Optional[_builtins.int] = None,
                  port_range_start: Optional[_builtins.int] = None,
@@ -426,6 +452,8 @@ class CubeServerNicFirewall(dict):
             pulumi.set(__self__, "icmp_code", icmp_code)
         if icmp_type is not None:
             pulumi.set(__self__, "icmp_type", icmp_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if port_range_end is not None:
@@ -455,6 +483,11 @@ class CubeServerNicFirewall(dict):
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "icmp_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -516,6 +549,8 @@ class CubeServerVolume(dict):
             suggest = "disc_virtio_hot_plug"
         elif key == "discVirtioHotUnplug":
             suggest = "disc_virtio_hot_unplug"
+        elif key == "exposeSerial":
+            suggest = "expose_serial"
         elif key == "imagePassword":
             suggest = "image_password"
         elif key == "licenceType":
@@ -528,6 +563,8 @@ class CubeServerVolume(dict):
             suggest = "pci_slot"
         elif key == "ramHotPlug":
             suggest = "ram_hot_plug"
+        elif key == "requireLegacyBios":
+            suggest = "require_legacy_bios"
         elif key == "sshKeyPaths":
             suggest = "ssh_key_paths"
         elif key == "userData":
@@ -554,6 +591,7 @@ class CubeServerVolume(dict):
                  device_number: Optional[_builtins.int] = None,
                  disc_virtio_hot_plug: Optional[_builtins.bool] = None,
                  disc_virtio_hot_unplug: Optional[_builtins.bool] = None,
+                 expose_serial: Optional[_builtins.bool] = None,
                  image_password: Optional[_builtins.str] = None,
                  licence_type: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
@@ -561,15 +599,18 @@ class CubeServerVolume(dict):
                  nic_hot_unplug: Optional[_builtins.bool] = None,
                  pci_slot: Optional[_builtins.int] = None,
                  ram_hot_plug: Optional[_builtins.bool] = None,
+                 require_legacy_bios: Optional[_builtins.bool] = None,
                  ssh_key_paths: Optional[Sequence[_builtins.str]] = None,
                  user_data: Optional[_builtins.str] = None):
         """
         :param _builtins.str availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
         :param _builtins.str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param _builtins.str image_password: [string] Required if `ssh_key_path` is not provided.
         :param _builtins.str licence_type: [string] Sets the OS type of the server.
         :param _builtins.str name: [string] The name of the server.
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param Sequence[_builtins.str] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
         :param _builtins.str user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
         """
@@ -590,6 +631,8 @@ class CubeServerVolume(dict):
             pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         if disc_virtio_hot_unplug is not None:
             pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
         if image_password is not None:
             pulumi.set(__self__, "image_password", image_password)
         if licence_type is not None:
@@ -604,6 +647,8 @@ class CubeServerVolume(dict):
             pulumi.set(__self__, "pci_slot", pci_slot)
         if ram_hot_plug is not None:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if ssh_key_paths is not None:
             pulumi.set(__self__, "ssh_key_paths", ssh_key_paths)
         if user_data is not None:
@@ -664,6 +709,14 @@ class CubeServerVolume(dict):
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[_builtins.bool]:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter(name="imagePassword")
     @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[_builtins.str]:
@@ -707,6 +760,14 @@ class CubeServerVolume(dict):
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[_builtins.bool]:
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[_builtins.bool]:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
@@ -803,6 +864,546 @@ class DatacenterCpuArchitecture(dict):
 
 
 @pulumi.output_type
+class GPUServerNic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "firewallActive":
+            suggest = "firewall_active"
+        elif key == "firewallType":
+            suggest = "firewall_type"
+        elif key == "ipv6CidrBlock":
+            suggest = "ipv6_cidr_block"
+        elif key == "ipv6Ips":
+            suggest = "ipv6_ips"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+        elif key == "securityGroupsIds":
+            suggest = "security_groups_ids"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GPUServerNic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GPUServerNic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GPUServerNic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 lan: _builtins.int,
+                 device_number: Optional[_builtins.int] = None,
+                 dhcp: Optional[_builtins.bool] = None,
+                 dhcpv6: Optional[_builtins.bool] = None,
+                 firewall: Optional['outputs.GPUServerNicFirewall'] = None,
+                 firewall_active: Optional[_builtins.bool] = None,
+                 firewall_type: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 ips: Optional[Sequence[_builtins.str]] = None,
+                 ipv6_cidr_block: Optional[_builtins.str] = None,
+                 ipv6_ips: Optional[Sequence[_builtins.str]] = None,
+                 mac: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 pci_slot: Optional[_builtins.int] = None,
+                 security_groups_ids: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param 'GPUServerNicFirewallArgs' firewall: Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        :param Sequence[_builtins.str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        :param _builtins.str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param Sequence[_builtins.str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        :param _builtins.str name: [string] The name of the server.
+        :param Sequence[_builtins.str] security_groups_ids: The list of Security Group IDs for the resource.
+        """
+        pulumi.set(__self__, "lan", lan)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+        if firewall is not None:
+            pulumi.set(__self__, "firewall", firewall)
+        if firewall_active is not None:
+            pulumi.set(__self__, "firewall_active", firewall_active)
+        if firewall_type is not None:
+            pulumi.set(__self__, "firewall_type", firewall_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_ips is not None:
+            pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if security_groups_ids is not None:
+            pulumi.set(__self__, "security_groups_ids", security_groups_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def lan(self) -> _builtins.int:
+        return pulumi.get(self, "lan")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "device_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def dhcp(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "dhcp")
+
+    @_builtins.property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[_builtins.bool]:
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
+        return pulumi.get(self, "dhcpv6")
+
+    @_builtins.property
+    @pulumi.getter
+    def firewall(self) -> Optional['outputs.GPUServerNicFirewall']:
+        """
+        Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        """
+        return pulumi.get(self, "firewall")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "firewall_active")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "firewall_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
+        return pulumi.get(self, "ips")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[_builtins.str]:
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
+        return pulumi.get(self, "ipv6_ips")
+
+    @_builtins.property
+    @pulumi.getter
+    def mac(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "mac")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "pci_slot")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The list of Security Group IDs for the resource.
+        """
+        return pulumi.get(self, "security_groups_ids")
+
+
+@pulumi.output_type
+class GPUServerNicFirewall(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "icmpCode":
+            suggest = "icmp_code"
+        elif key == "icmpType":
+            suggest = "icmp_type"
+        elif key == "portRangeEnd":
+            suggest = "port_range_end"
+        elif key == "portRangeStart":
+            suggest = "port_range_start"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+        elif key == "sourceMac":
+            suggest = "source_mac"
+        elif key == "targetIp":
+            suggest = "target_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GPUServerNicFirewall. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GPUServerNicFirewall.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GPUServerNicFirewall.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 protocol: _builtins.str,
+                 icmp_code: Optional[_builtins.str] = None,
+                 icmp_type: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 port_range_end: Optional[_builtins.int] = None,
+                 port_range_start: Optional[_builtins.int] = None,
+                 source_ip: Optional[_builtins.str] = None,
+                 source_mac: Optional[_builtins.str] = None,
+                 target_ip: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port_range_end is not None:
+            pulumi.set(__self__, "port_range_end", port_range_end)
+        if port_range_start is not None:
+            pulumi.set(__self__, "port_range_start", port_range_start)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+        if source_mac is not None:
+            pulumi.set(__self__, "source_mac", source_mac)
+        if target_ip is not None:
+            pulumi.set(__self__, "target_ip", target_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "icmp_code")
+
+    @_builtins.property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "icmp_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "port_range_end")
+
+    @_builtins.property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "port_range_start")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "source_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "source_mac")
+
+    @_builtins.property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "target_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GPUServerVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "backupUnitId":
+            suggest = "backup_unit_id"
+        elif key == "bootServer":
+            suggest = "boot_server"
+        elif key == "cpuHotPlug":
+            suggest = "cpu_hot_plug"
+        elif key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "discVirtioHotPlug":
+            suggest = "disc_virtio_hot_plug"
+        elif key == "discVirtioHotUnplug":
+            suggest = "disc_virtio_hot_unplug"
+        elif key == "diskType":
+            suggest = "disk_type"
+        elif key == "exposeSerial":
+            suggest = "expose_serial"
+        elif key == "licenceType":
+            suggest = "licence_type"
+        elif key == "nicHotPlug":
+            suggest = "nic_hot_plug"
+        elif key == "nicHotUnplug":
+            suggest = "nic_hot_unplug"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+        elif key == "ramHotPlug":
+            suggest = "ram_hot_plug"
+        elif key == "requireLegacyBios":
+            suggest = "require_legacy_bios"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GPUServerVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GPUServerVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GPUServerVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 availability_zone: Optional[_builtins.str] = None,
+                 backup_unit_id: Optional[_builtins.str] = None,
+                 boot_server: Optional[_builtins.str] = None,
+                 bus: Optional[_builtins.str] = None,
+                 cpu_hot_plug: Optional[_builtins.bool] = None,
+                 device_number: Optional[_builtins.int] = None,
+                 disc_virtio_hot_plug: Optional[_builtins.bool] = None,
+                 disc_virtio_hot_unplug: Optional[_builtins.bool] = None,
+                 disk_type: Optional[_builtins.str] = None,
+                 expose_serial: Optional[_builtins.bool] = None,
+                 licence_type: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 nic_hot_plug: Optional[_builtins.bool] = None,
+                 nic_hot_unplug: Optional[_builtins.bool] = None,
+                 pci_slot: Optional[_builtins.int] = None,
+                 ram_hot_plug: Optional[_builtins.bool] = None,
+                 require_legacy_bios: Optional[_builtins.bool] = None,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
+        :param _builtins.str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        :param _builtins.str licence_type: [string] Sets the OS type of the server.
+        :param _builtins.str name: [string] The name of the server.
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        :param _builtins.str user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if backup_unit_id is not None:
+            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        if boot_server is not None:
+            pulumi.set(__self__, "boot_server", boot_server)
+        if bus is not None:
+            pulumi.set(__self__, "bus", bus)
+        if cpu_hot_plug is not None:
+            pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if disc_virtio_hot_plug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        if disc_virtio_hot_unplug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if disk_type is not None:
+            pulumi.set(__self__, "disk_type", disk_type)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
+        if licence_type is not None:
+            pulumi.set(__self__, "licence_type", licence_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nic_hot_plug is not None:
+            pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        if nic_hot_unplug is not None:
+            pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if ram_hot_plug is not None:
+            pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[_builtins.str]:
+        """
+        [string] The availability zone in which the server should exist. This property is immutable.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> Optional[_builtins.str]:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> Optional[_builtins.str]:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @_builtins.property
+    @pulumi.getter
+    def bus(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "bus")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "device_number")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "disk_type")
+
+    @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[_builtins.bool]:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> Optional[_builtins.str]:
+        """
+        [string] Sets the OS type of the server.
+        """
+        return pulumi.get(self, "licence_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[_builtins.int]:
+        return pulumi.get(self, "pci_slot")
+
+    @_builtins.property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[_builtins.bool]:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
 class GroupUser(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -831,8 +1432,7 @@ class GroupUser(dict):
                  first_name: Optional[_builtins.str] = None,
                  force_sec_auth: Optional[_builtins.bool] = None,
                  id: Optional[_builtins.str] = None,
-                 last_name: Optional[_builtins.str] = None,
-                 password: Optional[_builtins.str] = None):
+                 last_name: Optional[_builtins.str] = None):
         if administrator is not None:
             pulumi.set(__self__, "administrator", administrator)
         if email is not None:
@@ -845,8 +1445,6 @@ class GroupUser(dict):
             pulumi.set(__self__, "id", id)
         if last_name is not None:
             pulumi.set(__self__, "last_name", last_name)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
 
     @_builtins.property
     @pulumi.getter
@@ -877,11 +1475,6 @@ class GroupUser(dict):
     @pulumi.getter(name="lastName")
     def last_name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "last_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "password")
 
 
 @pulumi.output_type
@@ -1426,7 +2019,7 @@ class ServerNicFirewall(dict):
                  type: Optional[_builtins.str] = None):
         """
         :param _builtins.str name: [string] The name of the server.
-        :param _builtins.str type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        :param _builtins.str type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         """
         pulumi.set(__self__, "protocol", protocol)
         if icmp_code is not None:
@@ -1507,7 +2100,7 @@ class ServerNicFirewall(dict):
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         """
         return pulumi.get(self, "type")
 
@@ -1533,6 +2126,8 @@ class ServerVolume(dict):
             suggest = "disc_virtio_hot_plug"
         elif key == "discVirtioHotUnplug":
             suggest = "disc_virtio_hot_unplug"
+        elif key == "exposeSerial":
+            suggest = "expose_serial"
         elif key == "imagePassword":
             suggest = "image_password"
         elif key == "licenceType":
@@ -1545,6 +2140,8 @@ class ServerVolume(dict):
             suggest = "pci_slot"
         elif key == "ramHotPlug":
             suggest = "ram_hot_plug"
+        elif key == "requireLegacyBios":
+            suggest = "require_legacy_bios"
         elif key == "sshKeyPaths":
             suggest = "ssh_key_paths"
         elif key == "sshKeys":
@@ -1573,6 +2170,7 @@ class ServerVolume(dict):
                  device_number: Optional[_builtins.int] = None,
                  disc_virtio_hot_plug: Optional[_builtins.bool] = None,
                  disc_virtio_hot_unplug: Optional[_builtins.bool] = None,
+                 expose_serial: Optional[_builtins.bool] = None,
                  image_password: Optional[_builtins.str] = None,
                  licence_type: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
@@ -1580,6 +2178,7 @@ class ServerVolume(dict):
                  nic_hot_unplug: Optional[_builtins.bool] = None,
                  pci_slot: Optional[_builtins.int] = None,
                  ram_hot_plug: Optional[_builtins.bool] = None,
+                 require_legacy_bios: Optional[_builtins.bool] = None,
                  size: Optional[_builtins.int] = None,
                  ssh_key_paths: Optional[Sequence[_builtins.str]] = None,
                  ssh_keys: Optional[Sequence[_builtins.str]] = None,
@@ -1588,9 +2187,11 @@ class ServerVolume(dict):
         :param _builtins.str availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param _builtins.str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param _builtins.str image_password: [string] Required if `ssh_key_path` is not provided.
         :param _builtins.str licence_type: [string] Sets the OS type of the server.
         :param _builtins.str name: [string] The name of the server.
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param _builtins.int size: The size of the volume in GB.
         :param Sequence[_builtins.str] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param Sequence[_builtins.str] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
@@ -1613,6 +2214,8 @@ class ServerVolume(dict):
             pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         if disc_virtio_hot_unplug is not None:
             pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
         if image_password is not None:
             pulumi.set(__self__, "image_password", image_password)
         if licence_type is not None:
@@ -1627,6 +2230,8 @@ class ServerVolume(dict):
             pulumi.set(__self__, "pci_slot", pci_slot)
         if ram_hot_plug is not None:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if ssh_key_paths is not None:
@@ -1691,6 +2296,14 @@ class ServerVolume(dict):
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[_builtins.bool]:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter(name="imagePassword")
     @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[_builtins.str]:
@@ -1734,6 +2347,14 @@ class ServerVolume(dict):
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[_builtins.bool]:
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[_builtins.bool]:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter
@@ -2090,14 +2711,13 @@ class VCPUServerNic(dict):
                  pci_slot: Optional[_builtins.int] = None,
                  security_groups_ids: Optional[Sequence[_builtins.str]] = None):
         """
+        :param _builtins.bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
         :param Sequence['VCPUServerNicFirewallArgs'] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
         :param Sequence[_builtins.str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        :param _builtins.str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param Sequence[_builtins.str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
         :param _builtins.str name: [string] The name of the server.
         :param Sequence[_builtins.str] security_groups_ids: The list of Security Group IDs for the resource.
-               
-               > **⚠ WARNING**
-               >
-               > ssh_keys field is immutable.
         """
         pulumi.set(__self__, "lan", lan)
         if device_number is not None:
@@ -2147,6 +2767,9 @@ class VCPUServerNic(dict):
     @_builtins.property
     @pulumi.getter
     def dhcpv6(self) -> Optional[_builtins.bool]:
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
         return pulumi.get(self, "dhcpv6")
 
     @_builtins.property
@@ -2183,11 +2806,17 @@ class VCPUServerNic(dict):
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> Optional[_builtins.str]:
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @_builtins.property
     @pulumi.getter(name="ipv6Ips")
     def ipv6_ips(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
         return pulumi.get(self, "ipv6_ips")
 
     @_builtins.property
@@ -2213,10 +2842,6 @@ class VCPUServerNic(dict):
     def security_groups_ids(self) -> Optional[Sequence[_builtins.str]]:
         """
         The list of Security Group IDs for the resource.
-
-        > **⚠ WARNING**
-        >
-        > ssh_keys field is immutable.
         """
         return pulumi.get(self, "security_groups_ids")
 
@@ -2369,6 +2994,8 @@ class VCPUServerVolume(dict):
             suggest = "disc_virtio_hot_plug"
         elif key == "discVirtioHotUnplug":
             suggest = "disc_virtio_hot_unplug"
+        elif key == "exposeSerial":
+            suggest = "expose_serial"
         elif key == "licenceType":
             suggest = "licence_type"
         elif key == "nicHotPlug":
@@ -2379,6 +3006,8 @@ class VCPUServerVolume(dict):
             suggest = "pci_slot"
         elif key == "ramHotPlug":
             suggest = "ram_hot_plug"
+        elif key == "requireLegacyBios":
+            suggest = "require_legacy_bios"
         elif key == "userData":
             suggest = "user_data"
 
@@ -2403,20 +3032,24 @@ class VCPUServerVolume(dict):
                  device_number: Optional[_builtins.int] = None,
                  disc_virtio_hot_plug: Optional[_builtins.bool] = None,
                  disc_virtio_hot_unplug: Optional[_builtins.bool] = None,
+                 expose_serial: Optional[_builtins.bool] = None,
                  licence_type: Optional[_builtins.str] = None,
                  name: Optional[_builtins.str] = None,
                  nic_hot_plug: Optional[_builtins.bool] = None,
                  nic_hot_unplug: Optional[_builtins.bool] = None,
                  pci_slot: Optional[_builtins.int] = None,
                  ram_hot_plug: Optional[_builtins.bool] = None,
+                 require_legacy_bios: Optional[_builtins.bool] = None,
                  size: Optional[_builtins.int] = None,
                  user_data: Optional[_builtins.str] = None):
         """
         :param _builtins.str availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param _builtins.str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param _builtins.str licence_type: [string] Sets the OS type of the server.
         :param _builtins.str name: [string] The name of the server.
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param _builtins.int size: The size of the volume in GB.
         :param _builtins.str user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
         """
@@ -2437,6 +3070,8 @@ class VCPUServerVolume(dict):
             pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         if disc_virtio_hot_unplug is not None:
             pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if expose_serial is not None:
+            pulumi.set(__self__, "expose_serial", expose_serial)
         if licence_type is not None:
             pulumi.set(__self__, "licence_type", licence_type)
         if name is not None:
@@ -2449,6 +3084,8 @@ class VCPUServerVolume(dict):
             pulumi.set(__self__, "pci_slot", pci_slot)
         if ram_hot_plug is not None:
             pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if require_legacy_bios is not None:
+            pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if user_data is not None:
@@ -2509,6 +3146,14 @@ class VCPUServerVolume(dict):
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> Optional[_builtins.bool]:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> Optional[_builtins.str]:
         """
@@ -2543,6 +3188,14 @@ class VCPUServerVolume(dict):
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[_builtins.bool]:
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> Optional[_builtins.bool]:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter
@@ -3215,6 +3868,7 @@ class GetCubeServerVolumeResult(dict):
                  nic_hot_unplug: _builtins.bool,
                  pci_slot: _builtins.int,
                  ram_hot_plug: _builtins.bool,
+                 require_legacy_bios: _builtins.bool,
                  ssh_keys: Sequence[_builtins.str],
                  type: _builtins.str,
                  user_data: Optional[_builtins.str] = None):
@@ -3237,6 +3891,7 @@ class GetCubeServerVolumeResult(dict):
         :param _builtins.bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
         :param _builtins.int pci_slot: The PCI slot number of the Nic
         :param _builtins.bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param Sequence[_builtins.str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
         :param _builtins.str type: The type of firewall rule
         :param _builtins.str user_data: The cloud-init configuration for the volume as base64 encoded string
@@ -3258,6 +3913,7 @@ class GetCubeServerVolumeResult(dict):
         pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
         pulumi.set(__self__, "pci_slot", pci_slot)
         pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         pulumi.set(__self__, "ssh_keys", ssh_keys)
         pulumi.set(__self__, "type", type)
         if user_data is not None:
@@ -3399,6 +4055,14 @@ class GetCubeServerVolumeResult(dict):
         return pulumi.get(self, "ram_hot_plug")
 
     @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @_builtins.property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> Sequence[_builtins.str]:
         """
@@ -3475,6 +4139,763 @@ class GetDatacenterCpuArchitectureResult(dict):
 
 
 @pulumi.output_type
+class GetGPUServerCdromResult(dict):
+    def __init__(__self__, *,
+                 cloud_init: _builtins.str,
+                 cpu_hot_plug: _builtins.bool,
+                 cpu_hot_unplug: _builtins.bool,
+                 description: _builtins.str,
+                 disc_scsi_hot_plug: _builtins.bool,
+                 disc_scsi_hot_unplug: _builtins.bool,
+                 disc_virtio_hot_plug: _builtins.bool,
+                 disc_virtio_hot_unplug: _builtins.bool,
+                 id: _builtins.str,
+                 image_aliases: Sequence[_builtins.str],
+                 image_type: _builtins.str,
+                 licence_type: _builtins.str,
+                 location: _builtins.str,
+                 name: _builtins.str,
+                 nic_hot_plug: _builtins.bool,
+                 nic_hot_unplug: _builtins.bool,
+                 public: _builtins.bool,
+                 ram_hot_plug: _builtins.bool,
+                 ram_hot_unplug: _builtins.bool,
+                 size: _builtins.float):
+        """
+        :param _builtins.str cloud_init: Cloud init compatibility
+        :param _builtins.bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param _builtins.bool cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
+        :param _builtins.str description: Description of cdrom
+        :param _builtins.bool disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
+        :param _builtins.bool disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required)
+        :param _builtins.bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param _builtins.bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param _builtins.str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[_builtins.str] image_aliases: List of image aliases mapped for this Image
+        :param _builtins.str image_type: Type of image
+        :param _builtins.str licence_type: OS type of this volume
+        :param _builtins.str location: Location of that image/snapshot
+        :param _builtins.str name: Name of an existing server that you want to search for.
+        :param _builtins.bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param _builtins.bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param _builtins.bool public: Indicates if the image is part of the public repository or not
+        :param _builtins.bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param _builtins.bool ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param _builtins.float size: The size of the image in GB
+        """
+        pulumi.set(__self__, "cloud_init", cloud_init)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "cpu_hot_unplug", cpu_hot_unplug)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disc_scsi_hot_plug", disc_scsi_hot_plug)
+        pulumi.set(__self__, "disc_scsi_hot_unplug", disc_scsi_hot_unplug)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_aliases", image_aliases)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> _builtins.str:
+        """
+        Cloud init compatibility
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuHotUnplug")
+    def cpu_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of CPU hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Description of cdrom
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="discScsiHotPlug")
+    def disc_scsi_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of SCSI drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="discScsiHotUnplug")
+    def disc_scsi_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of SCSI drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageAliases")
+    def image_aliases(self) -> Sequence[_builtins.str]:
+        """
+        List of image aliases mapped for this Image
+        """
+        return pulumi.get(self, "image_aliases")
+
+    @_builtins.property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> _builtins.str:
+        """
+        Type of image
+        """
+        return pulumi.get(self, "image_type")
+
+    @_builtins.property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> _builtins.str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> _builtins.bool:
+        """
+        Indicates if the image is part of the public repository or not
+        """
+        return pulumi.get(self, "public")
+
+    @_builtins.property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="ramHotUnplug")
+    def ram_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of memory hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> _builtins.float:
+        """
+        The size of the image in GB
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetGPUServerNicResult(dict):
+    def __init__(__self__, *,
+                 device_number: _builtins.int,
+                 dhcp: _builtins.bool,
+                 firewall_active: _builtins.bool,
+                 firewall_rules: Sequence['outputs.GetGPUServerNicFirewallRuleResult'],
+                 firewall_type: _builtins.str,
+                 id: _builtins.str,
+                 ips: Sequence[_builtins.str],
+                 ipv6_cidr_block: _builtins.str,
+                 ipv6_ips: Sequence[_builtins.str],
+                 lan: _builtins.int,
+                 mac: _builtins.str,
+                 name: _builtins.str,
+                 pci_slot: _builtins.int,
+                 security_groups_ids: Sequence[_builtins.str],
+                 dhcpv6: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.int device_number: The Logical Unit Number of the storage volume
+        :param _builtins.str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param _builtins.str name: Name of an existing server that you want to search for.
+        :param _builtins.int pci_slot: The PCI slot number of the storage volume
+        """
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "dhcp", dhcp)
+        pulumi.set(__self__, "firewall_active", firewall_active)
+        pulumi.set(__self__, "firewall_rules", firewall_rules)
+        pulumi.set(__self__, "firewall_type", firewall_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        pulumi.set(__self__, "lan", lan)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "security_groups_ids", security_groups_ids)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+
+    @_builtins.property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> _builtins.int:
+        """
+        The Logical Unit Number of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def dhcp(self) -> _builtins.bool:
+        return pulumi.get(self, "dhcp")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> _builtins.bool:
+        return pulumi.get(self, "firewall_active")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallRules")
+    def firewall_rules(self) -> Sequence['outputs.GetGPUServerNicFirewallRuleResult']:
+        return pulumi.get(self, "firewall_rules")
+
+    @_builtins.property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> _builtins.str:
+        return pulumi.get(self, "firewall_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def ips(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "ips")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> _builtins.str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @_builtins.property
+    @pulumi.getter
+    def lan(self) -> _builtins.int:
+        return pulumi.get(self, "lan")
+
+    @_builtins.property
+    @pulumi.getter
+    def mac(self) -> _builtins.str:
+        return pulumi.get(self, "mac")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> _builtins.int:
+        """
+        The PCI slot number of the storage volume
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @_builtins.property
+    @pulumi.getter(name="securityGroupsIds")
+    def security_groups_ids(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "security_groups_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "dhcpv6")
+
+
+@pulumi.output_type
+class GetGPUServerNicFirewallRuleResult(dict):
+    def __init__(__self__, *,
+                 icmp_code: _builtins.int,
+                 icmp_type: _builtins.int,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 port_range_end: _builtins.int,
+                 port_range_start: _builtins.int,
+                 protocol: _builtins.str,
+                 source_ip: _builtins.str,
+                 source_mac: _builtins.str,
+                 target_ip: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param _builtins.str name: Name of an existing server that you want to search for.
+        :param _builtins.str type: Hardware type of the volume.
+        """
+        pulumi.set(__self__, "icmp_code", icmp_code)
+        pulumi.set(__self__, "icmp_type", icmp_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_range_end", port_range_end)
+        pulumi.set(__self__, "port_range_start", port_range_start)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "source_mac", source_mac)
+        pulumi.set(__self__, "target_ip", target_ip)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> _builtins.int:
+        return pulumi.get(self, "icmp_code")
+
+    @_builtins.property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> _builtins.int:
+        return pulumi.get(self, "icmp_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> _builtins.int:
+        return pulumi.get(self, "port_range_end")
+
+    @_builtins.property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> _builtins.int:
+        return pulumi.get(self, "port_range_start")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> _builtins.str:
+        return pulumi.get(self, "source_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> _builtins.str:
+        return pulumi.get(self, "source_mac")
+
+    @_builtins.property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> _builtins.str:
+        return pulumi.get(self, "target_ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Hardware type of the volume.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetGPUServerVolumeResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: _builtins.str,
+                 backup_unit_id: _builtins.str,
+                 boot_server: _builtins.str,
+                 bus: _builtins.str,
+                 cpu_hot_plug: _builtins.bool,
+                 device_number: _builtins.int,
+                 disc_virtio_hot_plug: _builtins.bool,
+                 disc_virtio_hot_unplug: _builtins.bool,
+                 id: _builtins.str,
+                 image_name: _builtins.str,
+                 image_password: _builtins.str,
+                 licence_type: _builtins.str,
+                 name: _builtins.str,
+                 nic_hot_plug: _builtins.bool,
+                 nic_hot_unplug: _builtins.bool,
+                 pci_slot: _builtins.int,
+                 ram_hot_plug: _builtins.bool,
+                 require_legacy_bios: _builtins.bool,
+                 ssh_keys: Sequence[_builtins.str],
+                 type: _builtins.str,
+                 user_data: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str availability_zone: The availability zone in which the volume should exist
+        :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.str bus: The bus type of the volume
+        :param _builtins.bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param _builtins.int device_number: The Logical Unit Number of the storage volume
+        :param _builtins.bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param _builtins.bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param _builtins.str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param _builtins.str image_password: Initial password to be set for installed OS
+        :param _builtins.str licence_type: OS type of this volume
+        :param _builtins.str name: Name of an existing server that you want to search for.
+        :param _builtins.bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param _builtins.bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param _builtins.int pci_slot: The PCI slot number of the storage volume
+        :param _builtins.bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        :param Sequence[_builtins.str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        :param _builtins.str type: Hardware type of the volume.
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        pulumi.set(__self__, "boot_server", boot_server)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_password", image_password)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
+        pulumi.set(__self__, "ssh_keys", ssh_keys)
+        pulumi.set(__self__, "type", type)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @_builtins.property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> _builtins.str:
+        """
+        The availability zone in which the volume should exist
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> _builtins.str:
+        return pulumi.get(self, "backup_unit_id")
+
+    @_builtins.property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> _builtins.str:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @_builtins.property
+    @pulumi.getter
+    def bus(self) -> _builtins.str:
+        """
+        The bus type of the volume
+        """
+        return pulumi.get(self, "bus")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> _builtins.int:
+        """
+        The Logical Unit Number of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> _builtins.str:
+        return pulumi.get(self, "image_name")
+
+    @_builtins.property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> _builtins.str:
+        """
+        Initial password to be set for installed OS
+        """
+        return pulumi.get(self, "image_password")
+
+    @_builtins.property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> _builtins.str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> _builtins.bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @_builtins.property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> _builtins.int:
+        """
+        The PCI slot number of the storage volume
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @_builtins.property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> _builtins.bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
+
+    @_builtins.property
+    @pulumi.getter(name="sshKeys")
+    def ssh_keys(self) -> Sequence[_builtins.str]:
+        """
+        Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        """
+        return pulumi.get(self, "ssh_keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Hardware type of the volume.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetGpusGpusResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 model: _builtins.str,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 vendor: _builtins.str):
+        """
+        :param _builtins.str id: The id of the GPU.
+        :param _builtins.str model: The model of the GPU.
+        :param _builtins.str name: The name of the GPU.
+        :param _builtins.str type: The type of the GPU.
+        :param _builtins.str vendor: The vendor of the GPU.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The id of the GPU.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> _builtins.str:
+        """
+        The model of the GPU.
+        """
+        return pulumi.get(self, "model")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the GPU.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the GPU.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        The vendor of the GPU.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
 class GetGroupUserResult(dict):
     def __init__(__self__, *,
                  administrator: _builtins.bool,
@@ -3485,8 +4906,6 @@ class GetGroupUserResult(dict):
                  last_name: _builtins.str):
         """
         :param _builtins.str id: ID of the group you want to search for.
-               
-               Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
         """
         pulumi.set(__self__, "administrator", administrator)
         pulumi.set(__self__, "email", email)
@@ -3520,8 +4939,6 @@ class GetGroupUserResult(dict):
     def id(self) -> _builtins.str:
         """
         ID of the group you want to search for.
-
-        Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
         """
         return pulumi.get(self, "id")
 
@@ -4382,6 +5799,7 @@ class GetServerVolumeResult(dict):
                  device_number: _builtins.int,
                  disc_virtio_hot_plug: _builtins.bool,
                  disc_virtio_hot_unplug: _builtins.bool,
+                 expose_serial: _builtins.bool,
                  id: _builtins.str,
                  image_name: _builtins.str,
                  image_password: _builtins.str,
@@ -4391,6 +5809,7 @@ class GetServerVolumeResult(dict):
                  nic_hot_unplug: _builtins.bool,
                  pci_slot: _builtins.int,
                  ram_hot_plug: _builtins.bool,
+                 require_legacy_bios: _builtins.bool,
                  size: _builtins.int,
                  ssh_keys: Sequence[_builtins.str],
                  type: _builtins.str,
@@ -4404,6 +5823,7 @@ class GetServerVolumeResult(dict):
         :param _builtins.int device_number: The Logical Unit Number (LUN) of the storage volume
         :param _builtins.bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
         :param _builtins.bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param _builtins.str id: ID of the server you want to search for.
                
                `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
@@ -4414,6 +5834,7 @@ class GetServerVolumeResult(dict):
         :param _builtins.bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
         :param _builtins.int pci_slot: The PCI slot number of the Nic
         :param _builtins.bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param _builtins.int size: The size of the volume in GB
         :param Sequence[_builtins.str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
         :param _builtins.str type: The type of firewall rule
@@ -4427,6 +5848,7 @@ class GetServerVolumeResult(dict):
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "expose_serial", expose_serial)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "image_name", image_name)
         pulumi.set(__self__, "image_password", image_password)
@@ -4436,6 +5858,7 @@ class GetServerVolumeResult(dict):
         pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
         pulumi.set(__self__, "pci_slot", pci_slot)
         pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "ssh_keys", ssh_keys)
         pulumi.set(__self__, "type", type)
@@ -4507,6 +5930,14 @@ class GetServerVolumeResult(dict):
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> _builtins.bool:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -4576,6 +6007,14 @@ class GetServerVolumeResult(dict):
         Is capable of memory hot plug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter
@@ -5144,6 +6583,7 @@ class GetServersServerVolumeResult(dict):
                  disc_virtio_hot_plug: _builtins.bool,
                  disc_virtio_hot_unplug: _builtins.bool,
                  disk_type: _builtins.str,
+                 expose_serial: _builtins.bool,
                  id: _builtins.str,
                  image_name: _builtins.str,
                  image_password: _builtins.str,
@@ -5153,11 +6593,14 @@ class GetServersServerVolumeResult(dict):
                  nic_hot_unplug: _builtins.bool,
                  pci_slot: _builtins.int,
                  ram_hot_plug: _builtins.bool,
+                 require_legacy_bios: _builtins.bool,
                  size: _builtins.int,
                  ssh_keys: Sequence[_builtins.str],
                  user_data: Optional[_builtins.str] = None):
         """
         :param _builtins.str boot_server: The UUID of the attached server.
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "backup_unit_id", backup_unit_id)
@@ -5168,6 +6611,7 @@ class GetServersServerVolumeResult(dict):
         pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
         pulumi.set(__self__, "disk_type", disk_type)
+        pulumi.set(__self__, "expose_serial", expose_serial)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "image_name", image_name)
         pulumi.set(__self__, "image_password", image_password)
@@ -5177,6 +6621,7 @@ class GetServersServerVolumeResult(dict):
         pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
         pulumi.set(__self__, "pci_slot", pci_slot)
         pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "ssh_keys", ssh_keys)
         if user_data is not None:
@@ -5231,6 +6676,14 @@ class GetServersServerVolumeResult(dict):
         return pulumi.get(self, "disk_type")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> _builtins.bool:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         return pulumi.get(self, "id")
@@ -5274,6 +6727,14 @@ class GetServersServerVolumeResult(dict):
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> _builtins.bool:
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter
@@ -5463,6 +6924,57 @@ class GetTargetGroupTargetResult(dict):
         Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetTemplateGpusResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 model: _builtins.str,
+                 type: _builtins.str,
+                 vendor: _builtins.str):
+        """
+        :param _builtins.int count: The number of GPUs
+        :param _builtins.str model: The model of the GPU
+        :param _builtins.str type: The type of the GPU
+        :param _builtins.str vendor: The vendor of the GPU
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The number of GPUs
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> _builtins.str:
+        """
+        The model of the GPU
+        """
+        return pulumi.get(self, "model")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the GPU
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        The vendor of the GPU
+        """
+        return pulumi.get(self, "vendor")
 
 
 @pulumi.output_type
@@ -6077,6 +7589,7 @@ class GetVCPUServerVolumeResult(dict):
                  device_number: _builtins.int,
                  disc_virtio_hot_plug: _builtins.bool,
                  disc_virtio_hot_unplug: _builtins.bool,
+                 expose_serial: _builtins.bool,
                  id: _builtins.str,
                  image_name: _builtins.str,
                  image_password: _builtins.str,
@@ -6086,6 +7599,7 @@ class GetVCPUServerVolumeResult(dict):
                  nic_hot_unplug: _builtins.bool,
                  pci_slot: _builtins.int,
                  ram_hot_plug: _builtins.bool,
+                 require_legacy_bios: _builtins.bool,
                  size: _builtins.int,
                  ssh_keys: Sequence[_builtins.str],
                  type: _builtins.str,
@@ -6099,6 +7613,7 @@ class GetVCPUServerVolumeResult(dict):
         :param _builtins.int device_number: The Logical Unit Number (LUN) of the storage volume
         :param _builtins.bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
         :param _builtins.bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param _builtins.bool expose_serial: If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param _builtins.str id: ID of the server you want to search for.
                
                `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
@@ -6109,6 +7624,7 @@ class GetVCPUServerVolumeResult(dict):
         :param _builtins.bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
         :param _builtins.int pci_slot: The PCI slot number of the Nic
         :param _builtins.bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param _builtins.bool require_legacy_bios: Indicates if the image requires the legacy BIOS for compatibility or specific needs.
         :param _builtins.int size: The size of the volume in GB
         :param Sequence[_builtins.str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
         :param _builtins.str type: The type of firewall rule
@@ -6122,6 +7638,7 @@ class GetVCPUServerVolumeResult(dict):
         pulumi.set(__self__, "device_number", device_number)
         pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
         pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "expose_serial", expose_serial)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "image_name", image_name)
         pulumi.set(__self__, "image_password", image_password)
@@ -6131,6 +7648,7 @@ class GetVCPUServerVolumeResult(dict):
         pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
         pulumi.set(__self__, "pci_slot", pci_slot)
         pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "ssh_keys", ssh_keys)
         pulumi.set(__self__, "type", type)
@@ -6202,6 +7720,14 @@ class GetVCPUServerVolumeResult(dict):
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @_builtins.property
+    @pulumi.getter(name="exposeSerial")
+    def expose_serial(self) -> _builtins.bool:
+        """
+        If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        """
+        return pulumi.get(self, "expose_serial")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -6271,6 +7797,14 @@ class GetVCPUServerVolumeResult(dict):
         Is capable of memory hot plug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_plug")
+
+    @_builtins.property
+    @pulumi.getter(name="requireLegacyBios")
+    def require_legacy_bios(self) -> _builtins.bool:
+        """
+        Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        """
+        return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
     @pulumi.getter

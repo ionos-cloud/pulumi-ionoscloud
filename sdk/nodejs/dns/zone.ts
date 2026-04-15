@@ -76,7 +76,7 @@ export class Zone extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -126,7 +126,7 @@ export interface ZoneState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      */
     name?: pulumi.Input<string>;
     /**
@@ -148,7 +148,7 @@ export interface ZoneArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      */
     name?: pulumi.Input<string>;
 }

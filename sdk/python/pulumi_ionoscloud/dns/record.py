@@ -30,10 +30,10 @@ class RecordArgs:
         The set of arguments for constructing a Record resource.
 
         :param pulumi.Input[_builtins.str] content: [string] The content of the DNS Record.
-        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         :param pulumi.Input[_builtins.str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record. This property is immutable.
         :param pulumi.Input[_builtins.int] priority: [int] The priority for the DNS Record.
         :param pulumi.Input[_builtins.int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
         """
@@ -65,7 +65,7 @@ class RecordArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         """
         return pulumi.get(self, "type")
 
@@ -101,7 +101,7 @@ class RecordArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the DNS Record.
+        [string] The name of the DNS Record. This property is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -151,10 +151,10 @@ class _RecordState:
         :param pulumi.Input[_builtins.str] content: [string] The content of the DNS Record.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
         :param pulumi.Input[_builtins.str] fqdn: Fully qualified domain name
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record. This property is immutable.
         :param pulumi.Input[_builtins.int] priority: [int] The priority for the DNS Record.
         :param pulumi.Input[_builtins.int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         :param pulumi.Input[_builtins.str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         if content is not None:
@@ -214,7 +214,7 @@ class _RecordState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The name of the DNS Record.
+        [string] The name of the DNS Record. This property is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -250,7 +250,7 @@ class _RecordState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         """
         return pulumi.get(self, "type")
 
@@ -286,7 +286,7 @@ class Record(pulumi.CustomResource):
                  zone_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **DNS Record**.
+        Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
 
         > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
 
@@ -330,10 +330,10 @@ class Record(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: [string] The content of the DNS Record.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record. This property is immutable.
         :param pulumi.Input[_builtins.int] priority: [int] The priority for the DNS Record.
         :param pulumi.Input[_builtins.int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         :param pulumi.Input[_builtins.str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         ...
@@ -343,7 +343,7 @@ class Record(pulumi.CustomResource):
                  args: RecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DNS Record**.
+        Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
 
         > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
 
@@ -456,10 +456,10 @@ class Record(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] content: [string] The content of the DNS Record.
         :param pulumi.Input[_builtins.bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
         :param pulumi.Input[_builtins.str] fqdn: Fully qualified domain name
-        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the DNS Record. This property is immutable.
         :param pulumi.Input[_builtins.int] priority: [int] The priority for the DNS Record.
         :param pulumi.Input[_builtins.int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        :param pulumi.Input[_builtins.str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         :param pulumi.Input[_builtins.str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -504,7 +504,7 @@ class Record(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The name of the DNS Record.
+        [string] The name of the DNS Record. This property is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -528,7 +528,7 @@ class Record(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
         """
         return pulumi.get(self, "type")
 

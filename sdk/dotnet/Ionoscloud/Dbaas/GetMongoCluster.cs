@@ -172,6 +172,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
         public GetMongoClusterArgs()
         {
         }
@@ -188,6 +194,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         public GetMongoClusterInvokeArgs()
         {

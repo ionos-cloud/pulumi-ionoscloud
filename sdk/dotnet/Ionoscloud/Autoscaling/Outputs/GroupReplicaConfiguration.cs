@@ -23,7 +23,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling.Outputs
         /// </summary>
         public readonly int Cores;
         /// <summary>
-        /// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+        /// [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
         /// </summary>
         public readonly string? CpuFamily;
         /// <summary>

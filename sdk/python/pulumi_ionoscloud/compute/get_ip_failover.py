@@ -26,7 +26,7 @@ class GetIPFailoverResult:
     """
     A collection of values returned by getIPFailover.
     """
-    def __init__(__self__, datacenter_id=None, id=None, ip=None, lan_id=None, nicuuid=None):
+    def __init__(__self__, datacenter_id=None, id=None, ip=None, lan_id=None, location=None, nicuuid=None):
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -39,6 +39,9 @@ class GetIPFailoverResult:
         if lan_id and not isinstance(lan_id, str):
             raise TypeError("Expected argument 'lan_id' to be a str")
         pulumi.set(__self__, "lan_id", lan_id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
         if nicuuid and not isinstance(nicuuid, str):
             raise TypeError("Expected argument 'nicuuid' to be a str")
         pulumi.set(__self__, "nicuuid", nicuuid)
@@ -74,6 +77,11 @@ class GetIPFailoverResult:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter
     def nicuuid(self) -> _builtins.str:
         """
         The ID of a NIC.
@@ -91,12 +99,14 @@ class AwaitableGetIPFailoverResult(GetIPFailoverResult):
             id=self.id,
             ip=self.ip,
             lan_id=self.lan_id,
+            location=self.location,
             nicuuid=self.nicuuid)
 
 
 def get_ip_failover(datacenter_id: Optional[_builtins.str] = None,
                     ip: Optional[_builtins.str] = None,
                     lan_id: Optional[_builtins.str] = None,
+                    location: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIPFailoverResult:
     """
     The **IP Failover data source** can be used to search for and return an existing IP Failover object.
@@ -122,6 +132,7 @@ def get_ip_failover(datacenter_id: Optional[_builtins.str] = None,
     __args__['datacenterId'] = datacenter_id
     __args__['ip'] = ip
     __args__['lanId'] = lan_id
+    __args__['location'] = location
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getIPFailover:getIPFailover', __args__, opts=opts, typ=GetIPFailoverResult).value
 
@@ -130,10 +141,12 @@ def get_ip_failover(datacenter_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         ip=pulumi.get(__ret__, 'ip'),
         lan_id=pulumi.get(__ret__, 'lan_id'),
+        location=pulumi.get(__ret__, 'location'),
         nicuuid=pulumi.get(__ret__, 'nicuuid'))
 def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                            ip: Optional[pulumi.Input[_builtins.str]] = None,
                            lan_id: Optional[pulumi.Input[_builtins.str]] = None,
+                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIPFailoverResult]:
     """
     The **IP Failover data source** can be used to search for and return an existing IP Failover object.
@@ -159,6 +172,7 @@ def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
     __args__['datacenterId'] = datacenter_id
     __args__['ip'] = ip
     __args__['lanId'] = lan_id
+    __args__['location'] = location
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getIPFailover:getIPFailover', __args__, opts=opts, typ=GetIPFailoverResult)
     return __ret__.apply(lambda __response__: GetIPFailoverResult(
@@ -166,4 +180,5 @@ def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] 
         id=pulumi.get(__response__, 'id'),
         ip=pulumi.get(__response__, 'ip'),
         lan_id=pulumi.get(__response__, 'lan_id'),
+        location=pulumi.get(__response__, 'location'),
         nicuuid=pulumi.get(__response__, 'nicuuid')))

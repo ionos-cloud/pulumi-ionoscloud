@@ -25,6 +25,7 @@ class FirewallArgs:
                  server_id: pulumi.Input[_builtins.str],
                  icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
                  port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
@@ -41,6 +42,7 @@ class FirewallArgs:
         :param pulumi.Input[_builtins.str] server_id: [string] The Server ID.
         :param pulumi.Input[_builtins.str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         :param pulumi.Input[_builtins.str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the firewall rule.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         :param pulumi.Input[_builtins.int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
@@ -57,6 +59,8 @@ class FirewallArgs:
             pulumi.set(__self__, "icmp_code", icmp_code)
         if icmp_type is not None:
             pulumi.set(__self__, "icmp_type", icmp_type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if port_range_end is not None:
@@ -143,6 +147,18 @@ class FirewallArgs:
     @icmp_type.setter
     def icmp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "icmp_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -235,6 +251,7 @@ class _FirewallState:
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
@@ -251,6 +268,7 @@ class _FirewallState:
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The Virtual Data Center ID.
         :param pulumi.Input[_builtins.str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         :param pulumi.Input[_builtins.str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the firewall rule.
         :param pulumi.Input[_builtins.str] nic_id: [string] The NIC ID.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
@@ -268,6 +286,8 @@ class _FirewallState:
             pulumi.set(__self__, "icmp_code", icmp_code)
         if icmp_type is not None:
             pulumi.set(__self__, "icmp_type", icmp_type)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nic_id is not None:
@@ -324,6 +344,18 @@ class _FirewallState:
     @icmp_type.setter
     def icmp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "icmp_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
@@ -455,6 +487,7 @@ class Firewall(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
@@ -493,8 +526,6 @@ class Firewall(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -542,6 +573,7 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The Virtual Data Center ID.
         :param pulumi.Input[_builtins.str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         :param pulumi.Input[_builtins.str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the firewall rule.
         :param pulumi.Input[_builtins.str] nic_id: [string] The NIC ID.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
@@ -586,8 +618,6 @@ class Firewall(pulumi.CustomResource):
             datacenter_id=example.id,
             cores=1,
             ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password["result"],
             volume={
@@ -648,6 +678,7 @@ class Firewall(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
                  icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  nic_id: Optional[pulumi.Input[_builtins.str]] = None,
                  port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
@@ -672,6 +703,7 @@ class Firewall(pulumi.CustomResource):
             __props__.__dict__["datacenter_id"] = datacenter_id
             __props__.__dict__["icmp_code"] = icmp_code
             __props__.__dict__["icmp_type"] = icmp_type
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if nic_id is None and not opts.urn:
                 raise TypeError("Missing required property 'nic_id'")
@@ -701,6 +733,7 @@ class Firewall(pulumi.CustomResource):
             datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
             icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
             icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             nic_id: Optional[pulumi.Input[_builtins.str]] = None,
             port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
@@ -721,6 +754,7 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The Virtual Data Center ID.
         :param pulumi.Input[_builtins.str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         :param pulumi.Input[_builtins.str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the firewall rule.
         :param pulumi.Input[_builtins.str] nic_id: [string] The NIC ID.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
@@ -739,6 +773,7 @@ class Firewall(pulumi.CustomResource):
         __props__.__dict__["datacenter_id"] = datacenter_id
         __props__.__dict__["icmp_code"] = icmp_code
         __props__.__dict__["icmp_type"] = icmp_type
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["nic_id"] = nic_id
         __props__.__dict__["port_range_end"] = port_range_end
@@ -774,6 +809,14 @@ class Firewall(pulumi.CustomResource):
         [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
         """
         return pulumi.get(self, "icmp_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

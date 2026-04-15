@@ -166,6 +166,10 @@ export class MongoUser extends pulumi.CustomResource {
      */
     declare public readonly clusterId: pulumi.Output<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      */
     declare public readonly password: pulumi.Output<string>;
@@ -192,6 +196,7 @@ export class MongoUser extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MongoUserState | undefined;
             resourceInputs["clusterId"] = state?.clusterId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["password"] = state?.password;
             resourceInputs["roles"] = state?.roles;
             resourceInputs["username"] = state?.username;
@@ -207,6 +212,7 @@ export class MongoUser extends pulumi.CustomResource {
                 throw new Error("Missing required property 'username'");
             }
             resourceInputs["clusterId"] = args?.clusterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["roles"] = args?.roles;
             resourceInputs["username"] = args?.username;
@@ -226,6 +232,10 @@ export interface MongoUserState {
      * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
      */
     clusterId?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      */
@@ -248,6 +258,10 @@ export interface MongoUserArgs {
      * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
      */
     clusterId: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      */

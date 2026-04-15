@@ -82,6 +82,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly bool RamHotPlug;
         /// <summary>
+        /// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+        /// </summary>
+        public readonly bool RequireLegacyBios;
+        /// <summary>
         /// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
         /// </summary>
         public readonly ImmutableArray<string> SshKeys;
@@ -130,6 +134,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             bool ramHotPlug,
 
+            bool requireLegacyBios,
+
             ImmutableArray<string> sshKeys,
 
             string type,
@@ -153,6 +159,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             NicHotUnplug = nicHotUnplug;
             PciSlot = pciSlot;
             RamHotPlug = ramHotPlug;
+            RequireLegacyBios = requireLegacyBios;
             SshKeys = sshKeys;
             Type = type;
             UserData = userData;

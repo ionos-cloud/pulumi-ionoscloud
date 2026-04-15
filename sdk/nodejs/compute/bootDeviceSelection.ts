@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
- * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+ * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
  * This resource also allows switching between a `volume` and a `ionoscloud.compute.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  *
  * ### Select an external volume
@@ -135,7 +135,7 @@ import * as utilities from "../utilities";
  * });
  * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("example", {
  *     datacenterId: exampleIonoscloudDatacenter.id,
- *     serverId: exampleServer.inlineVolumeIds[0],
+ *     serverId: exampleServer.id,
  *     bootDeviceId: example.then(example => example.id),
  * });
  * const exampleVolume = new ionoscloud.compute.Volume("example", {
@@ -179,7 +179,7 @@ import * as utilities from "../utilities";
  * });
  * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("example", {
  *     datacenterId: exampleIonoscloudDatacenter.id,
- *     serverId: exampleServer.inlineVolumeIds[0],
+ *     serverId: exampleServer.id,
  * });
  * const exampleVolume = new ionoscloud.compute.Volume("example", {
  *     serverId: exampleServer.id,
@@ -240,6 +240,10 @@ export class BootDeviceSelection extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly defaultBootVolumeId: pulumi.Output<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The ID of a server.
      */
     declare public readonly serverId: pulumi.Output<string>;
@@ -260,6 +264,7 @@ export class BootDeviceSelection extends pulumi.CustomResource {
             resourceInputs["bootDeviceId"] = state?.bootDeviceId;
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["defaultBootVolumeId"] = state?.defaultBootVolumeId;
+            resourceInputs["location"] = state?.location;
             resourceInputs["serverId"] = state?.serverId;
         } else {
             const args = argsOrState as BootDeviceSelectionArgs | undefined;
@@ -271,6 +276,7 @@ export class BootDeviceSelection extends pulumi.CustomResource {
             }
             resourceInputs["bootDeviceId"] = args?.bootDeviceId;
             resourceInputs["datacenterId"] = args?.datacenterId;
+            resourceInputs["location"] = args?.location;
             resourceInputs["serverId"] = args?.serverId;
             resourceInputs["defaultBootVolumeId"] = undefined /*out*/;
         }
@@ -297,6 +303,10 @@ export interface BootDeviceSelectionState {
      */
     defaultBootVolumeId?: pulumi.Input<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
+    /**
      * [string] The ID of a server.
      */
     serverId?: pulumi.Input<string>;
@@ -315,6 +325,10 @@ export interface BootDeviceSelectionArgs {
      * [string] The ID of a Virtual Data Center.
      */
     datacenterId: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The ID of a server.
      */

@@ -114,6 +114,10 @@ export class Balancer extends pulumi.CustomResource {
      */
     declare public readonly ip: pulumi.Output<string>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the load balancer.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -138,6 +142,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state?.datacenterId;
             resourceInputs["dhcp"] = state?.dhcp;
             resourceInputs["ip"] = state?.ip;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["nicIds"] = state?.nicIds;
         } else {
@@ -151,6 +156,7 @@ export class Balancer extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = args?.datacenterId;
             resourceInputs["dhcp"] = args?.dhcp;
             resourceInputs["ip"] = args?.ip;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["nicIds"] = args?.nicIds;
         }
@@ -175,6 +181,10 @@ export interface BalancerState {
      * [string] IPv4 address of the load balancer.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the load balancer.
      */
@@ -201,6 +211,10 @@ export interface BalancerArgs {
      * [string] IPv4 address of the load balancer.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the load balancer.
      */

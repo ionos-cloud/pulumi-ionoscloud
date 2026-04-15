@@ -13,121 +13,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
     /// <summary>
     /// Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Name = "Datacenter Example",
-    ///         Location = "us/las",
-    ///         Description = "datacenter description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         Public = false,
-    ///         Name = "Lan Example",
-    ///     });
-    /// 
-    ///     var exampleIPBlock = new Ionoscloud.Compute.IPBlock("example", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Size = 3,
-    ///         Name = "IP Block Example",
-    ///     });
-    /// 
-    ///     var exampleCluster = new Ionoscloud.K8s.Cluster("example", new()
-    ///     {
-    ///         Name = "k8sClusterExample",
-    ///         K8sVersion = "1.31.2",
-    ///         MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs
-    ///         {
-    ///             DayOfTheWeek = "Sunday",
-    ///             Time = "09:00:00Z",
-    ///         },
-    ///         ApiSubnetAllowLists = new[]
-    ///         {
-    ///             "1.2.3.4/32",
-    ///         },
-    ///         S3Buckets = new[]
-    ///         {
-    ///             new Ionoscloud.K8s.Inputs.ClusterS3BucketArgs
-    ///             {
-    ///                 Name = "globally_unique_s3_bucket_name",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleNodePool = new Ionoscloud.K8s.NodePool("example", new()
-    ///     {
-    ///         DatacenterId = example.Id,
-    ///         K8sClusterId = exampleCluster.Id,
-    ///         Name = "k8sNodePoolExample",
-    ///         K8sVersion = exampleCluster.K8sVersion,
-    ///         MaintenanceWindow = new Ionoscloud.K8s.Inputs.NodePoolMaintenanceWindowArgs
-    ///         {
-    ///             DayOfTheWeek = "Monday",
-    ///             Time = "09:00:00Z",
-    ///         },
-    ///         AutoScaling = new Ionoscloud.K8s.Inputs.NodePoolAutoScalingArgs
-    ///         {
-    ///             MinNodeCount = 1,
-    ///             MaxNodeCount = 2,
-    ///         },
-    ///         CpuFamily = "INTEL_XEON",
-    ///         AvailabilityZone = "AUTO",
-    ///         StorageType = "SSD",
-    ///         NodeCount = 1,
-    ///         CoresCount = 2,
-    ///         RamSize = 2048,
-    ///         StorageSize = 40,
-    ///         PublicIps = new[]
-    ///         {
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
-    ///         },
-    ///         Lans = new[]
-    ///         {
-    ///             new Ionoscloud.K8s.Inputs.NodePoolLanArgs
-    ///             {
-    ///                 Id = exampleLan.Id,
-    ///                 Dhcp = true,
-    ///                 Routes = new[]
-    ///                 {
-    ///                     new Ionoscloud.K8s.Inputs.NodePoolLanRouteArgs
-    ///                     {
-    ///                         Network = "1.2.3.5/24",
-    ///                         GatewayIp = "10.1.5.17",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         Labels = 
-    ///         {
-    ///             { "lab1", "value1" },
-    ///             { "lab2", "value2" },
-    ///         },
-    ///         Annotations = 
-    ///         {
-    ///             { "ann1", "value1" },
-    ///             { "ann2", "value2" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// **Note:** Set `CreateBeforeDestroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
-    /// 
     /// ## Import
     /// 
     /// A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
@@ -136,10 +21,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
     /// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
     /// ```
     /// 
-    /// This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+    /// This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
     /// 
     /// ⚠️ **_Warning: **During a maintenance window, k8s can update your `K8sVersion` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
-    /// pulumi from doing a downgrade, as downgrading `K8sVersion` is not supported._**
+    /// terraform from doing a downgrade, as downgrading `K8sVersion` is not supported._**
     /// 
     /// ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
     /// </summary>
@@ -157,10 +42,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// ⚠️ **Note**:
         /// 
         /// Be careful when using `AutoScaling` since the number of nodes can change. Because of that, when running
-        /// `pulumi preview`, An update will be considered required (since `NodeCount` from the `Tf` plan will be different
-        /// from the number of nodes set by the scheduler). To avoid that, you can use `IgnoreChanges`.
-        /// This will also ignore the manual changes for `NodeCount` made in the `Tf` plan.
-        /// You can read more details about the `IgnoreChanges` attribute here.
+        /// `pulumi preview`, Terraform will think that an update is required (since `NodeCount` from the `Tf` plan will be different
+        /// from the number of nodes set by the scheduler). To avoid that, you can use:
         /// </summary>
         [Output("allowReplace")]
         public Output<bool?> AllowReplace { get; private set; } = null!;
@@ -193,7 +76,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         /// </summary>
         [Output("cpuFamily")]
-        public Output<string> CpuFamily { get; private set; } = null!;
+        public Output<string?> CpuFamily { get; private set; } = null!;
 
         /// <summary>
         /// [string] A Datacenter's UUID
@@ -226,6 +109,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         public Output<ImmutableArray<Outputs.NodePoolLan>> Lans { get; private set; } = null!;
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// See the **maintenance_window** section in the example above
         /// </summary>
         [Output("maintenanceWindow")]
@@ -254,6 +143,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Output("ramSize")]
         public Output<int> RamSize { get; private set; } = null!;
+
+        /// <summary>
+        /// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        /// </summary>
+        [Output("serverType")]
+        public Output<string?> ServerType { get; private set; } = null!;
 
         /// <summary>
         /// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
@@ -325,10 +220,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// ⚠️ **Note**:
         /// 
         /// Be careful when using `AutoScaling` since the number of nodes can change. Because of that, when running
-        /// `pulumi preview`, An update will be considered required (since `NodeCount` from the `Tf` plan will be different
-        /// from the number of nodes set by the scheduler). To avoid that, you can use `IgnoreChanges`.
-        /// This will also ignore the manual changes for `NodeCount` made in the `Tf` plan.
-        /// You can read more details about the `IgnoreChanges` attribute here.
+        /// `pulumi preview`, Terraform will think that an update is required (since `NodeCount` from the `Tf` plan will be different
+        /// from the number of nodes set by the scheduler). To avoid that, you can use:
         /// </summary>
         [Input("allowReplace")]
         public Input<bool>? AllowReplace { get; set; }
@@ -366,8 +259,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// <summary>
         /// [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         /// </summary>
-        [Input("cpuFamily", required: true)]
-        public Input<string> CpuFamily { get; set; } = null!;
+        [Input("cpuFamily")]
+        public Input<string>? CpuFamily { get; set; }
 
         /// <summary>
         /// [string] A Datacenter's UUID
@@ -412,6 +305,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// See the **maintenance_window** section in the example above
         /// </summary>
         [Input("maintenanceWindow")]
@@ -448,6 +347,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         public Input<int> RamSize { get; set; } = null!;
 
         /// <summary>
+        /// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        /// </summary>
+        [Input("serverType")]
+        public Input<string>? ServerType { get; set; }
+
+        /// <summary>
         /// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         /// </summary>
         [Input("storageSize", required: true)]
@@ -478,10 +383,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// ⚠️ **Note**:
         /// 
         /// Be careful when using `AutoScaling` since the number of nodes can change. Because of that, when running
-        /// `pulumi preview`, An update will be considered required (since `NodeCount` from the `Tf` plan will be different
-        /// from the number of nodes set by the scheduler). To avoid that, you can use `IgnoreChanges`.
-        /// This will also ignore the manual changes for `NodeCount` made in the `Tf` plan.
-        /// You can read more details about the `IgnoreChanges` attribute here.
+        /// `pulumi preview`, Terraform will think that an update is required (since `NodeCount` from the `Tf` plan will be different
+        /// from the number of nodes set by the scheduler). To avoid that, you can use:
         /// </summary>
         [Input("allowReplace")]
         public Input<bool>? AllowReplace { get; set; }
@@ -565,6 +468,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// See the **maintenance_window** section in the example above
         /// </summary>
         [Input("maintenanceWindow")]
@@ -599,6 +508,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Input("ramSize")]
         public Input<int>? RamSize { get; set; }
+
+        /// <summary>
+        /// [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        /// </summary>
+        [Input("serverType")]
+        public Input<string>? ServerType { get; set; }
 
         /// <summary>
         /// [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.

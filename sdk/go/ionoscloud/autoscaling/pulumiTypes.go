@@ -657,7 +657,7 @@ type GroupReplicaConfiguration struct {
 	AvailabilityZone string `pulumi:"availabilityZone"`
 	// [int] The total number of cores for the VMs.
 	Cores int `pulumi:"cores"`
-	// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+	// [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
 	CpuFamily *string `pulumi:"cpuFamily"`
 	// Set of NICs associated with this Replica.
 	Nics []GroupReplicaConfigurationNic `pulumi:"nics"`
@@ -683,7 +683,7 @@ type GroupReplicaConfigurationArgs struct {
 	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
 	// [int] The total number of cores for the VMs.
 	Cores pulumi.IntInput `pulumi:"cores"`
-	// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+	// [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
 	CpuFamily pulumi.StringPtrInput `pulumi:"cpuFamily"`
 	// Set of NICs associated with this Replica.
 	Nics GroupReplicaConfigurationNicArrayInput `pulumi:"nics"`
@@ -780,7 +780,7 @@ func (o GroupReplicaConfigurationOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v GroupReplicaConfiguration) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+// [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
 func (o GroupReplicaConfigurationOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfiguration) *string { return v.CpuFamily }).(pulumi.StringPtrOutput)
 }
@@ -844,7 +844,7 @@ func (o GroupReplicaConfigurationPtrOutput) Cores() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+// [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
 func (o GroupReplicaConfigurationPtrOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GroupReplicaConfiguration) *string {
 		if v == nil {

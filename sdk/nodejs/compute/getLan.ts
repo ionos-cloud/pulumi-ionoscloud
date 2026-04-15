@@ -40,6 +40,7 @@ export function getLan(args: GetLanArgs, opts?: pulumi.InvokeOptions): Promise<G
     return pulumi.runtime.invoke("ionoscloud:compute/getLan:getLan", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -58,6 +59,7 @@ export interface GetLanArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing lan that you want to search for.
      */
@@ -88,6 +90,7 @@ export interface GetLanResult {
      * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
      */
     readonly ipv6CidrBlock: string;
+    readonly location?: string;
     /**
      * The name of the LAN.
      */
@@ -135,6 +138,7 @@ export function getLanOutput(args: GetLanOutputArgs, opts?: pulumi.InvokeOutputO
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getLan:getLan", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -153,6 +157,7 @@ export interface GetLanOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing lan that you want to search for.
      */

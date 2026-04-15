@@ -74,6 +74,7 @@ export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:k8s/getCluster:getCluster", {
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -88,6 +89,10 @@ export interface GetClusterArgs {
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: string;
+    /**
+     * this attribute is mandatory if the cluster is private.
+     */
+    location?: string;
     /**
      * Name of an existing cluster that you want to search for.
      */
@@ -274,6 +279,7 @@ export function getClusterOutput(args?: GetClusterOutputArgs, opts?: pulumi.Invo
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getCluster:getCluster", {
         "id": args.id,
+        "location": args.location,
         "name": args.name,
     }, opts);
 }
@@ -288,6 +294,10 @@ export interface GetClusterOutputArgs {
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    /**
+     * this attribute is mandatory if the cluster is private.
+     */
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing cluster that you want to search for.
      */

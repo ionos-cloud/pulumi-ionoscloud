@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **CM provider**.
+// Manages a [CM provider](https://docs.ionos.com/cloud/network-services/certificate-manager).
 //
 // ## Example Usage
 //
@@ -61,7 +61,7 @@ type AutoCertificateProvider struct {
 	Email pulumi.StringOutput `pulumi:"email"`
 	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrOutput `pulumi:"externalAccountBinding"`
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the certificate provider.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -109,7 +109,7 @@ type autoCertificateProviderState struct {
 	Email *string `pulumi:"email"`
 	// [list] External account binding details.
 	ExternalAccountBinding *AutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBinding"`
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 	Location *string `pulumi:"location"`
 	// [string] The name of the certificate provider.
 	Name *string `pulumi:"name"`
@@ -122,7 +122,7 @@ type AutoCertificateProviderState struct {
 	Email pulumi.StringPtrInput
 	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrInput
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 	Location pulumi.StringPtrInput
 	// [string] The name of the certificate provider.
 	Name pulumi.StringPtrInput
@@ -139,7 +139,7 @@ type autoCertificateProviderArgs struct {
 	Email string `pulumi:"email"`
 	// [list] External account binding details.
 	ExternalAccountBinding *AutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBinding"`
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 	Location *string `pulumi:"location"`
 	// [string] The name of the certificate provider.
 	Name *string `pulumi:"name"`
@@ -153,7 +153,7 @@ type AutoCertificateProviderArgs struct {
 	Email pulumi.StringInput
 	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrInput
-	// [string] The location of the provider.
+	// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 	Location pulumi.StringPtrInput
 	// [string] The name of the certificate provider.
 	Name pulumi.StringPtrInput
@@ -260,7 +260,7 @@ func (o AutoCertificateProviderOutput) ExternalAccountBinding() AutoCertificateP
 	}).(AutoCertificateProviderExternalAccountBindingPtrOutput)
 }
 
-// [string] The location of the provider.
+// [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
 func (o AutoCertificateProviderOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

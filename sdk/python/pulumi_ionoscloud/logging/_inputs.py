@@ -39,9 +39,6 @@ class PipelineLogArgsDict(TypedDict):
     [list] The configuration of the logs datastore, a list that contains elements with the following structure:
     """
     public: NotRequired[pulumi.Input[_builtins.bool]]
-    """
-    [bool]
-    """
 
 @pulumi.input_type
 class PipelineLogArgs:
@@ -56,7 +53,6 @@ class PipelineLogArgs:
         :param pulumi.Input[_builtins.str] source: [string] The source parser to be used.
         :param pulumi.Input[_builtins.str] tag: [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
         :param pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgs']]] destinations: [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-        :param pulumi.Input[_builtins.bool] public: [bool]
         """
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "source", source)
@@ -117,9 +113,6 @@ class PipelineLogArgs:
     @_builtins.property
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        [bool]
-        """
         return pulumi.get(self, "public")
 
     @public.setter

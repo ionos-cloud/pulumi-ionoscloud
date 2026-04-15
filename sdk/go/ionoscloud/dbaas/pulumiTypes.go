@@ -852,6 +852,143 @@ func (o InMemoryDBReplicaSetResourcesPtrOutput) Storage() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type MariaDBClusterBackup struct {
+	// [string] The IONOS Object Storage location where the backups will be stored.
+	Location string `pulumi:"location"`
+}
+
+// MariaDBClusterBackupInput is an input type that accepts MariaDBClusterBackupArgs and MariaDBClusterBackupOutput values.
+// You can construct a concrete instance of `MariaDBClusterBackupInput` via:
+//
+//	MariaDBClusterBackupArgs{...}
+type MariaDBClusterBackupInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterBackupOutput() MariaDBClusterBackupOutput
+	ToMariaDBClusterBackupOutputWithContext(context.Context) MariaDBClusterBackupOutput
+}
+
+type MariaDBClusterBackupArgs struct {
+	// [string] The IONOS Object Storage location where the backups will be stored.
+	Location pulumi.StringInput `pulumi:"location"`
+}
+
+func (MariaDBClusterBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterBackup)(nil)).Elem()
+}
+
+func (i MariaDBClusterBackupArgs) ToMariaDBClusterBackupOutput() MariaDBClusterBackupOutput {
+	return i.ToMariaDBClusterBackupOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterBackupArgs) ToMariaDBClusterBackupOutputWithContext(ctx context.Context) MariaDBClusterBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterBackupOutput)
+}
+
+func (i MariaDBClusterBackupArgs) ToMariaDBClusterBackupPtrOutput() MariaDBClusterBackupPtrOutput {
+	return i.ToMariaDBClusterBackupPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterBackupArgs) ToMariaDBClusterBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterBackupOutput).ToMariaDBClusterBackupPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterBackupPtrInput is an input type that accepts MariaDBClusterBackupArgs, MariaDBClusterBackupPtr and MariaDBClusterBackupPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterBackupPtrInput` via:
+//
+//	        MariaDBClusterBackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterBackupPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterBackupPtrOutput() MariaDBClusterBackupPtrOutput
+	ToMariaDBClusterBackupPtrOutputWithContext(context.Context) MariaDBClusterBackupPtrOutput
+}
+
+type mariaDBClusterBackupPtrType MariaDBClusterBackupArgs
+
+func MariaDBClusterBackupPtr(v *MariaDBClusterBackupArgs) MariaDBClusterBackupPtrInput {
+	return (*mariaDBClusterBackupPtrType)(v)
+}
+
+func (*mariaDBClusterBackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterBackup)(nil)).Elem()
+}
+
+func (i *mariaDBClusterBackupPtrType) ToMariaDBClusterBackupPtrOutput() MariaDBClusterBackupPtrOutput {
+	return i.ToMariaDBClusterBackupPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterBackupPtrType) ToMariaDBClusterBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterBackupPtrOutput)
+}
+
+type MariaDBClusterBackupOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterBackup)(nil)).Elem()
+}
+
+func (o MariaDBClusterBackupOutput) ToMariaDBClusterBackupOutput() MariaDBClusterBackupOutput {
+	return o
+}
+
+func (o MariaDBClusterBackupOutput) ToMariaDBClusterBackupOutputWithContext(ctx context.Context) MariaDBClusterBackupOutput {
+	return o
+}
+
+func (o MariaDBClusterBackupOutput) ToMariaDBClusterBackupPtrOutput() MariaDBClusterBackupPtrOutput {
+	return o.ToMariaDBClusterBackupPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterBackupOutput) ToMariaDBClusterBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterBackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterBackup) *MariaDBClusterBackup {
+		return &v
+	}).(MariaDBClusterBackupPtrOutput)
+}
+
+// [string] The IONOS Object Storage location where the backups will be stored.
+func (o MariaDBClusterBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+type MariaDBClusterBackupPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterBackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterBackup)(nil)).Elem()
+}
+
+func (o MariaDBClusterBackupPtrOutput) ToMariaDBClusterBackupPtrOutput() MariaDBClusterBackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterBackupPtrOutput) ToMariaDBClusterBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterBackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterBackupPtrOutput) Elem() MariaDBClusterBackupOutput {
+	return o.ApplyT(func(v *MariaDBClusterBackup) MariaDBClusterBackup {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterBackup
+		return ret
+	}).(MariaDBClusterBackupOutput)
+}
+
+// [string] The IONOS Object Storage location where the backups will be stored.
+func (o MariaDBClusterBackupPtrOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Location
+	}).(pulumi.StringPtrOutput)
+}
+
 type MariaDBClusterConnections struct {
 	// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 	Cidr string `pulumi:"cidr"`
@@ -3727,6 +3864,115 @@ func (o GetMariaDBBackupsBackupBaseBackupArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetMariaDBBackupsBackupBaseBackupOutput)
 }
 
+type GetMariaDBClusterBackup struct {
+	// [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+	//
+	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	//
+	// Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Location string `pulumi:"location"`
+}
+
+// GetMariaDBClusterBackupInput is an input type that accepts GetMariaDBClusterBackupArgs and GetMariaDBClusterBackupOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterBackupInput` via:
+//
+//	GetMariaDBClusterBackupArgs{...}
+type GetMariaDBClusterBackupInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterBackupOutput() GetMariaDBClusterBackupOutput
+	ToGetMariaDBClusterBackupOutputWithContext(context.Context) GetMariaDBClusterBackupOutput
+}
+
+type GetMariaDBClusterBackupArgs struct {
+	// [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+	//
+	// > **⚠ WARNING:** `Location` attribute will become required in the future.
+	//
+	// Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Location pulumi.StringInput `pulumi:"location"`
+}
+
+func (GetMariaDBClusterBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterBackupArgs) ToGetMariaDBClusterBackupOutput() GetMariaDBClusterBackupOutput {
+	return i.ToGetMariaDBClusterBackupOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterBackupArgs) ToGetMariaDBClusterBackupOutputWithContext(ctx context.Context) GetMariaDBClusterBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterBackupOutput)
+}
+
+// GetMariaDBClusterBackupArrayInput is an input type that accepts GetMariaDBClusterBackupArray and GetMariaDBClusterBackupArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterBackupArrayInput` via:
+//
+//	GetMariaDBClusterBackupArray{ GetMariaDBClusterBackupArgs{...} }
+type GetMariaDBClusterBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterBackupArrayOutput() GetMariaDBClusterBackupArrayOutput
+	ToGetMariaDBClusterBackupArrayOutputWithContext(context.Context) GetMariaDBClusterBackupArrayOutput
+}
+
+type GetMariaDBClusterBackupArray []GetMariaDBClusterBackupInput
+
+func (GetMariaDBClusterBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterBackupArray) ToGetMariaDBClusterBackupArrayOutput() GetMariaDBClusterBackupArrayOutput {
+	return i.ToGetMariaDBClusterBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterBackupArray) ToGetMariaDBClusterBackupArrayOutputWithContext(ctx context.Context) GetMariaDBClusterBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterBackupArrayOutput)
+}
+
+type GetMariaDBClusterBackupOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterBackupOutput) ToGetMariaDBClusterBackupOutput() GetMariaDBClusterBackupOutput {
+	return o
+}
+
+func (o GetMariaDBClusterBackupOutput) ToGetMariaDBClusterBackupOutputWithContext(ctx context.Context) GetMariaDBClusterBackupOutput {
+	return o
+}
+
+// [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+//
+// > **⚠ WARNING:** `Location` attribute will become required in the future.
+//
+// Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
+func (o GetMariaDBClusterBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClusterBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterBackupArrayOutput) ToGetMariaDBClusterBackupArrayOutput() GetMariaDBClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterBackupArrayOutput) ToGetMariaDBClusterBackupArrayOutputWithContext(ctx context.Context) GetMariaDBClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterBackupArrayOutput) Index(i pulumi.IntInput) GetMariaDBClusterBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBClusterBackup {
+		return vs[0].([]GetMariaDBClusterBackup)[vs[1].(int)]
+	}).(GetMariaDBClusterBackupOutput)
+}
+
 type GetMariaDBClusterConnection struct {
 	// [string] The IP and subnet for your cluster.
 	Cidr string `pulumi:"cidr"`
@@ -5322,6 +5568,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetMaintenanceWindowPtrInput)(nil)).Elem(), InMemoryDBReplicaSetMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetResourcesInput)(nil)).Elem(), InMemoryDBReplicaSetResourcesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetResourcesPtrInput)(nil)).Elem(), InMemoryDBReplicaSetResourcesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterBackupInput)(nil)).Elem(), MariaDBClusterBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterBackupPtrInput)(nil)).Elem(), MariaDBClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterConnectionsInput)(nil)).Elem(), MariaDBClusterConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterConnectionsPtrInput)(nil)).Elem(), MariaDBClusterConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterCredentialsInput)(nil)).Elem(), MariaDBClusterCredentialsArgs{})
@@ -5362,6 +5610,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterBackupInput)(nil)).Elem(), GetMariaDBClusterBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterBackupArrayInput)(nil)).Elem(), GetMariaDBClusterBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionInput)(nil)).Elem(), GetMariaDBClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionArrayInput)(nil)).Elem(), GetMariaDBClusterConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArgs{})
@@ -5400,6 +5650,8 @@ func init() {
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetResourcesOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetResourcesPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterBackupOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterBackupPtrOutput{})
 	pulumi.RegisterOutputType(MariaDBClusterConnectionsOutput{})
 	pulumi.RegisterOutputType(MariaDBClusterConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(MariaDBClusterCredentialsOutput{})
@@ -5440,6 +5692,8 @@ func init() {
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterBackupOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowOutput{})

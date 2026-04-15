@@ -324,7 +324,7 @@ class GroupReplicaConfiguration(dict):
         :param _builtins.str availability_zone: [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
         :param _builtins.int cores: [int] The total number of cores for the VMs.
         :param _builtins.int ram: [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-        :param _builtins.str cpu_family: [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+        :param _builtins.str cpu_family: [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
         :param Sequence['GroupReplicaConfigurationNicArgs'] nics: Set of NICs associated with this Replica.
         :param Sequence['GroupReplicaConfigurationVolumeArgs'] volumes: [list] List of volumes associated with this Replica.
         """
@@ -366,7 +366,7 @@ class GroupReplicaConfiguration(dict):
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> Optional[_builtins.str]:
         """
-        [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+        [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
         """
         return pulumi.get(self, "cpu_family")
 

@@ -298,6 +298,7 @@ class AwaitableGetClusterResult(GetClusterResult):
 
 
 def get_cluster(id: Optional[_builtins.str] = None,
+                location: Optional[_builtins.str] = None,
                 name: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
@@ -357,10 +358,12 @@ def get_cluster(id: Optional[_builtins.str] = None,
     :param _builtins.str id: ID of the cluster you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: this attribute is mandatory if the cluster is private.
     :param _builtins.str name: Name of an existing cluster that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:k8s/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
@@ -386,6 +389,7 @@ def get_cluster(id: Optional[_builtins.str] = None,
         user_tokens=pulumi.get(__ret__, 'user_tokens'),
         viable_node_pool_versions=pulumi.get(__ret__, 'viable_node_pool_versions'))
 def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                       location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
@@ -445,10 +449,12 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     :param _builtins.str id: ID of the cluster you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param _builtins.str location: this attribute is mandatory if the cluster is private.
     :param _builtins.str name: Name of an existing cluster that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
+    __args__['location'] = location
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:k8s/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult)

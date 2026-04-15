@@ -31,9 +31,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         [Input("lastName")]
         public Input<string>? LastName { get; set; }
 
-        [Input("password")]
-        public Input<string>? Password { get; set; }
-
         public GroupUserArgs()
         {
         }

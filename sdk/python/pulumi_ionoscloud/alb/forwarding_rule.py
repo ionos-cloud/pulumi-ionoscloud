@@ -28,6 +28,7 @@ class ForwardingRuleArgs:
                  protocol: pulumi.Input[_builtins.str],
                  client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  http_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -40,6 +41,7 @@ class ForwardingRuleArgs:
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[_builtins.int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]] http_rules: [list] Array of items in that collection
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
@@ -52,6 +54,8 @@ class ForwardingRuleArgs:
             pulumi.set(__self__, "client_timeout", client_timeout)
         if http_rules is not None:
             pulumi.set(__self__, "http_rules", http_rules)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if server_certificates is not None:
@@ -143,6 +147,18 @@ class ForwardingRuleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the Application Load Balancer forwarding rule.
@@ -175,6 +191,7 @@ class _ForwardingRuleState:
                  http_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -187,6 +204,7 @@ class _ForwardingRuleState:
         :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
@@ -203,6 +221,8 @@ class _ForwardingRuleState:
             pulumi.set(__self__, "listener_ip", listener_ip)
         if listener_port is not None:
             pulumi.set(__self__, "listener_port", listener_port)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if protocol is not None:
@@ -284,6 +304,18 @@ class _ForwardingRuleState:
 
     @_builtins.property
     @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The name of the Application Load Balancer forwarding rule.
@@ -331,6 +363,7 @@ class ForwardingRule(pulumi.CustomResource):
                  http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -343,6 +376,7 @@ class ForwardingRule(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -367,9 +401,9 @@ class ForwardingRule(pulumi.CustomResource):
         #optionally you can add a certificate to the application load balancer
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",
-            certificate="your_certificate",
-            certificate_chain="your_certificate_chain",
-            private_key="your_private_key")
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         example_forwarding_rule = ionoscloud.alb.ForwardingRule("example",
             datacenter_id=example.id,
             application_loadbalancer_id=example_balancer.id,
@@ -429,6 +463,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
@@ -447,6 +482,7 @@ class ForwardingRule(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
+        import pulumi_std as std
 
         example = ionoscloud.compute.Datacenter("example",
             name="Datacenter Example",
@@ -471,9 +507,9 @@ class ForwardingRule(pulumi.CustomResource):
         #optionally you can add a certificate to the application load balancer
         cert = ionoscloud.cert.Certificate("cert",
             name="add_name_here",
-            certificate="your_certificate",
-            certificate_chain="your_certificate_chain",
-            private_key="your_private_key")
+            certificate=std.file(input="path_to_cert")["result"],
+            certificate_chain=std.file(input="path_to_cert_chain")["result"],
+            private_key=std.file(input="path_to_private_key")["result"])
         example_forwarding_rule = ionoscloud.alb.ForwardingRule("example",
             datacenter_id=example.id,
             application_loadbalancer_id=example_balancer.id,
@@ -546,6 +582,7 @@ class ForwardingRule(pulumi.CustomResource):
                  http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
                  listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+                 location: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -572,6 +609,7 @@ class ForwardingRule(pulumi.CustomResource):
             if listener_port is None and not opts.urn:
                 raise TypeError("Missing required property 'listener_port'")
             __props__.__dict__["listener_port"] = listener_port
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
@@ -593,6 +631,7 @@ class ForwardingRule(pulumi.CustomResource):
             http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
             listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
             listener_port: Optional[pulumi.Input[_builtins.int]] = None,
+            location: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             protocol: Optional[pulumi.Input[_builtins.str]] = None,
             server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ForwardingRule':
@@ -609,6 +648,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
@@ -623,6 +663,7 @@ class ForwardingRule(pulumi.CustomResource):
         __props__.__dict__["http_rules"] = http_rules
         __props__.__dict__["listener_ip"] = listener_ip
         __props__.__dict__["listener_port"] = listener_port
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["server_certificates"] = server_certificates
@@ -675,6 +716,14 @@ class ForwardingRule(pulumi.CustomResource):
         [int] Listening (inbound) port number; valid range is 1 to 65535.
         """
         return pulumi.get(self, "listener_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        """
+        return pulumi.get(self, "location")
 
     @_builtins.property
     @pulumi.getter

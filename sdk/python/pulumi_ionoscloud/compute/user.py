@@ -22,29 +22,33 @@ class UserArgs:
                  email: pulumi.Input[_builtins.str],
                  first_name: pulumi.Input[_builtins.str],
                  last_name: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  active: Optional[pulumi.Input[_builtins.bool]] = None,
                  administrator: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_sec_auth: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a User resource.
 
         :param pulumi.Input[_builtins.str] email: [string] An e-mail address for the user.
         :param pulumi.Input[_builtins.str] first_name: [string] A first name for the user.
         :param pulumi.Input[_builtins.str] last_name: [string] A last name for the user.
-        :param pulumi.Input[_builtins.str] password: [string] A password for the user.
         :param pulumi.Input[_builtins.bool] active: [Boolean] Indicates if the user is active
         :param pulumi.Input[_builtins.bool] administrator: [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
         :param pulumi.Input[_builtins.bool] force_sec_auth: [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: [Set] The groups that this user will be a member of
-               
                **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+               **NOTE:** `password_wo` requires Teraform 1.11 or higher.
+        :param pulumi.Input[_builtins.str] password: A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        :param pulumi.Input[_builtins.int] password_wo_version: Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "first_name", first_name)
         pulumi.set(__self__, "last_name", last_name)
-        pulumi.set(__self__, "password", password)
         if active is not None:
             pulumi.set(__self__, "active", active)
         if administrator is not None:
@@ -53,6 +57,12 @@ class UserArgs:
             pulumi.set(__self__, "force_sec_auth", force_sec_auth)
         if group_ids is not None:
             pulumi.set(__self__, "group_ids", group_ids)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -89,18 +99,6 @@ class UserArgs:
     @last_name.setter
     def last_name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "last_name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        [string] A password for the user.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
@@ -143,14 +141,51 @@ class UserArgs:
     def group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [Set] The groups that this user will be a member of
-
         **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         """
         return pulumi.get(self, "group_ids")
 
     @group_ids.setter
     def group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
 
 @pulumi.input_type
@@ -164,6 +199,8 @@ class _UserState:
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  last_name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  s3_canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  sec_auth_active: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -175,10 +212,13 @@ class _UserState:
         :param pulumi.Input[_builtins.str] first_name: [string] A first name for the user.
         :param pulumi.Input[_builtins.bool] force_sec_auth: [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: [Set] The groups that this user will be a member of
-               
                **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+               **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         :param pulumi.Input[_builtins.str] last_name: [string] A last name for the user.
-        :param pulumi.Input[_builtins.str] password: [string] A password for the user.
+        :param pulumi.Input[_builtins.str] password: A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        :param pulumi.Input[_builtins.int] password_wo_version: Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
         :param pulumi.Input[_builtins.str] s3_canonical_user_id: Canonical (IONOS Object Storage) id of the user for a given identity
         :param pulumi.Input[_builtins.bool] sec_auth_active: [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
         """
@@ -198,6 +238,10 @@ class _UserState:
             pulumi.set(__self__, "last_name", last_name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if s3_canonical_user_id is not None:
             pulumi.set(__self__, "s3_canonical_user_id", s3_canonical_user_id)
         if sec_auth_active is not None:
@@ -268,8 +312,8 @@ class _UserState:
     def group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [Set] The groups that this user will be a member of
-
         **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         """
         return pulumi.get(self, "group_ids")
 
@@ -293,13 +337,38 @@ class _UserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [string] A password for the user.
+        A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="s3CanonicalUserId")
@@ -340,6 +409,8 @@ class User(pulumi.CustomResource):
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  last_name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         Manages **Users** and list users and groups associated with that user.
@@ -378,7 +449,7 @@ class User(pulumi.CustomResource):
         example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
-            email="unique@email.com",
+            email="unique@ionos.com",
             password=user_password["result"],
             administrator=False,
             force_sec_auth=False,
@@ -388,6 +459,30 @@ class User(pulumi.CustomResource):
                 group2.id,
                 group3.id,
             ])
+        ```
+
+        ### With Write Only Password That Is Not Saved In State:
+
+        Note: Requires Terraform 1.11 or higher. In this way, the password is not saved in state. `password_wo` must be used along with `password_wo_version`. Updating `password_wo_version` will trigger an update to the value of `password_wo`.
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        user_password = random.Password("user_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example = ionoscloud.compute.User("example",
+            first_name="example",
+            last_name="example",
+            email="unique@ionos.com",
+            password_wo=user_password["result"],
+            password_wo_version=1,
+            administrator=False,
+            force_sec_auth=False,
+            active=True)
         ```
 
         ## Import
@@ -407,10 +502,13 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] first_name: [string] A first name for the user.
         :param pulumi.Input[_builtins.bool] force_sec_auth: [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: [Set] The groups that this user will be a member of
-               
                **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+               **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         :param pulumi.Input[_builtins.str] last_name: [string] A last name for the user.
-        :param pulumi.Input[_builtins.str] password: [string] A password for the user.
+        :param pulumi.Input[_builtins.str] password: A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        :param pulumi.Input[_builtins.int] password_wo_version: Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
         """
         ...
     @overload
@@ -455,7 +553,7 @@ class User(pulumi.CustomResource):
         example = ionoscloud.compute.User("example",
             first_name="example",
             last_name="example",
-            email="unique@email.com",
+            email="unique@ionos.com",
             password=user_password["result"],
             administrator=False,
             force_sec_auth=False,
@@ -465,6 +563,30 @@ class User(pulumi.CustomResource):
                 group2.id,
                 group3.id,
             ])
+        ```
+
+        ### With Write Only Password That Is Not Saved In State:
+
+        Note: Requires Terraform 1.11 or higher. In this way, the password is not saved in state. `password_wo` must be used along with `password_wo_version`. Updating `password_wo_version` will trigger an update to the value of `password_wo`.
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        user_password = random.Password("user_password",
+            length=16,
+            special=True,
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example = ionoscloud.compute.User("example",
+            first_name="example",
+            last_name="example",
+            email="unique@ionos.com",
+            password_wo=user_password["result"],
+            password_wo_version=1,
+            administrator=False,
+            force_sec_auth=False,
+            active=True)
         ```
 
         ## Import
@@ -499,6 +621,8 @@ class User(pulumi.CustomResource):
                  group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  last_name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -521,12 +645,12 @@ class User(pulumi.CustomResource):
             if last_name is None and not opts.urn:
                 raise TypeError("Missing required property 'last_name'")
             __props__.__dict__["last_name"] = last_name
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["s3_canonical_user_id"] = None
             __props__.__dict__["sec_auth_active"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
             'ionoscloud:compute/user:User',
@@ -546,6 +670,8 @@ class User(pulumi.CustomResource):
             group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             last_name: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             s3_canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
             sec_auth_active: Optional[pulumi.Input[_builtins.bool]] = None) -> 'User':
         """
@@ -561,10 +687,13 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] first_name: [string] A first name for the user.
         :param pulumi.Input[_builtins.bool] force_sec_auth: [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: [Set] The groups that this user will be a member of
-               
                **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+               **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         :param pulumi.Input[_builtins.str] last_name: [string] A last name for the user.
-        :param pulumi.Input[_builtins.str] password: [string] A password for the user.
+        :param pulumi.Input[_builtins.str] password: A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        :param pulumi.Input[_builtins.int] password_wo_version: Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
         :param pulumi.Input[_builtins.str] s3_canonical_user_id: Canonical (IONOS Object Storage) id of the user for a given identity
         :param pulumi.Input[_builtins.bool] sec_auth_active: [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
         """
@@ -580,6 +709,8 @@ class User(pulumi.CustomResource):
         __props__.__dict__["group_ids"] = group_ids
         __props__.__dict__["last_name"] = last_name
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["s3_canonical_user_id"] = s3_canonical_user_id
         __props__.__dict__["sec_auth_active"] = sec_auth_active
         return User(resource_name, opts=opts, __props__=__props__)
@@ -629,8 +760,8 @@ class User(pulumi.CustomResource):
     def group_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         [Set] The groups that this user will be a member of
-
         **NOTE:** Group_ids field cannot be used at the same time with user_ids field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        **NOTE:** `password_wo` requires Teraform 1.11 or higher.
         """
         return pulumi.get(self, "group_ids")
 
@@ -644,11 +775,28 @@ class User(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] A password for the user.
+        A password for the user. If you are using terraform 1.11 or higher, you can use `password_wo` instead of `password` to avoid storing the password in the state file.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `password_wo_version` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Used together with `password_wo` to trigger an update. Increment this value when an update to the `password_wo` is required.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="s3CanonicalUserId")

@@ -185,6 +185,10 @@ export interface GetImageResult {
      */
     readonly ramHotUnplug: boolean;
     /**
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     */
+    readonly requireLegacyBios: boolean;
+    /**
      * The size of the image in GB
      */
     readonly size: number;

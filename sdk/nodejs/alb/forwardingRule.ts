@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ * import * as std from "@pulumi/std";
  *
  * const example = new ionoscloud.compute.Datacenter("example", {
  *     name: "Datacenter Example",
@@ -42,9 +43,15 @@ import * as utilities from "../utilities";
  * //optionally you can add a certificate to the application load balancer
  * const cert = new ionoscloud.cert.Certificate("cert", {
  *     name: "add_name_here",
- *     certificate: "your_certificate",
- *     certificateChain: "your_certificate_chain",
- *     privateKey: "your_private_key",
+ *     certificate: std.file({
+ *         input: "path_to_cert",
+ *     }).result,
+ *     certificateChain: std.file({
+ *         input: "path_to_cert_chain",
+ *     }).result,
+ *     privateKey: std.file({
+ *         input: "path_to_private_key",
+ *     }).result,
  * });
  * const exampleForwardingRule = new ionoscloud.alb.ForwardingRule("example", {
  *     datacenterId: example.id,
@@ -150,6 +157,10 @@ export class ForwardingRule extends pulumi.CustomResource {
      */
     declare public readonly listenerPort: pulumi.Output<number>;
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    declare public readonly location: pulumi.Output<string | undefined>;
+    /**
      * [string] The name of the Application Load Balancer forwarding rule.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -181,6 +192,7 @@ export class ForwardingRule extends pulumi.CustomResource {
             resourceInputs["httpRules"] = state?.httpRules;
             resourceInputs["listenerIp"] = state?.listenerIp;
             resourceInputs["listenerPort"] = state?.listenerPort;
+            resourceInputs["location"] = state?.location;
             resourceInputs["name"] = state?.name;
             resourceInputs["protocol"] = state?.protocol;
             resourceInputs["serverCertificates"] = state?.serverCertificates;
@@ -207,6 +219,7 @@ export class ForwardingRule extends pulumi.CustomResource {
             resourceInputs["httpRules"] = args?.httpRules;
             resourceInputs["listenerIp"] = args?.listenerIp;
             resourceInputs["listenerPort"] = args?.listenerPort;
+            resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
             resourceInputs["protocol"] = args?.protocol;
             resourceInputs["serverCertificates"] = args?.serverCertificates;
@@ -244,6 +257,10 @@ export interface ForwardingRuleState {
      * [int] Listening (inbound) port number; valid range is 1 to 65535.
      */
     listenerPort?: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the Application Load Balancer forwarding rule.
      */
@@ -286,6 +303,10 @@ export interface ForwardingRuleArgs {
      * [int] Listening (inbound) port number; valid range is 1 to 65535.
      */
     listenerPort: pulumi.Input<number>;
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     */
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the Application Load Balancer forwarding rule.
      */

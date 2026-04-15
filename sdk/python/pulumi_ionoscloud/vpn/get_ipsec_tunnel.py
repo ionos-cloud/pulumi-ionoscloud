@@ -203,7 +203,7 @@ def get_ipsec_tunnel(gateway_id: Optional[_builtins.str] = None,
 
     :param _builtins.str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
     :param _builtins.str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
-    :param _builtins.str location: The location of the IPSec Gateway Tunnel.
+    :param _builtins.str location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: Name of an existing IPSec Gateway Tunnel that you want to search for.
     """
     __args__ = dict()
@@ -292,7 +292,7 @@ def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[_builtins.str]] = 
 
     :param _builtins.str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
     :param _builtins.str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
-    :param _builtins.str location: The location of the IPSec Gateway Tunnel.
+    :param _builtins.str location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
     :param _builtins.str name: Name of an existing IPSec Gateway Tunnel that you want to search for.
     """
     __args__ = dict()

@@ -52,6 +52,7 @@ export function getRegistryToken(args: GetRegistryTokenArgs, opts?: pulumi.Invok
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:creg/getRegistryToken:getRegistryToken", {
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
         "registryId": args.registryId,
@@ -66,6 +67,7 @@ export interface GetRegistryTokenArgs {
      * ID of the container registry token you want to search for.
      */
     id?: string;
+    location?: string;
     /**
      * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */
@@ -92,6 +94,7 @@ export interface GetRegistryTokenResult {
      * Id of the container registry token.
      */
     readonly id: string;
+    readonly location?: string;
     readonly name: string;
     readonly partialMatch?: boolean;
     readonly registryId: string;
@@ -144,6 +147,7 @@ export function getRegistryTokenOutput(args: GetRegistryTokenOutputArgs, opts?: 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:creg/getRegistryToken:getRegistryToken", {
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "partialMatch": args.partialMatch,
         "registryId": args.registryId,
@@ -158,6 +162,7 @@ export interface GetRegistryTokenOutputArgs {
      * ID of the container registry token you want to search for.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */

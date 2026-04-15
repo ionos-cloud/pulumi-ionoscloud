@@ -118,8 +118,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Output<int?> ListenPort { get; private set; } = null!;
 
         /// <summary>
-        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -253,8 +252,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<int>? ListenPort { get; set; }
 
         /// <summary>
-        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -341,8 +339,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<int>? ListenPort { get; set; }
 
         /// <summary>
-        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-        /// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

@@ -41,7 +41,6 @@ export interface GetShareArgs {
     /**
      * The ID of the specific resource to update.
      *
-     *
      * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */
     resourceId: string;
@@ -108,7 +107,6 @@ export interface GetShareOutputArgs {
     groupId: pulumi.Input<string>;
     /**
      * The ID of the specific resource to update.
-     *
      *
      * `resourceId` and `groupId` must be provided. If any of them are missing, the datasource will return an error.
      */

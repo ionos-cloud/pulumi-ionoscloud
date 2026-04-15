@@ -42,6 +42,7 @@ export function getNic(args: GetNicArgs, opts?: pulumi.InvokeOptions): Promise<G
     return pulumi.runtime.invoke("ionoscloud:compute/getNic:getNic", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "serverId": args.serverId,
     }, opts);
@@ -62,6 +63,7 @@ export interface GetNicArgs {
      * If none, are provided, the datasource will return an error.
      */
     id?: string;
+    location?: string;
     /**
      * [string] The name of the LAN.
      */
@@ -115,6 +117,7 @@ export interface GetNicResult {
      * The LAN ID the NIC will sit on.
      */
     readonly lan: number;
+    readonly location?: string;
     /**
      * The MAC address of the NIC.
      */
@@ -172,6 +175,7 @@ export function getNicOutput(args: GetNicOutputArgs, opts?: pulumi.InvokeOutputO
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNic:getNic", {
         "datacenterId": args.datacenterId,
         "id": args.id,
+        "location": args.location,
         "name": args.name,
         "serverId": args.serverId,
     }, opts);
@@ -192,6 +196,7 @@ export interface GetNicOutputArgs {
      * If none, are provided, the datasource will return an error.
      */
     id?: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
      * [string] The name of the LAN.
      */

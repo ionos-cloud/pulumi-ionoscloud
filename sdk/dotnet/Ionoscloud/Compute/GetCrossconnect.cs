@@ -163,6 +163,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public string? Id { get; set; }
 
         /// <summary>
+        /// The physical location of the connectable datacenter
+        /// </summary>
+        [Input("location")]
+        public string? Location { get; set; }
+
+        /// <summary>
         /// Name of an existing cross connect that you want to search for.
         /// </summary>
         [Input("name")]
@@ -189,6 +195,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The physical location of the connectable datacenter
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// Name of an existing cross connect that you want to search for.
@@ -219,6 +231,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The physical location of the connectable datacenter
+        /// </summary>
+        public readonly string? Location;
+        /// <summary>
         /// The name of the connectable datacenter
         /// </summary>
         public readonly string Name;
@@ -235,6 +251,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string id,
 
+            string? location,
+
             string name,
 
             ImmutableArray<Outputs.GetCrossconnectPeerResult> peers)
@@ -242,6 +260,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             ConnectableDatacenters = connectableDatacenters;
             Description = description;
             Id = id;
+            Location = location;
             Name = name;
             Peers = peers;
         }

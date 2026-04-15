@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages **Snapshots** on IonosCloud.
+    /// Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -58,8 +58,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = example.Apply(getImageResult =&gt; getImageResult.Id),
     ///         ImagePassword = serverImagePassword.Result,
     ///         Type = "ENTERPRISE",
@@ -186,6 +184,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<bool> RamHotUnplug { get; private set; } = null!;
 
         /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// </summary>
+        [Output("requireLegacyBios")]
+        public Output<bool> RequireLegacyBios { get; private set; } = null!;
+
+        /// <summary>
         /// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         /// </summary>
         [Output("secAuthProtection")]
@@ -287,6 +291,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? LicenceType { get; set; }
 
         /// <summary>
+        /// Location of that image/snapshot
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the snapshot.
         /// </summary>
         [Input("name")]
@@ -309,6 +319,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("ramHotPlug")]
         public Input<bool>? RamHotPlug { get; set; }
+
+        /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// </summary>
+        [Input("requireLegacyBios")]
+        public Input<bool>? RequireLegacyBios { get; set; }
 
         /// <summary>
         /// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
@@ -419,6 +435,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("ramHotUnplug")]
         public Input<bool>? RamHotUnplug { get; set; }
+
+        /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// </summary>
+        [Input("requireLegacyBios")]
+        public Input<bool>? RequireLegacyBios { get; set; }
 
         /// <summary>
         /// Boolean value representing if the snapshot requires extra protection e.g. two factor protection

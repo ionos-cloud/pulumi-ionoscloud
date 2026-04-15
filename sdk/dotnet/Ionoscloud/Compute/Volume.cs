@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **Volume** on IonosCloud.
+    /// Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
     /// 
     /// ## Example Usage
     /// 
@@ -68,8 +68,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Cores = 1,
     ///         Ram = 1024,
-    ///         AvailabilityZone = "ZONE_1",
-    ///         CpuFamily = "INTEL_XEON",
     ///         ImageName = example.Apply(getImageResult =&gt; getImageResult.Name),
     ///         ImagePassword = serverImagePassword.Result,
     ///         Type = "ENTERPRISE",
@@ -94,19 +92,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewalls = new[]
+    ///             Firewall = 
     ///             {
-    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
-    ///                 {
-    ///                     Protocol = "TCP",
-    ///                     Name = "SSH",
-    ///                     PortRangeStart = 22,
-    ///                     PortRangeEnd = 22,
-    ///                     SourceMac = "00:0a:95:9d:68:17",
-    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
-    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
-    ///                     Type = "EGRESS",
-    ///                 },
+    ///                 { "protocol", "TCP" },
+    ///                 { "name", "SSH" },
+    ///                 { "portRangeStart", 22 },
+    ///                 { "portRangeEnd", 22 },
+    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
+    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
+    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
+    ///                 { "type", "EGRESS" },
     ///             },
     ///         },
     ///     });
@@ -171,10 +166,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [string] The UUID of the attached server.
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `Size` argument since it is taken from the `TemplateUuid` you set in the server.
         /// </summary>
         [Output("bootServer")]
         public Output<string> BootServer { get; private set; } = null!;
@@ -222,6 +213,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> DiskType { get; private set; } = null!;
 
         /// <summary>
+        /// (Computed) [boolean] Defaults to `False` if not previously set by the image used to create the volume. If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        [Output("exposeSerial")]
+        public Output<bool> ExposeSerial { get; private set; } = null!;
+
+        /// <summary>
         /// The image or snapshot UUID.
         /// </summary>
         [Output("image")]
@@ -247,6 +244,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("licenceType")]
         public Output<string> LicenceType { get; private set; } = null!;
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the volume.
@@ -277,6 +280,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("ramHotPlug")]
         public Output<bool> RamHotPlug { get; private set; } = null!;
+
+        /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `Size` argument since it is taken from the `TemplateUuid` you set in the server.
+        /// </summary>
+        [Output("requireLegacyBios")]
+        public Output<bool> RequireLegacyBios { get; private set; } = null!;
 
         /// <summary>
         /// [string] The ID of a server.
@@ -392,6 +406,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string> DiskType { get; set; } = null!;
 
         /// <summary>
+        /// (Computed) [boolean] Defaults to `False` if not previously set by the image used to create the volume. If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        [Input("exposeSerial")]
+        public Input<bool>? ExposeSerial { get; set; }
+
+        /// <summary>
         /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `LicenceType` is not provided. Attribute is immutable.
         /// </summary>
         [Input("imageName")]
@@ -410,10 +430,27 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? LicenceType { get; set; }
 
         /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// [string] The name of the volume.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `Size` argument since it is taken from the `TemplateUuid` you set in the server.
+        /// </summary>
+        [Input("requireLegacyBios")]
+        public Input<bool>? RequireLegacyBios { get; set; }
 
         /// <summary>
         /// [string] The ID of a server.
@@ -479,10 +516,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [string] The UUID of the attached server.
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `Size` argument since it is taken from the `TemplateUuid` you set in the server.
         /// </summary>
         [Input("bootServer")]
         public Input<string>? BootServer { get; set; }
@@ -530,6 +563,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? DiskType { get; set; }
 
         /// <summary>
+        /// (Computed) [boolean] Defaults to `False` if not previously set by the image used to create the volume. If set to `True` will expose the serial id of the disk attached to the server. If set to `False` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+        /// </summary>
+        [Input("exposeSerial")]
+        public Input<bool>? ExposeSerial { get; set; }
+
+        /// <summary>
         /// The image or snapshot UUID.
         /// </summary>
         [Input("image")]
@@ -555,6 +594,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
+
+        /// <summary>
+        /// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// [string] The name of the volume.
@@ -585,6 +630,17 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("ramHotPlug")]
         public Input<bool>? RamHotPlug { get; set; }
+
+        /// <summary>
+        /// (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `Size` argument since it is taken from the `TemplateUuid` you set in the server.
+        /// </summary>
+        [Input("requireLegacyBios")]
+        public Input<bool>? RequireLegacyBios { get; set; }
 
         /// <summary>
         /// [string] The ID of a server.

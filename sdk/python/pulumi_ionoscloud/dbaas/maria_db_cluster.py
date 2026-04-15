@@ -29,6 +29,7 @@ class MariaDBClusterArgs:
                  mariadb_version: pulumi.Input[_builtins.str],
                  ram: pulumi.Input[_builtins.int],
                  storage_size: pulumi.Input[_builtins.int],
+                 backup: Optional[pulumi.Input['MariaDBClusterBackupArgs']] = None,
                  location: Optional[pulumi.Input[_builtins.str]] = None,
                  maintenance_window: Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']] = None):
         """
@@ -42,6 +43,7 @@ class MariaDBClusterArgs:
         :param pulumi.Input[_builtins.str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input['MariaDBClusterBackupArgs'] backup: Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
@@ -53,6 +55,8 @@ class MariaDBClusterArgs:
         pulumi.set(__self__, "mariadb_version", mariadb_version)
         pulumi.set(__self__, "ram", ram)
         pulumi.set(__self__, "storage_size", storage_size)
+        if backup is not None:
+            pulumi.set(__self__, "backup", backup)
         if location is not None:
             pulumi.set(__self__, "location", location)
         if maintenance_window is not None:
@@ -156,6 +160,18 @@ class MariaDBClusterArgs:
 
     @_builtins.property
     @pulumi.getter
+    def backup(self) -> Optional[pulumi.Input['MariaDBClusterBackupArgs']]:
+        """
+        Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        """
+        return pulumi.get(self, "backup")
+
+    @backup.setter
+    def backup(self, value: Optional[pulumi.Input['MariaDBClusterBackupArgs']]):
+        pulumi.set(self, "backup", value)
+
+    @_builtins.property
+    @pulumi.getter
     def location(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
@@ -182,6 +198,7 @@ class MariaDBClusterArgs:
 @pulumi.input_type
 class _MariaDBClusterState:
     def __init__(__self__, *,
+                 backup: Optional[pulumi.Input['MariaDBClusterBackupArgs']] = None,
                  connections: Optional[pulumi.Input['MariaDBClusterConnectionsArgs']] = None,
                  cores: Optional[pulumi.Input[_builtins.int]] = None,
                  credentials: Optional[pulumi.Input['MariaDBClusterCredentialsArgs']] = None,
@@ -196,6 +213,7 @@ class _MariaDBClusterState:
         """
         Input properties used for looking up and filtering MariaDBCluster resources.
 
+        :param pulumi.Input['MariaDBClusterBackupArgs'] backup: Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         :param pulumi.Input['MariaDBClusterConnectionsArgs'] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
@@ -210,6 +228,8 @@ class _MariaDBClusterState:
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
+        if backup is not None:
+            pulumi.set(__self__, "backup", backup)
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
         if cores is not None:
@@ -232,6 +252,18 @@ class _MariaDBClusterState:
             pulumi.set(__self__, "ram", ram)
         if storage_size is not None:
             pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def backup(self) -> Optional[pulumi.Input['MariaDBClusterBackupArgs']]:
+        """
+        Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        """
+        return pulumi.get(self, "backup")
+
+    @backup.setter
+    def backup(self, value: Optional[pulumi.Input['MariaDBClusterBackupArgs']]):
+        pulumi.set(self, "backup", value)
 
     @_builtins.property
     @pulumi.getter
@@ -374,6 +406,7 @@ class MariaDBCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
                  connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[_builtins.int]] = None,
                  credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
@@ -386,68 +419,7 @@ class MariaDBCluster(pulumi.CustomResource):
                  storage_size: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a **DBaaS MariaDB Cluster**.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for testing DBaaS cluster")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 10,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        cluster_password = random.Password("cluster_password",
-            length=16,
-            special=True,
-            override_special=!#$%&*()-_=+[]{}<>:?)
-        example_maria_db_cluster = ionoscloud.dbaas.MariaDBCluster("example",
-            mariadb_version="10.6",
-            location="de/txl",
-            instances=1,
-            cores=4,
-            ram=4,
-            storage_size=10,
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            display_name="MariaDB_cluster",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00",
-            },
-            credentials={
-                "username": "username",
-                "password": cluster_password["result"],
-            })
-        ```
+        Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
 
         ## Import
 
@@ -460,6 +432,7 @@ class MariaDBCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']] backup: Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
@@ -478,68 +451,7 @@ class MariaDBCluster(pulumi.CustomResource):
                  args: MariaDBClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DBaaS MariaDB Cluster**.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example = ionoscloud.compute.Datacenter("example",
-            name="example",
-            location="de/txl",
-            description="Datacenter for testing DBaaS cluster")
-        example_lan = ionoscloud.compute.Lan("example",
-            datacenter_id=example.id,
-            public=False,
-            name="example")
-        example_server = ionoscloud.compute.Server("example",
-            name="example",
-            datacenter_id=example.id,
-            cores=2,
-            ram=2048,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_SKYLAKE",
-            image_name="rockylinux-8-GenericCloud-20230518",
-            image_password="password",
-            volume={
-                "name": "example",
-                "size": 10,
-                "disk_type": "SSD Standard",
-            },
-            nic={
-                "lan": example_lan.id,
-                "name": "example",
-                "dhcp": True,
-            })
-        cluster_password = random.Password("cluster_password",
-            length=16,
-            special=True,
-            override_special=!#$%&*()-_=+[]{}<>:?)
-        example_maria_db_cluster = ionoscloud.dbaas.MariaDBCluster("example",
-            mariadb_version="10.6",
-            location="de/txl",
-            instances=1,
-            cores=4,
-            ram=4,
-            storage_size=10,
-            connections={
-                "datacenter_id": example.id,
-                "lan_id": example_lan.id,
-                "cidr": "database_ip_cidr_from_nic",
-            },
-            display_name="MariaDB_cluster",
-            maintenance_window={
-                "day_of_the_week": "Sunday",
-                "time": "09:00:00",
-            },
-            credentials={
-                "username": "username",
-                "password": cluster_password["result"],
-            })
-        ```
+        Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
 
         ## Import
 
@@ -565,6 +477,7 @@ class MariaDBCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
                  connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[_builtins.int]] = None,
                  credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
@@ -584,6 +497,7 @@ class MariaDBCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MariaDBClusterArgs.__new__(MariaDBClusterArgs)
 
+            __props__.__dict__["backup"] = backup
             if connections is None and not opts.urn:
                 raise TypeError("Missing required property 'connections'")
             __props__.__dict__["connections"] = connections
@@ -621,6 +535,7 @@ class MariaDBCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
             connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
             cores: Optional[pulumi.Input[_builtins.int]] = None,
             credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
@@ -639,6 +554,7 @@ class MariaDBCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']] backup: Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
@@ -657,6 +573,7 @@ class MariaDBCluster(pulumi.CustomResource):
 
         __props__ = _MariaDBClusterState.__new__(_MariaDBClusterState)
 
+        __props__.__dict__["backup"] = backup
         __props__.__dict__["connections"] = connections
         __props__.__dict__["cores"] = cores
         __props__.__dict__["credentials"] = credentials
@@ -669,6 +586,14 @@ class MariaDBCluster(pulumi.CustomResource):
         __props__.__dict__["ram"] = ram
         __props__.__dict__["storage_size"] = storage_size
         return MariaDBCluster(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def backup(self) -> pulumi.Output['outputs.MariaDBClusterBackup']:
+        """
+        Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+        """
+        return pulumi.get(self, "backup")
 
     @_builtins.property
     @pulumi.getter
