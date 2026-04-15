@@ -16,6 +16,7 @@ package main
 
 import (
 	"context"
+	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
 	pftfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
