@@ -31,7 +31,6 @@ formatters:
     gci:
       sections:
         - standard
-        - blank
         - default
         - prefix(github.com/ionos-cloud/)
         - prefix(github.com/ionos-cloud/pulumi-ionoscloud)
