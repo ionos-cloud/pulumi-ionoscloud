@@ -147,7 +147,7 @@ func Provider() tfbridge.ProviderInfo {
 			"/refs/heads/main/.github/LOGO_IONOS_Blue_RGB.png",
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
-		PluginDownloadURL: "github://api.github.com/ionos-cloud",
+		PluginDownloadURL: "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
 		Description:       "A Pulumi package for creating and managing ionoscloud cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
