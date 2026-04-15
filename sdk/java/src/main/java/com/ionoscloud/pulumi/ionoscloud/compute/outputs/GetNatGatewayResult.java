@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNatGatewayResult {
@@ -23,6 +25,7 @@ public final class GetNatGatewayResult {
      * 
      */
     private List<GetNatGatewayLan> lans;
+    private @Nullable String location;
     /**
      * @return Name of that natgateway
      * 
@@ -52,6 +55,9 @@ public final class GetNatGatewayResult {
     public List<GetNatGatewayLan> lans() {
         return this.lans;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return Name of that natgateway
      * 
@@ -79,6 +85,7 @@ public final class GetNatGatewayResult {
         private String datacenterId;
         private String id;
         private List<GetNatGatewayLan> lans;
+        private @Nullable String location;
         private String name;
         private List<String> publicIps;
         public Builder() {}
@@ -87,6 +94,7 @@ public final class GetNatGatewayResult {
     	      this.datacenterId = defaults.datacenterId;
     	      this.id = defaults.id;
     	      this.lans = defaults.lans;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.publicIps = defaults.publicIps;
         }
@@ -119,6 +127,12 @@ public final class GetNatGatewayResult {
             return lans(List.of(lans));
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetNatGatewayResult", "name");
@@ -142,6 +156,7 @@ public final class GetNatGatewayResult {
             _resultValue.datacenterId = datacenterId;
             _resultValue.id = id;
             _resultValue.lans = lans;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.publicIps = publicIps;
             return _resultValue;

@@ -20,116 +20,14 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DBaaS InMemoryDB Replica Set**.
- * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.dbaas.InMemoryDBReplicaSet;
- * import com.pulumi.ionoscloud.dbaas.InMemoryDBReplicaSetArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBReplicaSetResourcesArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBReplicaSetConnectionsArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBReplicaSetMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBReplicaSetCredentialsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("example")
- *             .location("de/txl")
- *             .description("Datacenter for DBaaS InMemoryDB replica sets")
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(false)
- *             .name("example")
- *             .build());
- * 
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .name("example")
- *             .datacenterId(example.id())
- *             .cores(2)
- *             .ram(2048)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName("rockylinux-8-GenericCloud-20230518")
- *             .imagePassword("password")
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("example")
- *                 .size(10)
- *                 .diskType("SSD Standard")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleLan.id())
- *                 .name("example")
- *                 .dhcp(true)
- *                 .build())
- *             .build());
- * 
- *         var exampleInMemoryDBReplicaSet = new InMemoryDBReplicaSet("exampleInMemoryDBReplicaSet", InMemoryDBReplicaSetArgs.builder()
- *             .location(example.location())
- *             .displayName("ExampleReplicaSet")
- *             .version("7.2")
- *             .replicas(4)
- *             .resources(InMemoryDBReplicaSetResourcesArgs.builder()
- *                 .cores(1)
- *                 .ram(6)
- *                 .build())
- *             .persistenceMode("RDB")
- *             .evictionPolicy("noeviction")
- *             .connections(InMemoryDBReplicaSetConnectionsArgs.builder()
- *                 .datacenterId(example.id())
- *                 .lanId(exampleLan.id())
- *                 .cidr("database_ip_cidr_from_nic")
- *                 .build())
- *             .maintenanceWindow(InMemoryDBReplicaSetMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Monday")
- *                 .time("10:00:00")
- *                 .build())
- *             .credentials(InMemoryDBReplicaSetCredentialsArgs.builder()
- *                 .username("myuser")
- *                 .plainTextPassword("testpassword")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
+ * Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.
  * 
  * ## Import
  * 
- * Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+ * Resource DBaaS InMemoryDB Replica Set can be imported using the &lt;span pulumi-lang-nodejs=&#34;`replicasetId`&#34; pulumi-lang-dotnet=&#34;`ReplicasetId`&#34; pulumi-lang-go=&#34;`replicasetId`&#34; pulumi-lang-python=&#34;`replicaset_id`&#34; pulumi-lang-yaml=&#34;`replicasetId`&#34; pulumi-lang-java=&#34;`replicasetId`&#34;&gt;`replicasetId`&lt;/span&gt; and the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, separated by `:`, e.g:
  * 
  * ```sh
- * $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example location:replicaSet uuid
+ * terraform import ionoscloud_inmemorydb_replicaset.example location:replicaSet uuid
  * ```
  * 
  */
@@ -180,7 +78,7 @@ public class InMemoryDBReplicaSet extends com.pulumi.resources.CustomResource {
     /**
      * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Export(name="dnsName", refs={String.class}, tree="[0]")
@@ -189,7 +87,7 @@ public class InMemoryDBReplicaSet extends com.pulumi.resources.CustomResource {
     /**
      * @return [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Output<String> dnsName() {
@@ -224,14 +122,14 @@ public class InMemoryDBReplicaSet extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.initialSnapshotId);
     }
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * @return [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
      */
     public Output<Optional<String>> location() {
@@ -355,6 +253,7 @@ public class InMemoryDBReplicaSet extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

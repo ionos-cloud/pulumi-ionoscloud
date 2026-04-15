@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Backup Unit** on IonosCloud.
+ * Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -28,9 +28,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.BackupUnit;
- * import com.pulumi.ionoscloud.compute.BackupUnitArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnit;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnitArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var backupUnitPassword = new Password("backupUnitPassword", PasswordArgs.builder()
  *             .length(16)
  *             .special(true)
- *             .overrideSpecial("!#$%&*()-_=+[]}{}{@code :?")
+ *             .overrideSpecial("!#$%&*()-_=+[]}{}{@code <>:?")
  *             .build());
  * 
  *         var example = new BackupUnit("example", BackupUnitArgs.builder()
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  * ## Important Notes
  * 
  * - Please note that at the moment, Backup Units cannot be renamed
- * - Please note that the password attribute is write-only, and it cannot be retrieved from the API when importing a ionoscloud_backup_unit. The only way to keep track of it is to specify it on the resource to be imported, thus, making it a required attribute.
+ * - Please note that the password attribute is write-only, and it cannot be retrieved from the API when importing a ionoscloud_backup_unit. The only way to keep track of it in Terraform is to specify it on the resource to be imported, thus, making it a required attribute.
  * 
  * ## Import
  * 
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  * $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo backup_unit_uuid
  * ```
  * 
- * This can be helpful when you want to import backup units which you have already created manually or using other means, outside of pulumi. Please note that you need to manually specify the password when first declaring the resource in pulumi, as there is no way to retrieve the password from the Cloud API.
+ * This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
  * 
  */
 @ResourceType(type="ionoscloud:compute/backupUnit:BackupUnit")
@@ -176,6 +176,7 @@ public class BackupUnit extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

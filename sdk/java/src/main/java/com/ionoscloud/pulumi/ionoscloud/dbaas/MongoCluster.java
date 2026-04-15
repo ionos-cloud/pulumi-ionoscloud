@@ -20,7 +20,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DbaaS Mongo Cluster**.
+ * Manages a [DbaaS Mongo Cluster](https://docs.ionos.com/cloud/databases/mongodb/overview).
  * 
  * ## Example Usage
  * 
@@ -34,16 +34,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoCluster;
- * import com.pulumi.ionoscloud.dbaas.MongoClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
+ * import com.pulumi.random.passwordArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *                 .dayOfTheWeek("Sunday")
  *                 .time("09:00:00")
  *                 .build())
- *             .mongodbVersion("5.0")
+ *             .mongodbVersion("6.0")
  *             .instances(1)
  *             .displayName("example_mongo_cluster")
  *             .location(datacenterExample.location())
@@ -110,16 +110,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.dbaas.MongoCluster;
- * import com.pulumi.ionoscloud.dbaas.MongoClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoCluster;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
+ * import com.pulumi.random.passwordArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -150,7 +150,7 @@ import javax.annotation.Nullable;
  *                 .dayOfTheWeek("Sunday")
  *                 .time("09:00:00")
  *                 .build())
- *             .mongodbVersion("5.0")
+ *             .mongodbVersion("6.0")
  *             .instances(3)
  *             .displayName("example_mongo_cluster")
  *             .location(datacenterExample.location())
@@ -185,10 +185,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
+ * Resource DbaaS MongoDb Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
+ * terraform import ionoscloud_mongo_cluster.mycluser cluster uuid
  * ```
  * 
  */
@@ -307,14 +307,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return this.instances;
     }
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     public Output<String> location() {
@@ -335,14 +335,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return this.maintenanceWindow;
     }
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     @Export(name="mongodbVersion", refs={String.class}, tree="[0]")
     private Output<String> mongodbVersion;
 
     /**
-     * @return [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * @return [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     public Output<String> mongodbVersion() {
@@ -419,14 +419,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.templateId);
     }
     /**
-     * (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+     * (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
+     * @return (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     public Output<String> type() {
@@ -472,6 +472,7 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

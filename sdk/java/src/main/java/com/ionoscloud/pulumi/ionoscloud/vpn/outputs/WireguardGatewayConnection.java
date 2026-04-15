@@ -18,12 +18,12 @@ public final class WireguardGatewayConnection {
      */
     private String datacenterId;
     /**
-     * @return [String] The IPv4 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     private @Nullable String ipv4Cidr;
     /**
-     * @return [String] The IPv6 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     private @Nullable String ipv6Cidr;
@@ -42,14 +42,14 @@ public final class WireguardGatewayConnection {
         return this.datacenterId;
     }
     /**
-     * @return [String] The IPv4 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Optional<String> ipv4Cidr() {
         return Optional.ofNullable(this.ipv4Cidr);
     }
     /**
-     * @return [String] The IPv6 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Optional<String> ipv6Cidr() {

@@ -18,8 +18,6 @@ public final class GetGroupUser {
     /**
      * @return ID of the group you want to search for.
      * 
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-     * 
      */
     private String id;
     private String lastName;
@@ -39,8 +37,6 @@ public final class GetGroupUser {
     }
     /**
      * @return ID of the group you want to search for.
-     * 
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public String id() {

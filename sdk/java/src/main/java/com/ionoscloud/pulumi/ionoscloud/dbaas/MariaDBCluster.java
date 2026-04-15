@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.dbaas;
 import com.ionoscloud.pulumi.ionoscloud.Utilities;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.MariaDBClusterArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterState;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterBackup;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterConnections;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterCredentials;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterMaintenanceWindow;
@@ -19,125 +20,33 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DBaaS MariaDB Cluster**.
- * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.dbaas.MariaDBCluster;
- * import com.pulumi.ionoscloud.dbaas.MariaDBClusterArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterCredentialsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("example")
- *             .location("de/txl")
- *             .description("Datacenter for testing DBaaS cluster")
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(false)
- *             .name("example")
- *             .build());
- * 
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .name("example")
- *             .datacenterId(example.id())
- *             .cores(2)
- *             .ram(2048)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName("rockylinux-8-GenericCloud-20230518")
- *             .imagePassword("password")
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("example")
- *                 .size(10)
- *                 .diskType("SSD Standard")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleLan.id())
- *                 .name("example")
- *                 .dhcp(true)
- *                 .build())
- *             .build());
- * 
- *         var clusterPassword = new Password("clusterPassword", PasswordArgs.builder()
- *             .length(16)
- *             .special(true)
- *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
- *             .build());
- * 
- *         var exampleMariaDBCluster = new MariaDBCluster("exampleMariaDBCluster", MariaDBClusterArgs.builder()
- *             .mariadbVersion("10.6")
- *             .location("de/txl")
- *             .instances(1)
- *             .cores(4)
- *             .ram(4)
- *             .storageSize(10)
- *             .connections(MariaDBClusterConnectionsArgs.builder()
- *                 .datacenterId(example.id())
- *                 .lanId(exampleLan.id())
- *                 .cidr("database_ip_cidr_from_nic")
- *                 .build())
- *             .displayName("MariaDB_cluster")
- *             .maintenanceWindow(MariaDBClusterMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Sunday")
- *                 .time("09:00:00")
- *                 .build())
- *             .credentials(MariaDBClusterCredentialsArgs.builder()
- *                 .username("username")
- *                 .password(clusterPassword.result())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
+ * Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
  * 
  * ## Import
  * 
- * Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+ * Resource DBaaS MariaDB Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; and the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt;, separated by `:`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster location:cluster uuid
+ * terraform import ionoscloud_mariadb_cluster.mycluster location:cluster uuid
  * ```
  * 
  */
 @ResourceType(type="ionoscloud:dbaas/mariaDBCluster:MariaDBCluster")
 public class MariaDBCluster extends com.pulumi.resources.CustomResource {
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    @Export(name="backup", refs={MariaDBClusterBackup.class}, tree="[0]")
+    private Output<MariaDBClusterBackup> backup;
+
+    /**
+     * @return Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    public Output<MariaDBClusterBackup> backup() {
+        return this.backup;
+    }
     /**
      * The network connection for your cluster. Only one connection is allowed.
      * 
@@ -197,7 +106,7 @@ public class MariaDBCluster extends com.pulumi.resources.CustomResource {
     /**
      * [string] The DNS name pointing to your cluster.
      * 
-     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Export(name="dnsName", refs={String.class}, tree="[0]")
@@ -206,7 +115,7 @@ public class MariaDBCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return [string] The DNS name pointing to your cluster.
      * 
-     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Output<String> dnsName() {
@@ -336,6 +245,7 @@ public class MariaDBCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

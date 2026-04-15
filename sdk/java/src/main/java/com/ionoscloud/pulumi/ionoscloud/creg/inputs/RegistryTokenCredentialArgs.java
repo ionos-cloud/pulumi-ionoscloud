@@ -14,16 +14,32 @@ public final class RegistryTokenCredentialArgs extends com.pulumi.resources.Reso
 
     public static final RegistryTokenCredentialArgs Empty = new RegistryTokenCredentialArgs();
 
+    /**
+     * [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * 
+     */
     @Import(name="password", required=true)
     private Output<String> password;
 
+    /**
+     * @return [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * 
+     */
     public Output<String> password() {
         return this.password;
     }
 
+    /**
+     * [string] The username of the container registry token
+     * 
+     */
     @Import(name="username", required=true)
     private Output<String> username;
 
+    /**
+     * @return [string] The username of the container registry token
+     * 
+     */
     public Output<String> username() {
         return this.username;
     }
@@ -53,20 +69,44 @@ public final class RegistryTokenCredentialArgs extends com.pulumi.resources.Reso
             $ = new RegistryTokenCredentialArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+         * 
+         * @return builder
+         * 
+         */
         public Builder password(Output<String> password) {
             $.password = password;
             return this;
         }
 
+        /**
+         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+         * 
+         * @return builder
+         * 
+         */
         public Builder password(String password) {
             return password(Output.of(password));
         }
 
+        /**
+         * @param username [string] The username of the container registry token
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(Output<String> username) {
             $.username = username;
             return this;
         }
 
+        /**
+         * @param username [string] The username of the container registry token
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

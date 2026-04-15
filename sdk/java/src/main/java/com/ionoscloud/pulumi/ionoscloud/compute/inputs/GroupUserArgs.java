@@ -58,13 +58,6 @@ public final class GroupUserArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.lastName);
     }
 
-    @Import(name="password")
-    private @Nullable Output<String> password;
-
-    public Optional<Output<String>> password() {
-        return Optional.ofNullable(this.password);
-    }
-
     private GroupUserArgs() {}
 
     private GroupUserArgs(GroupUserArgs $) {
@@ -74,7 +67,6 @@ public final class GroupUserArgs extends com.pulumi.resources.ResourceArgs {
         this.forceSecAuth = $.forceSecAuth;
         this.id = $.id;
         this.lastName = $.lastName;
-        this.password = $.password;
     }
 
     public static Builder builder() {
@@ -147,15 +139,6 @@ public final class GroupUserArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder lastName(String lastName) {
             return lastName(Output.of(lastName));
-        }
-
-        public Builder password(@Nullable Output<String> password) {
-            $.password = password;
-            return this;
-        }
-
-        public Builder password(String password) {
-            return password(Output.of(password));
         }
 
         public GroupUserArgs build() {

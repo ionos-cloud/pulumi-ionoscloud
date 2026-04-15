@@ -48,7 +48,7 @@ public final class GetTopicPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
-     * Cluster. Possible values: `de/fra`, `de/txl`
+     * Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
      * 
      */
     @Import(name="location", required=true)
@@ -56,7 +56,7 @@ public final class GetTopicPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
-     * Cluster. Possible values: `de/fra`, `de/txl`
+     * Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
      * 
      */
     public String location() {
@@ -137,7 +137,7 @@ public final class GetTopicPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param location The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
-         * Cluster. Possible values: `de/fra`, `de/txl`
+         * Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
          * 
          * @return builder
          * 

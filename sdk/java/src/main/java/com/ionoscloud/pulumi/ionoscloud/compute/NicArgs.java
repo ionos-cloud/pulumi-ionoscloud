@@ -171,6 +171,21 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      * 
      */
@@ -203,7 +218,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     @Import(name="securityGroupsIds")
@@ -212,7 +227,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     public Optional<Output<List<String>>> securityGroupsIds() {
@@ -247,6 +262,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         this.ipv6CidrBlock = $.ipv6CidrBlock;
         this.ipv6Ips = $.ipv6Ips;
         this.lan = $.lan;
+        this.location = $.location;
         this.mac = $.mac;
         this.name = $.name;
         this.securityGroupsIds = $.securityGroupsIds;
@@ -502,6 +518,27 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param mac The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
          * 
          * @return builder
@@ -546,7 +583,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 
@@ -559,7 +596,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 
@@ -571,7 +608,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+         * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
          * 
          * @return builder
          * 

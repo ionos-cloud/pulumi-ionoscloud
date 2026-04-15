@@ -31,6 +31,13 @@ public final class CubeServerNicFirewallArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.icmpType);
     }
 
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
     /**
      * [string] The name of the server.
      * 
@@ -100,6 +107,7 @@ public final class CubeServerNicFirewallArgs extends com.pulumi.resources.Resour
     private CubeServerNicFirewallArgs(CubeServerNicFirewallArgs $) {
         this.icmpCode = $.icmpCode;
         this.icmpType = $.icmpType;
+        this.id = $.id;
         this.name = $.name;
         this.portRangeEnd = $.portRangeEnd;
         this.portRangeStart = $.portRangeStart;
@@ -144,6 +152,15 @@ public final class CubeServerNicFirewallArgs extends com.pulumi.resources.Resour
 
         public Builder icmpType(String icmpType) {
             return icmpType(Output.of(icmpType));
+        }
+
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         /**

@@ -25,10 +25,6 @@ public final class PipelineLog {
      * 
      */
     private String protocol;
-    /**
-     * @return [bool]
-     * 
-     */
     private @Nullable Boolean public_;
     /**
      * @return [string] The source parser to be used.
@@ -56,10 +52,6 @@ public final class PipelineLog {
     public String protocol() {
         return this.protocol;
     }
-    /**
-     * @return [bool]
-     * 
-     */
     public Optional<Boolean> public_() {
         return Optional.ofNullable(this.public_);
     }

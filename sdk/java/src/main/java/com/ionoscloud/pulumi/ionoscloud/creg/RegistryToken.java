@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages an **Container Registry Token** on IonosCloud.
+ * Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -30,11 +30,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.creg.Registry;
- * import com.pulumi.ionoscloud.creg.RegistryArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.Registry;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.RegistryArgs;
  * import com.pulumi.ionoscloud.creg.inputs.RegistryGarbageCollectionScheduleArgs;
- * import com.pulumi.ionoscloud.creg.RegistryToken;
- * import com.pulumi.ionoscloud.creg.RegistryTokenArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.RegistryToken;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.RegistryTokenArgs;
  * import com.pulumi.ionoscloud.creg.inputs.RegistryTokenScopeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -84,15 +84,23 @@ import javax.annotation.Nullable;
  * Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken container_registry uuid/container_registry_token uuid
+ * terraform import ionoscloud_container_registry_token.mycrtoken container_registry uuid/container_registry_token uuid
  * ```
  * 
  */
 @ResourceType(type="ionoscloud:creg/registryToken:RegistryToken")
 public class RegistryToken extends com.pulumi.resources.CustomResource {
+    /**
+     * [map]
+     * 
+     */
     @Export(name="credentials", refs={List.class,RegistryTokenCredential.class}, tree="[0,1]")
     private Output<List<RegistryTokenCredential>> credentials;
 
+    /**
+     * @return [map]
+     * 
+     */
     public Output<List<RegistryTokenCredential>> credentials() {
         return this.credentials;
     }
@@ -101,6 +109,20 @@ public class RegistryToken extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<String>> expiryDate() {
         return Codegen.optional(this.expiryDate);
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
@@ -118,16 +140,24 @@ public class RegistryToken extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * [string] The ID of the container registry
+     * 
+     */
     @Export(name="registryId", refs={String.class}, tree="[0]")
     private Output<String> registryId;
 
+    /**
+     * @return [string] The ID of the container registry
+     * 
+     */
     public Output<String> registryId() {
         return this.registryId;
     }
     /**
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      * 
-     * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+     * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
      * It will save the password(token) returned on create to a file. This is the only way to get the token.
      * 
      */
@@ -137,7 +167,7 @@ public class RegistryToken extends com.pulumi.resources.CustomResource {
     /**
      * @return [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      * 
-     * &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
+     * &gt; **⚠ WARNING** &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; must be used with caution.
      * It will save the password(token) returned on create to a file. This is the only way to get the token.
      * 
      */
@@ -145,28 +175,28 @@ public class RegistryToken extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.savePasswordToFile);
     }
     /**
-     * [map]
+     * (Computed) [map]
      * 
      */
     @Export(name="scopes", refs={List.class,RegistryTokenScope.class}, tree="[0,1]")
     private Output<List<RegistryTokenScope>> scopes;
 
     /**
-     * @return [map]
+     * @return (Computed) [map]
      * 
      */
     public Output<List<RegistryTokenScope>> scopes() {
         return this.scopes;
     }
     /**
-     * [string] Must have on of the values: `enabled`, `disabled`
+     * [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return [string] Must have on of the values: `enabled`, `disabled`
+     * @return [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     public Output<String> status() {
@@ -212,6 +242,7 @@ public class RegistryToken extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

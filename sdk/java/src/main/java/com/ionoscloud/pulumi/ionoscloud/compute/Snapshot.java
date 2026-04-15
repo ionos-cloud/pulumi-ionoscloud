@@ -16,7 +16,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages **Snapshots** on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -30,17 +30,17 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.Snapshot;
- * import com.pulumi.ionoscloud.compute.SnapshotArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Snapshot;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.SnapshotArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -83,9 +83,7 @@ import javax.annotation.Nullable;
  *             .datacenterId(exampleDatacenter.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
- *             .imageName(example.applyValue(getImageResult -> getImageResult.id()))
+ *             .imageName(example.id())
  *             .imagePassword(serverImagePassword.result())
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
@@ -115,7 +113,7 @@ import javax.annotation.Nullable;
  * Resource Snapshot can be imported using the `snapshot id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot snapshot uuid
+ * terraform import ionoscloud_snapshot.mysnapshot snapshot uuid
  * ```
  * 
  */
@@ -332,6 +330,20 @@ public class Snapshot extends com.pulumi.resources.CustomResource {
         return this.ramHotUnplug;
     }
     /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    @Export(name="requireLegacyBios", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    public Output<Boolean> requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      * 
      */
@@ -413,6 +425,7 @@ public class Snapshot extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

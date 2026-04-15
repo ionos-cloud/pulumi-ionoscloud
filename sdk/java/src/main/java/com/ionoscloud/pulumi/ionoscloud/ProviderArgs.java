@@ -17,9 +17,17 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
 
+    /**
+     * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+     * 
+     */
     @Import(name="contractNumber")
     private @Nullable Output<String> contractNumber;
 
+    /**
+     * @return To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+     * 
+     */
     public Optional<Output<String>> contractNumber() {
         return Optional.ofNullable(this.contractNumber);
     }
@@ -196,11 +204,23 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param contractNumber To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder contractNumber(@Nullable Output<String> contractNumber) {
             $.contractNumber = contractNumber;
             return this;
         }
 
+        /**
+         * @param contractNumber To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder contractNumber(String contractNumber) {
             return contractNumber(Output.of(contractNumber));
         }

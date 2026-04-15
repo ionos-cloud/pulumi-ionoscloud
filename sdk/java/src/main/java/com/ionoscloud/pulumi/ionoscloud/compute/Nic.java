@@ -19,7 +19,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **NIC** on IonosCloud.
+ * Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -30,20 +31,20 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -86,8 +87,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
  *             .imageName("Ubuntu-20.04")
  *             .imagePassword(serverImagePassword.result())
  *             .volume(ServerVolumeArgs.builder()
@@ -96,7 +95,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -111,8 +110,8 @@ import javax.annotation.Nullable;
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .ips(            
- *                 exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
  *             .build());
  * 
  *     }
@@ -131,18 +130,19 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.pulumi.std.StdFunctions;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -167,7 +167,11 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .public_(true)
  *             .name("IPv6 Enabled LAN")
- *             .ipv6CidrBlock("ipv6_cidr_block_from_dc")
+ *             .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
+ *                 Map.entry("input", example.ipv6CidrBlock()),
+ *                 Map.entry("newbits", 8),
+ *                 Map.entry("netnum", 2)
+ *             )).result())
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -180,8 +184,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
  *             .imageName("Ubuntu-20.04")
  *             .imagePassword(serverImagePassword.result())
  *             .volume(ServerVolumeArgs.builder()
@@ -190,7 +192,7 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
+ *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .build())
@@ -205,11 +207,36 @@ import javax.annotation.Nullable;
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .dhcpv6(false)
- *             .ipv6CidrBlock("ipv6_cidr_block_from_lan")
+ *             .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
+ *                 Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                 Map.entry("newbits", 16),
+ *                 Map.entry("netnum", 14)
+ *             )).result())
  *             .ipv6Ips(            
- *                 "ipv6_ip1",
- *                 "ipv6_ip2",
- *                 "ipv6_ip3")
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 10)
+ *                 )).result(),
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 20)
+ *                 )).result(),
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 30)
+ *                 )).result())
  *             .build());
  * 
  *     }
@@ -227,19 +254,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.Server;
- * import com.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NicFlowlogArgs;
+ * import com.pulumi.std.StdFunctions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -253,60 +271,45 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("Datacenter Example")
- *             .location("us/las")
- *             .description("Datacenter Description")
- *             .secAuthProtection(false)
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(true)
- *             .name("IPv6 Enabled LAN")
- *             .ipv6CidrBlock("ipv6_cidr_block_from_dc")
- *             .build());
- * 
- *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
- *             .length(16)
- *             .special(false)
- *             .build());
- * 
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .name("Server Example")
- *             .datacenterId(example.id())
- *             .cores(1)
- *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
- *             .imageName("Ubuntu-20.04")
- *             .imagePassword(serverImagePassword.result())
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("system")
- *                 .size(14)
- *                 .diskType("SSD")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .lan("1")
- *                 .dhcp(true)
- *                 .firewallActive(true)
- *                 .build())
- *             .build());
- * 
- *         var exampleNic = new Nic("exampleNic", NicArgs.builder()
- *             .datacenterId(example.id())
- *             .serverId(exampleServer.id())
- *             .lan(exampleLan.id())
+ *         var example = new Nic("example", NicArgs.builder()
+ *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .serverId(exampleIonoscloudServer.id())
+ *             .lan(exampleIonoscloudLan.id())
  *             .name("IPV6 and Flowlog Enabled NIC")
  *             .dhcp(true)
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .dhcpv6(false)
- *             .ipv6CidrBlock("ipv6_cidr_block_from_lan")
+ *             .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
+ *                 Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                 Map.entry("newbits", 16),
+ *                 Map.entry("netnum", 14)
+ *             )).result())
  *             .ipv6Ips(            
- *                 "ipv6_ip1",
- *                 "ipv6_ip2",
- *                 "ipv6_ip3")
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 10)
+ *                 )).result(),
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 20)
+ *                 )).result(),
+ *                 StdFunctions.cidrhost(Map.ofEntries(
+ *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("newbits", 16),
+ *                         Map.entry("netnum", 14)
+ *                     )).result()),
+ *                     Map.entry("host", 30)
+ *                 )).result())
  *             .flowlog(NicFlowlogArgs.builder()
  *                 .action("ACCEPTED")
  *                 .bucket("flowlog-bucket")
@@ -322,15 +325,15 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than
- * `name` will. Deleting a flowlog will also force NIC re-creation.
+ * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force NIC re-creation.
  * 
  * ## Working with load balancers
  * 
  * Please be aware that when using a NIC in a load balancer, the load balancer will
  * change the NIC&#39;s ID behind the scenes, therefore the plan will always report this change
- * trying to revert the state to the one specified by your file.
+ * trying to revert the state to the one specified by your terraform file.
  * In order to prevent this, use the &#34;lifecycle meta-argument&#34; when declaring your NIC,
- * in order to ignore changes to the `lan` attribute:
+ * in order to ignore changes to the &lt;span pulumi-lang-nodejs=&#34;`lan`&#34; pulumi-lang-dotnet=&#34;`Lan`&#34; pulumi-lang-go=&#34;`lan`&#34; pulumi-lang-python=&#34;`lan`&#34; pulumi-lang-yaml=&#34;`lan`&#34; pulumi-lang-java=&#34;`lan`&#34;&gt;`lan`&lt;/span&gt; attribute:
  * 
  * Here&#39;s an example:
  * 
@@ -342,8 +345,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Nic;
- * import com.pulumi.ionoscloud.compute.NicArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -360,7 +363,7 @@ import javax.annotation.Nullable;
  *         var example = new Nic("example", NicArgs.builder()
  *             .datacenterId(foobar.id())
  *             .serverId(exampleIonoscloudServer.id())
- *             .lan("2")
+ *             .lan(2)
  *             .dhcp(true)
  *             .firewallActive(true)
  *             .name("updated")
@@ -377,7 +380,7 @@ import javax.annotation.Nullable;
  * Resource **Nic** can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/nic:Nic mynic datacenter uuid/server uuid/nic uuid
+ * terraform import ionoscloud_nic.mynic datacenter uuid/server uuid/nic uuid
  * ```
  * 
  */
@@ -538,6 +541,20 @@ public class Nic extends com.pulumi.resources.CustomResource {
         return this.lan;
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      * 
      */
@@ -582,7 +599,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     @Export(name="securityGroupsIds", refs={List.class,String.class}, tree="[0,1]")
@@ -591,7 +608,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     public Output<Optional<List<String>>> securityGroupsIds() {
@@ -651,6 +668,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

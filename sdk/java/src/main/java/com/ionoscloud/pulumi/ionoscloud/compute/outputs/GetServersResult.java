@@ -10,6 +10,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
@@ -21,6 +22,7 @@ public final class GetServersResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     /**
      * @return list of servers that matches the filters provided.
      * For a full reference of all attributes returned, check out documentation
@@ -41,6 +43,9 @@ public final class GetServersResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     /**
      * @return list of servers that matches the filters provided.
@@ -63,6 +68,7 @@ public final class GetServersResult {
         private String datacenterId;
         private @Nullable List<GetServersFilter> filters;
         private String id;
+        private @Nullable String location;
         private List<GetServersServer> servers;
         public Builder() {}
         public Builder(GetServersResult defaults) {
@@ -70,6 +76,7 @@ public final class GetServersResult {
     	      this.datacenterId = defaults.datacenterId;
     	      this.filters = defaults.filters;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.servers = defaults.servers;
         }
 
@@ -99,6 +106,12 @@ public final class GetServersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder servers(List<GetServersServer> servers) {
             if (servers == null) {
               throw new MissingRequiredPropertyException("GetServersResult", "servers");
@@ -114,6 +127,7 @@ public final class GetServersResult {
             _resultValue.datacenterId = datacenterId;
             _resultValue.filters = filters;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.servers = servers;
             return _resultValue;
         }

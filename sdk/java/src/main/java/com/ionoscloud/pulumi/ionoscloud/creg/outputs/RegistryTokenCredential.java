@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RegistryTokenCredential {
+    /**
+     * @return [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * 
+     */
     private String password;
+    /**
+     * @return [string] The username of the container registry token
+     * 
+     */
     private String username;
 
     private RegistryTokenCredential() {}
+    /**
+     * @return [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * 
+     */
     public String password() {
         return this.password;
     }
+    /**
+     * @return [string] The username of the container registry token
+     * 
+     */
     public String username() {
         return this.username;
     }

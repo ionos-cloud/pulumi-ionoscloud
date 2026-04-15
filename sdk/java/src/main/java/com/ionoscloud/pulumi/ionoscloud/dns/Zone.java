@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.dns.Zone;
- * import com.pulumi.ionoscloud.dns.ZoneArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.Zone;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.ZoneArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -62,16 +62,40 @@ import javax.annotation.Nullable;
  * 
  * In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
  * 
- * hcl
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * resource &#34;ionoscloud_dns_zone&#34; &#34;example&#34; {
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.Zone;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Zone("example");
+ * 
+ *     }
  * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * The resource can be imported using the `zone_id`, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`zoneId`&#34; pulumi-lang-dotnet=&#34;`ZoneId`&#34; pulumi-lang-go=&#34;`zoneId`&#34; pulumi-lang-python=&#34;`zone_id`&#34; pulumi-lang-yaml=&#34;`zoneId`&#34; pulumi-lang-java=&#34;`zoneId`&#34;&gt;`zoneId`&lt;/span&gt;, for example:
  * 
  * ```sh
- * $ pulumi import ionoscloud:dns/zone:Zone examplezone_id
+ * terraform import ionoscloud_dns_zone.examplezone_id
  * ```
  * 
  */
@@ -92,28 +116,28 @@ public class Zone extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+     * [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+     * @return [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Zone.
+     * @return [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     public Output<String> name() {
@@ -173,6 +197,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

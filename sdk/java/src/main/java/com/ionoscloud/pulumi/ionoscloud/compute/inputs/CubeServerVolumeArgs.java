@@ -107,24 +107,39 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * [string] Required if `ssh_key_path` is not provided.
-     * 
-     * @deprecated
-     * Please use image_password under server level
+     * If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      * 
      */
-    @Deprecated /* Please use image_password under server level */
+    @Import(name="exposeSerial")
+    private @Nullable Output<Boolean> exposeSerial;
+
+    /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Optional<Output<Boolean>> exposeSerial() {
+        return Optional.ofNullable(this.exposeSerial);
+    }
+
+    /**
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+     * 
+     * @deprecated
+     * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
+     * 
+     */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
     @Import(name="imagePassword")
     private @Nullable Output<String> imagePassword;
 
     /**
-     * @return [string] Required if `ssh_key_path` is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
-     * Please use image_password under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use image_password under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
     public Optional<Output<String>> imagePassword() {
         return Optional.ofNullable(this.imagePassword);
     }
@@ -188,24 +203,39 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-     * 
-     * @deprecated
-     * Please use ssh_key_path under server level
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
      * 
      */
-    @Deprecated /* Please use ssh_key_path under server level */
+    @Import(name="requireLegacyBios")
+    private @Nullable Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Optional<Output<Boolean>> requireLegacyBios() {
+        return Optional.ofNullable(this.requireLegacyBios);
+    }
+
+    /**
+     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * 
+     * @deprecated
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
+     * 
+     */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
     @Import(name="sshKeyPaths")
     private @Nullable Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+     * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      * @deprecated
-     * Please use ssh_key_path under server level
+     * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
      * 
      */
-    @Deprecated /* Please use ssh_key_path under server level */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
     public Optional<Output<List<String>>> sshKeyPaths() {
         return Optional.ofNullable(this.sshKeyPaths);
     }
@@ -237,6 +267,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         this.discVirtioHotPlug = $.discVirtioHotPlug;
         this.discVirtioHotUnplug = $.discVirtioHotUnplug;
         this.diskType = $.diskType;
+        this.exposeSerial = $.exposeSerial;
         this.imagePassword = $.imagePassword;
         this.licenceType = $.licenceType;
         this.name = $.name;
@@ -244,6 +275,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         this.nicHotUnplug = $.nicHotUnplug;
         this.pciSlot = $.pciSlot;
         this.ramHotPlug = $.ramHotPlug;
+        this.requireLegacyBios = $.requireLegacyBios;
         this.sshKeyPaths = $.sshKeyPaths;
         this.userData = $.userData;
     }
@@ -384,30 +416,51 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param imagePassword [string] Required if `ssh_key_path` is not provided.
+         * @param exposeSerial If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(@Nullable Output<Boolean> exposeSerial) {
+            $.exposeSerial = exposeSerial;
+            return this;
+        }
+
+        /**
+         * @param exposeSerial If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(Boolean exposeSerial) {
+            return exposeSerial(Output.of(exposeSerial));
+        }
+
+        /**
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use image_password under server level
+         * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
          * 
          */
-        @Deprecated /* Please use image_password under server level */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
         public Builder imagePassword(@Nullable Output<String> imagePassword) {
             $.imagePassword = imagePassword;
             return this;
         }
 
         /**
-         * @param imagePassword [string] Required if `ssh_key_path` is not provided.
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use image_password under server level
+         * Please use&lt;span pulumi-lang-nodejs=&#34; imagePassword &#34; pulumi-lang-dotnet=&#34; ImagePassword &#34; pulumi-lang-go=&#34; imagePassword &#34; pulumi-lang-python=&#34; image_password &#34; pulumi-lang-yaml=&#34; imagePassword &#34; pulumi-lang-java=&#34; imagePassword &#34;&gt; imagePassword &lt;/span&gt;under server level
          * 
          */
-        @Deprecated /* Please use image_password under server level */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" imagePassword "" pulumi-lang-dotnet="" ImagePassword "" pulumi-lang-go="" imagePassword "" pulumi-lang-python="" image_password "" pulumi-lang-yaml="" imagePassword "" pulumi-lang-java="" imagePassword ""> imagePassword </span>under server level */
         public Builder imagePassword(String imagePassword) {
             return imagePassword(Output.of(imagePassword));
         }
@@ -491,44 +544,65 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+         * @param requireLegacyBios Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(@Nullable Output<Boolean> requireLegacyBios) {
+            $.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+
+        /**
+         * @param requireLegacyBios Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            return requireLegacyBios(Output.of(requireLegacyBios));
+        }
+
+        /**
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use ssh_key_path under server level
+         * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
          * 
          */
-        @Deprecated /* Please use ssh_key_path under server level */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
         public Builder sshKeyPaths(@Nullable Output<List<String>> sshKeyPaths) {
             $.sshKeyPaths = sshKeyPaths;
             return this;
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use ssh_key_path under server level
+         * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
          * 
          */
-        @Deprecated /* Please use ssh_key_path under server level */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
         public Builder sshKeyPaths(List<String> sshKeyPaths) {
             return sshKeyPaths(Output.of(sshKeyPaths));
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
          * @deprecated
-         * Please use ssh_key_path under server level
+         * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;under server level
          * 
          */
-        @Deprecated /* Please use ssh_key_path under server level */
+        @Deprecated /* Please use<span pulumi-lang-nodejs="" sshKeyPath "" pulumi-lang-dotnet="" SshKeyPath "" pulumi-lang-go="" sshKeyPath "" pulumi-lang-python="" ssh_key_path "" pulumi-lang-yaml="" sshKeyPath "" pulumi-lang-java="" sshKeyPath ""> sshKeyPath </span>under server level */
         public Builder sshKeyPaths(String... sshKeyPaths) {
             return sshKeyPaths(List.of(sshKeyPaths));
         }

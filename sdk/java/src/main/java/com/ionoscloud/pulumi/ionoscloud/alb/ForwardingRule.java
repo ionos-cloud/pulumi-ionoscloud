@@ -30,16 +30,17 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.alb.Balancer;
- * import com.pulumi.ionoscloud.alb.BalancerArgs;
- * import com.pulumi.ionoscloud.cert.Certificate;
- * import com.pulumi.ionoscloud.cert.CertificateArgs;
- * import com.pulumi.ionoscloud.alb.ForwardingRule;
- * import com.pulumi.ionoscloud.alb.ForwardingRuleArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.Balancer;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.BalancerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.Certificate;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.CertificateArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.ForwardingRule;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.ForwardingRuleArgs;
  * import com.pulumi.ionoscloud.alb.inputs.ForwardingRuleHttpRuleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -85,9 +86,9 @@ import javax.annotation.Nullable;
  *         //optionally you can add a certificate to the application load balancer
  *         var cert = new Certificate("cert", CertificateArgs.builder()
  *             .name("add_name_here")
- *             .certificate("your_certificate")
- *             .certificateChain("your_certificate_chain")
- *             .privateKey("your_private_key")
+ *             .certificate(StdFunctions.file(Map.of("input", "path_to_cert")).result())
+ *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).result())
+ *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).result())
  *             .build());
  * 
  *         var exampleForwardingRule = new ForwardingRule("exampleForwardingRule", ForwardingRuleArgs.builder()
@@ -142,7 +143,7 @@ import javax.annotation.Nullable;
  * Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule datacenter uuid/application_loadbalancer uuid/application_loadbalancer_forwardingrule uuid
+ * terraform import ionoscloud_application_loadbalancer_forwardingrule.my_application_loadbalancer_forwardingrule datacenter uuid/application_loadbalancer uuid/application_loadbalancer_forwardingrule uuid
  * ```
  * 
  */
@@ -233,6 +234,20 @@ public class ForwardingRule extends com.pulumi.resources.CustomResource {
         return this.listenerPort;
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * [string] The name of the Application Load Balancer forwarding rule.
      * 
      */
@@ -314,6 +329,7 @@ public class ForwardingRule extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

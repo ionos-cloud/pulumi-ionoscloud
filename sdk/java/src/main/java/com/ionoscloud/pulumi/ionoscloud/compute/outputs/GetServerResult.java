@@ -9,6 +9,7 @@ import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetServerNic;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetServerVolume;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -62,10 +63,20 @@ public final class GetServerResult {
      */
     private List<GetServerLabel> labels;
     /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    private @Nullable String location;
+    /**
      * @return Name of the firewall rule
      * 
      */
     private String name;
+    /**
+     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
+     * 
+     */
+    private Boolean nicMultiQueue;
     /**
      * @return list of
      * 
@@ -170,11 +181,25 @@ public final class GetServerResult {
         return this.labels;
     }
     /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+    /**
      * @return Name of the firewall rule
      * 
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
+     * 
+     */
+    public Boolean nicMultiQueue() {
+        return this.nicMultiQueue;
     }
     /**
      * @return list of
@@ -249,7 +274,9 @@ public final class GetServerResult {
         private String hostname;
         private String id;
         private List<GetServerLabel> labels;
+        private @Nullable String location;
         private String name;
+        private Boolean nicMultiQueue;
         private List<GetServerNic> nics;
         private Integer ram;
         private List<String> securityGroupsIds;
@@ -272,7 +299,9 @@ public final class GetServerResult {
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
+    	      this.nicMultiQueue = defaults.nicMultiQueue;
     	      this.nics = defaults.nics;
     	      this.ram = defaults.ram;
     	      this.securityGroupsIds = defaults.securityGroupsIds;
@@ -378,11 +407,25 @@ public final class GetServerResult {
             return labels(List.of(labels));
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetServerResult", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder nicMultiQueue(Boolean nicMultiQueue) {
+            if (nicMultiQueue == null) {
+              throw new MissingRequiredPropertyException("GetServerResult", "nicMultiQueue");
+            }
+            this.nicMultiQueue = nicMultiQueue;
             return this;
         }
         @CustomType.Setter
@@ -469,7 +512,9 @@ public final class GetServerResult {
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.labels = labels;
+            _resultValue.location = location;
             _resultValue.name = name;
+            _resultValue.nicMultiQueue = nicMultiQueue;
             _resultValue.nics = nics;
             _resultValue.ram = ram;
             _resultValue.securityGroupsIds = securityGroupsIds;

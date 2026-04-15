@@ -18,7 +18,6 @@ public final class GroupUser {
     private @Nullable Boolean forceSecAuth;
     private @Nullable String id;
     private @Nullable String lastName;
-    private @Nullable String password;
 
     private GroupUser() {}
     public Optional<Boolean> administrator() {
@@ -39,9 +38,6 @@ public final class GroupUser {
     public Optional<String> lastName() {
         return Optional.ofNullable(this.lastName);
     }
-    public Optional<String> password() {
-        return Optional.ofNullable(this.password);
-    }
 
     public static Builder builder() {
         return new Builder();
@@ -58,7 +54,6 @@ public final class GroupUser {
         private @Nullable Boolean forceSecAuth;
         private @Nullable String id;
         private @Nullable String lastName;
-        private @Nullable String password;
         public Builder() {}
         public Builder(GroupUser defaults) {
     	      Objects.requireNonNull(defaults);
@@ -68,7 +63,6 @@ public final class GroupUser {
     	      this.forceSecAuth = defaults.forceSecAuth;
     	      this.id = defaults.id;
     	      this.lastName = defaults.lastName;
-    	      this.password = defaults.password;
         }
 
         @CustomType.Setter
@@ -107,12 +101,6 @@ public final class GroupUser {
             this.lastName = lastName;
             return this;
         }
-        @CustomType.Setter
-        public Builder password(@Nullable String password) {
-
-            this.password = password;
-            return this;
-        }
         public GroupUser build() {
             final var _resultValue = new GroupUser();
             _resultValue.administrator = administrator;
@@ -121,7 +109,6 @@ public final class GroupUser {
             _resultValue.forceSecAuth = forceSecAuth;
             _resultValue.id = id;
             _resultValue.lastName = lastName;
-            _resultValue.password = password;
             return _resultValue;
         }
     }

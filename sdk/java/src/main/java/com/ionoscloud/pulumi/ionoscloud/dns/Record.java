@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DNS Record**.
+ * Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
  * 
  * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
  * 
@@ -31,10 +31,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.dns.Zone;
- * import com.pulumi.ionoscloud.dns.ZoneArgs;
- * import com.pulumi.ionoscloud.dns.Record;
- * import com.pulumi.ionoscloud.dns.RecordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.Zone;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.ZoneArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.Record;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.RecordArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -73,14 +73,36 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * hcl
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.dns.Record;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- * resource &#34;ionoscloud_dns_record&#34; &#34;example&#34; {
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Record("example");
+ * 
+ *     }
  * }
- * 
- * The resource can be imported using the `zone_id` and the `record_id`, for example:
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`zoneId`&#34; pulumi-lang-dotnet=&#34;`ZoneId`&#34; pulumi-lang-go=&#34;`zoneId`&#34; pulumi-lang-python=&#34;`zone_id`&#34; pulumi-lang-yaml=&#34;`zoneId`&#34; pulumi-lang-java=&#34;`zoneId`&#34;&gt;`zoneId`&lt;/span&gt; and the &lt;span pulumi-lang-nodejs=&#34;`recordId`&#34; pulumi-lang-dotnet=&#34;`RecordId`&#34; pulumi-lang-go=&#34;`recordId`&#34; pulumi-lang-python=&#34;`record_id`&#34; pulumi-lang-yaml=&#34;`recordId`&#34; pulumi-lang-java=&#34;`recordId`&#34;&gt;`recordId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:dns/record:Record example zone_id/record_id
@@ -104,14 +126,14 @@ public class Record extends com.pulumi.resources.CustomResource {
         return this.content;
     }
     /**
-     * [bool] Indicates if the DNS Record is active or not. Default is `true`.
+     * [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Record is active or not. Default is `true`.
+     * @return [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Output<Boolean> enabled() {
@@ -132,14 +154,14 @@ public class Record extends com.pulumi.resources.CustomResource {
         return this.fqdn;
     }
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Record.
+     * @return [string] The name of the DNS Record. This property is immutable.
      * 
      */
     public Output<String> name() {
@@ -160,28 +182,28 @@ public class Record extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.priority);
     }
     /**
-     * [int] Time to live for the DNS Record. Default is `3600`.
+     * [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output<Integer> ttl;
 
     /**
-     * @return [int] Time to live for the DNS Record. Default is `3600`.
+     * @return [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     public Output<Integer> ttl() {
         return this.ttl;
     }
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     public Output<String> type() {
@@ -241,6 +263,7 @@ public class Record extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

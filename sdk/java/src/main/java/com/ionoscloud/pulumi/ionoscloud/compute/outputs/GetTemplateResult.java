@@ -3,19 +3,31 @@
 
 package com.ionoscloud.pulumi.ionoscloud.compute.outputs;
 
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetTemplateGpus;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetTemplateResult {
     /**
+     * @return The category of the template
+     * 
+     */
+    private String category;
+    /**
      * @return The CPU cores count
      * 
      */
     private Double cores;
+    /**
+     * @return List of GPUs in the template
+     * 
+     */
+    private List<GetTemplateGpus> gpuses;
     /**
      * @return Id of template
      * 
@@ -39,11 +51,25 @@ public final class GetTemplateResult {
 
     private GetTemplateResult() {}
     /**
+     * @return The category of the template
+     * 
+     */
+    public String category() {
+        return this.category;
+    }
+    /**
      * @return The CPU cores count
      * 
      */
     public Double cores() {
         return this.cores;
+    }
+    /**
+     * @return List of GPUs in the template
+     * 
+     */
+    public List<GetTemplateGpus> gpuses() {
+        return this.gpuses;
     }
     /**
      * @return Id of template
@@ -83,7 +109,9 @@ public final class GetTemplateResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String category;
         private Double cores;
+        private List<GetTemplateGpus> gpuses;
         private String id;
         private String name;
         private Double ram;
@@ -91,7 +119,9 @@ public final class GetTemplateResult {
         public Builder() {}
         public Builder(GetTemplateResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.category = defaults.category;
     	      this.cores = defaults.cores;
+    	      this.gpuses = defaults.gpuses;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.ram = defaults.ram;
@@ -99,12 +129,31 @@ public final class GetTemplateResult {
         }
 
         @CustomType.Setter
+        public Builder category(String category) {
+            if (category == null) {
+              throw new MissingRequiredPropertyException("GetTemplateResult", "category");
+            }
+            this.category = category;
+            return this;
+        }
+        @CustomType.Setter
         public Builder cores(Double cores) {
             if (cores == null) {
               throw new MissingRequiredPropertyException("GetTemplateResult", "cores");
             }
             this.cores = cores;
             return this;
+        }
+        @CustomType.Setter
+        public Builder gpuses(List<GetTemplateGpus> gpuses) {
+            if (gpuses == null) {
+              throw new MissingRequiredPropertyException("GetTemplateResult", "gpuses");
+            }
+            this.gpuses = gpuses;
+            return this;
+        }
+        public Builder gpuses(GetTemplateGpus... gpuses) {
+            return gpuses(List.of(gpuses));
         }
         @CustomType.Setter
         public Builder id(String id) {
@@ -140,7 +189,9 @@ public final class GetTemplateResult {
         }
         public GetTemplateResult build() {
             final var _resultValue = new GetTemplateResult();
+            _resultValue.category = category;
             _resultValue.cores = cores;
+            _resultValue.gpuses = gpuses;
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.ram = ram;

@@ -25,18 +25,16 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use:
      * 
      */
     @Import(name="allowReplace")
@@ -45,18 +43,16 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
      * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
      * 
      * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
      * 
      * ⚠️ **Note**:
      * 
-     * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-     * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-     * You can read more details about the `ignore_changes` attribute here.
+     * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+     * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use:
      * 
      */
     public Optional<Output<Boolean>> allowReplace() {
@@ -214,6 +210,21 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * See the **maintenance_window** section in the example above
      * 
      */
@@ -259,14 +270,14 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     @Import(name="publicIps")
     private @Nullable Output<List<String>> publicIps;
 
     /**
-     * @return [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+     * @return [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
      * 
      */
     public Optional<Output<List<String>>> publicIps() {
@@ -286,6 +297,21 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Integer>> ramSize() {
         return Optional.ofNullable(this.ramSize);
+    }
+
+    /**
+     * [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+     * 
+     */
+    @Import(name="serverType")
+    private @Nullable Output<String> serverType;
+
+    /**
+     * @return [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+     * 
+     */
+    public Optional<Output<String>> serverType() {
+        return Optional.ofNullable(this.serverType);
     }
 
     /**
@@ -332,11 +358,13 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         this.k8sVersion = $.k8sVersion;
         this.labels = $.labels;
         this.lans = $.lans;
+        this.location = $.location;
         this.maintenanceWindow = $.maintenanceWindow;
         this.name = $.name;
         this.nodeCount = $.nodeCount;
         this.publicIps = $.publicIps;
         this.ramSize = $.ramSize;
+        this.serverType = $.serverType;
         this.storageSize = $.storageSize;
         this.storageType = $.storageType;
     }
@@ -362,18 +390,16 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
          * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
          * 
          * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
          * 
          * ⚠️ **Note**:
          * 
-         * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-         * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-         * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-         * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-         * You can read more details about the `ignore_changes` attribute here.
+         * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+         * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+         * from the number of nodes set by the scheduler). To avoid that, you can use:
          * 
          * @return builder
          * 
@@ -386,18 +412,16 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
          * 
-         * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the node pool in order to do it. Set the field to true only if you know what you are doing.
          * This will cause a downtime for all pods on that nodepool. Consider adding multiple nodepools and update one after the other for downtime free nodepool upgrade._**
          * 
          * Immutable fields list: name, cpu_family, availability_zone, cores_count, ram_size, storage_size, storage_type.
          * 
          * ⚠️ **Note**:
          * 
-         * Be careful when using `auto_scaling` since the number of nodes can change. Because of that, when running
-         * `pulumi preview`, An update will be considered required (since `node_count` from the `tf` plan will be different
-         * from the number of nodes set by the scheduler). To avoid that, you can use `ignore_changes`.
-         * This will also ignore the manual changes for `node_count` made in the `tf` plan.
-         * You can read more details about the `ignore_changes` attribute here.
+         * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
+         * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+         * from the number of nodes set by the scheduler). To avoid that, you can use:
          * 
          * @return builder
          * 
@@ -627,6 +651,27 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param maintenanceWindow See the **maintenance_window** section in the example above
          * 
          * @return builder
@@ -690,7 +735,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 
@@ -701,7 +746,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 
@@ -711,7 +756,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+         * @param publicIps [list] A list of public IPs associated with the node pool; must have at least &lt;span pulumi-lang-nodejs=&#34;`nodeCount &#34; pulumi-lang-dotnet=&#34;`NodeCount &#34; pulumi-lang-go=&#34;`nodeCount &#34; pulumi-lang-python=&#34;`node_count &#34; pulumi-lang-yaml=&#34;`nodeCount &#34; pulumi-lang-java=&#34;`nodeCount &#34;&gt;`nodeCount &lt;/span&gt;+ 1` elements
          * 
          * @return builder
          * 
@@ -739,6 +784,27 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ramSize(Integer ramSize) {
             return ramSize(Output.of(ramSize));
+        }
+
+        /**
+         * @param serverType [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serverType(@Nullable Output<String> serverType) {
+            $.serverType = serverType;
+            return this;
+        }
+
+        /**
+         * @param serverType [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serverType(String serverType) {
+            return serverType(Output.of(serverType));
         }
 
         /**

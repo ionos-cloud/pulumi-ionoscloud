@@ -33,14 +33,14 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The location where the Network File Storage cluster is located.
+     * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return The location where the Network File Storage cluster is located.
+     * @return The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     public Output<String> location() {
@@ -63,14 +63,14 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+     * Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Import(name="partialMatch")
     private @Nullable Output<Boolean> partialMatch;
 
     /**
-     * @return Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+     * @return Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> partialMatch() {
@@ -126,7 +126,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage cluster is located.
+         * @param location The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage cluster is located.
+         * @param location The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 

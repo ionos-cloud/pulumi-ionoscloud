@@ -5,6 +5,7 @@ package com.ionoscloud.pulumi.ionoscloud.k8s.inputs;
 
 import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.GetClustersFilter;
 import com.pulumi.core.annotations.Import;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
     public static final GetClustersPlainArgs Empty = new GetClustersPlainArgs();
 
     /**
-     * One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+     * One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the &lt;span pulumi-lang-nodejs=&#34; k8sCluster &#34; pulumi-lang-dotnet=&#34; K8sCluster &#34; pulumi-lang-go=&#34; k8sCluster &#34; pulumi-lang-python=&#34; k8s_cluster &#34; pulumi-lang-yaml=&#34; k8sCluster &#34; pulumi-lang-java=&#34; k8sCluster &#34;&gt; k8sCluster &lt;/span&gt;resource **except** those containing other nested structures such as &lt;span pulumi-lang-nodejs=&#34;`maintenanceWindow`&#34; pulumi-lang-dotnet=&#34;`MaintenanceWindow`&#34; pulumi-lang-go=&#34;`maintenanceWindow`&#34; pulumi-lang-python=&#34;`maintenance_window`&#34; pulumi-lang-yaml=&#34;`maintenanceWindow`&#34; pulumi-lang-java=&#34;`maintenanceWindow`&#34;&gt;`maintenanceWindow`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`config`&#34; pulumi-lang-dotnet=&#34;`Config`&#34; pulumi-lang-go=&#34;`config`&#34; pulumi-lang-python=&#34;`config`&#34; pulumi-lang-yaml=&#34;`config`&#34; pulumi-lang-java=&#34;`config`&#34;&gt;`config`&lt;/span&gt;.
      * 
      * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
      * 
@@ -25,7 +26,7 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
     private @Nullable List<GetClustersFilter> filters;
 
     /**
-     * @return One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+     * @return One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the &lt;span pulumi-lang-nodejs=&#34; k8sCluster &#34; pulumi-lang-dotnet=&#34; K8sCluster &#34; pulumi-lang-go=&#34; k8sCluster &#34; pulumi-lang-python=&#34; k8s_cluster &#34; pulumi-lang-yaml=&#34; k8sCluster &#34; pulumi-lang-java=&#34; k8sCluster &#34;&gt; k8sCluster &lt;/span&gt;resource **except** those containing other nested structures such as &lt;span pulumi-lang-nodejs=&#34;`maintenanceWindow`&#34; pulumi-lang-dotnet=&#34;`MaintenanceWindow`&#34; pulumi-lang-go=&#34;`maintenanceWindow`&#34; pulumi-lang-python=&#34;`maintenance_window`&#34; pulumi-lang-yaml=&#34;`maintenanceWindow`&#34; pulumi-lang-java=&#34;`maintenanceWindow`&#34;&gt;`maintenanceWindow`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`config`&#34; pulumi-lang-dotnet=&#34;`Config`&#34; pulumi-lang-go=&#34;`config`&#34; pulumi-lang-python=&#34;`config`&#34; pulumi-lang-yaml=&#34;`config`&#34; pulumi-lang-java=&#34;`config`&#34;&gt;`config`&lt;/span&gt;.
      * 
      * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
      * 
@@ -34,10 +35,18 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.filters);
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetClustersPlainArgs() {}
 
     private GetClustersPlainArgs(GetClustersPlainArgs $) {
         this.filters = $.filters;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -59,7 +68,7 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param filters One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+         * @param filters One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the &lt;span pulumi-lang-nodejs=&#34; k8sCluster &#34; pulumi-lang-dotnet=&#34; K8sCluster &#34; pulumi-lang-go=&#34; k8sCluster &#34; pulumi-lang-python=&#34; k8s_cluster &#34; pulumi-lang-yaml=&#34; k8sCluster &#34; pulumi-lang-java=&#34; k8sCluster &#34;&gt; k8sCluster &lt;/span&gt;resource **except** those containing other nested structures such as &lt;span pulumi-lang-nodejs=&#34;`maintenanceWindow`&#34; pulumi-lang-dotnet=&#34;`MaintenanceWindow`&#34; pulumi-lang-go=&#34;`maintenanceWindow`&#34; pulumi-lang-python=&#34;`maintenance_window`&#34; pulumi-lang-yaml=&#34;`maintenanceWindow`&#34; pulumi-lang-java=&#34;`maintenanceWindow`&#34;&gt;`maintenanceWindow`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`config`&#34; pulumi-lang-dotnet=&#34;`Config`&#34; pulumi-lang-go=&#34;`config`&#34; pulumi-lang-python=&#34;`config`&#34; pulumi-lang-yaml=&#34;`config`&#34; pulumi-lang-java=&#34;`config`&#34;&gt;`config`&lt;/span&gt;.
          * 
          * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
          * 
@@ -72,7 +81,7 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param filters One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+         * @param filters One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the &lt;span pulumi-lang-nodejs=&#34; k8sCluster &#34; pulumi-lang-dotnet=&#34; K8sCluster &#34; pulumi-lang-go=&#34; k8sCluster &#34; pulumi-lang-python=&#34; k8s_cluster &#34; pulumi-lang-yaml=&#34; k8sCluster &#34; pulumi-lang-java=&#34; k8sCluster &#34;&gt; k8sCluster &lt;/span&gt;resource **except** those containing other nested structures such as &lt;span pulumi-lang-nodejs=&#34;`maintenanceWindow`&#34; pulumi-lang-dotnet=&#34;`MaintenanceWindow`&#34; pulumi-lang-go=&#34;`maintenanceWindow`&#34; pulumi-lang-python=&#34;`maintenance_window`&#34; pulumi-lang-yaml=&#34;`maintenanceWindow`&#34; pulumi-lang-java=&#34;`maintenanceWindow`&#34;&gt;`maintenanceWindow`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`config`&#34; pulumi-lang-dotnet=&#34;`Config`&#34; pulumi-lang-go=&#34;`config`&#34; pulumi-lang-python=&#34;`config`&#34; pulumi-lang-yaml=&#34;`config`&#34; pulumi-lang-java=&#34;`config`&#34;&gt;`config`&lt;/span&gt;.
          * 
          * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
          * 
@@ -81,6 +90,11 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder filters(GetClustersFilter... filters) {
             return filters(List.of(filters));
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
+            return this;
         }
 
         public GetClustersPlainArgs build() {

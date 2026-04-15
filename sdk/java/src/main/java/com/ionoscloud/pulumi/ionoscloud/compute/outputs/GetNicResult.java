@@ -11,6 +11,8 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNicResult {
@@ -62,6 +64,7 @@ public final class GetNicResult {
      * 
      */
     private Integer lan;
+    private @Nullable String location;
     /**
      * @return The MAC address of the NIC.
      * 
@@ -161,6 +164,9 @@ public final class GetNicResult {
     public Integer lan() {
         return this.lan;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return The MAC address of the NIC.
      * 
@@ -218,6 +224,7 @@ public final class GetNicResult {
         private String ipv6CidrBlock;
         private List<String> ipv6Ips;
         private Integer lan;
+        private @Nullable String location;
         private String mac;
         private String name;
         private Integer pciSlot;
@@ -238,6 +245,7 @@ public final class GetNicResult {
     	      this.ipv6CidrBlock = defaults.ipv6CidrBlock;
     	      this.ipv6Ips = defaults.ipv6Ips;
     	      this.lan = defaults.lan;
+    	      this.location = defaults.location;
     	      this.mac = defaults.mac;
     	      this.name = defaults.name;
     	      this.pciSlot = defaults.pciSlot;
@@ -351,6 +359,12 @@ public final class GetNicResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder mac(String mac) {
             if (mac == null) {
               throw new MissingRequiredPropertyException("GetNicResult", "mac");
@@ -407,6 +421,7 @@ public final class GetNicResult {
             _resultValue.ipv6CidrBlock = ipv6CidrBlock;
             _resultValue.ipv6Ips = ipv6Ips;
             _resultValue.lan = lan;
+            _resultValue.location = location;
             _resultValue.mac = mac;
             _resultValue.name = name;
             _resultValue.pciSlot = pciSlot;

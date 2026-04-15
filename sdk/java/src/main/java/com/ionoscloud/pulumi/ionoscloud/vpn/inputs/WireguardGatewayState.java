@@ -102,16 +102,14 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * @return [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Optional<Output<String>> location() {
@@ -166,7 +164,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
     /**
      * (Computed)[String] The public key for the WireGuard Gateway.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Import(name="publicKey")
@@ -175,7 +173,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
     /**
      * @return (Computed)[String] The public key for the WireGuard Gateway.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Optional<Output<String>> publicKey() {
@@ -373,8 +371,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param location [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-         * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+         * @param location [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 
@@ -385,8 +382,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param location [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-         * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+         * @param location [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 
@@ -461,7 +457,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
         /**
          * @param publicKey (Computed)[String] The public key for the WireGuard Gateway.
          * ---
-         * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+         * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
          * 
          * @return builder
          * 
@@ -474,7 +470,7 @@ public final class WireguardGatewayState extends com.pulumi.resources.ResourceAr
         /**
          * @param publicKey (Computed)[String] The public key for the WireGuard Gateway.
          * ---
-         * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
+         * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
          * 
          * @return builder
          * 

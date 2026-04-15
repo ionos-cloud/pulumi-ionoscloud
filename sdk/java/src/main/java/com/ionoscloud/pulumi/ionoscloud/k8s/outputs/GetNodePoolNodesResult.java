@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNodePoolNodesResult {
@@ -18,6 +20,7 @@ public final class GetNodePoolNodesResult {
      */
     private String id;
     private String k8sClusterId;
+    private @Nullable String location;
     private String nodePoolId;
     /**
      * @return a list of the nodes that are in the nodepool
@@ -35,6 +38,9 @@ public final class GetNodePoolNodesResult {
     }
     public String k8sClusterId() {
         return this.k8sClusterId;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     public String nodePoolId() {
         return this.nodePoolId;
@@ -58,6 +64,7 @@ public final class GetNodePoolNodesResult {
     public static final class Builder {
         private String id;
         private String k8sClusterId;
+        private @Nullable String location;
         private String nodePoolId;
         private List<GetNodePoolNodesNode> nodes;
         public Builder() {}
@@ -65,6 +72,7 @@ public final class GetNodePoolNodesResult {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.k8sClusterId = defaults.k8sClusterId;
+    	      this.location = defaults.location;
     	      this.nodePoolId = defaults.nodePoolId;
     	      this.nodes = defaults.nodes;
         }
@@ -83,6 +91,12 @@ public final class GetNodePoolNodesResult {
               throw new MissingRequiredPropertyException("GetNodePoolNodesResult", "k8sClusterId");
             }
             this.k8sClusterId = k8sClusterId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -108,6 +122,7 @@ public final class GetNodePoolNodesResult {
             final var _resultValue = new GetNodePoolNodesResult();
             _resultValue.id = id;
             _resultValue.k8sClusterId = k8sClusterId;
+            _resultValue.location = location;
             _resultValue.nodePoolId = nodePoolId;
             _resultValue.nodes = nodes;
             return _resultValue;

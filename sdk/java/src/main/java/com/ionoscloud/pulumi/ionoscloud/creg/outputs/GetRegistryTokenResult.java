@@ -23,6 +23,7 @@ public final class GetRegistryTokenResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     private String name;
     private @Nullable Boolean partialMatch;
     private String registryId;
@@ -42,6 +43,9 @@ public final class GetRegistryTokenResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     public String name() {
         return this.name;
@@ -71,6 +75,7 @@ public final class GetRegistryTokenResult {
         private List<GetRegistryTokenCredential> credentials;
         private String expiryDate;
         private String id;
+        private @Nullable String location;
         private String name;
         private @Nullable Boolean partialMatch;
         private String registryId;
@@ -82,6 +87,7 @@ public final class GetRegistryTokenResult {
     	      this.credentials = defaults.credentials;
     	      this.expiryDate = defaults.expiryDate;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.partialMatch = defaults.partialMatch;
     	      this.registryId = defaults.registryId;
@@ -114,6 +120,12 @@ public final class GetRegistryTokenResult {
               throw new MissingRequiredPropertyException("GetRegistryTokenResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -162,6 +174,7 @@ public final class GetRegistryTokenResult {
             _resultValue.credentials = credentials;
             _resultValue.expiryDate = expiryDate;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.partialMatch = partialMatch;
             _resultValue.registryId = registryId;

@@ -26,7 +26,7 @@ public final class GetVolumeArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * ID of the volume you want to search for.
      * 
-     * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     @Import(name="id")
@@ -35,11 +35,18 @@ public final class GetVolumeArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return ID of the volume you want to search for.
      * 
-     * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
+    }
+
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
     }
 
     /**
@@ -62,6 +69,7 @@ public final class GetVolumeArgs extends com.pulumi.resources.InvokeArgs {
     private GetVolumeArgs(GetVolumeArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -95,7 +103,7 @@ public final class GetVolumeArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param id ID of the volume you want to search for.
          * 
-         * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -108,13 +116,22 @@ public final class GetVolumeArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param id ID of the volume you want to search for.
          * 
-         * Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

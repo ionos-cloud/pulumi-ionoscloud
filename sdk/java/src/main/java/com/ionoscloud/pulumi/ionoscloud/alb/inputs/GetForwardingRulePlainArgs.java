@@ -62,14 +62,29 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable String location;
+
+    /**
+     * @return The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
+     * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     @Import(name="name")
     private @Nullable String name;
 
     /**
-     * @return Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+     * @return Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
     public Optional<String> name() {
@@ -79,7 +94,7 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
     /**
      * Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * Both &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-dotnet=&#34;`ApplicationLoadbalancerId`&#34; pulumi-lang-go=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-python=&#34;`application_loadbalancer_id`&#34; pulumi-lang-yaml=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-java=&#34;`applicationLoadbalancerId`&#34;&gt;`applicationLoadbalancerId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     @Import(name="partialMatch")
@@ -88,7 +103,7 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
     /**
      * @return Whether partial matching is allowed or not when using name argument. Default value is false.
      * 
-     * Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * Both &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-dotnet=&#34;`ApplicationLoadbalancerId`&#34; pulumi-lang-go=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-python=&#34;`application_loadbalancer_id`&#34; pulumi-lang-yaml=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-java=&#34;`applicationLoadbalancerId`&#34;&gt;`applicationLoadbalancerId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     public Optional<Boolean> partialMatch() {
@@ -101,6 +116,7 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
         this.applicationLoadbalancerId = $.applicationLoadbalancerId;
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.partialMatch = $.partialMatch;
     }
@@ -157,7 +173,18 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param name Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+         * @param location The location for redirecting; mandatory and valid only for REDIRECT actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable String location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param name Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
          * 
          * @return builder
          * 
@@ -170,7 +197,7 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
         /**
          * @param partialMatch Whether partial matching is allowed or not when using name argument. Default value is false.
          * 
-         * Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         * Both &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-dotnet=&#34;`ApplicationLoadbalancerId`&#34; pulumi-lang-go=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-python=&#34;`application_loadbalancer_id`&#34; pulumi-lang-yaml=&#34;`applicationLoadbalancerId`&#34; pulumi-lang-java=&#34;`applicationLoadbalancerId`&#34;&gt;`applicationLoadbalancerId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
          * 
          * @return builder
          * 

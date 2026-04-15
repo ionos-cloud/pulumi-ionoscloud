@@ -11,6 +11,7 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -29,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.dbaas.PSQLDatabase;
- * import com.pulumi.ionoscloud.dbaas.PSQLDatabaseArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLDatabase;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLDatabaseArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -60,13 +61,37 @@ import javax.annotation.Nullable;
  * 
  * In order to import a PgSql database, you can define an empty database resource in the plan:
  * 
- * hcl
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * resource &#34;ionoscloud_pg_database&#34; &#34;example&#34; {
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLDatabase;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new PSQLDatabase("example");
+ * 
+ *     }
  * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * The resource can be imported using the `clusterId` and the `name`, for example:
+ * The resource can be imported using the `clusterId` and the &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example clusterid/name
@@ -76,42 +101,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="ionoscloud:dbaas/pSQLDatabase:PSQLDatabase")
 public class PSQLDatabase extends com.pulumi.resources.CustomResource {
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
-     * @return [string] The unique ID of the cluster.
+     * @return [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     public Output<String> clusterId() {
         return this.clusterId;
     }
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the database.
+     * @return [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     @Export(name="owner", refs={String.class}, tree="[0]")
     private Output<String> owner;
 
     /**
-     * @return [string] The owner of the database.
+     * @return [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     public Output<String> owner() {
@@ -157,6 +196,7 @@ public class PSQLDatabase extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

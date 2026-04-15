@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetNodePoolNodesPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -28,6 +30,13 @@ public final class GetNodePoolNodesPlainArgs extends com.pulumi.resources.Invoke
         return this.k8sClusterId;
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     @Import(name="nodePoolId", required=true)
     private String nodePoolId;
 
@@ -39,6 +48,7 @@ public final class GetNodePoolNodesPlainArgs extends com.pulumi.resources.Invoke
 
     private GetNodePoolNodesPlainArgs(GetNodePoolNodesPlainArgs $) {
         this.k8sClusterId = $.k8sClusterId;
+        this.location = $.location;
         this.nodePoolId = $.nodePoolId;
     }
 
@@ -68,6 +78,11 @@ public final class GetNodePoolNodesPlainArgs extends com.pulumi.resources.Invoke
          */
         public Builder k8sClusterId(String k8sClusterId) {
             $.k8sClusterId = k8sClusterId;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

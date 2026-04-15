@@ -60,19 +60,26 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.lanId);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -82,16 +89,16 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -105,6 +112,7 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         this.datacenterId = $.datacenterId;
         this.ip = $.ip;
         this.lanId = $.lanId;
+        this.location = $.location;
         this.nicuuid = $.nicuuid;
     }
 
@@ -189,19 +197,28 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
             return lanId(Output.of(lanId));
         }
 
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
         /**
          * @param nicuuid [string] The ID of a NIC.
          * 
-         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
          * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-         * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+         * an IP failover group using Terraform, please use only Terraform in order to manage the created
          * IP failover group.
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
          * following options:
-         * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+         * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
          *    of creation, for example:
-         * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+         * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
          *    `-parallelism=1` as presented below:
          * 
          * @return builder
@@ -215,16 +232,16 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param nicuuid [string] The ID of a NIC.
          * 
-         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
          * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-         * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+         * an IP failover group using Terraform, please use only Terraform in order to manage the created
          * IP failover group.
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
          * following options:
-         * 1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
+         * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
          *    of creation, for example:
-         * 2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
+         * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
          *    `-parallelism=1` as presented below:
          * 
          * @return builder

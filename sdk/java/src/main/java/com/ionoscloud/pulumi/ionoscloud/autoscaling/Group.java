@@ -17,7 +17,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages an Autoscaling Group on IonosCloud.
+ * Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -29,16 +29,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.TargetGroup;
- * import com.pulumi.ionoscloud.compute.TargetGroupArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroup;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroupArgs;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.autoscaling.Group;
- * import com.pulumi.ionoscloud.autoscaling.GroupArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.autoscaling.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.autoscaling.GroupArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyScaleInActionArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyScaleOutActionArgs;
@@ -77,6 +77,7 @@ import javax.annotation.Nullable;
  *             .name("Target Group Example")
  *             .algorithm("ROUND_ROBIN")
  *             .protocol("HTTP")
+ *             .protocolVersion("HTTP1")
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -110,7 +111,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .replicaConfiguration(GroupReplicaConfigurationArgs.builder()
  *                 .availabilityZone("AUTO")
- *                 .cores("2")
+ *                 .cores(2)
  *                 .cpuFamily("INTEL_SKYLAKE")
  *                 .ram(2048)
  *                 .nics(                
@@ -303,6 +304,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

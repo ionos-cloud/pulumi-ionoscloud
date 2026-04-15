@@ -28,10 +28,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.User;
- * import com.pulumi.ionoscloud.compute.UserArgs;
- * import com.pulumi.ionoscloud.compute.S3Key;
- * import com.pulumi.ionoscloud.compute.S3KeyArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.User;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.S3Key;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.S3KeyArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .password("abc123-321CBA")
  *             .administrator(false)
  *             .forceSecAuth(false)
+ *             .active(true)
  *             .build());
  * 
  *         var exampleS3Key = new S3Key("exampleS3Key", S3KeyArgs.builder()
@@ -73,7 +74,11 @@ import javax.annotation.Nullable;
  * $ pulumi import ionoscloud:compute/s3Key:S3Key demo userid/s3Keyid
  * ```
  * 
- * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+ * 
+ * ⚠️ **Note:** Due to eventual consistency in the IONOS Cloud API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: &#34;The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege&#34;.
+ * To mitigate this, set the environment variable `IONOS_S3_KEY_CREATION_RETRY=true` to enable automatic retries during S3 key creation. The provider will retry the creation until it succeeds or the configured timeout is reached.
+ * This is a temporary workaround until the API consistency issue is resolved.
  * 
  */
 @ResourceType(type="ionoscloud:compute/s3Key:S3Key")
@@ -160,6 +165,7 @@ public class S3Key extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

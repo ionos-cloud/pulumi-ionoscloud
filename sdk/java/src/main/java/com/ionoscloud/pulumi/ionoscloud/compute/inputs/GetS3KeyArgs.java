@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetS3KeyArgs extends com.pulumi.resources.InvokeArgs {
@@ -18,15 +20,15 @@ public final class GetS3KeyArgs extends com.pulumi.resources.InvokeArgs {
      * ID of the IONOS Object Storage key you want to search for.
      * 
      */
-    @Import(name="id", required=true)
-    private Output<String> id;
+    @Import(name="id")
+    private @Nullable Output<String> id;
 
     /**
      * @return ID of the IONOS Object Storage key you want to search for.
      * 
      */
-    public Output<String> id() {
-        return this.id;
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
     }
 
     /**
@@ -75,7 +77,7 @@ public final class GetS3KeyArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder id(Output<String> id) {
+        public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
@@ -112,9 +114,6 @@ public final class GetS3KeyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetS3KeyArgs build() {
-            if ($.id == null) {
-                throw new MissingRequiredPropertyException("GetS3KeyArgs", "id");
-            }
             if ($.userId == null) {
                 throw new MissingRequiredPropertyException("GetS3KeyArgs", "userId");
             }

@@ -33,14 +33,14 @@ public final class WireguardPeerEndpointArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+     * [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+     * @return [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -94,7 +94,7 @@ public final class WireguardPeerEndpointArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param port [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+         * @param port [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -105,7 +105,7 @@ public final class WireguardPeerEndpointArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param port [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+         * @param port [int] The port that the WireGuard Server will connect to. Defaults to &lt;span pulumi-lang-nodejs=&#34;`51820`&#34; pulumi-lang-dotnet=&#34;`51820`&#34; pulumi-lang-go=&#34;`51820`&#34; pulumi-lang-python=&#34;`51820`&#34; pulumi-lang-yaml=&#34;`51820`&#34; pulumi-lang-java=&#34;`51820`&#34;&gt;`51820`&lt;/span&gt;.
          * 
          * @return builder
          * 

@@ -13,7 +13,7 @@ public final class GetNodePoolNodesNode {
     /**
      * @return ID of the node pool you want to search for.
      * 
-     * `k8s_cluster_id` and `node_pool_id` must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
      * 
      */
     private String id;
@@ -23,17 +23,17 @@ public final class GetNodePoolNodesNode {
      */
     private String k8sVersion;
     /**
-     * @return Name of an existing node pool that you want to search for.
+     * @return name of the node
      * 
      */
     private String name;
     /**
-     * @return private ip of the node
+     * @return private ip of the node. Only present if the k8s cluster is private.
      * 
      */
     private String privateIp;
     /**
-     * @return public ip of the node
+     * @return public ip of the node. Only present if the k8s cluster is public
      * 
      */
     private String publicIp;
@@ -42,7 +42,7 @@ public final class GetNodePoolNodesNode {
     /**
      * @return ID of the node pool you want to search for.
      * 
-     * `k8s_cluster_id` and `node_pool_id` must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
      * 
      */
     public String id() {
@@ -56,21 +56,21 @@ public final class GetNodePoolNodesNode {
         return this.k8sVersion;
     }
     /**
-     * @return Name of an existing node pool that you want to search for.
+     * @return name of the node
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return private ip of the node
+     * @return private ip of the node. Only present if the k8s cluster is private.
      * 
      */
     public String privateIp() {
         return this.privateIp;
     }
     /**
-     * @return public ip of the node
+     * @return public ip of the node. Only present if the k8s cluster is public
      * 
      */
     public String publicIp() {

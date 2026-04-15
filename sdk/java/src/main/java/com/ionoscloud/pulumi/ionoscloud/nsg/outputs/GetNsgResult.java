@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNsgResult {
@@ -27,6 +29,7 @@ public final class GetNsgResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     /**
      * @return The name of the Network Security Group
      * 
@@ -65,6 +68,9 @@ public final class GetNsgResult {
     public String id() {
         return this.id;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return The name of the Network Security Group
      * 
@@ -99,6 +105,7 @@ public final class GetNsgResult {
         private String datacenterId;
         private String description;
         private String id;
+        private @Nullable String location;
         private String name;
         private List<String> ruleIds;
         private List<GetNsgRule> rules;
@@ -108,6 +115,7 @@ public final class GetNsgResult {
     	      this.datacenterId = defaults.datacenterId;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.ruleIds = defaults.ruleIds;
     	      this.rules = defaults.rules;
@@ -135,6 +143,12 @@ public final class GetNsgResult {
               throw new MissingRequiredPropertyException("GetNsgResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -172,6 +186,7 @@ public final class GetNsgResult {
             _resultValue.datacenterId = datacenterId;
             _resultValue.description = description;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.ruleIds = ruleIds;
             _resultValue.rules = rules;

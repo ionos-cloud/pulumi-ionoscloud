@@ -8,6 +8,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetFirewallResult {
@@ -27,6 +29,7 @@ public final class GetFirewallResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     /**
      * @return The name of the firewall rule.
      * 
@@ -90,6 +93,9 @@ public final class GetFirewallResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     /**
      * @return The name of the firewall rule.
@@ -163,6 +169,7 @@ public final class GetFirewallResult {
         private String icmpCode;
         private String icmpType;
         private String id;
+        private @Nullable String location;
         private String name;
         private String nicId;
         private Integer portRangeEnd;
@@ -180,6 +187,7 @@ public final class GetFirewallResult {
     	      this.icmpCode = defaults.icmpCode;
     	      this.icmpType = defaults.icmpType;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.nicId = defaults.nicId;
     	      this.portRangeEnd = defaults.portRangeEnd;
@@ -222,6 +230,12 @@ public final class GetFirewallResult {
               throw new MissingRequiredPropertyException("GetFirewallResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -310,6 +324,7 @@ public final class GetFirewallResult {
             _resultValue.icmpCode = icmpCode;
             _resultValue.icmpType = icmpType;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.nicId = nicId;
             _resultValue.portRangeEnd = portRangeEnd;

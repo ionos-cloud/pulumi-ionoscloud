@@ -27,7 +27,7 @@ public final class GroupReplicaConfiguration {
      */
     private Integer cores;
     /**
-     * @return [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+     * @return [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
      * 
      */
     private @Nullable String cpuFamily;
@@ -63,7 +63,7 @@ public final class GroupReplicaConfiguration {
         return this.cores;
     }
     /**
-     * @return [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+     * @return [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
      * 
      */
     public Optional<String> cpuFamily() {

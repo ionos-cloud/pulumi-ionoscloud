@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages an **Container Registry** on IonosCloud.
+ * Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.creg.Registry;
- * import com.pulumi.ionoscloud.creg.RegistryArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.Registry;
+ * import com.ionoscloud.pulumi.ionoscloud.creg.RegistryArgs;
  * import com.pulumi.ionoscloud.creg.inputs.RegistryGarbageCollectionScheduleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  * Resource Container Registry can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:creg/registry:Registry mycr container_registry uuid
+ * terraform import ionoscloud_container_registry.mycr container_registry uuid
  * ```
  * 
  */
@@ -198,6 +198,7 @@ public class Registry extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

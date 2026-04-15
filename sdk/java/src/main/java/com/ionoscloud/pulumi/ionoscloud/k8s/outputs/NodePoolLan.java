@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class NodePoolLan {
     /**
-     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
      * 
      */
     private @Nullable Boolean dhcp;
@@ -33,7 +33,7 @@ public final class NodePoolLan {
 
     private NodePoolLan() {}
     /**
-     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
      * 
      */
     public Optional<Boolean> dhcp() {

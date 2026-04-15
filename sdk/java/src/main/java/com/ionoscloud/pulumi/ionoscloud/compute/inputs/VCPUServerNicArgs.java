@@ -34,9 +34,17 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.dhcp);
     }
 
+    /**
+     * Indicates whether this NIC receives an IPv6 address through DHCP.
+     * 
+     */
     @Import(name="dhcpv6")
     private @Nullable Output<Boolean> dhcpv6;
 
+    /**
+     * @return Indicates whether this NIC receives an IPv6 address through DHCP.
+     * 
+     */
     public Optional<Output<Boolean>> dhcpv6() {
         return Optional.ofNullable(this.dhcpv6);
     }
@@ -92,16 +100,32 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ips);
     }
 
+    /**
+     * IPv6 CIDR block assigned to the NIC.
+     * 
+     */
     @Import(name="ipv6CidrBlock")
     private @Nullable Output<String> ipv6CidrBlock;
 
+    /**
+     * @return IPv6 CIDR block assigned to the NIC.
+     * 
+     */
     public Optional<Output<String>> ipv6CidrBlock() {
         return Optional.ofNullable(this.ipv6CidrBlock);
     }
 
+    /**
+     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+     * 
+     */
     @Import(name="ipv6Ips")
     private @Nullable Output<List<String>> ipv6Ips;
 
+    /**
+     * @return Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+     * 
+     */
     public Optional<Output<List<String>>> ipv6Ips() {
         return Optional.ofNullable(this.ipv6Ips);
     }
@@ -145,20 +169,12 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; ssh_keys field is immutable.
-     * 
      */
     @Import(name="securityGroupsIds")
     private @Nullable Output<List<String>> securityGroupsIds;
 
     /**
      * @return The list of Security Group IDs for the resource.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; ssh_keys field is immutable.
      * 
      */
     public Optional<Output<List<String>>> securityGroupsIds() {
@@ -221,11 +237,23 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
             return dhcp(Output.of(dhcp));
         }
 
+        /**
+         * @param dhcpv6 Indicates whether this NIC receives an IPv6 address through DHCP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dhcpv6(@Nullable Output<Boolean> dhcpv6) {
             $.dhcpv6 = dhcpv6;
             return this;
         }
 
+        /**
+         * @param dhcpv6 Indicates whether this NIC receives an IPv6 address through DHCP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder dhcpv6(Boolean dhcpv6) {
             return dhcpv6(Output.of(dhcpv6));
         }
@@ -319,24 +347,54 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
             return ips(List.of(ips));
         }
 
+        /**
+         * @param ipv6CidrBlock IPv6 CIDR block assigned to the NIC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipv6CidrBlock(@Nullable Output<String> ipv6CidrBlock) {
             $.ipv6CidrBlock = ipv6CidrBlock;
             return this;
         }
 
+        /**
+         * @param ipv6CidrBlock IPv6 CIDR block assigned to the NIC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipv6CidrBlock(String ipv6CidrBlock) {
             return ipv6CidrBlock(Output.of(ipv6CidrBlock));
         }
 
+        /**
+         * @param ipv6Ips Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipv6Ips(@Nullable Output<List<String>> ipv6Ips) {
             $.ipv6Ips = ipv6Ips;
             return this;
         }
 
+        /**
+         * @param ipv6Ips Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipv6Ips(List<String> ipv6Ips) {
             return ipv6Ips(Output.of(ipv6Ips));
         }
 
+        /**
+         * @param ipv6Ips Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ipv6Ips(String... ipv6Ips) {
             return ipv6Ips(List.of(ipv6Ips));
         }
@@ -392,10 +450,6 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; ssh_keys field is immutable.
-         * 
          * @return builder
          * 
          */
@@ -407,10 +461,6 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; ssh_keys field is immutable.
-         * 
          * @return builder
          * 
          */
@@ -420,10 +470,6 @@ public final class VCPUServerNicArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; ssh_keys field is immutable.
          * 
          * @return builder
          * 

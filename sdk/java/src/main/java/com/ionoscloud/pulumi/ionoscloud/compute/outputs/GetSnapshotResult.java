@@ -88,6 +88,11 @@ public final class GetSnapshotResult {
      */
     private Boolean ramHotUnplug;
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
+    /**
      * @return Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      * 
      */
@@ -205,6 +210,13 @@ public final class GetSnapshotResult {
         return this.ramHotUnplug;
     }
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * @return Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      * 
      */
@@ -243,6 +255,7 @@ public final class GetSnapshotResult {
         private Boolean nicHotUnplug;
         private Boolean ramHotPlug;
         private Boolean ramHotUnplug;
+        private Boolean requireLegacyBios;
         private Boolean secAuthProtection;
         private Integer size;
         public Builder() {}
@@ -263,6 +276,7 @@ public final class GetSnapshotResult {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.ramHotPlug = defaults.ramHotPlug;
     	      this.ramHotUnplug = defaults.ramHotUnplug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.secAuthProtection = defaults.secAuthProtection;
     	      this.size = defaults.size;
         }
@@ -388,6 +402,14 @@ public final class GetSnapshotResult {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetSnapshotResult", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder secAuthProtection(Boolean secAuthProtection) {
             if (secAuthProtection == null) {
               throw new MissingRequiredPropertyException("GetSnapshotResult", "secAuthProtection");
@@ -420,6 +442,7 @@ public final class GetSnapshotResult {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.ramHotPlug = ramHotPlug;
             _resultValue.ramHotUnplug = ramHotUnplug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.secAuthProtection = secAuthProtection;
             _resultValue.size = size;
             return _resultValue;

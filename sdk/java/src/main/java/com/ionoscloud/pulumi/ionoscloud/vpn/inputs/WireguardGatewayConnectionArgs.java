@@ -32,14 +32,14 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
     }
 
     /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway connection.
+     * [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     @Import(name="ipv4Cidr")
     private @Nullable Output<String> ipv4Cidr;
 
     /**
-     * @return [String] The IPv4 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Optional<Output<String>> ipv4Cidr() {
@@ -47,14 +47,14 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
     }
 
     /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway connection.
+     * [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     @Import(name="ipv6Cidr")
     private @Nullable Output<String> ipv6Cidr;
 
     /**
-     * @return [String] The IPv6 CIDR for the WireGuard Gateway connection.
+     * @return [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Optional<Output<String>> ipv6Cidr() {
@@ -125,7 +125,7 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param ipv4Cidr [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         * @param ipv4Cidr [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param ipv4Cidr [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         * @param ipv4Cidr [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param ipv6Cidr [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         * @param ipv6Cidr [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class WireguardGatewayConnectionArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param ipv6Cidr [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         * @param ipv6Cidr [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 

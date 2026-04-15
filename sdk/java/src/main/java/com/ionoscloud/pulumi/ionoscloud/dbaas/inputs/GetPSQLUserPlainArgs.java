@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetPSQLUserPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -28,6 +30,13 @@ public final class GetPSQLUserPlainArgs extends com.pulumi.resources.InvokeArgs 
         return this.clusterId;
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] Name of an existing user that you want to search for.
      * 
@@ -47,6 +56,7 @@ public final class GetPSQLUserPlainArgs extends com.pulumi.resources.InvokeArgs 
 
     private GetPSQLUserPlainArgs(GetPSQLUserPlainArgs $) {
         this.clusterId = $.clusterId;
+        this.location = $.location;
         this.username = $.username;
     }
 
@@ -76,6 +86,11 @@ public final class GetPSQLUserPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder clusterId(String clusterId) {
             $.clusterId = clusterId;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

@@ -58,7 +58,7 @@ public final class GetCubeServerVolume {
     /**
      * @return ID of the server you want to search for.
      * 
-     * `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     private String id;
@@ -98,6 +98,11 @@ public final class GetCubeServerVolume {
      * 
      */
     private Boolean ramHotPlug;
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
     /**
      * @return Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
      * 
@@ -174,7 +179,7 @@ public final class GetCubeServerVolume {
     /**
      * @return ID of the server you want to search for.
      * 
-     * `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     public String id() {
@@ -233,6 +238,13 @@ public final class GetCubeServerVolume {
         return this.ramHotPlug;
     }
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * @return Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
      * 
      */
@@ -280,6 +292,7 @@ public final class GetCubeServerVolume {
         private Boolean nicHotUnplug;
         private Integer pciSlot;
         private Boolean ramHotPlug;
+        private Boolean requireLegacyBios;
         private List<String> sshKeys;
         private String type;
         private @Nullable String userData;
@@ -303,6 +316,7 @@ public final class GetCubeServerVolume {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.pciSlot = defaults.pciSlot;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.sshKeys = defaults.sshKeys;
     	      this.type = defaults.type;
     	      this.userData = defaults.userData;
@@ -445,6 +459,14 @@ public final class GetCubeServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetCubeServerVolume", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sshKeys(List<String> sshKeys) {
             if (sshKeys == null) {
               throw new MissingRequiredPropertyException("GetCubeServerVolume", "sshKeys");
@@ -488,6 +510,7 @@ public final class GetCubeServerVolume {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.pciSlot = pciSlot;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.sshKeys = sshKeys;
             _resultValue.type = type;
             _resultValue.userData = userData;

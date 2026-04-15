@@ -57,43 +57,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
-     *             .location("location")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetClusterResult> getCluster(GetClusterArgs args) {
         return getCluster(args, InvokeOptions.Empty);
@@ -129,43 +92,6 @@ public final class NfsFunctions {
      *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
      *             .location("location")
      *             .id("cluster-id")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
-     *             .location("location")
-     *             .name("partial-name")
-     *             .partialMatch(true)
      *             .build());
      * 
      *     }
@@ -217,43 +143,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
-     *             .location("location")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetClusterResult> getCluster(GetClusterArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
@@ -297,43 +186,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
-     *             .location("location")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetClusterResult> getCluster(GetClusterArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
@@ -369,43 +221,6 @@ public final class NfsFunctions {
      *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
      *             .location("location")
      *             .id("cluster-id")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getCluster(GetClusterArgs.builder()
-     *             .location("location")
-     *             .name("partial-name")
-     *             .partialMatch(true)
      *             .build());
      * 
      *     }
@@ -458,44 +273,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getShare(GetShareArgs.builder()
-     *             .location("location")
-     *             .clusterId("cluster-id")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetShareResult> getShare(GetShareArgs args) {
         return getShare(args, InvokeOptions.Empty);
@@ -532,44 +309,6 @@ public final class NfsFunctions {
      *             .location("location")
      *             .clusterId("cluster-id")
      *             .id("share-id")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getShare(GetShareArgs.builder()
-     *             .location("location")
-     *             .clusterId("cluster-id")
-     *             .name("partial-name")
-     *             .partialMatch(true)
      *             .build());
      * 
      *     }
@@ -622,44 +361,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getShare(GetShareArgs.builder()
-     *             .location("location")
-     *             .clusterId("cluster-id")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetShareResult> getShare(GetShareArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
@@ -704,44 +405,6 @@ public final class NfsFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getShare(GetShareArgs.builder()
-     *             .location("location")
-     *             .clusterId("cluster-id")
-     *             .name("partial-name")
-     *             .partialMatch(true)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetShareResult> getShare(GetShareArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
@@ -778,44 +441,6 @@ public final class NfsFunctions {
      *             .location("location")
      *             .clusterId("cluster-id")
      *             .id("share-id")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ## By Name
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ionoscloud.nfs.NfsFunctions;
-     * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = NfsFunctions.getShare(GetShareArgs.builder()
-     *             .location("location")
-     *             .clusterId("cluster-id")
-     *             .name("partial-name")
-     *             .partialMatch(true)
      *             .build());
      * 
      *     }

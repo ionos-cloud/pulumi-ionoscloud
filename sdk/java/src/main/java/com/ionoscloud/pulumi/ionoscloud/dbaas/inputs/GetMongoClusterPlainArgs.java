@@ -36,11 +36,27 @@ public final class GetMongoClusterPlainArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable String location;
+
+    /**
+     * @return The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetMongoClusterPlainArgs() {}
 
     private GetMongoClusterPlainArgs(GetMongoClusterPlainArgs $) {
         this.displayName = $.displayName;
         this.id = $.id;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -74,6 +90,17 @@ public final class GetMongoClusterPlainArgs extends com.pulumi.resources.InvokeA
 
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        /**
+         * @param location The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

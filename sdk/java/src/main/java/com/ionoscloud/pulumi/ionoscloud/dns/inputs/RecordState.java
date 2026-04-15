@@ -33,14 +33,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] Indicates if the DNS Record is active or not. Default is `true`.
+     * [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Record is active or not. Default is `true`.
+     * @return [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -63,14 +63,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Record.
+     * @return [string] The name of the DNS Record. This property is immutable.
      * 
      */
     public Optional<Output<String>> name() {
@@ -93,14 +93,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [int] Time to live for the DNS Record. Default is `3600`.
+     * [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     @Import(name="ttl")
     private @Nullable Output<Integer> ttl;
 
     /**
-     * @return [int] Time to live for the DNS Record. Default is `3600`.
+     * @return [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> ttl() {
@@ -108,14 +108,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     public Optional<Output<String>> type() {
@@ -190,7 +190,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is `true`.
+         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -201,7 +201,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is `true`.
+         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -232,7 +232,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Record.
+         * @param name [string] The name of the DNS Record. This property is immutable.
          * 
          * @return builder
          * 
@@ -243,7 +243,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Record.
+         * @param name [string] The name of the DNS Record. This property is immutable.
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl [int] Time to live for the DNS Record. Default is `3600`.
+         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl [int] Time to live for the DNS Record. Default is `3600`.
+         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -295,7 +295,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+         * @param type [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+         * @param type [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
          * 
          * @return builder
          * 

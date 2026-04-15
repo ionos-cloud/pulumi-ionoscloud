@@ -8,6 +8,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPSQLUserResult {
@@ -22,6 +24,7 @@ public final class GetPSQLUserResult {
      * 
      */
     private Boolean isSystemUser;
+    private @Nullable String location;
     private String username;
 
     private GetPSQLUserResult() {}
@@ -42,6 +45,9 @@ public final class GetPSQLUserResult {
     public Boolean isSystemUser() {
         return this.isSystemUser;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     public String username() {
         return this.username;
     }
@@ -58,6 +64,7 @@ public final class GetPSQLUserResult {
         private String clusterId;
         private String id;
         private Boolean isSystemUser;
+        private @Nullable String location;
         private String username;
         public Builder() {}
         public Builder(GetPSQLUserResult defaults) {
@@ -65,6 +72,7 @@ public final class GetPSQLUserResult {
     	      this.clusterId = defaults.clusterId;
     	      this.id = defaults.id;
     	      this.isSystemUser = defaults.isSystemUser;
+    	      this.location = defaults.location;
     	      this.username = defaults.username;
         }
 
@@ -93,6 +101,12 @@ public final class GetPSQLUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(String username) {
             if (username == null) {
               throw new MissingRequiredPropertyException("GetPSQLUserResult", "username");
@@ -105,6 +119,7 @@ public final class GetPSQLUserResult {
             _resultValue.clusterId = clusterId;
             _resultValue.id = id;
             _resultValue.isSystemUser = isSystemUser;
+            _resultValue.location = location;
             _resultValue.username = username;
             return _resultValue;
         }

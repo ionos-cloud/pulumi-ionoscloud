@@ -14,6 +14,12 @@ import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetDatacenterPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetFirewallPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGPUServerPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpuPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpusPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGroupPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
@@ -59,6 +65,9 @@ import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetCrossconnectResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetCubeServerResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetDatacenterResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetFirewallResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGPUServerResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGpuResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGpusResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGroupResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetIPBlockResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetIPFailoverResult;
@@ -1201,7 +1210,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getCrossconnect:getCrossconnect", TypeShape.of(GetCrossconnectResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1282,7 +1291,7 @@ public final class ComputeFunctions {
         return getCubeServer(args, InvokeOptions.Empty);
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1363,7 +1372,7 @@ public final class ComputeFunctions {
         return getCubeServerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1444,7 +1453,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getCubeServer:getCubeServer", TypeShape.of(GetCubeServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1525,7 +1534,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getCubeServer:getCubeServer", TypeShape.of(GetCubeServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -2603,6 +2612,1041 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getFirewall:getFirewall", TypeShape.of(GetFirewallResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args) {
+        return getGPUServer(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGPUServerResult> getGPUServerPlain(GetGPUServerPlainArgs args) {
+        return getGPUServerPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGPUServerResult> getGPUServerPlain(GetGPUServerPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args) {
+        return getGpu(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args) {
+        return getGpuPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args) {
+        return getGpus(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args) {
+        return getGpusPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * The **Group data source** can be used to search for and return existing groups.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -3195,7 +4239,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3229,7 +4273,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3263,9 +4307,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock() {
@@ -3311,7 +4388,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3345,7 +4422,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3379,9 +4456,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain() {
@@ -3427,7 +4537,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3461,7 +4571,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3495,9 +4605,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args) {
@@ -3543,7 +4686,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3577,7 +4720,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3611,9 +4754,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain(GetIPBlockPlainArgs args) {
@@ -3659,7 +4835,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3693,7 +4869,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3727,9 +4903,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args, InvokeOptions options) {
@@ -3775,7 +4984,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3809,7 +5018,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3843,9 +5052,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetIPBlockResult> getIPBlock(GetIPBlockArgs args, InvokeOutputOptions options) {
@@ -3891,7 +5133,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3925,7 +5167,7 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Location
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3959,9 +5201,42 @@ public final class ComputeFunctions {
      * }
      * }
      * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt; 
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Name &amp; Location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getIPBlock(GetIPBlockArgs.builder()
+     *             .name("IP Block Name")
+     *             .location("us/las")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetIPBlockResult> getIPBlockPlain(GetIPBlockPlainArgs args, InvokeOptions options) {
@@ -3969,7 +5244,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4014,7 +5289,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4059,7 +5334,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4104,7 +5379,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4149,7 +5424,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -4233,7 +5508,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4357,7 +5632,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4481,7 +5756,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4605,7 +5880,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4729,7 +6004,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4853,7 +6128,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -4977,7 +6252,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -9097,7 +10372,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9143,7 +10418,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9189,7 +10464,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9235,7 +10510,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9281,7 +10556,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the group_id and resource_id to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -9390,7 +10665,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9470,7 +10745,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9550,7 +10825,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9630,7 +10905,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9710,7 +10985,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9790,7 +11065,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -9870,7 +11145,7 @@ public final class ComputeFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getSnapshot(GetSnapshotArgs.builder()
      *             .name("Snapshot Example")
-     *             .size("2")
+     *             .size(2)
      *             .location("us/las")
      *             .build());
      * 
@@ -11795,7 +13070,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -11878,7 +13153,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -11961,7 +13236,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12044,7 +13319,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12127,7 +13402,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12210,7 +13485,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12293,7 +13568,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &#34;ionoscloud.compute.User&#34; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -12301,7 +13576,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12382,7 +13657,7 @@ public final class ComputeFunctions {
         return getVCPUServer(args, InvokeOptions.Empty);
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12463,7 +13738,7 @@ public final class ComputeFunctions {
         return getVCPUServerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12544,7 +13819,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getVCPUServer:getVCPUServer", TypeShape.of(GetVCPUServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12625,7 +13900,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getVCPUServer:getVCPUServer", TypeShape.of(GetVCPUServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 

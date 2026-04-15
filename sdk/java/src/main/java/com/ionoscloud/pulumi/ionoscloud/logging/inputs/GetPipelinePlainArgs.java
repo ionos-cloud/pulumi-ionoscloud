@@ -30,14 +30,14 @@ public final class GetPipelinePlainArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
      * 
      */
     @Import(name="location")
     private @Nullable String location;
 
     /**
-     * @return [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * @return [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
      * 
      */
     public Optional<String> location() {
@@ -47,7 +47,7 @@ public final class GetPipelinePlainArgs extends com.pulumi.resources.InvokeArgs 
     /**
      * [string] The name of the Logging pipeline you want to search for.
      * 
-     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     @Import(name="name")
@@ -56,7 +56,7 @@ public final class GetPipelinePlainArgs extends com.pulumi.resources.InvokeArgs 
     /**
      * @return [string] The name of the Logging pipeline you want to search for.
      * 
-     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public Optional<String> name() {
@@ -101,7 +101,7 @@ public final class GetPipelinePlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param location [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class GetPipelinePlainArgs extends com.pulumi.resources.InvokeArgs 
         /**
          * @param name [string] The name of the Logging pipeline you want to search for.
          * 
-         * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 

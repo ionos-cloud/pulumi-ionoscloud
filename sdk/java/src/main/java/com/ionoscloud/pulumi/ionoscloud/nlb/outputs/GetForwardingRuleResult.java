@@ -11,6 +11,8 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetForwardingRuleResult {
@@ -40,6 +42,7 @@ public final class GetForwardingRuleResult {
      * 
      */
     private Integer listenerPort;
+    private @Nullable String location;
     /**
      * @return The name of that Network Load Balancer forwarding rule.
      * 
@@ -96,6 +99,9 @@ public final class GetForwardingRuleResult {
     public Integer listenerPort() {
         return this.listenerPort;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return The name of that Network Load Balancer forwarding rule.
      * 
@@ -136,6 +142,7 @@ public final class GetForwardingRuleResult {
         private String id;
         private String listenerIp;
         private Integer listenerPort;
+        private @Nullable String location;
         private String name;
         private String networkloadbalancerId;
         private String protocol;
@@ -149,6 +156,7 @@ public final class GetForwardingRuleResult {
     	      this.id = defaults.id;
     	      this.listenerIp = defaults.listenerIp;
     	      this.listenerPort = defaults.listenerPort;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.networkloadbalancerId = defaults.networkloadbalancerId;
     	      this.protocol = defaults.protocol;
@@ -207,6 +215,12 @@ public final class GetForwardingRuleResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetForwardingRuleResult", "name");
@@ -249,6 +263,7 @@ public final class GetForwardingRuleResult {
             _resultValue.id = id;
             _resultValue.listenerIp = listenerIp;
             _resultValue.listenerPort = listenerPort;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.networkloadbalancerId = networkloadbalancerId;
             _resultValue.protocol = protocol;

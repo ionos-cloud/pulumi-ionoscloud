@@ -64,7 +64,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -151,7 +151,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -238,7 +238,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -325,7 +325,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -412,7 +412,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -500,7 +500,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -589,7 +589,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -678,7 +678,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -767,7 +767,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -856,7 +856,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;

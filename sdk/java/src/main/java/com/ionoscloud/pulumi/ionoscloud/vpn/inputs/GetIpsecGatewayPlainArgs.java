@@ -30,14 +30,14 @@ public final class GetIpsecGatewayPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * The location of the IPSec Gateway.
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Import(name="location")
     private @Nullable String location;
 
     /**
-     * @return The location of the IPSec Gateway.
+     * @return The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Optional<String> location() {
@@ -113,7 +113,7 @@ public final class GetIpsecGatewayPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param location The location of the IPSec Gateway.
+         * @param location The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 

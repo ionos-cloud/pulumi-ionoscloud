@@ -18,7 +18,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Target Group** on IonosCloud.
+ * Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.TargetGroup;
- * import com.pulumi.ionoscloud.compute.TargetGroupArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroup;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroupArgs;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupTargetArgs;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupHealthCheckArgs;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupHttpHealthCheckArgs;
@@ -56,16 +56,16 @@ import javax.annotation.Nullable;
  *             .targets(            
  *                 TargetGroupTargetArgs.builder()
  *                     .ip("22.231.2.2")
- *                     .port("8080")
- *                     .weight("1")
+ *                     .port(8080)
+ *                     .weight(1)
  *                     .proxyProtocol("v2ssl")
  *                     .healthCheckEnabled(true)
  *                     .maintenanceEnabled(false)
  *                     .build(),
  *                 TargetGroupTargetArgs.builder()
  *                     .ip("22.231.2.3")
- *                     .port("8081")
- *                     .weight("124")
+ *                     .port(8081)
+ *                     .weight(124)
  *                     .proxyProtocol("v2")
  *                     .healthCheckEnabled(false)
  *                     .maintenanceEnabled(false)
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  * Resource Target Group can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
+ * terraform import ionoscloud_target_group.myTargetGroup target group uuid
  * ```
  * 
  */
@@ -240,6 +240,7 @@ public class TargetGroup extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

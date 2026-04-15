@@ -62,14 +62,14 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [string] The location of the auto-certificate.
+     * @return [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     public Optional<Output<String>> location() {
@@ -215,7 +215,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param location [string] The location of the auto-certificate.
+         * @param location [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
          * 
          * @return builder
          * 
@@ -226,7 +226,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param location [string] The location of the auto-certificate.
+         * @param location [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
          * 
          * @return builder
          * 

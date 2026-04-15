@@ -46,18 +46,18 @@ public final class GetInMemoryDBReplicaSetArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * The location of the InMemoryDB Replica Set.
+     * The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
-     * &gt; **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
+     * &gt; **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return The location of the InMemoryDB Replica Set.
+     * @return The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
-     * &gt; **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
+     * &gt; **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public Optional<Output<String>> location() {
@@ -133,9 +133,9 @@ public final class GetInMemoryDBReplicaSetArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param location The location of the InMemoryDB Replica Set.
+         * @param location The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
          * 
-         * &gt; **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
+         * &gt; **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -146,9 +146,9 @@ public final class GetInMemoryDBReplicaSetArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param location The location of the InMemoryDB Replica Set.
+         * @param location The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
          * 
-         * &gt; **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
+         * &gt; **Note:** Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`displayName`&#34; pulumi-lang-dotnet=&#34;`DisplayName`&#34; pulumi-lang-go=&#34;`displayName`&#34; pulumi-lang-python=&#34;`display_name`&#34; pulumi-lang-yaml=&#34;`displayName`&#34; pulumi-lang-java=&#34;`displayName`&#34;&gt;`displayName`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 

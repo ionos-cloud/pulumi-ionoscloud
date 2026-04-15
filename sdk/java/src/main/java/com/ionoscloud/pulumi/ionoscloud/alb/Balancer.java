@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages an **Application Load Balancer** on IonosCloud.
+ * Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -31,12 +31,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.alb.Balancer;
- * import com.pulumi.ionoscloud.alb.BalancerArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.Balancer;
+ * import com.ionoscloud.pulumi.ionoscloud.alb.BalancerArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  * Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:alb/balancer:Balancer myalb datacenter uuid/applicationLoadBalancer uuid
+ * terraform import ionoscloud_application_loadbalancer.myalb datacenter uuid/applicationLoadBalancer uuid
  * ```
  * 
  */
@@ -181,6 +181,12 @@ public class Balancer extends com.pulumi.resources.CustomResource {
     public Output<Integer> listenerLan() {
         return this.listenerLan;
     }
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
     /**
      * Specifies the format of the logs.
      * 
@@ -263,6 +269,7 @@ public class Balancer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

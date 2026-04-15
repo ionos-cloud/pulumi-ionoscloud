@@ -49,17 +49,9 @@ public final class PipelineLogArgs extends com.pulumi.resources.ResourceArgs {
         return this.protocol;
     }
 
-    /**
-     * [bool]
-     * 
-     */
     @Import(name="public")
     private @Nullable Output<Boolean> public_;
 
-    /**
-     * @return [bool]
-     * 
-     */
     public Optional<Output<Boolean>> public_() {
         return Optional.ofNullable(this.public_);
     }
@@ -174,23 +166,11 @@ public final class PipelineLogArgs extends com.pulumi.resources.ResourceArgs {
             return protocol(Output.of(protocol));
         }
 
-        /**
-         * @param public_ [bool]
-         * 
-         * @return builder
-         * 
-         */
         public Builder public_(@Nullable Output<Boolean> public_) {
             $.public_ = public_;
             return this;
         }
 
-        /**
-         * @param public_ [bool]
-         * 
-         * @return builder
-         * 
-         */
         public Builder public_(Boolean public_) {
             return public_(Output.of(public_));
         }

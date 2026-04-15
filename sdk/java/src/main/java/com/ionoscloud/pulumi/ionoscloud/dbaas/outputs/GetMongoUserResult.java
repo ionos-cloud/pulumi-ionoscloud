@@ -9,12 +9,15 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetMongoUserResult {
     private String clusterId;
     private String database;
     private String id;
+    private @Nullable String location;
     private List<GetMongoUserRole> roles;
     private String username;
 
@@ -27,6 +30,9 @@ public final class GetMongoUserResult {
     }
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     public List<GetMongoUserRole> roles() {
         return this.roles;
@@ -47,6 +53,7 @@ public final class GetMongoUserResult {
         private String clusterId;
         private String database;
         private String id;
+        private @Nullable String location;
         private List<GetMongoUserRole> roles;
         private String username;
         public Builder() {}
@@ -55,6 +62,7 @@ public final class GetMongoUserResult {
     	      this.clusterId = defaults.clusterId;
     	      this.database = defaults.database;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.roles = defaults.roles;
     	      this.username = defaults.username;
         }
@@ -84,6 +92,12 @@ public final class GetMongoUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder roles(List<GetMongoUserRole> roles) {
             if (roles == null) {
               throw new MissingRequiredPropertyException("GetMongoUserResult", "roles");
@@ -107,6 +121,7 @@ public final class GetMongoUserResult {
             _resultValue.clusterId = clusterId;
             _resultValue.database = database;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.roles = roles;
             _resultValue.username = username;
             return _resultValue;

@@ -33,7 +33,7 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * ID of the nic you want to search for.
      * 
-     * `datacenter_id` and either `name` or `id` must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided.
      * If none, are provided, the datasource will return an error.
      * 
      */
@@ -43,12 +43,19 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return ID of the nic you want to search for.
      * 
-     * `datacenter_id` and either `name` or `id` must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided.
      * If none, are provided, the datasource will return an error.
      * 
      */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
+    }
+
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
 
     /**
@@ -86,6 +93,7 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetNicPlainArgs(GetNicPlainArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.serverId = $.serverId;
     }
@@ -122,7 +130,7 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param id ID of the nic you want to search for.
          * 
-         * `datacenter_id` and either `name` or `id` must be provided.
+         * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided.
          * If none, are provided, the datasource will return an error.
          * 
          * @return builder
@@ -130,6 +138,11 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

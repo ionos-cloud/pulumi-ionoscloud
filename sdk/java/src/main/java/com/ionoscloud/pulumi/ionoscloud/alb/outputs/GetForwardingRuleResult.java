@@ -45,6 +45,11 @@ public final class GetForwardingRuleResult {
      */
     private Integer listenerPort;
     /**
+     * @return The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    private @Nullable String location;
+    /**
      * @return The unique name of the Application Load Balancer HTTP rule.
      * 
      */
@@ -101,6 +106,13 @@ public final class GetForwardingRuleResult {
         return this.listenerPort;
     }
     /**
+     * @return The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+    /**
      * @return The unique name of the Application Load Balancer HTTP rule.
      * 
      */
@@ -137,6 +149,7 @@ public final class GetForwardingRuleResult {
         private String id;
         private String listenerIp;
         private Integer listenerPort;
+        private @Nullable String location;
         private String name;
         private @Nullable Boolean partialMatch;
         private String protocol;
@@ -151,6 +164,7 @@ public final class GetForwardingRuleResult {
     	      this.id = defaults.id;
     	      this.listenerIp = defaults.listenerIp;
     	      this.listenerPort = defaults.listenerPort;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.partialMatch = defaults.partialMatch;
     	      this.protocol = defaults.protocol;
@@ -217,6 +231,12 @@ public final class GetForwardingRuleResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetForwardingRuleResult", "name");
@@ -258,6 +278,7 @@ public final class GetForwardingRuleResult {
             _resultValue.id = id;
             _resultValue.listenerIp = listenerIp;
             _resultValue.listenerPort = listenerPort;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.partialMatch = partialMatch;
             _resultValue.protocol = protocol;

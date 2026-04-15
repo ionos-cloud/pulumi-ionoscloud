@@ -15,10 +15,15 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetPipelineResult {
     /**
-     * @return The address of the client&#39;s grafana instance.
+     * @return The Grafana address is where user can access their logs, create dashboards, and set up alerts.
      * 
      */
     private String grafanaAddress;
+    /**
+     * @return The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    private String httpAddress;
     /**
      * @return The UUID of the Logging pipeline.
      * 
@@ -35,14 +40,26 @@ public final class GetPipelineResult {
      * 
      */
     private String name;
+    /**
+     * @return The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    private String tcpAddress;
 
     private GetPipelineResult() {}
     /**
-     * @return The address of the client&#39;s grafana instance.
+     * @return The Grafana address is where user can access their logs, create dashboards, and set up alerts.
      * 
      */
     public String grafanaAddress() {
         return this.grafanaAddress;
+    }
+    /**
+     * @return The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    public String httpAddress() {
+        return this.httpAddress;
     }
     /**
      * @return The UUID of the Logging pipeline.
@@ -68,6 +85,13 @@ public final class GetPipelineResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    public String tcpAddress() {
+        return this.tcpAddress;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -79,18 +103,22 @@ public final class GetPipelineResult {
     @CustomType.Builder
     public static final class Builder {
         private String grafanaAddress;
+        private String httpAddress;
         private String id;
         private @Nullable String location;
         private List<GetPipelineLog> logs;
         private String name;
+        private String tcpAddress;
         public Builder() {}
         public Builder(GetPipelineResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.grafanaAddress = defaults.grafanaAddress;
+    	      this.httpAddress = defaults.httpAddress;
     	      this.id = defaults.id;
     	      this.location = defaults.location;
     	      this.logs = defaults.logs;
     	      this.name = defaults.name;
+    	      this.tcpAddress = defaults.tcpAddress;
         }
 
         @CustomType.Setter
@@ -99,6 +127,14 @@ public final class GetPipelineResult {
               throw new MissingRequiredPropertyException("GetPipelineResult", "grafanaAddress");
             }
             this.grafanaAddress = grafanaAddress;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder httpAddress(String httpAddress) {
+            if (httpAddress == null) {
+              throw new MissingRequiredPropertyException("GetPipelineResult", "httpAddress");
+            }
+            this.httpAddress = httpAddress;
             return this;
         }
         @CustomType.Setter
@@ -134,13 +170,23 @@ public final class GetPipelineResult {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
+        public Builder tcpAddress(String tcpAddress) {
+            if (tcpAddress == null) {
+              throw new MissingRequiredPropertyException("GetPipelineResult", "tcpAddress");
+            }
+            this.tcpAddress = tcpAddress;
+            return this;
+        }
         public GetPipelineResult build() {
             final var _resultValue = new GetPipelineResult();
             _resultValue.grafanaAddress = grafanaAddress;
+            _resultValue.httpAddress = httpAddress;
             _resultValue.id = id;
             _resultValue.location = location;
             _resultValue.logs = logs;
             _resultValue.name = name;
+            _resultValue.tcpAddress = tcpAddress;
             return _resultValue;
         }
     }

@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class PSQLUserArgs extends com.pulumi.resources.ResourceArgs {
@@ -27,6 +29,21 @@ public final class PSQLUserArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Output<String> clusterId() {
         return this.clusterId;
+    }
+
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
     }
 
     /**
@@ -63,6 +80,7 @@ public final class PSQLUserArgs extends com.pulumi.resources.ResourceArgs {
 
     private PSQLUserArgs(PSQLUserArgs $) {
         this.clusterId = $.clusterId;
+        this.location = $.location;
         this.password = $.password;
         this.username = $.username;
     }
@@ -104,6 +122,27 @@ public final class PSQLUserArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder clusterId(String clusterId) {
             return clusterId(Output.of(clusterId));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

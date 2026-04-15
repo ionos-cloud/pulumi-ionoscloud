@@ -31,11 +31,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.random.password;
- * import com.pulumi.random.PasswordArgs;
- * import com.pulumi.ionoscloud.compute.User;
- * import com.pulumi.ionoscloud.compute.UserArgs;
- * import com.pulumi.ionoscloud.compute.Group;
- * import com.pulumi.ionoscloud.compute.GroupArgs;
+ * import com.pulumi.random.passwordArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.User;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -93,6 +93,15 @@ import javax.annotation.Nullable;
  *             .createFlowLog(true)
  *             .accessAndManageMonitoring(true)
  *             .accessAndManageCertificates(true)
+ *             .accessAndManageLogging(true)
+ *             .accessAndManageCdn(true)
+ *             .accessAndManageVpn(true)
+ *             .accessAndManageApiGateway(true)
+ *             .accessAndManageKaas(true)
+ *             .accessAndManageNetworkFileStorage(true)
+ *             .accessAndManageAiModelHub(true)
+ *             .accessAndManageIamResources(true)
+ *             .createNetworkSecurityGroups(true)
  *             .manageDbaas(true)
  *             .userIds(            
  *                 example1.id(),
@@ -110,10 +119,10 @@ import javax.annotation.Nullable;
  * Resource Group can be imported using the `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/group:Group mygroup group uuid
+ * terraform import ionoscloud_group.mygroup group uuid
  * ```
  * 
- * &gt; :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
+ * &gt; :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;to match the new structure, by renaming the field old field, **user_id**, to&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;and put the old value into an array. This is not backwards compatible.
  * 
  */
 @ResourceType(type="ionoscloud:compute/group:Group")
@@ -133,6 +142,48 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessActivityLog);
     }
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    @Export(name="accessAndManageAiModelHub", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageAiModelHub;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageAiModelHub() {
+        return Codegen.optional(this.accessAndManageAiModelHub);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    @Export(name="accessAndManageApiGateway", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageApiGateway;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageApiGateway() {
+        return Codegen.optional(this.accessAndManageApiGateway);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    @Export(name="accessAndManageCdn", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageCdn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageCdn() {
+        return Codegen.optional(this.accessAndManageCdn);
+    }
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      * 
      */
@@ -147,6 +198,62 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessAndManageCertificates);
     }
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    @Export(name="accessAndManageDns", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageDns;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageDns() {
+        return Codegen.optional(this.accessAndManageDns);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    @Export(name="accessAndManageIamResources", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageIamResources;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageIamResources() {
+        return Codegen.optional(this.accessAndManageIamResources);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    @Export(name="accessAndManageKaas", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageKaas;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageKaas() {
+        return Codegen.optional(this.accessAndManageKaas);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    @Export(name="accessAndManageLogging", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageLogging;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageLogging() {
+        return Codegen.optional(this.accessAndManageLogging);
+    }
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      * 
      */
@@ -159,6 +266,34 @@ public class Group extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> accessAndManageMonitoring() {
         return Codegen.optional(this.accessAndManageMonitoring);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    @Export(name="accessAndManageNetworkFileStorage", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageNetworkFileStorage;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageNetworkFileStorage() {
+        return Codegen.optional(this.accessAndManageNetworkFileStorage);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    @Export(name="accessAndManageVpn", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageVpn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageVpn() {
+        return Codegen.optional(this.accessAndManageVpn);
     }
     /**
      * [Boolean] The group will be allowed to create backup unit privilege.
@@ -231,6 +366,20 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.createK8sCluster);
     }
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    @Export(name="createNetworkSecurityGroups", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> createNetworkSecurityGroups;
+
+    /**
+     * @return [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    public Output<Optional<Boolean>> createNetworkSecurityGroups() {
+        return Codegen.optional(this.createNetworkSecurityGroups);
+    }
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      * 
      */
@@ -259,6 +408,34 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.createSnapshot);
     }
     /**
+     * [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="getUsersData", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> getUsersData;
+
+    /**
+     * @return [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    public Output<Optional<Boolean>> getUsersData() {
+        return Codegen.optional(this.getUsersData);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    @Export(name="manageDataplatform", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> manageDataplatform;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    public Output<Optional<Boolean>> manageDataplatform() {
+        return Codegen.optional(this.manageDataplatform);
+    }
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      * 
      */
@@ -271,6 +448,20 @@ public class Group extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> manageDbaas() {
         return Codegen.optional(this.manageDbaas);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    @Export(name="manageRegistry", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> manageRegistry;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    public Output<Optional<Boolean>> manageRegistry() {
+        return Codegen.optional(this.manageRegistry);
     }
     /**
      * [string] A name for the group.
@@ -315,18 +506,18 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.s3Privilege);
     }
     /**
-     * [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      * @deprecated
-     * Please use user_ids for adding users to the group, since user_id will be removed in the future
+     * Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;for adding users to the group, since&lt;span pulumi-lang-nodejs=&#34; userId &#34; pulumi-lang-dotnet=&#34; UserId &#34; pulumi-lang-go=&#34; userId &#34; pulumi-lang-python=&#34; user_id &#34; pulumi-lang-yaml=&#34; userId &#34; pulumi-lang-java=&#34; userId &#34;&gt; userId &lt;/span&gt;will be removed in the future
      * 
      */
-    @Deprecated /* Please use user_ids for adding users to the group, since user_id will be removed in the future */
+    @Deprecated /* Please use<span pulumi-lang-nodejs="" userIds "" pulumi-lang-dotnet="" UserIds "" pulumi-lang-go="" userIds "" pulumi-lang-python="" user_ids "" pulumi-lang-yaml="" userIds "" pulumi-lang-java="" userIds ""> userIds </span>for adding users to the group, since<span pulumi-lang-nodejs="" userId "" pulumi-lang-dotnet="" UserId "" pulumi-lang-go="" userId "" pulumi-lang-python="" user_id "" pulumi-lang-yaml="" userId "" pulumi-lang-java="" userId ""> userId </span>will be removed in the future */
     @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
     /**
-     * @return [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
+     * @return [string] The ID of the specific user to add to the group. Please use&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;argument since this is **DEPRECATED**
      * 
      */
     public Output<Optional<String>> userId() {
@@ -349,7 +540,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     /**
      * List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     @Export(name="users", refs={List.class,GroupUser.class}, tree="[0,1]")
@@ -358,7 +549,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     /**
      * @return List of users - See the User section
      * 
-     * **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; groupIds &#34; pulumi-lang-dotnet=&#34; GroupIds &#34; pulumi-lang-go=&#34; groupIds &#34; pulumi-lang-python=&#34; group_ids &#34; pulumi-lang-yaml=&#34; groupIds &#34; pulumi-lang-java=&#34; groupIds &#34;&gt; groupIds &lt;/span&gt;field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * 
      */
     public Output<List<GroupUser>> users() {
@@ -404,6 +595,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

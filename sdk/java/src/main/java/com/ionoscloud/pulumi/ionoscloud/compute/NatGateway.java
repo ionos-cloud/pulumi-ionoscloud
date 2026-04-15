@@ -13,10 +13,11 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Nat Gateway** on IonosCloud.
+ * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -28,14 +29,14 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.NatGateway;
- * import com.pulumi.ionoscloud.compute.NatGatewayArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGateway;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.NatGatewayArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NatGatewayLanArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -65,7 +66,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
  *             .datacenterId(example.id())
- *             .public_(true)
+ *             .public_(false)
  *             .name("Lan Example")
  *             .build());
  * 
@@ -73,8 +74,8 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .name("example")
  *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(ips -> ips[0]),
- *                 exampleIPBlock.ips().applyValue(ips -> ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
  *             .lans(NatGatewayLanArgs.builder()
  *                 .id(exampleLan.id())
  *                 .gatewayIps("10.11.2.5")
@@ -92,7 +93,7 @@ import javax.annotation.Nullable;
  * A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway datacenter uuid/nat gateway uuid
+ * terraform import ionoscloud_natgateway.my_natgateway datacenter uuid/nat gateway uuid
  * ```
  * 
  */
@@ -125,6 +126,20 @@ public class NatGateway extends com.pulumi.resources.CustomResource {
      */
     public Output<List<NatGatewayLan>> lans() {
         return this.lans;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] Name of the NAT gateway.
@@ -194,6 +209,7 @@ public class NatGateway extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

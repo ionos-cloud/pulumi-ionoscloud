@@ -18,7 +18,7 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
     /**
      * ID of the node pool you want to search for.
      * 
-     * `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     @Import(name="id")
@@ -27,7 +27,7 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
     /**
      * @return ID of the node pool you want to search for.
      * 
-     * `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     public Optional<String> id() {
@@ -47,6 +47,13 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
      */
     public String k8sClusterId() {
         return this.k8sClusterId;
+    }
+
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
 
     /**
@@ -69,6 +76,7 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
     private GetNodePoolPlainArgs(GetNodePoolPlainArgs $) {
         this.id = $.id;
         this.k8sClusterId = $.k8sClusterId;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -93,7 +101,7 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
         /**
          * @param id ID of the node pool you want to search for.
          * 
-         * `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -111,6 +119,11 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder k8sClusterId(String k8sClusterId) {
             $.k8sClusterId = k8sClusterId;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

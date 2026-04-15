@@ -35,7 +35,7 @@ public final class TargetGroupTarget {
      */
     private Integer port;
     /**
-     * @return [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+     * @return [string] The proxy protocol version. Accepted values are &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v1`&#34; pulumi-lang-dotnet=&#34;`V1`&#34; pulumi-lang-go=&#34;`v1`&#34; pulumi-lang-python=&#34;`v1`&#34; pulumi-lang-yaml=&#34;`v1`&#34; pulumi-lang-java=&#34;`v1`&#34;&gt;`v1`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v2`&#34; pulumi-lang-dotnet=&#34;`V2`&#34; pulumi-lang-go=&#34;`v2`&#34; pulumi-lang-python=&#34;`v2`&#34; pulumi-lang-yaml=&#34;`v2`&#34; pulumi-lang-java=&#34;`v2`&#34;&gt;`v2`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v2ssl`&#34; pulumi-lang-dotnet=&#34;`V2ssl`&#34; pulumi-lang-go=&#34;`v2ssl`&#34; pulumi-lang-python=&#34;`v2ssl`&#34; pulumi-lang-yaml=&#34;`v2ssl`&#34; pulumi-lang-java=&#34;`v2ssl`&#34;&gt;`v2ssl`&lt;/span&gt;. If unspecified, the default value of &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34;&gt;`none`&lt;/span&gt; is used.
      * 
      */
     private @Nullable String proxyProtocol;
@@ -75,7 +75,7 @@ public final class TargetGroupTarget {
         return this.port;
     }
     /**
-     * @return [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+     * @return [string] The proxy protocol version. Accepted values are &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34;&gt;`none`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v1`&#34; pulumi-lang-dotnet=&#34;`V1`&#34; pulumi-lang-go=&#34;`v1`&#34; pulumi-lang-python=&#34;`v1`&#34; pulumi-lang-yaml=&#34;`v1`&#34; pulumi-lang-java=&#34;`v1`&#34;&gt;`v1`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v2`&#34; pulumi-lang-dotnet=&#34;`V2`&#34; pulumi-lang-go=&#34;`v2`&#34; pulumi-lang-python=&#34;`v2`&#34; pulumi-lang-yaml=&#34;`v2`&#34; pulumi-lang-java=&#34;`v2`&#34;&gt;`v2`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`v2ssl`&#34; pulumi-lang-dotnet=&#34;`V2ssl`&#34; pulumi-lang-go=&#34;`v2ssl`&#34; pulumi-lang-python=&#34;`v2ssl`&#34; pulumi-lang-yaml=&#34;`v2ssl`&#34; pulumi-lang-java=&#34;`v2ssl`&#34;&gt;`v2ssl`&lt;/span&gt;. If unspecified, the default value of &lt;span pulumi-lang-nodejs=&#34;`none`&#34; pulumi-lang-dotnet=&#34;`None`&#34; pulumi-lang-go=&#34;`none`&#34; pulumi-lang-python=&#34;`none`&#34; pulumi-lang-yaml=&#34;`none`&#34; pulumi-lang-java=&#34;`none`&#34;&gt;`none`&lt;/span&gt; is used.
      * 
      */
     public Optional<String> proxyProtocol() {

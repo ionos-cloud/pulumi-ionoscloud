@@ -31,7 +31,7 @@ public final class GroupPolicy {
      */
     private GroupPolicyScaleInAction scaleInAction;
     /**
-     * @return [int] A lower threshold on the value of `metric`. Will be used with `less than` (&lt;) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+     * @return [int] A lower threshold on the value of &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt;. Will be used with `less than` (&lt;) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt; to avoid competitive actions at the same time.
      * 
      */
     private Integer scaleInThreshold;
@@ -41,7 +41,7 @@ public final class GroupPolicy {
      */
     private GroupPolicyScaleOutAction scaleOutAction;
     /**
-     * @return [int] The upper threshold for the value of the `metric`. Used with the `greater than` (&gt;) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value &gt;= 40 must be chosen.
+     * @return [int] The upper threshold for the value of the &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt;. Used with the `greater than` (&gt;) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value &gt;= 40 must be chosen.
      * 
      */
     private Integer scaleOutThreshold;
@@ -74,7 +74,7 @@ public final class GroupPolicy {
         return this.scaleInAction;
     }
     /**
-     * @return [int] A lower threshold on the value of `metric`. Will be used with `less than` (&lt;) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+     * @return [int] A lower threshold on the value of &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt;. Will be used with `less than` (&lt;) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt; to avoid competitive actions at the same time.
      * 
      */
     public Integer scaleInThreshold() {
@@ -88,7 +88,7 @@ public final class GroupPolicy {
         return this.scaleOutAction;
     }
     /**
-     * @return [int] The upper threshold for the value of the `metric`. Used with the `greater than` (&gt;) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value &gt;= 40 must be chosen.
+     * @return [int] The upper threshold for the value of the &lt;span pulumi-lang-nodejs=&#34;`metric`&#34; pulumi-lang-dotnet=&#34;`Metric`&#34; pulumi-lang-go=&#34;`metric`&#34; pulumi-lang-python=&#34;`metric`&#34; pulumi-lang-yaml=&#34;`metric`&#34; pulumi-lang-java=&#34;`metric`&#34;&gt;`metric`&lt;/span&gt;. Used with the `greater than` (&gt;) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value &gt;= 40 must be chosen.
      * 
      */
     public Integer scaleOutThreshold() {

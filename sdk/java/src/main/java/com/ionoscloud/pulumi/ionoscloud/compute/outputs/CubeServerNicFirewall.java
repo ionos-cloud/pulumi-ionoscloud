@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 public final class CubeServerNicFirewall {
     private @Nullable String icmpCode;
     private @Nullable String icmpType;
+    private @Nullable String id;
     /**
      * @return [string] The name of the server.
      * 
@@ -34,6 +35,9 @@ public final class CubeServerNicFirewall {
     }
     public Optional<String> icmpType() {
         return Optional.ofNullable(this.icmpType);
+    }
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
     }
     /**
      * @return [string] The name of the server.
@@ -75,6 +79,7 @@ public final class CubeServerNicFirewall {
     public static final class Builder {
         private @Nullable String icmpCode;
         private @Nullable String icmpType;
+        private @Nullable String id;
         private @Nullable String name;
         private @Nullable Integer portRangeEnd;
         private @Nullable Integer portRangeStart;
@@ -88,6 +93,7 @@ public final class CubeServerNicFirewall {
     	      Objects.requireNonNull(defaults);
     	      this.icmpCode = defaults.icmpCode;
     	      this.icmpType = defaults.icmpType;
+    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.portRangeEnd = defaults.portRangeEnd;
     	      this.portRangeStart = defaults.portRangeStart;
@@ -108,6 +114,12 @@ public final class CubeServerNicFirewall {
         public Builder icmpType(@Nullable String icmpType) {
 
             this.icmpType = icmpType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -164,6 +176,7 @@ public final class CubeServerNicFirewall {
             final var _resultValue = new CubeServerNicFirewall();
             _resultValue.icmpCode = icmpCode;
             _resultValue.icmpType = icmpType;
+            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.portRangeEnd = portRangeEnd;
             _resultValue.portRangeStart = portRangeStart;

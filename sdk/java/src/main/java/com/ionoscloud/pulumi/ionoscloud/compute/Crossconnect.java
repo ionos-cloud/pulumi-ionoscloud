@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Cross Connect** on IonosCloud.
+ * Manages a [Cross Connect](https://docs.ionos.com/cloud/network-services/cross-connect/overview) on IonosCloud.
  * Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
  * The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
  * You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
@@ -37,12 +37,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Crossconnect;
- * import com.pulumi.ionoscloud.compute.CrossconnectArgs;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.Lan;
- * import com.pulumi.ionoscloud.compute.LanArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Crossconnect;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.CrossconnectArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  * $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo ionoscloud_private_crossconnect_uuid
  * ```
  * 
- * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
  * 
  */
 @ResourceType(type="ionoscloud:compute/crossconnect:Crossconnect")
@@ -133,6 +133,20 @@ public class Crossconnect extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the cross-connection.
@@ -202,6 +216,7 @@ public class Crossconnect extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

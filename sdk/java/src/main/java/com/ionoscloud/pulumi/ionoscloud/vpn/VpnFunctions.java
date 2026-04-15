@@ -70,7 +70,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -157,7 +157,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -244,7 +244,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -331,7 +331,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -418,7 +418,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -505,7 +505,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -592,7 +592,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -680,7 +680,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -722,25 +722,25 @@ public final class VpnFunctions {
      * 
      * The following attributes are returned by the datasource:
      * 
-     * * `id` - The unique ID of the IPSec Gateway Tunnel.
-     * * `name` - The name of the IPSec Gateway Tunnel.
-     * * `description` - The human-readable description of your IPSec Gateway Tunnel.
-     * * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-     * * `ike` - Settings for the initial security exchange phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `esp` - Settings for the IPSec SA (ESP) phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `auth` - Properties with all data needed to define IPSec Authentication.
-     *     * `method` - The authentication method to use for IPSec Authentication.
-     * * `cloud_network_cidrs` - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - The unique ID of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - The name of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`description`&#34; pulumi-lang-dotnet=&#34;`Description`&#34; pulumi-lang-go=&#34;`description`&#34; pulumi-lang-python=&#34;`description`&#34; pulumi-lang-yaml=&#34;`description`&#34; pulumi-lang-java=&#34;`description`&#34;&gt;`description`&lt;/span&gt; - The human-readable description of your IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`remoteHost`&#34; pulumi-lang-dotnet=&#34;`RemoteHost`&#34; pulumi-lang-go=&#34;`remoteHost`&#34; pulumi-lang-python=&#34;`remote_host`&#34; pulumi-lang-yaml=&#34;`remoteHost`&#34; pulumi-lang-java=&#34;`remoteHost`&#34;&gt;`remoteHost`&lt;/span&gt; - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * * &lt;span pulumi-lang-nodejs=&#34;`ike`&#34; pulumi-lang-dotnet=&#34;`Ike`&#34; pulumi-lang-go=&#34;`ike`&#34; pulumi-lang-python=&#34;`ike`&#34; pulumi-lang-yaml=&#34;`ike`&#34; pulumi-lang-java=&#34;`ike`&#34;&gt;`ike`&lt;/span&gt; - Settings for the initial security exchange phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`esp`&#34; pulumi-lang-dotnet=&#34;`Esp`&#34; pulumi-lang-go=&#34;`esp`&#34; pulumi-lang-python=&#34;`esp`&#34; pulumi-lang-yaml=&#34;`esp`&#34; pulumi-lang-java=&#34;`esp`&#34;&gt;`esp`&lt;/span&gt; - Settings for the IPSec SA (ESP) phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
+     * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
      *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
-     * * `peer_network_cidrs` - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
      */
@@ -794,7 +794,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -836,25 +836,25 @@ public final class VpnFunctions {
      * 
      * The following attributes are returned by the datasource:
      * 
-     * * `id` - The unique ID of the IPSec Gateway Tunnel.
-     * * `name` - The name of the IPSec Gateway Tunnel.
-     * * `description` - The human-readable description of your IPSec Gateway Tunnel.
-     * * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-     * * `ike` - Settings for the initial security exchange phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `esp` - Settings for the IPSec SA (ESP) phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `auth` - Properties with all data needed to define IPSec Authentication.
-     *     * `method` - The authentication method to use for IPSec Authentication.
-     * * `cloud_network_cidrs` - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - The unique ID of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - The name of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`description`&#34; pulumi-lang-dotnet=&#34;`Description`&#34; pulumi-lang-go=&#34;`description`&#34; pulumi-lang-python=&#34;`description`&#34; pulumi-lang-yaml=&#34;`description`&#34; pulumi-lang-java=&#34;`description`&#34;&gt;`description`&lt;/span&gt; - The human-readable description of your IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`remoteHost`&#34; pulumi-lang-dotnet=&#34;`RemoteHost`&#34; pulumi-lang-go=&#34;`remoteHost`&#34; pulumi-lang-python=&#34;`remote_host`&#34; pulumi-lang-yaml=&#34;`remoteHost`&#34; pulumi-lang-java=&#34;`remoteHost`&#34;&gt;`remoteHost`&lt;/span&gt; - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * * &lt;span pulumi-lang-nodejs=&#34;`ike`&#34; pulumi-lang-dotnet=&#34;`Ike`&#34; pulumi-lang-go=&#34;`ike`&#34; pulumi-lang-python=&#34;`ike`&#34; pulumi-lang-yaml=&#34;`ike`&#34; pulumi-lang-java=&#34;`ike`&#34;&gt;`ike`&lt;/span&gt; - Settings for the initial security exchange phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`esp`&#34; pulumi-lang-dotnet=&#34;`Esp`&#34; pulumi-lang-go=&#34;`esp`&#34; pulumi-lang-python=&#34;`esp`&#34; pulumi-lang-yaml=&#34;`esp`&#34; pulumi-lang-java=&#34;`esp`&#34;&gt;`esp`&lt;/span&gt; - Settings for the IPSec SA (ESP) phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
+     * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
      *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
-     * * `peer_network_cidrs` - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
      */
@@ -908,7 +908,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -950,25 +950,25 @@ public final class VpnFunctions {
      * 
      * The following attributes are returned by the datasource:
      * 
-     * * `id` - The unique ID of the IPSec Gateway Tunnel.
-     * * `name` - The name of the IPSec Gateway Tunnel.
-     * * `description` - The human-readable description of your IPSec Gateway Tunnel.
-     * * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-     * * `ike` - Settings for the initial security exchange phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `esp` - Settings for the IPSec SA (ESP) phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `auth` - Properties with all data needed to define IPSec Authentication.
-     *     * `method` - The authentication method to use for IPSec Authentication.
-     * * `cloud_network_cidrs` - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - The unique ID of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - The name of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`description`&#34; pulumi-lang-dotnet=&#34;`Description`&#34; pulumi-lang-go=&#34;`description`&#34; pulumi-lang-python=&#34;`description`&#34; pulumi-lang-yaml=&#34;`description`&#34; pulumi-lang-java=&#34;`description`&#34;&gt;`description`&lt;/span&gt; - The human-readable description of your IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`remoteHost`&#34; pulumi-lang-dotnet=&#34;`RemoteHost`&#34; pulumi-lang-go=&#34;`remoteHost`&#34; pulumi-lang-python=&#34;`remote_host`&#34; pulumi-lang-yaml=&#34;`remoteHost`&#34; pulumi-lang-java=&#34;`remoteHost`&#34;&gt;`remoteHost`&lt;/span&gt; - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * * &lt;span pulumi-lang-nodejs=&#34;`ike`&#34; pulumi-lang-dotnet=&#34;`Ike`&#34; pulumi-lang-go=&#34;`ike`&#34; pulumi-lang-python=&#34;`ike`&#34; pulumi-lang-yaml=&#34;`ike`&#34; pulumi-lang-java=&#34;`ike`&#34;&gt;`ike`&lt;/span&gt; - Settings for the initial security exchange phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`esp`&#34; pulumi-lang-dotnet=&#34;`Esp`&#34; pulumi-lang-go=&#34;`esp`&#34; pulumi-lang-python=&#34;`esp`&#34; pulumi-lang-yaml=&#34;`esp`&#34; pulumi-lang-java=&#34;`esp`&#34;&gt;`esp`&lt;/span&gt; - Settings for the IPSec SA (ESP) phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
+     * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
      *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
-     * * `peer_network_cidrs` - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
      */
@@ -1022,7 +1022,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1064,25 +1064,25 @@ public final class VpnFunctions {
      * 
      * The following attributes are returned by the datasource:
      * 
-     * * `id` - The unique ID of the IPSec Gateway Tunnel.
-     * * `name` - The name of the IPSec Gateway Tunnel.
-     * * `description` - The human-readable description of your IPSec Gateway Tunnel.
-     * * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-     * * `ike` - Settings for the initial security exchange phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `esp` - Settings for the IPSec SA (ESP) phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `auth` - Properties with all data needed to define IPSec Authentication.
-     *     * `method` - The authentication method to use for IPSec Authentication.
-     * * `cloud_network_cidrs` - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - The unique ID of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - The name of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`description`&#34; pulumi-lang-dotnet=&#34;`Description`&#34; pulumi-lang-go=&#34;`description`&#34; pulumi-lang-python=&#34;`description`&#34; pulumi-lang-yaml=&#34;`description`&#34; pulumi-lang-java=&#34;`description`&#34;&gt;`description`&lt;/span&gt; - The human-readable description of your IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`remoteHost`&#34; pulumi-lang-dotnet=&#34;`RemoteHost`&#34; pulumi-lang-go=&#34;`remoteHost`&#34; pulumi-lang-python=&#34;`remote_host`&#34; pulumi-lang-yaml=&#34;`remoteHost`&#34; pulumi-lang-java=&#34;`remoteHost`&#34;&gt;`remoteHost`&lt;/span&gt; - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * * &lt;span pulumi-lang-nodejs=&#34;`ike`&#34; pulumi-lang-dotnet=&#34;`Ike`&#34; pulumi-lang-go=&#34;`ike`&#34; pulumi-lang-python=&#34;`ike`&#34; pulumi-lang-yaml=&#34;`ike`&#34; pulumi-lang-java=&#34;`ike`&#34;&gt;`ike`&lt;/span&gt; - Settings for the initial security exchange phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`esp`&#34; pulumi-lang-dotnet=&#34;`Esp`&#34; pulumi-lang-go=&#34;`esp`&#34; pulumi-lang-python=&#34;`esp`&#34; pulumi-lang-yaml=&#34;`esp`&#34; pulumi-lang-java=&#34;`esp`&#34;&gt;`esp`&lt;/span&gt; - Settings for the IPSec SA (ESP) phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
+     * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
      *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
-     * * `peer_network_cidrs` - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
      */
@@ -1136,7 +1136,7 @@ public final class VpnFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1178,25 +1178,25 @@ public final class VpnFunctions {
      * 
      * The following attributes are returned by the datasource:
      * 
-     * * `id` - The unique ID of the IPSec Gateway Tunnel.
-     * * `name` - The name of the IPSec Gateway Tunnel.
-     * * `description` - The human-readable description of your IPSec Gateway Tunnel.
-     * * `remote_host` - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-     * * `ike` - Settings for the initial security exchange phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `esp` - Settings for the IPSec SA (ESP) phase.
-     *     * `diffie_hellman_group` - The Diffie-Hellman Group to use for IPSec Encryption.
-     *     * `encryption_algorithm` - The encryption algorithm to use for IPSec Encryption.
-     *     * `integrity_algorithm` - The integrity algorithm to use for IPSec Encryption.
-     *     * `lifetime` - The phase lifetime in seconds.
-     * * `auth` - Properties with all data needed to define IPSec Authentication.
-     *     * `method` - The authentication method to use for IPSec Authentication.
-     * * `cloud_network_cidrs` - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - The unique ID of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; - The name of the IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`description`&#34; pulumi-lang-dotnet=&#34;`Description`&#34; pulumi-lang-go=&#34;`description`&#34; pulumi-lang-python=&#34;`description`&#34; pulumi-lang-yaml=&#34;`description`&#34; pulumi-lang-java=&#34;`description`&#34;&gt;`description`&lt;/span&gt; - The human-readable description of your IPSec Gateway Tunnel.
+     * * &lt;span pulumi-lang-nodejs=&#34;`remoteHost`&#34; pulumi-lang-dotnet=&#34;`RemoteHost`&#34; pulumi-lang-go=&#34;`remoteHost`&#34; pulumi-lang-python=&#34;`remote_host`&#34; pulumi-lang-yaml=&#34;`remoteHost`&#34; pulumi-lang-java=&#34;`remoteHost`&#34;&gt;`remoteHost`&lt;/span&gt; - The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * * &lt;span pulumi-lang-nodejs=&#34;`ike`&#34; pulumi-lang-dotnet=&#34;`Ike`&#34; pulumi-lang-go=&#34;`ike`&#34; pulumi-lang-python=&#34;`ike`&#34; pulumi-lang-yaml=&#34;`ike`&#34; pulumi-lang-java=&#34;`ike`&#34;&gt;`ike`&lt;/span&gt; - Settings for the initial security exchange phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`esp`&#34; pulumi-lang-dotnet=&#34;`Esp`&#34; pulumi-lang-go=&#34;`esp`&#34; pulumi-lang-python=&#34;`esp`&#34; pulumi-lang-yaml=&#34;`esp`&#34; pulumi-lang-java=&#34;`esp`&#34;&gt;`esp`&lt;/span&gt; - Settings for the IPSec SA (ESP) phase.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`diffieHellmanGroup`&#34; pulumi-lang-dotnet=&#34;`DiffieHellmanGroup`&#34; pulumi-lang-go=&#34;`diffieHellmanGroup`&#34; pulumi-lang-python=&#34;`diffie_hellman_group`&#34; pulumi-lang-yaml=&#34;`diffieHellmanGroup`&#34; pulumi-lang-java=&#34;`diffieHellmanGroup`&#34;&gt;`diffieHellmanGroup`&lt;/span&gt; - The Diffie-Hellman Group to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`encryptionAlgorithm`&#34; pulumi-lang-dotnet=&#34;`EncryptionAlgorithm`&#34; pulumi-lang-go=&#34;`encryptionAlgorithm`&#34; pulumi-lang-python=&#34;`encryption_algorithm`&#34; pulumi-lang-yaml=&#34;`encryptionAlgorithm`&#34; pulumi-lang-java=&#34;`encryptionAlgorithm`&#34;&gt;`encryptionAlgorithm`&lt;/span&gt; - The encryption algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`integrityAlgorithm`&#34; pulumi-lang-dotnet=&#34;`IntegrityAlgorithm`&#34; pulumi-lang-go=&#34;`integrityAlgorithm`&#34; pulumi-lang-python=&#34;`integrity_algorithm`&#34; pulumi-lang-yaml=&#34;`integrityAlgorithm`&#34; pulumi-lang-java=&#34;`integrityAlgorithm`&#34;&gt;`integrityAlgorithm`&lt;/span&gt; - The integrity algorithm to use for IPSec Encryption.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`lifetime`&#34; pulumi-lang-dotnet=&#34;`Lifetime`&#34; pulumi-lang-go=&#34;`lifetime`&#34; pulumi-lang-python=&#34;`lifetime`&#34; pulumi-lang-yaml=&#34;`lifetime`&#34; pulumi-lang-java=&#34;`lifetime`&#34;&gt;`lifetime`&lt;/span&gt; - The phase lifetime in seconds.
+     * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
+     * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
      *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
-     * * `peer_network_cidrs` - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
+     * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
      */
@@ -1204,7 +1204,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel", TypeShape.of(GetIpsecTunnelResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1248,7 +1248,7 @@ public final class VpnFunctions {
         return getWireguardGateway(GetWireguardGatewayArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1292,7 +1292,7 @@ public final class VpnFunctions {
         return getWireguardGatewayPlain(GetWireguardGatewayPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1336,7 +1336,7 @@ public final class VpnFunctions {
         return getWireguardGateway(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1380,7 +1380,7 @@ public final class VpnFunctions {
         return getWireguardGatewayPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1424,7 +1424,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1468,7 +1468,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1512,7 +1512,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1557,7 +1557,7 @@ public final class VpnFunctions {
         return getWireguardPeer(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1602,7 +1602,7 @@ public final class VpnFunctions {
         return getWireguardPeerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1647,7 +1647,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", TypeShape.of(GetWireguardPeerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1692,7 +1692,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", TypeShape.of(GetWireguardPeerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 

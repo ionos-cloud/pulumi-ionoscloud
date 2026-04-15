@@ -33,14 +33,14 @@ public final class DatacenterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+     * @return [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      * 
      */
     public Output<String> location() {
@@ -126,7 +126,7 @@ public final class DatacenterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+         * @param location [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class DatacenterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+         * @param location [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
          * 
          * @return builder
          * 

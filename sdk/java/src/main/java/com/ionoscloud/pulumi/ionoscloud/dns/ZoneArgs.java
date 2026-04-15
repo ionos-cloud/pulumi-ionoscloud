@@ -32,14 +32,14 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+     * [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+     * @return [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -47,14 +47,14 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Zone.
+     * @return [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     public Optional<Output<String>> name() {
@@ -109,7 +109,7 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+         * @param enabled [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+         * @param enabled [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Zone.
+         * @param name [string] The name of the DNS Zone. This property is immutable.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class ZoneArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Zone.
+         * @param name [string] The name of the DNS Zone. This property is immutable.
          * 
          * @return builder
          * 

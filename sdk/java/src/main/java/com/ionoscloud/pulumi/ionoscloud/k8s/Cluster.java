@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Managed Kubernetes Cluster** on IonosCloud.
+ * Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.k8s.Cluster;
- * import com.pulumi.ionoscloud.k8s.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;
  * import java.util.List;
@@ -79,12 +79,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.ionoscloud.compute.Datacenter;
- * import com.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.pulumi.ionoscloud.compute.IPBlock;
- * import com.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.ionoscloud.k8s.Cluster;
- * import com.pulumi.ionoscloud.k8s.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;
  * import java.util.List;
@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *                 .name("globally_unique_bucket_name")
  *                 .build())
  *             .location("de/fra")
- *             .natGatewayIp(k8sip.ips().applyValue(ips -> ips[0]))
+ *             .natGatewayIp(k8sip.ips().applyValue(_ips -> _ips[0]))
  *             .nodeSubnet("192.168.0.0/16")
  *             .public_(false)
  *             .build());
@@ -140,14 +140,13 @@ import javax.annotation.Nullable;
  * A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
  * 
  * ```sh
- * $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
+ * terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
  * ```
  * 
- * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
  * 
- * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- * 
- * pulumi from doing a downgrade, as downgrading `k8s_version` is not supported._**
+ * ⚠️ **_Warning: **During a maintenance window, k8s can update your &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+ * terraform from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
  * 
  */
 @ResourceType(type="ionoscloud:k8s/cluster:Cluster")
@@ -155,7 +154,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      * 
      */
     @Export(name="allowReplace", refs={Boolean.class}, tree="[0]")
@@ -164,7 +163,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
      * 
-     * ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      * 
      */
     public Output<Optional<Boolean>> allowReplace() {
@@ -350,6 +349,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/ionos-cloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

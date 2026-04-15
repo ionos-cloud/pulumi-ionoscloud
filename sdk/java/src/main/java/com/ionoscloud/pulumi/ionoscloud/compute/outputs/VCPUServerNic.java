@@ -18,6 +18,10 @@ import javax.annotation.Nullable;
 public final class VCPUServerNic {
     private @Nullable Integer deviceNumber;
     private @Nullable Boolean dhcp;
+    /**
+     * @return Indicates whether this NIC receives an IPv6 address through DHCP.
+     * 
+     */
     private @Nullable Boolean dhcpv6;
     private @Nullable Boolean firewallActive;
     private @Nullable String firewallType;
@@ -32,7 +36,15 @@ public final class VCPUServerNic {
      * 
      */
     private @Nullable List<String> ips;
+    /**
+     * @return IPv6 CIDR block assigned to the NIC.
+     * 
+     */
     private @Nullable String ipv6CidrBlock;
+    /**
+     * @return Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+     * 
+     */
     private @Nullable List<String> ipv6Ips;
     private Integer lan;
     private @Nullable String mac;
@@ -45,10 +57,6 @@ public final class VCPUServerNic {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; ssh_keys field is immutable.
-     * 
      */
     private @Nullable List<String> securityGroupsIds;
 
@@ -59,6 +67,10 @@ public final class VCPUServerNic {
     public Optional<Boolean> dhcp() {
         return Optional.ofNullable(this.dhcp);
     }
+    /**
+     * @return Indicates whether this NIC receives an IPv6 address through DHCP.
+     * 
+     */
     public Optional<Boolean> dhcpv6() {
         return Optional.ofNullable(this.dhcpv6);
     }
@@ -85,9 +97,17 @@ public final class VCPUServerNic {
     public List<String> ips() {
         return this.ips == null ? List.of() : this.ips;
     }
+    /**
+     * @return IPv6 CIDR block assigned to the NIC.
+     * 
+     */
     public Optional<String> ipv6CidrBlock() {
         return Optional.ofNullable(this.ipv6CidrBlock);
     }
+    /**
+     * @return Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+     * 
+     */
     public List<String> ipv6Ips() {
         return this.ipv6Ips == null ? List.of() : this.ipv6Ips;
     }
@@ -109,10 +129,6 @@ public final class VCPUServerNic {
     }
     /**
      * @return The list of Security Group IDs for the resource.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; ssh_keys field is immutable.
      * 
      */
     public List<String> securityGroupsIds() {

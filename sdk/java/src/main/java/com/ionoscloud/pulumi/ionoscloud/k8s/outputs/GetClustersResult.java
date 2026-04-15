@@ -11,12 +11,13 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class GetClustersResult {
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8s_cluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     private List<GetClustersCluster> clusters;
@@ -32,10 +33,11 @@ public final class GetClustersResult {
      * 
      */
     private String id;
+    private @Nullable String location;
 
     private GetClustersResult() {}
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8s_cluster` datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     public List<GetClustersCluster> clusters() {
@@ -59,6 +61,9 @@ public final class GetClustersResult {
     public String id() {
         return this.id;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -73,6 +78,7 @@ public final class GetClustersResult {
         private Integer entries;
         private @Nullable List<GetClustersFilter> filters;
         private String id;
+        private @Nullable String location;
         public Builder() {}
         public Builder(GetClustersResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -80,6 +86,7 @@ public final class GetClustersResult {
     	      this.entries = defaults.entries;
     	      this.filters = defaults.filters;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
         }
 
         @CustomType.Setter
@@ -118,12 +125,19 @@ public final class GetClustersResult {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
         public GetClustersResult build() {
             final var _resultValue = new GetClustersResult();
             _resultValue.clusters = clusters;
             _resultValue.entries = entries;
             _resultValue.filters = filters;
             _resultValue.id = id;
+            _resultValue.location = location;
             return _resultValue;
         }
     }
