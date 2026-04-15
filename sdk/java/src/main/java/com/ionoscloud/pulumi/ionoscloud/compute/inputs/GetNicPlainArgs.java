@@ -51,6 +51,13 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.id);
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] The name of the LAN.
      * 
@@ -86,6 +93,7 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetNicPlainArgs(GetNicPlainArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.serverId = $.serverId;
     }
@@ -130,6 +138,11 @@ public final class GetNicPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

@@ -34,6 +34,51 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    @Import(name="accessAndManageAiModelHub")
+    private @Nullable Output<Boolean> accessAndManageAiModelHub;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageAiModelHub() {
+        return Optional.ofNullable(this.accessAndManageAiModelHub);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    @Import(name="accessAndManageApiGateway")
+    private @Nullable Output<Boolean> accessAndManageApiGateway;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageApiGateway() {
+        return Optional.ofNullable(this.accessAndManageApiGateway);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    @Import(name="accessAndManageCdn")
+    private @Nullable Output<Boolean> accessAndManageCdn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageCdn() {
+        return Optional.ofNullable(this.accessAndManageCdn);
+    }
+
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      * 
      */
@@ -49,6 +94,66 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    @Import(name="accessAndManageDns")
+    private @Nullable Output<Boolean> accessAndManageDns;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageDns() {
+        return Optional.ofNullable(this.accessAndManageDns);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    @Import(name="accessAndManageIamResources")
+    private @Nullable Output<Boolean> accessAndManageIamResources;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageIamResources() {
+        return Optional.ofNullable(this.accessAndManageIamResources);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    @Import(name="accessAndManageKaas")
+    private @Nullable Output<Boolean> accessAndManageKaas;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageKaas() {
+        return Optional.ofNullable(this.accessAndManageKaas);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    @Import(name="accessAndManageLogging")
+    private @Nullable Output<Boolean> accessAndManageLogging;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageLogging() {
+        return Optional.ofNullable(this.accessAndManageLogging);
+    }
+
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      * 
      */
@@ -61,6 +166,36 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> accessAndManageMonitoring() {
         return Optional.ofNullable(this.accessAndManageMonitoring);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    @Import(name="accessAndManageNetworkFileStorage")
+    private @Nullable Output<Boolean> accessAndManageNetworkFileStorage;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageNetworkFileStorage() {
+        return Optional.ofNullable(this.accessAndManageNetworkFileStorage);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    @Import(name="accessAndManageVpn")
+    private @Nullable Output<Boolean> accessAndManageVpn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    public Optional<Output<Boolean>> accessAndManageVpn() {
+        return Optional.ofNullable(this.accessAndManageVpn);
     }
 
     /**
@@ -139,6 +274,21 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    @Import(name="createNetworkSecurityGroups")
+    private @Nullable Output<Boolean> createNetworkSecurityGroups;
+
+    /**
+     * @return [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    public Optional<Output<Boolean>> createNetworkSecurityGroups() {
+        return Optional.ofNullable(this.createNetworkSecurityGroups);
+    }
+
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      * 
      */
@@ -169,6 +319,36 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    @Import(name="getUsersData")
+    private @Nullable Output<Boolean> getUsersData;
+
+    /**
+     * @return [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    public Optional<Output<Boolean>> getUsersData() {
+        return Optional.ofNullable(this.getUsersData);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    @Import(name="manageDataplatform")
+    private @Nullable Output<Boolean> manageDataplatform;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    public Optional<Output<Boolean>> manageDataplatform() {
+        return Optional.ofNullable(this.manageDataplatform);
+    }
+
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      * 
      */
@@ -181,6 +361,21 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> manageDbaas() {
         return Optional.ofNullable(this.manageDbaas);
+    }
+
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    @Import(name="manageRegistry")
+    private @Nullable Output<Boolean> manageRegistry;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    public Optional<Output<Boolean>> manageRegistry() {
+        return Optional.ofNullable(this.manageRegistry);
     }
 
     /**
@@ -289,16 +484,29 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
 
     private GroupState(GroupState $) {
         this.accessActivityLog = $.accessActivityLog;
+        this.accessAndManageAiModelHub = $.accessAndManageAiModelHub;
+        this.accessAndManageApiGateway = $.accessAndManageApiGateway;
+        this.accessAndManageCdn = $.accessAndManageCdn;
         this.accessAndManageCertificates = $.accessAndManageCertificates;
+        this.accessAndManageDns = $.accessAndManageDns;
+        this.accessAndManageIamResources = $.accessAndManageIamResources;
+        this.accessAndManageKaas = $.accessAndManageKaas;
+        this.accessAndManageLogging = $.accessAndManageLogging;
         this.accessAndManageMonitoring = $.accessAndManageMonitoring;
+        this.accessAndManageNetworkFileStorage = $.accessAndManageNetworkFileStorage;
+        this.accessAndManageVpn = $.accessAndManageVpn;
         this.createBackupUnit = $.createBackupUnit;
         this.createDatacenter = $.createDatacenter;
         this.createFlowLog = $.createFlowLog;
         this.createInternetAccess = $.createInternetAccess;
         this.createK8sCluster = $.createK8sCluster;
+        this.createNetworkSecurityGroups = $.createNetworkSecurityGroups;
         this.createPcc = $.createPcc;
         this.createSnapshot = $.createSnapshot;
+        this.getUsersData = $.getUsersData;
+        this.manageDataplatform = $.manageDataplatform;
         this.manageDbaas = $.manageDbaas;
+        this.manageRegistry = $.manageRegistry;
         this.name = $.name;
         this.reserveIp = $.reserveIp;
         this.s3Privilege = $.s3Privilege;
@@ -347,6 +555,69 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param accessAndManageAiModelHub [Boolean]  The group will be allowed to access and manage ai model hub.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageAiModelHub(@Nullable Output<Boolean> accessAndManageAiModelHub) {
+            $.accessAndManageAiModelHub = accessAndManageAiModelHub;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageAiModelHub [Boolean]  The group will be allowed to access and manage ai model hub.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageAiModelHub(Boolean accessAndManageAiModelHub) {
+            return accessAndManageAiModelHub(Output.of(accessAndManageAiModelHub));
+        }
+
+        /**
+         * @param accessAndManageApiGateway [Boolean]  The group will be allowed to access and manage api gateway.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageApiGateway(@Nullable Output<Boolean> accessAndManageApiGateway) {
+            $.accessAndManageApiGateway = accessAndManageApiGateway;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageApiGateway [Boolean]  The group will be allowed to access and manage api gateway.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageApiGateway(Boolean accessAndManageApiGateway) {
+            return accessAndManageApiGateway(Output.of(accessAndManageApiGateway));
+        }
+
+        /**
+         * @param accessAndManageCdn [Boolean]  The group will be allowed to access and manage cdn.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageCdn(@Nullable Output<Boolean> accessAndManageCdn) {
+            $.accessAndManageCdn = accessAndManageCdn;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageCdn [Boolean]  The group will be allowed to access and manage cdn.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageCdn(Boolean accessAndManageCdn) {
+            return accessAndManageCdn(Output.of(accessAndManageCdn));
+        }
+
+        /**
          * @param accessAndManageCertificates [Boolean]  The group will be allowed to access and manage certificates.
          * 
          * @return builder
@@ -368,6 +639,90 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param accessAndManageDns [Boolean]  The group will be allowed to access and manage dns records.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageDns(@Nullable Output<Boolean> accessAndManageDns) {
+            $.accessAndManageDns = accessAndManageDns;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageDns [Boolean]  The group will be allowed to access and manage dns records.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageDns(Boolean accessAndManageDns) {
+            return accessAndManageDns(Output.of(accessAndManageDns));
+        }
+
+        /**
+         * @param accessAndManageIamResources [Boolean]  The group will be allowed to access and manage iam resources.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageIamResources(@Nullable Output<Boolean> accessAndManageIamResources) {
+            $.accessAndManageIamResources = accessAndManageIamResources;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageIamResources [Boolean]  The group will be allowed to access and manage iam resources.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageIamResources(Boolean accessAndManageIamResources) {
+            return accessAndManageIamResources(Output.of(accessAndManageIamResources));
+        }
+
+        /**
+         * @param accessAndManageKaas [Boolean]  The group will be allowed to access and manage kaas.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageKaas(@Nullable Output<Boolean> accessAndManageKaas) {
+            $.accessAndManageKaas = accessAndManageKaas;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageKaas [Boolean]  The group will be allowed to access and manage kaas.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageKaas(Boolean accessAndManageKaas) {
+            return accessAndManageKaas(Output.of(accessAndManageKaas));
+        }
+
+        /**
+         * @param accessAndManageLogging [Boolean]  The group will be allowed to access and manage logging.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageLogging(@Nullable Output<Boolean> accessAndManageLogging) {
+            $.accessAndManageLogging = accessAndManageLogging;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageLogging [Boolean]  The group will be allowed to access and manage logging.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageLogging(Boolean accessAndManageLogging) {
+            return accessAndManageLogging(Output.of(accessAndManageLogging));
+        }
+
+        /**
          * @param accessAndManageMonitoring [Boolean]  The group will be allowed to access and manage monitoring.
          * 
          * @return builder
@@ -386,6 +741,48 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder accessAndManageMonitoring(Boolean accessAndManageMonitoring) {
             return accessAndManageMonitoring(Output.of(accessAndManageMonitoring));
+        }
+
+        /**
+         * @param accessAndManageNetworkFileStorage [Boolean]  The group will be allowed to access and manage network file storage.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageNetworkFileStorage(@Nullable Output<Boolean> accessAndManageNetworkFileStorage) {
+            $.accessAndManageNetworkFileStorage = accessAndManageNetworkFileStorage;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageNetworkFileStorage [Boolean]  The group will be allowed to access and manage network file storage.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageNetworkFileStorage(Boolean accessAndManageNetworkFileStorage) {
+            return accessAndManageNetworkFileStorage(Output.of(accessAndManageNetworkFileStorage));
+        }
+
+        /**
+         * @param accessAndManageVpn [Boolean]  The group will be allowed to access and manage vpn.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageVpn(@Nullable Output<Boolean> accessAndManageVpn) {
+            $.accessAndManageVpn = accessAndManageVpn;
+            return this;
+        }
+
+        /**
+         * @param accessAndManageVpn [Boolean]  The group will be allowed to access and manage vpn.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessAndManageVpn(Boolean accessAndManageVpn) {
+            return accessAndManageVpn(Output.of(accessAndManageVpn));
         }
 
         /**
@@ -494,6 +891,27 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param createNetworkSecurityGroups [Boolean]  The group will be allowed to create network security groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createNetworkSecurityGroups(@Nullable Output<Boolean> createNetworkSecurityGroups) {
+            $.createNetworkSecurityGroups = createNetworkSecurityGroups;
+            return this;
+        }
+
+        /**
+         * @param createNetworkSecurityGroups [Boolean]  The group will be allowed to create network security groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createNetworkSecurityGroups(Boolean createNetworkSecurityGroups) {
+            return createNetworkSecurityGroups(Output.of(createNetworkSecurityGroups));
+        }
+
+        /**
          * @param createPcc [Boolean] The group will be allowed to create Cross Connects privilege.
          * 
          * @return builder
@@ -536,6 +954,48 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param getUsersData [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder getUsersData(@Nullable Output<Boolean> getUsersData) {
+            $.getUsersData = getUsersData;
+            return this;
+        }
+
+        /**
+         * @param getUsersData [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder getUsersData(Boolean getUsersData) {
+            return getUsersData(Output.of(getUsersData));
+        }
+
+        /**
+         * @param manageDataplatform [Boolean]  The group will be allowed to access and manage the Data Platform.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder manageDataplatform(@Nullable Output<Boolean> manageDataplatform) {
+            $.manageDataplatform = manageDataplatform;
+            return this;
+        }
+
+        /**
+         * @param manageDataplatform [Boolean]  The group will be allowed to access and manage the Data Platform.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder manageDataplatform(Boolean manageDataplatform) {
+            return manageDataplatform(Output.of(manageDataplatform));
+        }
+
+        /**
          * @param manageDbaas [Boolean]  Privilege for a group to manage DBaaS related functionality.
          * 
          * @return builder
@@ -554,6 +1014,27 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder manageDbaas(Boolean manageDbaas) {
             return manageDbaas(Output.of(manageDbaas));
+        }
+
+        /**
+         * @param manageRegistry [Boolean]  The group will be allowed to access container registry related functionality.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder manageRegistry(@Nullable Output<Boolean> manageRegistry) {
+            $.manageRegistry = manageRegistry;
+            return this;
+        }
+
+        /**
+         * @param manageRegistry [Boolean]  The group will be allowed to access container registry related functionality.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder manageRegistry(Boolean manageRegistry) {
+            return manageRegistry(Output.of(manageRegistry));
         }
 
         /**

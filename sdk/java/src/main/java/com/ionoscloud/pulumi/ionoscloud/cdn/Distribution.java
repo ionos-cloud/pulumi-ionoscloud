@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **CDN Distribution** on IonosCloud.
+ * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -29,6 +29,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.Certificate;
+ * import com.ionoscloud.pulumi.ionoscloud.cert.CertificateArgs;
+ * import com.pulumi.std.StdFunctions;
  * import com.ionoscloud.pulumi.ionoscloud.cdn.Distribution;
  * import com.ionoscloud.pulumi.ionoscloud.cdn.DistributionArgs;
  * import com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleArgs;
@@ -47,6 +50,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         //optionally you can add a certificate to the distribution
+ *         var cert = new Certificate("cert", CertificateArgs.builder()
+ *             .name("add_name_here")
+ *             .certificate(StdFunctions.file(Map.of("input", "path_to_cert")).result())
+ *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).result())
+ *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).result())
+ *             .build());
+ * 
  *         var example = new Distribution("example", DistributionArgs.builder()
  *             .domain("example.com")
  *             .certificateId(cert.id())

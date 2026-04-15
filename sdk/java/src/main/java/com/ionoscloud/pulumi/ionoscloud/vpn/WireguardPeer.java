@@ -135,14 +135,14 @@ public class WireguardPeer extends com.pulumi.resources.CustomResource {
         return this.gatewayId;
     }
     /**
-     * [string] The location of the WireGuard Gateway.
+     * [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the WireGuard Gateway.
+     * @return [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Output<Optional<String>> location() {

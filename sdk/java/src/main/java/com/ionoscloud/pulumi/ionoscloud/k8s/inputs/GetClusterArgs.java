@@ -35,6 +35,21 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * this attribute is mandatory if the cluster is private.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return this attribute is mandatory if the cluster is private.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * Name of an existing cluster that you want to search for.
      * 
      */
@@ -53,6 +68,7 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetClusterArgs(GetClusterArgs $) {
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -97,6 +113,27 @@ public final class GetClusterArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        /**
+         * @param location this attribute is mandatory if the cluster is private.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location this attribute is mandatory if the cluster is private.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

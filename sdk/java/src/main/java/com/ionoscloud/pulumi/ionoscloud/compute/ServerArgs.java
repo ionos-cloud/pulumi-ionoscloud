@@ -25,38 +25,12 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
      * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
-     * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
-     * 
      */
     @Import(name="allowReplace")
     private @Nullable Output<Boolean> allowReplace;
 
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-     * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
-     * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
      * 
      */
     public Optional<Output<Boolean>> allowReplace() {
@@ -237,6 +211,21 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the server.
      * 
      */
@@ -264,6 +253,47 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<ServerNicArgs>> nic() {
         return Optional.ofNullable(this.nic);
+    }
+
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     * 
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; 
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+     * 
+     */
+    @Import(name="nicMultiQueue")
+    private @Nullable Output<Boolean> nicMultiQueue;
+
+    /**
+     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     * 
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; 
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+     * 
+     */
+    public Optional<Output<Boolean>> nicMultiQueue() {
+        return Optional.ofNullable(this.nicMultiQueue);
     }
 
     /**
@@ -350,14 +380,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * @return (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     public Optional<Output<String>> type() {
@@ -365,14 +395,14 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
      * 
      */
     @Import(name="vmState")
     private @Nullable Output<String> vmState;
 
     /**
-     * @return [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * @return [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
      * 
      */
     public Optional<Output<String>> vmState() {
@@ -383,15 +413,15 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
      * See the Volume section.
      * 
      */
-    @Import(name="volume", required=true)
-    private Output<ServerVolumeArgs> volume;
+    @Import(name="volume")
+    private @Nullable Output<ServerVolumeArgs> volume;
 
     /**
      * @return See the Volume section.
      * 
      */
-    public Output<ServerVolumeArgs> volume() {
-        return this.volume;
+    public Optional<Output<ServerVolumeArgs>> volume() {
+        return Optional.ofNullable(this.volume);
     }
 
     private ServerArgs() {}
@@ -409,8 +439,10 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         this.imageName = $.imageName;
         this.imagePassword = $.imagePassword;
         this.labels = $.labels;
+        this.location = $.location;
         this.name = $.name;
         this.nic = $.nic;
+        this.nicMultiQueue = $.nicMultiQueue;
         this.ram = $.ram;
         this.securityGroupsIds = $.securityGroupsIds;
         this.sshKeyPaths = $.sshKeyPaths;
@@ -442,19 +474,6 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
          * 
-         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
-         * &gt; 
-         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
-         * 
          * @return builder
          * 
          */
@@ -465,19 +484,6 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
-         * 
-         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
-         * &gt; 
-         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
          * 
          * @return builder
          * 
@@ -746,6 +752,27 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param name [string] The name of the server.
          * 
          * @return builder
@@ -785,6 +812,53 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder nic(ServerNicArgs nic) {
             return nic(Output.of(nic));
+        }
+
+        /**
+         * @param nicMultiQueue [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+         * 
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+         * &gt; 
+         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nicMultiQueue(@Nullable Output<Boolean> nicMultiQueue) {
+            $.nicMultiQueue = nicMultiQueue;
+            return this;
+        }
+
+        /**
+         * @param nicMultiQueue [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+         * 
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+         * &gt; 
+         * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nicMultiQueue(Boolean nicMultiQueue) {
+            return nicMultiQueue(Output.of(nicMultiQueue));
         }
 
         /**
@@ -935,7 +1009,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         * @param type (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          * 
          * @return builder
          * 
@@ -946,7 +1020,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         * @param type (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          * 
          * @return builder
          * 
@@ -956,7 +1030,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vmState [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+         * @param vmState [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
          * 
          * @return builder
          * 
@@ -967,7 +1041,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vmState [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+         * @param vmState [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
          * 
          * @return builder
          * 
@@ -982,7 +1056,7 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder volume(Output<ServerVolumeArgs> volume) {
+        public Builder volume(@Nullable Output<ServerVolumeArgs> volume) {
             $.volume = volume;
             return this;
         }
@@ -1000,9 +1074,6 @@ public final class ServerArgs extends com.pulumi.resources.ResourceArgs {
         public ServerArgs build() {
             if ($.datacenterId == null) {
                 throw new MissingRequiredPropertyException("ServerArgs", "datacenterId");
-            }
-            if ($.volume == null) {
-                throw new MissingRequiredPropertyException("ServerArgs", "volume");
             }
             return $;
         }

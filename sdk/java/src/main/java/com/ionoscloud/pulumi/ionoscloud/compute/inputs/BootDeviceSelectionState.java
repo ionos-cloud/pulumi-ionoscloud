@@ -63,6 +63,21 @@ public final class BootDeviceSelectionState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The ID of a server.
      * 
      */
@@ -83,6 +98,7 @@ public final class BootDeviceSelectionState extends com.pulumi.resources.Resourc
         this.bootDeviceId = $.bootDeviceId;
         this.datacenterId = $.datacenterId;
         this.defaultBootVolumeId = $.defaultBootVolumeId;
+        this.location = $.location;
         this.serverId = $.serverId;
     }
 
@@ -167,6 +183,27 @@ public final class BootDeviceSelectionState extends com.pulumi.resources.Resourc
          */
         public Builder defaultBootVolumeId(String defaultBootVolumeId) {
             return defaultBootVolumeId(Output.of(defaultBootVolumeId));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

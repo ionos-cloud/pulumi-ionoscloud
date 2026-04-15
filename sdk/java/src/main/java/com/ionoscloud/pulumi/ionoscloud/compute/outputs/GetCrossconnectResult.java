@@ -10,6 +10,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCrossconnectResult {
@@ -28,6 +30,11 @@ public final class GetCrossconnectResult {
      * 
      */
     private String id;
+    /**
+     * @return The physical location of the connectable datacenter
+     * 
+     */
+    private @Nullable String location;
     /**
      * @return The name of the connectable datacenter
      * 
@@ -62,6 +69,13 @@ public final class GetCrossconnectResult {
         return this.id;
     }
     /**
+     * @return The physical location of the connectable datacenter
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+    /**
      * @return The name of the connectable datacenter
      * 
      */
@@ -88,6 +102,7 @@ public final class GetCrossconnectResult {
         private List<GetCrossconnectConnectableDatacenter> connectableDatacenters;
         private String description;
         private String id;
+        private @Nullable String location;
         private String name;
         private List<GetCrossconnectPeer> peers;
         public Builder() {}
@@ -96,6 +111,7 @@ public final class GetCrossconnectResult {
     	      this.connectableDatacenters = defaults.connectableDatacenters;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.peers = defaults.peers;
         }
@@ -128,6 +144,12 @@ public final class GetCrossconnectResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetCrossconnectResult", "name");
@@ -151,6 +173,7 @@ public final class GetCrossconnectResult {
             _resultValue.connectableDatacenters = connectableDatacenters;
             _resultValue.description = description;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.peers = peers;
             return _resultValue;

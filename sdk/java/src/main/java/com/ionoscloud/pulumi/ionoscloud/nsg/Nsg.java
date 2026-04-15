@@ -12,10 +12,11 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Network Security Group** on IonosCloud.
+ * Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -69,7 +70,7 @@ import javax.annotation.Nullable;
  * terraform import ionoscloud_nsg.mynsg datacenter uuid/nsg uuid
  * ```
  * 
- * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block. Here is an example that allows you to import the default created nsg into pulumi.
+ * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block. Here is an example that allows you to import the default created nsg into terraform.
  * 
  */
 @ResourceType(type="ionoscloud:nsg/nsg:Nsg")
@@ -101,6 +102,20 @@ public class Nsg extends com.pulumi.resources.CustomResource {
      */
     public Output<String> description() {
         return this.description;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the Network Security Group.

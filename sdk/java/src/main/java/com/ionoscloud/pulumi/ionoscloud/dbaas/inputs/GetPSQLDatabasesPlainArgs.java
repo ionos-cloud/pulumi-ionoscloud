@@ -30,6 +30,13 @@ public final class GetPSQLDatabasesPlainArgs extends com.pulumi.resources.Invoke
         return this.clusterId;
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] Filter using a specific owner.
      * 
@@ -49,6 +56,7 @@ public final class GetPSQLDatabasesPlainArgs extends com.pulumi.resources.Invoke
 
     private GetPSQLDatabasesPlainArgs(GetPSQLDatabasesPlainArgs $) {
         this.clusterId = $.clusterId;
+        this.location = $.location;
         this.owner = $.owner;
     }
 
@@ -78,6 +86,11 @@ public final class GetPSQLDatabasesPlainArgs extends com.pulumi.resources.Invoke
          */
         public Builder clusterId(String clusterId) {
             $.clusterId = clusterId;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

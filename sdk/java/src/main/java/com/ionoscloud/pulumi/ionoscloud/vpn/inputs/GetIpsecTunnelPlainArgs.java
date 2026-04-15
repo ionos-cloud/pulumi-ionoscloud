@@ -46,14 +46,14 @@ public final class GetIpsecTunnelPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * The location of the IPSec Gateway Tunnel.
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Import(name="location")
     private @Nullable String location;
 
     /**
-     * @return The location of the IPSec Gateway Tunnel.
+     * @return The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Optional<String> location() {
@@ -125,7 +125,7 @@ public final class GetIpsecTunnelPlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param location The location of the IPSec Gateway Tunnel.
+         * @param location The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 

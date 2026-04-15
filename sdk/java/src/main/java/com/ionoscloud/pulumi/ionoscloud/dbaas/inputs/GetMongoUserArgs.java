@@ -55,6 +55,13 @@ public final class GetMongoUserArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.id);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      * 
@@ -91,6 +98,7 @@ public final class GetMongoUserArgs extends com.pulumi.resources.InvokeArgs {
         this.clusterId = $.clusterId;
         this.database = $.database;
         this.id = $.id;
+        this.location = $.location;
         this.roles = $.roles;
         this.username = $.username;
     }
@@ -162,6 +170,15 @@ public final class GetMongoUserArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

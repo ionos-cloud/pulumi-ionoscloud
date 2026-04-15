@@ -130,14 +130,14 @@ public class Zone extends com.pulumi.resources.CustomResource {
         return this.enabled;
     }
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Zone.
+     * @return [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     public Output<String> name() {

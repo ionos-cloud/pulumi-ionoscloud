@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPSQLBackupsResult {
@@ -27,6 +29,11 @@ public final class GetPSQLBackupsResult {
      * 
      */
     private String id;
+    /**
+     * @return The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
+    private @Nullable String location;
 
     private GetPSQLBackupsResult() {}
     /**
@@ -50,6 +57,13 @@ public final class GetPSQLBackupsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -63,12 +77,14 @@ public final class GetPSQLBackupsResult {
         private List<GetPSQLBackupsClusterBackup> clusterBackups;
         private String clusterId;
         private String id;
+        private @Nullable String location;
         public Builder() {}
         public Builder(GetPSQLBackupsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusterBackups = defaults.clusterBackups;
     	      this.clusterId = defaults.clusterId;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
         }
 
         @CustomType.Setter
@@ -98,11 +114,18 @@ public final class GetPSQLBackupsResult {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
         public GetPSQLBackupsResult build() {
             final var _resultValue = new GetPSQLBackupsResult();
             _resultValue.clusterBackups = clusterBackups;
             _resultValue.clusterId = clusterId;
             _resultValue.id = id;
+            _resultValue.location = location;
             return _resultValue;
         }
     }

@@ -35,14 +35,14 @@ public final class GetAutoCertificatePlainArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     @Import(name="location", required=true)
     private String location;
 
     /**
-     * @return [string] The location of the auto-certificate.
+     * @return [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     public String location() {
@@ -104,7 +104,7 @@ public final class GetAutoCertificatePlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param location [string] The location of the auto-certificate.
+         * @param location [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
          * 
          * @return builder
          * 

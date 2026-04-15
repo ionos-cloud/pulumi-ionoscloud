@@ -30,7 +30,7 @@ public final class GetDatacenterPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Id of the existing Virtual Data Center&#39;s location.
+     * Id of the existing Virtual Data Center&#39;s location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, the datasource will return an error.
      * 
@@ -39,7 +39,7 @@ public final class GetDatacenterPlainArgs extends com.pulumi.resources.InvokeArg
     private @Nullable String location;
 
     /**
-     * @return Id of the existing Virtual Data Center&#39;s location.
+     * @return Id of the existing Virtual Data Center&#39;s location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, the datasource will return an error.
      * 
@@ -101,7 +101,7 @@ public final class GetDatacenterPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param location Id of the existing Virtual Data Center&#39;s location.
+         * @param location Id of the existing Virtual Data Center&#39;s location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
          * 
          * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, the datasource will return an error.
          * 

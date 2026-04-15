@@ -28,6 +28,11 @@ public final class GetServersServerVolume {
     private Boolean discVirtioHotPlug;
     private Boolean discVirtioHotUnplug;
     private String diskType;
+    /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    private Boolean exposeSerial;
     private String id;
     private String imageName;
     private String imagePassword;
@@ -37,6 +42,11 @@ public final class GetServersServerVolume {
     private Boolean nicHotUnplug;
     private Integer pciSlot;
     private Boolean ramHotPlug;
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
     private Integer size;
     private List<String> sshKeys;
     private @Nullable String userData;
@@ -73,6 +83,13 @@ public final class GetServersServerVolume {
     public String diskType() {
         return this.diskType;
     }
+    /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Boolean exposeSerial() {
+        return this.exposeSerial;
+    }
     public String id() {
         return this.id;
     }
@@ -99,6 +116,13 @@ public final class GetServersServerVolume {
     }
     public Boolean ramHotPlug() {
         return this.ramHotPlug;
+    }
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
     }
     public Integer size() {
         return this.size;
@@ -128,6 +152,7 @@ public final class GetServersServerVolume {
         private Boolean discVirtioHotPlug;
         private Boolean discVirtioHotUnplug;
         private String diskType;
+        private Boolean exposeSerial;
         private String id;
         private String imageName;
         private String imagePassword;
@@ -137,6 +162,7 @@ public final class GetServersServerVolume {
         private Boolean nicHotUnplug;
         private Integer pciSlot;
         private Boolean ramHotPlug;
+        private Boolean requireLegacyBios;
         private Integer size;
         private List<String> sshKeys;
         private @Nullable String userData;
@@ -152,6 +178,7 @@ public final class GetServersServerVolume {
     	      this.discVirtioHotPlug = defaults.discVirtioHotPlug;
     	      this.discVirtioHotUnplug = defaults.discVirtioHotUnplug;
     	      this.diskType = defaults.diskType;
+    	      this.exposeSerial = defaults.exposeSerial;
     	      this.id = defaults.id;
     	      this.imageName = defaults.imageName;
     	      this.imagePassword = defaults.imagePassword;
@@ -161,6 +188,7 @@ public final class GetServersServerVolume {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.pciSlot = defaults.pciSlot;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.size = defaults.size;
     	      this.sshKeys = defaults.sshKeys;
     	      this.userData = defaults.userData;
@@ -239,6 +267,14 @@ public final class GetServersServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder exposeSerial(Boolean exposeSerial) {
+            if (exposeSerial == null) {
+              throw new MissingRequiredPropertyException("GetServersServerVolume", "exposeSerial");
+            }
+            this.exposeSerial = exposeSerial;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetServersServerVolume", "id");
@@ -311,6 +347,14 @@ public final class GetServersServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetServersServerVolume", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(Integer size) {
             if (size == null) {
               throw new MissingRequiredPropertyException("GetServersServerVolume", "size");
@@ -346,6 +390,7 @@ public final class GetServersServerVolume {
             _resultValue.discVirtioHotPlug = discVirtioHotPlug;
             _resultValue.discVirtioHotUnplug = discVirtioHotUnplug;
             _resultValue.diskType = diskType;
+            _resultValue.exposeSerial = exposeSerial;
             _resultValue.id = id;
             _resultValue.imageName = imageName;
             _resultValue.imagePassword = imagePassword;
@@ -355,6 +400,7 @@ public final class GetServersServerVolume {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.pciSlot = pciSlot;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.size = size;
             _resultValue.sshKeys = sshKeys;
             _resultValue.userData = userData;

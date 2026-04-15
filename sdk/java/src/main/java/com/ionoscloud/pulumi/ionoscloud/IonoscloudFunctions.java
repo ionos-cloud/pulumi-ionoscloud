@@ -3,7 +3,4272 @@
 
 package com.ionoscloud.pulumi.ionoscloud;
 
-
+import com.ionoscloud.pulumi.ionoscloud.Utilities;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetDnsReverseRecordPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetDnsReverseRecordsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpuArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpuPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpuServerArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpuServerPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpusArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetGpusPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUsersPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetContractsResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetDnsReverseRecordResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetDnsReverseRecordsResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetGpuResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetGpuServerResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetGpusResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetKafkaUserCredentialsResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetKafkaUsersResult;
+import com.pulumi.core.Output;
+import com.pulumi.core.TypeShape;
+import com.pulumi.deployment.Deployment;
+import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
+import com.pulumi.resources.InvokeArgs;
+import java.util.concurrent.CompletableFuture;
 
 public final class IonoscloudFunctions {
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static Output<GetContractsResult> getContracts() {
+        return getContracts(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static CompletableFuture<GetContractsResult> getContractsPlain() {
+        return getContractsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static Output<GetContractsResult> getContracts(InvokeArgs args) {
+        return getContracts(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static CompletableFuture<GetContractsResult> getContractsPlain(InvokeArgs args) {
+        return getContractsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static Output<GetContractsResult> getContracts(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static Output<GetContractsResult> getContracts(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getContracts(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("contracts", example.contracts());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * The following attributes are returned by the datasource:
+     * 
+     * Sure! Here&#39;s the list of attributes formatted as requested:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * 
+     */
+    public static CompletableFuture<GetContractsResult> getContractsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordResult> getDnsReverseRecord() {
+        return getDnsReverseRecord(GetDnsReverseRecordArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordResult> getDnsReverseRecordPlain() {
+        return getDnsReverseRecordPlain(GetDnsReverseRecordPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordResult> getDnsReverseRecord(GetDnsReverseRecordArgs args) {
+        return getDnsReverseRecord(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordResult> getDnsReverseRecordPlain(GetDnsReverseRecordPlainArgs args) {
+        return getDnsReverseRecordPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordResult> getDnsReverseRecord(GetDnsReverseRecordArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getDnsReverseRecord:getDnsReverseRecord", TypeShape.of(GetDnsReverseRecordResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordResult> getDnsReverseRecord(GetDnsReverseRecordArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getDnsReverseRecord:getDnsReverseRecord", TypeShape.of(GetDnsReverseRecordResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search and make sure that your resources have unique names.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_record** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .id("record_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IP
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecord(GetDnsReverseRecordArgs.builder()
+     *             .ip("exampleIP")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordResult> getDnsReverseRecordPlain(GetDnsReverseRecordPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getDnsReverseRecord:getDnsReverseRecord", TypeShape.of(GetDnsReverseRecordResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordsResult> getDnsReverseRecords() {
+        return getDnsReverseRecords(GetDnsReverseRecordsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordsResult> getDnsReverseRecordsPlain() {
+        return getDnsReverseRecordsPlain(GetDnsReverseRecordsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordsResult> getDnsReverseRecords(GetDnsReverseRecordsArgs args) {
+        return getDnsReverseRecords(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordsResult> getDnsReverseRecordsPlain(GetDnsReverseRecordsPlainArgs args) {
+        return getDnsReverseRecordsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordsResult> getDnsReverseRecords(GetDnsReverseRecordsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords", TypeShape.of(GetDnsReverseRecordsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsReverseRecordsResult> getDnsReverseRecords(GetDnsReverseRecordsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords", TypeShape.of(GetDnsReverseRecordsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DNS Reverse Records** can be used to search for and return existing DNS Reverse Records.
+     * Multiple matches will be returned.
+     * 
+     * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_reverse_records** data source. Please ensure you are using tokens as other methods will not be valid.
+     * 
+     * ## Example Usage
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("recordexample")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name with partial match
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .name("record")
+     *             .partialMatch(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By IPs
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getDnsReverseRecords(GetDnsReverseRecordsArgs.builder()
+     *             .ips(            
+     *                 "exampleIP1",
+     *                 "exampleIP2")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetDnsReverseRecordsResult> getDnsReverseRecordsPlain(GetDnsReverseRecordsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords", TypeShape.of(GetDnsReverseRecordsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args) {
+        return getGpu(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args) {
+        return getGpuPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpu.getGpu has been deprecated in favor of ionoscloud.compute/getgpu.getGpu */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer */
+    public static Output<GetGpuServerResult> getGpuServer(GetGpuServerArgs args) {
+        return getGpuServer(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer */
+    public static CompletableFuture<GetGpuServerResult> getGpuServerPlain(GetGpuServerPlainArgs args) {
+        return getGpuServerPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer */
+    public static Output<GetGpuServerResult> getGpuServer(GetGpuServerArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpuServer:getGpuServer", TypeShape.of(GetGpuServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer */
+    public static Output<GetGpuServerResult> getGpuServer(GetGpuServerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpuServer:getGpuServer", TypeShape.of(GetGpuServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpuserver.getGpuServer has been deprecated in favor of ionoscloud.compute/getgpuserver.getGPUServer */
+    public static CompletableFuture<GetGpuServerResult> getGpuServerPlain(GetGpuServerPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getGpuServer:getGpuServer", TypeShape.of(GetGpuServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args) {
+        return getGpus(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args) {
+        return getGpusPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * @deprecated
+     * ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus
+     * 
+     */
+    @Deprecated /* ionoscloud.index/getgpus.getGpus has been deprecated in favor of ionoscloud.compute/getgpus.getGpus */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.
+     * 
+     * &gt; ⚠️  In order to avoid storing sensitive data in the state, the user credentials ephemeral resource can be used.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .id("kafka_user_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .username("kafka_username")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Attributes reference
+     * 
+     * The following attributes are returned by the data source:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * 
+     */
+    public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args) {
+        return getKafkaUserCredentials(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.
+     * 
+     * &gt; ⚠️  In order to avoid storing sensitive data in the state, the user credentials ephemeral resource can be used.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .id("kafka_user_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .username("kafka_username")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Attributes reference
+     * 
+     * The following attributes are returned by the data source:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * 
+     */
+    public static CompletableFuture<GetKafkaUserCredentialsResult> getKafkaUserCredentialsPlain(GetKafkaUserCredentialsPlainArgs args) {
+        return getKafkaUserCredentialsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.
+     * 
+     * &gt; ⚠️  In order to avoid storing sensitive data in the state, the user credentials ephemeral resource can be used.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .id("kafka_user_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .username("kafka_username")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Attributes reference
+     * 
+     * The following attributes are returned by the data source:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * 
+     */
+    public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials", TypeShape.of(GetKafkaUserCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.
+     * 
+     * &gt; ⚠️  In order to avoid storing sensitive data in the state, the user credentials ephemeral resource can be used.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .id("kafka_user_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .username("kafka_username")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Attributes reference
+     * 
+     * The following attributes are returned by the data source:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * 
+     */
+    public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials", TypeShape.of(GetKafkaUserCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.
+     * 
+     * &gt; ⚠️  In order to avoid storing sensitive data in the state, the user credentials ephemeral resource can be used.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .id("kafka_user_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUserCredentialsDs = IonoscloudFunctions.getKafkaUserCredentials(GetKafkaUserCredentialsArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .username("kafka_username")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUserCredentialsTimeoutsArgs.builder()
+     *                 .read("1m")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Attributes reference
+     * 
+     * The following attributes are returned by the data source:
+     * 
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * 
+     */
+    public static CompletableFuture<GetKafkaUserCredentialsResult> getKafkaUserCredentialsPlain(GetKafkaUserCredentialsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials", TypeShape.of(GetKafkaUserCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka users** data source can be used to retrieve information about users.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUsersDs = IonoscloudFunctions.getKafkaUsers(GetKafkaUsersArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUsersTimeoutsArgs.builder()
+     *                 .read("1s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetKafkaUsersResult> getKafkaUsers(GetKafkaUsersArgs args) {
+        return getKafkaUsers(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **Kafka users** data source can be used to retrieve information about users.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUsersDs = IonoscloudFunctions.getKafkaUsers(GetKafkaUsersArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUsersTimeoutsArgs.builder()
+     *                 .read("1s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetKafkaUsersResult> getKafkaUsersPlain(GetKafkaUsersPlainArgs args) {
+        return getKafkaUsersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **Kafka users** data source can be used to retrieve information about users.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUsersDs = IonoscloudFunctions.getKafkaUsers(GetKafkaUsersArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUsersTimeoutsArgs.builder()
+     *                 .read("1s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetKafkaUsersResult> getKafkaUsers(GetKafkaUsersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getKafkaUsers:getKafkaUsers", TypeShape.of(GetKafkaUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka users** data source can be used to retrieve information about users.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUsersDs = IonoscloudFunctions.getKafkaUsers(GetKafkaUsersArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUsersTimeoutsArgs.builder()
+     *                 .read("1s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetKafkaUsersResult> getKafkaUsers(GetKafkaUsersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getKafkaUsers:getKafkaUsers", TypeShape.of(GetKafkaUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **Kafka users** data source can be used to retrieve information about users.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
+     * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var kafkaUsersDs = IonoscloudFunctions.getKafkaUsers(GetKafkaUsersArgs.builder()
+     *             .clusterId("kafka_cluster_id")
+     *             .location("kafka_cluster_location")
+     *             .timeouts(GetKafkaUsersTimeoutsArgs.builder()
+     *                 .read("1s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetKafkaUsersResult> getKafkaUsersPlain(GetKafkaUsersPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getKafkaUsers:getKafkaUsers", TypeShape.of(GetKafkaUsersResult.class), args, Utilities.withVersion(options));
+    }
 }

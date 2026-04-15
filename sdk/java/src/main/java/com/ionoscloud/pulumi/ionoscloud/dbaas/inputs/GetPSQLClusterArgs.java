@@ -49,11 +49,27 @@ public final class GetPSQLClusterArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The physical location where the cluster will be created. This will be where all of your instances live.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The physical location where the cluster will be created. This will be where all of your instances live.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetPSQLClusterArgs() {}
 
     private GetPSQLClusterArgs(GetPSQLClusterArgs $) {
         this.displayName = $.displayName;
         this.id = $.id;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -118,6 +134,27 @@ public final class GetPSQLClusterArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        /**
+         * @param location The physical location where the cluster will be created. This will be where all of your instances live.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The physical location where the cluster will be created. This will be where all of your instances live.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         public GetPSQLClusterArgs build() {

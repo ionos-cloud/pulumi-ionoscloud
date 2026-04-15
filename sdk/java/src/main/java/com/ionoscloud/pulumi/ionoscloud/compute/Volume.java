@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Volume** on IonosCloud.
+ * Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -97,8 +97,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(exampleDatacenter.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
  *             .imageName(example.name())
  *             .imagePassword(serverImagePassword.result())
  *             .type("ENTERPRISE")
@@ -119,16 +117,16 @@ import javax.annotation.Nullable;
  *                 .ips(                
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
- *                 .firewalls(ServerNicFirewallArgs.builder()
- *                     .protocol("TCP")
- *                     .name("SSH")
- *                     .portRangeStart(22)
- *                     .portRangeEnd(22)
- *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
- *                     .type("EGRESS")
- *                     .build())
+ *                 .firewall(Map.ofEntries(
+ *                     Map.entry("protocol", "TCP"),
+ *                     Map.entry("name", "SSH"),
+ *                     Map.entry("portRangeStart", 22),
+ *                     Map.entry("portRangeEnd", 22),
+ *                     Map.entry("sourceMac", "00:0a:95:9d:68:17"),
+ *                     Map.entry("sourceIp", exampleIPBlock.ips().applyValue(_ips -> _ips[2])),
+ *                     Map.entry("targetIp", exampleIPBlock.ips().applyValue(_ips -> _ips[3])),
+ *                     Map.entry("type", "EGRESS")
+ *                 ))
  *                 .build())
  *             .build());
  * 
@@ -208,10 +206,6 @@ public class Volume extends com.pulumi.resources.CustomResource {
     }
     /**
      * [string] The UUID of the attached server.
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
      * 
      */
     @Export(name="bootServer", refs={String.class}, tree="[0]")
@@ -219,10 +213,6 @@ public class Volume extends com.pulumi.resources.CustomResource {
 
     /**
      * @return [string] The UUID of the attached server.
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
-     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
      * 
      */
     public Output<String> bootServer() {
@@ -327,6 +317,20 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.diskType;
     }
     /**
+     * (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    @Export(name="exposeSerial", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> exposeSerial;
+
+    /**
+     * @return (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Output<Boolean> exposeSerial() {
+        return this.exposeSerial;
+    }
+    /**
      * The image or snapshot UUID.
      * 
      */
@@ -387,6 +391,20 @@ public class Volume extends com.pulumi.resources.CustomResource {
      */
     public Output<String> licenceType() {
         return this.licenceType;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the volume.
@@ -457,6 +475,30 @@ public class Volume extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> ramHotPlug() {
         return this.ramHotPlug;
+    }
+    /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+     * 
+     */
+    @Export(name="requireLegacyBios", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+     * 
+     */
+    public Output<Boolean> requireLegacyBios() {
+        return this.requireLegacyBios;
     }
     /**
      * [string] The ID of a server.

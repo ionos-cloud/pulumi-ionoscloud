@@ -213,6 +213,21 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the server.
      * 
      */
@@ -361,6 +376,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         this.imageName = $.imageName;
         this.imagePassword = $.imagePassword;
         this.inlineVolumeIds = $.inlineVolumeIds;
+        this.location = $.location;
         this.name = $.name;
         this.nic = $.nic;
         this.primaryIp = $.primaryIp;
@@ -657,6 +673,27 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder inlineVolumeIds(String... inlineVolumeIds) {
             return inlineVolumeIds(List.of(inlineVolumeIds));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

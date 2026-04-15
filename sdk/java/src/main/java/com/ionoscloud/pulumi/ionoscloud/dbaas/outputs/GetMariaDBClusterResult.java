@@ -3,6 +3,7 @@
 
 package com.ionoscloud.pulumi.ionoscloud.dbaas.outputs;
 
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterBackup;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterConnection;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterMaintenanceWindow;
 import com.pulumi.core.annotations.CustomType;
@@ -16,6 +17,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetMariaDBClusterResult {
+    /**
+     * @return Properties configuring the backup of the cluster.
+     * 
+     */
+    private List<GetMariaDBClusterBackup> backups;
     /**
      * @return The network connection for your cluster. Only one connection is allowed.
      * 
@@ -42,6 +48,10 @@ public final class GetMariaDBClusterResult {
      * 
      */
     private Integer instances;
+    /**
+     * @return [string] The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
     private @Nullable String location;
     /**
      * @return A weekly 4 hour-long window, during which maintenance might occur.
@@ -65,6 +75,13 @@ public final class GetMariaDBClusterResult {
     private Integer storageSize;
 
     private GetMariaDBClusterResult() {}
+    /**
+     * @return Properties configuring the backup of the cluster.
+     * 
+     */
+    public List<GetMariaDBClusterBackup> backups() {
+        return this.backups;
+    }
     /**
      * @return The network connection for your cluster. Only one connection is allowed.
      * 
@@ -103,6 +120,10 @@ public final class GetMariaDBClusterResult {
     public Integer instances() {
         return this.instances;
     }
+    /**
+     * @return [string] The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
     public Optional<String> location() {
         return Optional.ofNullable(this.location);
     }
@@ -144,6 +165,7 @@ public final class GetMariaDBClusterResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<GetMariaDBClusterBackup> backups;
         private List<GetMariaDBClusterConnection> connections;
         private Integer cores;
         private String displayName;
@@ -158,6 +180,7 @@ public final class GetMariaDBClusterResult {
         public Builder() {}
         public Builder(GetMariaDBClusterResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.backups = defaults.backups;
     	      this.connections = defaults.connections;
     	      this.cores = defaults.cores;
     	      this.displayName = defaults.displayName;
@@ -171,6 +194,17 @@ public final class GetMariaDBClusterResult {
     	      this.storageSize = defaults.storageSize;
         }
 
+        @CustomType.Setter
+        public Builder backups(List<GetMariaDBClusterBackup> backups) {
+            if (backups == null) {
+              throw new MissingRequiredPropertyException("GetMariaDBClusterResult", "backups");
+            }
+            this.backups = backups;
+            return this;
+        }
+        public Builder backups(GetMariaDBClusterBackup... backups) {
+            return backups(List.of(backups));
+        }
         @CustomType.Setter
         public Builder connections(List<GetMariaDBClusterConnection> connections) {
             if (connections == null) {
@@ -265,6 +299,7 @@ public final class GetMariaDBClusterResult {
         }
         public GetMariaDBClusterResult build() {
             final var _resultValue = new GetMariaDBClusterResult();
+            _resultValue.backups = backups;
             _resultValue.connections = connections;
             _resultValue.cores = cores;
             _resultValue.displayName = displayName;

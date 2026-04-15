@@ -16,14 +16,14 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
     public static final PSQLDatabaseState Empty = new PSQLDatabaseState();
 
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     @Import(name="clusterId")
     private @Nullable Output<String> clusterId;
 
     /**
-     * @return [string] The unique ID of the cluster.
+     * @return [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     public Optional<Output<String>> clusterId() {
@@ -31,14 +31,29 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return [string] The name of the database.
+     * @return [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     public Optional<Output<String>> name() {
@@ -46,14 +61,14 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     @Import(name="owner")
     private @Nullable Output<String> owner;
 
     /**
-     * @return [string] The owner of the database.
+     * @return [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     public Optional<Output<String>> owner() {
@@ -64,6 +79,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
 
     private PSQLDatabaseState(PSQLDatabaseState $) {
         this.clusterId = $.clusterId;
+        this.location = $.location;
         this.name = $.name;
         this.owner = $.owner;
     }
@@ -87,7 +103,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterId [string] The unique ID of the cluster.
+         * @param clusterId [string] The unique ID of the cluster. Immutable, forces re-creation.
          * 
          * @return builder
          * 
@@ -98,7 +114,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterId [string] The unique ID of the cluster.
+         * @param clusterId [string] The unique ID of the cluster. Immutable, forces re-creation.
          * 
          * @return builder
          * 
@@ -108,7 +124,28 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the database.
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
+         * @param name [string] The name of the database. Immutable, forces re-creation.
          * 
          * @return builder
          * 
@@ -119,7 +156,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the database.
+         * @param name [string] The name of the database. Immutable, forces re-creation.
          * 
          * @return builder
          * 
@@ -129,7 +166,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param owner [string] The owner of the database.
+         * @param owner [string] The owner of the database. Immutable, forces re-creation.
          * 
          * @return builder
          * 
@@ -140,7 +177,7 @@ public final class PSQLDatabaseState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param owner [string] The owner of the database.
+         * @param owner [string] The owner of the database. Immutable, forces re-creation.
          * 
          * @return builder
          * 

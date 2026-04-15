@@ -108,6 +108,21 @@ public final class SnapshotArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Location of that image/snapshot
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the snapshot.
      * 
      */
@@ -168,6 +183,21 @@ public final class SnapshotArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    @Import(name="requireLegacyBios")
+    private @Nullable Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    public Optional<Output<Boolean>> requireLegacyBios() {
+        return Optional.ofNullable(this.requireLegacyBios);
+    }
+
+    /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      * 
      */
@@ -206,10 +236,12 @@ public final class SnapshotArgs extends com.pulumi.resources.ResourceArgs {
         this.discVirtioHotPlug = $.discVirtioHotPlug;
         this.discVirtioHotUnplug = $.discVirtioHotUnplug;
         this.licenceType = $.licenceType;
+        this.location = $.location;
         this.name = $.name;
         this.nicHotPlug = $.nicHotPlug;
         this.nicHotUnplug = $.nicHotUnplug;
         this.ramHotPlug = $.ramHotPlug;
+        this.requireLegacyBios = $.requireLegacyBios;
         this.secAuthProtection = $.secAuthProtection;
         this.volumeId = $.volumeId;
     }
@@ -359,6 +391,27 @@ public final class SnapshotArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location Location of that image/snapshot
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location Location of that image/snapshot
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param name [string] The name of the snapshot.
          * 
          * @return builder
@@ -440,6 +493,27 @@ public final class SnapshotArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ramHotPlug(Boolean ramHotPlug) {
             return ramHotPlug(Output.of(ramHotPlug));
+        }
+
+        /**
+         * @param requireLegacyBios (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(@Nullable Output<Boolean> requireLegacyBios) {
+            $.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+
+        /**
+         * @param requireLegacyBios (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            return requireLegacyBios(Output.of(requireLegacyBios));
         }
 
         /**

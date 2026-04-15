@@ -56,6 +56,11 @@ public final class GetVCPUServerVolume {
      */
     private Boolean discVirtioHotUnplug;
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    private Boolean exposeSerial;
+    /**
      * @return ID of the server you want to search for.
      * 
      * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
@@ -98,6 +103,11 @@ public final class GetVCPUServerVolume {
      * 
      */
     private Boolean ramHotPlug;
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
     /**
      * @return The size of the volume in GB
      * 
@@ -177,6 +187,13 @@ public final class GetVCPUServerVolume {
         return this.discVirtioHotUnplug;
     }
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Boolean exposeSerial() {
+        return this.exposeSerial;
+    }
+    /**
      * @return ID of the server you want to search for.
      * 
      * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
@@ -238,6 +255,13 @@ public final class GetVCPUServerVolume {
         return this.ramHotPlug;
     }
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * @return The size of the volume in GB
      * 
      */
@@ -283,6 +307,7 @@ public final class GetVCPUServerVolume {
         private Integer deviceNumber;
         private Boolean discVirtioHotPlug;
         private Boolean discVirtioHotUnplug;
+        private Boolean exposeSerial;
         private String id;
         private String imageName;
         private String imagePassword;
@@ -292,6 +317,7 @@ public final class GetVCPUServerVolume {
         private Boolean nicHotUnplug;
         private Integer pciSlot;
         private Boolean ramHotPlug;
+        private Boolean requireLegacyBios;
         private Integer size;
         private List<String> sshKeys;
         private String type;
@@ -307,6 +333,7 @@ public final class GetVCPUServerVolume {
     	      this.deviceNumber = defaults.deviceNumber;
     	      this.discVirtioHotPlug = defaults.discVirtioHotPlug;
     	      this.discVirtioHotUnplug = defaults.discVirtioHotUnplug;
+    	      this.exposeSerial = defaults.exposeSerial;
     	      this.id = defaults.id;
     	      this.imageName = defaults.imageName;
     	      this.imagePassword = defaults.imagePassword;
@@ -316,6 +343,7 @@ public final class GetVCPUServerVolume {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.pciSlot = defaults.pciSlot;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.size = defaults.size;
     	      this.sshKeys = defaults.sshKeys;
     	      this.type = defaults.type;
@@ -384,6 +412,14 @@ public final class GetVCPUServerVolume {
               throw new MissingRequiredPropertyException("GetVCPUServerVolume", "discVirtioHotUnplug");
             }
             this.discVirtioHotUnplug = discVirtioHotUnplug;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder exposeSerial(Boolean exposeSerial) {
+            if (exposeSerial == null) {
+              throw new MissingRequiredPropertyException("GetVCPUServerVolume", "exposeSerial");
+            }
+            this.exposeSerial = exposeSerial;
             return this;
         }
         @CustomType.Setter
@@ -459,6 +495,14 @@ public final class GetVCPUServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetVCPUServerVolume", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(Integer size) {
             if (size == null) {
               throw new MissingRequiredPropertyException("GetVCPUServerVolume", "size");
@@ -501,6 +545,7 @@ public final class GetVCPUServerVolume {
             _resultValue.deviceNumber = deviceNumber;
             _resultValue.discVirtioHotPlug = discVirtioHotPlug;
             _resultValue.discVirtioHotUnplug = discVirtioHotUnplug;
+            _resultValue.exposeSerial = exposeSerial;
             _resultValue.id = id;
             _resultValue.imageName = imageName;
             _resultValue.imagePassword = imagePassword;
@@ -510,6 +555,7 @@ public final class GetVCPUServerVolume {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.pciSlot = pciSlot;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.size = size;
             _resultValue.sshKeys = sshKeys;
             _resultValue.type = type;

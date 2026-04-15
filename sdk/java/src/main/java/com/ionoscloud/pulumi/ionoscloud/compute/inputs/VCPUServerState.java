@@ -8,6 +8,7 @@ import com.ionoscloud.pulumi.ionoscloud.compute.inputs.VCPUServerNicArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.VCPUServerVolumeArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -231,6 +232,21 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the server.
      * 
      */
@@ -258,6 +274,29 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<VCPUServerNicArgs>> nic() {
         return Optional.ofNullable(this.nic);
+    }
+
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * 
+     */
+    @Import(name="nicMultiQueue")
+    private @Nullable Output<Boolean> nicMultiQueue;
+
+    /**
+     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * 
+     */
+    public Optional<Output<Boolean>> nicMultiQueue() {
+        return Optional.ofNullable(this.nicMultiQueue);
     }
 
     /**
@@ -308,20 +347,12 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
-     * 
      */
     @Import(name="securityGroupsIds")
     private @Nullable Output<List<String>> securityGroupsIds;
 
     /**
      * @return The list of Security Group IDs for the resource.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     public Optional<Output<List<String>>> securityGroupsIds() {
@@ -397,8 +428,10 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         this.imagePassword = $.imagePassword;
         this.inlineVolumeIds = $.inlineVolumeIds;
         this.labels = $.labels;
+        this.location = $.location;
         this.name = $.name;
         this.nic = $.nic;
+        this.nicMultiQueue = $.nicMultiQueue;
         this.primaryIp = $.primaryIp;
         this.primaryNic = $.primaryNic;
         this.ram = $.ram;
@@ -748,6 +781,27 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param name [string] The name of the server.
          * 
          * @return builder
@@ -787,6 +841,35 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder nic(VCPUServerNicArgs nic) {
             return nic(Output.of(nic));
+        }
+
+        /**
+         * @param nicMultiQueue [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nicMultiQueue(@Nullable Output<Boolean> nicMultiQueue) {
+            $.nicMultiQueue = nicMultiQueue;
+            return this;
+        }
+
+        /**
+         * @param nicMultiQueue [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nicMultiQueue(Boolean nicMultiQueue) {
+            return nicMultiQueue(Output.of(nicMultiQueue));
         }
 
         /**
@@ -855,10 +938,6 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
-         * 
          * @return builder
          * 
          */
@@ -870,10 +949,6 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
          * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
-         * 
          * @return builder
          * 
          */
@@ -883,10 +958,6 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param securityGroupsIds The list of Security Group IDs for the resource.
-         * 
-         * &gt; **⚠ WARNING**
-         * &gt; 
-         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
          * 
          * @return builder
          * 

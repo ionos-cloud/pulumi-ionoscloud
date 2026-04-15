@@ -51,14 +51,14 @@ public final class GroupReplicaConfigurationArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+     * [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
      * 
      */
     @Import(name="cpuFamily")
     private @Nullable Output<String> cpuFamily;
 
     /**
-     * @return [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+     * @return [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
      * 
      */
     public Optional<Output<String>> cpuFamily() {
@@ -182,7 +182,7 @@ public final class GroupReplicaConfigurationArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param cpuFamily [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         * @param cpuFamily [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
          * 
          * @return builder
          * 
@@ -193,7 +193,7 @@ public final class GroupReplicaConfigurationArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param cpuFamily [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         * @param cpuFamily [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
          * 
          * @return builder
          * 

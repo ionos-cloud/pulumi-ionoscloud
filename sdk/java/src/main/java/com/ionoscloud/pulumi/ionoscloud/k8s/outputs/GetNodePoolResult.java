@@ -13,6 +13,8 @@ import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNodePoolResult {
@@ -76,6 +78,7 @@ public final class GetNodePoolResult {
      * 
      */
     private List<GetNodePoolLan> lans;
+    private @Nullable String location;
     /**
      * @return A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      * 
@@ -101,6 +104,11 @@ public final class GetNodePoolResult {
      * 
      */
     private Integer ramSize;
+    /**
+     * @return The server type for the compute engine
+     * 
+     */
+    private String serverType;
     /**
      * @return one of &#34;AVAILABLE&#34;,
      * &#34;INACTIVE&#34;,
@@ -214,6 +222,9 @@ public final class GetNodePoolResult {
     public List<GetNodePoolLan> lans() {
         return this.lans;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      * 
@@ -248,6 +259,13 @@ public final class GetNodePoolResult {
      */
     public Integer ramSize() {
         return this.ramSize;
+    }
+    /**
+     * @return The server type for the compute engine
+     * 
+     */
+    public String serverType() {
+        return this.serverType;
     }
     /**
      * @return one of &#34;AVAILABLE&#34;,
@@ -304,11 +322,13 @@ public final class GetNodePoolResult {
         private String k8sVersion;
         private Map<String,String> labels;
         private List<GetNodePoolLan> lans;
+        private @Nullable String location;
         private List<GetNodePoolMaintenanceWindow> maintenanceWindows;
         private String name;
         private Integer nodeCount;
         private List<String> publicIps;
         private Integer ramSize;
+        private String serverType;
         private String state;
         private Integer storageSize;
         private String storageType;
@@ -327,11 +347,13 @@ public final class GetNodePoolResult {
     	      this.k8sVersion = defaults.k8sVersion;
     	      this.labels = defaults.labels;
     	      this.lans = defaults.lans;
+    	      this.location = defaults.location;
     	      this.maintenanceWindows = defaults.maintenanceWindows;
     	      this.name = defaults.name;
     	      this.nodeCount = defaults.nodeCount;
     	      this.publicIps = defaults.publicIps;
     	      this.ramSize = defaults.ramSize;
+    	      this.serverType = defaults.serverType;
     	      this.state = defaults.state;
     	      this.storageSize = defaults.storageSize;
     	      this.storageType = defaults.storageType;
@@ -443,6 +465,12 @@ public final class GetNodePoolResult {
             return lans(List.of(lans));
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maintenanceWindows(List<GetNodePoolMaintenanceWindow> maintenanceWindows) {
             if (maintenanceWindows == null) {
               throw new MissingRequiredPropertyException("GetNodePoolResult", "maintenanceWindows");
@@ -489,6 +517,14 @@ public final class GetNodePoolResult {
             return this;
         }
         @CustomType.Setter
+        public Builder serverType(String serverType) {
+            if (serverType == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolResult", "serverType");
+            }
+            this.serverType = serverType;
+            return this;
+        }
+        @CustomType.Setter
         public Builder state(String state) {
             if (state == null) {
               throw new MissingRequiredPropertyException("GetNodePoolResult", "state");
@@ -526,11 +562,13 @@ public final class GetNodePoolResult {
             _resultValue.k8sVersion = k8sVersion;
             _resultValue.labels = labels;
             _resultValue.lans = lans;
+            _resultValue.location = location;
             _resultValue.maintenanceWindows = maintenanceWindows;
             _resultValue.name = name;
             _resultValue.nodeCount = nodeCount;
             _resultValue.publicIps = publicIps;
             _resultValue.ramSize = ramSize;
+            _resultValue.serverType = serverType;
             _resultValue.state = state;
             _resultValue.storageSize = storageSize;
             _resultValue.storageType = storageType;

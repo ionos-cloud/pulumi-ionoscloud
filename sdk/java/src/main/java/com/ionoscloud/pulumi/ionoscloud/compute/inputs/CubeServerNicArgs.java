@@ -49,9 +49,17 @@ public final class CubeServerNicArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.dhcpv6);
     }
 
+    /**
+     * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+     * 
+     */
     @Import(name="firewall")
     private @Nullable Output<CubeServerNicFirewallArgs> firewall;
 
+    /**
+     * @return Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+     * 
+     */
     public Optional<Output<CubeServerNicFirewallArgs>> firewall() {
         return Optional.ofNullable(this.firewall);
     }
@@ -70,9 +78,24 @@ public final class CubeServerNicArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.firewallType);
     }
 
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
+    /**
+     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * 
+     */
     @Import(name="ips")
     private @Nullable Output<List<String>> ips;
 
+    /**
+     * @return Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * 
+     */
     public Optional<Output<List<String>>> ips() {
         return Optional.ofNullable(this.ips);
     }
@@ -167,6 +190,7 @@ public final class CubeServerNicArgs extends com.pulumi.resources.ResourceArgs {
         this.firewall = $.firewall;
         this.firewallActive = $.firewallActive;
         this.firewallType = $.firewallType;
+        this.id = $.id;
         this.ips = $.ips;
         this.ipv6CidrBlock = $.ipv6CidrBlock;
         this.ipv6Ips = $.ipv6Ips;
@@ -234,11 +258,23 @@ public final class CubeServerNicArgs extends com.pulumi.resources.ResourceArgs {
             return dhcpv6(Output.of(dhcpv6));
         }
 
+        /**
+         * @param firewall Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         * 
+         * @return builder
+         * 
+         */
         public Builder firewall(@Nullable Output<CubeServerNicFirewallArgs> firewall) {
             $.firewall = firewall;
             return this;
         }
 
+        /**
+         * @param firewall Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         * 
+         * @return builder
+         * 
+         */
         public Builder firewall(CubeServerNicFirewallArgs firewall) {
             return firewall(Output.of(firewall));
         }
@@ -261,15 +297,42 @@ public final class CubeServerNicArgs extends com.pulumi.resources.ResourceArgs {
             return firewallType(Output.of(firewallType));
         }
 
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
+        }
+
+        /**
+         * @param ips Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(@Nullable Output<List<String>> ips) {
             $.ips = ips;
             return this;
         }
 
+        /**
+         * @param ips Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(List<String> ips) {
             return ips(Output.of(ips));
         }
 
+        /**
+         * @param ips Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         * 
+         * @return builder
+         * 
+         */
         public Builder ips(String... ips) {
             return ips(List.of(ips));
         }

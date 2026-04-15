@@ -16,13 +16,12 @@ public final class GetIpsecGatewayConnection {
      */
     private String datacenterId;
     /**
-     * @return Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway.
+     * @return The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     private String ipv4Cidr;
     /**
-     * @return Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+     * @return The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     private String ipv6Cidr;
@@ -41,15 +40,14 @@ public final class GetIpsecGatewayConnection {
         return this.datacenterId;
     }
     /**
-     * @return Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway.
+     * @return The VPN Gateway IPv4 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public String ipv4Cidr() {
         return this.ipv4Cidr;
     }
     /**
-     * @return Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+     * @return The VPN Gateway IPv6 address in CIDR notation. This is the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public String ipv6Cidr() {

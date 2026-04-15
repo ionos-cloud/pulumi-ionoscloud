@@ -3,9 +3,11 @@
 
 package com.ionoscloud.pulumi.ionoscloud.compute.inputs;
 
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetTemplateGpus;
 import com.pulumi.core.annotations.Import;
 import java.lang.Double;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,25 @@ import javax.annotation.Nullable;
 public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetTemplatePlainArgs Empty = new GetTemplatePlainArgs();
+
+    /**
+     * The category of the template.
+     * 
+     * Any of the arguments ca be provided. If none, the datasource will return an error.
+     * 
+     */
+    @Import(name="category")
+    private @Nullable String category;
+
+    /**
+     * @return The category of the template.
+     * 
+     * Any of the arguments ca be provided. If none, the datasource will return an error.
+     * 
+     */
+    public Optional<String> category() {
+        return Optional.ofNullable(this.category);
+    }
 
     /**
      * The CPU cores count.
@@ -28,6 +49,21 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
      */
     public Optional<Double> cores() {
         return Optional.ofNullable(this.cores);
+    }
+
+    /**
+     * List of GPUs in the template
+     * 
+     */
+    @Import(name="gpuses")
+    private @Nullable List<GetTemplateGpus> gpuses;
+
+    /**
+     * @return List of GPUs in the template
+     * 
+     */
+    public Optional<List<GetTemplateGpus>> gpuses() {
+        return Optional.ofNullable(this.gpuses);
     }
 
     /**
@@ -63,16 +99,12 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
     /**
      * The storage size in GB.
      * 
-     * Any of the arguments ca be provided. If none, the datasource will return an error.
-     * 
      */
     @Import(name="storageSize")
     private @Nullable Double storageSize;
 
     /**
      * @return The storage size in GB.
-     * 
-     * Any of the arguments ca be provided. If none, the datasource will return an error.
      * 
      */
     public Optional<Double> storageSize() {
@@ -82,7 +114,9 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
     private GetTemplatePlainArgs() {}
 
     private GetTemplatePlainArgs(GetTemplatePlainArgs $) {
+        this.category = $.category;
         this.cores = $.cores;
+        this.gpuses = $.gpuses;
         this.name = $.name;
         this.ram = $.ram;
         this.storageSize = $.storageSize;
@@ -107,6 +141,19 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
+         * @param category The category of the template.
+         * 
+         * Any of the arguments ca be provided. If none, the datasource will return an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder category(@Nullable String category) {
+            $.category = category;
+            return this;
+        }
+
+        /**
          * @param cores The CPU cores count.
          * 
          * @return builder
@@ -115,6 +162,27 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
         public Builder cores(@Nullable Double cores) {
             $.cores = cores;
             return this;
+        }
+
+        /**
+         * @param gpuses List of GPUs in the template
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gpuses(@Nullable List<GetTemplateGpus> gpuses) {
+            $.gpuses = gpuses;
+            return this;
+        }
+
+        /**
+         * @param gpuses List of GPUs in the template
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gpuses(GetTemplateGpus... gpuses) {
+            return gpuses(List.of(gpuses));
         }
 
         /**
@@ -141,8 +209,6 @@ public final class GetTemplatePlainArgs extends com.pulumi.resources.InvokeArgs 
 
         /**
          * @param storageSize The storage size in GB.
-         * 
-         * Any of the arguments ca be provided. If none, the datasource will return an error.
          * 
          * @return builder
          * 

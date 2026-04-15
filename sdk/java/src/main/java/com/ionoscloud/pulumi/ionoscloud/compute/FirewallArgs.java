@@ -63,6 +63,21 @@ public final class FirewallArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the firewall rule.
      * 
      */
@@ -218,6 +233,7 @@ public final class FirewallArgs extends com.pulumi.resources.ResourceArgs {
         this.datacenterId = $.datacenterId;
         this.icmpCode = $.icmpCode;
         this.icmpType = $.icmpType;
+        this.location = $.location;
         this.name = $.name;
         this.nicId = $.nicId;
         this.portRangeEnd = $.portRangeEnd;
@@ -309,6 +325,27 @@ public final class FirewallArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder icmpType(String icmpType) {
             return icmpType(Output.of(icmpType));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

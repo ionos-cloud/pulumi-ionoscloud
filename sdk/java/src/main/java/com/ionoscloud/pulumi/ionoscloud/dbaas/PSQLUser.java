@@ -13,6 +13,7 @@ import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -136,6 +137,20 @@ public class PSQLUser extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> isSystemUser() {
         return this.isSystemUser;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] User password.

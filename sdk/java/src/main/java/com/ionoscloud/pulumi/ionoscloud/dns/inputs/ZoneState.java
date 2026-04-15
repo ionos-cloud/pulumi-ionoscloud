@@ -48,14 +48,14 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name of the DNS Zone.
+     * [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Zone.
+     * @return [string] The name of the DNS Zone. This property is immutable.
      * 
      */
     public Optional<Output<String>> name() {
@@ -147,7 +147,7 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Zone.
+         * @param name [string] The name of the DNS Zone. This property is immutable.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name [string] The name of the DNS Zone.
+         * @param name [string] The name of the DNS Zone. This property is immutable.
          * 
          * @return builder
          * 

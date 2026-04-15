@@ -107,6 +107,21 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    @Import(name="exposeSerial")
+    private @Nullable Output<Boolean> exposeSerial;
+
+    /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Optional<Output<Boolean>> exposeSerial() {
+        return Optional.ofNullable(this.exposeSerial);
+    }
+
+    /**
      * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
@@ -185,6 +200,21 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<Boolean>> ramHotPlug() {
         return Optional.ofNullable(this.ramHotPlug);
+    }
+
+    /**
+     * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    @Import(name="requireLegacyBios")
+    private @Nullable Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Optional<Output<Boolean>> requireLegacyBios() {
+        return Optional.ofNullable(this.requireLegacyBios);
     }
 
     /**
@@ -275,6 +305,7 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
         this.discVirtioHotPlug = $.discVirtioHotPlug;
         this.discVirtioHotUnplug = $.discVirtioHotUnplug;
         this.diskType = $.diskType;
+        this.exposeSerial = $.exposeSerial;
         this.imagePassword = $.imagePassword;
         this.licenceType = $.licenceType;
         this.name = $.name;
@@ -282,6 +313,7 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
         this.nicHotUnplug = $.nicHotUnplug;
         this.pciSlot = $.pciSlot;
         this.ramHotPlug = $.ramHotPlug;
+        this.requireLegacyBios = $.requireLegacyBios;
         this.size = $.size;
         this.sshKeyPaths = $.sshKeyPaths;
         this.sshKeys = $.sshKeys;
@@ -424,6 +456,27 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param exposeSerial If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(@Nullable Output<Boolean> exposeSerial) {
+            $.exposeSerial = exposeSerial;
+            return this;
+        }
+
+        /**
+         * @param exposeSerial If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(Boolean exposeSerial) {
+            return exposeSerial(Output.of(exposeSerial));
+        }
+
+        /**
          * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
@@ -528,6 +581,27 @@ public final class ServerVolumeArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder ramHotPlug(Boolean ramHotPlug) {
             return ramHotPlug(Output.of(ramHotPlug));
+        }
+
+        /**
+         * @param requireLegacyBios Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(@Nullable Output<Boolean> requireLegacyBios) {
+            $.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+
+        /**
+         * @param requireLegacyBios Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            return requireLegacyBios(Output.of(requireLegacyBios));
         }
 
         /**

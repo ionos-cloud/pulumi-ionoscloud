@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DatacenterNsgSelectionArgs extends com.pulumi.resources.ResourceArgs {
@@ -30,6 +32,21 @@ public final class DatacenterNsgSelectionArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The ID of a Network Security Group.
      * 
      */
@@ -48,6 +65,7 @@ public final class DatacenterNsgSelectionArgs extends com.pulumi.resources.Resou
 
     private DatacenterNsgSelectionArgs(DatacenterNsgSelectionArgs $) {
         this.datacenterId = $.datacenterId;
+        this.location = $.location;
         this.nsgId = $.nsgId;
     }
 
@@ -88,6 +106,27 @@ public final class DatacenterNsgSelectionArgs extends com.pulumi.resources.Resou
          */
         public Builder datacenterId(String datacenterId) {
             return datacenterId(Output.of(datacenterId));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

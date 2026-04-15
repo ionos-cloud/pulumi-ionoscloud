@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * The boot device of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-go=&#34;`compute.Server`&#34; pulumi-lang-python=&#34;`compute.Server`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Server`&#34;&gt;`ionoscloud.compute.Server`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-go=&#34;`compute.VCPUServer`&#34; pulumi-lang-python=&#34;`compute.VCPUServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.VCPUServer`&#34;&gt;`ionoscloud.compute.VCPUServer`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-go=&#34;`compute.CubeServer`&#34; pulumi-lang-python=&#34;`compute.CubeServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.CubeServer`&#34;&gt;`ionoscloud.compute.CubeServer`&lt;/span&gt; can be selected with this resource.
- * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+ * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
  * This resource also allows switching between a &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; and a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-go=&#34;`compute.getImage`&#34; pulumi-lang-python=&#34;`compute_get_image`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.getImage`&#34;&gt;`ionoscloud.compute.getImage`&lt;/span&gt; CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  * 
  * ### Select an external volume
@@ -238,7 +238,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
  *             .datacenterId(exampleIonoscloudDatacenter.id())
- *             .serverId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
+ *             .serverId(exampleServer.id())
  *             .bootDeviceId(example.id())
  *             .build());
  * 
@@ -316,7 +316,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
  *             .datacenterId(exampleIonoscloudDatacenter.id())
- *             .serverId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
+ *             .serverId(exampleServer.id())
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
@@ -388,6 +388,20 @@ public class BootDeviceSelection extends com.pulumi.resources.CustomResource {
      */
     public Output<String> defaultBootVolumeId() {
         return this.defaultBootVolumeId;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The ID of a server.

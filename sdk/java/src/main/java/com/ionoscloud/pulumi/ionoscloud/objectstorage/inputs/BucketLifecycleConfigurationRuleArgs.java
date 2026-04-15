@@ -5,6 +5,7 @@ package com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs;
 
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleExpirationArgs;
+import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleFilterArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
@@ -50,6 +51,21 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
     }
 
     /**
+     * A filter.
+     * 
+     */
+    @Import(name="filter")
+    private @Nullable Output<BucketLifecycleConfigurationRuleFilterArgs> filter;
+
+    /**
+     * @return A filter.
+     * 
+     */
+    public Optional<Output<BucketLifecycleConfigurationRuleFilterArgs>> filter() {
+        return Optional.ofNullable(this.filter);
+    }
+
+    /**
      * Unique identifier for the rule.
      * 
      */
@@ -82,16 +98,24 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
     /**
      * Object key prefix identifying one or more objects to which the rule applies.
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+     * 
      */
-    @Import(name="prefix", required=true)
-    private Output<String> prefix;
+    @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
+    @Import(name="prefix")
+    private @Nullable Output<String> prefix;
 
     /**
      * @return Object key prefix identifying one or more objects to which the rule applies.
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+     * 
      */
-    public Output<String> prefix() {
-        return this.prefix;
+    @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
+    public Optional<Output<String>> prefix() {
+        return Optional.ofNullable(this.prefix);
     }
 
     /**
@@ -114,6 +138,7 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
     private BucketLifecycleConfigurationRuleArgs(BucketLifecycleConfigurationRuleArgs $) {
         this.abortIncompleteMultipartUpload = $.abortIncompleteMultipartUpload;
         this.expiration = $.expiration;
+        this.filter = $.filter;
         this.id = $.id;
         this.noncurrentVersionExpiration = $.noncurrentVersionExpiration;
         this.prefix = $.prefix;
@@ -181,6 +206,27 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
         }
 
         /**
+         * @param filter A filter.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filter(@Nullable Output<BucketLifecycleConfigurationRuleFilterArgs> filter) {
+            $.filter = filter;
+            return this;
+        }
+
+        /**
+         * @param filter A filter.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filter(BucketLifecycleConfigurationRuleFilterArgs filter) {
+            return filter(Output.of(filter));
+        }
+
+        /**
          * @param id Unique identifier for the rule.
          * 
          * @return builder
@@ -227,8 +273,12 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+         * 
          */
-        public Builder prefix(Output<String> prefix) {
+        @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
+        public Builder prefix(@Nullable Output<String> prefix) {
             $.prefix = prefix;
             return this;
         }
@@ -238,7 +288,11 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
         public Builder prefix(String prefix) {
             return prefix(Output.of(prefix));
         }
@@ -265,9 +319,6 @@ public final class BucketLifecycleConfigurationRuleArgs extends com.pulumi.resou
         }
 
         public BucketLifecycleConfigurationRuleArgs build() {
-            if ($.prefix == null) {
-                throw new MissingRequiredPropertyException("BucketLifecycleConfigurationRuleArgs", "prefix");
-            }
             if ($.status == null) {
                 throw new MissingRequiredPropertyException("BucketLifecycleConfigurationRuleArgs", "status");
             }

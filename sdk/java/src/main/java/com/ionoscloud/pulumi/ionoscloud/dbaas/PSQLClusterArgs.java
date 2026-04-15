@@ -11,6 +11,7 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindo
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -21,6 +22,25 @@ import javax.annotation.Nullable;
 public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final PSQLClusterArgs Empty = new PSQLClusterArgs();
+
+    /**
+     * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+     * 
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * 
+     */
+    @Import(name="allowReplace")
+    private @Nullable Output<Boolean> allowReplace;
+
+    /**
+     * @return [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+     * 
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * 
+     */
+    public Optional<Output<Boolean>> allowReplace() {
+        return Optional.ofNullable(this.allowReplace);
+    }
 
     /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
@@ -143,14 +163,14 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Output<String> location() {
@@ -250,6 +270,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
     private PSQLClusterArgs() {}
 
     private PSQLClusterArgs(PSQLClusterArgs $) {
+        this.allowReplace = $.allowReplace;
         this.backupLocation = $.backupLocation;
         this.connectionPooler = $.connectionPooler;
         this.connections = $.connections;
@@ -283,6 +304,31 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(PSQLClusterArgs defaults) {
             $ = new PSQLClusterArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowReplace [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+         * 
+         * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowReplace(@Nullable Output<Boolean> allowReplace) {
+            $.allowReplace = allowReplace;
+            return this;
+        }
+
+        /**
+         * @param allowReplace [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+         * 
+         * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowReplace(Boolean allowReplace) {
+            return allowReplace(Output.of(allowReplace));
         }
 
         /**
@@ -454,7 +500,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 
@@ -465,7 +511,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 

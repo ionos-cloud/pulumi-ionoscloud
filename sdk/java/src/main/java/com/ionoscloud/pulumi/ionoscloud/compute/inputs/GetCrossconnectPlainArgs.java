@@ -49,6 +49,21 @@ public final class GetCrossconnectPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
+     * The physical location of the connectable datacenter
+     * 
+     */
+    @Import(name="location")
+    private @Nullable String location;
+
+    /**
+     * @return The physical location of the connectable datacenter
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * Name of an existing cross connect that you want to search for.
      * 
      */
@@ -68,6 +83,7 @@ public final class GetCrossconnectPlainArgs extends com.pulumi.resources.InvokeA
     private GetCrossconnectPlainArgs(GetCrossconnectPlainArgs $) {
         this.description = $.description;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -110,6 +126,17 @@ public final class GetCrossconnectPlainArgs extends com.pulumi.resources.InvokeA
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        /**
+         * @param location The physical location of the connectable datacenter
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

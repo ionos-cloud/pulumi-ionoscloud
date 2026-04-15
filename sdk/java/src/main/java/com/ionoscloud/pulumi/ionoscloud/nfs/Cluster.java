@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Create clusters of Network File Storage (NFS) on IonosCloud.
+ * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -85,112 +85,6 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
- * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
- * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.ionoscloud.compute.ComputeFunctions;
- * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
- * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.ionoscloud.pulumi.ionoscloud.nfs.Cluster;
- * import com.ionoscloud.pulumi.ionoscloud.nfs.ClusterArgs;
- * import com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;
- * import com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Complete example
- *         var nfsDc = new Datacenter("nfsDc", DatacenterArgs.builder()
- *             .name("NFS Datacenter")
- *             .location("de/txl")
- *             .description("Datacenter Description")
- *             .secAuthProtection(false)
- *             .build());
- * 
- *         var nfsLan = new Lan("nfsLan", LanArgs.builder()
- *             .datacenterId(nfsDc.id())
- *             .public_(false)
- *             .name("Lan for NFS")
- *             .build());
- * 
- *         final var hDDImage = ComputeFunctions.getImage(GetImageArgs.builder()
- *             .imageAlias("ubuntu:20.04")
- *             .type("HDD")
- *             .cloudInit("V1")
- *             .location("de/txl")
- *             .build());
- * 
- *         var password = new Password("password", PasswordArgs.builder()
- *             .length(16)
- *             .special(false)
- *             .build());
- * 
- *         // needed for the NIC - which provides the IP address for the NFS cluster.
- *         var nfsServer = new Server("nfsServer", ServerArgs.builder()
- *             .name("Server for NFS")
- *             .datacenterId(nfsDc.id())
- *             .cores(1)
- *             .ram(2048)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName(hDDImage.id())
- *             .imagePassword(password.result())
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("system")
- *                 .size(14)
- *                 .diskType("SSD")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .name("NIC A")
- *                 .lan(nfsLan.id())
- *                 .dhcp(true)
- *                 .firewallActive(true)
- *                 .build())
- *             .build());
- * 
- *         var example = new Cluster("example", ClusterArgs.builder()
- *             .name("test")
- *             .location("de/txl")
- *             .size(2)
- *             .nfs(ClusterNfsArgs.builder()
- *                 .minVersion("4.2")
- *                 .build())
- *             .connections(ClusterConnectionsArgs.builder()
- *                 .datacenterId(nfsDc.id())
- *                 .ipAddress("nfs_cluster_cidr_from_nic")
- *                 .lan(nfsLan.id())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ## Import
  * 
  * A Network File Storage Cluster resource can be imported using its &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and `resource id`:
@@ -217,7 +111,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.connections;
     }
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 
@@ -226,7 +120,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 

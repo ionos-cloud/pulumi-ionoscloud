@@ -62,6 +62,21 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
     }
 
     /**
+     * The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable String location;
+
+    /**
+     * @return The location for redirecting; mandatory and valid only for REDIRECT actions.
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
      */
@@ -101,6 +116,7 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
         this.applicationLoadbalancerId = $.applicationLoadbalancerId;
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.partialMatch = $.partialMatch;
     }
@@ -153,6 +169,17 @@ public final class GetForwardingRulePlainArgs extends com.pulumi.resources.Invok
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        /**
+         * @param location The location for redirecting; mandatory and valid only for REDIRECT actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

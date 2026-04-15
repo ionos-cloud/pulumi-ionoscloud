@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Managed Kubernetes Cluster** on IonosCloud.
+ * Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -143,10 +143,10 @@ import javax.annotation.Nullable;
  * terraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid
  * ```
  * 
- * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of pulumi.
+ * This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.
  * 
  * ⚠️ **_Warning: **During a maintenance window, k8s can update your &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- * pulumi from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
+ * terraform from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
  * 
  */
 @ResourceType(type="ionoscloud:k8s/cluster:Cluster")

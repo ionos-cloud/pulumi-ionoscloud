@@ -18,7 +18,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages **IONOS Object Storage Buckets** on IonosCloud.
+ * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
+ * 
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
  * 
  * ## Example Usage
  * 
@@ -64,10 +66,16 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource Bucket can be imported using the `bucket name`
+ * A bucket can be imported using the `bucket name` and the &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34;&gt;`region`&lt;/span&gt;:
  * 
  * ```sh
- * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example example
+ * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name
+ * ```
+ * 
+ * The &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34;&gt;`region`&lt;/span&gt; can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
+ * 
+ * ```sh
+ * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name
  * ```
  * 
  */
@@ -116,14 +124,14 @@ public class Bucket extends com.pulumi.resources.CustomResource {
         return this.objectLockEnabled;
     }
     /**
-     * [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * @return [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     public Output<String> region() {

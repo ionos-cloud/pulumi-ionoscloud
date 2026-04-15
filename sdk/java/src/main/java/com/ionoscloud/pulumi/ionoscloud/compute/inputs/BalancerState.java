@@ -63,6 +63,21 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the load balancer.
      * 
      */
@@ -98,6 +113,7 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
         this.datacenterId = $.datacenterId;
         this.dhcp = $.dhcp;
         this.ip = $.ip;
+        this.location = $.location;
         this.name = $.name;
         this.nicIds = $.nicIds;
     }
@@ -181,6 +197,27 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ip(String ip) {
             return ip(Output.of(ip));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

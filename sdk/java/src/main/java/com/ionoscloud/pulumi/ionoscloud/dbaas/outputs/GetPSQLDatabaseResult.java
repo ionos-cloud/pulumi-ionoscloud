@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPSQLDatabaseResult {
@@ -16,6 +18,7 @@ public final class GetPSQLDatabaseResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     private String name;
     /**
      * @return [string] The owner of the database.
@@ -33,6 +36,9 @@ public final class GetPSQLDatabaseResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     public String name() {
         return this.name;
@@ -56,6 +62,7 @@ public final class GetPSQLDatabaseResult {
     public static final class Builder {
         private String clusterId;
         private String id;
+        private @Nullable String location;
         private String name;
         private String owner;
         public Builder() {}
@@ -63,6 +70,7 @@ public final class GetPSQLDatabaseResult {
     	      Objects.requireNonNull(defaults);
     	      this.clusterId = defaults.clusterId;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.owner = defaults.owner;
         }
@@ -81,6 +89,12 @@ public final class GetPSQLDatabaseResult {
               throw new MissingRequiredPropertyException("GetPSQLDatabaseResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -103,6 +117,7 @@ public final class GetPSQLDatabaseResult {
             final var _resultValue = new GetPSQLDatabaseResult();
             _resultValue.clusterId = clusterId;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.owner = owner;
             return _resultValue;

@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.dbaas;
 import com.ionoscloud.pulumi.ionoscloud.Utilities;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.MariaDBClusterArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterState;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterBackup;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterConnections;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterCredentials;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.MariaDBClusterMaintenanceWindow;
@@ -19,113 +20,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DBaaS MariaDB Cluster**.
- * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
- * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
- * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
- * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
- * import com.ionoscloud.pulumi.ionoscloud.dbaas.MariaDBCluster;
- * import com.ionoscloud.pulumi.ionoscloud.dbaas.MariaDBClusterArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterCredentialsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("example")
- *             .location("de/txl")
- *             .description("Datacenter for testing DBaaS cluster")
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(false)
- *             .name("example")
- *             .build());
- * 
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .name("example")
- *             .datacenterId(example.id())
- *             .cores(2)
- *             .ram(2048)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName("rockylinux-8-GenericCloud-20230518")
- *             .imagePassword("password")
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("example")
- *                 .size(10)
- *                 .diskType("SSD Standard")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleLan.id())
- *                 .name("example")
- *                 .dhcp(true)
- *                 .build())
- *             .build());
- * 
- *         var clusterPassword = new Password("clusterPassword", PasswordArgs.builder()
- *             .length(16)
- *             .special(true)
- *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
- *             .build());
- * 
- *         var exampleMariaDBCluster = new MariaDBCluster("exampleMariaDBCluster", MariaDBClusterArgs.builder()
- *             .mariadbVersion("10.6")
- *             .location("de/txl")
- *             .instances(1)
- *             .cores(4)
- *             .ram(4)
- *             .storageSize(10)
- *             .connections(MariaDBClusterConnectionsArgs.builder()
- *                 .datacenterId(example.id())
- *                 .lanId(exampleLan.id())
- *                 .cidr("database_ip_cidr_from_nic")
- *                 .build())
- *             .displayName("MariaDB_cluster")
- *             .maintenanceWindow(MariaDBClusterMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Sunday")
- *                 .time("09:00:00")
- *                 .build())
- *             .credentials(MariaDBClusterCredentialsArgs.builder()
- *                 .username("username")
- *                 .password(clusterPassword.result())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
+ * Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
  * 
  * ## Import
  * 
@@ -138,6 +33,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="ionoscloud:dbaas/mariaDBCluster:MariaDBCluster")
 public class MariaDBCluster extends com.pulumi.resources.CustomResource {
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    @Export(name="backup", refs={MariaDBClusterBackup.class}, tree="[0]")
+    private Output<MariaDBClusterBackup> backup;
+
+    /**
+     * @return Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    public Output<MariaDBClusterBackup> backup() {
+        return this.backup;
+    }
     /**
      * The network connection for your cluster. Only one connection is allowed.
      * 

@@ -45,6 +45,13 @@ public final class GetNsgPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.id);
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * Name of an existing Network Security Group that you want to search for.
      * 
@@ -69,6 +76,7 @@ public final class GetNsgPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetNsgPlainArgs(GetNsgPlainArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -109,6 +117,11 @@ public final class GetNsgPlainArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

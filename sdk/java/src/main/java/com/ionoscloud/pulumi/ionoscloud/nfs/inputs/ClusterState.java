@@ -34,7 +34,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 
@@ -43,7 +43,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> location;
 
     /**
-     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * @return The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      * 
@@ -139,7 +139,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+         * @param location The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * - `de/fra` - Frankfurt
          * - `de/txl` - Berlin
          * 
@@ -152,7 +152,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+         * @param location The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * - `de/fra` - Frankfurt
          * - `de/txl` - Berlin
          * 

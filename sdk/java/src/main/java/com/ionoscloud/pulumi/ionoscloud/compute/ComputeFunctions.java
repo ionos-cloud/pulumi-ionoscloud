@@ -14,6 +14,12 @@ import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetDatacenterPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetFirewallPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGPUServerPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpuPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGpusPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetGroupPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
@@ -59,6 +65,9 @@ import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetCrossconnectResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetCubeServerResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetDatacenterResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetFirewallResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGPUServerResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGpuResult;
+import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGpusResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetGroupResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetIPBlockResult;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetIPFailoverResult;
@@ -1201,7 +1210,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getCrossconnect:getCrossconnect", TypeShape.of(GetCrossconnectResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1282,7 +1291,7 @@ public final class ComputeFunctions {
         return getCubeServer(args, InvokeOptions.Empty);
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1363,7 +1372,7 @@ public final class ComputeFunctions {
         return getCubeServerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1444,7 +1453,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getCubeServer:getCubeServer", TypeShape.of(GetCubeServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -1525,7 +1534,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getCubeServer:getCubeServer", TypeShape.of(GetCubeServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Cube Server data source** can be used to search for and return existing servers.
+     * The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -2601,6 +2610,1041 @@ public final class ComputeFunctions {
      */
     public static CompletableFuture<GetFirewallResult> getFirewallPlain(GetFirewallPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getFirewall:getFirewall", TypeShape.of(GetFirewallResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args) {
+        return getGPUServer(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGPUServerResult> getGPUServerPlain(GetGPUServerPlainArgs args) {
+        return getGPUServerPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGPUServerResult> getGPUServer(GetGPUServerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .id("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGPUServer(GetGPUServerArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .name("GPU Server Example")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGPUServerResult> getGPUServerPlain(GetGPUServerPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGPUServer:getGPUServer", TypeShape.of(GetGPUServerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args) {
+        return getGpu(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args) {
+        return getGpuPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpuResult> getGpu(GetGpuArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPU data source** can be used to search for and return an existing GPU by either its ID or name.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .id("gpu_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpu(GetGpuArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .name("GPU Name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpuResult> getGpuPlain(GetGpuPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGpu:getGpu", TypeShape.of(GetGpuResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args) {
+        return getGpus(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args) {
+        return getGpusPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGpusResult> getGpus(GetGpusArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.compute.ComputeFunctions;
+     * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ComputeFunctions.getGpus(GetGpusArgs.builder()
+     *             .datacenterId("datacenter_id")
+     *             .serverId("server_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGpusResult> getGpusPlain(GetGpusPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:compute/getGpus:getGpus", TypeShape.of(GetGpusResult.class), args, Utilities.withVersion(options));
     }
     /**
      * The **Group data source** can be used to search for and return existing groups.
@@ -12532,7 +13576,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12613,7 +13657,7 @@ public final class ComputeFunctions {
         return getVCPUServer(args, InvokeOptions.Empty);
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12694,7 +13738,7 @@ public final class ComputeFunctions {
         return getVCPUServerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12775,7 +13819,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getVCPUServer:getVCPUServer", TypeShape.of(GetVCPUServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -12856,7 +13900,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getVCPUServer:getVCPUServer", TypeShape.of(GetVCPUServerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+     * The [VCPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) can be used to search for and return existing VCPU servers.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 

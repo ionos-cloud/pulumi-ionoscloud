@@ -11,6 +11,7 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -100,42 +101,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="ionoscloud:dbaas/pSQLDatabase:PSQLDatabase")
 public class PSQLDatabase extends com.pulumi.resources.CustomResource {
     /**
-     * [string] The unique ID of the cluster.
+     * [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
-     * @return [string] The unique ID of the cluster.
+     * @return [string] The unique ID of the cluster. Immutable, forces re-creation.
      * 
      */
     public Output<String> clusterId() {
         return this.clusterId;
     }
     /**
-     * [string] The name of the database.
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
+     * [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the database.
+     * @return [string] The name of the database. Immutable, forces re-creation.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * [string] The owner of the database.
+     * [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     @Export(name="owner", refs={String.class}, tree="[0]")
     private Output<String> owner;
 
     /**
-     * @return [string] The owner of the database.
+     * @return [string] The owner of the database. Immutable, forces re-creation.
      * 
      */
     public Output<String> owner() {

@@ -24,125 +24,6 @@ import javax.annotation.Nullable;
 /**
  * Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
  * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
- * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
- * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
- * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
- * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
- * import com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;
- * import com.ionoscloud.pulumi.ionoscloud.k8s.NodePool;
- * import com.ionoscloud.pulumi.ionoscloud.k8s.NodePoolArgs;
- * import com.pulumi.ionoscloud.k8s.inputs.NodePoolMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.k8s.inputs.NodePoolAutoScalingArgs;
- * import com.pulumi.ionoscloud.k8s.inputs.NodePoolLanArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("Datacenter Example")
- *             .location("us/las")
- *             .description("datacenter description")
- *             .secAuthProtection(false)
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(false)
- *             .name("Lan Example")
- *             .build());
- * 
- *         var exampleIPBlock = new IPBlock("exampleIPBlock", IPBlockArgs.builder()
- *             .location("us/las")
- *             .size(3)
- *             .name("IP Block Example")
- *             .build());
- * 
- *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()
- *             .name("k8sClusterExample")
- *             .k8sVersion("1.31.2")
- *             .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Sunday")
- *                 .time("09:00:00Z")
- *                 .build())
- *             .apiSubnetAllowLists("1.2.3.4/32")
- *             .s3Buckets(ClusterS3BucketArgs.builder()
- *                 .name("globally_unique_s3_bucket_name")
- *                 .build())
- *             .build());
- * 
- *         var exampleNodePool = new NodePool("exampleNodePool", NodePoolArgs.builder()
- *             .datacenterId(example.id())
- *             .k8sClusterId(exampleCluster.id())
- *             .name("k8sNodePoolExample")
- *             .k8sVersion(exampleCluster.k8sVersion())
- *             .maintenanceWindow(NodePoolMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Monday")
- *                 .time("09:00:00Z")
- *                 .build())
- *             .autoScaling(NodePoolAutoScalingArgs.builder()
- *                 .minNodeCount(1)
- *                 .maxNodeCount(2)
- *                 .build())
- *             .cpuFamily("INTEL_XEON")
- *             .availabilityZone("AUTO")
- *             .storageType("SSD")
- *             .nodeCount(1)
- *             .coresCount(2)
- *             .ramSize(2048)
- *             .storageSize(40)
- *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]),
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *             .lans(NodePoolLanArgs.builder()
- *                 .id(exampleLan.id())
- *                 .dhcp(true)
- *                 .routes(NodePoolLanRouteArgs.builder()
- *                     .network("1.2.3.5/24")
- *                     .gatewayIp("10.1.5.17")
- *                     .build())
- *                 .build())
- *             .labels(Map.ofEntries(
- *                 Map.entry("lab1", "value1"),
- *                 Map.entry("lab2", "value2")
- *             ))
- *             .annotations(Map.ofEntries(
- *                 Map.entry("ann1", "value1"),
- *                 Map.entry("ann2", "value2")
- *             ))
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * **Note:** Set &lt;span pulumi-lang-nodejs=&#34;`createBeforeDestroy`&#34; pulumi-lang-dotnet=&#34;`CreateBeforeDestroy`&#34; pulumi-lang-go=&#34;`createBeforeDestroy`&#34; pulumi-lang-python=&#34;`create_before_destroy`&#34; pulumi-lang-yaml=&#34;`createBeforeDestroy`&#34; pulumi-lang-java=&#34;`createBeforeDestroy`&#34;&gt;`createBeforeDestroy`&lt;/span&gt; on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
- * 
  * ## Import
  * 
  * A Kubernetes Node Pool resource can be imported using its Kubernetes cluster&#39;s uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
@@ -151,10 +32,10 @@ import javax.annotation.Nullable;
  * $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
  * ```
  * 
- * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of pulumi, towards the goal of managing them via Pulumi
+ * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
  * 
  * ⚠️ **_Warning: **During a maintenance window, k8s can update your &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- * pulumi from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
+ * terraform from doing a downgrade, as downgrading &lt;span pulumi-lang-nodejs=&#34;`k8sVersion`&#34; pulumi-lang-dotnet=&#34;`K8sVersion`&#34; pulumi-lang-go=&#34;`k8sVersion`&#34; pulumi-lang-python=&#34;`k8s_version`&#34; pulumi-lang-yaml=&#34;`k8sVersion`&#34; pulumi-lang-java=&#34;`k8sVersion`&#34;&gt;`k8sVersion`&lt;/span&gt; is not supported._**
  * 
  * ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
  * 
@@ -172,10 +53,8 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * ⚠️ **Note**:
      * 
      * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
-     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
-     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
+     * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use:
      * 
      */
     @Export(name="allowReplace", refs={Boolean.class}, tree="[0]")
@@ -192,10 +71,8 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * ⚠️ **Note**:
      * 
      * Be careful when using &lt;span pulumi-lang-nodejs=&#34;`autoScaling`&#34; pulumi-lang-dotnet=&#34;`AutoScaling`&#34; pulumi-lang-go=&#34;`autoScaling`&#34; pulumi-lang-python=&#34;`auto_scaling`&#34; pulumi-lang-yaml=&#34;`autoScaling`&#34; pulumi-lang-java=&#34;`autoScaling`&#34;&gt;`autoScaling`&lt;/span&gt; since the number of nodes can change. Because of that, when running
-     * `pulumi preview`, An update will be considered required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
-     * from the number of nodes set by the scheduler). To avoid that, you can use &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt;.
-     * This will also ignore the manual changes for &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; made in the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan.
-     * You can read more details about the &lt;span pulumi-lang-nodejs=&#34;`ignoreChanges`&#34; pulumi-lang-dotnet=&#34;`IgnoreChanges`&#34; pulumi-lang-go=&#34;`ignoreChanges`&#34; pulumi-lang-python=&#34;`ignore_changes`&#34; pulumi-lang-yaml=&#34;`ignoreChanges`&#34; pulumi-lang-java=&#34;`ignoreChanges`&#34;&gt;`ignoreChanges`&lt;/span&gt; attribute here.
+     * `pulumi preview`, Terraform will think that an update is required (since &lt;span pulumi-lang-nodejs=&#34;`nodeCount`&#34; pulumi-lang-dotnet=&#34;`NodeCount`&#34; pulumi-lang-go=&#34;`nodeCount`&#34; pulumi-lang-python=&#34;`node_count`&#34; pulumi-lang-yaml=&#34;`nodeCount`&#34; pulumi-lang-java=&#34;`nodeCount`&#34;&gt;`nodeCount`&lt;/span&gt; from the &lt;span pulumi-lang-nodejs=&#34;`tf`&#34; pulumi-lang-dotnet=&#34;`Tf`&#34; pulumi-lang-go=&#34;`tf`&#34; pulumi-lang-python=&#34;`tf`&#34; pulumi-lang-yaml=&#34;`tf`&#34; pulumi-lang-java=&#34;`tf`&#34;&gt;`tf`&lt;/span&gt; plan will be different
+     * from the number of nodes set by the scheduler). To avoid that, you can use:
      * 
      */
     public Output<Optional<Boolean>> allowReplace() {
@@ -262,14 +139,14 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="cpuFamily", refs={String.class}, tree="[0]")
-    private Output<String> cpuFamily;
+    private Output</* @Nullable */ String> cpuFamily;
 
     /**
      * @return [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
      * 
      */
-    public Output<String> cpuFamily() {
-        return this.cpuFamily;
+    public Output<Optional<String>> cpuFamily() {
+        return Codegen.optional(this.cpuFamily);
     }
     /**
      * [string] A Datacenter&#39;s UUID
@@ -342,6 +219,20 @@ public class NodePool extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.lans);
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * See the **maintenance_window** section in the example above
      * 
      */
@@ -410,6 +301,20 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> ramSize() {
         return this.ramSize;
+    }
+    /**
+     * [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+     * 
+     */
+    @Export(name="serverType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serverType;
+
+    /**
+     * @return [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+     * 
+     */
+    public Output<Optional<String>> serverType() {
+        return Codegen.optional(this.serverType);
     }
     /**
      * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.

@@ -16,7 +16,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages **Snapshots** on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -83,8 +83,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(exampleDatacenter.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
  *             .imageName(example.id())
  *             .imagePassword(serverImagePassword.result())
  *             .type("ENTERPRISE")
@@ -330,6 +328,20 @@ public class Snapshot extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> ramHotUnplug() {
         return this.ramHotUnplug;
+    }
+    /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    @Export(name="requireLegacyBios", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     */
+    public Output<Boolean> requireLegacyBios() {
+        return this.requireLegacyBios;
     }
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection

@@ -32,6 +32,13 @@ public final class NatGatewayRuleArgs extends com.pulumi.resources.ResourceArgs 
         return this.datacenterId;
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] Name of the NAT gateway rule.
      * 
@@ -156,6 +163,7 @@ public final class NatGatewayRuleArgs extends com.pulumi.resources.ResourceArgs 
 
     private NatGatewayRuleArgs(NatGatewayRuleArgs $) {
         this.datacenterId = $.datacenterId;
+        this.location = $.location;
         this.name = $.name;
         this.natgatewayId = $.natgatewayId;
         this.protocol = $.protocol;
@@ -203,6 +211,15 @@ public final class NatGatewayRuleArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder datacenterId(String datacenterId) {
             return datacenterId(Output.of(datacenterId));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

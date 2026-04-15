@@ -3,6 +3,7 @@
 
 package com.ionoscloud.pulumi.ionoscloud.dbaas;
 
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterBackupArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterConnectionsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterCredentialsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.MariaDBClusterMaintenanceWindowArgs;
@@ -19,6 +20,21 @@ import javax.annotation.Nullable;
 public final class MariaDBClusterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final MariaDBClusterArgs Empty = new MariaDBClusterArgs();
+
+    /**
+     * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    @Import(name="backup")
+    private @Nullable Output<MariaDBClusterBackupArgs> backup;
+
+    /**
+     * @return Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+     * 
+     */
+    public Optional<Output<MariaDBClusterBackupArgs>> backup() {
+        return Optional.ofNullable(this.backup);
+    }
 
     /**
      * The network connection for your cluster. Only one connection is allowed.
@@ -173,6 +189,7 @@ public final class MariaDBClusterArgs extends com.pulumi.resources.ResourceArgs 
     private MariaDBClusterArgs() {}
 
     private MariaDBClusterArgs(MariaDBClusterArgs $) {
+        this.backup = $.backup;
         this.connections = $.connections;
         this.cores = $.cores;
         this.credentials = $.credentials;
@@ -201,6 +218,27 @@ public final class MariaDBClusterArgs extends com.pulumi.resources.ResourceArgs 
 
         public Builder(MariaDBClusterArgs defaults) {
             $ = new MariaDBClusterArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param backup Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder backup(@Nullable Output<MariaDBClusterBackupArgs> backup) {
+            $.backup = backup;
+            return this;
+        }
+
+        /**
+         * @param backup Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder backup(MariaDBClusterBackupArgs backup) {
+            return backup(Output.of(backup));
         }
 
         /**

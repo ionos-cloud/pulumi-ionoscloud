@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Logging pipeline**.
+ * Manages a [Logging pipeline](https://docs.ionos.com/cloud/observability/logging-service/overview/log-pipelines).
  * 
  * &gt; ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** resource. Please ensure you are using tokens as other methods will not be valid.
  * 
@@ -77,6 +77,11 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * For re-usability, an array of **logs** can be defined in a **tfvars** file or inside the terraform
+ * plan, and used as presented below:
+ * 
+ * The content inside **vars.tfvars** file:
+ * 
  * ## Import
  * 
  * In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
@@ -121,28 +126,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="ionoscloud:logging/pipeline:Pipeline")
 public class Pipeline extends com.pulumi.resources.CustomResource {
     /**
-     * [string] The address of the client&#39;s grafana instance.
+     * [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      * 
      */
     @Export(name="grafanaAddress", refs={String.class}, tree="[0]")
     private Output<String> grafanaAddress;
 
     /**
-     * @return [string] The address of the client&#39;s grafana instance.
+     * @return [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      * 
      */
     public Output<String> grafanaAddress() {
         return this.grafanaAddress;
     }
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    @Export(name="httpAddress", refs={String.class}, tree="[0]")
+    private Output<String> httpAddress;
+
+    /**
+     * @return [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    public Output<String> httpAddress() {
+        return this.httpAddress;
+    }
+    /**
+     * [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     * 
+     */
+    @Export(name="key", refs={String.class}, tree="[0]")
+    private Output<String> key;
+
+    /**
+     * @return [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     * 
+     */
+    public Output<String> key() {
+        return this.key;
+    }
+    /**
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * @return [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Output<Optional<String>> location() {
@@ -175,6 +208,20 @@ public class Pipeline extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    @Export(name="tcpAddress", refs={String.class}, tree="[0]")
+    private Output<String> tcpAddress;
+
+    /**
+     * @return [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    public Output<String> tcpAddress() {
+        return this.tcpAddress;
     }
 
     /**
@@ -217,6 +264,9 @@ public class Pipeline extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .additionalSecretOutputs(List.of(
+                "key"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -38,6 +38,7 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.alb.BalancerArgs;
  * import com.ionoscloud.pulumi.ionoscloud.cert.Certificate;
  * import com.ionoscloud.pulumi.ionoscloud.cert.CertificateArgs;
+ * import com.pulumi.std.StdFunctions;
  * import com.ionoscloud.pulumi.ionoscloud.alb.ForwardingRule;
  * import com.ionoscloud.pulumi.ionoscloud.alb.ForwardingRuleArgs;
  * import com.pulumi.ionoscloud.alb.inputs.ForwardingRuleHttpRuleArgs;
@@ -85,9 +86,9 @@ import javax.annotation.Nullable;
  *         //optionally you can add a certificate to the application load balancer
  *         var cert = new Certificate("cert", CertificateArgs.builder()
  *             .name("add_name_here")
- *             .certificate("your_certificate")
- *             .certificateChain("your_certificate_chain")
- *             .privateKey("your_private_key")
+ *             .certificate(StdFunctions.file(Map.of("input", "path_to_cert")).result())
+ *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).result())
+ *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).result())
  *             .build());
  * 
  *         var exampleForwardingRule = new ForwardingRule("exampleForwardingRule", ForwardingRuleArgs.builder()
@@ -231,6 +232,20 @@ public class ForwardingRule extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> listenerPort() {
         return this.listenerPort;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the Application Load Balancer forwarding rule.

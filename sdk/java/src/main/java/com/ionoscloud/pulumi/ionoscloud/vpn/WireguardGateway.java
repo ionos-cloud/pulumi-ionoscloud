@@ -186,16 +186,14 @@ public class WireguardGateway extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.listenPort);
     }
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * @return [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Output<Optional<String>> location() {

@@ -25,6 +25,7 @@ public final class GetPSQLDatabasesResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     /**
      * @return [string] The owner of the database.
      * 
@@ -49,6 +50,9 @@ public final class GetPSQLDatabasesResult {
     public String id() {
         return this.id;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return [string] The owner of the database.
      * 
@@ -69,6 +73,7 @@ public final class GetPSQLDatabasesResult {
         private String clusterId;
         private List<GetPSQLDatabasesDatabase> databases;
         private String id;
+        private @Nullable String location;
         private @Nullable String owner;
         public Builder() {}
         public Builder(GetPSQLDatabasesResult defaults) {
@@ -76,6 +81,7 @@ public final class GetPSQLDatabasesResult {
     	      this.clusterId = defaults.clusterId;
     	      this.databases = defaults.databases;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.owner = defaults.owner;
         }
 
@@ -107,6 +113,12 @@ public final class GetPSQLDatabasesResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder owner(@Nullable String owner) {
 
             this.owner = owner;
@@ -117,6 +129,7 @@ public final class GetPSQLDatabasesResult {
             _resultValue.clusterId = clusterId;
             _resultValue.databases = databases;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.owner = owner;
             return _resultValue;
         }

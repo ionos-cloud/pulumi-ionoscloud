@@ -95,6 +95,21 @@ public final class ForwardingRuleState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] A name of that Network Load Balancer forwarding rule.
      * 
      */
@@ -154,6 +169,7 @@ public final class ForwardingRuleState extends com.pulumi.resources.ResourceArgs
         this.healthCheck = $.healthCheck;
         this.listenerIp = $.listenerIp;
         this.listenerPort = $.listenerPort;
+        this.location = $.location;
         this.name = $.name;
         this.networkloadbalancerId = $.networkloadbalancerId;
         this.protocol = $.protocol;
@@ -281,6 +297,27 @@ public final class ForwardingRuleState extends com.pulumi.resources.ResourceArgs
          */
         public Builder listenerPort(Integer listenerPort) {
             return listenerPort(Output.of(listenerPort));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

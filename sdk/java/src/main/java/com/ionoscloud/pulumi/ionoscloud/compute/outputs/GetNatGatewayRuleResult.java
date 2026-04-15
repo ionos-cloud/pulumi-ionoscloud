@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNatGatewayRuleResult {
@@ -18,6 +20,7 @@ public final class GetNatGatewayRuleResult {
      * 
      */
     private String id;
+    private @Nullable String location;
     /**
      * @return Name of the NAT gateway rule
      * 
@@ -65,6 +68,9 @@ public final class GetNatGatewayRuleResult {
      */
     public String id() {
         return this.id;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     /**
      * @return Name of the NAT gateway rule
@@ -130,6 +136,7 @@ public final class GetNatGatewayRuleResult {
     public static final class Builder {
         private String datacenterId;
         private String id;
+        private @Nullable String location;
         private String name;
         private String natgatewayId;
         private String protocol;
@@ -143,6 +150,7 @@ public final class GetNatGatewayRuleResult {
     	      Objects.requireNonNull(defaults);
     	      this.datacenterId = defaults.datacenterId;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.natgatewayId = defaults.natgatewayId;
     	      this.protocol = defaults.protocol;
@@ -167,6 +175,12 @@ public final class GetNatGatewayRuleResult {
               throw new MissingRequiredPropertyException("GetNatGatewayRuleResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
             return this;
         }
         @CustomType.Setter
@@ -240,6 +254,7 @@ public final class GetNatGatewayRuleResult {
             final var _resultValue = new GetNatGatewayRuleResult();
             _resultValue.datacenterId = datacenterId;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.natgatewayId = natgatewayId;
             _resultValue.protocol = protocol;

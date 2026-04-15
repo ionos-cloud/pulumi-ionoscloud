@@ -64,14 +64,14 @@ public final class BucketArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+     * @return [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     public Optional<Output<String>> region() {
@@ -201,7 +201,7 @@ public final class BucketArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+         * @param region [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class BucketArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region [string] Specifies the Region where the bucket will be created. Please refer to the list of available regions
+         * @param region [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
          * 
          * @return builder
          * 

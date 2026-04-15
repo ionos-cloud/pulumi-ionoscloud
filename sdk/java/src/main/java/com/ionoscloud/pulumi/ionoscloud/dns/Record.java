@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DNS Record**.
+ * Manages a [DNS Record](https://docs.ionos.com/cloud/network-services/cloud-dns/overview).
  * 
  * &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
  * 
@@ -154,14 +154,14 @@ public class Record extends com.pulumi.resources.CustomResource {
         return this.fqdn;
     }
     /**
-     * [string] The name of the DNS Record.
+     * [string] The name of the DNS Record. This property is immutable.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return [string] The name of the DNS Record.
+     * @return [string] The name of the DNS Record. This property is immutable.
      * 
      */
     public Output<String> name() {
@@ -196,14 +196,14 @@ public class Record extends com.pulumi.resources.CustomResource {
         return this.ttl;
     }
     /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+     * @return [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/cloud/network-services/cloud-dns/cloud-dns-faq#what-types-of-dns-records-does-cloud-dns-support).
      * 
      */
     public Output<String> type() {

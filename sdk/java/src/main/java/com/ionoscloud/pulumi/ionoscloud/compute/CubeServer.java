@@ -19,7 +19,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Cube Server** on IonosCloud.
+ * A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+ * 
+ * Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
  * 
  * ## Example Usage
  * 
@@ -82,7 +84,6 @@ import javax.annotation.Nullable;
  * 
  *         var exampleCubeServer = new CubeServer("exampleCubeServer", CubeServerArgs.builder()
  *             .name("Server Example")
- *             .availabilityZone("ZONE_2")
  *             .imageName("ubuntu:latest")
  *             .templateUuid(example.id())
  *             .imagePassword(serverImagePassword.result())
@@ -124,6 +125,7 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
+ * import com.pulumi.std.StdFunctions;
  * import com.pulumi.random.password;
  * import com.pulumi.random.passwordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CubeServer;
@@ -162,7 +164,11 @@ import javax.annotation.Nullable;
  *             .datacenterId(exampleDatacenter.id())
  *             .public_(true)
  *             .name("Lan Example")
- *             .ipv6CidrBlock("ipv6_cidr_block_from_dc")
+ *             .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
+ *                 Map.entry("input", exampleDatacenter.ipv6CidrBlock()),
+ *                 Map.entry("newbits", 8),
+ *                 Map.entry("netnum", 10)
+ *             )).result())
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -190,11 +196,36 @@ import javax.annotation.Nullable;
  *                     webserverIpblock.ips().applyValue(_ips -> _ips[0]),
  *                     webserverIpblock.ips().applyValue(_ips -> _ips[1]))
  *                 .dhcpv6(false)
- *                 .ipv6CidrBlock("ipv6_cidr_block_from_lan")
+ *                 .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
+ *                     Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                     Map.entry("newbits", 16),
+ *                     Map.entry("netnum", 5)
+ *                 )).result())
  *                 .ipv6Ips(                
- *                     "ipv6_ip1",
- *                     "ipv6_ip2",
- *                     "ipv6_ip3")
+ *                     StdFunctions.cidrhost(Map.ofEntries(
+ *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                             Map.entry("newbits", 16),
+ *                             Map.entry("netnum", 5)
+ *                         )).result()),
+ *                         Map.entry("host", 1)
+ *                     )).result(),
+ *                     StdFunctions.cidrhost(Map.ofEntries(
+ *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                             Map.entry("newbits", 16),
+ *                             Map.entry("netnum", 5)
+ *                         )).result()),
+ *                         Map.entry("host", 2)
+ *                     )).result(),
+ *                     StdFunctions.cidrhost(Map.ofEntries(
+ *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
+ *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
+ *                             Map.entry("newbits", 16),
+ *                             Map.entry("netnum", 5)
+ *                         )).result()),
+ *                         Map.entry("host", 3)
+ *                     )).result())
  *                 .firewallActive(true)
  *                 .build())
  *             .build());
@@ -397,6 +428,20 @@ public class CubeServer extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> inlineVolumeIds() {
         return this.inlineVolumeIds;
+    }
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] The name of the server.

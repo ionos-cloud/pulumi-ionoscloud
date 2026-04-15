@@ -141,14 +141,14 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     public Optional<Output<String>> location() {
@@ -171,14 +171,14 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     @Import(name="mongodbVersion")
     private @Nullable Output<String> mongodbVersion;
 
     /**
-     * @return [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * @return [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     public Optional<Output<String>> mongodbVersion() {
@@ -484,7 +484,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+         * @param location [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
          * 
          * @return builder
          * 
@@ -495,7 +495,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+         * @param location [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
          * 
          * @return builder
          * 
@@ -526,7 +526,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbVersion [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+         * @param mongodbVersion [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
          * 
          * @return builder
          * 
@@ -537,7 +537,7 @@ public final class MongoClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbVersion [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+         * @param mongodbVersion [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
          * 
          * @return builder
          * 

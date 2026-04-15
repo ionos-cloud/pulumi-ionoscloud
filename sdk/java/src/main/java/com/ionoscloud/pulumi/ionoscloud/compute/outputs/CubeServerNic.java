@@ -23,9 +23,18 @@ public final class CubeServerNic {
      * 
      */
     private @Nullable Boolean dhcpv6;
+    /**
+     * @return Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+     * 
+     */
     private @Nullable CubeServerNicFirewall firewall;
     private @Nullable Boolean firewallActive;
     private @Nullable String firewallType;
+    private @Nullable String id;
+    /**
+     * @return Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * 
+     */
     private @Nullable List<String> ips;
     /**
      * @return IPv6 CIDR block assigned to the NIC.
@@ -65,6 +74,10 @@ public final class CubeServerNic {
     public Optional<Boolean> dhcpv6() {
         return Optional.ofNullable(this.dhcpv6);
     }
+    /**
+     * @return Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+     * 
+     */
     public Optional<CubeServerNicFirewall> firewall() {
         return Optional.ofNullable(this.firewall);
     }
@@ -74,6 +87,13 @@ public final class CubeServerNic {
     public Optional<String> firewallType() {
         return Optional.ofNullable(this.firewallType);
     }
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
+    }
+    /**
+     * @return Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * 
+     */
     public List<String> ips() {
         return this.ips == null ? List.of() : this.ips;
     }
@@ -130,6 +150,7 @@ public final class CubeServerNic {
         private @Nullable CubeServerNicFirewall firewall;
         private @Nullable Boolean firewallActive;
         private @Nullable String firewallType;
+        private @Nullable String id;
         private @Nullable List<String> ips;
         private @Nullable String ipv6CidrBlock;
         private @Nullable List<String> ipv6Ips;
@@ -147,6 +168,7 @@ public final class CubeServerNic {
     	      this.firewall = defaults.firewall;
     	      this.firewallActive = defaults.firewallActive;
     	      this.firewallType = defaults.firewallType;
+    	      this.id = defaults.id;
     	      this.ips = defaults.ips;
     	      this.ipv6CidrBlock = defaults.ipv6CidrBlock;
     	      this.ipv6Ips = defaults.ipv6Ips;
@@ -191,6 +213,12 @@ public final class CubeServerNic {
         public Builder firewallType(@Nullable String firewallType) {
 
             this.firewallType = firewallType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -260,6 +288,7 @@ public final class CubeServerNic {
             _resultValue.firewall = firewall;
             _resultValue.firewallActive = firewallActive;
             _resultValue.firewallType = firewallType;
+            _resultValue.id = id;
             _resultValue.ips = ips;
             _resultValue.ipv6CidrBlock = ipv6CidrBlock;
             _resultValue.ipv6Ips = ipv6Ips;

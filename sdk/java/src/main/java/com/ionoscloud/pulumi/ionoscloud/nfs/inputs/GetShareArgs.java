@@ -81,14 +81,14 @@ public final class GetShareArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The location where the Network File Storage share is located.
+     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return The location where the Network File Storage share is located.
+     * @return The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     public Optional<Output<String>> location() {
@@ -282,7 +282,7 @@ public final class GetShareArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage share is located.
+         * @param location The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * 
          * @return builder
          * 
@@ -293,7 +293,7 @@ public final class GetShareArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage share is located.
+         * @param location The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * 
          * @return builder
          * 

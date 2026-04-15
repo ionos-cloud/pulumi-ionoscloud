@@ -49,6 +49,13 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
         return this.k8sClusterId;
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * Name of an existing node pool that you want to search for.
      * 
@@ -69,6 +76,7 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
     private GetNodePoolPlainArgs(GetNodePoolPlainArgs $) {
         this.id = $.id;
         this.k8sClusterId = $.k8sClusterId;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -111,6 +119,11 @@ public final class GetNodePoolPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder k8sClusterId(String k8sClusterId) {
             $.k8sClusterId = k8sClusterId;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

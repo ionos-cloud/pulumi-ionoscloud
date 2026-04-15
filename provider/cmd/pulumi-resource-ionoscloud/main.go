@@ -18,7 +18,7 @@ import (
 	"context"
 	_ "embed"
 
-	pf_tfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
+	pftfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	ionoscloud "github.com/ionos-cloud/pulumi-ionoscloud/provider"
 )
@@ -27,5 +27,5 @@ import (
 var pulumiSchema []byte
 
 func main() {
-	pf_tfbridge.MainWithMuxer(context.Background(), "ionoscloud", ionoscloud.Provider(), pulumiSchema)
+	pftfbridge.MainWithMuxer(context.Background(), "ionoscloud", ionoscloud.Provider(), pulumiSchema)
 }

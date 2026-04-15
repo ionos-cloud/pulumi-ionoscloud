@@ -5,6 +5,7 @@ package com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs;
 
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.BucketLifecycleConfigurationRuleExpiration;
+import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.BucketLifecycleConfigurationRuleFilter;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
@@ -26,6 +27,11 @@ public final class BucketLifecycleConfigurationRule {
      */
     private @Nullable BucketLifecycleConfigurationRuleExpiration expiration;
     /**
+     * @return A filter.
+     * 
+     */
+    private @Nullable BucketLifecycleConfigurationRuleFilter filter;
+    /**
      * @return Unique identifier for the rule.
      * 
      */
@@ -38,8 +44,12 @@ public final class BucketLifecycleConfigurationRule {
     /**
      * @return Object key prefix identifying one or more objects to which the rule applies.
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+     * 
      */
-    private String prefix;
+    @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
+    private @Nullable String prefix;
     /**
      * @return Whether the rule is currently being applied. Valid values: Enabled or Disabled.
      * 
@@ -62,6 +72,13 @@ public final class BucketLifecycleConfigurationRule {
         return Optional.ofNullable(this.expiration);
     }
     /**
+     * @return A filter.
+     * 
+     */
+    public Optional<BucketLifecycleConfigurationRuleFilter> filter() {
+        return Optional.ofNullable(this.filter);
+    }
+    /**
      * @return Unique identifier for the rule.
      * 
      */
@@ -78,9 +95,13 @@ public final class BucketLifecycleConfigurationRule {
     /**
      * @return Object key prefix identifying one or more objects to which the rule applies.
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version. It does nothing. Use &#39;filter&#39; block instead.
+     * 
      */
-    public String prefix() {
-        return this.prefix;
+    @Deprecated /* This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead. */
+    public Optional<String> prefix() {
+        return Optional.ofNullable(this.prefix);
     }
     /**
      * @return Whether the rule is currently being applied. Valid values: Enabled or Disabled.
@@ -101,15 +122,17 @@ public final class BucketLifecycleConfigurationRule {
     public static final class Builder {
         private @Nullable BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload abortIncompleteMultipartUpload;
         private @Nullable BucketLifecycleConfigurationRuleExpiration expiration;
+        private @Nullable BucketLifecycleConfigurationRuleFilter filter;
         private @Nullable String id;
         private @Nullable BucketLifecycleConfigurationRuleNoncurrentVersionExpiration noncurrentVersionExpiration;
-        private String prefix;
+        private @Nullable String prefix;
         private String status;
         public Builder() {}
         public Builder(BucketLifecycleConfigurationRule defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.abortIncompleteMultipartUpload = defaults.abortIncompleteMultipartUpload;
     	      this.expiration = defaults.expiration;
+    	      this.filter = defaults.filter;
     	      this.id = defaults.id;
     	      this.noncurrentVersionExpiration = defaults.noncurrentVersionExpiration;
     	      this.prefix = defaults.prefix;
@@ -129,6 +152,12 @@ public final class BucketLifecycleConfigurationRule {
             return this;
         }
         @CustomType.Setter
+        public Builder filter(@Nullable BucketLifecycleConfigurationRuleFilter filter) {
+
+            this.filter = filter;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
 
             this.id = id;
@@ -141,10 +170,8 @@ public final class BucketLifecycleConfigurationRule {
             return this;
         }
         @CustomType.Setter
-        public Builder prefix(String prefix) {
-            if (prefix == null) {
-              throw new MissingRequiredPropertyException("BucketLifecycleConfigurationRule", "prefix");
-            }
+        public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }
@@ -160,6 +187,7 @@ public final class BucketLifecycleConfigurationRule {
             final var _resultValue = new BucketLifecycleConfigurationRule();
             _resultValue.abortIncompleteMultipartUpload = abortIncompleteMultipartUpload;
             _resultValue.expiration = expiration;
+            _resultValue.filter = filter;
             _resultValue.id = id;
             _resultValue.noncurrentVersionExpiration = noncurrentVersionExpiration;
             _resultValue.prefix = prefix;

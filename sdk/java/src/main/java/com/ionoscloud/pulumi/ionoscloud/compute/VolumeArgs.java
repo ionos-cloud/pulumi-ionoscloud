@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.compute;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -94,6 +95,21 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    @Import(name="exposeSerial")
+    private @Nullable Output<Boolean> exposeSerial;
+
+    /**
+     * @return (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Optional<Output<Boolean>> exposeSerial() {
+        return Optional.ofNullable(this.exposeSerial);
+    }
+
+    /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
@@ -139,6 +155,21 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the volume.
      * 
      */
@@ -151,6 +182,31 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+     * 
+     */
+    @Import(name="requireLegacyBios")
+    private @Nullable Output<Boolean> requireLegacyBios;
+
+    /**
+     * @return (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+     * 
+     */
+    public Optional<Output<Boolean>> requireLegacyBios() {
+        return Optional.ofNullable(this.requireLegacyBios);
     }
 
     /**
@@ -236,10 +292,13 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         this.bus = $.bus;
         this.datacenterId = $.datacenterId;
         this.diskType = $.diskType;
+        this.exposeSerial = $.exposeSerial;
         this.imageName = $.imageName;
         this.imagePassword = $.imagePassword;
         this.licenceType = $.licenceType;
+        this.location = $.location;
         this.name = $.name;
+        this.requireLegacyBios = $.requireLegacyBios;
         this.serverId = $.serverId;
         this.size = $.size;
         this.sshKeyPaths = $.sshKeyPaths;
@@ -371,6 +430,27 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param exposeSerial (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(@Nullable Output<Boolean> exposeSerial) {
+            $.exposeSerial = exposeSerial;
+            return this;
+        }
+
+        /**
+         * @param exposeSerial (Computed) [boolean] Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; if not previously set by the image used to create the volume. If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+         * 
+         * @return builder
+         * 
+         */
+        public Builder exposeSerial(Boolean exposeSerial) {
+            return exposeSerial(Output.of(exposeSerial));
+        }
+
+        /**
          * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
@@ -434,6 +514,27 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param name [string] The name of the volume.
          * 
          * @return builder
@@ -452,6 +553,37 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param requireLegacyBios (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+         * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(@Nullable Output<Boolean> requireLegacyBios) {
+            $.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+
+        /**
+         * @param requireLegacyBios (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
+         * 
+         * &gt; **⚠ WARNING**
+         * &gt; 
+         * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+         * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34;&gt;`size`&lt;/span&gt; argument since it is taken from the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt; you set in the server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            return requireLegacyBios(Output.of(requireLegacyBios));
         }
 
         /**

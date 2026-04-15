@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages an **Application Load Balancer** on IonosCloud.
+ * Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
  * 
  * ## Example Usage
  * 
@@ -180,6 +180,12 @@ public class Balancer extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> listenerLan() {
         return this.listenerLan;
+    }
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * Specifies the format of the logs.

@@ -26,6 +26,21 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
      * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      * 
@@ -42,9 +57,17 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * [string] The ID of the container registry
+     * 
+     */
     @Import(name="registryId", required=true)
     private Output<String> registryId;
 
+    /**
+     * @return [string] The ID of the container registry
+     * 
+     */
     public Output<String> registryId() {
         return this.registryId;
     }
@@ -71,14 +94,14 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [map]
+     * (Computed) [map]
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<List<RegistryTokenScopeArgs>> scopes;
 
     /**
-     * @return [map]
+     * @return (Computed) [map]
      * 
      */
     public Optional<Output<List<RegistryTokenScopeArgs>>> scopes() {
@@ -86,14 +109,14 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+     * [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+     * @return [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     public Optional<Output<String>> status() {
@@ -104,6 +127,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
 
     private RegistryTokenArgs(RegistryTokenArgs $) {
         this.expiryDate = $.expiryDate;
+        this.location = $.location;
         this.name = $.name;
         this.registryId = $.registryId;
         this.savePasswordToFile = $.savePasswordToFile;
@@ -139,6 +163,27 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
+        /**
          * @param name [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
          * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
          * 
@@ -161,11 +206,23 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
             return name(Output.of(name));
         }
 
+        /**
+         * @param registryId [string] The ID of the container registry
+         * 
+         * @return builder
+         * 
+         */
         public Builder registryId(Output<String> registryId) {
             $.registryId = registryId;
             return this;
         }
 
+        /**
+         * @param registryId [string] The ID of the container registry
+         * 
+         * @return builder
+         * 
+         */
         public Builder registryId(String registryId) {
             return registryId(Output.of(registryId));
         }
@@ -198,7 +255,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -209,7 +266,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -219,7 +276,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -229,7 +286,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+         * @param status [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 
@@ -240,7 +297,7 @@ public final class RegistryTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+         * @param status [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 

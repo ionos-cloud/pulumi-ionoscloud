@@ -96,14 +96,14 @@ public final class ServerNicFirewallArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * @return (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     public Optional<Output<String>> type() {
@@ -247,7 +247,7 @@ public final class ServerNicFirewallArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         * @param type (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          * 
          * @return builder
          * 
@@ -258,7 +258,7 @@ public final class ServerNicFirewallArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         * @param type (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          * 
          * @return builder
          * 

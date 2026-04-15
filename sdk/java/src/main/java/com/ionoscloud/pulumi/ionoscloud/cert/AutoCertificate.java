@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **CM AutoCertificate**.
+ * Manages a [CM AutoCertificate](https://docs.ionos.com/cloud/network-services/certificate-manager/auto-certificate/create-auto-certificate).
  * 
  * ## Example Usage
  * 
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) }{{@code
  *         var example = new AutoCertificateProvider("example", AutoCertificateProviderArgs.builder()
  *             .name("Let's Encrypt")
- *             .email("user}{@literal @}{@code example.com")
+ *             .email("user}{@literal @}{@code ionos.com")
  *             .location("de/fra")
  *             .server("https://acme-v02.api.letsencrypt.org/directory")
  *             .externalAccountBinding(AutoCertificateProviderExternalAccountBindingArgs.builder()
@@ -126,14 +126,14 @@ public class AutoCertificate extends com.pulumi.resources.CustomResource {
         return this.lastIssuedCertificateId;
     }
     /**
-     * [string] The location of the auto-certificate.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The location of the auto-certificate.
+     * @return [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     public Output<String> location() {

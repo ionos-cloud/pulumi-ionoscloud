@@ -171,6 +171,21 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
      * 
      */
@@ -247,6 +262,7 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
         this.ipv6CidrBlock = $.ipv6CidrBlock;
         this.ipv6Ips = $.ipv6Ips;
         this.lan = $.lan;
+        this.location = $.location;
         this.mac = $.mac;
         this.name = $.name;
         this.securityGroupsIds = $.securityGroupsIds;
@@ -499,6 +515,27 @@ public final class NicArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder lan(Integer lan) {
             return lan(Output.of(lan));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

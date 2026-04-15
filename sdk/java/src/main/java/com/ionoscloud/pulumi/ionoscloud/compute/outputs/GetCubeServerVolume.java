@@ -99,6 +99,11 @@ public final class GetCubeServerVolume {
      */
     private Boolean ramHotPlug;
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
+    /**
      * @return Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
      * 
      */
@@ -233,6 +238,13 @@ public final class GetCubeServerVolume {
         return this.ramHotPlug;
     }
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * @return Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
      * 
      */
@@ -280,6 +292,7 @@ public final class GetCubeServerVolume {
         private Boolean nicHotUnplug;
         private Integer pciSlot;
         private Boolean ramHotPlug;
+        private Boolean requireLegacyBios;
         private List<String> sshKeys;
         private String type;
         private @Nullable String userData;
@@ -303,6 +316,7 @@ public final class GetCubeServerVolume {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.pciSlot = defaults.pciSlot;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.sshKeys = defaults.sshKeys;
     	      this.type = defaults.type;
     	      this.userData = defaults.userData;
@@ -445,6 +459,14 @@ public final class GetCubeServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetCubeServerVolume", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sshKeys(List<String> sshKeys) {
             if (sshKeys == null) {
               throw new MissingRequiredPropertyException("GetCubeServerVolume", "sshKeys");
@@ -488,6 +510,7 @@ public final class GetCubeServerVolume {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.pciSlot = pciSlot;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.sshKeys = sshKeys;
             _resultValue.type = type;
             _resultValue.userData = userData;

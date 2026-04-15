@@ -257,6 +257,20 @@ public class MongoUser extends com.pulumi.resources.CustomResource {
         return this.clusterId;
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      * 
      */

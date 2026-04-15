@@ -10,6 +10,8 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetLanResult {
@@ -38,6 +40,7 @@ public final class GetLanResult {
      * 
      */
     private String ipv6CidrBlock;
+    private @Nullable String location;
     /**
      * @return The name of the LAN.
      * 
@@ -90,6 +93,9 @@ public final class GetLanResult {
     public String ipv6CidrBlock() {
         return this.ipv6CidrBlock;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return The name of the LAN.
      * 
@@ -126,6 +132,7 @@ public final class GetLanResult {
         private List<GetLanIpFailover> ipFailovers;
         private String ipv4CidrBlock;
         private String ipv6CidrBlock;
+        private @Nullable String location;
         private String name;
         private String pcc;
         private Boolean public_;
@@ -137,6 +144,7 @@ public final class GetLanResult {
     	      this.ipFailovers = defaults.ipFailovers;
     	      this.ipv4CidrBlock = defaults.ipv4CidrBlock;
     	      this.ipv6CidrBlock = defaults.ipv6CidrBlock;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.pcc = defaults.pcc;
     	      this.public_ = defaults.public_;
@@ -186,6 +194,12 @@ public final class GetLanResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetLanResult", "name");
@@ -216,6 +230,7 @@ public final class GetLanResult {
             _resultValue.ipFailovers = ipFailovers;
             _resultValue.ipv4CidrBlock = ipv4CidrBlock;
             _resultValue.ipv6CidrBlock = ipv6CidrBlock;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.pcc = pcc;
             _resultValue.public_ = public_;

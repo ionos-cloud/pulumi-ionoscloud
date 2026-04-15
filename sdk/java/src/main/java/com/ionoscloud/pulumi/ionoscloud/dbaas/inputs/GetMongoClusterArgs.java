@@ -37,11 +37,27 @@ public final class GetMongoClusterArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetMongoClusterArgs() {}
 
     private GetMongoClusterArgs(GetMongoClusterArgs $) {
         this.displayName = $.displayName;
         this.id = $.id;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -90,6 +106,27 @@ public final class GetMongoClusterArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        /**
+         * @param location The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         public GetMongoClusterArgs build() {

@@ -110,6 +110,11 @@ public final class GetImageResult {
      */
     private Boolean ramHotUnplug;
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
+    /**
      * @return The size of the image in GB
      * 
      */
@@ -259,6 +264,13 @@ public final class GetImageResult {
         return this.ramHotUnplug;
     }
     /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
+    }
+    /**
      * @return The size of the image in GB
      * 
      */
@@ -305,6 +317,7 @@ public final class GetImageResult {
         private Boolean public_;
         private Boolean ramHotPlug;
         private Boolean ramHotUnplug;
+        private Boolean requireLegacyBios;
         private Double size;
         private String type;
         private String version;
@@ -331,6 +344,7 @@ public final class GetImageResult {
     	      this.public_ = defaults.public_;
     	      this.ramHotPlug = defaults.ramHotPlug;
     	      this.ramHotUnplug = defaults.ramHotUnplug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.size = defaults.size;
     	      this.type = defaults.type;
     	      this.version = defaults.version;
@@ -500,6 +514,14 @@ public final class GetImageResult {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetImageResult", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(Double size) {
             if (size == null) {
               throw new MissingRequiredPropertyException("GetImageResult", "size");
@@ -545,6 +567,7 @@ public final class GetImageResult {
             _resultValue.public_ = public_;
             _resultValue.ramHotPlug = ramHotPlug;
             _resultValue.ramHotUnplug = ramHotUnplug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.size = size;
             _resultValue.type = type;
             _resultValue.version = version;

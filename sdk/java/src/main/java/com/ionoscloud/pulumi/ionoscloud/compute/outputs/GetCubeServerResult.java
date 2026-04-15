@@ -48,6 +48,11 @@ public final class GetCubeServerResult {
      */
     private String id;
     /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    private @Nullable String location;
+    /**
      * @return Name of the firewall rule
      * 
      */
@@ -132,6 +137,13 @@ public final class GetCubeServerResult {
         return this.id;
     }
     /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+    /**
      * @return Name of the firewall rule
      * 
      */
@@ -199,6 +211,7 @@ public final class GetCubeServerResult {
         private String datacenterId;
         private String hostname;
         private String id;
+        private @Nullable String location;
         private String name;
         private List<GetCubeServerNic> nics;
         private Integer ram;
@@ -220,6 +233,7 @@ public final class GetCubeServerResult {
     	      this.datacenterId = defaults.datacenterId;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.nics = defaults.nics;
     	      this.ram = defaults.ram;
@@ -314,6 +328,12 @@ public final class GetCubeServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetCubeServerResult", "name");
@@ -396,6 +416,7 @@ public final class GetCubeServerResult {
             _resultValue.datacenterId = datacenterId;
             _resultValue.hostname = hostname;
             _resultValue.id = id;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.nics = nics;
             _resultValue.ram = ram;

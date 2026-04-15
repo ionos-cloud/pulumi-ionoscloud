@@ -11,6 +11,7 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -83,8 +84,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_XEON")
  *             .imageName("Ubuntu-20.04")
  *             .imagePassword(serverImagePassword.result())
  *             .volume(ServerVolumeArgs.builder()
@@ -129,10 +128,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource IpFailover can be imported using the `resource id`, e.g.
+ * Resource IpFailover can be imported using the `datacenter id`, `lan id` and `ip address`, e.g.
  * 
  * ```sh
- * terraform import ionoscloud_ipfailover.myipfailover datacenter uuid/lan uuid
+ * $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter_uuid/lan_uuid/ip_address
  * ```
  * 
  */
@@ -180,12 +179,18 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
     public Output<String> lanId() {
         return this.lanId;
     }
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
     /**
      * [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -202,9 +207,9 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
     /**
      * @return [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the

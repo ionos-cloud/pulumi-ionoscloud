@@ -32,16 +32,14 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+     * [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     @Import(name="ipv4Cidr", required=true)
     private Output<String> ipv4Cidr;
 
     /**
-     * @return [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+     * @return [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Output<String> ipv4Cidr() {
@@ -49,16 +47,14 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-     * Gateway. **Note**: this should be the subnet already assigned to the LAN
+     * [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     @Import(name="ipv6Cidr")
     private @Nullable Output<String> ipv6Cidr;
 
     /**
-     * @return [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-     * Gateway. **Note**: this should be the subnet already assigned to the LAN
+     * @return [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
      * 
      */
     public Optional<Output<String>> ipv6Cidr() {
@@ -129,8 +125,7 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param ipv4Cidr [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * @param ipv4Cidr [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -141,8 +136,7 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param ipv4Cidr [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * @param ipv4Cidr [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -152,8 +146,7 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param ipv6Cidr [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-         * Gateway. **Note**: this should be the subnet already assigned to the LAN
+         * @param ipv6Cidr [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 
@@ -164,8 +157,7 @@ public final class IpsecGatewayConnectionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param ipv6Cidr [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-         * Gateway. **Note**: this should be the subnet already assigned to the LAN
+         * @param ipv6Cidr [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          * 
          * @return builder
          * 

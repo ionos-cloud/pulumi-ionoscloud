@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetIPFailoverArgs extends com.pulumi.resources.InvokeArgs {
@@ -59,12 +61,20 @@ public final class GetIPFailoverArgs extends com.pulumi.resources.InvokeArgs {
         return this.lanId;
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetIPFailoverArgs() {}
 
     private GetIPFailoverArgs(GetIPFailoverArgs $) {
         this.datacenterId = $.datacenterId;
         this.ip = $.ip;
         this.lanId = $.lanId;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -146,6 +156,15 @@ public final class GetIPFailoverArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder lanId(String lanId) {
             return lanId(Output.of(lanId));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         public GetIPFailoverArgs build() {

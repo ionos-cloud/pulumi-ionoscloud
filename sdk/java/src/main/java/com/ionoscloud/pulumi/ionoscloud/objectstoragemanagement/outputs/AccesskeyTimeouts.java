@@ -19,6 +19,8 @@ public final class AccesskeyTimeouts {
     /**
      * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
+     * 
      */
     private @Nullable String delete;
     /**
@@ -37,6 +39,8 @@ public final class AccesskeyTimeouts {
     }
     /**
      * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * 
+     * &gt; **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Optional<String> delete() {

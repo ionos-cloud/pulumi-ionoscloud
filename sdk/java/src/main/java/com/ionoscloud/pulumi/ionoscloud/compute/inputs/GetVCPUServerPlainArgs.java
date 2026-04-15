@@ -50,6 +50,21 @@ public final class GetVCPUServerPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
+     * Location of that image/snapshot
+     * 
+     */
+    @Import(name="location")
+    private @Nullable String location;
+
+    /**
+     * @return Location of that image/snapshot
+     * 
+     */
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * Name of an existing server that you want to search for.
      * 
      */
@@ -69,6 +84,7 @@ public final class GetVCPUServerPlainArgs extends com.pulumi.resources.InvokeArg
     private GetVCPUServerPlainArgs(GetVCPUServerPlainArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -111,6 +127,17 @@ public final class GetVCPUServerPlainArgs extends com.pulumi.resources.InvokeArg
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        /**
+         * @param location Location of that image/snapshot
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

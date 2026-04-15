@@ -13,6 +13,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -20,7 +21,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **VCPU Server** on IonosCloud.
+ * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS&#39; physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+ * 
+ * These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
+ * 
+ * This section lists the limitations of [vCPU Servers](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server#limitations-of-vcpu-servers)
  * 
  * ## Example Usage
  * 
@@ -65,7 +70,7 @@ import javax.annotation.Nullable;
  *         final var example = ComputeFunctions.getImage(GetImageArgs.builder()
  *             .type("HDD")
  *             .imageAlias("ubuntu:latest")
- *             .location("us/las")
+ *             .location("de/txl")
  *             .build());
  * 
  *         var exampleDatacenter = new Datacenter("exampleDatacenter", DatacenterArgs.builder()
@@ -97,7 +102,6 @@ import javax.annotation.Nullable;
  *             .datacenterId(exampleDatacenter.id())
  *             .cores(1)
  *             .ram(1024)
- *             .availabilityZone("ZONE_1")
  *             .imageName(example.id())
  *             .imagePassword(serverImagePassword.result())
  *             .volume(VCPUServerVolumeArgs.builder()
@@ -106,7 +110,6 @@ import javax.annotation.Nullable;
  *                 .diskType("SSD Standard")
  *                 .userData("foo")
  *                 .bus("VIRTIO")
- *                 .availabilityZone("ZONE_1")
  *                 .build())
  *             .nic(VCPUServerNicArgs.builder()
  *                 .lan(exampleLan.id())
@@ -117,16 +120,16 @@ import javax.annotation.Nullable;
  *                 .ips(                
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
- *                 .firewalls(VCPUServerNicFirewallArgs.builder()
- *                     .protocol("TCP")
- *                     .name("SSH")
- *                     .portRangeStart(22)
- *                     .portRangeEnd(22)
- *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
- *                     .type("EGRESS")
- *                     .build())
+ *                 .firewall(Map.ofEntries(
+ *                     Map.entry("protocol", "TCP"),
+ *                     Map.entry("name", "SSH"),
+ *                     Map.entry("portRangeStart", 22),
+ *                     Map.entry("portRangeEnd", 22),
+ *                     Map.entry("sourceMac", "00:0a:95:9d:68:17"),
+ *                     Map.entry("sourceIp", exampleIPBlock.ips().applyValue(_ips -> _ips[2])),
+ *                     Map.entry("targetIp", exampleIPBlock.ips().applyValue(_ips -> _ips[3])),
+ *                     Map.entry("type", "EGRESS")
+ *                 ))
  *                 .build())
  *             .labels(            
  *                 VCPUServerLabelArgs.builder()
@@ -150,7 +153,10 @@ import javax.annotation.Nullable;
  * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
  * 
  * ⚠️ **Note:** Important for deleting an &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
- * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. The existing rules will be modified and the last one will be deleted.
+ * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. Terraform will actually modify the existing rules and delete the last one.
+ * More details here. There is a workaround described in the issue
+ * that involves moving the resources in the list prior to deletion.
+ * `terraform state mv &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;i&gt;] &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;j&gt;]`
  * 
  * ## Import
  * 
@@ -159,7 +165,7 @@ import javax.annotation.Nullable;
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid
  * ```
- * Optionally, you can pass &lt;span pulumi-lang-nodejs=&#34;`primaryNic`&#34; pulumi-lang-dotnet=&#34;`PrimaryNic`&#34; pulumi-lang-go=&#34;`primaryNic`&#34; pulumi-lang-python=&#34;`primary_nic`&#34; pulumi-lang-yaml=&#34;`primaryNic`&#34; pulumi-lang-java=&#34;`primaryNic`&#34;&gt;`primaryNic`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`firewallruleId`&#34; pulumi-lang-dotnet=&#34;`FirewallruleId`&#34; pulumi-lang-go=&#34;`firewallruleId`&#34; pulumi-lang-python=&#34;`firewallrule_id`&#34; pulumi-lang-yaml=&#34;`firewallruleId`&#34; pulumi-lang-java=&#34;`firewallruleId`&#34;&gt;`firewallruleId`&lt;/span&gt; so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass &lt;span pulumi-lang-nodejs=&#34;`primaryNic`&#34; pulumi-lang-dotnet=&#34;`PrimaryNic`&#34; pulumi-lang-go=&#34;`primaryNic`&#34; pulumi-lang-python=&#34;`primary_nic`&#34; pulumi-lang-yaml=&#34;`primaryNic`&#34; pulumi-lang-java=&#34;`primaryNic`&#34;&gt;`primaryNic`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`firewallruleId`&#34; pulumi-lang-dotnet=&#34;`FirewallruleId`&#34; pulumi-lang-go=&#34;`firewallruleId`&#34; pulumi-lang-python=&#34;`firewallrule_id`&#34; pulumi-lang-yaml=&#34;`firewallruleId`&#34; pulumi-lang-java=&#34;`firewallruleId`&#34;&gt;`firewallruleId`&lt;/span&gt; so terraform will know to import also the first nic and firewall rule (if it exists on the server):
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
  * ```
@@ -360,6 +366,20 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.labels);
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * [string] The name of the server.
      * 
      */
@@ -386,6 +406,28 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<VCPUServerNic>> nic() {
         return Codegen.optional(this.nic);
+    }
+    /**
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * 
+     */
+    @Export(name="nicMultiQueue", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> nicMultiQueue;
+
+    /**
+     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * 
+     * &gt; **⚠ WARNING**
+     * &gt; 
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * 
+     */
+    public Output<Optional<Boolean>> nicMultiQueue() {
+        return Codegen.optional(this.nicMultiQueue);
     }
     /**
      * The associated IP address.
@@ -432,20 +474,12 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
-     * 
      */
     @Export(name="securityGroupsIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> securityGroupsIds;
 
     /**
      * @return The list of Security Group IDs for the resource.
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     public Output<Optional<List<String>>> securityGroupsIds() {

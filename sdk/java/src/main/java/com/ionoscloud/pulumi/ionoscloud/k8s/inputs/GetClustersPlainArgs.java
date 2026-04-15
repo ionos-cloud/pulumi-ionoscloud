@@ -5,6 +5,7 @@ package com.ionoscloud.pulumi.ionoscloud.k8s.inputs;
 
 import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.GetClustersFilter;
 import com.pulumi.core.annotations.Import;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,10 +35,18 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.filters);
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetClustersPlainArgs() {}
 
     private GetClustersPlainArgs(GetClustersPlainArgs $) {
         this.filters = $.filters;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -81,6 +90,11 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder filters(GetClustersFilter... filters) {
             return filters(List.of(filters));
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
+            return this;
         }
 
         public GetClustersPlainArgs build() {

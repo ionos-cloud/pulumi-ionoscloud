@@ -29,7 +29,7 @@ public final class GetRegionResult {
      */
     private String id;
     /**
-     * @return The data center location of the region as per [Get Location](https://www.terraform.io/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can&#39;t be used as `LocationConstraint` on bucket creation.*
+     * @return The data center location of the region as per [Get Location](https://api.ionos.com/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can&#39;t be used as `LocationConstraint` on bucket creation.*
      * 
      */
     private String location;
@@ -72,7 +72,7 @@ public final class GetRegionResult {
         return this.id;
     }
     /**
-     * @return The data center location of the region as per [Get Location](https://www.terraform.io/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can&#39;t be used as `LocationConstraint` on bucket creation.*
+     * @return The data center location of the region as per [Get Location](https://api.ionos.com/docs/cloud/v6/#tag/Locations/operation/locationsGet). *Can&#39;t be used as `LocationConstraint` on bucket creation.*
      * 
      */
     public String location() {

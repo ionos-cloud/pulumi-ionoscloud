@@ -65,6 +65,21 @@ public final class LanArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * [string] The name of the LAN.
      * 
      */
@@ -115,6 +130,7 @@ public final class LanArgs extends com.pulumi.resources.ResourceArgs {
         this.datacenterId = $.datacenterId;
         this.ipFailovers = $.ipFailovers;
         this.ipv6CidrBlock = $.ipv6CidrBlock;
+        this.location = $.location;
         this.name = $.name;
         this.pcc = $.pcc;
         this.public_ = $.public_;
@@ -209,6 +225,27 @@ public final class LanArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ipv6CidrBlock(String ipv6CidrBlock) {
             return ipv6CidrBlock(Output.of(ipv6CidrBlock));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **CM provider**.
+ * Manages a [CM provider](https://docs.ionos.com/cloud/network-services/certificate-manager).
  * 
  * ## Example Usage
  * 
@@ -101,14 +101,14 @@ public class AutoCertificateProvider extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.externalAccountBinding);
     }
     /**
-     * [string] The location of the provider.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the provider.
+     * @return [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      * 
      */
     public Output<Optional<String>> location() {

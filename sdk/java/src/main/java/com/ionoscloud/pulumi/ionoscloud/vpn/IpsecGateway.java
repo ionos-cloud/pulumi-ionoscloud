@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+ * An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
  * infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
  * network resources.
  * 
@@ -91,115 +91,6 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
- * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
- * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
- * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
- * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGateway;
- * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
- * import com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;
- * import com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayMaintenanceWindowArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Complete example
- *         var testDatacenter = new Datacenter("testDatacenter", DatacenterArgs.builder()
- *             .name("vpn_gateway_test")
- *             .location("de/fra")
- *             .build());
- * 
- *         var testLan = new Lan("testLan", LanArgs.builder()
- *             .name("test_lan")
- *             .public_(false)
- *             .datacenterId(testDatacenter.id())
- *             .ipv6CidrBlock(lanIpv6CidrBlock)
- *             .build());
- * 
- *         var testIpblock = new IPBlock("testIpblock", IPBlockArgs.builder()
- *             .name("test_ipblock")
- *             .location("de/fra")
- *             .size(1)
- *             .build());
- * 
- *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
- *             .length(16)
- *             .special(false)
- *             .build());
- * 
- *         var testServer = new Server("testServer", ServerArgs.builder()
- *             .name("test_server")
- *             .datacenterId(testDatacenter.id())
- *             .cores(1)
- *             .ram(2048)
- *             .imageName("ubuntu:latest")
- *             .imagePassword(serverImagePassword.result())
- *             .nic(ServerNicArgs.builder()
- *                 .lan(testLan.id())
- *                 .name("test_nic")
- *                 .dhcp(true)
- *                 .dhcpv6(false)
- *                 .ipv6CidrBlock(ipv6CidrBlock)
- *                 .firewallActive(false)
- *                 .build())
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("test_volume")
- *                 .diskType("HDD")
- *                 .size(10)
- *                 .licenceType("OTHER")
- *                 .build())
- *             .build());
- * 
- *         var example = new IpsecGateway("example", IpsecGatewayArgs.builder()
- *             .name("ipsec-gateway")
- *             .location("de/fra")
- *             .gatewayIp(testIpblock.ips().applyValue(_ips -> _ips[0]))
- *             .version("IKEv2")
- *             .description("This gateway connects site A to VDC X.")
- *             .connections(IpsecGatewayConnectionArgs.builder()
- *                 .datacenterId(testDatacenter.id())
- *                 .lanId(testLan.id())
- *                 .ipv4Cidr("ipv4_cidr_block_from_nic")
- *                 .ipv6Cidr("ipv6_cidr_block_from_dc")
- *                 .build())
- *             .maintenanceWindow(IpsecGatewayMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Monday")
- *                 .time("09:00:00")
- *                 .build())
- *             .tier("STANDARD")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ## Import
  * 
  * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34;&gt;`gatewayId`&lt;/span&gt;, for example:
@@ -258,16 +149,14 @@ public class IpsecGateway extends com.pulumi.resources.CustomResource {
         return this.gatewayIp;
     }
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * @return [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Output<Optional<String>> location() {

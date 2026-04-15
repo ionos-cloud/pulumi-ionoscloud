@@ -93,6 +93,15 @@ import javax.annotation.Nullable;
  *             .createFlowLog(true)
  *             .accessAndManageMonitoring(true)
  *             .accessAndManageCertificates(true)
+ *             .accessAndManageLogging(true)
+ *             .accessAndManageCdn(true)
+ *             .accessAndManageVpn(true)
+ *             .accessAndManageApiGateway(true)
+ *             .accessAndManageKaas(true)
+ *             .accessAndManageNetworkFileStorage(true)
+ *             .accessAndManageAiModelHub(true)
+ *             .accessAndManageIamResources(true)
+ *             .createNetworkSecurityGroups(true)
  *             .manageDbaas(true)
  *             .userIds(            
  *                 example1.id(),
@@ -133,6 +142,48 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessActivityLog);
     }
     /**
+     * [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    @Export(name="accessAndManageAiModelHub", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageAiModelHub;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageAiModelHub() {
+        return Codegen.optional(this.accessAndManageAiModelHub);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    @Export(name="accessAndManageApiGateway", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageApiGateway;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage api gateway.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageApiGateway() {
+        return Codegen.optional(this.accessAndManageApiGateway);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    @Export(name="accessAndManageCdn", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageCdn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage cdn.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageCdn() {
+        return Codegen.optional(this.accessAndManageCdn);
+    }
+    /**
      * [Boolean]  The group will be allowed to access and manage certificates.
      * 
      */
@@ -147,6 +198,62 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessAndManageCertificates);
     }
     /**
+     * [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    @Export(name="accessAndManageDns", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageDns;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage dns records.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageDns() {
+        return Codegen.optional(this.accessAndManageDns);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    @Export(name="accessAndManageIamResources", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageIamResources;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage iam resources.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageIamResources() {
+        return Codegen.optional(this.accessAndManageIamResources);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    @Export(name="accessAndManageKaas", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageKaas;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage kaas.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageKaas() {
+        return Codegen.optional(this.accessAndManageKaas);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    @Export(name="accessAndManageLogging", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageLogging;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage logging.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageLogging() {
+        return Codegen.optional(this.accessAndManageLogging);
+    }
+    /**
      * [Boolean]  The group will be allowed to access and manage monitoring.
      * 
      */
@@ -159,6 +266,34 @@ public class Group extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> accessAndManageMonitoring() {
         return Codegen.optional(this.accessAndManageMonitoring);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    @Export(name="accessAndManageNetworkFileStorage", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageNetworkFileStorage;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage network file storage.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageNetworkFileStorage() {
+        return Codegen.optional(this.accessAndManageNetworkFileStorage);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    @Export(name="accessAndManageVpn", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> accessAndManageVpn;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage vpn.
+     * 
+     */
+    public Output<Optional<Boolean>> accessAndManageVpn() {
+        return Codegen.optional(this.accessAndManageVpn);
     }
     /**
      * [Boolean] The group will be allowed to create backup unit privilege.
@@ -231,6 +366,20 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.createK8sCluster);
     }
     /**
+     * [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    @Export(name="createNetworkSecurityGroups", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> createNetworkSecurityGroups;
+
+    /**
+     * @return [Boolean]  The group will be allowed to create network security groups.
+     * 
+     */
+    public Output<Optional<Boolean>> createNetworkSecurityGroups() {
+        return Codegen.optional(this.createNetworkSecurityGroups);
+    }
+    /**
      * [Boolean] The group will be allowed to create Cross Connects privilege.
      * 
      */
@@ -259,6 +408,34 @@ public class Group extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.createSnapshot);
     }
     /**
+     * [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    @Export(name="getUsersData", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> getUsersData;
+
+    /**
+     * @return [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     */
+    public Output<Optional<Boolean>> getUsersData() {
+        return Codegen.optional(this.getUsersData);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    @Export(name="manageDataplatform", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> manageDataplatform;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    public Output<Optional<Boolean>> manageDataplatform() {
+        return Codegen.optional(this.manageDataplatform);
+    }
+    /**
      * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      * 
      */
@@ -271,6 +448,20 @@ public class Group extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> manageDbaas() {
         return Codegen.optional(this.manageDbaas);
+    }
+    /**
+     * [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    @Export(name="manageRegistry", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> manageRegistry;
+
+    /**
+     * @return [Boolean]  The group will be allowed to access container registry related functionality.
+     * 
+     */
+    public Output<Optional<Boolean>> manageRegistry() {
+        return Codegen.optional(this.manageRegistry);
     }
     /**
      * [string] A name for the group.

@@ -20,7 +20,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DbaaS Mongo Cluster**.
+ * Manages a [DbaaS Mongo Cluster](https://docs.ionos.com/cloud/databases/mongodb/overview).
  * 
  * ## Example Usage
  * 
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *                 .dayOfTheWeek("Sunday")
  *                 .time("09:00:00")
  *                 .build())
- *             .mongodbVersion("5.0")
+ *             .mongodbVersion("6.0")
  *             .instances(1)
  *             .displayName("example_mongo_cluster")
  *             .location(datacenterExample.location())
@@ -150,7 +150,7 @@ import javax.annotation.Nullable;
  *                 .dayOfTheWeek("Sunday")
  *                 .time("09:00:00")
  *                 .build())
- *             .mongodbVersion("5.0")
+ *             .mongodbVersion("6.0")
  *             .instances(3)
  *             .displayName("example_mongo_cluster")
  *             .location(datacenterExample.location())
@@ -307,14 +307,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return this.instances;
     }
     /**
-     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+     * @return [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      * 
      */
     public Output<String> location() {
@@ -335,14 +335,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return this.maintenanceWindow;
     }
     /**
-     * [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     @Export(name="mongodbVersion", refs={String.class}, tree="[0]")
     private Output<String> mongodbVersion;
 
     /**
-     * @return [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+     * @return [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      * 
      */
     public Output<String> mongodbVersion() {

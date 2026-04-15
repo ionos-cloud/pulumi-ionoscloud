@@ -45,6 +45,13 @@ public final class GetFirewallPlainArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.id);
     }
 
+    @Import(name="location")
+    private @Nullable String location;
+
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * Name of an existing firewall rule that you want to search for.
      * 
@@ -99,6 +106,7 @@ public final class GetFirewallPlainArgs extends com.pulumi.resources.InvokeArgs 
     private GetFirewallPlainArgs(GetFirewallPlainArgs $) {
         this.datacenterId = $.datacenterId;
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.nicId = $.nicId;
         this.serverId = $.serverId;
@@ -141,6 +149,11 @@ public final class GetFirewallPlainArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder id(@Nullable String id) {
             $.id = id;
+            return this;
+        }
+
+        public Builder location(@Nullable String location) {
+            $.location = location;
             return this;
         }
 

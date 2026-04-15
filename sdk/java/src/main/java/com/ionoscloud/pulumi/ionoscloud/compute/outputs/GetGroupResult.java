@@ -10,6 +10,8 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetGroupResult {
@@ -19,15 +21,60 @@ public final class GetGroupResult {
      */
     private Boolean accessActivityLog;
     /**
+     * @return The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    private Boolean accessAndManageAiModelHub;
+    /**
+     * @return The group will be allowed to access and manage api gateway.
+     * 
+     */
+    private Boolean accessAndManageApiGateway;
+    /**
+     * @return The group will be allowed to access and manage cdn.
+     * 
+     */
+    private Boolean accessAndManageCdn;
+    /**
      * @return The group will be allowed to access and manage certificates.
      * 
      */
     private Boolean accessAndManageCertificates;
     /**
+     * @return The group will be allowed to access and manage dns records.
+     * 
+     */
+    private Boolean accessAndManageDns;
+    /**
+     * @return The group will be allowed to access and manage iam resources.
+     * 
+     */
+    private Boolean accessAndManageIamResources;
+    /**
+     * @return The group will be allowed to access and manage kaas.
+     * 
+     */
+    private Boolean accessAndManageKaas;
+    /**
+     * @return The group will be allowed to access and manage logging.
+     * 
+     */
+    private Boolean accessAndManageLogging;
+    /**
      * @return The group will be allowed to access and manage monitoring.
      * 
      */
     private Boolean accessAndManageMonitoring;
+    /**
+     * @return The group will be allowed to access and manage network file storage.
+     * 
+     */
+    private Boolean accessAndManageNetworkFileStorage;
+    /**
+     * @return The group will be allowed to access and manage vpn.
+     * 
+     */
+    private Boolean accessAndManageVpn;
     /**
      * @return The group will be allowed to create backup unit privilege.
      * 
@@ -54,6 +101,11 @@ public final class GetGroupResult {
      */
     private Boolean createK8sCluster;
     /**
+     * @return The group will be allowed to create network security groups.
+     * 
+     */
+    private Boolean createNetworkSecurityGroups;
+    /**
      * @return The group will be allowed to create Cross Connects privilege.
      * 
      */
@@ -63,16 +115,27 @@ public final class GetGroupResult {
      * 
      */
     private Boolean createSnapshot;
+    private @Nullable Boolean getUsersData;
     /**
      * @return The id of the group.
      * 
      */
     private String id;
     /**
+     * @return The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    private Boolean manageDataplatform;
+    /**
      * @return Privilege for a group to manage DBaaS related functionality.
      * 
      */
     private Boolean manageDbaas;
+    /**
+     * @return The group will be allowed to access container registry related functionality.
+     * 
+     */
+    private Boolean manageRegistry;
     /**
      * @return A name for the group.
      * 
@@ -103,6 +166,27 @@ public final class GetGroupResult {
         return this.accessActivityLog;
     }
     /**
+     * @return The group will be allowed to access and manage ai model hub.
+     * 
+     */
+    public Boolean accessAndManageAiModelHub() {
+        return this.accessAndManageAiModelHub;
+    }
+    /**
+     * @return The group will be allowed to access and manage api gateway.
+     * 
+     */
+    public Boolean accessAndManageApiGateway() {
+        return this.accessAndManageApiGateway;
+    }
+    /**
+     * @return The group will be allowed to access and manage cdn.
+     * 
+     */
+    public Boolean accessAndManageCdn() {
+        return this.accessAndManageCdn;
+    }
+    /**
      * @return The group will be allowed to access and manage certificates.
      * 
      */
@@ -110,11 +194,53 @@ public final class GetGroupResult {
         return this.accessAndManageCertificates;
     }
     /**
+     * @return The group will be allowed to access and manage dns records.
+     * 
+     */
+    public Boolean accessAndManageDns() {
+        return this.accessAndManageDns;
+    }
+    /**
+     * @return The group will be allowed to access and manage iam resources.
+     * 
+     */
+    public Boolean accessAndManageIamResources() {
+        return this.accessAndManageIamResources;
+    }
+    /**
+     * @return The group will be allowed to access and manage kaas.
+     * 
+     */
+    public Boolean accessAndManageKaas() {
+        return this.accessAndManageKaas;
+    }
+    /**
+     * @return The group will be allowed to access and manage logging.
+     * 
+     */
+    public Boolean accessAndManageLogging() {
+        return this.accessAndManageLogging;
+    }
+    /**
      * @return The group will be allowed to access and manage monitoring.
      * 
      */
     public Boolean accessAndManageMonitoring() {
         return this.accessAndManageMonitoring;
+    }
+    /**
+     * @return The group will be allowed to access and manage network file storage.
+     * 
+     */
+    public Boolean accessAndManageNetworkFileStorage() {
+        return this.accessAndManageNetworkFileStorage;
+    }
+    /**
+     * @return The group will be allowed to access and manage vpn.
+     * 
+     */
+    public Boolean accessAndManageVpn() {
+        return this.accessAndManageVpn;
     }
     /**
      * @return The group will be allowed to create backup unit privilege.
@@ -152,6 +278,13 @@ public final class GetGroupResult {
         return this.createK8sCluster;
     }
     /**
+     * @return The group will be allowed to create network security groups.
+     * 
+     */
+    public Boolean createNetworkSecurityGroups() {
+        return this.createNetworkSecurityGroups;
+    }
+    /**
      * @return The group will be allowed to create Cross Connects privilege.
      * 
      */
@@ -165,6 +298,9 @@ public final class GetGroupResult {
     public Boolean createSnapshot() {
         return this.createSnapshot;
     }
+    public Optional<Boolean> getUsersData() {
+        return Optional.ofNullable(this.getUsersData);
+    }
     /**
      * @return The id of the group.
      * 
@@ -173,11 +309,25 @@ public final class GetGroupResult {
         return this.id;
     }
     /**
+     * @return The group will be allowed to access and manage the Data Platform.
+     * 
+     */
+    public Boolean manageDataplatform() {
+        return this.manageDataplatform;
+    }
+    /**
      * @return Privilege for a group to manage DBaaS related functionality.
      * 
      */
     public Boolean manageDbaas() {
         return this.manageDbaas;
+    }
+    /**
+     * @return The group will be allowed to access container registry related functionality.
+     * 
+     */
+    public Boolean manageRegistry() {
+        return this.manageRegistry;
     }
     /**
      * @return A name for the group.
@@ -218,17 +368,30 @@ public final class GetGroupResult {
     @CustomType.Builder
     public static final class Builder {
         private Boolean accessActivityLog;
+        private Boolean accessAndManageAiModelHub;
+        private Boolean accessAndManageApiGateway;
+        private Boolean accessAndManageCdn;
         private Boolean accessAndManageCertificates;
+        private Boolean accessAndManageDns;
+        private Boolean accessAndManageIamResources;
+        private Boolean accessAndManageKaas;
+        private Boolean accessAndManageLogging;
         private Boolean accessAndManageMonitoring;
+        private Boolean accessAndManageNetworkFileStorage;
+        private Boolean accessAndManageVpn;
         private Boolean createBackupUnit;
         private Boolean createDatacenter;
         private Boolean createFlowLog;
         private Boolean createInternetAccess;
         private Boolean createK8sCluster;
+        private Boolean createNetworkSecurityGroups;
         private Boolean createPcc;
         private Boolean createSnapshot;
+        private @Nullable Boolean getUsersData;
         private String id;
+        private Boolean manageDataplatform;
         private Boolean manageDbaas;
+        private Boolean manageRegistry;
         private String name;
         private Boolean reserveIp;
         private Boolean s3Privilege;
@@ -237,17 +400,30 @@ public final class GetGroupResult {
         public Builder(GetGroupResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessActivityLog = defaults.accessActivityLog;
+    	      this.accessAndManageAiModelHub = defaults.accessAndManageAiModelHub;
+    	      this.accessAndManageApiGateway = defaults.accessAndManageApiGateway;
+    	      this.accessAndManageCdn = defaults.accessAndManageCdn;
     	      this.accessAndManageCertificates = defaults.accessAndManageCertificates;
+    	      this.accessAndManageDns = defaults.accessAndManageDns;
+    	      this.accessAndManageIamResources = defaults.accessAndManageIamResources;
+    	      this.accessAndManageKaas = defaults.accessAndManageKaas;
+    	      this.accessAndManageLogging = defaults.accessAndManageLogging;
     	      this.accessAndManageMonitoring = defaults.accessAndManageMonitoring;
+    	      this.accessAndManageNetworkFileStorage = defaults.accessAndManageNetworkFileStorage;
+    	      this.accessAndManageVpn = defaults.accessAndManageVpn;
     	      this.createBackupUnit = defaults.createBackupUnit;
     	      this.createDatacenter = defaults.createDatacenter;
     	      this.createFlowLog = defaults.createFlowLog;
     	      this.createInternetAccess = defaults.createInternetAccess;
     	      this.createK8sCluster = defaults.createK8sCluster;
+    	      this.createNetworkSecurityGroups = defaults.createNetworkSecurityGroups;
     	      this.createPcc = defaults.createPcc;
     	      this.createSnapshot = defaults.createSnapshot;
+    	      this.getUsersData = defaults.getUsersData;
     	      this.id = defaults.id;
+    	      this.manageDataplatform = defaults.manageDataplatform;
     	      this.manageDbaas = defaults.manageDbaas;
+    	      this.manageRegistry = defaults.manageRegistry;
     	      this.name = defaults.name;
     	      this.reserveIp = defaults.reserveIp;
     	      this.s3Privilege = defaults.s3Privilege;
@@ -263,6 +439,30 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder accessAndManageAiModelHub(Boolean accessAndManageAiModelHub) {
+            if (accessAndManageAiModelHub == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageAiModelHub");
+            }
+            this.accessAndManageAiModelHub = accessAndManageAiModelHub;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageApiGateway(Boolean accessAndManageApiGateway) {
+            if (accessAndManageApiGateway == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageApiGateway");
+            }
+            this.accessAndManageApiGateway = accessAndManageApiGateway;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageCdn(Boolean accessAndManageCdn) {
+            if (accessAndManageCdn == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageCdn");
+            }
+            this.accessAndManageCdn = accessAndManageCdn;
+            return this;
+        }
+        @CustomType.Setter
         public Builder accessAndManageCertificates(Boolean accessAndManageCertificates) {
             if (accessAndManageCertificates == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageCertificates");
@@ -271,11 +471,59 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder accessAndManageDns(Boolean accessAndManageDns) {
+            if (accessAndManageDns == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageDns");
+            }
+            this.accessAndManageDns = accessAndManageDns;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageIamResources(Boolean accessAndManageIamResources) {
+            if (accessAndManageIamResources == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageIamResources");
+            }
+            this.accessAndManageIamResources = accessAndManageIamResources;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageKaas(Boolean accessAndManageKaas) {
+            if (accessAndManageKaas == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageKaas");
+            }
+            this.accessAndManageKaas = accessAndManageKaas;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageLogging(Boolean accessAndManageLogging) {
+            if (accessAndManageLogging == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageLogging");
+            }
+            this.accessAndManageLogging = accessAndManageLogging;
+            return this;
+        }
+        @CustomType.Setter
         public Builder accessAndManageMonitoring(Boolean accessAndManageMonitoring) {
             if (accessAndManageMonitoring == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageMonitoring");
             }
             this.accessAndManageMonitoring = accessAndManageMonitoring;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageNetworkFileStorage(Boolean accessAndManageNetworkFileStorage) {
+            if (accessAndManageNetworkFileStorage == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageNetworkFileStorage");
+            }
+            this.accessAndManageNetworkFileStorage = accessAndManageNetworkFileStorage;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder accessAndManageVpn(Boolean accessAndManageVpn) {
+            if (accessAndManageVpn == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "accessAndManageVpn");
+            }
+            this.accessAndManageVpn = accessAndManageVpn;
             return this;
         }
         @CustomType.Setter
@@ -319,6 +567,14 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder createNetworkSecurityGroups(Boolean createNetworkSecurityGroups) {
+            if (createNetworkSecurityGroups == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "createNetworkSecurityGroups");
+            }
+            this.createNetworkSecurityGroups = createNetworkSecurityGroups;
+            return this;
+        }
+        @CustomType.Setter
         public Builder createPcc(Boolean createPcc) {
             if (createPcc == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "createPcc");
@@ -335,6 +591,12 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder getUsersData(@Nullable Boolean getUsersData) {
+
+            this.getUsersData = getUsersData;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "id");
@@ -343,11 +605,27 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder manageDataplatform(Boolean manageDataplatform) {
+            if (manageDataplatform == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "manageDataplatform");
+            }
+            this.manageDataplatform = manageDataplatform;
+            return this;
+        }
+        @CustomType.Setter
         public Builder manageDbaas(Boolean manageDbaas) {
             if (manageDbaas == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "manageDbaas");
             }
             this.manageDbaas = manageDbaas;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder manageRegistry(Boolean manageRegistry) {
+            if (manageRegistry == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "manageRegistry");
+            }
+            this.manageRegistry = manageRegistry;
             return this;
         }
         @CustomType.Setter
@@ -388,17 +666,30 @@ public final class GetGroupResult {
         public GetGroupResult build() {
             final var _resultValue = new GetGroupResult();
             _resultValue.accessActivityLog = accessActivityLog;
+            _resultValue.accessAndManageAiModelHub = accessAndManageAiModelHub;
+            _resultValue.accessAndManageApiGateway = accessAndManageApiGateway;
+            _resultValue.accessAndManageCdn = accessAndManageCdn;
             _resultValue.accessAndManageCertificates = accessAndManageCertificates;
+            _resultValue.accessAndManageDns = accessAndManageDns;
+            _resultValue.accessAndManageIamResources = accessAndManageIamResources;
+            _resultValue.accessAndManageKaas = accessAndManageKaas;
+            _resultValue.accessAndManageLogging = accessAndManageLogging;
             _resultValue.accessAndManageMonitoring = accessAndManageMonitoring;
+            _resultValue.accessAndManageNetworkFileStorage = accessAndManageNetworkFileStorage;
+            _resultValue.accessAndManageVpn = accessAndManageVpn;
             _resultValue.createBackupUnit = createBackupUnit;
             _resultValue.createDatacenter = createDatacenter;
             _resultValue.createFlowLog = createFlowLog;
             _resultValue.createInternetAccess = createInternetAccess;
             _resultValue.createK8sCluster = createK8sCluster;
+            _resultValue.createNetworkSecurityGroups = createNetworkSecurityGroups;
             _resultValue.createPcc = createPcc;
             _resultValue.createSnapshot = createSnapshot;
+            _resultValue.getUsersData = getUsersData;
             _resultValue.id = id;
+            _resultValue.manageDataplatform = manageDataplatform;
             _resultValue.manageDbaas = manageDbaas;
+            _resultValue.manageRegistry = manageRegistry;
             _resultValue.name = name;
             _resultValue.reserveIp = reserveIp;
             _resultValue.s3Privilege = s3Privilege;

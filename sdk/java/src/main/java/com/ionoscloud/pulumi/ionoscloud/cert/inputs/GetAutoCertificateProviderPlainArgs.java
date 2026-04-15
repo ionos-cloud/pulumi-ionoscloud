@@ -34,14 +34,14 @@ public final class GetAutoCertificateProviderPlainArgs extends com.pulumi.resour
     }
 
     /**
-     * [string] The location of the provider.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
      * 
      */
     @Import(name="location")
     private @Nullable String location;
 
     /**
-     * @return [string] The location of the provider.
+     * @return [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
      * 
      */
     public Optional<String> location() {
@@ -103,7 +103,7 @@ public final class GetAutoCertificateProviderPlainArgs extends com.pulumi.resour
         }
 
         /**
-         * @param location [string] The location of the provider.
+         * @param location [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
          * 
          * @return builder
          * 

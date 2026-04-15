@@ -18,9 +18,17 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
 
     public static final RegistryTokenState Empty = new RegistryTokenState();
 
+    /**
+     * [map]
+     * 
+     */
     @Import(name="credentials")
     private @Nullable Output<List<RegistryTokenCredentialArgs>> credentials;
 
+    /**
+     * @return [map]
+     * 
+     */
     public Optional<Output<List<RegistryTokenCredentialArgs>>> credentials() {
         return Optional.ofNullable(this.credentials);
     }
@@ -30,6 +38,21 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
 
     public Optional<Output<String>> expiryDate() {
         return Optional.ofNullable(this.expiryDate);
+    }
+
+    /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
     }
 
     /**
@@ -49,9 +72,17 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * [string] The ID of the container registry
+     * 
+     */
     @Import(name="registryId")
     private @Nullable Output<String> registryId;
 
+    /**
+     * @return [string] The ID of the container registry
+     * 
+     */
     public Optional<Output<String>> registryId() {
         return Optional.ofNullable(this.registryId);
     }
@@ -78,14 +109,14 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * [map]
+     * (Computed) [map]
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<List<RegistryTokenScopeArgs>> scopes;
 
     /**
-     * @return [map]
+     * @return (Computed) [map]
      * 
      */
     public Optional<Output<List<RegistryTokenScopeArgs>>> scopes() {
@@ -93,14 +124,14 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+     * [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+     * @return [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
      * 
      */
     public Optional<Output<String>> status() {
@@ -112,6 +143,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
     private RegistryTokenState(RegistryTokenState $) {
         this.credentials = $.credentials;
         this.expiryDate = $.expiryDate;
+        this.location = $.location;
         this.name = $.name;
         this.registryId = $.registryId;
         this.savePasswordToFile = $.savePasswordToFile;
@@ -137,15 +169,33 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
             $ = new RegistryTokenState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param credentials [map]
+         * 
+         * @return builder
+         * 
+         */
         public Builder credentials(@Nullable Output<List<RegistryTokenCredentialArgs>> credentials) {
             $.credentials = credentials;
             return this;
         }
 
+        /**
+         * @param credentials [map]
+         * 
+         * @return builder
+         * 
+         */
         public Builder credentials(List<RegistryTokenCredentialArgs> credentials) {
             return credentials(Output.of(credentials));
         }
 
+        /**
+         * @param credentials [map]
+         * 
+         * @return builder
+         * 
+         */
         public Builder credentials(RegistryTokenCredentialArgs... credentials) {
             return credentials(List.of(credentials));
         }
@@ -157,6 +207,27 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
 
         public Builder expiryDate(String expiryDate) {
             return expiryDate(Output.of(expiryDate));
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**
@@ -182,11 +253,23 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
             return name(Output.of(name));
         }
 
+        /**
+         * @param registryId [string] The ID of the container registry
+         * 
+         * @return builder
+         * 
+         */
         public Builder registryId(@Nullable Output<String> registryId) {
             $.registryId = registryId;
             return this;
         }
 
+        /**
+         * @param registryId [string] The ID of the container registry
+         * 
+         * @return builder
+         * 
+         */
         public Builder registryId(String registryId) {
             return registryId(Output.of(registryId));
         }
@@ -219,7 +302,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -230,7 +313,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -240,7 +323,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param scopes [map]
+         * @param scopes (Computed) [map]
          * 
          * @return builder
          * 
@@ -250,7 +333,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+         * @param status [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 
@@ -261,7 +344,7 @@ public final class RegistryTokenState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param status [string] Must have on of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
+         * @param status [string] Must have one of the values: &lt;span pulumi-lang-nodejs=&#34;`enabled`&#34; pulumi-lang-dotnet=&#34;`Enabled`&#34; pulumi-lang-go=&#34;`enabled`&#34; pulumi-lang-python=&#34;`enabled`&#34; pulumi-lang-yaml=&#34;`enabled`&#34; pulumi-lang-java=&#34;`enabled`&#34;&gt;`enabled`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`disabled`&#34; pulumi-lang-dotnet=&#34;`Disabled`&#34; pulumi-lang-go=&#34;`disabled`&#34; pulumi-lang-python=&#34;`disabled`&#34; pulumi-lang-yaml=&#34;`disabled`&#34; pulumi-lang-java=&#34;`disabled`&#34;&gt;`disabled`&lt;/span&gt;
          * 
          * @return builder
          * 

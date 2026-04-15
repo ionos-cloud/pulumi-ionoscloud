@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetPSQLBackupsArgs extends com.pulumi.resources.InvokeArgs {
@@ -33,10 +35,26 @@ public final class GetPSQLBackupsArgs extends com.pulumi.resources.InvokeArgs {
         return this.clusterId;
     }
 
+    /**
+     * The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The IONOS Object Storage location where the backups will be stored.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetPSQLBackupsArgs() {}
 
     private GetPSQLBackupsArgs(GetPSQLBackupsArgs $) {
         this.clusterId = $.clusterId;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -80,6 +98,27 @@ public final class GetPSQLBackupsArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder clusterId(String clusterId) {
             return clusterId(Output.of(clusterId));
+        }
+
+        /**
+         * @param location The IONOS Object Storage location where the backups will be stored.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The IONOS Object Storage location where the backups will be stored.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         public GetPSQLBackupsArgs build() {

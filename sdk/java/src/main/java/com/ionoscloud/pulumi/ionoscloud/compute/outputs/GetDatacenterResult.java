@@ -38,7 +38,7 @@ public final class GetDatacenterResult {
     private String id;
     private String ipv6CidrBlock;
     /**
-     * @return The regional location where the Virtual Data Center will be created
+     * @return The regional location where the Virtual Data Center is created
      * 
      */
     private @Nullable String location;
@@ -91,7 +91,7 @@ public final class GetDatacenterResult {
         return this.ipv6CidrBlock;
     }
     /**
-     * @return The regional location where the Virtual Data Center will be created
+     * @return The regional location where the Virtual Data Center is created
      * 
      */
     public Optional<String> location() {

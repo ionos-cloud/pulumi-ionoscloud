@@ -18,14 +18,14 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
     public static final PipelineState Empty = new PipelineState();
 
     /**
-     * [string] The address of the client&#39;s grafana instance.
+     * [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      * 
      */
     @Import(name="grafanaAddress")
     private @Nullable Output<String> grafanaAddress;
 
     /**
-     * @return [string] The address of the client&#39;s grafana instance.
+     * @return [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      * 
      */
     public Optional<Output<String>> grafanaAddress() {
@@ -33,14 +33,44 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    @Import(name="httpAddress")
+    private @Nullable Output<String> httpAddress;
+
+    /**
+     * @return [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+     * 
+     */
+    public Optional<Output<String>> httpAddress() {
+        return Optional.ofNullable(this.httpAddress);
+    }
+
+    /**
+     * [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     * 
+     */
+    @Import(name="key")
+    private @Nullable Output<String> key;
+
+    /**
+     * @return [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+     * 
+     */
+    public Optional<Output<String>> key() {
+        return Optional.ofNullable(this.key);
+    }
+
+    /**
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * @return [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Optional<Output<String>> location() {
@@ -77,13 +107,31 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    @Import(name="tcpAddress")
+    private @Nullable Output<String> tcpAddress;
+
+    /**
+     * @return [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+     * 
+     */
+    public Optional<Output<String>> tcpAddress() {
+        return Optional.ofNullable(this.tcpAddress);
+    }
+
     private PipelineState() {}
 
     private PipelineState(PipelineState $) {
         this.grafanaAddress = $.grafanaAddress;
+        this.httpAddress = $.httpAddress;
+        this.key = $.key;
         this.location = $.location;
         this.logs = $.logs;
         this.name = $.name;
+        this.tcpAddress = $.tcpAddress;
     }
 
     public static Builder builder() {
@@ -105,7 +153,7 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param grafanaAddress [string] The address of the client&#39;s grafana instance.
+         * @param grafanaAddress [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
          * 
          * @return builder
          * 
@@ -116,7 +164,7 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param grafanaAddress [string] The address of the client&#39;s grafana instance.
+         * @param grafanaAddress [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
          * 
          * @return builder
          * 
@@ -126,7 +174,49 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+         * @param httpAddress [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpAddress(@Nullable Output<String> httpAddress) {
+            $.httpAddress = httpAddress;
+            return this;
+        }
+
+        /**
+         * @param httpAddress [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpAddress(String httpAddress) {
+            return httpAddress(Output.of(httpAddress));
+        }
+
+        /**
+         * @param key [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+         * 
+         * @return builder
+         * 
+         */
+        public Builder key(@Nullable Output<String> key) {
+            $.key = key;
+            return this;
+        }
+
+        /**
+         * @param key [string] The key is shared once and is used to authenticate the logs sent to the pipeline
+         * 
+         * @return builder
+         * 
+         */
+        public Builder key(String key) {
+            return key(Output.of(key));
+        }
+
+        /**
+         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
          * 
          * @return builder
          * 
@@ -137,7 +227,7 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
          * 
          * @return builder
          * 
@@ -196,6 +286,27 @@ public final class PipelineState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param tcpAddress [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tcpAddress(@Nullable Output<String> tcpAddress) {
+            $.tcpAddress = tcpAddress;
+            return this;
+        }
+
+        /**
+         * @param tcpAddress [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tcpAddress(String tcpAddress) {
+            return tcpAddress(Output.of(tcpAddress));
         }
 
         public PipelineState build() {

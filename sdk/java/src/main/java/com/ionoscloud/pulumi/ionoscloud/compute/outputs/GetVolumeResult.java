@@ -9,6 +9,8 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetVolumeResult {
@@ -59,6 +61,11 @@ public final class GetVolumeResult {
      */
     private String diskType;
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    private Boolean exposeSerial;
+    /**
      * @return The id of the volume.
      * 
      */
@@ -78,6 +85,7 @@ public final class GetVolumeResult {
      * 
      */
     private String licenceType;
+    private @Nullable String location;
     /**
      * @return The name of the volume.
      * 
@@ -98,6 +106,11 @@ public final class GetVolumeResult {
      * 
      */
     private Boolean ramHotPlug;
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private Boolean requireLegacyBios;
     /**
      * @return The size of the volume in GB.
      * 
@@ -182,6 +195,13 @@ public final class GetVolumeResult {
         return this.diskType;
     }
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Boolean exposeSerial() {
+        return this.exposeSerial;
+    }
+    /**
      * @return The id of the volume.
      * 
      */
@@ -208,6 +228,9 @@ public final class GetVolumeResult {
      */
     public String licenceType() {
         return this.licenceType;
+    }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
     }
     /**
      * @return The name of the volume.
@@ -236,6 +259,13 @@ public final class GetVolumeResult {
      */
     public Boolean ramHotPlug() {
         return this.ramHotPlug;
+    }
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Boolean requireLegacyBios() {
+        return this.requireLegacyBios;
     }
     /**
      * @return The size of the volume in GB.
@@ -278,14 +308,17 @@ public final class GetVolumeResult {
         private Boolean discVirtioHotPlug;
         private Boolean discVirtioHotUnplug;
         private String diskType;
+        private Boolean exposeSerial;
         private String id;
         private String image;
         private String imagePassword;
         private String licenceType;
+        private @Nullable String location;
         private String name;
         private Boolean nicHotPlug;
         private Boolean nicHotUnplug;
         private Boolean ramHotPlug;
+        private Boolean requireLegacyBios;
         private Integer size;
         private String sshkey;
         private String userData;
@@ -302,14 +335,17 @@ public final class GetVolumeResult {
     	      this.discVirtioHotPlug = defaults.discVirtioHotPlug;
     	      this.discVirtioHotUnplug = defaults.discVirtioHotUnplug;
     	      this.diskType = defaults.diskType;
+    	      this.exposeSerial = defaults.exposeSerial;
     	      this.id = defaults.id;
     	      this.image = defaults.image;
     	      this.imagePassword = defaults.imagePassword;
     	      this.licenceType = defaults.licenceType;
+    	      this.location = defaults.location;
     	      this.name = defaults.name;
     	      this.nicHotPlug = defaults.nicHotPlug;
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.size = defaults.size;
     	      this.sshkey = defaults.sshkey;
     	      this.userData = defaults.userData;
@@ -396,6 +432,14 @@ public final class GetVolumeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder exposeSerial(Boolean exposeSerial) {
+            if (exposeSerial == null) {
+              throw new MissingRequiredPropertyException("GetVolumeResult", "exposeSerial");
+            }
+            this.exposeSerial = exposeSerial;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetVolumeResult", "id");
@@ -428,6 +472,12 @@ public final class GetVolumeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetVolumeResult", "name");
@@ -457,6 +507,14 @@ public final class GetVolumeResult {
               throw new MissingRequiredPropertyException("GetVolumeResult", "ramHotPlug");
             }
             this.ramHotPlug = ramHotPlug;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder requireLegacyBios(Boolean requireLegacyBios) {
+            if (requireLegacyBios == null) {
+              throw new MissingRequiredPropertyException("GetVolumeResult", "requireLegacyBios");
+            }
+            this.requireLegacyBios = requireLegacyBios;
             return this;
         }
         @CustomType.Setter
@@ -495,14 +553,17 @@ public final class GetVolumeResult {
             _resultValue.discVirtioHotPlug = discVirtioHotPlug;
             _resultValue.discVirtioHotUnplug = discVirtioHotUnplug;
             _resultValue.diskType = diskType;
+            _resultValue.exposeSerial = exposeSerial;
             _resultValue.id = id;
             _resultValue.image = image;
             _resultValue.imagePassword = imagePassword;
             _resultValue.licenceType = licenceType;
+            _resultValue.location = location;
             _resultValue.name = name;
             _resultValue.nicHotPlug = nicHotPlug;
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.size = size;
             _resultValue.sshkey = sshkey;
             _resultValue.userData = userData;

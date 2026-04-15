@@ -78,14 +78,14 @@ public final class WireguardPeerState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * [string] The location of the WireGuard Gateway.
+     * [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [string] The location of the WireGuard Gateway.
+     * @return [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      * 
      */
     public Optional<Output<String>> location() {
@@ -263,7 +263,7 @@ public final class WireguardPeerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param location [string] The location of the WireGuard Gateway.
+         * @param location [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class WireguardPeerState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param location [string] The location of the WireGuard Gateway.
+         * @param location [string] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
          * 
          * @return builder
          * 

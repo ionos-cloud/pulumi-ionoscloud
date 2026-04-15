@@ -194,6 +194,20 @@ public class Lan extends com.pulumi.resources.CustomResource {
         return this.ipv6CidrBlock;
     }
     /**
+     * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * [string] The name of the LAN.
      * 
      */

@@ -23,17 +23,17 @@ public final class GetNodePoolNodesNode {
      */
     private String k8sVersion;
     /**
-     * @return Name of an existing node pool that you want to search for.
+     * @return name of the node
      * 
      */
     private String name;
     /**
-     * @return private ip of the node
+     * @return private ip of the node. Only present if the k8s cluster is private.
      * 
      */
     private String privateIp;
     /**
-     * @return public ip of the node
+     * @return public ip of the node. Only present if the k8s cluster is public
      * 
      */
     private String publicIp;
@@ -56,21 +56,21 @@ public final class GetNodePoolNodesNode {
         return this.k8sVersion;
     }
     /**
-     * @return Name of an existing node pool that you want to search for.
+     * @return name of the node
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return private ip of the node
+     * @return private ip of the node. Only present if the k8s cluster is private.
      * 
      */
     public String privateIp() {
         return this.privateIp;
     }
     /**
-     * @return public ip of the node
+     * @return public ip of the node. Only present if the k8s cluster is public
      * 
      */
     public String publicIp() {

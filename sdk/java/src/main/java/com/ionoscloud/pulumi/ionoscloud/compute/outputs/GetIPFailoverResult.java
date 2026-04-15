@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetIPFailoverResult {
@@ -26,6 +28,7 @@ public final class GetIPFailoverResult {
      * 
      */
     private String lanId;
+    private @Nullable String location;
     /**
      * @return The ID of a NIC.
      * 
@@ -57,6 +60,9 @@ public final class GetIPFailoverResult {
     public String lanId() {
         return this.lanId;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     /**
      * @return The ID of a NIC.
      * 
@@ -78,6 +84,7 @@ public final class GetIPFailoverResult {
         private String id;
         private String ip;
         private String lanId;
+        private @Nullable String location;
         private String nicuuid;
         public Builder() {}
         public Builder(GetIPFailoverResult defaults) {
@@ -86,6 +93,7 @@ public final class GetIPFailoverResult {
     	      this.id = defaults.id;
     	      this.ip = defaults.ip;
     	      this.lanId = defaults.lanId;
+    	      this.location = defaults.location;
     	      this.nicuuid = defaults.nicuuid;
         }
 
@@ -122,6 +130,12 @@ public final class GetIPFailoverResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder nicuuid(String nicuuid) {
             if (nicuuid == null) {
               throw new MissingRequiredPropertyException("GetIPFailoverResult", "nicuuid");
@@ -135,6 +149,7 @@ public final class GetIPFailoverResult {
             _resultValue.id = id;
             _resultValue.ip = ip;
             _resultValue.lanId = lanId;
+            _resultValue.location = location;
             _resultValue.nicuuid = nicuuid;
             return _resultValue;
         }

@@ -62,11 +62,19 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.filters);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     private GetServersArgs() {}
 
     private GetServersArgs(GetServersArgs $) {
         this.datacenterId = $.datacenterId;
         this.filters = $.filters;
+        this.location = $.location;
     }
 
     public static Builder builder() {
@@ -158,6 +166,15 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder filters(GetServersFilterArgs... filters) {
             return filters(List.of(filters));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         public GetServersArgs build() {

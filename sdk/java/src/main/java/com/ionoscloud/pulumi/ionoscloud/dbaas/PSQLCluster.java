@@ -15,13 +15,14 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **DbaaS PgSql Cluster**.
+ * Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
  * 
  * ## Example Usage
  * 
@@ -60,7 +61,7 @@ import javax.annotation.Nullable;
  *         var example = new Datacenter("example", DatacenterArgs.builder()
  *             .name("example")
  *             .location("de/txl")
- *             .description("Datacenter for testing dbaas cluster")
+ *             .description("Datacenter for testing psql cluster")
  *             .build());
  * 
  *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
@@ -74,7 +75,7 @@ import javax.annotation.Nullable;
  *             .instances(1)
  *             .cores(4)
  *             .ram(2048)
- *             .storageSize(2048)
+ *             .storageSize(10240)
  *             .storageType("HDD")
  *             .connectionPooler(PSQLClusterConnectionPoolerArgs.builder()
  *                 .enabled(true)
@@ -104,123 +105,6 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
- * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
- * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
- * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
- * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
- * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLCluster;
- * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLClusterArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionPoolerArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterCredentialsArgs;
- * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterFromBackupArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Complete example
- *         var example = new Datacenter("example", DatacenterArgs.builder()
- *             .name("example")
- *             .location("de/txl")
- *             .description("Datacenter for testing dbaas cluster")
- *             .build());
- * 
- *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
- *             .datacenterId(example.id())
- *             .public_(false)
- *             .name("example")
- *             .build());
- * 
- *         var exampleServer = new Server("exampleServer", ServerArgs.builder()
- *             .name("example")
- *             .datacenterId(example.id())
- *             .cores(2)
- *             .ram(2048)
- *             .availabilityZone("ZONE_1")
- *             .cpuFamily("INTEL_SKYLAKE")
- *             .imageName("rockylinux-8-GenericCloud-20230518")
- *             .imagePassword("password")
- *             .volume(ServerVolumeArgs.builder()
- *                 .name("example")
- *                 .size(6)
- *                 .diskType("SSD Standard")
- *                 .build())
- *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleLan.id())
- *                 .name("example")
- *                 .dhcp(true)
- *                 .build())
- *             .build());
- * 
- *         var clusterPassword = new Password("clusterPassword", PasswordArgs.builder()
- *             .length(16)
- *             .special(true)
- *             .overrideSpecial("!#$%&*()-_=+[]{}<>:?")
- *             .build());
- * 
- *         var examplePSQLCluster = new PSQLCluster("examplePSQLCluster", PSQLClusterArgs.builder()
- *             .postgresVersion("12")
- *             .instances(1)
- *             .cores(4)
- *             .ram(2048)
- *             .storageSize(2048)
- *             .storageType("HDD")
- *             .connectionPooler(PSQLClusterConnectionPoolerArgs.builder()
- *                 .enabled(true)
- *                 .poolMode("session")
- *                 .build())
- *             .connections(PSQLClusterConnectionsArgs.builder()
- *                 .datacenterId(example.id())
- *                 .lanId(exampleLan.id())
- *                 .cidr("database_ip_cidr_from_nic")
- *                 .build())
- *             .location(example.location())
- *             .displayName("PostgreSQL_cluster")
- *             .maintenanceWindow(PSQLClusterMaintenanceWindowArgs.builder()
- *                 .dayOfTheWeek("Sunday")
- *                 .time("09:00:00")
- *                 .build())
- *             .credentials(PSQLClusterCredentialsArgs.builder()
- *                 .username("username")
- *                 .password(clusterPassword.result())
- *                 .build())
- *             .synchronizationMode("ASYNCHRONOUS")
- *             .fromBackup(PSQLClusterFromBackupArgs.builder()
- *                 .backupId("backup_uuid")
- *                 .recoveryTargetTime("2021-12-06T13:54:08Z")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ## Import
  * 
  * Resource DbaaS Postgres Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
@@ -232,6 +116,24 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="ionoscloud:dbaas/pSQLCluster:PSQLCluster")
 public class PSQLCluster extends com.pulumi.resources.CustomResource {
+    /**
+     * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+     * 
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * 
+     */
+    @Export(name="allowReplace", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowReplace;
+
+    /**
+     * @return [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
+     * 
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * 
+     */
+    public Output<Optional<Boolean>> allowReplace() {
+        return Codegen.optional(this.allowReplace);
+    }
     /**
      * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
@@ -359,14 +261,14 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
         return this.instances;
     }
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
+     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Output<String> location() {

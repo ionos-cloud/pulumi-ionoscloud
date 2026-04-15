@@ -32,14 +32,14 @@ public final class GetClusterPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
      * 
      */
     @Import(name="location", required=true)
     private String location;
 
     /**
-     * @return The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * @return The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
      * 
      */
     public String location() {
@@ -107,7 +107,7 @@ public final class GetClusterPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+         * @param location The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`.
          * 
          * @return builder
          * 

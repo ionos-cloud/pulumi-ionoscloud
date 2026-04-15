@@ -109,6 +109,13 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.listenerLan);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * Specifies the format of the logs.
      * 
@@ -163,6 +170,7 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
         this.ips = $.ips;
         this.lbPrivateIps = $.lbPrivateIps;
         this.listenerLan = $.listenerLan;
+        this.location = $.location;
         this.loggingFormat = $.loggingFormat;
         this.name = $.name;
         this.targetLan = $.targetLan;
@@ -330,6 +338,15 @@ public final class BalancerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder listenerLan(Integer listenerLan) {
             return listenerLan(Output.of(listenerLan));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

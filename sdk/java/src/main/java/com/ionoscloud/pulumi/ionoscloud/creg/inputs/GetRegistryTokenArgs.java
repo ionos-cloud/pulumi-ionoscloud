@@ -32,6 +32,13 @@ public final class GetRegistryTokenArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.id);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if &lt;span pulumi-lang-nodejs=&#34;`partialMatch`&#34; pulumi-lang-dotnet=&#34;`PartialMatch`&#34; pulumi-lang-go=&#34;`partialMatch`&#34; pulumi-lang-python=&#34;`partial_match`&#34; pulumi-lang-yaml=&#34;`partialMatch`&#34; pulumi-lang-java=&#34;`partialMatch`&#34;&gt;`partialMatch`&lt;/span&gt; parameter is not set to true.
      * 
@@ -85,6 +92,7 @@ public final class GetRegistryTokenArgs extends com.pulumi.resources.InvokeArgs 
 
     private GetRegistryTokenArgs(GetRegistryTokenArgs $) {
         this.id = $.id;
+        this.location = $.location;
         this.name = $.name;
         this.partialMatch = $.partialMatch;
         this.registryId = $.registryId;
@@ -127,6 +135,15 @@ public final class GetRegistryTokenArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder id(String id) {
             return id(Output.of(id));
+        }
+
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**

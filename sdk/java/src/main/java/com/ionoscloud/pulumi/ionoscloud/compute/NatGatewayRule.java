@@ -12,6 +12,7 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -67,7 +68,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleLan = new Lan("exampleLan", LanArgs.builder()
  *             .datacenterId(example.id())
- *             .public_(true)
+ *             .public_(false)
  *             .name("Lan Example")
  *             .build());
  * 
@@ -128,6 +129,12 @@ public class NatGatewayRule extends com.pulumi.resources.CustomResource {
      */
     public Output<String> datacenterId() {
         return this.datacenterId;
+    }
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
     }
     /**
      * [string] Name of the NAT gateway rule.

@@ -47,6 +47,7 @@ public final class GetBalancerResult {
      * 
      */
     private Integer listenerLan;
+    private @Nullable String location;
     private String loggingFormat;
     /**
      * @return Specifies the name of the flow log.
@@ -106,6 +107,9 @@ public final class GetBalancerResult {
     public Integer listenerLan() {
         return this.listenerLan;
     }
+    public Optional<String> location() {
+        return Optional.ofNullable(this.location);
+    }
     public String loggingFormat() {
         return this.loggingFormat;
     }
@@ -143,6 +147,7 @@ public final class GetBalancerResult {
         private List<String> ips;
         private List<String> lbPrivateIps;
         private Integer listenerLan;
+        private @Nullable String location;
         private String loggingFormat;
         private String name;
         private @Nullable Boolean partialMatch;
@@ -157,6 +162,7 @@ public final class GetBalancerResult {
     	      this.ips = defaults.ips;
     	      this.lbPrivateIps = defaults.lbPrivateIps;
     	      this.listenerLan = defaults.listenerLan;
+    	      this.location = defaults.location;
     	      this.loggingFormat = defaults.loggingFormat;
     	      this.name = defaults.name;
     	      this.partialMatch = defaults.partialMatch;
@@ -229,6 +235,12 @@ public final class GetBalancerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder location(@Nullable String location) {
+
+            this.location = location;
+            return this;
+        }
+        @CustomType.Setter
         public Builder loggingFormat(String loggingFormat) {
             if (loggingFormat == null) {
               throw new MissingRequiredPropertyException("GetBalancerResult", "loggingFormat");
@@ -267,6 +279,7 @@ public final class GetBalancerResult {
             _resultValue.ips = ips;
             _resultValue.lbPrivateIps = lbPrivateIps;
             _resultValue.listenerLan = listenerLan;
+            _resultValue.location = location;
             _resultValue.loggingFormat = loggingFormat;
             _resultValue.name = name;
             _resultValue.partialMatch = partialMatch;

@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 /**
  * Manages Lifecycle Configuration for Buckets on IonosCloud.
  * 
+ * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -57,7 +59,9 @@ import javax.annotation.Nullable;
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("1")
  *                     .status("Enabled")
- *                     .prefix("/logs")
+ *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                         .prefix("/logs")
+ *                         .build())
  *                     .expiration(BucketLifecycleConfigurationRuleExpirationArgs.builder()
  *                         .days(90)
  *                         .build())
@@ -65,7 +69,9 @@ import javax.annotation.Nullable;
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("2")
  *                     .status("Enabled")
- *                     .prefix("/logs")
+ *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                         .prefix("/logs")
+ *                         .build())
  *                     .noncurrentVersionExpiration(BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs.builder()
  *                         .noncurrentDays(90)
  *                         .build())
@@ -73,7 +79,9 @@ import javax.annotation.Nullable;
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("3")
  *                     .status("Enabled")
- *                     .prefix("/logs")
+ *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                         .prefix("/logs")
+ *                         .build())
  *                     .abortIncompleteMultipartUpload(BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs.builder()
  *                         .daysAfterInitiation(90)
  *                         .build())

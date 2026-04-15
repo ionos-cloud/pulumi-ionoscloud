@@ -60,12 +60,19 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.lanId);
     }
 
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
     /**
      * [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -82,9 +89,9 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [string] The ID of a NIC.
      * 
-     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+     * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
      * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-     * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+     * an IP failover group using Terraform, please use only Terraform in order to manage the created
      * IP failover group.
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -105,6 +112,7 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         this.datacenterId = $.datacenterId;
         this.ip = $.ip;
         this.lanId = $.lanId;
+        this.location = $.location;
         this.nicuuid = $.nicuuid;
     }
 
@@ -189,12 +197,21 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
             return lanId(Output.of(lanId));
         }
 
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        public Builder location(String location) {
+            return location(Output.of(location));
+        }
+
         /**
          * @param nicuuid [string] The ID of a NIC.
          * 
-         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
          * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-         * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+         * an IP failover group using Terraform, please use only Terraform in order to manage the created
          * IP failover group.
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
@@ -215,9 +232,9 @@ public final class IPFailoverState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param nicuuid [string] The ID of a NIC.
          * 
-         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Pulumi)
+         * &gt; **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
          * using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-         * an IP failover group using Pulumi, please use only Pulumi in order to manage the created
+         * an IP failover group using Terraform, please use only Terraform in order to manage the created
          * IP failover group.
          * 
          * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the

@@ -5,6 +5,7 @@ package com.ionoscloud.pulumi.ionoscloud.compute.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,9 +17,26 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetGroupArgs Empty = new GetGroupArgs();
 
     /**
-     * ID of the group you want to search for.
+     * [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
+     * 
+     */
+    @Import(name="getUsersData")
+    private @Nullable Output<Boolean> getUsersData;
+
+    /**
+     * @return [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * 
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
+     * 
+     */
+    public Optional<Output<Boolean>> getUsersData() {
+        return Optional.ofNullable(this.getUsersData);
+    }
+
+    /**
+     * ID of the group you want to search for.
      * 
      */
     @Import(name="id")
@@ -26,8 +44,6 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return ID of the group you want to search for.
-     * 
-     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
      */
     public Optional<Output<String>> id() {
@@ -52,6 +68,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     private GetGroupArgs() {}
 
     private GetGroupArgs(GetGroupArgs $) {
+        this.getUsersData = $.getUsersData;
         this.id = $.id;
         this.name = $.name;
     }
@@ -75,9 +92,32 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param id ID of the group you want to search for.
+         * @param getUsersData [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder getUsersData(@Nullable Output<Boolean> getUsersData) {
+            $.getUsersData = getUsersData;
+            return this;
+        }
+
+        /**
+         * @param getUsersData [Boolean] When set to true, information about users will be stored in state under &lt;span pulumi-lang-nodejs=&#34;`users`&#34; pulumi-lang-dotnet=&#34;`Users`&#34; pulumi-lang-go=&#34;`users`&#34; pulumi-lang-python=&#34;`users`&#34; pulumi-lang-yaml=&#34;`users`&#34; pulumi-lang-java=&#34;`users`&#34;&gt;`users`&lt;/span&gt; attribute, default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * 
+         * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder getUsersData(Boolean getUsersData) {
+            return getUsersData(Output.of(getUsersData));
+        }
+
+        /**
+         * @param id ID of the group you want to search for.
          * 
          * @return builder
          * 
@@ -89,8 +129,6 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param id ID of the group you want to search for.
-         * 
-         * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 
          * @return builder
          * 

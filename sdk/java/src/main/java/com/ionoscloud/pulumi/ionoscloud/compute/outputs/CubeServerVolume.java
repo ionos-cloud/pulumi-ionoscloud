@@ -37,6 +37,11 @@ public final class CubeServerVolume {
     private @Nullable Boolean discVirtioHotUnplug;
     private String diskType;
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    private @Nullable Boolean exposeSerial;
+    /**
      * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
@@ -59,6 +64,11 @@ public final class CubeServerVolume {
     private @Nullable Boolean nicHotUnplug;
     private @Nullable Integer pciSlot;
     private @Nullable Boolean ramHotPlug;
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    private @Nullable Boolean requireLegacyBios;
     /**
      * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
@@ -115,6 +125,13 @@ public final class CubeServerVolume {
         return this.diskType;
     }
     /**
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * 
+     */
+    public Optional<Boolean> exposeSerial() {
+        return Optional.ofNullable(this.exposeSerial);
+    }
+    /**
      * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      * @deprecated
@@ -150,6 +167,13 @@ public final class CubeServerVolume {
     }
     public Optional<Boolean> ramHotPlug() {
         return Optional.ofNullable(this.ramHotPlug);
+    }
+    /**
+     * @return Indicates if the image requires the legacy BIOS for compatibility or specific needs.
+     * 
+     */
+    public Optional<Boolean> requireLegacyBios() {
+        return Optional.ofNullable(this.requireLegacyBios);
     }
     /**
      * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
@@ -188,6 +212,7 @@ public final class CubeServerVolume {
         private @Nullable Boolean discVirtioHotPlug;
         private @Nullable Boolean discVirtioHotUnplug;
         private String diskType;
+        private @Nullable Boolean exposeSerial;
         private @Nullable String imagePassword;
         private @Nullable String licenceType;
         private @Nullable String name;
@@ -195,6 +220,7 @@ public final class CubeServerVolume {
         private @Nullable Boolean nicHotUnplug;
         private @Nullable Integer pciSlot;
         private @Nullable Boolean ramHotPlug;
+        private @Nullable Boolean requireLegacyBios;
         private @Nullable List<String> sshKeyPaths;
         private @Nullable String userData;
         public Builder() {}
@@ -209,6 +235,7 @@ public final class CubeServerVolume {
     	      this.discVirtioHotPlug = defaults.discVirtioHotPlug;
     	      this.discVirtioHotUnplug = defaults.discVirtioHotUnplug;
     	      this.diskType = defaults.diskType;
+    	      this.exposeSerial = defaults.exposeSerial;
     	      this.imagePassword = defaults.imagePassword;
     	      this.licenceType = defaults.licenceType;
     	      this.name = defaults.name;
@@ -216,6 +243,7 @@ public final class CubeServerVolume {
     	      this.nicHotUnplug = defaults.nicHotUnplug;
     	      this.pciSlot = defaults.pciSlot;
     	      this.ramHotPlug = defaults.ramHotPlug;
+    	      this.requireLegacyBios = defaults.requireLegacyBios;
     	      this.sshKeyPaths = defaults.sshKeyPaths;
     	      this.userData = defaults.userData;
         }
@@ -277,6 +305,12 @@ public final class CubeServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder exposeSerial(@Nullable Boolean exposeSerial) {
+
+            this.exposeSerial = exposeSerial;
+            return this;
+        }
+        @CustomType.Setter
         public Builder imagePassword(@Nullable String imagePassword) {
 
             this.imagePassword = imagePassword;
@@ -319,6 +353,12 @@ public final class CubeServerVolume {
             return this;
         }
         @CustomType.Setter
+        public Builder requireLegacyBios(@Nullable Boolean requireLegacyBios) {
+
+            this.requireLegacyBios = requireLegacyBios;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sshKeyPaths(@Nullable List<String> sshKeyPaths) {
 
             this.sshKeyPaths = sshKeyPaths;
@@ -344,6 +384,7 @@ public final class CubeServerVolume {
             _resultValue.discVirtioHotPlug = discVirtioHotPlug;
             _resultValue.discVirtioHotUnplug = discVirtioHotUnplug;
             _resultValue.diskType = diskType;
+            _resultValue.exposeSerial = exposeSerial;
             _resultValue.imagePassword = imagePassword;
             _resultValue.licenceType = licenceType;
             _resultValue.name = name;
@@ -351,6 +392,7 @@ public final class CubeServerVolume {
             _resultValue.nicHotUnplug = nicHotUnplug;
             _resultValue.pciSlot = pciSlot;
             _resultValue.ramHotPlug = ramHotPlug;
+            _resultValue.requireLegacyBios = requireLegacyBios;
             _resultValue.sshKeyPaths = sshKeyPaths;
             _resultValue.userData = userData;
             return _resultValue;
