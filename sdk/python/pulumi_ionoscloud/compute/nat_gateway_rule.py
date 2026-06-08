@@ -25,12 +25,12 @@ class NatGatewayRuleArgs:
                  natgateway_id: pulumi.Input[_builtins.str],
                  public_ip: pulumi.Input[_builtins.str],
                  source_subnet: pulumi.Input[_builtins.str],
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_port_range: Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']] = None,
-                 target_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_port_range: pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']] = None,
+                 target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NatGatewayRule resource.
 
@@ -111,87 +111,87 @@ class NatGatewayRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the NAT gateway rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="targetPortRange")
-    def target_port_range(self) -> Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']]:
+    def target_port_range(self) -> pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']]:
         """
         Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
         """
         return pulumi.get(self, "target_port_range")
 
     @target_port_range.setter
-    def target_port_range(self, value: Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']]):
+    def target_port_range(self, value: pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']]):
         pulumi.set(self, "target_port_range", value)
 
     @_builtins.property
     @pulumi.getter(name="targetSubnet")
-    def target_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
         """
         return pulumi.get(self, "target_subnet")
 
     @target_subnet.setter
-    def target_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_subnet", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Type of the NAT gateway rule.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _NatGatewayRuleState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_port_range: Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']] = None,
-                 target_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 natgateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_port_range: pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']] = None,
+                 target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NatGatewayRule resources.
 
@@ -228,119 +228,119 @@ class _NatGatewayRuleState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A Datacenter's UUID.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the NAT gateway rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="natgatewayId")
-    def natgateway_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def natgateway_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Nat Gateway's UUID.
         """
         return pulumi.get(self, "natgateway_id")
 
     @natgateway_id.setter
-    def natgateway_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def natgateway_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "natgateway_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIp")
-    def public_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
         """
         return pulumi.get(self, "public_ip")
 
     @public_ip.setter
-    def public_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceSubnet")
-    def source_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
         """
         return pulumi.get(self, "source_subnet")
 
     @source_subnet.setter
-    def source_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_subnet", value)
 
     @_builtins.property
     @pulumi.getter(name="targetPortRange")
-    def target_port_range(self) -> Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']]:
+    def target_port_range(self) -> pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']]:
         """
         Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
         """
         return pulumi.get(self, "target_port_range")
 
     @target_port_range.setter
-    def target_port_range(self, value: Optional[pulumi.Input['NatGatewayRuleTargetPortRangeArgs']]):
+    def target_port_range(self, value: pulumi.Input[Optional['NatGatewayRuleTargetPortRangeArgs']]):
         pulumi.set(self, "target_port_range", value)
 
     @_builtins.property
     @pulumi.getter(name="targetSubnet")
-    def target_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
         """
         return pulumi.get(self, "target_subnet")
 
     @target_subnet.setter
-    def target_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_subnet", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Type of the NAT gateway rule.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -350,16 +350,16 @@ class NatGatewayRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_port_range: Optional[pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
-                 target_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 natgateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+                 target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a **Nat Gateway Rule** on IonosCloud.
@@ -391,7 +391,7 @@ class NatGatewayRule(pulumi.CustomResource):
                 example_ip_block.ips[1],
             ],
             lans=[{
-                "id": example_lan.id,
+                "id": example_lan.id.apply(lambda x: int(x)),
                 "gateway_ips": ["10.11.2.5"],
             }])
         example_nat_gateway_rule = ionoscloud.compute.NatGatewayRule("example",
@@ -466,7 +466,7 @@ class NatGatewayRule(pulumi.CustomResource):
                 example_ip_block.ips[1],
             ],
             lans=[{
-                "id": example_lan.id,
+                "id": example_lan.id.apply(lambda x: int(x)),
                 "gateway_ips": ["10.11.2.5"],
             }])
         example_nat_gateway_rule = ionoscloud.compute.NatGatewayRule("example",
@@ -508,16 +508,16 @@ class NatGatewayRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_port_range: Optional[pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
-                 target_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 natgateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+                 target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -555,16 +555,16 @@ class NatGatewayRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            public_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            source_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-            target_port_range: Optional[pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
-            target_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'NatGatewayRule':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            natgateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+            target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+            target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'NatGatewayRule':
         """
         Get an existing NatGatewayRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

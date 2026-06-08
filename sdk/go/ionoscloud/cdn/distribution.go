@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			// optionally you can add a certificate to the distribution
-//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//			cert2, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
 //				Name:             pulumi.String("add_name_here"),
 //				Certificate:      invokeFile.Result,
 //				CertificateChain: invokeFile1.Result,
@@ -60,7 +60,7 @@ import (
 //			}
 //			_, err = cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
 //				Domain:        pulumi.String("example.com"),
-//				CertificateId: cert.ID(),
+//				CertificateId: cert2.ID(),
 //				RoutingRules: cdn.DistributionRoutingRuleArray{
 //					&cdn.DistributionRoutingRuleArgs{
 //						Scheme: pulumi.String("https"),

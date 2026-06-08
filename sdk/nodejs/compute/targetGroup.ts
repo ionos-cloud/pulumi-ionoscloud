@@ -170,31 +170,31 @@ export interface TargetGroupState {
     /**
      * [string] Balancing algorithm.
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * Health check attributes for Target Group.
      */
-    healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck | undefined>;
     /**
      * Http health check attributes for Target Group
      */
-    httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck>;
+    httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck | undefined>;
     /**
      * [string] The name of the target group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Balancing protocol.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
      */
-    protocolVersion?: pulumi.Input<string>;
+    protocolVersion?: pulumi.Input<string | undefined>;
     /**
      * [list] Array of items in the collection
      */
-    targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[]>;
+    targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[] | undefined>;
 }
 
 /**
@@ -208,15 +208,15 @@ export interface TargetGroupArgs {
     /**
      * Health check attributes for Target Group.
      */
-    healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.compute.TargetGroupHealthCheck | undefined>;
     /**
      * Http health check attributes for Target Group
      */
-    httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck>;
+    httpHealthCheck?: pulumi.Input<inputs.compute.TargetGroupHttpHealthCheck | undefined>;
     /**
      * [string] The name of the target group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Balancing protocol.
      */
@@ -228,5 +228,5 @@ export interface TargetGroupArgs {
     /**
      * [list] Array of items in the collection
      */
-    targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[]>;
+    targets?: pulumi.Input<pulumi.Input<inputs.compute.TargetGroupTarget>[] | undefined>;
 }

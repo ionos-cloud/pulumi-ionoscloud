@@ -293,13 +293,13 @@ export interface GetClusterOutputArgs {
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * this attribute is mandatory if the cluster is private.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing cluster that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

@@ -146,26 +146,26 @@ export interface PipelineState {
     /**
      * [string] The endpoint of the Grafana instance.
      */
-    grafanaEndpoint?: pulumi.Input<string>;
+    grafanaEndpoint?: pulumi.Input<string | undefined>;
     /**
      * [string] The HTTP endpoint of the monitoring instance.
      */
-    httpEndpoint?: pulumi.Input<string>;
+    httpEndpoint?: pulumi.Input<string | undefined>;
     /**
      * (Sensitive)[string] The key used to connect to the monitoring pipeline.
      *
      * > **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the Monitoring pipeline.
      */
-    name?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts>;
+    name?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts | undefined>;
 }
 
 /**
@@ -175,10 +175,10 @@ export interface PipelineArgs {
     /**
      * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the Monitoring pipeline.
      */
-    name?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts>;
+    name?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.monitoring.PipelineTimeouts | undefined>;
 }

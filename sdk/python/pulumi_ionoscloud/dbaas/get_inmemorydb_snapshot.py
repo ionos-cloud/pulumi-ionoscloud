@@ -98,8 +98,8 @@ def get_inmemorydb_snapshot(id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         metadatas=pulumi.get(__ret__, 'metadatas'))
-def get_inmemorydb_snapshot_output(id: Optional[pulumi.Input[_builtins.str]] = None,
-                                   location: Optional[pulumi.Input[_builtins.str]] = None,
+def get_inmemorydb_snapshot_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   location: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInmemorydbSnapshotResult]:
     """
     The `dbaas_get_inmemorydb_snapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.

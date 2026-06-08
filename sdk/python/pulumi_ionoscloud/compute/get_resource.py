@@ -117,8 +117,8 @@ def get_resource(resource_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         resource_type=pulumi.get(__ret__, 'resource_type'))
-def get_resource_output(resource_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        resource_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_resource_output(resource_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        resource_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourceResult]:
     """
     The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.

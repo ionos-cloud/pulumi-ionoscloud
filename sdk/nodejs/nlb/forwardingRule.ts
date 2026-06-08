@@ -36,8 +36,8 @@ import * as utilities from "../utilities";
  * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
  *     datacenterId: example.id,
  *     name: "example",
- *     listenerLan: example1.id,
- *     targetLan: example2.id,
+ *     listenerLan: example1.id.apply(x =>Number(x)),
+ *     targetLan: example2.id.apply(x =>Number(x)),
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  * });
@@ -86,8 +86,8 @@ import * as utilities from "../utilities";
  * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
  *     datacenterId: example.id,
  *     name: "example",
- *     listenerLan: example1.id,
- *     targetLan: example2.id,
+ *     listenerLan: example1.id.apply(x =>Number(x)),
+ *     targetLan: example2.id.apply(x =>Number(x)),
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  * });
@@ -261,40 +261,40 @@ export interface ForwardingRuleState {
     /**
      * [string] Algorithm for the balancing.
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] A Datacenter's UUID.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * Health check attributes for Network Load Balancer forwarding rule.
      */
-    healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck | undefined>;
     /**
      * [string] Listening IP. (inbound)
      */
-    listenerIp?: pulumi.Input<string>;
+    listenerIp?: pulumi.Input<string | undefined>;
     /**
      * [int] Listening port number. (inbound) (range: 1 to 65535)
      */
-    listenerPort?: pulumi.Input<number>;
+    listenerPort?: pulumi.Input<number | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] A name of that Network Load Balancer forwarding rule.
      */
-    name?: pulumi.Input<string>;
-    networkloadbalancerId?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    networkloadbalancerId?: pulumi.Input<string | undefined>;
     /**
      * [string] Protocol of the balancing.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [Set] Array of items in that collection.
      */
-    targets?: pulumi.Input<pulumi.Input<inputs.nlb.ForwardingRuleTarget>[]>;
+    targets?: pulumi.Input<pulumi.Input<inputs.nlb.ForwardingRuleTarget>[] | undefined>;
 }
 
 /**
@@ -312,7 +312,7 @@ export interface ForwardingRuleArgs {
     /**
      * Health check attributes for Network Load Balancer forwarding rule.
      */
-    healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleHealthCheck | undefined>;
     /**
      * [string] Listening IP. (inbound)
      */
@@ -324,11 +324,11 @@ export interface ForwardingRuleArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] A name of that Network Load Balancer forwarding rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     networkloadbalancerId: pulumi.Input<string>;
     /**
      * [string] Protocol of the balancing.

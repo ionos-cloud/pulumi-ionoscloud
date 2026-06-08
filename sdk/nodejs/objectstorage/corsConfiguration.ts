@@ -114,11 +114,11 @@ export interface CorsConfigurationState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of corsRule as defined below.
      */
-    corsRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.CorsConfigurationCorsRule>[]>;
+    corsRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.CorsConfigurationCorsRule>[] | undefined>;
 }
 
 /**
@@ -132,5 +132,5 @@ export interface CorsConfigurationArgs {
     /**
      * [block] A block of corsRule as defined below.
      */
-    corsRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.CorsConfigurationCorsRule>[]>;
+    corsRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.CorsConfigurationCorsRule>[] | undefined>;
 }

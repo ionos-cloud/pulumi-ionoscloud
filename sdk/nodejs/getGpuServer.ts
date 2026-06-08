@@ -185,17 +185,17 @@ export interface GetGpuServerOutputArgs {
      *
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Location of that image/snapshot
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing server that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
      */
-    templateUuid?: pulumi.Input<string>;
+    templateUuid?: pulumi.Input<string | undefined>;
 }

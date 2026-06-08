@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.Bucket;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -66,13 +66,13 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * A bucket can be imported using the `bucket name` and the &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34;&gt;`region`&lt;/span&gt;:
+ * A bucket can be imported using the `bucket name` and the &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34; pulumi-lang-hcl=&#34;`region`&#34;&gt;`region`&lt;/span&gt;:
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name
  * ```
  * 
- * The &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34;&gt;`region`&lt;/span&gt; can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
+ * The &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34; pulumi-lang-hcl=&#34;`region`&#34;&gt;`region`&lt;/span&gt; can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name
@@ -82,14 +82,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ionoscloud:objectstorage/bucket:Bucket")
 public class Bucket extends com.pulumi.resources.CustomResource {
     /**
-     * [bool] Default is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.By setting&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34;&gt; forceDestroy &lt;/span&gt;to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34;&gt; forceDestroy &lt;/span&gt;is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It&#39;s crucial to ensure that the bucket does not contain critical data before using force_destroy.
+     * [bool] Default is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.By setting&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34; pulumi-lang-hcl=&#34; force_destroy &#34;&gt; forceDestroy &lt;/span&gt;to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34; pulumi-lang-hcl=&#34; force_destroy &#34;&gt; forceDestroy &lt;/span&gt;is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It&#39;s crucial to ensure that the bucket does not contain critical data before using force_destroy.
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceDestroy;
 
     /**
-     * @return [bool] Default is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.By setting&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34;&gt; forceDestroy &lt;/span&gt;to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34;&gt; forceDestroy &lt;/span&gt;is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It&#39;s crucial to ensure that the bucket does not contain critical data before using force_destroy.
+     * @return [bool] Default is &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.By setting&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34; pulumi-lang-hcl=&#34; force_destroy &#34;&gt; forceDestroy &lt;/span&gt;to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If&lt;span pulumi-lang-nodejs=&#34; forceDestroy &#34; pulumi-lang-dotnet=&#34; ForceDestroy &#34; pulumi-lang-go=&#34; forceDestroy &#34; pulumi-lang-python=&#34; force_destroy &#34; pulumi-lang-yaml=&#34; forceDestroy &#34; pulumi-lang-java=&#34; forceDestroy &#34; pulumi-lang-hcl=&#34; force_destroy &#34;&gt; forceDestroy &lt;/span&gt;is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It&#39;s crucial to ensure that the bucket does not contain critical data before using force_destroy.
      * 
      */
     public Output<Boolean> forceDestroy() {
@@ -110,28 +110,28 @@ public class Bucket extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * [bool] The object lock configuration status of the bucket. Must be &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * [bool] The object lock configuration status of the bucket. Must be &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Export(name="objectLockEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> objectLockEnabled;
 
     /**
-     * @return [bool] The object lock configuration status of the bucket. Must be &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * @return [bool] The object lock configuration status of the bucket. Must be &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Output<Boolean> objectLockEnabled() {
         return this.objectLockEnabled;
     }
     /**
-     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
+     * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34; pulumi-lang-hcl=&#34;`s3_region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
+     * @return [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or &lt;span pulumi-lang-nodejs=&#34;`s3Region`&#34; pulumi-lang-dotnet=&#34;`S3Region`&#34; pulumi-lang-go=&#34;`s3Region`&#34; pulumi-lang-python=&#34;`s3_region`&#34; pulumi-lang-yaml=&#34;`s3Region`&#34; pulumi-lang-java=&#34;`s3Region`&#34; pulumi-lang-hcl=&#34;`s3_region`&#34;&gt;`s3Region`&lt;/span&gt; provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      * 
      */
     public Output<String> region() {
@@ -205,7 +205,7 @@ public class Bucket extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

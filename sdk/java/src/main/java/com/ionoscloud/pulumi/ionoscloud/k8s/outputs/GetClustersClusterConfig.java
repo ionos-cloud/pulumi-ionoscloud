@@ -16,7 +16,7 @@ import java.util.Objects;
 public final class GetClustersClusterConfig {
     private String apiVersion;
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34; pulumi-lang-hcl=&#34;`k8s_cluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     private List<GetClustersClusterConfigCluster> clusters;
@@ -30,7 +30,7 @@ public final class GetClustersClusterConfig {
         return this.apiVersion;
     }
     /**
-     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
+     * @return list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the &lt;span pulumi-lang-nodejs=&#34;`k8sCluster`&#34; pulumi-lang-dotnet=&#34;`K8sCluster`&#34; pulumi-lang-go=&#34;`k8sCluster`&#34; pulumi-lang-python=&#34;`k8s_cluster`&#34; pulumi-lang-yaml=&#34;`k8sCluster`&#34; pulumi-lang-java=&#34;`k8sCluster`&#34; pulumi-lang-hcl=&#34;`k8s_cluster`&#34;&gt;`k8sCluster`&lt;/span&gt; datasource, which is limited to retrieving only 1 cluster in a single query.
      * 
      */
     public List<GetClustersClusterConfigCluster> clusters() {

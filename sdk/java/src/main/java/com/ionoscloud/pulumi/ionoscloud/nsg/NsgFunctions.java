@@ -33,8 +33,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -68,8 +68,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -114,8 +114,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -149,8 +149,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -195,8 +195,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -230,8 +230,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -276,8 +276,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -311,8 +311,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -357,8 +357,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -392,8 +392,8 @@ public final class NsgFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nsg.NsgFunctions;
      * import com.pulumi.ionoscloud.nsg.inputs.GetNsgArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

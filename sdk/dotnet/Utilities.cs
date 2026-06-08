@@ -53,7 +53,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         {
             var dst = src ?? new global::Pulumi.InvokeOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ionos-cloud";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ionos-cloud/pulumi-ionoscloud";
             return dst;
         }
 
@@ -61,7 +61,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         {
             var dst = src ?? new global::Pulumi.InvokeOutputOptions{};
             dst.Version = src?.Version ?? Version;
-            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ionos-cloud";
+            dst.PluginDownloadURL = src?.PluginDownloadURL ?? "github://api.github.com/ionos-cloud/pulumi-ionoscloud";
             return dst;
         }
 

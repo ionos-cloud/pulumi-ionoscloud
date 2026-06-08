@@ -58,27 +58,27 @@ class BucketLifecycleConfigurationRuleArgsDict(TypedDict):
     """
     Whether the rule is currently being applied. Valid values: Enabled or Disabled.
     """
-    abort_incomplete_multipart_upload: NotRequired[pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict']]
+    abort_incomplete_multipart_upload: NotRequired[pulumi.Input[Optional['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict']]]
     """
     Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
     """
-    expiration: NotRequired[pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgsDict']]
+    expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleConfigurationRuleExpirationArgsDict']]]
     """
     A lifecycle rule for when an object expires.
     """
-    filter: NotRequired[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgsDict']]
+    filter: NotRequired[pulumi.Input[Optional['BucketLifecycleConfigurationRuleFilterArgsDict']]]
     """
     A filter.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier for the rule.
     """
-    noncurrent_version_expiration: NotRequired[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict']]
+    noncurrent_version_expiration: NotRequired[pulumi.Input[Optional['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict']]]
     """
     A lifecycle rule for when non-current object versions expire.
     """
-    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Object key prefix identifying one or more objects to which the rule applies.
     """
@@ -87,12 +87,12 @@ class BucketLifecycleConfigurationRuleArgsDict(TypedDict):
 class BucketLifecycleConfigurationRuleArgs:
     def __init__(__self__, *,
                  status: pulumi.Input[_builtins.str],
-                 abort_incomplete_multipart_upload: Optional[pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']] = None,
-                 expiration: Optional[pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgs']] = None,
-                 filter: Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 noncurrent_version_expiration: Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
+                 abort_incomplete_multipart_upload: pulumi.Input[Optional['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']] = None,
+                 expiration: pulumi.Input[Optional['BucketLifecycleConfigurationRuleExpirationArgs']] = None,
+                 filter: pulumi.Input[Optional['BucketLifecycleConfigurationRuleFilterArgs']] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 noncurrent_version_expiration: pulumi.Input[Optional['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] status: Whether the rule is currently being applied. Valid values: Enabled or Disabled.
         :param pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs'] abort_incomplete_multipart_upload: Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
@@ -133,80 +133,80 @@ class BucketLifecycleConfigurationRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="abortIncompleteMultipartUpload")
-    def abort_incomplete_multipart_upload(self) -> Optional[pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']]:
+    def abort_incomplete_multipart_upload(self) -> pulumi.Input[Optional['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']]:
         """
         Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
         """
         return pulumi.get(self, "abort_incomplete_multipart_upload")
 
     @abort_incomplete_multipart_upload.setter
-    def abort_incomplete_multipart_upload(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']]):
+    def abort_incomplete_multipart_upload(self, value: pulumi.Input[Optional['BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs']]):
         pulumi.set(self, "abort_incomplete_multipart_upload", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiration(self) -> Optional[pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgs']]:
+    def expiration(self) -> pulumi.Input[Optional['BucketLifecycleConfigurationRuleExpirationArgs']]:
         """
         A lifecycle rule for when an object expires.
         """
         return pulumi.get(self, "expiration")
 
     @expiration.setter
-    def expiration(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleExpirationArgs']]):
+    def expiration(self, value: pulumi.Input[Optional['BucketLifecycleConfigurationRuleExpirationArgs']]):
         pulumi.set(self, "expiration", value)
 
     @_builtins.property
     @pulumi.getter
-    def filter(self) -> Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']]:
+    def filter(self) -> pulumi.Input[Optional['BucketLifecycleConfigurationRuleFilterArgs']]:
         """
         A filter.
         """
         return pulumi.get(self, "filter")
 
     @filter.setter
-    def filter(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleFilterArgs']]):
+    def filter(self, value: pulumi.Input[Optional['BucketLifecycleConfigurationRuleFilterArgs']]):
         pulumi.set(self, "filter", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the rule.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="noncurrentVersionExpiration")
-    def noncurrent_version_expiration(self) -> Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']]:
+    def noncurrent_version_expiration(self) -> pulumi.Input[Optional['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']]:
         """
         A lifecycle rule for when non-current object versions expire.
         """
         return pulumi.get(self, "noncurrent_version_expiration")
 
     @noncurrent_version_expiration.setter
-    def noncurrent_version_expiration(self, value: Optional[pulumi.Input['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']]):
+    def noncurrent_version_expiration(self, value: pulumi.Input[Optional['BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs']]):
         pulumi.set(self, "noncurrent_version_expiration", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.""")
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Object key prefix identifying one or more objects to which the rule applies.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
 
 class BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict(TypedDict):
-    days_after_initiation: NotRequired[pulumi.Input[_builtins.int]]
+    days_after_initiation: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after which IONOS Object Storage Object Storage aborts an incomplete multipart upload.
     """
@@ -214,7 +214,7 @@ class BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgsDict(Typ
 @pulumi.input_type
 class BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs:
     def __init__(__self__, *,
-                 days_after_initiation: Optional[pulumi.Input[_builtins.int]] = None):
+                 days_after_initiation: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] days_after_initiation: Specifies the number of days after which IONOS Object Storage Object Storage aborts an incomplete multipart upload.
         """
@@ -223,27 +223,27 @@ class BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs:
 
     @_builtins.property
     @pulumi.getter(name="daysAfterInitiation")
-    def days_after_initiation(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def days_after_initiation(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days after which IONOS Object Storage Object Storage aborts an incomplete multipart upload.
         """
         return pulumi.get(self, "days_after_initiation")
 
     @days_after_initiation.setter
-    def days_after_initiation(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def days_after_initiation(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days_after_initiation", value)
 
 
 class BucketLifecycleConfigurationRuleExpirationArgsDict(TypedDict):
-    date: NotRequired[pulumi.Input[_builtins.str]]
+    date: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the date when the object expires. Required if 'days' is not specified.
     """
-    days: NotRequired[pulumi.Input[_builtins.int]]
+    days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days after object creation when the object expires. Required if 'date' is not specified.
     """
-    expired_object_delete_marker: NotRequired[pulumi.Input[_builtins.bool]]
+    expired_object_delete_marker: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
     """
@@ -251,9 +251,9 @@ class BucketLifecycleConfigurationRuleExpirationArgsDict(TypedDict):
 @pulumi.input_type
 class BucketLifecycleConfigurationRuleExpirationArgs:
     def __init__(__self__, *,
-                 date: Optional[pulumi.Input[_builtins.str]] = None,
-                 days: Optional[pulumi.Input[_builtins.int]] = None,
-                 expired_object_delete_marker: Optional[pulumi.Input[_builtins.bool]] = None):
+                 date: pulumi.Input[Optional[_builtins.str]] = None,
+                 days: pulumi.Input[Optional[_builtins.int]] = None,
+                 expired_object_delete_marker: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] date: Specifies the date when the object expires. Required if 'days' is not specified.
         :param pulumi.Input[_builtins.int] days: Specifies the number of days after object creation when the object expires. Required if 'date' is not specified.
@@ -268,43 +268,43 @@ class BucketLifecycleConfigurationRuleExpirationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the date when the object expires. Required if 'days' is not specified.
         """
         return pulumi.get(self, "date")
 
     @date.setter
-    def date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "date", value)
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days after object creation when the object expires. Required if 'date' is not specified.
         """
         return pulumi.get(self, "days")
 
     @days.setter
-    def days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days", value)
 
     @_builtins.property
     @pulumi.getter(name="expiredObjectDeleteMarker")
-    def expired_object_delete_marker(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def expired_object_delete_marker(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
         """
         return pulumi.get(self, "expired_object_delete_marker")
 
     @expired_object_delete_marker.setter
-    def expired_object_delete_marker(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def expired_object_delete_marker(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "expired_object_delete_marker", value)
 
 
 class BucketLifecycleConfigurationRuleFilterArgsDict(TypedDict):
-    prefix: NotRequired[pulumi.Input[_builtins.str]]
+    prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Object key prefix identifying one or more objects to which the rule applies.
     """
@@ -312,7 +312,7 @@ class BucketLifecycleConfigurationRuleFilterArgsDict(TypedDict):
 @pulumi.input_type
 class BucketLifecycleConfigurationRuleFilterArgs:
     def __init__(__self__, *,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None):
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] prefix: Object key prefix identifying one or more objects to which the rule applies.
         """
@@ -321,19 +321,19 @@ class BucketLifecycleConfigurationRuleFilterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Object key prefix identifying one or more objects to which the rule applies.
         """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
 
 class BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict(TypedDict):
-    noncurrent_days: NotRequired[pulumi.Input[_builtins.int]]
+    noncurrent_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Specifies the number of days an object is noncurrent before IONOS Object Storage can perform the associated action.
     """
@@ -341,7 +341,7 @@ class BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgsDict(TypedD
 @pulumi.input_type
 class BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs:
     def __init__(__self__, *,
-                 noncurrent_days: Optional[pulumi.Input[_builtins.int]] = None):
+                 noncurrent_days: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] noncurrent_days: Specifies the number of days an object is noncurrent before IONOS Object Storage can perform the associated action.
         """
@@ -350,19 +350,19 @@ class BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs:
 
     @_builtins.property
     @pulumi.getter(name="noncurrentDays")
-    def noncurrent_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def noncurrent_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of days an object is noncurrent before IONOS Object Storage can perform the associated action.
         """
         return pulumi.get(self, "noncurrent_days")
 
     @noncurrent_days.setter
-    def noncurrent_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def noncurrent_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "noncurrent_days", value)
 
 
 class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
-    apply_server_side_encryption_by_default: NotRequired[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]
+    apply_server_side_encryption_by_default: NotRequired[pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]]
     """
     [block] Defines the default encryption settings.
     """
@@ -370,7 +370,7 @@ class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
 @pulumi.input_type
 class BucketServerSideEncryptionConfigurationRuleArgs:
     def __init__(__self__, *,
-                 apply_server_side_encryption_by_default: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']] = None):
+                 apply_server_side_encryption_by_default: pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']] = None):
         """
         :param pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_default: [block] Defines the default encryption settings.
         """
@@ -379,14 +379,14 @@ class BucketServerSideEncryptionConfigurationRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="applyServerSideEncryptionByDefault")
-    def apply_server_side_encryption_by_default(self) -> Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]:
+    def apply_server_side_encryption_by_default(self) -> pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]:
         """
         [block] Defines the default encryption settings.
         """
         return pulumi.get(self, "apply_server_side_encryption_by_default")
 
     @apply_server_side_encryption_by_default.setter
-    def apply_server_side_encryption_by_default(self, value: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]):
+    def apply_server_side_encryption_by_default(self, value: pulumi.Input[Optional['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]):
         pulumi.set(self, "apply_server_side_encryption_by_default", value)
 
 
@@ -419,19 +419,19 @@ class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefa
 
 
 class BucketTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Time to wait for the bucket to be created. Default is `10m`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Time to wait for the bucket to be deleted. Default is `10m`.
     """
-    read: NotRequired[pulumi.Input[_builtins.str]]
+    read: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
     """
@@ -439,10 +439,10 @@ class BucketTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class BucketTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 read: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 read: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: [string] Time to wait for the bucket to be created. Default is `10m`.
         :param pulumi.Input[_builtins.str] delete: [string] Time to wait for the bucket to be deleted. Default is `10m`.
@@ -460,50 +460,50 @@ class BucketTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Time to wait for the bucket to be created. Default is `10m`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Time to wait for the bucket to be deleted. Default is `10m`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def read(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def read(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         return pulumi.get(self, "read")
 
     @read.setter
-    def read(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def read(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "read", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
@@ -512,7 +512,7 @@ class BucketVersioningVersioningConfigurationArgsDict(TypedDict):
     """
     [string] The versioning state of the bucket. Can be `Enabled` or `Suspended`.
     """
-    mfa_delete: NotRequired[pulumi.Input[_builtins.str]]
+    mfa_delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Specifies whether MFA delete is enabled or not. Can be `Enabled` or `Disabled`.
     """
@@ -521,7 +521,7 @@ class BucketVersioningVersioningConfigurationArgsDict(TypedDict):
 class BucketVersioningVersioningConfigurationArgs:
     def __init__(__self__, *,
                  status: pulumi.Input[_builtins.str],
-                 mfa_delete: Optional[pulumi.Input[_builtins.str]] = None):
+                 mfa_delete: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] status: [string] The versioning state of the bucket. Can be `Enabled` or `Suspended`.
         :param pulumi.Input[_builtins.str] mfa_delete: [string] Specifies whether MFA delete is enabled or not. Can be `Enabled` or `Disabled`.
@@ -544,14 +544,14 @@ class BucketVersioningVersioningConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="mfaDelete")
-    def mfa_delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Specifies whether MFA delete is enabled or not. Can be `Enabled` or `Disabled`.
         """
         return pulumi.get(self, "mfa_delete")
 
     @mfa_delete.setter
-    def mfa_delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_delete", value)
 
 
@@ -564,21 +564,21 @@ class CorsConfigurationCorsRuleArgsDict(TypedDict):
     """
     [list] Specifies which origins are allowed to make requests to the resource.
     """
-    allowed_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     [list] Specifies which headers are allowed in a preflight OPTIONS request through the Access-Control-Request-Headers header
     """
-    expose_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    expose_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     [list] Specifies which headers are exposed to the browser.
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] Container for the Contract Number of the owner
 
     Days and years are mutually exclusive. You can only specify one of them.
     """
-    max_age_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    max_age_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] Specifies how long the results of a pre-flight request can be cached in seconds.
     """
@@ -588,10 +588,10 @@ class CorsConfigurationCorsRuleArgs:
     def __init__(__self__, *,
                  allowed_methods: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  allowed_origins: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 allowed_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_age_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 expose_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_age_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_methods: [list] An HTTP method that you allow the origin to execute. Valid values are GET, PUT, HEAD, POST, DELETE.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_origins: [list] Specifies which origins are allowed to make requests to the resource.
@@ -639,31 +639,31 @@ class CorsConfigurationCorsRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedHeaders")
-    def allowed_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Specifies which headers are allowed in a preflight OPTIONS request through the Access-Control-Request-Headers header
         """
         return pulumi.get(self, "allowed_headers")
 
     @allowed_headers.setter
-    def allowed_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="exposeHeaders")
-    def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def expose_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Specifies which headers are exposed to the browser.
         """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
-    def expose_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def expose_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "expose_headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Container for the Contract Number of the owner
 
@@ -672,24 +672,24 @@ class CorsConfigurationCorsRuleArgs:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="maxAgeSeconds")
-    def max_age_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_age_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Specifies how long the results of a pre-flight request can be cached in seconds.
         """
         return pulumi.get(self, "max_age_seconds")
 
     @max_age_seconds.setter
-    def max_age_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_age_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_age_seconds", value)
 
 
 class ObjectLockConfigurationRuleArgsDict(TypedDict):
-    default_retention: NotRequired[pulumi.Input['ObjectLockConfigurationRuleDefaultRetentionArgsDict']]
+    default_retention: NotRequired[pulumi.Input[Optional['ObjectLockConfigurationRuleDefaultRetentionArgsDict']]]
     """
     [block] A block of default_retention as defined below.
     """
@@ -697,7 +697,7 @@ class ObjectLockConfigurationRuleArgsDict(TypedDict):
 @pulumi.input_type
 class ObjectLockConfigurationRuleArgs:
     def __init__(__self__, *,
-                 default_retention: Optional[pulumi.Input['ObjectLockConfigurationRuleDefaultRetentionArgs']] = None):
+                 default_retention: pulumi.Input[Optional['ObjectLockConfigurationRuleDefaultRetentionArgs']] = None):
         """
         :param pulumi.Input['ObjectLockConfigurationRuleDefaultRetentionArgs'] default_retention: [block] A block of default_retention as defined below.
         """
@@ -706,27 +706,27 @@ class ObjectLockConfigurationRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultRetention")
-    def default_retention(self) -> Optional[pulumi.Input['ObjectLockConfigurationRuleDefaultRetentionArgs']]:
+    def default_retention(self) -> pulumi.Input[Optional['ObjectLockConfigurationRuleDefaultRetentionArgs']]:
         """
         [block] A block of default_retention as defined below.
         """
         return pulumi.get(self, "default_retention")
 
     @default_retention.setter
-    def default_retention(self, value: Optional[pulumi.Input['ObjectLockConfigurationRuleDefaultRetentionArgs']]):
+    def default_retention(self, value: pulumi.Input[Optional['ObjectLockConfigurationRuleDefaultRetentionArgs']]):
         pulumi.set(self, "default_retention", value)
 
 
 class ObjectLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
-    days: NotRequired[pulumi.Input[_builtins.int]]
+    days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] The default retention period of the bucket in days.
     """
-    mode: NotRequired[pulumi.Input[_builtins.str]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The default retention mode of the bucket. Can be `GOVERNANCE` or `COMPLIANCE`.
     """
-    years: NotRequired[pulumi.Input[_builtins.int]]
+    years: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] The default retention period of the bucket in years.
 
@@ -736,9 +736,9 @@ class ObjectLockConfigurationRuleDefaultRetentionArgsDict(TypedDict):
 @pulumi.input_type
 class ObjectLockConfigurationRuleDefaultRetentionArgs:
     def __init__(__self__, *,
-                 days: Optional[pulumi.Input[_builtins.int]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 years: Optional[pulumi.Input[_builtins.int]] = None):
+                 days: pulumi.Input[Optional[_builtins.int]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 years: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] days: [int] The default retention period of the bucket in days.
         :param pulumi.Input[_builtins.str] mode: [string] The default retention mode of the bucket. Can be `GOVERNANCE` or `COMPLIANCE`.
@@ -755,31 +755,31 @@ class ObjectLockConfigurationRuleDefaultRetentionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The default retention period of the bucket in days.
         """
         return pulumi.get(self, "days")
 
     @days.setter
-    def days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "days", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The default retention mode of the bucket. Can be `GOVERNANCE` or `COMPLIANCE`.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def years(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def years(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The default retention period of the bucket in years.
 
@@ -788,12 +788,12 @@ class ObjectLockConfigurationRuleDefaultRetentionArgs:
         return pulumi.get(self, "years")
 
     @years.setter
-    def years(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def years(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "years", value)
 
 
 class WebsiteConfigurationErrorDocumentArgsDict(TypedDict):
-    key: NotRequired[pulumi.Input[_builtins.str]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The object key
     """
@@ -801,7 +801,7 @@ class WebsiteConfigurationErrorDocumentArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationErrorDocumentArgs:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[_builtins.str]] = None):
+                 key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] key: The object key
         """
@@ -810,19 +810,19 @@ class WebsiteConfigurationErrorDocumentArgs:
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The object key
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
 
 class WebsiteConfigurationIndexDocumentArgsDict(TypedDict):
-    suffix: NotRequired[pulumi.Input[_builtins.str]]
+    suffix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A suffix that is appended to a request that is for a directory on the website endpoint (for example, if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests.
     """
@@ -830,7 +830,7 @@ class WebsiteConfigurationIndexDocumentArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationIndexDocumentArgs:
     def __init__(__self__, *,
-                 suffix: Optional[pulumi.Input[_builtins.str]] = None):
+                 suffix: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] suffix: A suffix that is appended to a request that is for a directory on the website endpoint (for example, if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests.
         """
@@ -839,23 +839,23 @@ class WebsiteConfigurationIndexDocumentArgs:
 
     @_builtins.property
     @pulumi.getter
-    def suffix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def suffix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A suffix that is appended to a request that is for a directory on the website endpoint (for example, if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests.
         """
         return pulumi.get(self, "suffix")
 
     @suffix.setter
-    def suffix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def suffix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "suffix", value)
 
 
 class WebsiteConfigurationRedirectAllRequestsToArgsDict(TypedDict):
-    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    host_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the host where requests will be redirected.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Protocol to use (http, https).
     """
@@ -863,8 +863,8 @@ class WebsiteConfigurationRedirectAllRequestsToArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationRedirectAllRequestsToArgs:
     def __init__(__self__, *,
-                 host_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 host_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] host_name: Name of the host where requests will be redirected.
         :param pulumi.Input[_builtins.str] protocol: Protocol to use (http, https).
@@ -876,35 +876,35 @@ class WebsiteConfigurationRedirectAllRequestsToArgs:
 
     @_builtins.property
     @pulumi.getter(name="hostName")
-    def host_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the host where requests will be redirected.
         """
         return pulumi.get(self, "host_name")
 
     @host_name.setter
-    def host_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Protocol to use (http, https).
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
 class WebsiteConfigurationRoutingRuleArgsDict(TypedDict):
-    condition: NotRequired[pulumi.Input['WebsiteConfigurationRoutingRuleConditionArgsDict']]
+    condition: NotRequired[pulumi.Input[Optional['WebsiteConfigurationRoutingRuleConditionArgsDict']]]
     """
     A container for describing a condition that must be met for the specified redirect to apply.
     """
-    redirect: NotRequired[pulumi.Input['WebsiteConfigurationRoutingRuleRedirectArgsDict']]
+    redirect: NotRequired[pulumi.Input[Optional['WebsiteConfigurationRoutingRuleRedirectArgsDict']]]
     """
     Container for the redirect information.
     """
@@ -912,8 +912,8 @@ class WebsiteConfigurationRoutingRuleArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationRoutingRuleArgs:
     def __init__(__self__, *,
-                 condition: Optional[pulumi.Input['WebsiteConfigurationRoutingRuleConditionArgs']] = None,
-                 redirect: Optional[pulumi.Input['WebsiteConfigurationRoutingRuleRedirectArgs']] = None):
+                 condition: pulumi.Input[Optional['WebsiteConfigurationRoutingRuleConditionArgs']] = None,
+                 redirect: pulumi.Input[Optional['WebsiteConfigurationRoutingRuleRedirectArgs']] = None):
         """
         :param pulumi.Input['WebsiteConfigurationRoutingRuleConditionArgs'] condition: A container for describing a condition that must be met for the specified redirect to apply.
         :param pulumi.Input['WebsiteConfigurationRoutingRuleRedirectArgs'] redirect: Container for the redirect information.
@@ -925,35 +925,35 @@ class WebsiteConfigurationRoutingRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def condition(self) -> Optional[pulumi.Input['WebsiteConfigurationRoutingRuleConditionArgs']]:
+    def condition(self) -> pulumi.Input[Optional['WebsiteConfigurationRoutingRuleConditionArgs']]:
         """
         A container for describing a condition that must be met for the specified redirect to apply.
         """
         return pulumi.get(self, "condition")
 
     @condition.setter
-    def condition(self, value: Optional[pulumi.Input['WebsiteConfigurationRoutingRuleConditionArgs']]):
+    def condition(self, value: pulumi.Input[Optional['WebsiteConfigurationRoutingRuleConditionArgs']]):
         pulumi.set(self, "condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def redirect(self) -> Optional[pulumi.Input['WebsiteConfigurationRoutingRuleRedirectArgs']]:
+    def redirect(self) -> pulumi.Input[Optional['WebsiteConfigurationRoutingRuleRedirectArgs']]:
         """
         Container for the redirect information.
         """
         return pulumi.get(self, "redirect")
 
     @redirect.setter
-    def redirect(self, value: Optional[pulumi.Input['WebsiteConfigurationRoutingRuleRedirectArgs']]):
+    def redirect(self, value: pulumi.Input[Optional['WebsiteConfigurationRoutingRuleRedirectArgs']]):
         pulumi.set(self, "redirect", value)
 
 
 class WebsiteConfigurationRoutingRuleConditionArgsDict(TypedDict):
-    http_error_code_returned_equals: NotRequired[pulumi.Input[_builtins.str]]
+    http_error_code_returned_equals: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
     """
-    key_prefix_equals: NotRequired[pulumi.Input[_builtins.str]]
+    key_prefix_equals: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix example, the key prefix will be /example.
     """
@@ -961,8 +961,8 @@ class WebsiteConfigurationRoutingRuleConditionArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationRoutingRuleConditionArgs:
     def __init__(__self__, *,
-                 http_error_code_returned_equals: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_prefix_equals: Optional[pulumi.Input[_builtins.str]] = None):
+                 http_error_code_returned_equals: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_prefix_equals: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] http_error_code_returned_equals: The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
         :param pulumi.Input[_builtins.str] key_prefix_equals: The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix example, the key prefix will be /example.
@@ -974,47 +974,47 @@ class WebsiteConfigurationRoutingRuleConditionArgs:
 
     @_builtins.property
     @pulumi.getter(name="httpErrorCodeReturnedEquals")
-    def http_error_code_returned_equals(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_error_code_returned_equals(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
         """
         return pulumi.get(self, "http_error_code_returned_equals")
 
     @http_error_code_returned_equals.setter
-    def http_error_code_returned_equals(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_error_code_returned_equals(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_error_code_returned_equals", value)
 
     @_builtins.property
     @pulumi.getter(name="keyPrefixEquals")
-    def key_prefix_equals(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_prefix_equals(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix example, the key prefix will be /example.
         """
         return pulumi.get(self, "key_prefix_equals")
 
     @key_prefix_equals.setter
-    def key_prefix_equals(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_prefix_equals(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_prefix_equals", value)
 
 
 class WebsiteConfigurationRoutingRuleRedirectArgsDict(TypedDict):
-    host_name: NotRequired[pulumi.Input[_builtins.str]]
+    host_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The host name to use in the redirect request.
     """
-    http_redirect_code: NotRequired[pulumi.Input[_builtins.str]]
+    http_redirect_code: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP redirect code to use on the response. Not required if one of the siblings is present.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Protocol to use (http, https).
     """
-    replace_key_prefix_with: NotRequired[pulumi.Input[_builtins.str]]
+    replace_key_prefix_with: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The object key to be used in the redirect request. For example, redirect request to error.html, the replace key prefix will be /error.html. Not required if one of the siblings is present.
     """
-    replace_key_with: NotRequired[pulumi.Input[_builtins.str]]
+    replace_key_with: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The specific object key to use in the redirect request. For example, redirect request for error.html, the replace key will be /error.html. Not required if one of the siblings is present.
     """
@@ -1022,11 +1022,11 @@ class WebsiteConfigurationRoutingRuleRedirectArgsDict(TypedDict):
 @pulumi.input_type
 class WebsiteConfigurationRoutingRuleRedirectArgs:
     def __init__(__self__, *,
-                 host_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_redirect_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 replace_key_prefix_with: Optional[pulumi.Input[_builtins.str]] = None,
-                 replace_key_with: Optional[pulumi.Input[_builtins.str]] = None):
+                 host_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_redirect_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 replace_key_prefix_with: pulumi.Input[Optional[_builtins.str]] = None,
+                 replace_key_with: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] host_name: The host name to use in the redirect request.
         :param pulumi.Input[_builtins.str] http_redirect_code: The HTTP redirect code to use on the response. Not required if one of the siblings is present.
@@ -1047,62 +1047,62 @@ class WebsiteConfigurationRoutingRuleRedirectArgs:
 
     @_builtins.property
     @pulumi.getter(name="hostName")
-    def host_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The host name to use in the redirect request.
         """
         return pulumi.get(self, "host_name")
 
     @host_name.setter
-    def host_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_name", value)
 
     @_builtins.property
     @pulumi.getter(name="httpRedirectCode")
-    def http_redirect_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_redirect_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP redirect code to use on the response. Not required if one of the siblings is present.
         """
         return pulumi.get(self, "http_redirect_code")
 
     @http_redirect_code.setter
-    def http_redirect_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_redirect_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_redirect_code", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Protocol to use (http, https).
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="replaceKeyPrefixWith")
-    def replace_key_prefix_with(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def replace_key_prefix_with(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The object key to be used in the redirect request. For example, redirect request to error.html, the replace key prefix will be /error.html. Not required if one of the siblings is present.
         """
         return pulumi.get(self, "replace_key_prefix_with")
 
     @replace_key_prefix_with.setter
-    def replace_key_prefix_with(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def replace_key_prefix_with(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "replace_key_prefix_with", value)
 
     @_builtins.property
     @pulumi.getter(name="replaceKeyWith")
-    def replace_key_with(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def replace_key_with(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The specific object key to use in the redirect request. For example, redirect request for error.html, the replace key will be /error.html. Not required if one of the siblings is present.
         """
         return pulumi.get(self, "replace_key_with")
 
     @replace_key_with.setter
-    def replace_key_with(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def replace_key_with(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "replace_key_with", value)
 
 

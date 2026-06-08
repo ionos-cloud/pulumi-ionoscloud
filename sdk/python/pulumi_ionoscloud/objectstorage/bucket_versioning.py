@@ -22,7 +22,7 @@ __all__ = ['BucketVersioningArgs', 'BucketVersioning']
 class BucketVersioningArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 versioning_configuration: Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']] = None):
+                 versioning_configuration: pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']] = None):
         """
         The set of arguments for constructing a BucketVersioning resource.
 
@@ -47,22 +47,22 @@ class BucketVersioningArgs:
 
     @_builtins.property
     @pulumi.getter(name="versioningConfiguration")
-    def versioning_configuration(self) -> Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']]:
+    def versioning_configuration(self) -> pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']]:
         """
         [block] A block of versioning_configuration as defined below.
         """
         return pulumi.get(self, "versioning_configuration")
 
     @versioning_configuration.setter
-    def versioning_configuration(self, value: Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']]):
+    def versioning_configuration(self, value: pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']]):
         pulumi.set(self, "versioning_configuration", value)
 
 
 @pulumi.input_type
 class _BucketVersioningState:
     def __init__(__self__, *,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 versioning_configuration: Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']] = None):
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 versioning_configuration: pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']] = None):
         """
         Input properties used for looking up and filtering BucketVersioning resources.
 
@@ -76,26 +76,26 @@ class _BucketVersioningState:
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the bucket where the object will be stored.
         """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="versioningConfiguration")
-    def versioning_configuration(self) -> Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']]:
+    def versioning_configuration(self) -> pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']]:
         """
         [block] A block of versioning_configuration as defined below.
         """
         return pulumi.get(self, "versioning_configuration")
 
     @versioning_configuration.setter
-    def versioning_configuration(self, value: Optional[pulumi.Input['BucketVersioningVersioningConfigurationArgs']]):
+    def versioning_configuration(self, value: pulumi.Input[Optional['BucketVersioningVersioningConfigurationArgs']]):
         pulumi.set(self, "versioning_configuration", value)
 
 
@@ -105,8 +105,8 @@ class BucketVersioning(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 versioning_configuration: Optional[pulumi.Input[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 versioning_configuration: pulumi.Input[Optional[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None,
                  __props__=None):
         """
         Manages **Buckets versioning** on IonosCloud.
@@ -190,8 +190,8 @@ class BucketVersioning(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 versioning_configuration: Optional[pulumi.Input[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 versioning_configuration: pulumi.Input[Optional[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -215,8 +215,8 @@ class BucketVersioning(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            versioning_configuration: Optional[pulumi.Input[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None) -> 'BucketVersioning':
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            versioning_configuration: pulumi.Input[Optional[Union['BucketVersioningVersioningConfigurationArgs', 'BucketVersioningVersioningConfigurationArgsDict']]] = None) -> 'BucketVersioning':
         """
         Get an existing BucketVersioning resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -90,7 +90,7 @@ import (
 //				return err
 //			}
 //			// optionally you can add a certificate to the application load balancer
-//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//			cert2, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
 //				Name:             pulumi.String("add_name_here"),
 //				Certificate:      invokeFile.Result,
 //				CertificateChain: invokeFile1.Result,
@@ -143,7 +143,7 @@ import (
 //					},
 //				},
 //				ServerCertificates: pulumi.StringArray{
-//					cert.ID(),
+//					cert2.ID(),
 //				},
 //			})
 //			if err != nil {

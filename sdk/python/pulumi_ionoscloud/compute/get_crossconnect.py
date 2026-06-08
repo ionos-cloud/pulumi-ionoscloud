@@ -161,10 +161,10 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         peers=pulumi.get(__ret__, 'peers'))
-def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_crossconnect_output(description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCrossconnectResult]:
     """
     The **Cross Connect data source** can be used to search for and return existing cross connects.

@@ -18,7 +18,7 @@ public final class GetPSQLBackupsPlainArgs extends com.pulumi.resources.InvokeAr
     /**
      * The unique ID of the cluster.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
      * 
      */
     @Import(name="clusterId", required=true)
@@ -27,7 +27,7 @@ public final class GetPSQLBackupsPlainArgs extends com.pulumi.resources.InvokeAr
     /**
      * @return The unique ID of the cluster.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
      * 
      */
     public String clusterId() {
@@ -77,7 +77,7 @@ public final class GetPSQLBackupsPlainArgs extends com.pulumi.resources.InvokeAr
         /**
          * @param clusterId The unique ID of the cluster.
          * 
-         * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
          * 
          * @return builder
          * 

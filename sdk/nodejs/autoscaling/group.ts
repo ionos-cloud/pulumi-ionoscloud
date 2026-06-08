@@ -71,12 +71,12 @@ import * as utilities from "../utilities";
  *         ram: 2048,
  *         nics: [
  *             {
- *                 lan: lanExample1.id,
+ *                 lan: lanExample1.id.apply(x =>Number(x)),
  *                 name: "nic_example_1",
  *                 dhcp: true,
  *             },
  *             {
- *                 lan: lanExample2.id,
+ *                 lan: lanExample2.id.apply(x =>Number(x)),
  *                 name: "nic_example_2",
  *                 dhcp: true,
  *                 firewallActive: true,
@@ -228,31 +228,31 @@ export interface GroupState {
     /**
      * [string] Unique identifier for the resource
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * Location of the data center.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
      */
-    maxReplicaCount?: pulumi.Input<number>;
+    maxReplicaCount?: pulumi.Input<number | undefined>;
     /**
      * [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
      */
-    minReplicaCount?: pulumi.Input<number>;
+    minReplicaCount?: pulumi.Input<number | undefined>;
     /**
      * [string] User-defined name for the Autoscaling Group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
      */
-    policy?: pulumi.Input<inputs.autoscaling.GroupPolicy>;
+    policy?: pulumi.Input<inputs.autoscaling.GroupPolicy | undefined>;
     /**
      * [List]
      */
-    replicaConfiguration?: pulumi.Input<inputs.autoscaling.GroupReplicaConfiguration>;
+    replicaConfiguration?: pulumi.Input<inputs.autoscaling.GroupReplicaConfiguration | undefined>;
 }
 
 /**
@@ -274,7 +274,7 @@ export interface GroupArgs {
     /**
      * [string] User-defined name for the Autoscaling Group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
      */

@@ -40,8 +40,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -75,8 +75,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -122,8 +122,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -157,8 +157,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -204,8 +204,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -239,8 +239,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -286,8 +286,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -321,8 +321,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -368,8 +368,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -403,8 +403,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -450,8 +450,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -485,8 +485,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -532,8 +532,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -567,8 +567,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -614,8 +614,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -649,8 +649,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -696,8 +696,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -731,8 +731,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -778,8 +778,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -813,8 +813,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -860,8 +860,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -895,8 +895,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -942,8 +942,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -977,8 +977,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetAutoCertificateProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1024,8 +1024,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1058,8 +1058,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1104,8 +1104,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1138,8 +1138,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1184,8 +1184,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1218,8 +1218,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1264,8 +1264,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1298,8 +1298,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1344,8 +1344,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1378,8 +1378,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1424,8 +1424,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1458,8 +1458,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1504,8 +1504,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1538,8 +1538,8 @@ public final class CertFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.cert.CertFunctions;
      * import com.pulumi.ionoscloud.cert.inputs.GetCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

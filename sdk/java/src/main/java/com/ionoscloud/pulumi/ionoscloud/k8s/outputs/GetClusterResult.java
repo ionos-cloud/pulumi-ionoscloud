@@ -33,7 +33,7 @@ public final class GetClusterResult {
     private String caCrt;
     /**
      * @return structured kubernetes config consisting of a list with 1 item with the following fields:
-     * *&lt;span pulumi-lang-nodejs=&#34; apiVersion &#34; pulumi-lang-dotnet=&#34; ApiVersion &#34; pulumi-lang-go=&#34; apiVersion &#34; pulumi-lang-python=&#34; api_version &#34; pulumi-lang-yaml=&#34; apiVersion &#34; pulumi-lang-java=&#34; apiVersion &#34;&gt; apiVersion &lt;/span&gt;- Kubernetes API Version
+     * *&lt;span pulumi-lang-nodejs=&#34; apiVersion &#34; pulumi-lang-dotnet=&#34; ApiVersion &#34; pulumi-lang-go=&#34; apiVersion &#34; pulumi-lang-python=&#34; api_version &#34; pulumi-lang-yaml=&#34; apiVersion &#34; pulumi-lang-java=&#34; apiVersion &#34; pulumi-lang-hcl=&#34; api_version &#34;&gt; apiVersion &lt;/span&gt;- Kubernetes API Version
      * * kind - &#34;Config&#34;
      * * current-context - string
      * * clusters - list of
@@ -167,7 +167,7 @@ public final class GetClusterResult {
     }
     /**
      * @return structured kubernetes config consisting of a list with 1 item with the following fields:
-     * *&lt;span pulumi-lang-nodejs=&#34; apiVersion &#34; pulumi-lang-dotnet=&#34; ApiVersion &#34; pulumi-lang-go=&#34; apiVersion &#34; pulumi-lang-python=&#34; api_version &#34; pulumi-lang-yaml=&#34; apiVersion &#34; pulumi-lang-java=&#34; apiVersion &#34;&gt; apiVersion &lt;/span&gt;- Kubernetes API Version
+     * *&lt;span pulumi-lang-nodejs=&#34; apiVersion &#34; pulumi-lang-dotnet=&#34; ApiVersion &#34; pulumi-lang-go=&#34; apiVersion &#34; pulumi-lang-python=&#34; api_version &#34; pulumi-lang-yaml=&#34; apiVersion &#34; pulumi-lang-java=&#34; apiVersion &#34; pulumi-lang-hcl=&#34; api_version &#34;&gt; apiVersion &lt;/span&gt;- Kubernetes API Version
      * * kind - &#34;Config&#34;
      * * current-context - string
      * * clusters - list of

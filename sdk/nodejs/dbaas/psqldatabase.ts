@@ -127,19 +127,19 @@ export interface PSQLDatabaseState {
     /**
      * [string] The unique ID of the cluster. Immutable, forces re-creation.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the database. Immutable, forces re-creation.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The owner of the database. Immutable, forces re-creation.
      */
-    owner?: pulumi.Input<string>;
+    owner?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -153,11 +153,11 @@ export interface PSQLDatabaseArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the database. Immutable, forces re-creation.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The owner of the database. Immutable, forces re-creation.
      */

@@ -100,7 +100,7 @@ def get_bucket_policy(bucket: Optional[_builtins.str] = None,
         bucket=pulumi.get(__ret__, 'bucket'),
         id=pulumi.get(__ret__, 'id'),
         policy=pulumi.get(__ret__, 'policy'))
-def get_bucket_policy_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
+def get_bucket_policy_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketPolicyResult]:
     """
     The **Bucket Policy data source** can be used to search for and return existing bucket policies.

@@ -132,9 +132,9 @@ export interface GetResourceOutputArgs {
     /**
      * The ID of the specific resource to retrieve information about.
      */
-    resourceId?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string | undefined>;
     /**
      * The specific type of resources to retrieve information about.
      */
-    resourceType?: pulumi.Input<string>;
+    resourceType?: pulumi.Input<string | undefined>;
 }

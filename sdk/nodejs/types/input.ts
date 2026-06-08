@@ -16,7 +16,7 @@ export interface GetKafkaUserCredentialsTimeoutsArgs {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    read?: pulumi.Input<string>;
+    read?: pulumi.Input<string | undefined>;
 }
 
 export interface GetKafkaUsersTimeouts {
@@ -30,108 +30,108 @@ export interface GetKafkaUsersTimeoutsArgs {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    read?: pulumi.Input<string>;
+    read?: pulumi.Input<string | undefined>;
 }
 
 export interface GpuServerNic {
-    deviceNumber?: pulumi.Input<number>;
-    dhcp?: pulumi.Input<boolean>;
+    deviceNumber?: pulumi.Input<number | undefined>;
+    dhcp?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates whether this NIC receives an IPv6 address through DHCP.
      */
-    dhcpv6?: pulumi.Input<boolean>;
+    dhcpv6?: pulumi.Input<boolean | undefined>;
     /**
      * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
      */
-    firewall?: pulumi.Input<inputs.GpuServerNicFirewall>;
-    firewallActive?: pulumi.Input<boolean>;
-    firewallType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
+    firewall?: pulumi.Input<inputs.GpuServerNicFirewall | undefined>;
+    firewallActive?: pulumi.Input<boolean | undefined>;
+    firewallType?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
      */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * IPv6 CIDR block assigned to the NIC.
      */
-    ipv6CidrBlock?: pulumi.Input<string>;
+    ipv6CidrBlock?: pulumi.Input<string | undefined>;
     /**
      * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
      */
-    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ipv6Ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     lan: pulumi.Input<number>;
-    mac?: pulumi.Input<string>;
+    mac?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
-    pciSlot?: pulumi.Input<number>;
+    name?: pulumi.Input<string | undefined>;
+    pciSlot?: pulumi.Input<number | undefined>;
     /**
      * The list of Security Group IDs for the resource.
      */
-    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GpuServerNicFirewall {
-    icmpCode?: pulumi.Input<string>;
-    icmpType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
+    icmpCode?: pulumi.Input<string | undefined>;
+    icmpType?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
-    portRangeEnd?: pulumi.Input<number>;
-    portRangeStart?: pulumi.Input<number>;
+    name?: pulumi.Input<string | undefined>;
+    portRangeEnd?: pulumi.Input<number | undefined>;
+    portRangeStart?: pulumi.Input<number | undefined>;
     protocol: pulumi.Input<string>;
-    sourceIp?: pulumi.Input<string>;
-    sourceMac?: pulumi.Input<string>;
-    targetIp?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string | undefined>;
+    sourceMac?: pulumi.Input<string | undefined>;
+    targetIp?: pulumi.Input<string | undefined>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface GpuServerVolume {
     /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
      */
-    backupUnitId?: pulumi.Input<string>;
+    backupUnitId?: pulumi.Input<string | undefined>;
     /**
      * The UUID of the attached server.
      */
-    bootServer?: pulumi.Input<string>;
-    bus?: pulumi.Input<string>;
-    cpuHotPlug?: pulumi.Input<boolean>;
-    deviceNumber?: pulumi.Input<number>;
-    discVirtioHotPlug?: pulumi.Input<boolean>;
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
-    diskType?: pulumi.Input<string>;
+    bootServer?: pulumi.Input<string | undefined>;
+    bus?: pulumi.Input<string | undefined>;
+    cpuHotPlug?: pulumi.Input<boolean | undefined>;
+    deviceNumber?: pulumi.Input<number | undefined>;
+    discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
+    discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
+    diskType?: pulumi.Input<string | undefined>;
     /**
      * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      */
-    exposeSerial?: pulumi.Input<boolean>;
+    exposeSerial?: pulumi.Input<boolean | undefined>;
     /**
      * [string] Sets the OS type of the server.
      */
-    licenceType?: pulumi.Input<string>;
+    licenceType?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
-    nicHotPlug?: pulumi.Input<boolean>;
-    nicHotUnplug?: pulumi.Input<boolean>;
-    pciSlot?: pulumi.Input<number>;
-    ramHotPlug?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string | undefined>;
+    nicHotPlug?: pulumi.Input<boolean | undefined>;
+    nicHotUnplug?: pulumi.Input<boolean | undefined>;
+    pciSlot?: pulumi.Input<number | undefined>;
+    ramHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
      */
-    requireLegacyBios?: pulumi.Input<boolean>;
+    requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
      * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
      */
-    userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string | undefined>;
 }
 export namespace alb {
     export interface BalancerFlowlog {
@@ -150,7 +150,7 @@ export namespace alb {
         /**
          * The resource's unique identifier.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] Specifies the name of the flow log.
          *
@@ -163,19 +163,19 @@ export namespace alb {
         /**
          * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
          */
-        conditions?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRuleCondition>[]>;
+        conditions?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRuleCondition>[] | undefined>;
         /**
          * [string] Valid only for STATIC actions.
          */
-        contentType?: pulumi.Input<string>;
+        contentType?: pulumi.Input<string | undefined>;
         /**
          * [bool] Default is false; valid only for REDIRECT actions.
          */
-        dropQuery?: pulumi.Input<boolean>;
+        dropQuery?: pulumi.Input<boolean | undefined>;
         /**
          * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * [string] The unique name of the Application Load Balancer HTTP rule.
          */
@@ -183,15 +183,15 @@ export namespace alb {
         /**
          * [string] The response message of the request; mandatory for STATIC action.
          */
-        responseMessage?: pulumi.Input<string>;
+        responseMessage?: pulumi.Input<string | undefined>;
         /**
          * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
          */
-        statusCode?: pulumi.Input<number>;
+        statusCode?: pulumi.Input<number | undefined>;
         /**
          * [string] The UUID of the target group; mandatory for FORWARD action.
          */
-        targetGroup?: pulumi.Input<string>;
+        targetGroup?: pulumi.Input<string | undefined>;
         /**
          * [string] Type of the Http Rule.
          */
@@ -202,15 +202,15 @@ export namespace alb {
         /**
          * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
          */
-        condition?: pulumi.Input<string>;
+        condition?: pulumi.Input<string | undefined>;
         /**
          * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
          */
-        key?: pulumi.Input<string>;
+        key?: pulumi.Input<string | undefined>;
         /**
          * [bool] Specifies whether the condition is negated or not; the default is False.
          */
-        negate?: pulumi.Input<boolean>;
+        negate?: pulumi.Input<boolean | undefined>;
         /**
          * [string] Type of the Http Rule condition.
          */
@@ -218,7 +218,7 @@ export namespace alb {
         /**
          * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
          */
-        value?: pulumi.Input<string>;
+        value?: pulumi.Input<string | undefined>;
     }
 
 }
@@ -232,7 +232,7 @@ export namespace autoscaling {
         /**
          * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
          */
-        range?: pulumi.Input<string>;
+        range?: pulumi.Input<string | undefined>;
         /**
          * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
          */
@@ -267,7 +267,7 @@ export namespace autoscaling {
         /**
          * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
          */
-        cooldownPeriod?: pulumi.Input<string>;
+        cooldownPeriod?: pulumi.Input<string | undefined>;
         /**
          * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
          */
@@ -275,7 +275,7 @@ export namespace autoscaling {
         /**
          * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
          */
-        terminationPolicyType?: pulumi.Input<string>;
+        terminationPolicyType?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupPolicyScaleOutAction {
@@ -290,7 +290,7 @@ export namespace autoscaling {
         /**
          * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
          */
-        cooldownPeriod?: pulumi.Input<string>;
+        cooldownPeriod?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupReplicaConfiguration {
@@ -305,11 +305,11 @@ export namespace autoscaling {
         /**
          * [string] CPU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
          */
-        cpuFamily?: pulumi.Input<string>;
+        cpuFamily?: pulumi.Input<string | undefined>;
         /**
          * Set of NICs associated with this Replica.
          */
-        nics?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNic>[]>;
+        nics?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNic>[] | undefined>;
         /**
          * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
          */
@@ -317,30 +317,30 @@ export namespace autoscaling {
         /**
          * [list] List of volumes associated with this Replica.
          */
-        volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationVolume>[]>;
+        volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationVolume>[] | undefined>;
     }
 
     export interface GroupReplicaConfigurationNic {
         /**
          * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
          */
-        dhcp?: pulumi.Input<boolean>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
          */
-        firewallActive?: pulumi.Input<boolean>;
+        firewallActive?: pulumi.Input<boolean | undefined>;
         /**
          * List of all firewall rules for the specified NIC.
          */
-        firewallRules?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFirewallRule>[]>;
+        firewallRules?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFirewallRule>[] | undefined>;
         /**
          * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
          */
-        firewallType?: pulumi.Input<string>;
+        firewallType?: pulumi.Input<string | undefined>;
         /**
          * List of all flow logs for the specified NIC.
          */
-        flowLogs?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFlowLog>[]>;
+        flowLogs?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFlowLog>[] | undefined>;
         /**
          * Lan ID for this replica Nic.
          */
@@ -352,30 +352,30 @@ export namespace autoscaling {
         /**
          * In order to link VM to ALB, target group must be provided.
          */
-        targetGroup?: pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicTargetGroup>;
+        targetGroup?: pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicTargetGroup | undefined>;
     }
 
     export interface GroupReplicaConfigurationNicFirewallRule {
         /**
          * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
          */
-        icmpCode?: pulumi.Input<number>;
+        icmpCode?: pulumi.Input<number | undefined>;
         /**
          * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
          */
-        icmpType?: pulumi.Input<number>;
+        icmpType?: pulumi.Input<number | undefined>;
         /**
          * [string] User-defined name for the Autoscaling Group.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
         /**
          * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
-        portRangeEnd?: pulumi.Input<number>;
+        portRangeEnd?: pulumi.Input<number | undefined>;
         /**
          * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
-        portRangeStart?: pulumi.Input<number>;
+        portRangeStart?: pulumi.Input<number | undefined>;
         /**
          * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
          */
@@ -383,19 +383,19 @@ export namespace autoscaling {
         /**
          * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
          */
-        sourceIp?: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string | undefined>;
         /**
          * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
          */
-        sourceMac?: pulumi.Input<string>;
+        sourceMac?: pulumi.Input<string | undefined>;
         /**
          * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
          */
-        targetIp?: pulumi.Input<string>;
+        targetIp?: pulumi.Input<string | undefined>;
         /**
          * The firewall rule type. If not specified, the default value 'INGRESS' is used.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupReplicaConfigurationNicFlowLog {
@@ -414,7 +414,7 @@ export namespace autoscaling {
         /**
          * The resource's unique identifier.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] User-defined name for the Autoscaling Group.
          */
@@ -440,7 +440,7 @@ export namespace autoscaling {
         /**
          * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
          */
-        backupUnitId?: pulumi.Input<string>;
+        backupUnitId?: pulumi.Input<string | undefined>;
         /**
          * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
          * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
@@ -449,19 +449,19 @@ export namespace autoscaling {
         /**
          * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
          */
-        bus?: pulumi.Input<string>;
+        bus?: pulumi.Input<string | undefined>;
         /**
          * [string] The image installed on the volume. Only the UUID of the image is presently supported.
          */
-        image?: pulumi.Input<string>;
+        image?: pulumi.Input<string | undefined>;
         /**
          * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
          */
-        imageAlias?: pulumi.Input<string>;
+        imageAlias?: pulumi.Input<string | undefined>;
         /**
          * [string] Image password for this replica volume.
          */
-        imagePassword?: pulumi.Input<string>;
+        imagePassword?: pulumi.Input<string | undefined>;
         /**
          * [string] Name for this replica volume.
          */
@@ -473,7 +473,7 @@ export namespace autoscaling {
         /**
          * List of ssh keys, supports values or paths to files. Cannot be changed at update.
          */
-        sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
          */
@@ -481,7 +481,7 @@ export namespace autoscaling {
         /**
          * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
          */
-        userData?: pulumi.Input<string>;
+        userData?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -509,7 +509,7 @@ export namespace cdn {
         /**
          * [map] - A map of geo_restrictions
          */
-        geoRestrictions?: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions>;
+        geoRestrictions?: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions | undefined>;
         /**
          * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
          */
@@ -532,11 +532,11 @@ export namespace cdn {
         /**
          * [string] List of allowed countries
          */
-        allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+        allowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [string] List of blocked countries
          */
-        blockLists?: pulumi.Input<pulumi.Input<string>[]>;
+        blockLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
 }
@@ -560,271 +560,271 @@ export namespace compute {
         /**
          * The UUID of the connectable datacenter
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * The physical location of the connectable datacenter
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the cross-connection.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface CrossconnectPeer {
         /**
          * The id of the cross-connected datacenter
          */
-        datacenterId?: pulumi.Input<string>;
+        datacenterId?: pulumi.Input<string | undefined>;
         /**
          * The name of the cross-connected datacenter
          */
-        datacenterName?: pulumi.Input<string>;
+        datacenterName?: pulumi.Input<string | undefined>;
         /**
          * The id of the cross-connected LAN
          */
-        lanId?: pulumi.Input<string>;
+        lanId?: pulumi.Input<string | undefined>;
         /**
          * The name of the cross-connected LAN
          */
-        lanName?: pulumi.Input<string>;
+        lanName?: pulumi.Input<string | undefined>;
         /**
          * The location of the cross-connected datacenter
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
     }
 
     export interface CubeServerNic {
-        deviceNumber?: pulumi.Input<number>;
-        dhcp?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates whether this NIC receives an IPv6 address through DHCP.
          */
-        dhcpv6?: pulumi.Input<boolean>;
+        dhcpv6?: pulumi.Input<boolean | undefined>;
         /**
          * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
          */
-        firewall?: pulumi.Input<inputs.compute.CubeServerNicFirewall>;
-        firewallActive?: pulumi.Input<boolean>;
-        firewallType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        firewall?: pulumi.Input<inputs.compute.CubeServerNicFirewall | undefined>;
+        firewallActive?: pulumi.Input<boolean | undefined>;
+        firewallType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
          */
-        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * IPv6 CIDR block assigned to the NIC.
          */
-        ipv6CidrBlock?: pulumi.Input<string>;
+        ipv6CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
          */
-        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         lan: pulumi.Input<number>;
-        mac?: pulumi.Input<string>;
+        mac?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        pciSlot?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
         /**
          * The list of Security Group IDs for the resource.
          */
-        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface CubeServerNicFirewall {
-        icmpCode?: pulumi.Input<string>;
-        icmpType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        icmpCode?: pulumi.Input<string | undefined>;
+        icmpType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        portRangeEnd?: pulumi.Input<number>;
-        portRangeStart?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        portRangeEnd?: pulumi.Input<number | undefined>;
+        portRangeStart?: pulumi.Input<number | undefined>;
         protocol: pulumi.Input<string>;
-        sourceIp?: pulumi.Input<string>;
-        sourceMac?: pulumi.Input<string>;
-        targetIp?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string | undefined>;
+        sourceMac?: pulumi.Input<string | undefined>;
+        targetIp?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface CubeServerVolume {
         /**
          * [string] The availability zone in which the server should exist. This property is immutable.
          */
-        availabilityZone?: pulumi.Input<string>;
+        availabilityZone?: pulumi.Input<string | undefined>;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
          */
-        backupUnitId?: pulumi.Input<string>;
+        backupUnitId?: pulumi.Input<string | undefined>;
         /**
          * The UUID of the attached server.
          */
-        bootServer?: pulumi.Input<string>;
-        bus?: pulumi.Input<string>;
-        cpuHotPlug?: pulumi.Input<boolean>;
-        deviceNumber?: pulumi.Input<number>;
-        discVirtioHotPlug?: pulumi.Input<boolean>;
-        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        bootServer?: pulumi.Input<string | undefined>;
+        bus?: pulumi.Input<string | undefined>;
+        cpuHotPlug?: pulumi.Input<boolean | undefined>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
+        discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
         diskType: pulumi.Input<string>;
         /**
          * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
          */
-        exposeSerial?: pulumi.Input<boolean>;
+        exposeSerial?: pulumi.Input<boolean | undefined>;
         /**
          * [string] Required if `sshKeyPath` is not provided.
          *
          * @deprecated Please use imagePassword under server level
          */
-        imagePassword?: pulumi.Input<string>;
+        imagePassword?: pulumi.Input<string | undefined>;
         /**
          * [string] Sets the OS type of the server.
          */
-        licenceType?: pulumi.Input<string>;
+        licenceType?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        nicHotPlug?: pulumi.Input<boolean>;
-        nicHotUnplug?: pulumi.Input<boolean>;
-        pciSlot?: pulumi.Input<number>;
-        ramHotPlug?: pulumi.Input<boolean>;
+        name?: pulumi.Input<string | undefined>;
+        nicHotPlug?: pulumi.Input<boolean | undefined>;
+        nicHotUnplug?: pulumi.Input<boolean | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
+        ramHotPlug?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
          */
-        requireLegacyBios?: pulumi.Input<boolean>;
+        requireLegacyBios?: pulumi.Input<boolean | undefined>;
         /**
          * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
          *
          * @deprecated Please use sshKeyPath under server level
          */
-        sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+        sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
-        userData?: pulumi.Input<string>;
+        userData?: pulumi.Input<string | undefined>;
     }
 
     export interface DatacenterCpuArchitecture {
         /**
          * A valid CPU family name
          */
-        cpuFamily?: pulumi.Input<string>;
+        cpuFamily?: pulumi.Input<string | undefined>;
         /**
          * The maximum number of cores available
          */
-        maxCores?: pulumi.Input<number>;
+        maxCores?: pulumi.Input<number | undefined>;
         /**
          * The maximum number of RAM in MB
          */
-        maxRam?: pulumi.Input<number>;
+        maxRam?: pulumi.Input<number | undefined>;
         /**
          * A valid CPU vendor name
          */
-        vendor?: pulumi.Input<string>;
+        vendor?: pulumi.Input<string | undefined>;
     }
 
     export interface GPUServerNic {
-        deviceNumber?: pulumi.Input<number>;
-        dhcp?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates whether this NIC receives an IPv6 address through DHCP.
          */
-        dhcpv6?: pulumi.Input<boolean>;
+        dhcpv6?: pulumi.Input<boolean | undefined>;
         /**
          * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
          */
-        firewall?: pulumi.Input<inputs.compute.GPUServerNicFirewall>;
-        firewallActive?: pulumi.Input<boolean>;
-        firewallType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        firewall?: pulumi.Input<inputs.compute.GPUServerNicFirewall | undefined>;
+        firewallActive?: pulumi.Input<boolean | undefined>;
+        firewallType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
          */
-        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * IPv6 CIDR block assigned to the NIC.
          */
-        ipv6CidrBlock?: pulumi.Input<string>;
+        ipv6CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
          */
-        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         lan: pulumi.Input<number>;
-        mac?: pulumi.Input<string>;
+        mac?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        pciSlot?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
         /**
          * The list of Security Group IDs for the resource.
          */
-        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface GPUServerNicFirewall {
-        icmpCode?: pulumi.Input<string>;
-        icmpType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        icmpCode?: pulumi.Input<string | undefined>;
+        icmpType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        portRangeEnd?: pulumi.Input<number>;
-        portRangeStart?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        portRangeEnd?: pulumi.Input<number | undefined>;
+        portRangeStart?: pulumi.Input<number | undefined>;
         protocol: pulumi.Input<string>;
-        sourceIp?: pulumi.Input<string>;
-        sourceMac?: pulumi.Input<string>;
-        targetIp?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string | undefined>;
+        sourceMac?: pulumi.Input<string | undefined>;
+        targetIp?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface GPUServerVolume {
         /**
          * [string] The availability zone in which the server should exist. This property is immutable.
          */
-        availabilityZone?: pulumi.Input<string>;
+        availabilityZone?: pulumi.Input<string | undefined>;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
          */
-        backupUnitId?: pulumi.Input<string>;
+        backupUnitId?: pulumi.Input<string | undefined>;
         /**
          * The UUID of the attached server.
          */
-        bootServer?: pulumi.Input<string>;
-        bus?: pulumi.Input<string>;
-        cpuHotPlug?: pulumi.Input<boolean>;
-        deviceNumber?: pulumi.Input<number>;
-        discVirtioHotPlug?: pulumi.Input<boolean>;
-        discVirtioHotUnplug?: pulumi.Input<boolean>;
-        diskType?: pulumi.Input<string>;
+        bootServer?: pulumi.Input<string | undefined>;
+        bus?: pulumi.Input<string | undefined>;
+        cpuHotPlug?: pulumi.Input<boolean | undefined>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
+        discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
+        diskType?: pulumi.Input<string | undefined>;
         /**
          * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
          */
-        exposeSerial?: pulumi.Input<boolean>;
+        exposeSerial?: pulumi.Input<boolean | undefined>;
         /**
          * [string] Sets the OS type of the server.
          */
-        licenceType?: pulumi.Input<string>;
+        licenceType?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        nicHotPlug?: pulumi.Input<boolean>;
-        nicHotUnplug?: pulumi.Input<boolean>;
-        pciSlot?: pulumi.Input<number>;
-        ramHotPlug?: pulumi.Input<boolean>;
+        name?: pulumi.Input<string | undefined>;
+        nicHotPlug?: pulumi.Input<boolean | undefined>;
+        nicHotUnplug?: pulumi.Input<boolean | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
+        ramHotPlug?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
          */
-        requireLegacyBios?: pulumi.Input<boolean>;
+        requireLegacyBios?: pulumi.Input<boolean | undefined>;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
-        userData?: pulumi.Input<string>;
+        userData?: pulumi.Input<string | undefined>;
     }
 
     export interface GetServersFilter {
@@ -860,52 +860,52 @@ export namespace compute {
         /**
          * The number of GPUs
          */
-        count?: pulumi.Input<number>;
+        count?: pulumi.Input<number | undefined>;
         /**
          * The model of the GPU
          */
-        model?: pulumi.Input<string>;
+        model?: pulumi.Input<string | undefined>;
         /**
          * The type of the GPU
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
         /**
          * The vendor of the GPU
          */
-        vendor?: pulumi.Input<string>;
+        vendor?: pulumi.Input<string | undefined>;
     }
 
     export interface GroupUser {
-        administrator?: pulumi.Input<boolean>;
-        email?: pulumi.Input<string>;
-        firstName?: pulumi.Input<string>;
-        forceSecAuth?: pulumi.Input<boolean>;
-        id?: pulumi.Input<string>;
-        lastName?: pulumi.Input<string>;
+        administrator?: pulumi.Input<boolean | undefined>;
+        email?: pulumi.Input<string | undefined>;
+        firstName?: pulumi.Input<string | undefined>;
+        forceSecAuth?: pulumi.Input<boolean | undefined>;
+        id?: pulumi.Input<string | undefined>;
+        lastName?: pulumi.Input<string | undefined>;
     }
 
     export interface IPBlockIpConsumer {
-        datacenterId?: pulumi.Input<string>;
-        datacenterName?: pulumi.Input<string>;
-        ip?: pulumi.Input<string>;
-        k8sClusterUuid?: pulumi.Input<string>;
-        k8sNodepoolUuid?: pulumi.Input<string>;
-        mac?: pulumi.Input<string>;
-        nicId?: pulumi.Input<string>;
-        serverId?: pulumi.Input<string>;
-        serverName?: pulumi.Input<string>;
+        datacenterId?: pulumi.Input<string | undefined>;
+        datacenterName?: pulumi.Input<string | undefined>;
+        ip?: pulumi.Input<string | undefined>;
+        k8sClusterUuid?: pulumi.Input<string | undefined>;
+        k8sNodepoolUuid?: pulumi.Input<string | undefined>;
+        mac?: pulumi.Input<string | undefined>;
+        nicId?: pulumi.Input<string | undefined>;
+        serverId?: pulumi.Input<string | undefined>;
+        serverName?: pulumi.Input<string | undefined>;
     }
 
     export interface LanIpFailover {
-        ip?: pulumi.Input<string>;
-        nicUuid?: pulumi.Input<string>;
+        ip?: pulumi.Input<string | undefined>;
+        nicUuid?: pulumi.Input<string | undefined>;
     }
 
     export interface NatGatewayLan {
         /**
          * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
          */
-        gatewayIps?: pulumi.Input<pulumi.Input<string>[]>;
+        gatewayIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [int] Id for the LAN connected to the NAT gateway.
          */
@@ -916,11 +916,11 @@ export namespace compute {
         /**
          * [int] Target port range end associated with the NAT gateway rule.
          */
-        end?: pulumi.Input<number>;
+        end?: pulumi.Input<number | undefined>;
         /**
          * [int] Target port range start associated with the NAT gateway rule.
          */
-        start?: pulumi.Input<number>;
+        start?: pulumi.Input<number | undefined>;
     }
 
     export interface NicFlowlog {
@@ -939,7 +939,7 @@ export namespace compute {
         /**
          * The ID of the NIC.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the flow log.
          */
@@ -958,144 +958,144 @@ export namespace compute {
     }
 
     export interface ServerNic {
-        deviceNumber?: pulumi.Input<number>;
-        dhcp?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates whether this NIC receives an IPv6 address through DHCP.
          */
-        dhcpv6?: pulumi.Input<boolean>;
-        firewallActive?: pulumi.Input<boolean>;
-        firewallType?: pulumi.Input<string>;
+        dhcpv6?: pulumi.Input<boolean | undefined>;
+        firewallActive?: pulumi.Input<boolean | undefined>;
+        firewallType?: pulumi.Input<string | undefined>;
         /**
          * Allows to define firewall rules inline in the server. See the Firewall section.
          */
-        firewalls?: pulumi.Input<pulumi.Input<inputs.compute.ServerNicFirewall>[]>;
-        id?: pulumi.Input<string>;
+        firewalls?: pulumi.Input<pulumi.Input<inputs.compute.ServerNicFirewall>[] | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
          */
-        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * IPv6 CIDR block assigned to the NIC.
          */
-        ipv6CidrBlock?: pulumi.Input<string>;
+        ipv6CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
          */
-        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         lan: pulumi.Input<number>;
-        mac?: pulumi.Input<string>;
+        mac?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        pciSlot?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
         /**
          * The list of Security Group IDs for the
          */
-        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ServerNicFirewall {
-        icmpCode?: pulumi.Input<string>;
-        icmpType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        icmpCode?: pulumi.Input<string | undefined>;
+        icmpType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        portRangeEnd?: pulumi.Input<number>;
-        portRangeStart?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        portRangeEnd?: pulumi.Input<number | undefined>;
+        portRangeStart?: pulumi.Input<number | undefined>;
         protocol: pulumi.Input<string>;
-        sourceIp?: pulumi.Input<string>;
-        sourceMac?: pulumi.Input<string>;
-        targetIp?: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string | undefined>;
+        sourceMac?: pulumi.Input<string | undefined>;
+        targetIp?: pulumi.Input<string | undefined>;
         /**
          * (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface ServerVolume {
         /**
          * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
          */
-        availabilityZone?: pulumi.Input<string>;
+        availabilityZone?: pulumi.Input<string | undefined>;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
          */
-        backupUnitId?: pulumi.Input<string>;
+        backupUnitId?: pulumi.Input<string | undefined>;
         /**
          * The UUID of the attached server.
          */
-        bootServer?: pulumi.Input<string>;
-        bus?: pulumi.Input<string>;
-        cpuHotPlug?: pulumi.Input<boolean>;
-        deviceNumber?: pulumi.Input<number>;
-        discVirtioHotPlug?: pulumi.Input<boolean>;
-        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        bootServer?: pulumi.Input<string | undefined>;
+        bus?: pulumi.Input<string | undefined>;
+        cpuHotPlug?: pulumi.Input<boolean | undefined>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
+        discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
         diskType: pulumi.Input<string>;
         /**
          * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
          */
-        exposeSerial?: pulumi.Input<boolean>;
+        exposeSerial?: pulumi.Input<boolean | undefined>;
         /**
          * [string] Required if `sshKeyPath` is not provided.
          *
          * @deprecated Please use imagePassword under server level
          */
-        imagePassword?: pulumi.Input<string>;
+        imagePassword?: pulumi.Input<string | undefined>;
         /**
          * [string] Sets the OS type of the server.
          */
-        licenceType?: pulumi.Input<string>;
+        licenceType?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        nicHotPlug?: pulumi.Input<boolean>;
-        nicHotUnplug?: pulumi.Input<boolean>;
-        pciSlot?: pulumi.Input<number>;
-        ramHotPlug?: pulumi.Input<boolean>;
+        name?: pulumi.Input<string | undefined>;
+        nicHotPlug?: pulumi.Input<boolean | undefined>;
+        nicHotUnplug?: pulumi.Input<boolean | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
+        ramHotPlug?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
          */
-        requireLegacyBios?: pulumi.Input<boolean>;
+        requireLegacyBios?: pulumi.Input<boolean | undefined>;
         /**
          * The size of the volume in GB.
          */
-        size?: pulumi.Input<number>;
+        size?: pulumi.Input<number | undefined>;
         /**
          * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          *
          * @deprecated Please use sshKeyPath under server level
          */
-        sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+        sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
          *
          * @deprecated Please use sshKeys under server level
          */
-        sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
-        userData?: pulumi.Input<string>;
+        userData?: pulumi.Input<string | undefined>;
     }
 
     export interface TargetGroupHealthCheck {
         /**
          * [int] The interval in milliseconds between consecutive health checks; default is 2000.
          */
-        checkInterval?: pulumi.Input<number>;
+        checkInterval?: pulumi.Input<number | undefined>;
         /**
          * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
          */
-        checkTimeout?: pulumi.Input<number>;
+        checkTimeout?: pulumi.Input<number | undefined>;
         /**
          * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
          */
-        retries?: pulumi.Input<number>;
+        retries?: pulumi.Input<number | undefined>;
     }
 
     export interface TargetGroupHttpHealthCheck {
@@ -1106,19 +1106,19 @@ export namespace compute {
         /**
          * [string] The method for the HTTP health check.
          */
-        method?: pulumi.Input<string>;
+        method?: pulumi.Input<string | undefined>;
         /**
          * [bool]
          */
-        negate?: pulumi.Input<boolean>;
+        negate?: pulumi.Input<boolean | undefined>;
         /**
          * [string] The path (destination URL) for the HTTP health check request; the default is /.
          */
-        path?: pulumi.Input<string>;
+        path?: pulumi.Input<string | undefined>;
         /**
          * [bool]
          */
-        regex?: pulumi.Input<boolean>;
+        regex?: pulumi.Input<boolean | undefined>;
         /**
          * [string] The response returned by the request, depending on the match type.
          */
@@ -1129,7 +1129,7 @@ export namespace compute {
         /**
          * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
          */
-        healthCheckEnabled?: pulumi.Input<boolean>;
+        healthCheckEnabled?: pulumi.Input<boolean | undefined>;
         /**
          * [string] The IP of the balanced target VM.
          */
@@ -1137,7 +1137,7 @@ export namespace compute {
         /**
          * [bool] Maintenance mode prevents the target from receiving balanced traffic.
          */
-        maintenanceEnabled?: pulumi.Input<boolean>;
+        maintenanceEnabled?: pulumi.Input<boolean | undefined>;
         /**
          * [int] The port of the balanced target service; valid range is 1 to 65535.
          */
@@ -1145,7 +1145,7 @@ export namespace compute {
         /**
          * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
          */
-        proxyProtocol?: pulumi.Input<string>;
+        proxyProtocol?: pulumi.Input<string | undefined>;
         /**
          * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
          */
@@ -1158,108 +1158,108 @@ export namespace compute {
     }
 
     export interface VCPUServerNic {
-        deviceNumber?: pulumi.Input<number>;
-        dhcp?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates whether this NIC receives an IPv6 address through DHCP.
          */
-        dhcpv6?: pulumi.Input<boolean>;
-        firewallActive?: pulumi.Input<boolean>;
-        firewallType?: pulumi.Input<string>;
+        dhcpv6?: pulumi.Input<boolean | undefined>;
+        firewallActive?: pulumi.Input<boolean | undefined>;
+        firewallType?: pulumi.Input<string | undefined>;
         /**
          * Allows to define firewall rules inline in the server. See the Firewall section.
          */
-        firewalls?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerNicFirewall>[]>;
-        id?: pulumi.Input<string>;
+        firewalls?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerNicFirewall>[] | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
          */
-        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * IPv6 CIDR block assigned to the NIC.
          */
-        ipv6CidrBlock?: pulumi.Input<string>;
+        ipv6CidrBlock?: pulumi.Input<string | undefined>;
         /**
          * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
          */
-        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         lan: pulumi.Input<number>;
-        mac?: pulumi.Input<string>;
+        mac?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        pciSlot?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
         /**
          * The list of Security Group IDs for the resource.
          */
-        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+        securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface VCPUServerNicFirewall {
-        icmpCode?: pulumi.Input<string>;
-        icmpType?: pulumi.Input<string>;
-        id?: pulumi.Input<string>;
+        icmpCode?: pulumi.Input<string | undefined>;
+        icmpType?: pulumi.Input<string | undefined>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        portRangeEnd?: pulumi.Input<number>;
-        portRangeStart?: pulumi.Input<number>;
+        name?: pulumi.Input<string | undefined>;
+        portRangeEnd?: pulumi.Input<number | undefined>;
+        portRangeStart?: pulumi.Input<number | undefined>;
         protocol: pulumi.Input<string>;
-        sourceIp?: pulumi.Input<string>;
-        sourceMac?: pulumi.Input<string>;
-        targetIp?: pulumi.Input<string>;
-        type?: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string | undefined>;
+        sourceMac?: pulumi.Input<string | undefined>;
+        targetIp?: pulumi.Input<string | undefined>;
+        type?: pulumi.Input<string | undefined>;
     }
 
     export interface VCPUServerVolume {
         /**
          * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
          */
-        availabilityZone?: pulumi.Input<string>;
+        availabilityZone?: pulumi.Input<string | undefined>;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
          */
-        backupUnitId?: pulumi.Input<string>;
+        backupUnitId?: pulumi.Input<string | undefined>;
         /**
          * The UUID of the attached server.
          */
-        bootServer?: pulumi.Input<string>;
-        bus?: pulumi.Input<string>;
-        cpuHotPlug?: pulumi.Input<boolean>;
-        deviceNumber?: pulumi.Input<number>;
-        discVirtioHotPlug?: pulumi.Input<boolean>;
-        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        bootServer?: pulumi.Input<string | undefined>;
+        bus?: pulumi.Input<string | undefined>;
+        cpuHotPlug?: pulumi.Input<boolean | undefined>;
+        deviceNumber?: pulumi.Input<number | undefined>;
+        discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
+        discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
         diskType: pulumi.Input<string>;
         /**
          * If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
          */
-        exposeSerial?: pulumi.Input<boolean>;
+        exposeSerial?: pulumi.Input<boolean | undefined>;
         /**
          * [string] Sets the OS type of the server.
          */
-        licenceType?: pulumi.Input<string>;
+        licenceType?: pulumi.Input<string | undefined>;
         /**
          * [string] The name of the server.
          */
-        name?: pulumi.Input<string>;
-        nicHotPlug?: pulumi.Input<boolean>;
-        nicHotUnplug?: pulumi.Input<boolean>;
-        pciSlot?: pulumi.Input<number>;
-        ramHotPlug?: pulumi.Input<boolean>;
+        name?: pulumi.Input<string | undefined>;
+        nicHotPlug?: pulumi.Input<boolean | undefined>;
+        nicHotUnplug?: pulumi.Input<boolean | undefined>;
+        pciSlot?: pulumi.Input<number | undefined>;
+        ramHotPlug?: pulumi.Input<boolean | undefined>;
         /**
          * Indicates if the image requires the legacy BIOS for compatibility or specific needs.
          */
-        requireLegacyBios?: pulumi.Input<boolean>;
+        requireLegacyBios?: pulumi.Input<boolean | undefined>;
         /**
          * The size of the volume in GB.
          */
-        size?: pulumi.Input<number>;
+        size?: pulumi.Input<number | undefined>;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
-        userData?: pulumi.Input<string>;
+        userData?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -1270,7 +1270,7 @@ export namespace creg {
          *
          * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
          */
-        vulnerabilityScanning?: pulumi.Input<boolean>;
+        vulnerabilityScanning?: pulumi.Input<boolean | undefined>;
     }
 
     export interface RegistryGarbageCollectionSchedule {
@@ -1285,8 +1285,8 @@ export namespace creg {
     }
 
     export interface RegistryStorageUsage {
-        bytes?: pulumi.Input<number>;
-        updatedAt?: pulumi.Input<string>;
+        bytes?: pulumi.Input<number | undefined>;
+        updatedAt?: pulumi.Input<string | undefined>;
     }
 
     export interface RegistryTokenCredential {
@@ -1336,11 +1336,11 @@ export namespace dbaas {
          *
          * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
          */
-        database?: pulumi.Input<string>;
+        database?: pulumi.Input<string | undefined>;
         /**
          * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
          */
-        role?: pulumi.Input<string>;
+        role?: pulumi.Input<string | undefined>;
     }
 
     export interface InMemoryDBReplicaSetConnections {
@@ -1362,11 +1362,11 @@ export namespace dbaas {
         /**
          * [object] The hashed password for a InMemoryDB user.
          */
-        hashedPassword?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword>;
+        hashedPassword?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword | undefined>;
         /**
          * [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
          */
-        plainTextPassword?: pulumi.Input<string>;
+        plainTextPassword?: pulumi.Input<string | undefined>;
         /**
          * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
          */
@@ -1407,7 +1407,7 @@ export namespace dbaas {
         /**
          * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
-        storage?: pulumi.Input<number>;
+        storage?: pulumi.Input<number | undefined>;
     }
 
     export interface MariaDBClusterBackup {
@@ -1458,30 +1458,30 @@ export namespace dbaas {
         /**
          * [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
          */
-        location?: pulumi.Input<string>;
+        location?: pulumi.Input<string | undefined>;
         /**
          * Number of hours in the past for which a point-in-time snapshot can be created.
          */
-        pointInTimeWindowHours?: pulumi.Input<number>;
+        pointInTimeWindowHours?: pulumi.Input<number | undefined>;
         /**
          * Number of hours between snapshots.
          */
-        snapshotIntervalHours?: pulumi.Input<number>;
+        snapshotIntervalHours?: pulumi.Input<number | undefined>;
     }
 
     export interface MongoClusterBiConnector {
         /**
          * [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
          */
-        enabled?: pulumi.Input<boolean>;
+        enabled?: pulumi.Input<boolean | undefined>;
         /**
          * [string] - The host where this new BI Connector is installed.
          */
-        host?: pulumi.Input<string>;
+        host?: pulumi.Input<string | undefined>;
         /**
          * [string] - Port number used when connecting to this new BI Connector.
          */
-        port?: pulumi.Input<string>;
+        port?: pulumi.Input<string | undefined>;
     }
 
     export interface MongoClusterConnections {
@@ -1516,11 +1516,11 @@ export namespace dbaas {
          *
          * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
          */
-        database?: pulumi.Input<string>;
+        database?: pulumi.Input<string | undefined>;
         /**
          * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
          */
-        role?: pulumi.Input<string>;
+        role?: pulumi.Input<string | undefined>;
     }
 
     export interface PSQLClusterConnectionPooler {
@@ -1568,7 +1568,7 @@ export namespace dbaas {
         /**
          * [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
          */
-        recoveryTargetTime?: pulumi.Input<string>;
+        recoveryTargetTime?: pulumi.Input<string | undefined>;
     }
 
     export interface PSQLClusterMaintenanceWindow {
@@ -1599,7 +1599,7 @@ export namespace k8s {
         /**
          * [string] The name of the Kubernetes Cluster.
          */
-        name?: pulumi.Input<string>;
+        name?: pulumi.Input<string | undefined>;
     }
 
     export interface GetClustersFilter {
@@ -1627,7 +1627,7 @@ export namespace k8s {
         /**
          * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
          */
-        dhcp?: pulumi.Input<boolean>;
+        dhcp?: pulumi.Input<boolean | undefined>;
         /**
          * [int] The LAN ID of an existing LAN at the related datacenter
          */
@@ -1635,7 +1635,7 @@ export namespace k8s {
         /**
          * An array of additional LANs attached to worker nodes
          */
-        routes?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLanRoute>[]>;
+        routes?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLanRoute>[] | undefined>;
     }
 
     export interface NodePoolLanRoute {
@@ -1685,12 +1685,12 @@ export namespace logging {
         /**
          * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
          */
-        destinations?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLogDestination>[]>;
+        destinations?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLogDestination>[] | undefined>;
         /**
          * [string] "Protocol to use as intake. Possible values are: http, tcp."
          */
         protocol: pulumi.Input<string>;
-        public?: pulumi.Input<boolean>;
+        public?: pulumi.Input<boolean | undefined>;
         /**
          * [string] The source parser to be used.
          */
@@ -1705,11 +1705,11 @@ export namespace logging {
         /**
          * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
          */
-        retentionInDays?: pulumi.Input<number>;
+        retentionInDays?: pulumi.Input<number | undefined>;
         /**
          * [string] The internal output stream to send logs to.
          */
-        type?: pulumi.Input<string>;
+        type?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -1718,19 +1718,19 @@ export namespace monitoring {
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
          */
-        create?: pulumi.Input<string>;
+        create?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
          */
-        delete?: pulumi.Input<string>;
+        delete?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
          */
-        read?: pulumi.Input<string>;
+        read?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
          */
-        update?: pulumi.Input<string>;
+        update?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -1756,7 +1756,7 @@ export namespace nfs {
         /**
          * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
          */
-        minVersion?: pulumi.Input<string>;
+        minVersion?: pulumi.Input<string | undefined>;
     }
 
     export interface GetShareClientGroup {
@@ -1782,19 +1782,19 @@ export namespace nfs {
         /**
          * Optional description for the clients groups.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
          */
-        hosts?: pulumi.Input<pulumi.Input<string>[]>;
+        hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
          */
-        ipNetworks?: pulumi.Input<pulumi.Input<string>[]>;
+        ipNetworks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The NFS configuration for the client group. Each NFS configuration supports the following:
          */
-        nfs?: pulumi.Input<pulumi.Input<inputs.nfs.GetShareClientGroupNfArgs>[]>;
+        nfs?: pulumi.Input<pulumi.Input<inputs.nfs.GetShareClientGroupNfArgs>[] | undefined>;
     }
 
     export interface GetShareClientGroupNf {
@@ -1808,14 +1808,14 @@ export namespace nfs {
         /**
          * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
          */
-        squash?: pulumi.Input<string>;
+        squash?: pulumi.Input<string | undefined>;
     }
 
     export interface ShareClientGroup {
         /**
          * Optional description for the clients groups.
          */
-        description?: pulumi.Input<string>;
+        description?: pulumi.Input<string | undefined>;
         /**
          * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
          */
@@ -1827,14 +1827,14 @@ export namespace nfs {
         /**
          * NFS specific configurations. Each configuration includes:
          */
-        nfs?: pulumi.Input<inputs.nfs.ShareClientGroupNfs>;
+        nfs?: pulumi.Input<inputs.nfs.ShareClientGroupNfs | undefined>;
     }
 
     export interface ShareClientGroupNfs {
         /**
          * The squash mode for the export. The squash mode can be:
          */
-        squash?: pulumi.Input<string>;
+        squash?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -1855,7 +1855,7 @@ export namespace nlb {
         /**
          * The resource's unique identifier.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * [string] Specifies the name of the flow log.
          *
@@ -1868,26 +1868,26 @@ export namespace nlb {
         /**
          * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
          */
-        clientTimeout?: pulumi.Input<number>;
+        clientTimeout?: pulumi.Input<number | undefined>;
         /**
          * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
          */
-        connectTimeout?: pulumi.Input<number>;
+        connectTimeout?: pulumi.Input<number | undefined>;
         /**
          * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
          */
-        retries?: pulumi.Input<number>;
+        retries?: pulumi.Input<number | undefined>;
         /**
          * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
          */
-        targetTimeout?: pulumi.Input<number>;
+        targetTimeout?: pulumi.Input<number | undefined>;
     }
 
     export interface ForwardingRuleTarget {
         /**
          * Health check attributes for Network Load Balancer forwarding rule target.
          */
-        healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleTargetHealthCheck>;
+        healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleTargetHealthCheck | undefined>;
         /**
          * [string] IP of a balanced target VM.
          */
@@ -1899,7 +1899,7 @@ export namespace nlb {
         /**
          * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
          */
-        proxyProtocol?: pulumi.Input<string>;
+        proxyProtocol?: pulumi.Input<string | undefined>;
         /**
          * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
          */
@@ -1910,15 +1910,15 @@ export namespace nlb {
         /**
          * [boolean] Check specifies whether the target VM's health is checked.
          */
-        check?: pulumi.Input<boolean>;
+        check?: pulumi.Input<boolean | undefined>;
         /**
          * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
          */
-        checkInterval?: pulumi.Input<number>;
+        checkInterval?: pulumi.Input<number | undefined>;
         /**
          * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
          */
-        maintenance?: pulumi.Input<boolean>;
+        maintenance?: pulumi.Input<boolean | undefined>;
     }
 
 }
@@ -1931,29 +1931,29 @@ export namespace objectstorage {
         /**
          * Specifies the days since the initiation of an incomplete multipart upload that IONOS Object Storage Object Storage will wait before permanently removing all parts of the upload.
          */
-        abortIncompleteMultipartUpload?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload>;
+        abortIncompleteMultipartUpload?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload | undefined>;
         /**
          * A lifecycle rule for when an object expires.
          */
-        expiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleExpiration>;
+        expiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleExpiration | undefined>;
         /**
          * A filter.
          */
-        filter?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleFilter>;
+        filter?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleFilter | undefined>;
         /**
          * Unique identifier for the rule.
          */
-        id?: pulumi.Input<string>;
+        id?: pulumi.Input<string | undefined>;
         /**
          * A lifecycle rule for when non-current object versions expire.
          */
-        noncurrentVersionExpiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration>;
+        noncurrentVersionExpiration?: pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpiration | undefined>;
         /**
          * Object key prefix identifying one or more objects to which the rule applies.
          *
          * @deprecated This field is deprecated and will be removed in a future version. It does nothing. Use 'filter' block instead.
          */
-        prefix?: pulumi.Input<string>;
+        prefix?: pulumi.Input<string | undefined>;
         /**
          * Whether the rule is currently being applied. Valid values: Enabled or Disabled.
          */
@@ -1964,43 +1964,43 @@ export namespace objectstorage {
         /**
          * Specifies the number of days after which IONOS Object Storage Object Storage aborts an incomplete multipart upload.
          */
-        daysAfterInitiation?: pulumi.Input<number>;
+        daysAfterInitiation?: pulumi.Input<number | undefined>;
     }
 
     export interface BucketLifecycleConfigurationRuleExpiration {
         /**
          * Specifies the date when the object expires. Required if 'days' is not specified.
          */
-        date?: pulumi.Input<string>;
+        date?: pulumi.Input<string | undefined>;
         /**
          * Specifies the number of days after object creation when the object expires. Required if 'date' is not specified.
          */
-        days?: pulumi.Input<number>;
+        days?: pulumi.Input<number | undefined>;
         /**
          * Indicates whether IONOS Object Storage Object Storage will remove a delete marker with no noncurrent versions. If set to true, the delete marker will be expired; if set to false the policy takes no operation. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
          */
-        expiredObjectDeleteMarker?: pulumi.Input<boolean>;
+        expiredObjectDeleteMarker?: pulumi.Input<boolean | undefined>;
     }
 
     export interface BucketLifecycleConfigurationRuleFilter {
         /**
          * Object key prefix identifying one or more objects to which the rule applies.
          */
-        prefix?: pulumi.Input<string>;
+        prefix?: pulumi.Input<string | undefined>;
     }
 
     export interface BucketLifecycleConfigurationRuleNoncurrentVersionExpiration {
         /**
          * Specifies the number of days an object is noncurrent before IONOS Object Storage can perform the associated action.
          */
-        noncurrentDays?: pulumi.Input<number>;
+        noncurrentDays?: pulumi.Input<number | undefined>;
     }
 
     export interface BucketServerSideEncryptionConfigurationRule {
         /**
          * [block] Defines the default encryption settings.
          */
-        applyServerSideEncryptionByDefault?: pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault>;
+        applyServerSideEncryptionByDefault?: pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault | undefined>;
     }
 
     export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
@@ -2014,26 +2014,26 @@ export namespace objectstorage {
         /**
          * [string] Time to wait for the bucket to be created. Default is `10m`.
          */
-        create?: pulumi.Input<string>;
+        create?: pulumi.Input<string | undefined>;
         /**
          * [string] Time to wait for the bucket to be deleted. Default is `10m`.
          */
-        delete?: pulumi.Input<string>;
+        delete?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
          */
-        read?: pulumi.Input<string>;
+        read?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
          */
-        update?: pulumi.Input<string>;
+        update?: pulumi.Input<string | undefined>;
     }
 
     export interface BucketVersioningVersioningConfiguration {
         /**
          * [string] Specifies whether MFA delete is enabled or not. Can be `Enabled` or `Disabled`.
          */
-        mfaDelete?: pulumi.Input<string>;
+        mfaDelete?: pulumi.Input<string | undefined>;
         /**
          * [string] The versioning state of the bucket. Can be `Enabled` or `Suspended`.
          */
@@ -2044,7 +2044,7 @@ export namespace objectstorage {
         /**
          * [list] Specifies which headers are allowed in a preflight OPTIONS request through the Access-Control-Request-Headers header
          */
-        allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [list] An HTTP method that you allow the origin to execute. Valid values are GET, PUT, HEAD, POST, DELETE.
          */
@@ -2056,111 +2056,111 @@ export namespace objectstorage {
         /**
          * [list] Specifies which headers are exposed to the browser.
          */
-        exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        exposeHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * [int] Container for the Contract Number of the owner
          *
          * Days and years are mutually exclusive. You can only specify one of them.
          */
-        id?: pulumi.Input<number>;
+        id?: pulumi.Input<number | undefined>;
         /**
          * [int] Specifies how long the results of a pre-flight request can be cached in seconds.
          */
-        maxAgeSeconds?: pulumi.Input<number>;
+        maxAgeSeconds?: pulumi.Input<number | undefined>;
     }
 
     export interface ObjectLockConfigurationRule {
         /**
          * [block] A block of defaultRetention as defined below.
          */
-        defaultRetention?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRuleDefaultRetention>;
+        defaultRetention?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRuleDefaultRetention | undefined>;
     }
 
     export interface ObjectLockConfigurationRuleDefaultRetention {
         /**
          * [int] The default retention period of the bucket in days.
          */
-        days?: pulumi.Input<number>;
+        days?: pulumi.Input<number | undefined>;
         /**
          * [string] The default retention mode of the bucket. Can be `GOVERNANCE` or `COMPLIANCE`.
          */
-        mode?: pulumi.Input<string>;
+        mode?: pulumi.Input<string | undefined>;
         /**
          * [int] The default retention period of the bucket in years.
          *
          * Days and years are mutually exclusive. You can only specify one of them.
          */
-        years?: pulumi.Input<number>;
+        years?: pulumi.Input<number | undefined>;
     }
 
     export interface WebsiteConfigurationErrorDocument {
         /**
          * The object key
          */
-        key?: pulumi.Input<string>;
+        key?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationIndexDocument {
         /**
          * A suffix that is appended to a request that is for a directory on the website endpoint (for example, if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests.
          */
-        suffix?: pulumi.Input<string>;
+        suffix?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationRedirectAllRequestsTo {
         /**
          * Name of the host where requests will be redirected.
          */
-        hostName?: pulumi.Input<string>;
+        hostName?: pulumi.Input<string | undefined>;
         /**
          * Protocol to use (http, https).
          */
-        protocol?: pulumi.Input<string>;
+        protocol?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationRoutingRule {
         /**
          * A container for describing a condition that must be met for the specified redirect to apply.
          */
-        condition?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleCondition>;
+        condition?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleCondition | undefined>;
         /**
          * Container for the redirect information.
          */
-        redirect?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleRedirect>;
+        redirect?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRuleRedirect | undefined>;
     }
 
     export interface WebsiteConfigurationRoutingRuleCondition {
         /**
          * The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied.
          */
-        httpErrorCodeReturnedEquals?: pulumi.Input<string>;
+        httpErrorCodeReturnedEquals?: pulumi.Input<string | undefined>;
         /**
          * The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix example, the key prefix will be /example.
          */
-        keyPrefixEquals?: pulumi.Input<string>;
+        keyPrefixEquals?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationRoutingRuleRedirect {
         /**
          * The host name to use in the redirect request.
          */
-        hostName?: pulumi.Input<string>;
+        hostName?: pulumi.Input<string | undefined>;
         /**
          * The HTTP redirect code to use on the response. Not required if one of the siblings is present.
          */
-        httpRedirectCode?: pulumi.Input<string>;
+        httpRedirectCode?: pulumi.Input<string | undefined>;
         /**
          * Protocol to use (http, https).
          */
-        protocol?: pulumi.Input<string>;
+        protocol?: pulumi.Input<string | undefined>;
         /**
          * The object key to be used in the redirect request. For example, redirect request to error.html, the replace key prefix will be /error.html. Not required if one of the siblings is present.
          */
-        replaceKeyPrefixWith?: pulumi.Input<string>;
+        replaceKeyPrefixWith?: pulumi.Input<string | undefined>;
         /**
          * The specific object key to use in the redirect request. For example, redirect request for error.html, the replace key will be /error.html. Not required if one of the siblings is present.
          */
-        replaceKeyWith?: pulumi.Input<string>;
+        replaceKeyWith?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -2169,17 +2169,17 @@ export namespace objectstoragemanagement {
         /**
          * [string] Time to wait for the bucket to be created. Default is `10m`.
          */
-        create?: pulumi.Input<string>;
+        create?: pulumi.Input<string | undefined>;
         /**
          * [string] Time to wait for the bucket to be deleted. Default is `10m`.
          *
          * > **⚠ WARNING:** `IONOS_API_URL_OBJECT_STORAGE_MANAGEMENT` can be used to set a custom API URL for the Object Storage Management SDK. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
-        delete?: pulumi.Input<string>;
+        delete?: pulumi.Input<string | undefined>;
         /**
          * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
          */
-        read?: pulumi.Input<string>;
+        read?: pulumi.Input<string | undefined>;
     }
 
 }
@@ -2197,7 +2197,7 @@ export namespace vpn {
         /**
          * [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
-        ipv6Cidr?: pulumi.Input<string>;
+        ipv6Cidr?: pulumi.Input<string | undefined>;
         /**
          * [string] The numeric LAN ID to connect your VPN Gateway to.
          */
@@ -2220,12 +2220,12 @@ export namespace vpn {
          * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
          * Default value: `PSK`.
          */
-        method?: pulumi.Input<string>;
+        method?: pulumi.Input<string | undefined>;
         /**
          * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
          * PSK.
          */
-        pskKey?: pulumi.Input<string>;
+        pskKey?: pulumi.Input<string | undefined>;
     }
 
     export interface IpsecTunnelEsp {
@@ -2234,23 +2234,23 @@ export namespace vpn {
          * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
          * Default value: `16-MODP4096`.
          */
-        diffieHellmanGroup?: pulumi.Input<string>;
+        diffieHellmanGroup?: pulumi.Input<string | undefined>;
         /**
          * [string] The encryption algorithm to use for IPSec Encryption. Possible
          * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
          * `AES256-CCM-12`. Default value: `AES256`.
          */
-        encryptionAlgorithm?: pulumi.Input<string>;
+        encryptionAlgorithm?: pulumi.Input<string | undefined>;
         /**
          * [string] The integrity algorithm to use for IPSec Encryption. Possible
          * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
          */
-        integrityAlgorithm?: pulumi.Input<string>;
+        integrityAlgorithm?: pulumi.Input<string | undefined>;
         /**
          * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
          * Default value: `86400`.
          */
-        lifetime?: pulumi.Input<number>;
+        lifetime?: pulumi.Input<number | undefined>;
     }
 
     export interface IpsecTunnelIke {
@@ -2259,23 +2259,23 @@ export namespace vpn {
          * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
          * Default value: `16-MODP4096`.
          */
-        diffieHellmanGroup?: pulumi.Input<string>;
+        diffieHellmanGroup?: pulumi.Input<string | undefined>;
         /**
          * [string] The encryption algorithm to use for IPSec Encryption. Possible
          * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
          * `AES256-CCM-12`. Default value: `AES256`.
          */
-        encryptionAlgorithm?: pulumi.Input<string>;
+        encryptionAlgorithm?: pulumi.Input<string | undefined>;
         /**
          * [string] The integrity algorithm to use for IPSec Encryption. Possible
          * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
          */
-        integrityAlgorithm?: pulumi.Input<string>;
+        integrityAlgorithm?: pulumi.Input<string | undefined>;
         /**
          * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
          * Default value: `86400`.
          */
-        lifetime?: pulumi.Input<number>;
+        lifetime?: pulumi.Input<number | undefined>;
     }
 
     export interface WireguardGatewayConnection {
@@ -2286,11 +2286,11 @@ export namespace vpn {
         /**
          * [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
-        ipv4Cidr?: pulumi.Input<string>;
+        ipv4Cidr?: pulumi.Input<string | undefined>;
         /**
          * [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
          */
-        ipv6Cidr?: pulumi.Input<string>;
+        ipv6Cidr?: pulumi.Input<string | undefined>;
         /**
          * [String] The ID of the LAN where the WireGuard Gateway is connected.
          */
@@ -2316,6 +2316,6 @@ export namespace vpn {
         /**
          * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
     }
 }

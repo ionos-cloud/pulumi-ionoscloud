@@ -23,9 +23,9 @@ class ClusterArgs:
     def __init__(__self__, *,
                  connections: pulumi.Input['ClusterConnectionsArgs'],
                  size: pulumi.Input[_builtins.int],
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs: Optional[pulumi.Input['ClusterNfsArgs']] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs: pulumi.Input[Optional['ClusterNfsArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -71,7 +71,7 @@ class ClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         - `de/fra` - Frankfurt
@@ -80,39 +80,39 @@ class ClusterArgs:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Network File Storage cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nfs(self) -> Optional[pulumi.Input['ClusterNfsArgs']]:
+    def nfs(self) -> pulumi.Input[Optional['ClusterNfsArgs']]:
         return pulumi.get(self, "nfs")
 
     @nfs.setter
-    def nfs(self, value: Optional[pulumi.Input['ClusterNfsArgs']]):
+    def nfs(self, value: pulumi.Input[Optional['ClusterNfsArgs']]):
         pulumi.set(self, "nfs", value)
 
 
 @pulumi.input_type
 class _ClusterState:
     def __init__(__self__, *,
-                 connections: Optional[pulumi.Input['ClusterConnectionsArgs']] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs: Optional[pulumi.Input['ClusterNfsArgs']] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None):
+                 connections: pulumi.Input[Optional['ClusterConnectionsArgs']] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs: pulumi.Input[Optional['ClusterNfsArgs']] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
 
@@ -136,19 +136,19 @@ class _ClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input['ClusterConnectionsArgs']]:
+    def connections(self) -> pulumi.Input[Optional['ClusterConnectionsArgs']]:
         """
         The network connections for the Network File Storage Cluster.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input['ClusterConnectionsArgs']]):
+    def connections(self, value: pulumi.Input[Optional['ClusterConnectionsArgs']]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         - `de/fra` - Frankfurt
@@ -157,40 +157,40 @@ class _ClusterState:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Network File Storage cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nfs(self) -> Optional[pulumi.Input['ClusterNfsArgs']]:
+    def nfs(self) -> pulumi.Input[Optional['ClusterNfsArgs']]:
         return pulumi.get(self, "nfs")
 
     @nfs.setter
-    def nfs(self, value: Optional[pulumi.Input['ClusterNfsArgs']]):
+    def nfs(self, value: pulumi.Input[Optional['ClusterNfsArgs']]):
         pulumi.set(self, "nfs", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
 
@@ -200,11 +200,11 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
@@ -320,11 +320,11 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -353,11 +353,11 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None) -> 'Cluster':
+            connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

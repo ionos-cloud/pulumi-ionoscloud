@@ -201,10 +201,10 @@ def get_registry(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         storage_usages=pulumi.get(__ret__, 'storage_usages'))
-def get_registry_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_registry_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryResult]:
     """
     The **Container Registry data source** can be used to search for and return an existing Container Registry.

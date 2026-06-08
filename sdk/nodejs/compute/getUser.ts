@@ -154,11 +154,11 @@ export interface GetUserOutputArgs {
     /**
      * Email of an existing user that you want to search for.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * ID of the user you want to search for.
      *
      * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }

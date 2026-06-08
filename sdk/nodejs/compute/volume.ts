@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  *         availabilityZone: "ZONE_1",
  *     },
  *     nic: {
- *         lan: exampleLan.id,
+ *         lan: exampleLan.id.apply(x =>Number(x)),
  *         name: "system",
  *         dhcp: true,
  *         firewallActive: true,
@@ -361,88 +361,88 @@ export interface VolumeState {
     /**
      * [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
      */
-    backupUnitId?: pulumi.Input<string>;
+    backupUnitId?: pulumi.Input<string | undefined>;
     /**
      * [string] The UUID of the attached server.
      */
-    bootServer?: pulumi.Input<string>;
+    bootServer?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] The bus type of the volume: VIRTIO or IDE.
      */
-    bus?: pulumi.Input<string>;
+    bus?: pulumi.Input<string | undefined>;
     /**
      * [string] Is capable of CPU hot plug (no reboot required)
      */
-    cpuHotPlug?: pulumi.Input<boolean>;
+    cpuHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
      */
-    deviceNumber?: pulumi.Input<number>;
+    deviceNumber?: pulumi.Input<number | undefined>;
     /**
      * [string] Is capable of Virt-IO drive hot plug (no reboot required)
      */
-    discVirtioHotPlug?: pulumi.Input<boolean>;
+    discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
      */
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
+    discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The volume type: HDD or SSD. This property is immutable.
      */
-    diskType?: pulumi.Input<string>;
+    diskType?: pulumi.Input<string | undefined>;
     /**
      * (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      */
-    exposeSerial?: pulumi.Input<boolean>;
+    exposeSerial?: pulumi.Input<boolean | undefined>;
     /**
      * The image or snapshot UUID.
      */
-    image?: pulumi.Input<string>;
-    imageId?: pulumi.Input<string>;
+    image?: pulumi.Input<string | undefined>;
+    imageId?: pulumi.Input<string | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `sshkeyPath` is not provided.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `imageName` is not provided.
      */
-    licenceType?: pulumi.Input<string>;
+    licenceType?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Is capable of nic hot plug (no reboot required)
      */
-    nicHotPlug?: pulumi.Input<boolean>;
+    nicHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] Is capable of nic hot unplug (no reboot required)
      */
-    nicHotUnplug?: pulumi.Input<boolean>;
+    nicHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
      */
-    pciSlot?: pulumi.Input<number>;
+    pciSlot?: pulumi.Input<number | undefined>;
     /**
      * [string] Is capable of memory hot plug (no reboot required)
      */
-    ramHotPlug?: pulumi.Input<boolean>;
+    ramHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      *
@@ -451,31 +451,31 @@ export interface VolumeState {
      * > sshKeyPath and sshKeys fields are immutable.
      * > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
      */
-    requireLegacyBios?: pulumi.Input<boolean>;
+    requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of a server.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * [integer] The size of the volume in GB.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The associated public SSH key.
      */
-    sshkey?: pulumi.Input<string>;
+    sshkey?: pulumi.Input<string | undefined>;
     /**
      * [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
      */
-    userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -485,15 +485,15 @@ export interface VolumeArgs {
     /**
      * [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
      */
-    backupUnitId?: pulumi.Input<string>;
+    backupUnitId?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] The bus type of the volume: VIRTIO or IDE.
      */
-    bus?: pulumi.Input<string>;
+    bus?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
@@ -505,27 +505,27 @@ export interface VolumeArgs {
     /**
      * (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      */
-    exposeSerial?: pulumi.Input<boolean>;
+    exposeSerial?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `sshkeyPath` is not provided.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `imageName` is not provided.
      */
-    licenceType?: pulumi.Input<string>;
+    licenceType?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      *
@@ -534,7 +534,7 @@ export interface VolumeArgs {
      * > sshKeyPath and sshKeys fields are immutable.
      * > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
      */
-    requireLegacyBios?: pulumi.Input<boolean>;
+    requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of a server.
      */
@@ -546,13 +546,13 @@ export interface VolumeArgs {
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
      */
-    userData?: pulumi.Input<string>;
+    userData?: pulumi.Input<string | undefined>;
 }

@@ -149,15 +149,15 @@ export interface GetDatacenterOutputArgs {
     /**
      * Id of an existing Virtual Data Center that you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Id of the existing Virtual Data Center's location. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      *
      * Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing Virtual Data Center that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

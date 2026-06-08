@@ -125,11 +125,11 @@ export interface GetMariaDBBackupsOutputArgs {
     /**
      * [string] The unique ID of the backup.
      */
-    backupId?: pulumi.Input<string>;
+    backupId?: pulumi.Input<string | undefined>;
     /**
      * [string] The unique ID of the cluster.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      *
@@ -137,5 +137,5 @@ export interface GetMariaDBBackupsOutputArgs {
      *
      * > **⚠ WARNING:** `Location` attribute will become required in the future.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

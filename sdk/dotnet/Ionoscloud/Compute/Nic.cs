@@ -46,7 +46,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         Name = "Lan",
     ///     });
     /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
+    ///     var serverImagePassword = new Random.Password("server_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -118,7 +118,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         DatacenterId = example.Id,
     ///         Public = true,
     ///         Name = "IPv6 Enabled LAN",
-    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         Ipv6CidrBlock = Std.Cidrsubnet.Invoke(new()
     ///         {
     ///             Input = example.Ipv6CidrBlock,
     ///             Newbits = 8,
@@ -126,7 +126,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         }).Result,
     ///     });
     /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
+    ///     var serverImagePassword = new Random.Password("server_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -164,7 +164,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         FirewallActive = true,
     ///         FirewallType = "INGRESS",
     ///         Dhcpv6 = false,
-    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         Ipv6CidrBlock = Std.Cidrsubnet.Invoke(new()
     ///         {
     ///             Input = exampleLan.Ipv6CidrBlock,
     ///             Newbits = 16,
@@ -172,9 +172,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         }).Result,
     ///         Ipv6Ips = new[]
     ///         {
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -182,9 +182,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 }).Result,
     ///                 Host = 10,
     ///             }).Result,
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -192,9 +192,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 }).Result,
     ///                 Host = 20,
     ///             }).Result,
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -228,7 +228,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         FirewallActive = true,
     ///         FirewallType = "INGRESS",
     ///         Dhcpv6 = false,
-    ///         Ipv6CidrBlock = Std.Index.Cidrsubnet.Invoke(new()
+    ///         Ipv6CidrBlock = Std.Cidrsubnet.Invoke(new()
     ///         {
     ///             Input = exampleIonoscloudLan.Ipv6CidrBlock,
     ///             Newbits = 16,
@@ -236,9 +236,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         }).Result,
     ///         Ipv6Ips = new[]
     ///         {
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -246,9 +246,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 }).Result,
     ///                 Host = 10,
     ///             }).Result,
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -256,9 +256,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 }).Result,
     ///                 Host = 20,
     ///             }).Result,
-    ///             Std.Index.Cidrhost.Invoke(new()
+    ///             Std.Cidrhost.Invoke(new()
     ///             {
-    ///                 Input = Std.Index.Cidrsubnet.Invoke(new()
+    ///                 Input = Std.Cidrsubnet.Invoke(new()
     ///                 {
     ///                     Input = exampleIonoscloudLan.Ipv6CidrBlock,
     ///                     Newbits = 16,
@@ -451,7 +451,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

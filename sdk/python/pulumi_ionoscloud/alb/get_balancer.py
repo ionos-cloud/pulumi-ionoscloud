@@ -242,11 +242,11 @@ def get_balancer(datacenter_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         target_lan=pulumi.get(__ret__, 'target_lan'))
-def get_balancer_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                        id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_balancer_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                        id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBalancerResult]:
     """
     The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.

@@ -23,16 +23,16 @@ class FirewallArgs:
                  nic_id: pulumi.Input[_builtins.str],
                  protocol: pulumi.Input[_builtins.str],
                  server_id: pulumi.Input[_builtins.str],
-                 icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
-                 source_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 icmp_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port_range_end: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range_start: pulumi.Input[Optional[_builtins.int]] = None,
+                 source_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
 
@@ -126,142 +126,142 @@ class FirewallArgs:
 
     @_builtins.property
     @pulumi.getter(name="icmpCode")
-    def icmp_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def icmp_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         """
         return pulumi.get(self, "icmp_code")
 
     @icmp_code.setter
-    def icmp_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def icmp_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "icmp_code", value)
 
     @_builtins.property
     @pulumi.getter(name="icmpType")
-    def icmp_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def icmp_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
         """
         return pulumi.get(self, "icmp_type")
 
     @icmp_type.setter
-    def icmp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def icmp_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "icmp_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the firewall rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="portRangeEnd")
-    def port_range_end(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port_range_end(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         """
         return pulumi.get(self, "port_range_end")
 
     @port_range_end.setter
-    def port_range_end(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port_range_end(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port_range_end", value)
 
     @_builtins.property
     @pulumi.getter(name="portRangeStart")
-    def port_range_start(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port_range_start(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         """
         return pulumi.get(self, "port_range_start")
 
     @port_range_start.setter
-    def port_range_start(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port_range_start(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port_range_start", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceIp")
-    def source_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
         """
         return pulumi.get(self, "source_ip")
 
     @source_ip.setter
-    def source_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceMac")
-    def source_mac(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_mac(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
         """
         return pulumi.get(self, "source_mac")
 
     @source_mac.setter
-    def source_mac(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_mac(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_mac", value)
 
     @_builtins.property
     @pulumi.getter(name="targetIp")
-    def target_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
         """
         return pulumi.get(self, "target_ip")
 
     @target_ip.setter
-    def target_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _FirewallState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port_range_end: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range_start: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
 
@@ -311,170 +311,170 @@ class _FirewallState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The Virtual Data Center ID.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="icmpCode")
-    def icmp_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def icmp_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         """
         return pulumi.get(self, "icmp_code")
 
     @icmp_code.setter
-    def icmp_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def icmp_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "icmp_code", value)
 
     @_builtins.property
     @pulumi.getter(name="icmpType")
-    def icmp_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def icmp_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
         """
         return pulumi.get(self, "icmp_type")
 
     @icmp_type.setter
-    def icmp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def icmp_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "icmp_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the firewall rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nicId")
-    def nic_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nic_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The NIC ID.
         """
         return pulumi.get(self, "nic_id")
 
     @nic_id.setter
-    def nic_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nic_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nic_id", value)
 
     @_builtins.property
     @pulumi.getter(name="portRangeEnd")
-    def port_range_end(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port_range_end(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         """
         return pulumi.get(self, "port_range_end")
 
     @port_range_end.setter
-    def port_range_end(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port_range_end(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port_range_end", value)
 
     @_builtins.property
     @pulumi.getter(name="portRangeStart")
-    def port_range_start(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port_range_start(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         """
         return pulumi.get(self, "port_range_start")
 
     @port_range_start.setter
-    def port_range_start(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port_range_start(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port_range_start", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The Server ID.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceIp")
-    def source_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
         """
         return pulumi.get(self, "source_ip")
 
     @source_ip.setter
-    def source_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceMac")
-    def source_mac(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_mac(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
         """
         return pulumi.get(self, "source_mac")
 
     @source_mac.setter
-    def source_mac(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_mac(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_mac", value)
 
     @_builtins.property
     @pulumi.getter(name="targetIp")
-    def target_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
         """
         return pulumi.get(self, "target_ip")
 
     @target_ip.setter
-    def target_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_ip", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -484,20 +484,20 @@ class Firewall(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port_range_end: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range_start: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a set of **Firewall Rules** on IonosCloud.
@@ -675,20 +675,20 @@ class Firewall(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
-                 port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 icmp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port_range_end: pulumi.Input[Optional[_builtins.int]] = None,
+                 port_range_start: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -730,20 +730,20 @@ class Firewall(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            icmp_code: Optional[pulumi.Input[_builtins.str]] = None,
-            icmp_type: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nic_id: Optional[pulumi.Input[_builtins.str]] = None,
-            port_range_end: Optional[pulumi.Input[_builtins.int]] = None,
-            port_range_start: Optional[pulumi.Input[_builtins.int]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            source_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            source_mac: Optional[pulumi.Input[_builtins.str]] = None,
-            target_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Firewall':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            icmp_code: pulumi.Input[Optional[_builtins.str]] = None,
+            icmp_type: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nic_id: pulumi.Input[Optional[_builtins.str]] = None,
+            port_range_end: pulumi.Input[Optional[_builtins.int]] = None,
+            port_range_start: pulumi.Input[Optional[_builtins.int]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            source_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            source_mac: pulumi.Input[Optional[_builtins.str]] = None,
+            target_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Firewall':
         """
         Get an existing Firewall resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

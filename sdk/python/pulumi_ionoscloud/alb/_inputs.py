@@ -42,7 +42,7 @@ class BalancerFlowlogArgsDict(TypedDict):
 
     ⚠️ **Note:** Removing the `flowlog` forces re-creation of the application load balancer resource.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The resource's unique identifier.
     """
@@ -54,7 +54,7 @@ class BalancerFlowlogArgs:
                  bucket: pulumi.Input[_builtins.str],
                  direction: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         :param pulumi.Input[_builtins.str] bucket: [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
@@ -123,14 +123,14 @@ class BalancerFlowlogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The resource's unique identifier.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -143,31 +143,31 @@ class ForwardingRuleHttpRuleArgsDict(TypedDict):
     """
     [string] Type of the Http Rule.
     """
-    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgsDict']]]]
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgsDict']]]]]
     """
     [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
     """
-    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    content_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Valid only for STATIC actions.
     """
-    drop_query: NotRequired[pulumi.Input[_builtins.bool]]
+    drop_query: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [bool] Default is false; valid only for REDIRECT actions.
     """
-    location: NotRequired[pulumi.Input[_builtins.str]]
+    location: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
     """
-    response_message: NotRequired[pulumi.Input[_builtins.str]]
+    response_message: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The response message of the request; mandatory for STATIC action.
     """
-    status_code: NotRequired[pulumi.Input[_builtins.int]]
+    status_code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
     """
-    target_group: NotRequired[pulumi.Input[_builtins.str]]
+    target_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The UUID of the target group; mandatory for FORWARD action.
     """
@@ -177,13 +177,13 @@ class ForwardingRuleHttpRuleArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]] = None,
-                 content_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 drop_query: Optional[pulumi.Input[_builtins.bool]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_message: Optional[pulumi.Input[_builtins.str]] = None,
-                 status_code: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_group: Optional[pulumi.Input[_builtins.str]] = None):
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]] = None,
+                 content_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 drop_query: pulumi.Input[Optional[_builtins.bool]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_message: pulumi.Input[Optional[_builtins.str]] = None,
+                 status_code: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_group: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: [string] The unique name of the Application Load Balancer HTTP rule.
         :param pulumi.Input[_builtins.str] type: [string] Type of the Http Rule.
@@ -238,86 +238,86 @@ class ForwardingRuleHttpRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]]:
         """
         [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         """
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="contentType")
-    def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Valid only for STATIC actions.
         """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
-    def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_type", value)
 
     @_builtins.property
     @pulumi.getter(name="dropQuery")
-    def drop_query(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def drop_query(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Default is false; valid only for REDIRECT actions.
         """
         return pulumi.get(self, "drop_query")
 
     @drop_query.setter
-    def drop_query(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def drop_query(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "drop_query", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="responseMessage")
-    def response_message(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_message(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The response message of the request; mandatory for STATIC action.
         """
         return pulumi.get(self, "response_message")
 
     @response_message.setter
-    def response_message(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_message(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_message", value)
 
     @_builtins.property
     @pulumi.getter(name="statusCode")
-    def status_code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def status_code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
         """
         return pulumi.get(self, "status_code")
 
     @status_code.setter
-    def status_code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def status_code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "status_code", value)
 
     @_builtins.property
     @pulumi.getter(name="targetGroup")
-    def target_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The UUID of the target group; mandatory for FORWARD action.
         """
         return pulumi.get(self, "target_group")
 
     @target_group.setter
-    def target_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_group", value)
 
 
@@ -326,19 +326,19 @@ class ForwardingRuleHttpRuleConditionArgsDict(TypedDict):
     """
     [string] Type of the Http Rule condition.
     """
-    condition: NotRequired[pulumi.Input[_builtins.str]]
+    condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
     """
-    key: NotRequired[pulumi.Input[_builtins.str]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
     """
-    negate: NotRequired[pulumi.Input[_builtins.bool]]
+    negate: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [bool] Specifies whether the condition is negated or not; the default is False.
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
     """
@@ -347,10 +347,10 @@ class ForwardingRuleHttpRuleConditionArgsDict(TypedDict):
 class ForwardingRuleHttpRuleConditionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 negate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 negate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: [string] Type of the Http Rule condition.
         :param pulumi.Input[_builtins.str] condition: [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
@@ -382,50 +382,50 @@ class ForwardingRuleHttpRuleConditionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
         """
         return pulumi.get(self, "condition")
 
     @condition.setter
-    def condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def negate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def negate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Specifies whether the condition is negated or not; the default is False.
         """
         return pulumi.get(self, "negate")
 
     @negate.setter
-    def negate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def negate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "negate", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 

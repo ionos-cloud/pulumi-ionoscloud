@@ -102,6 +102,6 @@ export interface GetKafkaUsersOutputArgs {
     /**
      * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
      */
-    location?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.GetKafkaUsersTimeoutsArgs>;
+    location?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.GetKafkaUsersTimeoutsArgs | undefined>;
 }

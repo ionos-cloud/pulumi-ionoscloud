@@ -98,9 +98,9 @@ export interface GetLocationOutputArgs {
     /**
      * A desired feature that the location must be able to provide.
      */
-    feature?: pulumi.Input<string>;
+    feature?: pulumi.Input<string | undefined>;
     /**
      * Name of the location to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

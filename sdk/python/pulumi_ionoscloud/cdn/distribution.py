@@ -23,7 +23,7 @@ class DistributionArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[_builtins.str],
                  routing_rules: pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]],
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Distribution resource.
 
@@ -62,26 +62,26 @@ class DistributionArgs:
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
-    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_id", value)
 
 
 @pulumi.input_type
 class _DistributionState:
     def __init__(__self__, *,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_endpoint_v4: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_endpoint_v6: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_urn: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]] = None):
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_endpoint_v4: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_endpoint_v6: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_urn: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering Distribution resources.
 
@@ -107,74 +107,74 @@ class _DistributionState:
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
-    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The domain of the distribution.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="publicEndpointV4")
-    def public_endpoint_v4(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_endpoint_v4(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IP of the distribution, it has to be included on the domain DNS Zone as A record.
         """
         return pulumi.get(self, "public_endpoint_v4")
 
     @public_endpoint_v4.setter
-    def public_endpoint_v4(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_endpoint_v4(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_endpoint_v4", value)
 
     @_builtins.property
     @pulumi.getter(name="publicEndpointV6")
-    def public_endpoint_v6(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_endpoint_v6(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
         """
         return pulumi.get(self, "public_endpoint_v6")
 
     @public_endpoint_v6.setter
-    def public_endpoint_v6(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_endpoint_v6(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_endpoint_v6", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceUrn")
-    def resource_urn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_urn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique resource indentifier.
         """
         return pulumi.get(self, "resource_urn")
 
     @resource_urn.setter
-    def resource_urn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_urn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_urn", value)
 
     @_builtins.property
     @pulumi.getter(name="routingRules")
-    def routing_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]]:
+    def routing_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]]:
         """
         [list] The routing rules for the distribution.
         """
         return pulumi.get(self, "routing_rules")
 
     @routing_rules.setter
-    def routing_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]]):
+    def routing_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]]):
         pulumi.set(self, "routing_rules", value)
 
 
@@ -184,9 +184,9 @@ class Distribution(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
@@ -347,9 +347,9 @@ class Distribution(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -379,12 +379,12 @@ class Distribution(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            public_endpoint_v4: Optional[pulumi.Input[_builtins.str]] = None,
-            public_endpoint_v6: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_urn: Optional[pulumi.Input[_builtins.str]] = None,
-            routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None) -> 'Distribution':
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            public_endpoint_v4: pulumi.Input[Optional[_builtins.str]] = None,
+            public_endpoint_v6: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_urn: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None) -> 'Distribution':
         """
         Get an existing Distribution resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

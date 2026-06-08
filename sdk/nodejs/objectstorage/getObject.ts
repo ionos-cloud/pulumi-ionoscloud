@@ -203,9 +203,9 @@ export interface GetObjectOutputArgs {
     /**
      * [string] Downloads the specified range bytes of an object. For more information about the HTTP Range header
      */
-    range?: pulumi.Input<string>;
+    range?: pulumi.Input<string | undefined>;
     /**
      * [string] The version of the object.
      */
-    versionId?: pulumi.Input<string>;
+    versionId?: pulumi.Input<string | undefined>;
 }

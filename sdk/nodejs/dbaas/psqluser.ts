@@ -144,23 +144,23 @@ export interface PSQLUserState {
     /**
      * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
      */
-    isSystemUser?: pulumi.Input<boolean>;
+    isSystemUser?: pulumi.Input<boolean | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] User password.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -174,7 +174,7 @@ export interface PSQLUserArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] User password.
      */

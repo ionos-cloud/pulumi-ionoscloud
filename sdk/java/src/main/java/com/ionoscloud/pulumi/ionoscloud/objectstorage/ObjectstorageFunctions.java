@@ -43,8 +43,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -89,8 +89,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -135,8 +135,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -181,8 +181,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -227,8 +227,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -273,8 +273,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -319,8 +319,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -365,8 +365,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -411,8 +411,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -457,8 +457,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetBucketPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -503,8 +503,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -550,8 +550,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -597,8 +597,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -644,8 +644,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -691,8 +691,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -736,8 +736,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -784,8 +784,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -832,8 +832,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -880,8 +880,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -928,8 +928,8 @@ public final class ObjectstorageFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
      * import com.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

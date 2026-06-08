@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  *         exampleIPBlock.ips[1],
  *     ],
  *     lans: [{
- *         id: exampleLan.id,
+ *         id: exampleLan.id.apply(x =>Number(x)),
  *         gatewayIps: ["10.11.2.5"],
  *     }],
  * });
@@ -193,40 +193,40 @@ export interface NatGatewayRuleState {
     /**
      * [string] A Datacenter's UUID.
      */
-    datacenterId?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the NAT gateway rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Nat Gateway's UUID.
      */
-    natgatewayId?: pulumi.Input<string>;
+    natgatewayId?: pulumi.Input<string | undefined>;
     /**
      * [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
      */
-    publicIp?: pulumi.Input<string>;
+    publicIp?: pulumi.Input<string | undefined>;
     /**
      * [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
      */
-    sourceSubnet?: pulumi.Input<string>;
+    sourceSubnet?: pulumi.Input<string | undefined>;
     /**
      * Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
      */
-    targetPortRange?: pulumi.Input<inputs.compute.NatGatewayRuleTargetPortRange>;
+    targetPortRange?: pulumi.Input<inputs.compute.NatGatewayRuleTargetPortRange | undefined>;
     /**
      * [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
      */
-    targetSubnet?: pulumi.Input<string>;
+    targetSubnet?: pulumi.Input<string | undefined>;
     /**
      * [string] Type of the NAT gateway rule.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -237,11 +237,11 @@ export interface NatGatewayRuleArgs {
      * [string] A Datacenter's UUID.
      */
     datacenterId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the NAT gateway rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Nat Gateway's UUID.
      */
@@ -249,7 +249,7 @@ export interface NatGatewayRuleArgs {
     /**
      * [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
      */
@@ -261,13 +261,13 @@ export interface NatGatewayRuleArgs {
     /**
      * Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
      */
-    targetPortRange?: pulumi.Input<inputs.compute.NatGatewayRuleTargetPortRange>;
+    targetPortRange?: pulumi.Input<inputs.compute.NatGatewayRuleTargetPortRange | undefined>;
     /**
      * [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
      */
-    targetSubnet?: pulumi.Input<string>;
+    targetSubnet?: pulumi.Input<string | undefined>;
     /**
      * [string] Type of the NAT gateway rule.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

@@ -24,14 +24,14 @@ class WireguardGatewayArgs:
                  connections: pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]],
                  gateway_ip: pulumi.Input[_builtins.str],
                  private_key: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 listen_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 listen_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a WireguardGateway resource.
 
@@ -104,114 +104,114 @@ class WireguardGatewayArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] A description of the WireGuard Gateway.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="interfaceIpv4Cidr")
-    def interface_ipv4_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interface_ipv4_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The IPv4 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv4_cidr")
 
     @interface_ipv4_cidr.setter
-    def interface_ipv4_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interface_ipv4_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interface_ipv4_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="interfaceIpv6Cidr")
-    def interface_ipv6_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interface_ipv6_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The IPv6 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv6_cidr")
 
     @interface_ipv6_cidr.setter
-    def interface_ipv6_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interface_ipv6_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interface_ipv6_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="listenPort")
-    def listen_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def listen_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "listen_port")
 
     @listen_port.setter
-    def listen_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def listen_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "listen_port", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The name of the WireGuard Gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
 
 @pulumi.input_type
 class _WireguardGatewayState:
     def __init__(__self__, *,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 listen_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 connections: pulumi.Input[Optional[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 listen_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering WireguardGateway resources.
 
@@ -259,124 +259,124 @@ class _WireguardGatewayState:
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]]:
+    def connections(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]]:
         """
         [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]]):
+    def connections(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] A description of the WireGuard Gateway.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="gatewayIp")
-    def gateway_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gateway_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The IP address of the WireGuard Gateway.
         """
         return pulumi.get(self, "gateway_ip")
 
     @gateway_ip.setter
-    def gateway_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gateway_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gateway_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="interfaceIpv4Cidr")
-    def interface_ipv4_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interface_ipv4_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The IPv4 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv4_cidr")
 
     @interface_ipv4_cidr.setter
-    def interface_ipv4_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interface_ipv4_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interface_ipv4_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="interfaceIpv6Cidr")
-    def interface_ipv6_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interface_ipv6_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The IPv6 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv6_cidr")
 
     @interface_ipv6_cidr.setter
-    def interface_ipv6_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interface_ipv6_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interface_ipv6_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="listenPort")
-    def listen_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def listen_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "listen_port")
 
     @listen_port.setter
-    def listen_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def listen_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "listen_port", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['WireguardGatewayMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['WireguardGatewayMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The name of the WireGuard Gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[String] The public key for the WireGuard Gateway.
         -
@@ -385,31 +385,31 @@ class _WireguardGatewayState:
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[String] The current status of the WireGuard Gateway.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
 
@@ -419,17 +419,17 @@ class WireguardGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 listen_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
+                 connections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 listen_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         ## Overview
@@ -565,17 +565,17 @@ class WireguardGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 listen_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
+                 connections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 listen_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -616,19 +616,19 @@ class WireguardGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            interface_ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-            interface_ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-            listen_port: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            public_key: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tier: Optional[pulumi.Input[_builtins.str]] = None) -> 'WireguardGateway':
+            connections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            listen_port: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tier: pulumi.Input[Optional[_builtins.str]] = None) -> 'WireguardGateway':
         """
         Get an existing WireguardGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

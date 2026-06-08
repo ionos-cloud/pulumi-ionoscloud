@@ -128,23 +128,23 @@ export interface AutoCertificateProviderState {
     /**
      * [string] The email address of the certificate requester.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * [list] External account binding details.
      */
-    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
+    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
      * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the certificate provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The URL of the certificate provider.
      */
-    server?: pulumi.Input<string>;
+    server?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -158,15 +158,15 @@ export interface AutoCertificateProviderArgs {
     /**
      * [list] External account binding details.
      */
-    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
+    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
      * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the certificate provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The URL of the certificate provider.
      */

@@ -30,17 +30,17 @@ class NodePoolArgs:
                  ram_size: pulumi.Input[_builtins.int],
                  storage_size: pulumi.Input[_builtins.int],
                  storage_type: pulumi.Input[_builtins.str],
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
-                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 server_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 auto_scaling: pulumi.Input[Optional['NodePoolAutoScalingArgs']] = None,
+                 cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NodePool resource.
 
@@ -218,7 +218,7 @@ class NodePoolArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
 
@@ -236,153 +236,153 @@ class NodePoolArgs:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter
-    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         [map] A key/value map of annotations
         """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
-    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScaling")
-    def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
+    def auto_scaling(self) -> pulumi.Input[Optional['NodePoolAutoScalingArgs']]:
         """
         [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
     @auto_scaling.setter
-    def auto_scaling(self, value: Optional[pulumi.Input['NodePoolAutoScalingArgs']]):
+    def auto_scaling(self, value: pulumi.Input[Optional['NodePoolAutoScalingArgs']]):
         pulumi.set(self, "auto_scaling", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cpu_family(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "cpu_family")
 
     @cpu_family.setter
-    def cpu_family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cpu_family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cpu_family", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         [map] A key/value map of labels
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def lans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
+    def lans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
         """
         [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         """
         return pulumi.get(self, "lans")
 
     @lans.setter
-    def lans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]):
+    def lans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]]):
         pulumi.set(self, "lans", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']]:
         """
         See the **maintenance_window** section in the example above
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
-    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def public_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         return pulumi.get(self, "public_ips")
 
     @public_ips.setter
-    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def public_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "public_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="serverType")
-    def server_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         """
         return pulumi.get(self, "server_type")
 
     @server_type.setter
-    def server_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_type", value)
 
 
 @pulumi.input_type
 class _NodePoolState:
     def __init__(__self__, *,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ram_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 auto_scaling: pulumi.Input[Optional['NodePoolAutoScalingArgs']] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ram_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 server_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
 
@@ -461,7 +461,7 @@ class _NodePoolState:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the node pool.
 
@@ -479,235 +479,235 @@ class _NodePoolState:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter
-    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         [map] A key/value map of annotations
         """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
-    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScaling")
-    def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
+    def auto_scaling(self) -> pulumi.Input[Optional['NodePoolAutoScalingArgs']]:
         """
         [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
     @auto_scaling.setter
-    def auto_scaling(self, value: Optional[pulumi.Input['NodePoolAutoScalingArgs']]):
+    def auto_scaling(self, value: pulumi.Input[Optional['NodePoolAutoScalingArgs']]):
         pulumi.set(self, "auto_scaling", value)
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="coresCount")
-    def cores_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         """
         return pulumi.get(self, "cores_count")
 
     @cores_count.setter
-    def cores_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores_count", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cpu_family(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "cpu_family")
 
     @cpu_family.setter
-    def cpu_family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cpu_family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cpu_family", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A Datacenter's UUID
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="k8sClusterId")
-    def k8s_cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def k8s_cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A k8s cluster's UUID
         """
         return pulumi.get(self, "k8s_cluster_id")
 
     @k8s_cluster_id.setter
-    def k8s_cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def k8s_cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "k8s_cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="k8sVersion")
-    def k8s_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def k8s_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
     @k8s_version.setter
-    def k8s_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def k8s_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "k8s_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         [map] A key/value map of labels
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def lans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
+    def lans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
         """
         [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         """
         return pulumi.get(self, "lans")
 
     @lans.setter
-    def lans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]):
+    def lans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanArgs']]]]):
         pulumi.set(self, "lans", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']]:
         """
         See the **maintenance_window** section in the example above
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] - The desired number of nodes in the node pool
         """
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_count", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
-    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def public_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         return pulumi.get(self, "public_ips")
 
     @public_ips.setter
-    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def public_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "public_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="ramSize")
-    def ram_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         """
         return pulumi.get(self, "ram_size")
 
     @ram_size.setter
-    def ram_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram_size", value)
 
     @_builtins.property
     @pulumi.getter(name="serverType")
-    def server_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         """
         return pulumi.get(self, "server_type")
 
     @server_type.setter
-    def server_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_type", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSize")
-    def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
-    def storage_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_type")
 
     @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
 
@@ -717,26 +717,26 @@ class NodePool(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ram_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ram_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 server_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
@@ -831,26 +831,26 @@ class NodePool(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ram_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 server_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ram_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 server_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -908,26 +908,26 @@ class NodePool(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-            annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
-            availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-            cores_count: Optional[pulumi.Input[_builtins.int]] = None,
-            cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_count: Optional[pulumi.Input[_builtins.int]] = None,
-            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ram_size: Optional[pulumi.Input[_builtins.int]] = None,
-            server_type: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'NodePool':
+            allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+            availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            cores_count: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
+            public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ram_size: pulumi.Input[Optional[_builtins.int]] = None,
+            server_type: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketArgs;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketVersioning;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketVersioningArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleBucketVersioning = new BucketVersioning("exampleBucketVersioning", BucketVersioningArgs.builder()
  *             .bucket(example.name())
- *             .versioningConfiguration(BucketVersioningVersioningConfigurationArgs.builder()
+ *             .versioningConfiguration(com.pulumi.ionoscloud.objectstorage.inputs.BucketVersioningVersioningConfigurationArgs.builder()
  *                 .status("Enabled")
  *                 .build())
  *             .build());
@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IONOS Object Storage Bucket Versioning can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
+ * IONOS Object Storage Bucket Versioning can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34; pulumi-lang-hcl=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/bucketVersioning:BucketVersioning example example
@@ -90,14 +90,14 @@ public class BucketVersioning extends com.pulumi.resources.CustomResource {
         return this.bucket;
     }
     /**
-     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
      * 
      */
     @Export(name="versioningConfiguration", refs={BucketVersioningVersioningConfiguration.class}, tree="[0]")
     private Output</* @Nullable */ BucketVersioningVersioningConfiguration> versioningConfiguration;
 
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
      * 
      */
     public Output<Optional<BucketVersioningVersioningConfiguration>> versioningConfiguration() {
@@ -143,7 +143,7 @@ public class BucketVersioning extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

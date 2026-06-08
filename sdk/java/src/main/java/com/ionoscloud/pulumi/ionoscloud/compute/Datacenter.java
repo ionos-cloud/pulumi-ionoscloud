@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;
  * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -61,8 +61,8 @@ import javax.annotation.Nullable;
  * 
  * ## Attaching a NSG to a Datacenter
  * 
- * A single Network Security Group can be attached at any time to a Datacenter. To do this, use the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-go=&#34;`nsg.DatacenterNsgSelection`&#34; pulumi-lang-python=&#34;`nsg.DatacenterNsgSelection`&#34; pulumi-lang-yaml=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-java=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34;&gt;`ionoscloud.nsg.DatacenterNsgSelection`&lt;/span&gt; and provide the IDs of the NSG and Datacenter to link them.
- * Deleting the resource or setting the empty string for the &lt;span pulumi-lang-nodejs=&#34;`nsgId`&#34; pulumi-lang-dotnet=&#34;`NsgId`&#34; pulumi-lang-go=&#34;`nsgId`&#34; pulumi-lang-python=&#34;`nsg_id`&#34; pulumi-lang-yaml=&#34;`nsgId`&#34; pulumi-lang-java=&#34;`nsgId`&#34;&gt;`nsgId`&lt;/span&gt; field will de-attach any previously linked NSG from the Datacenter.
+ * A single Network Security Group can be attached at any time to a Datacenter. To do this, use the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-go=&#34;`nsg.DatacenterNsgSelection`&#34; pulumi-lang-python=&#34;`nsg.DatacenterNsgSelection`&#34; pulumi-lang-yaml=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-java=&#34;`ionoscloud.nsg.DatacenterNsgSelection`&#34; pulumi-lang-hcl=&#34;`ionoscloud_datacenter_nsg_selection`&#34;&gt;`ionoscloud.nsg.DatacenterNsgSelection`&lt;/span&gt; and provide the IDs of the NSG and Datacenter to link them.
+ * Deleting the resource or setting the empty string for the &lt;span pulumi-lang-nodejs=&#34;`nsgId`&#34; pulumi-lang-dotnet=&#34;`NsgId`&#34; pulumi-lang-go=&#34;`nsgId`&#34; pulumi-lang-python=&#34;`nsg_id`&#34; pulumi-lang-yaml=&#34;`nsgId`&#34; pulumi-lang-java=&#34;`nsgId`&#34; pulumi-lang-hcl=&#34;`nsg_id`&#34;&gt;`nsgId`&lt;/span&gt; field will de-attach any previously linked NSG from the Datacenter.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -78,8 +78,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.NsgArgs;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.DatacenterNsgSelection;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.DatacenterNsgSelectionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -288,7 +288,7 @@ public class Datacenter extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

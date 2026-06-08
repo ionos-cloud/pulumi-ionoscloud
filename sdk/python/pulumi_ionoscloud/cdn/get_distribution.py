@@ -188,9 +188,9 @@ def get_distribution(domain: Optional[_builtins.str] = None,
         public_endpoint_v6=pulumi.get(__ret__, 'public_endpoint_v6'),
         resource_urn=pulumi.get(__ret__, 'resource_urn'),
         routing_rules=pulumi.get(__ret__, 'routing_rules'))
-def get_distribution_output(domain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_distribution_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDistributionResult]:
     """
     The Distribution data source can be used to search for and return an existing Distributions.

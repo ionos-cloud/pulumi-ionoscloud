@@ -365,12 +365,12 @@ def get_server(datacenter_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         vm_state=pulumi.get(__ret__, 'vm_state'),
         volumes=pulumi.get(__ret__, 'volumes'))
-def get_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                      id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      template_uuid: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_server_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      template_uuid: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerResult]:
     """
     The **Server data source** can be used to search for and return existing servers.

@@ -34,8 +34,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -68,8 +68,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -111,8 +111,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -145,8 +145,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -188,8 +188,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -222,8 +222,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -265,8 +265,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -299,8 +299,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -342,8 +342,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -376,8 +376,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -419,8 +419,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -453,8 +453,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -496,8 +496,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -530,8 +530,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -572,8 +572,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetServersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -614,8 +614,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetServersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -656,8 +656,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetServersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -698,8 +698,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetServersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -740,8 +740,8 @@ public final class AutoscalingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.autoscaling.AutoscalingFunctions;
      * import com.pulumi.ionoscloud.autoscaling.inputs.GetServersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

@@ -184,17 +184,17 @@ export interface GetIPBlockOutputArgs {
     /**
      * ID of an existing Ip Block that you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing Ip Block that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The number of IP addresses to reserve for this block.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
 }

@@ -19,12 +19,12 @@
     "devDependencies": {
         "@types/mime": "^2.0.0",
         "@types/node": "^10.0.0",
-        "typescript": "^4.3.5"
+        "typescript": "^4.7.0"
     },
     "pulumi": {
         "resource": true,
         "name": "ionoscloud",
         "version": "1.0.0-alpha.0+dev",
-        "server": "github://api.github.com/ionos-cloud"
+        "server": "github://api.github.com/ionos-cloud/pulumi-ionoscloud"
     }
 }

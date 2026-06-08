@@ -34,8 +34,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -69,8 +69,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -116,8 +116,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -151,8 +151,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -198,8 +198,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -233,8 +233,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -280,8 +280,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -315,8 +315,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -362,8 +362,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -397,8 +397,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -444,8 +444,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -479,8 +479,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -526,8 +526,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -561,8 +561,8 @@ public final class LoggingFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.logging.LoggingFunctions;
      * import com.pulumi.ionoscloud.logging.inputs.GetPipelineArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

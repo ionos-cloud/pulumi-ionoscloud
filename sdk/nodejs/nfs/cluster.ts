@@ -142,22 +142,22 @@ export interface ClusterState {
     /**
      * The network connections for the Network File Storage Cluster.
      */
-    connections?: pulumi.Input<inputs.nfs.ClusterConnections>;
+    connections?: pulumi.Input<inputs.nfs.ClusterConnections | undefined>;
     /**
      * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The name of the Network File Storage cluster.
      */
-    name?: pulumi.Input<string>;
-    nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
+    name?: pulumi.Input<string | undefined>;
+    nfs?: pulumi.Input<inputs.nfs.ClusterNfs | undefined>;
     /**
      * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -173,12 +173,12 @@ export interface ClusterArgs {
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The name of the Network File Storage cluster.
      */
-    name?: pulumi.Input<string>;
-    nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
+    name?: pulumi.Input<string | undefined>;
+    nfs?: pulumi.Input<inputs.nfs.ClusterNfs | undefined>;
     /**
      * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */

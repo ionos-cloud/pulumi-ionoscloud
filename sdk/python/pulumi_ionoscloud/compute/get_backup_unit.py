@@ -129,8 +129,8 @@ def get_backup_unit(id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         login=pulumi.get(__ret__, 'login'),
         name=pulumi.get(__ret__, 'name'))
-def get_backup_unit_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backup_unit_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupUnitResult]:
     """
     The **Backup Unit data source** can be used to search for and return an existing Backup Unit.

@@ -20,14 +20,14 @@ public final class NodePoolLanArgs extends com.pulumi.resources.ResourceArgs {
     public static final NodePoolLanArgs Empty = new NodePoolLanArgs();
 
     /**
-     * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
+     * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
      * 
      */
     @Import(name="dhcp")
     private @Nullable Output<Boolean> dhcp;
 
     /**
-     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
+     * @return [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
      * 
      */
     public Optional<Output<Boolean>> dhcp() {
@@ -91,7 +91,7 @@ public final class NodePoolLanArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dhcp [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
+         * @param dhcp [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class NodePoolLanArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dhcp [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
+         * @param dhcp [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;
          * 
          * @return builder
          * 

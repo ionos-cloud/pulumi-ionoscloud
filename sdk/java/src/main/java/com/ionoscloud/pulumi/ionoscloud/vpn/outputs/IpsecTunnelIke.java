@@ -33,8 +33,8 @@ public final class IpsecTunnelIke {
      */
     private @Nullable String integrityAlgorithm;
     /**
-     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
      * 
      */
     private @Nullable Integer lifetime;
@@ -67,8 +67,8 @@ public final class IpsecTunnelIke {
         return Optional.ofNullable(this.integrityAlgorithm);
     }
     /**
-     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
      * 
      */
     public Optional<Integer> lifetime() {

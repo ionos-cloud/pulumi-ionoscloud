@@ -36,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketLifecycleConfiguration;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketLifecycleConfigurationArgs;
  * import com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -59,30 +59,30 @@ import javax.annotation.Nullable;
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("1")
  *                     .status("Enabled")
- *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                     .filter(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleFilterArgs.builder()
  *                         .prefix("/logs")
  *                         .build())
- *                     .expiration(BucketLifecycleConfigurationRuleExpirationArgs.builder()
+ *                     .expiration(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleExpirationArgs.builder()
  *                         .days(90)
  *                         .build())
  *                     .build(),
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("2")
  *                     .status("Enabled")
- *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                     .filter(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleFilterArgs.builder()
  *                         .prefix("/logs")
  *                         .build())
- *                     .noncurrentVersionExpiration(BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs.builder()
+ *                     .noncurrentVersionExpiration(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs.builder()
  *                         .noncurrentDays(90)
  *                         .build())
  *                     .build(),
  *                 BucketLifecycleConfigurationRuleArgs.builder()
  *                     .id("3")
  *                     .status("Enabled")
- *                     .filter(BucketLifecycleConfigurationRuleFilterArgs.builder()
+ *                     .filter(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleFilterArgs.builder()
  *                         .prefix("/logs")
  *                         .build())
- *                     .abortIncompleteMultipartUpload(BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs.builder()
+ *                     .abortIncompleteMultipartUpload(com.pulumi.ionoscloud.objectstorage.inputs.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs.builder()
  *                         .daysAfterInitiation(90)
  *                         .build())
  *                     .build())
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IONOS Object Storage Bucket lifecycle configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
+ * IONOS Object Storage Bucket lifecycle configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34; pulumi-lang-hcl=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration example example
@@ -173,7 +173,7 @@ public class BucketLifecycleConfiguration extends com.pulumi.resources.CustomRes
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

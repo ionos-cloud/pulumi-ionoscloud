@@ -135,11 +135,11 @@ export interface BucketLifecycleConfigurationState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * A list of lifecycle rules for objects in the bucket.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRule>[] | undefined>;
 }
 
 /**
@@ -153,5 +153,5 @@ export interface BucketLifecycleConfigurationArgs {
     /**
      * A list of lifecycle rules for objects in the bucket.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketLifecycleConfigurationRule>[] | undefined>;
 }

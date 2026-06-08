@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.dns.Zone;
  * import com.ionoscloud.pulumi.ionoscloud.dns.ZoneArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -71,8 +71,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.dns.Zone;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`zoneId`&#34; pulumi-lang-dotnet=&#34;`ZoneId`&#34; pulumi-lang-go=&#34;`zoneId`&#34; pulumi-lang-python=&#34;`zone_id`&#34; pulumi-lang-yaml=&#34;`zoneId`&#34; pulumi-lang-java=&#34;`zoneId`&#34;&gt;`zoneId`&lt;/span&gt;, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`zoneId`&#34; pulumi-lang-dotnet=&#34;`ZoneId`&#34; pulumi-lang-go=&#34;`zoneId`&#34; pulumi-lang-python=&#34;`zone_id`&#34; pulumi-lang-yaml=&#34;`zoneId`&#34; pulumi-lang-java=&#34;`zoneId`&#34; pulumi-lang-hcl=&#34;`zone_id`&#34;&gt;`zoneId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * terraform import ionoscloud_dns_zone.examplezone_id
@@ -116,14 +116,14 @@ public class Zone extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * @return [bool] Indicates if the DNS Zone is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Output<Boolean> enabled() {
@@ -197,7 +197,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

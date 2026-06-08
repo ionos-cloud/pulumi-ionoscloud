@@ -44,7 +44,7 @@ class BalancerFlowlogArgsDict(TypedDict):
 
     ⚠️ **Note:** Removing the `flowlog` forces re-creation of the network load balancer resource.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The resource's unique identifier.
     """
@@ -56,7 +56,7 @@ class BalancerFlowlogArgs:
                  bucket: pulumi.Input[_builtins.str],
                  direction: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         :param pulumi.Input[_builtins.str] bucket: [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
@@ -125,31 +125,31 @@ class BalancerFlowlogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The resource's unique identifier.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class ForwardingRuleHealthCheckArgsDict(TypedDict):
-    client_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    client_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
     """
-    target_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    target_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
     """
@@ -157,10 +157,10 @@ class ForwardingRuleHealthCheckArgsDict(TypedDict):
 @pulumi.input_type
 class ForwardingRuleHealthCheckArgs:
     def __init__(__self__, *,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_timeout: Optional[pulumi.Input[_builtins.int]] = None):
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_timeout: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] client_timeout: [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
         :param pulumi.Input[_builtins.int] connect_timeout: [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
@@ -178,50 +178,50 @@ class ForwardingRuleHealthCheckArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientTimeout")
-    def client_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
         """
         return pulumi.get(self, "client_timeout")
 
     @client_timeout.setter
-    def client_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
     @_builtins.property
     @pulumi.getter(name="targetTimeout")
-    def target_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def target_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
         """
         return pulumi.get(self, "target_timeout")
 
     @target_timeout.setter
-    def target_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def target_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "target_timeout", value)
 
 
@@ -238,11 +238,11 @@ class ForwardingRuleTargetArgsDict(TypedDict):
     """
     [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
     """
-    health_check: NotRequired[pulumi.Input['ForwardingRuleTargetHealthCheckArgsDict']]
+    health_check: NotRequired[pulumi.Input[Optional['ForwardingRuleTargetHealthCheckArgsDict']]]
     """
     Health check attributes for Network Load Balancer forwarding rule target.
     """
-    proxy_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    proxy_protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
     """
@@ -253,8 +253,8 @@ class ForwardingRuleTargetArgs:
                  ip: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
                  weight: pulumi.Input[_builtins.int],
-                 health_check: Optional[pulumi.Input['ForwardingRuleTargetHealthCheckArgs']] = None,
-                 proxy_protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 health_check: pulumi.Input[Optional['ForwardingRuleTargetHealthCheckArgs']] = None,
+                 proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] ip: [string] IP of a balanced target VM.
         :param pulumi.Input[_builtins.int] port: [int] Port of the balanced target service. (range: 1 to 65535).
@@ -308,39 +308,39 @@ class ForwardingRuleTargetArgs:
 
     @_builtins.property
     @pulumi.getter(name="healthCheck")
-    def health_check(self) -> Optional[pulumi.Input['ForwardingRuleTargetHealthCheckArgs']]:
+    def health_check(self) -> pulumi.Input[Optional['ForwardingRuleTargetHealthCheckArgs']]:
         """
         Health check attributes for Network Load Balancer forwarding rule target.
         """
         return pulumi.get(self, "health_check")
 
     @health_check.setter
-    def health_check(self, value: Optional[pulumi.Input['ForwardingRuleTargetHealthCheckArgs']]):
+    def health_check(self, value: pulumi.Input[Optional['ForwardingRuleTargetHealthCheckArgs']]):
         pulumi.set(self, "health_check", value)
 
     @_builtins.property
     @pulumi.getter(name="proxyProtocol")
-    def proxy_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def proxy_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
         return pulumi.get(self, "proxy_protocol")
 
     @proxy_protocol.setter
-    def proxy_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def proxy_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "proxy_protocol", value)
 
 
 class ForwardingRuleTargetHealthCheckArgsDict(TypedDict):
-    check: NotRequired[pulumi.Input[_builtins.bool]]
+    check: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [boolean] Check specifies whether the target VM's health is checked.
     """
-    check_interval: NotRequired[pulumi.Input[_builtins.int]]
+    check_interval: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
     """
-    maintenance: NotRequired[pulumi.Input[_builtins.bool]]
+    maintenance: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
     """
@@ -348,9 +348,9 @@ class ForwardingRuleTargetHealthCheckArgsDict(TypedDict):
 @pulumi.input_type
 class ForwardingRuleTargetHealthCheckArgs:
     def __init__(__self__, *,
-                 check: Optional[pulumi.Input[_builtins.bool]] = None,
-                 check_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 maintenance: Optional[pulumi.Input[_builtins.bool]] = None):
+                 check: pulumi.Input[Optional[_builtins.bool]] = None,
+                 check_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 maintenance: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] check: [boolean] Check specifies whether the target VM's health is checked.
         :param pulumi.Input[_builtins.int] check_interval: [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
@@ -365,38 +365,38 @@ class ForwardingRuleTargetHealthCheckArgs:
 
     @_builtins.property
     @pulumi.getter
-    def check(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def check(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [boolean] Check specifies whether the target VM's health is checked.
         """
         return pulumi.get(self, "check")
 
     @check.setter
-    def check(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def check(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "check", value)
 
     @_builtins.property
     @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def check_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
         """
         return pulumi.get(self, "check_interval")
 
     @check_interval.setter
-    def check_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def check_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "check_interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def maintenance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def maintenance(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
         """
         return pulumi.get(self, "maintenance")
 
     @maintenance.setter
-    def maintenance(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def maintenance(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "maintenance", value)
 
 

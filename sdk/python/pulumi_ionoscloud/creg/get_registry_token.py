@@ -191,11 +191,11 @@ def get_registry_token(id: Optional[_builtins.str] = None,
         registry_id=pulumi.get(__ret__, 'registry_id'),
         scopes=pulumi.get(__ret__, 'scopes'),
         status=pulumi.get(__ret__, 'status'))
-def get_registry_token_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              registry_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_registry_token_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              registry_id: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryTokenResult]:
     """
     The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.

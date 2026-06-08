@@ -34,11 +34,11 @@ class PipelineLogArgsDict(TypedDict):
     """
     [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
     """
-    destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgsDict']]]]
+    destinations: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['PipelineLogDestinationArgsDict']]]]]
     """
     [list] The configuration of the logs datastore, a list that contains elements with the following structure:
     """
-    public: NotRequired[pulumi.Input[_builtins.bool]]
+    public: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
 
 @pulumi.input_type
 class PipelineLogArgs:
@@ -46,8 +46,8 @@ class PipelineLogArgs:
                  protocol: pulumi.Input[_builtins.str],
                  source: pulumi.Input[_builtins.str],
                  tag: pulumi.Input[_builtins.str],
-                 destinations: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None):
+                 destinations: pulumi.Input[Optional[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] protocol: [string] "Protocol to use as intake. Possible values are: http, tcp."
         :param pulumi.Input[_builtins.str] source: [string] The source parser to be used.
@@ -100,32 +100,32 @@ class PipelineLogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def destinations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]]:
+    def destinations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]]:
         """
         [list] The configuration of the logs datastore, a list that contains elements with the following structure:
         """
         return pulumi.get(self, "destinations")
 
     @destinations.setter
-    def destinations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]]):
+    def destinations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PipelineLogDestinationArgs']]]]):
         pulumi.set(self, "destinations", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
 
 class PipelineLogDestinationArgsDict(TypedDict):
-    retention_in_days: NotRequired[pulumi.Input[_builtins.int]]
+    retention_in_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The internal output stream to send logs to.
     """
@@ -133,8 +133,8 @@ class PipelineLogDestinationArgsDict(TypedDict):
 @pulumi.input_type
 class PipelineLogDestinationArgs:
     def __init__(__self__, *,
-                 retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] retention_in_days: [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
         :param pulumi.Input[_builtins.str] type: [string] The internal output stream to send logs to.
@@ -146,26 +146,26 @@ class PipelineLogDestinationArgs:
 
     @_builtins.property
     @pulumi.getter(name="retentionInDays")
-    def retention_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
         """
         return pulumi.get(self, "retention_in_days")
 
     @retention_in_days.setter
-    def retention_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_in_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The internal output stream to send logs to.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 

@@ -244,111 +244,111 @@ export interface BucketObjectState {
     /**
      * [string] The name of the bucket where the object will be stored. Must be between 3 and 63 characters.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies caching behavior along the request/reply chain.
      */
-    cacheControl?: pulumi.Input<string>;
+    cacheControl?: pulumi.Input<string | undefined>;
     /**
      * [string] Inline content of the object.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies presentational information for the object.
      */
-    contentDisposition?: pulumi.Input<string>;
+    contentDisposition?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies what content encodings have been applied to the object.
      */
-    contentEncoding?: pulumi.Input<string>;
+    contentEncoding?: pulumi.Input<string | undefined>;
     /**
      * [string] The natural language or languages of the intended audience for the object.
      */
-    contentLanguage?: pulumi.Input<string>;
+    contentLanguage?: pulumi.Input<string | undefined>;
     /**
      * [string] A standard MIME type describing the format of the contents.
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * [string] An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at a URL.
      */
-    etag?: pulumi.Input<string>;
+    etag?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time at which the object is no longer cacheable.
      */
-    expires?: pulumi.Input<string>;
+    expires?: pulumi.Input<string | undefined>;
     /**
      * [bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The key of the object. Must be at least 1 character long.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * [map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string]The concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.
      */
-    mfa?: pulumi.Input<string>;
+    mfa?: pulumi.Input<string | undefined>;
     /**
      * [string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.
      */
-    objectLockLegalHold?: pulumi.Input<string>;
+    objectLockLegalHold?: pulumi.Input<string | undefined>;
     /**
      * [string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.
      */
-    objectLockMode?: pulumi.Input<string>;
+    objectLockMode?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time when the object lock retention expires.Must be in RFC3999 format
      */
-    objectLockRetainUntilDate?: pulumi.Input<string>;
+    objectLockRetainUntilDate?: pulumi.Input<string | undefined>;
     /**
      * [string] Confirms that the requester knows that they will be charged for the request.
      */
-    requestPayer?: pulumi.Input<string>;
+    requestPayer?: pulumi.Input<string | undefined>;
     /**
      * [string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.
      */
-    serverSideEncryption?: pulumi.Input<string>;
+    serverSideEncryption?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the IONOS Object Storage Encryption Context for object encryption.
      */
-    serverSideEncryptionContext?: pulumi.Input<string>;
+    serverSideEncryptionContext?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.
      */
-    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string>;
+    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
      */
-    serverSideEncryptionCustomerKey?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key.
      */
-    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The path to the file to upload.
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * [string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * [map] The tag-set for the object.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] The version of the object.
      */
-    versionId?: pulumi.Input<string>;
+    versionId?: pulumi.Input<string | undefined>;
     /**
      * [string] Redirects requests for this object to another object in the same bucket or to an external URL.
      */
-    websiteRedirect?: pulumi.Input<string>;
+    websiteRedirect?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -362,35 +362,35 @@ export interface BucketObjectArgs {
     /**
      * [string] Specifies caching behavior along the request/reply chain.
      */
-    cacheControl?: pulumi.Input<string>;
+    cacheControl?: pulumi.Input<string | undefined>;
     /**
      * [string] Inline content of the object.
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies presentational information for the object.
      */
-    contentDisposition?: pulumi.Input<string>;
+    contentDisposition?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies what content encodings have been applied to the object.
      */
-    contentEncoding?: pulumi.Input<string>;
+    contentEncoding?: pulumi.Input<string | undefined>;
     /**
      * [string] The natural language or languages of the intended audience for the object.
      */
-    contentLanguage?: pulumi.Input<string>;
+    contentLanguage?: pulumi.Input<string | undefined>;
     /**
      * [string] A standard MIME type describing the format of the contents.
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time at which the object is no longer cacheable.
      */
-    expires?: pulumi.Input<string>;
+    expires?: pulumi.Input<string | undefined>;
     /**
      * [bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The key of the object. Must be at least 1 character long.
      */
@@ -398,61 +398,61 @@ export interface BucketObjectArgs {
     /**
      * [map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string]The concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.
      */
-    mfa?: pulumi.Input<string>;
+    mfa?: pulumi.Input<string | undefined>;
     /**
      * [string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.
      */
-    objectLockLegalHold?: pulumi.Input<string>;
+    objectLockLegalHold?: pulumi.Input<string | undefined>;
     /**
      * [string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.
      */
-    objectLockMode?: pulumi.Input<string>;
+    objectLockMode?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time when the object lock retention expires.Must be in RFC3999 format
      */
-    objectLockRetainUntilDate?: pulumi.Input<string>;
+    objectLockRetainUntilDate?: pulumi.Input<string | undefined>;
     /**
      * [string] Confirms that the requester knows that they will be charged for the request.
      */
-    requestPayer?: pulumi.Input<string>;
+    requestPayer?: pulumi.Input<string | undefined>;
     /**
      * [string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.
      */
-    serverSideEncryption?: pulumi.Input<string>;
+    serverSideEncryption?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the IONOS Object Storage Encryption Context for object encryption.
      */
-    serverSideEncryptionContext?: pulumi.Input<string>;
+    serverSideEncryptionContext?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.
      */
-    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string>;
+    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
      */
-    serverSideEncryptionCustomerKey?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key.
      */
-    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The path to the file to upload.
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * [string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * [map] The tag-set for the object.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Redirects requests for this object to another object in the same bucket or to an external URL.
      */
-    websiteRedirect?: pulumi.Input<string>;
+    websiteRedirect?: pulumi.Input<string | undefined>;
 }

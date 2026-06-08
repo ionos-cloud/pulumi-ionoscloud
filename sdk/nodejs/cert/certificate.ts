@@ -147,19 +147,19 @@ export interface CertificateState {
     /**
      * [string] The certificate body. Pem encoded. Immutable.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate chain. Pem encoded. Immutable.
      */
-    certificateChain?: pulumi.Input<string>;
+    certificateChain?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate private key. Immutable. Sensitive.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,11 +173,11 @@ export interface CertificateArgs {
     /**
      * [string] The certificate chain. Pem encoded. Immutable.
      */
-    certificateChain?: pulumi.Input<string>;
+    certificateChain?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate private key. Immutable. Sensitive.
      */

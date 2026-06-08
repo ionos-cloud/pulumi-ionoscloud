@@ -210,16 +210,16 @@ export interface IPFailoverState {
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [string] The reserved IP address to be used in the IP failover group.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a LAN.
      */
-    lanId?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    lanId?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a NIC.
      *
@@ -254,7 +254,7 @@ export interface IPFailoverState {
      * pulumi up -parallelism=1
      * ```
      */
-    nicuuid?: pulumi.Input<string>;
+    nicuuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -273,7 +273,7 @@ export interface IPFailoverArgs {
      * [string] The ID of a LAN.
      */
     lanId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a NIC.
      *

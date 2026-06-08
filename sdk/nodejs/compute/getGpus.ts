@@ -93,7 +93,7 @@ export interface GetGpusOutputArgs {
      * The ID of the datacenter.
      */
     datacenterId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server.
      */

@@ -250,83 +250,83 @@ export interface NodePoolState {
      * `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
      * from the number of nodes set by the scheduler). To avoid that, you can use:
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [map] A key/value map of annotations
      */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
      */
-    autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling>;
+    autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling | undefined>;
     /**
      * [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
      */
-    coresCount?: pulumi.Input<number>;
+    coresCount?: pulumi.Input<number | undefined>;
     /**
      * [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
      */
-    cpuFamily?: pulumi.Input<string>;
+    cpuFamily?: pulumi.Input<string | undefined>;
     /**
      * [string] A Datacenter's UUID
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [string] A k8s cluster's UUID
      */
-    k8sClusterId?: pulumi.Input<string>;
+    k8sClusterId?: pulumi.Input<string | undefined>;
     /**
      * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
-    k8sVersion?: pulumi.Input<string>;
+    k8sVersion?: pulumi.Input<string | undefined>;
     /**
      * [map] A key/value map of labels
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
      */
-    lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[]>;
+    lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * See the **maintenance_window** section in the example above
      */
-    maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow | undefined>;
     /**
      * [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] - The desired number of nodes in the node pool
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
     /**
      * [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
      */
-    publicIps?: pulumi.Input<pulumi.Input<string>[]>;
+    publicIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
      */
-    ramSize?: pulumi.Input<number>;
+    ramSize?: pulumi.Input<number | undefined>;
     /**
      * [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
      */
-    serverType?: pulumi.Input<string>;
+    serverType?: pulumi.Input<string | undefined>;
     /**
      * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
     /**
      * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
      */
-    storageType?: pulumi.Input<string>;
+    storageType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -347,15 +347,15 @@ export interface NodePoolArgs {
      * `pulumi preview`, Terraform will think that an update is required (since `nodeCount` from the `tf` plan will be different
      * from the number of nodes set by the scheduler). To avoid that, you can use:
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [map] A key/value map of annotations
      */
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
      */
-    autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling>;
+    autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling | undefined>;
     /**
      * [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
      */
@@ -367,7 +367,7 @@ export interface NodePoolArgs {
     /**
      * [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
      */
-    cpuFamily?: pulumi.Input<string>;
+    cpuFamily?: pulumi.Input<string | undefined>;
     /**
      * [string] A Datacenter's UUID
      */
@@ -383,23 +383,23 @@ export interface NodePoolArgs {
     /**
      * [map] A key/value map of labels
      */
-    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
      */
-    lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[]>;
+    lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * See the **maintenance_window** section in the example above
      */
-    maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow | undefined>;
     /**
      * [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] - The desired number of nodes in the node pool
      */
@@ -407,7 +407,7 @@ export interface NodePoolArgs {
     /**
      * [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
      */
-    publicIps?: pulumi.Input<pulumi.Input<string>[]>;
+    publicIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
      */
@@ -415,7 +415,7 @@ export interface NodePoolArgs {
     /**
      * [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
      */
-    serverType?: pulumi.Input<string>;
+    serverType?: pulumi.Input<string | undefined>;
     /**
      * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
      */

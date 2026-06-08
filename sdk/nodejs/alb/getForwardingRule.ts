@@ -209,19 +209,19 @@ export interface GetForwardingRuleOutputArgs {
     /**
      * ID of the application load balancer you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location for redirecting; mandatory and valid only for REDIRECT actions.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether partial matching is allowed or not when using name argument. Default value is false.
      *
      * Both `datacenterId` and `applicationLoadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

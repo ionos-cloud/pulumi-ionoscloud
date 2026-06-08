@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetWireguardGatewayResult {
     /**
-     * @return A list of connection configurations for the WireGuard Gateway. Each &lt;span pulumi-lang-nodejs=&#34;`connections`&#34; pulumi-lang-dotnet=&#34;`Connections`&#34; pulumi-lang-go=&#34;`connections`&#34; pulumi-lang-python=&#34;`connections`&#34; pulumi-lang-yaml=&#34;`connections`&#34; pulumi-lang-java=&#34;`connections`&#34;&gt;`connections`&lt;/span&gt; block contains:
+     * @return A list of connection configurations for the WireGuard Gateway. Each &lt;span pulumi-lang-nodejs=&#34;`connections`&#34; pulumi-lang-dotnet=&#34;`Connections`&#34; pulumi-lang-go=&#34;`connections`&#34; pulumi-lang-python=&#34;`connections`&#34; pulumi-lang-yaml=&#34;`connections`&#34; pulumi-lang-java=&#34;`connections`&#34; pulumi-lang-hcl=&#34;`connections`&#34;&gt;`connections`&lt;/span&gt; block contains:
      * 
      */
     private List<GetWireguardGatewayConnection> connections;
@@ -68,7 +68,7 @@ public final class GetWireguardGatewayResult {
 
     private GetWireguardGatewayResult() {}
     /**
-     * @return A list of connection configurations for the WireGuard Gateway. Each &lt;span pulumi-lang-nodejs=&#34;`connections`&#34; pulumi-lang-dotnet=&#34;`Connections`&#34; pulumi-lang-go=&#34;`connections`&#34; pulumi-lang-python=&#34;`connections`&#34; pulumi-lang-yaml=&#34;`connections`&#34; pulumi-lang-java=&#34;`connections`&#34;&gt;`connections`&lt;/span&gt; block contains:
+     * @return A list of connection configurations for the WireGuard Gateway. Each &lt;span pulumi-lang-nodejs=&#34;`connections`&#34; pulumi-lang-dotnet=&#34;`Connections`&#34; pulumi-lang-go=&#34;`connections`&#34; pulumi-lang-python=&#34;`connections`&#34; pulumi-lang-yaml=&#34;`connections`&#34; pulumi-lang-java=&#34;`connections`&#34; pulumi-lang-hcl=&#34;`connections`&#34;&gt;`connections`&lt;/span&gt; block contains:
      * 
      */
     public List<GetWireguardGatewayConnection> connections() {

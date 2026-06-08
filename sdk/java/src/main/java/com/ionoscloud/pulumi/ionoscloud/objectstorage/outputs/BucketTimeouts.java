@@ -12,12 +12,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BucketTimeouts {
     /**
-     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     private @Nullable String create;
     /**
-     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     private @Nullable String delete;
@@ -34,14 +34,14 @@ public final class BucketTimeouts {
 
     private BucketTimeouts() {}
     /**
-     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     public Optional<String> create() {
         return Optional.ofNullable(this.create);
     }
     /**
-     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     public Optional<String> delete() {

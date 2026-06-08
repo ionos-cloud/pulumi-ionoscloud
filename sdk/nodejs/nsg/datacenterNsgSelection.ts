@@ -113,15 +113,15 @@ export interface DatacenterNsgSelectionState {
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Network Security Group.
      */
-    nsgId?: pulumi.Input<string>;
+    nsgId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -135,7 +135,7 @@ export interface DatacenterNsgSelectionArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Network Security Group.
      */

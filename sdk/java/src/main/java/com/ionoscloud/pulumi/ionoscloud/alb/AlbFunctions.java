@@ -37,8 +37,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -72,8 +72,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -107,8 +107,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -155,8 +155,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -190,8 +190,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -225,8 +225,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -273,8 +273,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -308,8 +308,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -343,8 +343,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -391,8 +391,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -426,8 +426,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -461,8 +461,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -509,8 +509,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -544,8 +544,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -579,8 +579,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetBalancerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -627,8 +627,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -663,8 +663,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -699,8 +699,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -748,8 +748,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -784,8 +784,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -820,8 +820,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -869,8 +869,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -905,8 +905,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -941,8 +941,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -990,8 +990,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1026,8 +1026,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1062,8 +1062,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1111,8 +1111,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1147,8 +1147,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1183,8 +1183,8 @@ public final class AlbFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.alb.AlbFunctions;
      * import com.pulumi.ionoscloud.alb.inputs.GetForwardingRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

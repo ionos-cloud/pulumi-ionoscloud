@@ -231,23 +231,23 @@ export interface MongoUserState {
     /**
      * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[] | undefined>;
     /**
      * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -261,7 +261,7 @@ export interface MongoUserArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] User password. Updates to the value of the field force the cluster to be re-created.
      */
@@ -269,7 +269,7 @@ export interface MongoUserArgs {
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[] | undefined>;
     /**
      * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
      */

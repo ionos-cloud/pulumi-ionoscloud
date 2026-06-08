@@ -19,9 +19,9 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * The boot device of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-go=&#34;`compute.Server`&#34; pulumi-lang-python=&#34;`compute.Server`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Server`&#34;&gt;`ionoscloud.compute.Server`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-go=&#34;`compute.VCPUServer`&#34; pulumi-lang-python=&#34;`compute.VCPUServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.VCPUServer`&#34;&gt;`ionoscloud.compute.VCPUServer`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-go=&#34;`compute.CubeServer`&#34; pulumi-lang-python=&#34;`compute.CubeServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.CubeServer`&#34;&gt;`ionoscloud.compute.CubeServer`&lt;/span&gt; can be selected with this resource.
+ * The boot device of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-go=&#34;`compute.Server`&#34; pulumi-lang-python=&#34;`compute.Server`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Server`&#34; pulumi-lang-hcl=&#34;`ionoscloud_server`&#34;&gt;`ionoscloud.compute.Server`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-go=&#34;`compute.VCPUServer`&#34; pulumi-lang-python=&#34;`compute.VCPUServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.VCPUServer`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vcpu_server`&#34;&gt;`ionoscloud.compute.VCPUServer`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-go=&#34;`compute.CubeServer`&#34; pulumi-lang-python=&#34;`compute.CubeServer`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.CubeServer`&#34; pulumi-lang-hcl=&#34;`ionoscloud_cube_server`&#34;&gt;`ionoscloud.compute.CubeServer`&lt;/span&gt; can be selected with this resource.
  * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server. In case in which there is no default to revert to, when the server had no boot device, the current device will remain set as a boot device when this resource is deleted.
- * This resource also allows switching between a &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; and a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-go=&#34;`compute.getImage`&#34; pulumi-lang-python=&#34;`compute_get_image`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.getImage`&#34;&gt;`ionoscloud.compute.getImage`&lt;/span&gt; CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+ * This resource also allows switching between a &lt;span pulumi-lang-nodejs=&#34;`volume`&#34; pulumi-lang-dotnet=&#34;`Volume`&#34; pulumi-lang-go=&#34;`volume`&#34; pulumi-lang-python=&#34;`volume`&#34; pulumi-lang-yaml=&#34;`volume`&#34; pulumi-lang-java=&#34;`volume`&#34; pulumi-lang-hcl=&#34;`volume`&#34;&gt;`volume`&lt;/span&gt; and a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-go=&#34;`compute.getImage`&#34; pulumi-lang-python=&#34;`compute_get_image`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.getImage`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_image`&#34;&gt;`ionoscloud.compute.getImage`&lt;/span&gt; CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  * 
  * ### Select an external volume
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -40,8 +40,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelection;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -116,8 +116,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -194,8 +194,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BootDeviceSelectionArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -278,8 +278,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import com.pulumi.ionoscloud.compute.ComputeFunctions;
  * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -457,7 +457,7 @@ public class BootDeviceSelection extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

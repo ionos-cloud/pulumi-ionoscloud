@@ -186,12 +186,12 @@ export interface GetFirewallOutputArgs {
     /**
      * ID of the firewall rule you want to search for.
      */
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing firewall rule that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The NIC ID.
      *

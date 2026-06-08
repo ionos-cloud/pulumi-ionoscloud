@@ -28,7 +28,7 @@ __all__ = [
 ]
 
 class RegistryFeaturesArgsDict(TypedDict):
-    vulnerability_scanning: NotRequired[pulumi.Input[_builtins.bool]]
+    vulnerability_scanning: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
 
@@ -38,7 +38,7 @@ class RegistryFeaturesArgsDict(TypedDict):
 @pulumi.input_type
 class RegistryFeaturesArgs:
     def __init__(__self__, *,
-                 vulnerability_scanning: Optional[pulumi.Input[_builtins.bool]] = None):
+                 vulnerability_scanning: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] vulnerability_scanning: [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
                
@@ -49,7 +49,7 @@ class RegistryFeaturesArgs:
 
     @_builtins.property
     @pulumi.getter(name="vulnerabilityScanning")
-    def vulnerability_scanning(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def vulnerability_scanning(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
 
@@ -58,7 +58,7 @@ class RegistryFeaturesArgs:
         return pulumi.get(self, "vulnerability_scanning")
 
     @vulnerability_scanning.setter
-    def vulnerability_scanning(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def vulnerability_scanning(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "vulnerability_scanning", value)
 
 
@@ -110,14 +110,14 @@ class RegistryGarbageCollectionScheduleArgs:
 
 
 class RegistryStorageUsageArgsDict(TypedDict):
-    bytes: NotRequired[pulumi.Input[_builtins.int]]
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class RegistryStorageUsageArgs:
     def __init__(__self__, *,
-                 bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         if bytes is not None:
             pulumi.set(__self__, "bytes", bytes)
         if updated_at is not None:
@@ -125,20 +125,20 @@ class RegistryStorageUsageArgs:
 
     @_builtins.property
     @pulumi.getter
-    def bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "bytes")
 
     @bytes.setter
-    def bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 

@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 /**
  * ## Overview
  * 
- * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+ * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
  * This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
  * 
  * ## Example Usage
@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.vpn.WireguardGatewayArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.WireguardGatewayConnectionArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.WireguardGatewayMaintenanceWindowArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -244,7 +244,7 @@ public class WireguardGateway extends com.pulumi.resources.CustomResource {
     /**
      * (Computed)[String] The public key for the WireGuard Gateway.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34; pulumi-lang-hcl=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     @Export(name="publicKey", refs={String.class}, tree="[0]")
@@ -253,7 +253,7 @@ public class WireguardGateway extends com.pulumi.resources.CustomResource {
     /**
      * @return (Computed)[String] The public key for the WireGuard Gateway.
      * ---
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL. Setting &lt;span pulumi-lang-nodejs=&#34;`endpoint`&#34; pulumi-lang-dotnet=&#34;`Endpoint`&#34; pulumi-lang-go=&#34;`endpoint`&#34; pulumi-lang-python=&#34;`endpoint`&#34; pulumi-lang-yaml=&#34;`endpoint`&#34; pulumi-lang-java=&#34;`endpoint`&#34; pulumi-lang-hcl=&#34;`endpoint`&#34;&gt;`endpoint`&lt;/span&gt; or `IONOS_API_URL` does not have any effect.
      * 
      */
     public Output<String> publicKey() {
@@ -327,7 +327,7 @@ public class WireguardGateway extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
                 "privateKey"
             ))

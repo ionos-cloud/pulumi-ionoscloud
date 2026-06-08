@@ -140,25 +140,25 @@ export interface GetObjectsOutputArgs {
     /**
      * [string] A character used to group keys.
      */
-    delimiter?: pulumi.Input<string>;
+    delimiter?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the encoding method used to encode the object keys in the response. Default is url.
      */
-    encodingType?: pulumi.Input<string>;
+    encodingType?: pulumi.Input<string | undefined>;
     /**
      * [bool] If set to true, the response includes the owner field in the metadata.
      */
-    fetchOwner?: pulumi.Input<boolean>;
+    fetchOwner?: pulumi.Input<boolean | undefined>;
     /**
      * [int] Sets the maximum number of keys returned in the response body.Default is 1000.
      */
-    maxKeys?: pulumi.Input<number>;
+    maxKeys?: pulumi.Input<number | undefined>;
     /**
      * [string] Limits the response to keys that begin with the specified prefix.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the key to start after when listing objects in a bucket.
      */
-    startAfter?: pulumi.Input<string>;
+    startAfter?: pulumi.Input<string | undefined>;
 }

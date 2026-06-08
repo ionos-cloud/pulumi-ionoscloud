@@ -139,12 +139,12 @@ def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         roles=pulumi.get(__ret__, 'roles'),
         username=pulumi.get(__ret__, 'username'))
-def get_mongo_user_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                          database: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          roles: Optional[pulumi.Input[Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]]]] = None,
-                          username: Optional[pulumi.Input[_builtins.str]] = None,
+def get_mongo_user_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                          database: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          roles: pulumi.Input[Optional[Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]]]] = None,
+                          username: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoUserResult]:
     """
     The **DbaaS Mongo User data source** can be used to search for and return an existing DbaaS MongoDB User.

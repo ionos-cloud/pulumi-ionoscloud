@@ -161,7 +161,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "key",

@@ -32,14 +32,14 @@ public final class BucketVersioningState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
      * 
      */
     @Import(name="versioningConfiguration")
     private @Nullable Output<BucketVersioningVersioningConfigurationArgs> versioningConfiguration;
 
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
      * 
      */
     public Optional<Output<BucketVersioningVersioningConfigurationArgs>> versioningConfiguration() {
@@ -93,7 +93,7 @@ public final class BucketVersioningState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param versioningConfiguration [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+         * @param versioningConfiguration [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class BucketVersioningState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param versioningConfiguration [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
+         * @param versioningConfiguration [block] A block of&lt;span pulumi-lang-nodejs=&#34; versioningConfiguration &#34; pulumi-lang-dotnet=&#34; VersioningConfiguration &#34; pulumi-lang-go=&#34; versioningConfiguration &#34; pulumi-lang-python=&#34; versioning_configuration &#34; pulumi-lang-yaml=&#34; versioningConfiguration &#34; pulumi-lang-java=&#34; versioningConfiguration &#34; pulumi-lang-hcl=&#34; versioning_configuration &#34;&gt; versioningConfiguration &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 

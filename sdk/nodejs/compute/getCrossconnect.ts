@@ -142,19 +142,19 @@ export interface GetCrossconnectOutputArgs {
     /**
      * Description of cross connect
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * ID of the cross connect you want to search for.
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The physical location of the connectable datacenter
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing cross connect that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

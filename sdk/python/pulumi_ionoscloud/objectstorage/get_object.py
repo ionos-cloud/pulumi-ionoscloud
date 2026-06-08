@@ -416,10 +416,10 @@ def get_object(bucket: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         version_id=pulumi.get(__ret__, 'version_id'),
         website_redirect=pulumi.get(__ret__, 'website_redirect'))
-def get_object_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                      key: Optional[pulumi.Input[_builtins.str]] = None,
-                      range: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      version_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_object_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                      key: pulumi.Input[Optional[_builtins.str]] = None,
+                      range: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      version_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectResult]:
     """
     The **Object data source** can be used to search for and return existing objects.

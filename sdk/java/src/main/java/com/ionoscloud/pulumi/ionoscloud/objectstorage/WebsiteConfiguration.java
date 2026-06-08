@@ -39,8 +39,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.WebsiteConfiguration;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.WebsiteConfigurationArgs;
  * import com.pulumi.ionoscloud.objectstorage.inputs.WebsiteConfigurationRoutingRuleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -58,17 +58,17 @@ import javax.annotation.Nullable;
  * 
  *         var exampleWebsiteConfiguration = new WebsiteConfiguration("exampleWebsiteConfiguration", WebsiteConfigurationArgs.builder()
  *             .bucket(example.name())
- *             .indexDocument(WebsiteConfigurationIndexDocumentArgs.builder()
+ *             .indexDocument(com.pulumi.ionoscloud.objectstorage.inputs.WebsiteConfigurationIndexDocumentArgs.builder()
  *                 .suffix("index.html")
  *                 .build())
- *             .errorDocument(WebsiteConfigurationErrorDocumentArgs.builder()
+ *             .errorDocument(com.pulumi.ionoscloud.objectstorage.inputs.WebsiteConfigurationErrorDocumentArgs.builder()
  *                 .key("error.html")
  *                 .build())
  *             .routingRules(WebsiteConfigurationRoutingRuleArgs.builder()
- *                 .condition(WebsiteConfigurationRoutingRuleConditionArgs.builder()
+ *                 .condition(com.pulumi.ionoscloud.objectstorage.inputs.WebsiteConfigurationRoutingRuleConditionArgs.builder()
  *                     .keyPrefixEquals("docs/")
  *                     .build())
- *                 .redirect(WebsiteConfigurationRoutingRuleRedirectArgs.builder()
+ *                 .redirect(com.pulumi.ionoscloud.objectstorage.inputs.WebsiteConfigurationRoutingRuleRedirectArgs.builder()
  *                     .replaceKeyPrefixWith("documents/")
  *                     .build())
  *                 .build())
@@ -82,7 +82,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IONOS Object Storage Bucket website configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
+ * IONOS Object Storage Bucket website configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34; pulumi-lang-hcl=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration example example
@@ -201,7 +201,7 @@ public class WebsiteConfiguration extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

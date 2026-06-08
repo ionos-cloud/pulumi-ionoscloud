@@ -204,54 +204,54 @@ export interface WireguardGatewayState {
     /**
      * [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
      */
-    connections?: pulumi.Input<pulumi.Input<inputs.vpn.WireguardGatewayConnection>[]>;
+    connections?: pulumi.Input<pulumi.Input<inputs.vpn.WireguardGatewayConnection>[] | undefined>;
     /**
      * [String] A description of the WireGuard Gateway.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [String] The IP address of the WireGuard Gateway.
      */
-    gatewayIp?: pulumi.Input<string>;
+    gatewayIp?: pulumi.Input<string | undefined>;
     /**
      * [String] The IPv4 CIDR for the WireGuard Gateway interface.
      */
-    interfaceIpv4Cidr?: pulumi.Input<string>;
+    interfaceIpv4Cidr?: pulumi.Input<string | undefined>;
     /**
      * [String] The IPv6 CIDR for the WireGuard Gateway interface.
      */
-    interfaceIpv6Cidr?: pulumi.Input<string>;
-    listenPort?: pulumi.Input<number>;
+    interfaceIpv6Cidr?: pulumi.Input<string | undefined>;
+    listenPort?: pulumi.Input<number | undefined>;
     /**
      * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow | undefined>;
     /**
      * [String] The name of the WireGuard Gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [String] The private key for the WireGuard Gateway. To be created with the wg utility.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[String] The public key for the WireGuard Gateway.
      * -
      * > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[String] The current status of the WireGuard Gateway.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -265,7 +265,7 @@ export interface WireguardGatewayArgs {
     /**
      * [String] A description of the WireGuard Gateway.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [String] The IP address of the WireGuard Gateway.
      */
@@ -273,24 +273,24 @@ export interface WireguardGatewayArgs {
     /**
      * [String] The IPv4 CIDR for the WireGuard Gateway interface.
      */
-    interfaceIpv4Cidr?: pulumi.Input<string>;
+    interfaceIpv4Cidr?: pulumi.Input<string | undefined>;
     /**
      * [String] The IPv6 CIDR for the WireGuard Gateway interface.
      */
-    interfaceIpv6Cidr?: pulumi.Input<string>;
-    listenPort?: pulumi.Input<number>;
+    interfaceIpv6Cidr?: pulumi.Input<string | undefined>;
+    listenPort?: pulumi.Input<number | undefined>;
     /**
      * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow | undefined>;
     /**
      * [String] The name of the WireGuard Gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [String] The private key for the WireGuard Gateway. To be created with the wg utility.
      */
@@ -298,5 +298,5 @@ export interface WireguardGatewayArgs {
     /**
      * (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
 }

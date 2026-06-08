@@ -169,31 +169,31 @@ export interface PipelineState {
     /**
      * [string] The Grafana address is where user can access their logs, create dashboards, and set up alerts
      */
-    grafanaAddress?: pulumi.Input<string>;
+    grafanaAddress?: pulumi.Input<string | undefined>;
     /**
      * [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
      */
-    httpAddress?: pulumi.Input<string>;
+    httpAddress?: pulumi.Input<string | undefined>;
     /**
      * [string] The key is shared once and is used to authenticate the logs sent to the pipeline
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
      */
-    logs?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[]>;
+    logs?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[] | undefined>;
     /**
      * [string] The name of the Logging pipeline.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
      */
-    tcpAddress?: pulumi.Input<string>;
+    tcpAddress?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -203,7 +203,7 @@ export interface PipelineArgs {
     /**
      * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
      */
@@ -211,5 +211,5 @@ export interface PipelineArgs {
     /**
      * [string] The name of the Logging pipeline.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

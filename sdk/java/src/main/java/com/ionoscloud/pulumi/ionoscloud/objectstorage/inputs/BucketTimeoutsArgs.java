@@ -16,14 +16,14 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
     public static final BucketTimeoutsArgs Empty = new BucketTimeoutsArgs();
 
     /**
-     * [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     @Import(name="create")
     private @Nullable Output<String> create;
 
     /**
-     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     public Optional<Output<String>> create() {
@@ -31,14 +31,14 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     @Import(name="delete")
     private @Nullable Output<String> delete;
 
     /**
-     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+     * @return [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
      * 
      */
     public Optional<Output<String>> delete() {
@@ -103,7 +103,7 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param create [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+         * @param create [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param create [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+         * @param create [string] Time to wait for the bucket to be created. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param delete [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+         * @param delete [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class BucketTimeoutsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param delete [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
+         * @param delete [string] Time to wait for the bucket to be deleted. Default is &lt;span pulumi-lang-nodejs=&#34;`10m`&#34; pulumi-lang-dotnet=&#34;`10m`&#34; pulumi-lang-go=&#34;`10m`&#34; pulumi-lang-python=&#34;`10m`&#34; pulumi-lang-yaml=&#34;`10m`&#34; pulumi-lang-java=&#34;`10m`&#34; pulumi-lang-hcl=&#34;`10m`&#34;&gt;`10m`&lt;/span&gt;.
          * 
          * @return builder
          * 

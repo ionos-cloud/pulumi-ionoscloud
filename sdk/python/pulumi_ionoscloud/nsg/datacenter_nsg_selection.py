@@ -21,7 +21,7 @@ class DatacenterNsgSelectionArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
                  nsg_id: pulumi.Input[_builtins.str],
-                 location: Optional[pulumi.Input[_builtins.str]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatacenterNsgSelection resource.
 
@@ -60,23 +60,23 @@ class DatacenterNsgSelectionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
 
 @pulumi.input_type
 class _DatacenterNsgSelectionState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nsg_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nsg_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatacenterNsgSelection resources.
 
@@ -93,38 +93,38 @@ class _DatacenterNsgSelectionState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="nsgId")
-    def nsg_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nsg_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Network Security Group.
         """
         return pulumi.get(self, "nsg_id")
 
     @nsg_id.setter
-    def nsg_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nsg_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nsg_id", value)
 
 
@@ -134,9 +134,9 @@ class DatacenterNsgSelection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nsg_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nsg_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Links a Network Security Group to a IonosCloud datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
@@ -217,9 +217,9 @@ class DatacenterNsgSelection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nsg_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nsg_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -246,9 +246,9 @@ class DatacenterNsgSelection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            nsg_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatacenterNsgSelection':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            nsg_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DatacenterNsgSelection':
         """
         Get an existing DatacenterNsgSelection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

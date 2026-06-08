@@ -36,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.CorsConfiguration;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.CorsConfigurationArgs;
  * import com.pulumi.ionoscloud.objectstorage.inputs.CorsConfigurationCorsRuleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IONOS Object Storage Bucket cors configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
+ * IONOS Object Storage Bucket cors configuration can be imported using the &lt;span pulumi-lang-nodejs=&#34;`bucket`&#34; pulumi-lang-dotnet=&#34;`Bucket`&#34; pulumi-lang-go=&#34;`bucket`&#34; pulumi-lang-python=&#34;`bucket`&#34; pulumi-lang-yaml=&#34;`bucket`&#34; pulumi-lang-java=&#34;`bucket`&#34; pulumi-lang-hcl=&#34;`bucket`&#34;&gt;`bucket`&lt;/span&gt; name.
  * 
  * ```sh
  * $ pulumi import ionoscloud:objectstorage/corsConfiguration:CorsConfiguration example example
@@ -99,14 +99,14 @@ public class CorsConfiguration extends com.pulumi.resources.CustomResource {
         return this.bucket;
     }
     /**
-     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
      * 
      */
     @Export(name="corsRules", refs={List.class,CorsConfigurationCorsRule.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CorsConfigurationCorsRule>> corsRules;
 
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
      * 
      */
     public Output<Optional<List<CorsConfigurationCorsRule>>> corsRules() {
@@ -152,7 +152,7 @@ public class CorsConfiguration extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

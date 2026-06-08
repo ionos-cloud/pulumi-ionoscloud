@@ -73,7 +73,7 @@ public final class GetVCPUServerResult {
      */
     private String name;
     /**
-     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
+     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34; pulumi-lang-hcl=&#34;`nic_multi_queue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
      * 
      */
     private Boolean nicMultiQueue;
@@ -190,7 +190,7 @@ public final class GetVCPUServerResult {
         return this.name;
     }
     /**
-     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
+     * @return Specifies whether the &lt;span pulumi-lang-nodejs=&#34;`nicMultiQueue`&#34; pulumi-lang-dotnet=&#34;`NicMultiQueue`&#34; pulumi-lang-go=&#34;`nicMultiQueue`&#34; pulumi-lang-python=&#34;`nic_multi_queue`&#34; pulumi-lang-yaml=&#34;`nicMultiQueue`&#34; pulumi-lang-java=&#34;`nicMultiQueue`&#34; pulumi-lang-hcl=&#34;`nic_multi_queue`&#34;&gt;`nicMultiQueue`&lt;/span&gt; feature is enabled or not.
      * 
      */
     public Boolean nicMultiQueue() {

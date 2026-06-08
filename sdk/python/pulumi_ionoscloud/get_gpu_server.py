@@ -311,11 +311,11 @@ def get_gpu_server(datacenter_id: Optional[_builtins.str] = None,
         token=pulumi.get(__ret__, 'token'),
         vm_state=pulumi.get(__ret__, 'vm_state'),
         volumes=pulumi.get(__ret__, 'volumes'))
-def get_gpu_server_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                          id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          template_uuid: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_gpu_server_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                          id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          template_uuid: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGpuServerResult]:
     """
     The [GPU Server data source](https://docs.ionos.com/cloud/compute-services/compute-engine/cloud-gpu-vm) can be used to search for and return existing GPU servers.

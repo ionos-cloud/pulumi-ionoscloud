@@ -22,7 +22,7 @@ __all__ = ['CorsConfigurationArgs', 'CorsConfiguration']
 class CorsConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]] = None):
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]] = None):
         """
         The set of arguments for constructing a CorsConfiguration resource.
 
@@ -47,22 +47,22 @@ class CorsConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="corsRules")
-    def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]:
+    def cors_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]:
         """
         [block] A block of cors_rule as defined below.
         """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
-    def cors_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]):
+    def cors_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]):
         pulumi.set(self, "cors_rules", value)
 
 
 @pulumi.input_type
 class _CorsConfigurationState:
     def __init__(__self__, *,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]] = None):
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering CorsConfiguration resources.
 
@@ -76,26 +76,26 @@ class _CorsConfigurationState:
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the bucket where the object will be stored.
         """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="corsRules")
-    def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]:
+    def cors_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]:
         """
         [block] A block of cors_rule as defined below.
         """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
-    def cors_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]):
+    def cors_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CorsConfigurationCorsRuleArgs']]]]):
         pulumi.set(self, "cors_rules", value)
 
 
@@ -105,8 +105,8 @@ class CorsConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages Object Lock Configuration for Buckets on IonosCloud.
@@ -206,8 +206,8 @@ class CorsConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -231,8 +231,8 @@ class CorsConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None) -> 'CorsConfiguration':
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None) -> 'CorsConfiguration':
         """
         Get an existing CorsConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

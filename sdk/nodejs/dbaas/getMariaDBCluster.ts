@@ -161,11 +161,11 @@ export interface GetMariaDBClusterOutputArgs {
     /**
      * [string] Display Name of an existing cluster that you want to search for.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * [string] ID of the cluster you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      *
@@ -173,5 +173,5 @@ export interface GetMariaDBClusterOutputArgs {
      *
      * Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

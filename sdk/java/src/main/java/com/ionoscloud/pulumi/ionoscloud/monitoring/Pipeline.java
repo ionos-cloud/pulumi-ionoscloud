@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.monitoring.Pipeline;
  * import com.ionoscloud.pulumi.ionoscloud.monitoring.PipelineArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * **NOTE:** The default timeout for all operations is 60 minutes. If you want to change the default value, you can use &lt;span pulumi-lang-nodejs=&#34;`timeouts`&#34; pulumi-lang-dotnet=&#34;`Timeouts`&#34; pulumi-lang-go=&#34;`timeouts`&#34; pulumi-lang-python=&#34;`timeouts`&#34; pulumi-lang-yaml=&#34;`timeouts`&#34; pulumi-lang-java=&#34;`timeouts`&#34;&gt;`timeouts`&lt;/span&gt; attribute inside the resource:
+ * **NOTE:** The default timeout for all operations is 60 minutes. If you want to change the default value, you can use &lt;span pulumi-lang-nodejs=&#34;`timeouts`&#34; pulumi-lang-dotnet=&#34;`Timeouts`&#34; pulumi-lang-go=&#34;`timeouts`&#34; pulumi-lang-python=&#34;`timeouts`&#34; pulumi-lang-yaml=&#34;`timeouts`&#34; pulumi-lang-java=&#34;`timeouts`&#34; pulumi-lang-hcl=&#34;`timeouts`&#34;&gt;`timeouts`&lt;/span&gt; attribute inside the resource:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -69,8 +69,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.monitoring.Pipeline;
  * import com.ionoscloud.pulumi.ionoscloud.monitoring.PipelineArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -106,8 +106,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.monitoring.Pipeline;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -127,7 +127,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`pipelineId`&#34; pulumi-lang-dotnet=&#34;`PipelineId`&#34; pulumi-lang-go=&#34;`pipelineId`&#34; pulumi-lang-python=&#34;`pipeline_id`&#34; pulumi-lang-yaml=&#34;`pipelineId`&#34; pulumi-lang-java=&#34;`pipelineId`&#34;&gt;`pipelineId`&lt;/span&gt;, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`pipelineId`&#34; pulumi-lang-dotnet=&#34;`PipelineId`&#34; pulumi-lang-go=&#34;`pipelineId`&#34; pulumi-lang-python=&#34;`pipeline_id`&#34; pulumi-lang-yaml=&#34;`pipelineId`&#34; pulumi-lang-java=&#34;`pipelineId`&#34; pulumi-lang-hcl=&#34;`pipeline_id`&#34;&gt;`pipelineId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:monitoring/pipeline:Pipeline example location:pipeline_id
@@ -167,7 +167,7 @@ public class Pipeline extends com.pulumi.resources.CustomResource {
     /**
      * (Sensitive)[string] The key used to connect to the monitoring pipeline.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL.
      * 
      */
     @Export(name="key", refs={String.class}, tree="[0]")
@@ -176,21 +176,21 @@ public class Pipeline extends com.pulumi.resources.CustomResource {
     /**
      * @return (Sensitive)[string] The key used to connect to the monitoring pipeline.
      * 
-     * &gt; **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL.
+     * &gt; **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; field needs to be empty, otherwise it will override the custom API URL.
      * 
      */
     public Output<String> key() {
         return this.key;
     }
     /**
-     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
+     * @return [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`.
      * 
      */
     public Output<Optional<String>> location() {
@@ -256,7 +256,7 @@ public class Pipeline extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
                 "key"
             ))

@@ -135,9 +135,9 @@ def get_psql_databases(cluster_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         owner=pulumi.get(__ret__, 'owner'))
-def get_psql_databases_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              owner: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_psql_databases_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              owner: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLDatabasesResult]:
     """
     The **PgSql Databases data source** can be used to search for and return multiple existing PgSql databases.

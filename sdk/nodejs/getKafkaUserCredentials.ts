@@ -169,14 +169,14 @@ export interface GetKafkaUserCredentialsOutputArgs {
     /**
      * [string] the ID of the Kafka user, can be retrieved using `ionoscloud.getKafkaUsers` data source;
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
      */
-    location?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.GetKafkaUserCredentialsTimeoutsArgs>;
+    location?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.GetKafkaUserCredentialsTimeoutsArgs | undefined>;
     /**
      * [string] the name of the Kafka user, can be retrieved using `ionoscloud.getKafkaUsers` data source;
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

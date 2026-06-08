@@ -139,15 +139,15 @@ export interface ShareState {
     /**
      * [Boolean] The group has permission to edit privileges on this resource.
      */
-    editPrivilege?: pulumi.Input<boolean>;
+    editPrivilege?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the specific group containing the resource to update.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of the specific resource to update.
      */
-    resourceId?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] The group has permission to share this resource.
      *
@@ -156,7 +156,7 @@ export interface ShareState {
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
      * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
-    sharePrivilege?: pulumi.Input<boolean>;
+    sharePrivilege?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -166,7 +166,7 @@ export interface ShareArgs {
     /**
      * [Boolean] The group has permission to edit privileges on this resource.
      */
-    editPrivilege?: pulumi.Input<boolean>;
+    editPrivilege?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the specific group containing the resource to update.
      */
@@ -183,5 +183,5 @@ export interface ShareArgs {
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
      * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
-    sharePrivilege?: pulumi.Input<boolean>;
+    sharePrivilege?: pulumi.Input<boolean | undefined>;
 }

@@ -42,8 +42,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPFailover;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPFailoverArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -195,9 +195,9 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -214,9 +214,9 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
      * 
      * &gt; **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
      * following options:
-     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
+     * 1. Create multiple IP failover groups resources and use &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument to specify the order
      *    of creation, for example:
-     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
+     * 2. Define the resources as presented above, but without using the &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt; meta-argument and run the apply command using
      *    `-parallelism=1` as presented below:
      * 
      */
@@ -263,7 +263,7 @@ public class IPFailover extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

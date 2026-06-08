@@ -223,11 +223,11 @@ def get_nat_gateway_rule(datacenter_id: Optional[_builtins.str] = None,
         target_port_ranges=pulumi.get(__ret__, 'target_port_ranges'),
         target_subnet=pulumi.get(__ret__, 'target_subnet'),
         type=pulumi.get(__ret__, 'type'))
-def get_nat_gateway_rule_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                natgateway_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_nat_gateway_rule_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                natgateway_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNatGatewayRuleResult]:
     """
     The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.

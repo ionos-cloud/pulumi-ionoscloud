@@ -22,10 +22,10 @@ __all__ = ['WebsiteConfigurationArgs', 'WebsiteConfiguration']
 class WebsiteConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 error_document: Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']] = None,
-                 index_document: Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']] = None,
-                 redirect_all_requests_to: Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]] = None):
+                 error_document: pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']] = None,
+                 index_document: pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]] = None):
         """
         The set of arguments for constructing a WebsiteConfiguration resource.
 
@@ -59,61 +59,61 @@ class WebsiteConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="errorDocument")
-    def error_document(self) -> Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']]:
+    def error_document(self) -> pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']]:
         """
         The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
         """
         return pulumi.get(self, "error_document")
 
     @error_document.setter
-    def error_document(self, value: Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']]):
+    def error_document(self, value: pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']]):
         pulumi.set(self, "error_document", value)
 
     @_builtins.property
     @pulumi.getter(name="indexDocument")
-    def index_document(self) -> Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']]:
+    def index_document(self) -> pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']]:
         """
         Container for the Suffix element.
         """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
-    def index_document(self, value: Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']]):
+    def index_document(self, value: pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']]):
         pulumi.set(self, "index_document", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectAllRequestsTo")
-    def redirect_all_requests_to(self) -> Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']]:
+    def redirect_all_requests_to(self) -> pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']]:
         """
         Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
         """
         return pulumi.get(self, "redirect_all_requests_to")
 
     @redirect_all_requests_to.setter
-    def redirect_all_requests_to(self, value: Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']]):
+    def redirect_all_requests_to(self, value: pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']]):
         pulumi.set(self, "redirect_all_requests_to", value)
 
     @_builtins.property
     @pulumi.getter(name="routingRules")
-    def routing_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]:
+    def routing_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]:
         """
         A container for describing a condition that must be met for the specified redirect to apply.
         """
         return pulumi.get(self, "routing_rules")
 
     @routing_rules.setter
-    def routing_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]):
+    def routing_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]):
         pulumi.set(self, "routing_rules", value)
 
 
 @pulumi.input_type
 class _WebsiteConfigurationState:
     def __init__(__self__, *,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']] = None,
-                 index_document: Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']] = None,
-                 redirect_all_requests_to: Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]] = None):
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']] = None,
+                 index_document: pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering WebsiteConfiguration resources.
 
@@ -136,62 +136,62 @@ class _WebsiteConfigurationState:
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the bucket where the object will be stored.
         """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="errorDocument")
-    def error_document(self) -> Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']]:
+    def error_document(self) -> pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']]:
         """
         The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
         """
         return pulumi.get(self, "error_document")
 
     @error_document.setter
-    def error_document(self, value: Optional[pulumi.Input['WebsiteConfigurationErrorDocumentArgs']]):
+    def error_document(self, value: pulumi.Input[Optional['WebsiteConfigurationErrorDocumentArgs']]):
         pulumi.set(self, "error_document", value)
 
     @_builtins.property
     @pulumi.getter(name="indexDocument")
-    def index_document(self) -> Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']]:
+    def index_document(self) -> pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']]:
         """
         Container for the Suffix element.
         """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
-    def index_document(self, value: Optional[pulumi.Input['WebsiteConfigurationIndexDocumentArgs']]):
+    def index_document(self, value: pulumi.Input[Optional['WebsiteConfigurationIndexDocumentArgs']]):
         pulumi.set(self, "index_document", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectAllRequestsTo")
-    def redirect_all_requests_to(self) -> Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']]:
+    def redirect_all_requests_to(self) -> pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']]:
         """
         Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
         """
         return pulumi.get(self, "redirect_all_requests_to")
 
     @redirect_all_requests_to.setter
-    def redirect_all_requests_to(self, value: Optional[pulumi.Input['WebsiteConfigurationRedirectAllRequestsToArgs']]):
+    def redirect_all_requests_to(self, value: pulumi.Input[Optional['WebsiteConfigurationRedirectAllRequestsToArgs']]):
         pulumi.set(self, "redirect_all_requests_to", value)
 
     @_builtins.property
     @pulumi.getter(name="routingRules")
-    def routing_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]:
+    def routing_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]:
         """
         A container for describing a condition that must be met for the specified redirect to apply.
         """
         return pulumi.get(self, "routing_rules")
 
     @routing_rules.setter
-    def routing_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]):
+    def routing_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['WebsiteConfigurationRoutingRuleArgs']]]]):
         pulumi.set(self, "routing_rules", value)
 
 
@@ -201,11 +201,11 @@ class WebsiteConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: Optional[pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 redirect_all_requests_to: Optional[pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages Website Configuration for Buckets on IonosCloud.
@@ -314,11 +314,11 @@ class WebsiteConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 error_document: Optional[pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: Optional[pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 redirect_all_requests_to: Optional[pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-                 routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
+                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -345,11 +345,11 @@ class WebsiteConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            error_document: Optional[pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-            index_document: Optional[pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-            redirect_all_requests_to: Optional[pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-            routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None) -> 'WebsiteConfiguration':
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
+            index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
+            redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
+            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None) -> 'WebsiteConfiguration':
         """
         Get an existing WebsiteConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

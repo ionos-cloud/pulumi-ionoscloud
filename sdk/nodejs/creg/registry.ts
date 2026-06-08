@@ -133,25 +133,25 @@ export interface RegistryState {
     /**
      * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
-    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [Map]
      */
-    features?: pulumi.Input<inputs.creg.RegistryFeatures>;
+    features?: pulumi.Input<inputs.creg.RegistryFeatures | undefined>;
     /**
      * [Map]
      */
-    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
-    hostname?: pulumi.Input<string>;
+    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule | undefined>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * [string] Immutable, update forces re-creation of the resource.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The name of the container registry. Immutable, update forces re-creation of the resource.
      */
-    name?: pulumi.Input<string>;
-    storageUsages?: pulumi.Input<pulumi.Input<inputs.creg.RegistryStorageUsage>[]>;
+    name?: pulumi.Input<string | undefined>;
+    storageUsages?: pulumi.Input<pulumi.Input<inputs.creg.RegistryStorageUsage>[] | undefined>;
 }
 
 /**
@@ -161,15 +161,15 @@ export interface RegistryArgs {
     /**
      * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
-    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [Map]
      */
-    features?: pulumi.Input<inputs.creg.RegistryFeatures>;
+    features?: pulumi.Input<inputs.creg.RegistryFeatures | undefined>;
     /**
      * [Map]
      */
-    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
+    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule | undefined>;
     /**
      * [string] Immutable, update forces re-creation of the resource.
      */
@@ -177,5 +177,5 @@ export interface RegistryArgs {
     /**
      * The name of the container registry. Immutable, update forces re-creation of the resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

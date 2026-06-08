@@ -229,13 +229,13 @@ export interface GetGroupOutputArgs {
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    getUsersData?: pulumi.Input<boolean>;
+    getUsersData?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the group you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing group that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

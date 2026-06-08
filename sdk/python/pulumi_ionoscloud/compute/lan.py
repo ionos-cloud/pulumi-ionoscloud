@@ -22,12 +22,12 @@ __all__ = ['LanArgs', 'Lan']
 class LanArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
-                 ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pcc: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pcc: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Lan resource.
 
@@ -67,88 +67,88 @@ class LanArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipFailovers")
-    def ip_failovers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]]:
+    def ip_failovers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]]:
         """
         IP failover configurations for lan
         """
         return pulumi.get(self, "ip_failovers")
 
     @ip_failovers.setter
-    def ip_failovers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]]):
+    def ip_failovers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]]):
         pulumi.set(self, "ip_failovers", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
-    def ipv6_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @ipv6_cidr_block.setter
-    def ipv6_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the LAN.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def pcc(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pcc(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         """
         return pulumi.get(self, "pcc")
 
     @pcc.setter
-    def pcc(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pcc(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pcc", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
 
 @pulumi.input_type
 class _LanState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
-                 ipv4_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pcc: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]] = None,
+                 ipv4_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pcc: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Lan resources.
 
@@ -180,98 +180,98 @@ class _LanState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipFailovers")
-    def ip_failovers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]]:
+    def ip_failovers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]]:
         """
         IP failover configurations for lan
         """
         return pulumi.get(self, "ip_failovers")
 
     @ip_failovers.setter
-    def ip_failovers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]]]):
+    def ip_failovers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LanIpFailoverArgs']]]]):
         pulumi.set(self, "ip_failovers", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv4CidrBlock")
-    def ipv4_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv4_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         """
         return pulumi.get(self, "ipv4_cidr_block")
 
     @ipv4_cidr_block.setter
-    def ipv4_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv4_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv4_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
-    def ipv6_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @ipv6_cidr_block.setter
-    def ipv6_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the LAN.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def pcc(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pcc(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         """
         return pulumi.get(self, "pcc")
 
     @pcc.setter
-    def pcc(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pcc(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pcc", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
 
@@ -281,13 +281,13 @@ class Lan(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pcc: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pcc: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages a **LAN** on IonosCloud.
@@ -432,13 +432,13 @@ class Lan(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pcc: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pcc: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -468,14 +468,14 @@ class Lan(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_failovers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
-            ipv4_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-            ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            pcc: Optional[pulumi.Input[_builtins.str]] = None,
-            public: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Lan':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+            ipv4_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            pcc: pulumi.Input[Optional[_builtins.str]] = None,
+            public: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Lan':
         """
         Get an existing Lan resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

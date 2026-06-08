@@ -23,11 +23,11 @@ class ShareArgs:
     def __init__(__self__, *,
                  client_groups: pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]],
                  cluster_id: pulumi.Input[_builtins.str],
-                 gid: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 quota: Optional[pulumi.Input[_builtins.int]] = None,
-                 uid: Optional[pulumi.Input[_builtins.int]] = None):
+                 gid: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 quota: pulumi.Input[Optional[_builtins.int]] = None,
+                 uid: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Share resource.
 
@@ -78,76 +78,76 @@ class ShareArgs:
 
     @_builtins.property
     @pulumi.getter
-    def gid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         return pulumi.get(self, "gid")
 
     @gid.setter
-    def gid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gid", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The directory being exported.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def quota(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def quota(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         """
         return pulumi.get(self, "quota")
 
     @quota.setter
-    def quota(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def quota(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "quota", value)
 
     @_builtins.property
     @pulumi.getter
-    def uid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def uid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         return pulumi.get(self, "uid")
 
     @uid.setter
-    def uid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def uid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "uid", value)
 
 
 @pulumi.input_type
 class _ShareState:
     def __init__(__self__, *,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gid: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 quota: Optional[pulumi.Input[_builtins.int]] = None,
-                 uid: Optional[pulumi.Input[_builtins.int]] = None):
+                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input['ShareClientGroupArgs']]]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gid: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 quota: pulumi.Input[Optional[_builtins.int]] = None,
+                 uid: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Share resources.
 
@@ -179,98 +179,98 @@ class _ShareState:
 
     @_builtins.property
     @pulumi.getter(name="clientGroups")
-    def client_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]]:
+    def client_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ShareClientGroupArgs']]]]:
         """
         The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         """
         return pulumi.get(self, "client_groups")
 
     @client_groups.setter
-    def client_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]]):
+    def client_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ShareClientGroupArgs']]]]):
         pulumi.set(self, "client_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Network File Storage Cluster.
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def gid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         return pulumi.get(self, "gid")
 
     @gid.setter
-    def gid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gid", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The directory being exported.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nfsPath")
-    def nfs_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nfs_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the NFS export. The NFS path is the path to the directory being exported.
         """
         return pulumi.get(self, "nfs_path")
 
     @nfs_path.setter
-    def nfs_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nfs_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nfs_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def quota(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def quota(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         """
         return pulumi.get(self, "quota")
 
     @quota.setter
-    def quota(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def quota(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "quota", value)
 
     @_builtins.property
     @pulumi.getter
-    def uid(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def uid(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         return pulumi.get(self, "uid")
 
     @uid.setter
-    def uid(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def uid(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "uid", value)
 
 
@@ -280,13 +280,13 @@ class Share(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gid: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 quota: Optional[pulumi.Input[_builtins.int]] = None,
-                 uid: Optional[pulumi.Input[_builtins.int]] = None,
+                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gid: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 quota: pulumi.Input[Optional[_builtins.int]] = None,
+                 uid: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
@@ -433,13 +433,13 @@ class Share(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gid: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 quota: Optional[pulumi.Input[_builtins.int]] = None,
-                 uid: Optional[pulumi.Input[_builtins.int]] = None,
+                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gid: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 quota: pulumi.Input[Optional[_builtins.int]] = None,
+                 uid: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -471,14 +471,14 @@ class Share(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            gid: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nfs_path: Optional[pulumi.Input[_builtins.str]] = None,
-            quota: Optional[pulumi.Input[_builtins.int]] = None,
-            uid: Optional[pulumi.Input[_builtins.int]] = None) -> 'Share':
+            client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gid: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nfs_path: pulumi.Input[Optional[_builtins.str]] = None,
+            quota: pulumi.Input[Optional[_builtins.int]] = None,
+            uid: pulumi.Input[Optional[_builtins.int]] = None) -> 'Share':
         """
         Get an existing Share resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

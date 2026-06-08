@@ -174,35 +174,35 @@ export interface LanState {
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * IP failover configurations for lan
      */
-    ipFailovers?: pulumi.Input<pulumi.Input<inputs.compute.LanIpFailover>[]>;
+    ipFailovers?: pulumi.Input<pulumi.Input<inputs.compute.LanIpFailover>[] | undefined>;
     /**
      * [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
      */
-    ipv4CidrBlock?: pulumi.Input<string>;
+    ipv4CidrBlock?: pulumi.Input<string | undefined>;
     /**
      * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
      */
-    ipv6CidrBlock?: pulumi.Input<string>;
+    ipv6CidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the LAN.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      */
-    pcc?: pulumi.Input<string>;
+    pcc?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -216,25 +216,25 @@ export interface LanArgs {
     /**
      * IP failover configurations for lan
      */
-    ipFailovers?: pulumi.Input<pulumi.Input<inputs.compute.LanIpFailover>[]>;
+    ipFailovers?: pulumi.Input<pulumi.Input<inputs.compute.LanIpFailover>[] | undefined>;
     /**
      * Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
      */
-    ipv6CidrBlock?: pulumi.Input<string>;
+    ipv6CidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the LAN.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      */
-    pcc?: pulumi.Input<string>;
+    pcc?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
 }

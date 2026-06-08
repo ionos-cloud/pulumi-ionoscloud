@@ -146,12 +146,12 @@ export interface GetNsgOutputArgs {
     /**
      * Id of an existing Network Security Group that you want to search for.
      */
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing Network Security Group that you want to search for.
      *
      * Either `name`, or `id` must be provided. If none, the datasource will return an error.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

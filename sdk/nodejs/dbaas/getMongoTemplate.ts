@@ -166,10 +166,10 @@ export interface GetMongoTemplateOutputArgs {
     /**
      * The ID of the template.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The name of the template.
      */
-    name?: pulumi.Input<string>;
-    partialMatch?: pulumi.Input<boolean>;
+    name?: pulumi.Input<string | undefined>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

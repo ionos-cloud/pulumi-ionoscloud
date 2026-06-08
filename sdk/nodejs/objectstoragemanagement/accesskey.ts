@@ -121,27 +121,27 @@ export interface AccesskeyState {
     /**
      * Access key metadata is a string of 92 characters.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * The canonical user ID which is valid for user-owned buckets.
      */
-    canonicalUserId?: pulumi.Input<string>;
+    canonicalUserId?: pulumi.Input<string | undefined>;
     /**
      * The contract user ID which is valid for contract-owned buckets
      */
-    contractUserId?: pulumi.Input<string>;
+    contractUserId?: pulumi.Input<string | undefined>;
     /**
      * [string] Description of the Access key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The secret key of the Access key.
      */
-    secretkey?: pulumi.Input<string>;
+    secretkey?: pulumi.Input<string | undefined>;
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.objectstoragemanagement.AccesskeyTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstoragemanagement.AccesskeyTimeouts | undefined>;
 }
 
 /**
@@ -151,9 +151,9 @@ export interface AccesskeyArgs {
     /**
      * [string] Description of the Access key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.objectstoragemanagement.AccesskeyTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstoragemanagement.AccesskeyTimeouts | undefined>;
 }

@@ -106,11 +106,11 @@ export interface BucketVersioningState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of versioningConfiguration as defined below.
      */
-    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration>;
+    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration | undefined>;
 }
 
 /**
@@ -124,5 +124,5 @@ export interface BucketVersioningArgs {
     /**
      * [block] A block of versioningConfiguration as defined below.
      */
-    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration>;
+    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration | undefined>;
 }

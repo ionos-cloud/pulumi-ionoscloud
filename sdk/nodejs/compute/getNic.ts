@@ -195,12 +195,12 @@ export interface GetNicOutputArgs {
      * `datacenterId` and either `name` or `id` must be provided.
      * If none, are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the LAN.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a server.
      */

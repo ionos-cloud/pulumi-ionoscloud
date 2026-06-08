@@ -170,39 +170,39 @@ export interface TopicState {
     /**
      * [string] ID of the Kafka Cluster that the topic belongs to.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] The number of partitions of the topic. Partitions allow for parallel
      * processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
      * Default value: 3.
      */
-    numberOfPartitions?: pulumi.Input<number>;
+    numberOfPartitions?: pulumi.Input<number | undefined>;
     /**
      * [int] The number of replicas of the topic. The replication factor determines how many
      * copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
      * of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
      */
-    replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number | undefined>;
     /**
      * [int] This configuration controls the maximum time we will retain a log before we will
      * discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
      * to -1, no time limit is applied. Default value: 604800000.
      */
-    retentionTime?: pulumi.Input<number>;
+    retentionTime?: pulumi.Input<number | undefined>;
     /**
      * [int] This configuration controls the segment file size for the log. Retention and
      * cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
      * retention. Default value: 1073741824.
      */
-    segmentBytes?: pulumi.Input<number>;
+    segmentBytes?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -216,33 +216,33 @@ export interface TopicArgs {
     /**
      * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] The number of partitions of the topic. Partitions allow for parallel
      * processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
      * Default value: 3.
      */
-    numberOfPartitions?: pulumi.Input<number>;
+    numberOfPartitions?: pulumi.Input<number | undefined>;
     /**
      * [int] The number of replicas of the topic. The replication factor determines how many
      * copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
      * of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
      */
-    replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number | undefined>;
     /**
      * [int] This configuration controls the maximum time we will retain a log before we will
      * discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
      * to -1, no time limit is applied. Default value: 604800000.
      */
-    retentionTime?: pulumi.Input<number>;
+    retentionTime?: pulumi.Input<number | undefined>;
     /**
      * [int] This configuration controls the segment file size for the log. Retention and
      * cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
      * retention. Default value: 1073741824.
      */
-    segmentBytes?: pulumi.Input<number>;
+    segmentBytes?: pulumi.Input<number | undefined>;
 }

@@ -172,53 +172,53 @@ export interface MariaDBClusterState {
     /**
      * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
      */
-    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup>;
+    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup | undefined>;
     /**
      * The network connection for your cluster. Only one connection is allowed.
      */
-    connections?: pulumi.Input<inputs.dbaas.MariaDBClusterConnections>;
+    connections?: pulumi.Input<inputs.dbaas.MariaDBClusterConnections | undefined>;
     /**
      * [int] The number of CPU cores per instance.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * Credentials for the database user to be created.
      */
-    credentials?: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials>;
+    credentials?: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials | undefined>;
     /**
      * [string] The friendly name of your cluster.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * [string] The DNS name pointing to your cluster.
      *
      * > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
-    dnsName?: pulumi.Input<string>;
+    dnsName?: pulumi.Input<string | undefined>;
     /**
      * [int] The total number of instances in the cluster (one primary and n-1 secondary).
      */
-    instances?: pulumi.Input<number>;
+    instances?: pulumi.Input<number | undefined>;
     /**
      * [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow | undefined>;
     /**
      * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */
-    mariadbVersion?: pulumi.Input<string>;
+    mariadbVersion?: pulumi.Input<string | undefined>;
     /**
      * [int] The amount of memory per instance in gigabytes (GB).
      */
-    ram?: pulumi.Input<number>;
+    ram?: pulumi.Input<number | undefined>;
     /**
      * [int] The amount of storage per instance in gigabytes (GB).
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -228,7 +228,7 @@ export interface MariaDBClusterArgs {
     /**
      * Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
      */
-    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup>;
+    backup?: pulumi.Input<inputs.dbaas.MariaDBClusterBackup | undefined>;
     /**
      * The network connection for your cluster. Only one connection is allowed.
      */
@@ -252,11 +252,11 @@ export interface MariaDBClusterArgs {
     /**
      * [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.MariaDBClusterMaintenanceWindow | undefined>;
     /**
      * [string] The MariaDB version of your cluster. Cannot be downgraded.
      */

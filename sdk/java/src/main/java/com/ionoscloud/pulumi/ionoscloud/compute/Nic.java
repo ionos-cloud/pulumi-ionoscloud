@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
  * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -143,8 +143,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
  * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -258,8 +258,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
  * import com.pulumi.ionoscloud.compute.inputs.NicFlowlogArgs;
  * import com.pulumi.std.StdFunctions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -325,7 +325,7 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * This will configure flowlog for accepted ingress traffic and will log it into an existing IONOS Object Storage bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation of the NIC, but changing any other field than
- * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force NIC re-creation.
+ * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force NIC re-creation.
  * 
  * ## Working with load balancers
  * 
@@ -333,7 +333,7 @@ import javax.annotation.Nullable;
  * change the NIC&#39;s ID behind the scenes, therefore the plan will always report this change
  * trying to revert the state to the one specified by your terraform file.
  * In order to prevent this, use the &#34;lifecycle meta-argument&#34; when declaring your NIC,
- * in order to ignore changes to the &lt;span pulumi-lang-nodejs=&#34;`lan`&#34; pulumi-lang-dotnet=&#34;`Lan`&#34; pulumi-lang-go=&#34;`lan`&#34; pulumi-lang-python=&#34;`lan`&#34; pulumi-lang-yaml=&#34;`lan`&#34; pulumi-lang-java=&#34;`lan`&#34;&gt;`lan`&lt;/span&gt; attribute:
+ * in order to ignore changes to the &lt;span pulumi-lang-nodejs=&#34;`lan`&#34; pulumi-lang-dotnet=&#34;`Lan`&#34; pulumi-lang-go=&#34;`lan`&#34; pulumi-lang-python=&#34;`lan`&#34; pulumi-lang-yaml=&#34;`lan`&#34; pulumi-lang-java=&#34;`lan`&#34; pulumi-lang-hcl=&#34;`lan`&#34;&gt;`lan`&lt;/span&gt; attribute:
  * 
  * Here&#39;s an example:
  * 
@@ -347,8 +347,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Nic;
  * import com.ionoscloud.pulumi.ionoscloud.compute.NicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -599,7 +599,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34; pulumi-lang-hcl=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     @Export(name="securityGroupsIds", refs={List.class,String.class}, tree="[0,1]")
@@ -608,7 +608,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     /**
      * @return The list of Security Group IDs for the resource.
      * 
-     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
+     * ⚠️ **Note:**: Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34; pulumi-lang-hcl=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the NIC resource.
      * 
      */
     public Output<Optional<List<String>>> securityGroupsIds() {
@@ -668,7 +668,7 @@ public class Nic extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

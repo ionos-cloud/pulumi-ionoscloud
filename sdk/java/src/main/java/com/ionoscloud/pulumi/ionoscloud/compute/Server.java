@@ -54,8 +54,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerLabelArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -173,8 +173,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -310,8 +310,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -390,8 +390,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -453,8 +453,8 @@ import javax.annotation.Nullable;
  * 
  * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
  * 
- * ⚠️ **Note:** Important for deleting an &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
- * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. Terraform will actually modify the existing rules and delete the last one.
+ * ⚠️ **Note:** Important for deleting an &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34; pulumi-lang-hcl=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+ * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34; pulumi-lang-hcl=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. Terraform will actually modify the existing rules and delete the last one.
  * More details here. There is a workaround described in the issue
  * that involves moving the resources in the list prior to deletion.
  * `terraform state mv &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;i&gt;] &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;j&gt;]`
@@ -491,7 +491,7 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.availabilityZone;
     }
     /**
-     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -502,21 +502,21 @@ public class Server extends com.pulumi.resources.CustomResource {
     private Output<String> bootCdrom;
 
     /**
-     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      */
     public Output<String> bootCdrom() {
         return this.bootCdrom;
     }
     /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="bootImage", refs={String.class}, tree="[0]")
     private Output<String> bootImage;
 
     /**
-     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     public Output<String> bootImage() {
@@ -621,28 +621,28 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Export(name="imageName", refs={String.class}, tree="[0]")
     private Output<String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Output<String> imageName() {
         return this.imageName;
     }
     /**
-     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="imagePassword", refs={String.class}, tree="[0]")
     private Output<String> imagePassword;
 
     /**
-     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public Output<String> imagePassword() {
@@ -663,14 +663,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return this.inlineVolumeIds;
     }
     /**
-     * [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
+     * [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34; pulumi-lang-hcl=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34; pulumi-lang-hcl=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34; pulumi-lang-hcl=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34; pulumi-lang-hcl=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     @Export(name="labels", refs={List.class,ServerLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServerLabel>> labels;
 
     /**
-     * @return [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
+     * @return [set] A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34; pulumi-lang-hcl=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34; pulumi-lang-hcl=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34; pulumi-lang-hcl=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34; pulumi-lang-hcl=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     public Output<Optional<List<ServerLabel>>> labels() {
@@ -719,40 +719,40 @@ public class Server extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.nic);
     }
     /**
-     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
      * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34; pulumi-lang-hcl=&#34; ssh_key_path &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34; pulumi-lang-hcl=&#34; ssh_keys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * 
+     * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34; pulumi-lang-hcl=&#34;`template_uuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34; pulumi-lang-hcl=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34; pulumi-lang-hcl=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34; pulumi-lang-hcl=&#34;`template_uuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; 
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34; pulumi-lang-hcl=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34; pulumi-lang-hcl=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
      * 
      */
     @Export(name="nicMultiQueue", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> nicMultiQueue;
 
     /**
-     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
      * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     * 
-     * &gt; **⚠ WARNING**
-     * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
-     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
+     * &lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34; pulumi-lang-hcl=&#34; ssh_key_path &#34;&gt; sshKeyPath &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34; pulumi-lang-hcl=&#34; ssh_keys &#34;&gt; sshKeys &lt;/span&gt;fields are immutable.
+     * 
+     * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
+     * &gt; If you want to create a **CUBE** server, you have to provide the &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34; pulumi-lang-hcl=&#34;`template_uuid`&#34;&gt;`templateUuid`&lt;/span&gt;. In this case you can not set &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34; pulumi-lang-hcl=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34; pulumi-lang-hcl=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume.size` arguments, these being mutually exclusive with &lt;span pulumi-lang-nodejs=&#34;`templateUuid`&#34; pulumi-lang-dotnet=&#34;`TemplateUuid`&#34; pulumi-lang-go=&#34;`templateUuid`&#34; pulumi-lang-python=&#34;`template_uuid`&#34; pulumi-lang-yaml=&#34;`templateUuid`&#34; pulumi-lang-java=&#34;`templateUuid`&#34; pulumi-lang-hcl=&#34;`template_uuid`&#34;&gt;`templateUuid`&lt;/span&gt;.
+     * &gt; 
+     * &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for &lt;span pulumi-lang-nodejs=&#34;`cores`&#34; pulumi-lang-dotnet=&#34;`Cores`&#34; pulumi-lang-go=&#34;`cores`&#34; pulumi-lang-python=&#34;`cores`&#34; pulumi-lang-yaml=&#34;`cores`&#34; pulumi-lang-java=&#34;`cores`&#34; pulumi-lang-hcl=&#34;`cores`&#34;&gt;`cores`&lt;/span&gt;, &lt;span pulumi-lang-nodejs=&#34;`ram`&#34; pulumi-lang-dotnet=&#34;`Ram`&#34; pulumi-lang-go=&#34;`ram`&#34; pulumi-lang-python=&#34;`ram`&#34; pulumi-lang-yaml=&#34;`ram`&#34; pulumi-lang-java=&#34;`ram`&#34; pulumi-lang-hcl=&#34;`ram`&#34;&gt;`ram`&lt;/span&gt; and `volume size`.
      * 
      */
     public Output<Optional<Boolean>> nicMultiQueue() {
@@ -815,18 +815,18 @@ public class Server extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.securityGroupsIds);
     }
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      * @deprecated
-     * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
+     * Will be renamed to&lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34; pulumi-lang-hcl=&#34; ssh_keys &#34;&gt; sshKeys &lt;/span&gt;in the future, to allow users to set both the ssh key path or directly the ssh key
      * 
      */
-    @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
+    @Deprecated /* Will be renamed to<span pulumi-lang-nodejs="" sshKeys "" pulumi-lang-dotnet="" SshKeys "" pulumi-lang-go="" sshKeys "" pulumi-lang-python="" ssh_keys "" pulumi-lang-yaml="" sshKeys "" pulumi-lang-java="" sshKeys "" pulumi-lang-hcl="" ssh_keys ""> sshKeys </span>in the future, to allow users to set both the ssh key path or directly the ssh key */
     @Export(name="sshKeyPaths", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      * 
      */
     public Output<Optional<List<String>>> sshKeyPaths() {
@@ -861,14 +861,14 @@ public class Server extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.templateUuid);
     }
     /**
-     * (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+     * (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
+     * @return (Computed)[string] Server usages: * &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt; - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
      * 
      */
     public Output<String> type() {
@@ -942,7 +942,7 @@ public class Server extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
                 "imagePassword"
             ))

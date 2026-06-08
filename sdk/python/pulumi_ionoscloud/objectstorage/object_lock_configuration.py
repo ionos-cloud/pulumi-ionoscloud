@@ -22,8 +22,8 @@ __all__ = ['ObjectLockConfigurationArgs', 'ObjectLockConfiguration']
 class ObjectLockConfigurationArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[_builtins.str],
-                 object_lock_enabled: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule: Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']] = None):
+                 object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule: pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']] = None):
         """
         The set of arguments for constructing a ObjectLockConfiguration resource.
 
@@ -51,35 +51,35 @@ class ObjectLockConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="objectLockEnabled")
-    def object_lock_enabled(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def object_lock_enabled(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
         """
         return pulumi.get(self, "object_lock_enabled")
 
     @object_lock_enabled.setter
-    def object_lock_enabled(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def object_lock_enabled(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "object_lock_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def rule(self) -> Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']]:
+    def rule(self) -> pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']]:
         """
         [block] A block of rule as defined below.
         """
         return pulumi.get(self, "rule")
 
     @rule.setter
-    def rule(self, value: Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']]):
+    def rule(self, value: pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']]):
         pulumi.set(self, "rule", value)
 
 
 @pulumi.input_type
 class _ObjectLockConfigurationState:
     def __init__(__self__, *,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 object_lock_enabled: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule: Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']] = None):
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule: pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']] = None):
         """
         Input properties used for looking up and filtering ObjectLockConfiguration resources.
 
@@ -96,38 +96,38 @@ class _ObjectLockConfigurationState:
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the bucket where the object will be stored.
         """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="objectLockEnabled")
-    def object_lock_enabled(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def object_lock_enabled(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
         """
         return pulumi.get(self, "object_lock_enabled")
 
     @object_lock_enabled.setter
-    def object_lock_enabled(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def object_lock_enabled(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "object_lock_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def rule(self) -> Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']]:
+    def rule(self) -> pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']]:
         """
         [block] A block of rule as defined below.
         """
         return pulumi.get(self, "rule")
 
     @rule.setter
-    def rule(self, value: Optional[pulumi.Input['ObjectLockConfigurationRuleArgs']]):
+    def rule(self, value: pulumi.Input[Optional['ObjectLockConfigurationRuleArgs']]):
         pulumi.set(self, "rule", value)
 
 
@@ -137,9 +137,9 @@ class ObjectLockConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 object_lock_enabled: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule: Optional[pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         """
         Manages Object Lock Configuration for Buckets on IonosCloud.
@@ -236,9 +236,9 @@ class ObjectLockConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 object_lock_enabled: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule: Optional[pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -263,9 +263,9 @@ class ObjectLockConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            object_lock_enabled: Optional[pulumi.Input[_builtins.str]] = None,
-            rule: Optional[pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None) -> 'ObjectLockConfiguration':
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
+            rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None) -> 'ObjectLockConfiguration':
         """
         Get an existing ObjectLockConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

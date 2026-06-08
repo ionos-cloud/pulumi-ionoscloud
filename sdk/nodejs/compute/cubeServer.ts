@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  *         diskType: "DAS",
  *     },
  *     nic: {
- *         lan: exampleLan.id,
+ *         lan: exampleLan.id.apply(x =>Number(x)),
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
@@ -105,7 +105,7 @@ import * as utilities from "../utilities";
  *         diskType: "DAS",
  *     },
  *     nic: {
- *         lan: exampleLan.id,
+ *         lan: exampleLan.id.apply(x =>Number(x)),
  *         name: "Nic Example",
  *         dhcp: true,
  *         ips: [
@@ -384,89 +384,89 @@ export interface CubeServerState {
      * > For creating a **CUBE** server, you can not set `volume.size` argument.
      * >
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
-    bootCdrom?: pulumi.Input<string>;
+    bootCdrom?: pulumi.Input<string | undefined>;
     /**
      * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
      */
-    bootImage?: pulumi.Input<string>;
+    bootImage?: pulumi.Input<string | undefined>;
     /**
      * The associated boot volume.
      */
-    bootVolume?: pulumi.Input<string>;
+    bootVolume?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * The associated firewall rule.
      */
-    firewallruleId?: pulumi.Input<string>;
+    firewallruleId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `sshKeyPath` is not provided.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * A list that contains the IDs for the volumes defined inside the cube server resource.
      */
-    inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.compute.CubeServerNic>;
+    nic?: pulumi.Input<inputs.compute.CubeServerNic | undefined>;
     /**
      * The associated IP address.
      */
-    primaryIp?: pulumi.Input<string>;
+    primaryIp?: pulumi.Input<string | undefined>;
     /**
      * The associated NIC.
      */
-    primaryNic?: pulumi.Input<string>;
+    primaryNic?: pulumi.Input<string | undefined>;
     /**
      * The list of Security Group IDs for the resource.
      */
-    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      */
-    templateUuid?: pulumi.Input<string>;
+    templateUuid?: pulumi.Input<string | undefined>;
     /**
      * [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
      */
-    vmState?: pulumi.Input<string>;
+    vmState?: pulumi.Input<string | undefined>;
     /**
      * See the Volume section.
      */
-    volume?: pulumi.Input<inputs.compute.CubeServerVolume>;
+    volume?: pulumi.Input<inputs.compute.CubeServerVolume | undefined>;
 }
 
 /**
@@ -488,21 +488,21 @@ export interface CubeServerArgs {
      * > For creating a **CUBE** server, you can not set `volume.size` argument.
      * >
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The availability zone in which the server should exist. This property is immutable.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
-    bootCdrom?: pulumi.Input<string>;
+    bootCdrom?: pulumi.Input<string | undefined>;
     /**
      * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
      */
-    bootImage?: pulumi.Input<string>;
+    bootImage?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
@@ -510,23 +510,23 @@ export interface CubeServerArgs {
     /**
      * (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] Required if `sshKeyPath` is not provided.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * See the Nic section.
      */
@@ -534,11 +534,11 @@ export interface CubeServerArgs {
     /**
      * The list of Security Group IDs for the resource.
      */
-    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      */
@@ -546,7 +546,7 @@ export interface CubeServerArgs {
     /**
      * [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
      */
-    vmState?: pulumi.Input<string>;
+    vmState?: pulumi.Input<string | undefined>;
     /**
      * See the Volume section.
      */

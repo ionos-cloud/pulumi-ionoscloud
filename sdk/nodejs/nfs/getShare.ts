@@ -159,7 +159,7 @@ export interface GetShareOutputArgs {
     /**
      * The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
      */
-    clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.GetShareClientGroupArgs>[]>;
+    clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.GetShareClientGroupArgs>[] | undefined>;
     /**
      * The ID of the Network File Storage cluster.
      */
@@ -167,29 +167,29 @@ export interface GetShareOutputArgs {
     /**
      * The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    gid?: pulumi.Input<number>;
+    gid?: pulumi.Input<number | undefined>;
     /**
      * ID of the Network File Storage share.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of the Network File Storage share.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
     /**
      * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
      */
-    quota?: pulumi.Input<number>;
+    quota?: pulumi.Input<number | undefined>;
     /**
      * The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    uid?: pulumi.Input<number>;
+    uid?: pulumi.Input<number | undefined>;
 }

@@ -169,37 +169,37 @@ export interface IpsecGatewayState {
      * [list] The network connection for your gateway. **Note**: all connections must belong to the
      * same datacenter. Minimum items: 1. Maximum items: 10.
      */
-    connections?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecGatewayConnection>[]>;
+    connections?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecGatewayConnection>[] | undefined>;
     /**
      * [string] The human-readable description of the IPSec Gateway.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
      * the same datacenter as the connections.
      */
-    gatewayIp?: pulumi.Input<string>;
+    gatewayIp?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow | undefined>;
     /**
      * [string] The name of the IPSec Gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
      * values: `IKEv2`.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -214,7 +214,7 @@ export interface IpsecGatewayArgs {
     /**
      * [string] The human-readable description of the IPSec Gateway.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
      * the same datacenter as the connections.
@@ -223,22 +223,22 @@ export interface IpsecGatewayArgs {
     /**
      * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow | undefined>;
     /**
      * [string] The name of the IPSec Gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
     /**
      * [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
      * values: `IKEv2`.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }

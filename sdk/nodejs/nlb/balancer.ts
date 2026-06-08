@@ -34,8 +34,8 @@ import * as utilities from "../utilities";
  * const exampleBalancer = new ionoscloud.nlb.Balancer("example", {
  *     datacenterId: example.id,
  *     name: "example",
- *     listenerLan: example1.id,
- *     targetLan: example2.id,
+ *     listenerLan: example1.id.apply(x =>Number(x)),
+ *     targetLan: example2.id.apply(x =>Number(x)),
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  *     centralLogging: true,
@@ -52,8 +52,8 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.nlb.Balancer("example", {
  *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "nlb with flowlog",
- *     listenerLan: example1.id,
- *     targetLan: example2.id,
+ *     listenerLan: Number(example1.id),
+ *     targetLan: Number(example2.id),
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  *     flowlog: {
@@ -202,43 +202,43 @@ export interface BalancerState {
     /**
      * [bool] Turn logging on and off for this product. Default value is 'false'.
      */
-    centralLogging?: pulumi.Input<boolean>;
+    centralLogging?: pulumi.Input<boolean | undefined>;
     /**
      * [string] A Datacenter's UUID.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
      */
-    flowlog?: pulumi.Input<inputs.nlb.BalancerFlowlog>;
+    flowlog?: pulumi.Input<inputs.nlb.BalancerFlowlog | undefined>;
     /**
      * [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
      */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
      */
-    lbPrivateIps?: pulumi.Input<pulumi.Input<string>[]>;
+    lbPrivateIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [int] Id of the listening LAN. (inbound)
      */
-    listenerLan?: pulumi.Input<number>;
+    listenerLan?: pulumi.Input<number | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Specifies the format of the logs.
      */
-    loggingFormat?: pulumi.Input<string>;
+    loggingFormat?: pulumi.Input<string | undefined>;
     /**
      * [string] A name of that Network Load Balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] Id of the balanced private target LAN. (outbound)
      */
-    targetLan?: pulumi.Input<number>;
+    targetLan?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -248,7 +248,7 @@ export interface BalancerArgs {
     /**
      * [bool] Turn logging on and off for this product. Default value is 'false'.
      */
-    centralLogging?: pulumi.Input<boolean>;
+    centralLogging?: pulumi.Input<boolean | undefined>;
     /**
      * [string] A Datacenter's UUID.
      */
@@ -256,15 +256,15 @@ export interface BalancerArgs {
     /**
      * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
      */
-    flowlog?: pulumi.Input<inputs.nlb.BalancerFlowlog>;
+    flowlog?: pulumi.Input<inputs.nlb.BalancerFlowlog | undefined>;
     /**
      * [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
      */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
      */
-    lbPrivateIps?: pulumi.Input<pulumi.Input<string>[]>;
+    lbPrivateIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [int] Id of the listening LAN. (inbound)
      */
@@ -272,15 +272,15 @@ export interface BalancerArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Specifies the format of the logs.
      */
-    loggingFormat?: pulumi.Input<string>;
+    loggingFormat?: pulumi.Input<string | undefined>;
     /**
      * [string] A name of that Network Load Balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [int] Id of the balanced private target LAN. (outbound)
      */

@@ -90,6 +90,6 @@ export interface GetNodePoolNodesOutputArgs {
      * K8s Cluster' UUID
      */
     k8sClusterId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     nodePoolId: pulumi.Input<string>;
 }

@@ -211,8 +211,8 @@ def get_user(email: Optional[_builtins.str] = None,
         last_name=pulumi.get(__ret__, 'last_name'),
         s3_canonical_user_id=pulumi.get(__ret__, 's3_canonical_user_id'),
         sec_auth_active=pulumi.get(__ret__, 'sec_auth_active'))
-def get_user_output(email: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_user_output(email: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     The **User data source** can be used to search for and return existing users.

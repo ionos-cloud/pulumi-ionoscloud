@@ -108,11 +108,11 @@ export interface BucketServerSideEncryptionConfigurationState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of rule as defined below.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRule>[] | undefined>;
 }
 
 /**
@@ -126,5 +126,5 @@ export interface BucketServerSideEncryptionConfigurationArgs {
     /**
      * [block] A block of rule as defined below.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.objectstorage.BucketServerSideEncryptionConfigurationRule>[] | undefined>;
 }

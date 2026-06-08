@@ -110,7 +110,7 @@ class DistributionRoutingRuleUpstreamArgsDict(TypedDict):
     """
     [bool] Enable or disable WAF to protect the upstream host.
     """
-    geo_restrictions: NotRequired[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict']]
+    geo_restrictions: NotRequired[pulumi.Input[Optional['DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict']]]
     """
     [map] - A map of geo_restrictions
     """
@@ -123,7 +123,7 @@ class DistributionRoutingRuleUpstreamArgs:
                  rate_limit_class: pulumi.Input[_builtins.str],
                  sni_mode: pulumi.Input[_builtins.str],
                  waf: pulumi.Input[_builtins.bool],
-                 geo_restrictions: Optional[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']] = None):
+                 geo_restrictions: pulumi.Input[Optional['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']] = None):
         """
         :param pulumi.Input[_builtins.bool] caching: [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
         :param pulumi.Input[_builtins.str] host: [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
@@ -202,23 +202,23 @@ class DistributionRoutingRuleUpstreamArgs:
 
     @_builtins.property
     @pulumi.getter(name="geoRestrictions")
-    def geo_restrictions(self) -> Optional[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']]:
+    def geo_restrictions(self) -> pulumi.Input[Optional['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']]:
         """
         [map] - A map of geo_restrictions
         """
         return pulumi.get(self, "geo_restrictions")
 
     @geo_restrictions.setter
-    def geo_restrictions(self, value: Optional[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']]):
+    def geo_restrictions(self, value: pulumi.Input[Optional['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']]):
         pulumi.set(self, "geo_restrictions", value)
 
 
 class DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict(TypedDict):
-    allow_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allow_lists: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     [string] List of allowed countries
     """
-    block_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    block_lists: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     [string] List of blocked countries
     """
@@ -226,8 +226,8 @@ class DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict(TypedDict):
 @pulumi.input_type
 class DistributionRoutingRuleUpstreamGeoRestrictionsArgs:
     def __init__(__self__, *,
-                 allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 block_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 block_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allow_lists: [string] List of allowed countries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] block_lists: [string] List of blocked countries
@@ -239,26 +239,26 @@ class DistributionRoutingRuleUpstreamGeoRestrictionsArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowLists")
-    def allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allow_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [string] List of allowed countries
         """
         return pulumi.get(self, "allow_lists")
 
     @allow_lists.setter
-    def allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allow_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allow_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="blockLists")
-    def block_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def block_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [string] List of blocked countries
         """
         return pulumi.get(self, "block_lists")
 
     @block_lists.setter
-    def block_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def block_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "block_lists", value)
 
 

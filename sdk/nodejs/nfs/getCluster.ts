@@ -115,7 +115,7 @@ export interface GetClusterOutputArgs {
     /**
      * ID of the Network File Storage cluster.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
@@ -123,9 +123,9 @@ export interface GetClusterOutputArgs {
     /**
      * Name of the Network File Storage cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

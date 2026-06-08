@@ -203,13 +203,13 @@ def get_objects(bucket: Optional[_builtins.str] = None,
         owners=pulumi.get(__ret__, 'owners'),
         prefix=pulumi.get(__ret__, 'prefix'),
         start_after=pulumi.get(__ret__, 'start_after'))
-def get_objects_output(bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                       delimiter: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       encoding_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       fetch_owner: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                       max_keys: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                       prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       start_after: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_objects_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                       delimiter: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       encoding_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       fetch_owner: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                       max_keys: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                       prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       start_after: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectsResult]:
     """
     The **Objects data source** can be used to search for and return existing objects.

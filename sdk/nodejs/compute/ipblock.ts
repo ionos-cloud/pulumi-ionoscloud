@@ -123,23 +123,23 @@ export interface IPBlockState {
     /**
      * Read-Only attribute. Lists consumption detail of an individual ip
      */
-    ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[]>;
+    ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[] | undefined>;
     /**
      * [integer] The list of IP addresses associated with this block.
      */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of Ip Block
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [integer] The number of IP addresses to reserve for this block.
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -149,7 +149,7 @@ export interface IPBlockArgs {
     /**
      * Read-Only attribute. Lists consumption detail of an individual ip
      */
-    ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[]>;
+    ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[] | undefined>;
     /**
      * [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
      */
@@ -157,7 +157,7 @@ export interface IPBlockArgs {
     /**
      * [string] The name of Ip Block
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [integer] The number of IP addresses to reserve for this block.
      */

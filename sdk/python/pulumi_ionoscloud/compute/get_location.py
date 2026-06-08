@@ -126,8 +126,8 @@ def get_location(feature: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         image_aliases=pulumi.get(__ret__, 'image_aliases'),
         name=pulumi.get(__ret__, 'name'))
-def get_location_output(feature: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_location_output(feature: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLocationResult]:
     """
     The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.

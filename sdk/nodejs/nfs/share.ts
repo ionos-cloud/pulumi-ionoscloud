@@ -177,35 +177,35 @@ export interface ShareState {
     /**
      * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
      */
-    clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[]>;
+    clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[] | undefined>;
     /**
      * The ID of the Network File Storage Cluster.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    gid?: pulumi.Input<number>;
+    gid?: pulumi.Input<number | undefined>;
     /**
      * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The directory being exported.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Path to the NFS export. The NFS path is the path to the directory being exported.
      */
-    nfsPath?: pulumi.Input<string>;
+    nfsPath?: pulumi.Input<string | undefined>;
     /**
      * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
      */
-    quota?: pulumi.Input<number>;
+    quota?: pulumi.Input<number | undefined>;
     /**
      * The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    uid?: pulumi.Input<number>;
+    uid?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -223,21 +223,21 @@ export interface ShareArgs {
     /**
      * The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    gid?: pulumi.Input<number>;
+    gid?: pulumi.Input<number | undefined>;
     /**
      * The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The directory being exported.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
      */
-    quota?: pulumi.Input<number>;
+    quota?: pulumi.Input<number | undefined>;
     /**
      * The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
      */
-    uid?: pulumi.Input<number>;
+    uid?: pulumi.Input<number | undefined>;
 }

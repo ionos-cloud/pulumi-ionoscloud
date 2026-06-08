@@ -26,17 +26,17 @@ class MongoClusterArgs:
                  instances: pulumi.Input[_builtins.int],
                  location: pulumi.Input[_builtins.str],
                  mongodb_version: pulumi.Input[_builtins.str],
-                 backup: Optional[pulumi.Input['MongoClusterBackupArgs']] = None,
-                 bi_connector: Optional[pulumi.Input['MongoClusterBiConnectorArgs']] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 edition: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup: pulumi.Input[Optional['MongoClusterBackupArgs']] = None,
+                 bi_connector: pulumi.Input[Optional['MongoClusterBiConnectorArgs']] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 edition: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MongoCluster resource.
 
@@ -147,157 +147,157 @@ class MongoClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backup(self) -> Optional[pulumi.Input['MongoClusterBackupArgs']]:
+    def backup(self) -> pulumi.Input[Optional['MongoClusterBackupArgs']]:
         """
         [list]
         """
         return pulumi.get(self, "backup")
 
     @backup.setter
-    def backup(self, value: Optional[pulumi.Input['MongoClusterBackupArgs']]):
+    def backup(self, value: pulumi.Input[Optional['MongoClusterBackupArgs']]):
         pulumi.set(self, "backup", value)
 
     @_builtins.property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Optional[pulumi.Input['MongoClusterBiConnectorArgs']]:
+    def bi_connector(self) -> pulumi.Input[Optional['MongoClusterBiConnectorArgs']]:
         """
         (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
-    def bi_connector(self, value: Optional[pulumi.Input['MongoClusterBiConnectorArgs']]):
+    def bi_connector(self, value: pulumi.Input[Optional['MongoClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
 
     @_builtins.property
     @pulumi.getter
-    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         """
         return pulumi.get(self, "cores")
 
     @cores.setter
-    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter
-    def edition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def edition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Cluster edition. Playground, business or enterprise.
         """
         return pulumi.get(self, "edition")
 
     @edition.setter
-    def edition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def edition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "edition", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def ram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         """
         return pulumi.get(self, "ram")
 
     @ram.setter
-    def ram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram", value)
 
     @_builtins.property
     @pulumi.getter
-    def shards(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def shards(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int]The total number of shards in the cluster.
         """
         return pulumi.get(self, "shards")
 
     @shards.setter
-    def shards(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def shards(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "shards", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSize")
-    def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
-    def storage_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_type")
 
     @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
     @_builtins.property
     @pulumi.getter(name="templateId")
-    def template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
         """
         return pulumi.get(self, "template_id")
 
     @template_id.setter
-    def template_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _MongoClusterState:
     def __init__(__self__, *,
-                 backup: Optional[pulumi.Input['MongoClusterBackupArgs']] = None,
-                 bi_connector: Optional[pulumi.Input['MongoClusterBiConnectorArgs']] = None,
-                 connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 connections: Optional[pulumi.Input['MongoClusterConnectionsArgs']] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 edition: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']] = None,
-                 mongodb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backup: pulumi.Input[Optional['MongoClusterBackupArgs']] = None,
+                 bi_connector: pulumi.Input[Optional['MongoClusterBiConnectorArgs']] = None,
+                 connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 connections: pulumi.Input[Optional['MongoClusterConnectionsArgs']] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 edition: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']] = None,
+                 mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MongoCluster resources.
 
@@ -356,206 +356,206 @@ class _MongoClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def backup(self) -> Optional[pulumi.Input['MongoClusterBackupArgs']]:
+    def backup(self) -> pulumi.Input[Optional['MongoClusterBackupArgs']]:
         """
         [list]
         """
         return pulumi.get(self, "backup")
 
     @backup.setter
-    def backup(self, value: Optional[pulumi.Input['MongoClusterBackupArgs']]):
+    def backup(self, value: pulumi.Input[Optional['MongoClusterBackupArgs']]):
         pulumi.set(self, "backup", value)
 
     @_builtins.property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> Optional[pulumi.Input['MongoClusterBiConnectorArgs']]:
+    def bi_connector(self) -> pulumi.Input[Optional['MongoClusterBiConnectorArgs']]:
         """
         (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
-    def bi_connector(self, value: Optional[pulumi.Input['MongoClusterBiConnectorArgs']]):
+    def bi_connector(self, value: pulumi.Input[Optional['MongoClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionString")
-    def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
         """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
-    def connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input['MongoClusterConnectionsArgs']]:
+    def connections(self) -> pulumi.Input[Optional['MongoClusterConnectionsArgs']]:
         """
         [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input['MongoClusterConnectionsArgs']]):
+    def connections(self, value: pulumi.Input[Optional['MongoClusterConnectionsArgs']]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         """
         return pulumi.get(self, "cores")
 
     @cores.setter
-    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def edition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def edition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Cluster edition. Playground, business or enterprise.
         """
         return pulumi.get(self, "edition")
 
     @edition.setter
-    def edition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def edition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "edition", value)
 
     @_builtins.property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "instances")
 
     @instances.setter
-    def instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['MongoClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter(name="mongodbVersion")
-    def mongodb_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongodb_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         """
         return pulumi.get(self, "mongodb_version")
 
     @mongodb_version.setter
-    def mongodb_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongodb_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongodb_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def ram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         """
         return pulumi.get(self, "ram")
 
     @ram.setter
-    def ram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram", value)
 
     @_builtins.property
     @pulumi.getter
-    def shards(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def shards(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int]The total number of shards in the cluster.
         """
         return pulumi.get(self, "shards")
 
     @shards.setter
-    def shards(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def shards(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "shards", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSize")
-    def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
-    def storage_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_type")
 
     @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
     @_builtins.property
     @pulumi.getter(name="templateId")
-    def template_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
         """
         return pulumi.get(self, "template_id")
 
     @template_id.setter
-    def template_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -565,22 +565,22 @@ class MongoCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: Optional[pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-                 bi_connector: Optional[pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 edition: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
-                 mongodb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
+                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 edition: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+                 mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a [DbaaS Mongo Cluster](https://docs.ionos.com/cloud/databases/mongodb/overview).
@@ -818,22 +818,22 @@ class MongoCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: Optional[pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-                 bi_connector: Optional[pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 edition: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
-                 mongodb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 template_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
+                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 edition: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+                 mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 template_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -880,23 +880,23 @@ class MongoCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup: Optional[pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-            bi_connector: Optional[pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
-            connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-            connections: Optional[pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
-            cores: Optional[pulumi.Input[_builtins.int]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            edition: Optional[pulumi.Input[_builtins.str]] = None,
-            instances: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
-            mongodb_version: Optional[pulumi.Input[_builtins.str]] = None,
-            ram: Optional[pulumi.Input[_builtins.int]] = None,
-            shards: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-            template_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'MongoCluster':
+            backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
+            bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
+            connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+            connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+            cores: pulumi.Input[Optional[_builtins.int]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            edition: pulumi.Input[Optional[_builtins.str]] = None,
+            instances: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+            mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
+            ram: pulumi.Input[Optional[_builtins.int]] = None,
+            shards: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+            template_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'MongoCluster':
         """
         Get an existing MongoCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

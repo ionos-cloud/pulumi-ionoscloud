@@ -104,5 +104,5 @@ export interface GetPSQLBackupsOutputArgs {
     /**
      * The IONOS Object Storage location where the backups will be stored.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

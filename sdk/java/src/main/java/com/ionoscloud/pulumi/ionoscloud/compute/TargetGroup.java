@@ -35,8 +35,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupTargetArgs;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupHealthCheckArgs;
  * import com.pulumi.ionoscloud.compute.inputs.TargetGroupHttpHealthCheckArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -240,7 +240,7 @@ public class TargetGroup extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

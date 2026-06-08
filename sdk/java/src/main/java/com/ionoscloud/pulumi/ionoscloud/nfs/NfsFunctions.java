@@ -33,8 +33,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -76,8 +76,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -119,8 +119,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -162,8 +162,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -205,8 +205,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -248,8 +248,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -292,8 +292,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -336,8 +336,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -380,8 +380,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -424,8 +424,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

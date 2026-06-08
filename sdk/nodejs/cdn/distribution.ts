@@ -178,27 +178,27 @@ export interface DistributionState {
     /**
      * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * [string] The domain of the distribution.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * IP of the distribution, it has to be included on the domain DNS Zone as A record.
      */
-    publicEndpointV4?: pulumi.Input<string>;
+    publicEndpointV4?: pulumi.Input<string | undefined>;
     /**
      * IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
      */
-    publicEndpointV6?: pulumi.Input<string>;
+    publicEndpointV6?: pulumi.Input<string | undefined>;
     /**
      * Unique resource indentifier.
      */
-    resourceUrn?: pulumi.Input<string>;
+    resourceUrn?: pulumi.Input<string | undefined>;
     /**
      * [list] The routing rules for the distribution.
      */
-    routingRules?: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[]>;
+    routingRules?: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[] | undefined>;
 }
 
 /**
@@ -208,7 +208,7 @@ export interface DistributionArgs {
     /**
      * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * [string] The domain of the distribution.
      */

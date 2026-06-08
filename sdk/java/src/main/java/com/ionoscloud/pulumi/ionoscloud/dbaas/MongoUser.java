@@ -40,8 +40,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUserArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoUserRoleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -125,8 +125,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUserArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoUserRoleArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -203,7 +203,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DBaaS MongoDB User can be imported using the `clusterID` and the &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt;.
+ * Resource DBaaS MongoDB User can be imported using the `clusterID` and the &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt;.
  * First, define an empty resource in the plan:
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -214,8 +214,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -352,7 +352,7 @@ public class MongoUser extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
                 "password"
             ))

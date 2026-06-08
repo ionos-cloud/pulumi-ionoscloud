@@ -172,27 +172,27 @@ export interface BalancerState {
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
      */
-    dhcp?: pulumi.Input<boolean>;
+    dhcp?: pulumi.Input<boolean | undefined>;
     /**
      * [string] IPv4 address of the load balancer.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the load balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list] A list of NIC IDs that are part of the load balancer.
      */
-    nicIds?: pulumi.Input<pulumi.Input<string>[]>;
+    nicIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -206,19 +206,19 @@ export interface BalancerArgs {
     /**
      * [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
      */
-    dhcp?: pulumi.Input<boolean>;
+    dhcp?: pulumi.Input<boolean | undefined>;
     /**
      * [string] IPv4 address of the load balancer.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the load balancer.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list] A list of NIC IDs that are part of the load balancer.
      */

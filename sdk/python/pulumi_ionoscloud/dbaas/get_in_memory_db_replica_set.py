@@ -224,9 +224,9 @@ def get_in_memory_db_replica_set(display_name: Optional[_builtins.str] = None,
         replicas=pulumi.get(__ret__, 'replicas'),
         resources=pulumi.get(__ret__, 'resources'),
         version=pulumi.get(__ret__, 'version'))
-def get_in_memory_db_replica_set_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_in_memory_db_replica_set_output(display_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInMemoryDBReplicaSetResult]:
     """
     The `dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.

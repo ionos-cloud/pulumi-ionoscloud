@@ -66,15 +66,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
     ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
     ///     {
     ///         Name = "add_name_here",
-    ///         Certificate = Std.Index.File.Invoke(new()
+    ///         Certificate = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_cert",
     ///         }).Result,
-    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         CertificateChain = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_cert_chain",
     ///         }).Result,
-    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         PrivateKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_private_key",
     ///         }).Result,
@@ -234,7 +234,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

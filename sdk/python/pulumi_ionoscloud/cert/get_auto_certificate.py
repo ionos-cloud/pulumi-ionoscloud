@@ -174,9 +174,9 @@ def get_auto_certificate(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         subject_alternative_names=pulumi.get(__ret__, 'subject_alternative_names'))
-def get_auto_certificate_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                location: Optional[pulumi.Input[_builtins.str]] = None,
-                                name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_auto_certificate_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                location: pulumi.Input[Optional[_builtins.str]] = None,
+                                name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateResult]:
     """
     The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.

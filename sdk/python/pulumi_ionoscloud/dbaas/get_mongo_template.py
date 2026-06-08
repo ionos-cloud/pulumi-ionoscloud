@@ -180,9 +180,9 @@ def get_mongo_template(id: Optional[_builtins.str] = None,
         partial_match=pulumi.get(__ret__, 'partial_match'),
         ram=pulumi.get(__ret__, 'ram'),
         storage_size=pulumi.get(__ret__, 'storage_size'))
-def get_mongo_template_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_mongo_template_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoTemplateResult]:
     """
     The **DbaaS Mongo Template data source** can be used to search for and return an existing DbaaS MongoDB Template.

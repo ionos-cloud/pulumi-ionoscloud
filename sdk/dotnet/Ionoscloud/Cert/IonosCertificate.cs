@@ -27,15 +27,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     ///     var cert = new Ionoscloud.Cert.IonosCertificate("cert", new()
     ///     {
     ///         Name = "add_name_here",
-    ///         Certificate = Std.Index.File.Invoke(new()
+    ///         Certificate = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_cert",
     ///         }).Result,
-    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         CertificateChain = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_cert_chain",
     ///         }).Result,
-    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         PrivateKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_private_key",
     ///         }).Result,
@@ -62,11 +62,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     /// cert_body_here
     /// -----END CERTIFICATE-----
     /// ",
-    ///         CertificateChain = Std.Index.File.Invoke(new()
+    ///         CertificateChain = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_cert_chain",
     ///         }).Result,
-    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         PrivateKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "path_to_private_key",
     ///         }).Result,
@@ -133,7 +133,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "privateKey",

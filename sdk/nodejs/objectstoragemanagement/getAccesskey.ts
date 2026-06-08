@@ -104,13 +104,13 @@ export interface GetAccesskeyOutputArgs {
     /**
      * Access key metadata is a string of 92 characters.
      */
-    accesskey?: pulumi.Input<string>;
+    accesskey?: pulumi.Input<string | undefined>;
     /**
      * Description of the Access key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Id of an existing object storage accesskey that you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }

@@ -25,7 +25,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -85,7 +85,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -145,7 +145,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

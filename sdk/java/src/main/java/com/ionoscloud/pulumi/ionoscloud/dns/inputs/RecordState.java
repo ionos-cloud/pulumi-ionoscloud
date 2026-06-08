@@ -33,14 +33,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+     * @return [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -93,14 +93,14 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
+     * [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     @Import(name="ttl")
     private @Nullable Output<Integer> ttl;
 
     /**
-     * @return [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
+     * @return [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> ttl() {
@@ -190,7 +190,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -201,7 +201,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
+         * @param enabled [bool] Indicates if the DNS Record is active or not. Default is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
+         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class RecordState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
+         * @param ttl [int] Time to live for the DNS Record. Default is &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;.
          * 
          * @return builder
          * 

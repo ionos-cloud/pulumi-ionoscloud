@@ -205,47 +205,47 @@ export interface ClusterState {
      *
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
      */
-    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
-    k8sVersion?: pulumi.Input<string>;
+    k8sVersion?: pulumi.Input<string | undefined>;
     /**
      * [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
-    maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow | undefined>;
     /**
      * [string] The name of the Kubernetes Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
      */
-    natGatewayIp?: pulumi.Input<string>;
+    natGatewayIp?: pulumi.Input<string | undefined>;
     /**
      * [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
      */
-    nodeSubnet?: pulumi.Input<string>;
+    nodeSubnet?: pulumi.Input<string | undefined>;
     /**
      * [boolean] Indicates if the cluster is public or private. This attribute is immutable.
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
     /**
      * [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
      */
-    s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[]>;
+    s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[] | undefined>;
     /**
      * [list] List of versions that may be used for node pools under this cluster
      */
-    viableNodePoolVersions?: pulumi.Input<pulumi.Input<string>[]>;
+    viableNodePoolVersions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -257,41 +257,41 @@ export interface ClusterArgs {
      *
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      */
-    allowReplace?: pulumi.Input<boolean>;
+    allowReplace?: pulumi.Input<boolean | undefined>;
     /**
      * [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
      */
-    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    apiSubnetAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
      */
-    k8sVersion?: pulumi.Input<string>;
+    k8sVersion?: pulumi.Input<string | undefined>;
     /**
      * [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
-    maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.k8s.ClusterMaintenanceWindow | undefined>;
     /**
      * [string] The name of the Kubernetes Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
      */
-    natGatewayIp?: pulumi.Input<string>;
+    natGatewayIp?: pulumi.Input<string | undefined>;
     /**
      * [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
      */
-    nodeSubnet?: pulumi.Input<string>;
+    nodeSubnet?: pulumi.Input<string | undefined>;
     /**
      * [boolean] Indicates if the cluster is public or private. This attribute is immutable.
      */
-    public?: pulumi.Input<boolean>;
+    public?: pulumi.Input<boolean | undefined>;
     /**
      * [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
      */
-    s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[]>;
+    s3Buckets?: pulumi.Input<pulumi.Input<inputs.k8s.ClusterS3Bucket>[] | undefined>;
 }

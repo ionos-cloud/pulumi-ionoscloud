@@ -137,15 +137,15 @@ export interface GetInMemoryDBReplicaSetOutputArgs {
     /**
      * The display name of the InMemoryDB Replica Set.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the InMemoryDB Replica Set.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location of the InMemoryDB Replica Set. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      *
      * > **Note:** Either `id` or `displayName` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

@@ -115,8 +115,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -149,8 +149,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -195,8 +195,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -229,8 +229,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -275,8 +275,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -309,8 +309,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -355,8 +355,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -389,8 +389,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -435,8 +435,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -469,8 +469,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -515,8 +515,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -549,8 +549,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -595,8 +595,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -629,8 +629,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetBackupUnitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -674,8 +674,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -708,8 +708,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -753,8 +753,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -787,8 +787,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -832,8 +832,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -866,8 +866,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -911,8 +911,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -945,8 +945,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -990,8 +990,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1024,8 +1024,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1069,8 +1069,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1103,8 +1103,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1148,8 +1148,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1182,8 +1182,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCrossconnectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1227,8 +1227,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1262,8 +1262,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1308,8 +1308,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1343,8 +1343,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1389,8 +1389,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1424,8 +1424,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1470,8 +1470,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1505,8 +1505,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1551,8 +1551,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1586,8 +1586,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetCubeServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1633,8 +1633,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1667,8 +1667,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1714,8 +1714,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1748,8 +1748,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1795,8 +1795,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1829,8 +1829,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1876,8 +1876,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1910,8 +1910,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1957,8 +1957,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1991,8 +1991,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2038,8 +2038,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2072,8 +2072,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2119,8 +2119,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2153,8 +2153,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetDatacenterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2200,8 +2200,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2237,8 +2237,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2286,8 +2286,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2323,8 +2323,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2372,8 +2372,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2409,8 +2409,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2458,8 +2458,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2495,8 +2495,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2544,8 +2544,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2581,8 +2581,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetFirewallArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2629,8 +2629,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2664,8 +2664,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2710,8 +2710,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2745,8 +2745,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2791,8 +2791,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2826,8 +2826,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2872,8 +2872,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2907,8 +2907,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2953,8 +2953,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2988,8 +2988,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3034,8 +3034,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3070,8 +3070,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3117,8 +3117,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3153,8 +3153,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3200,8 +3200,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3236,8 +3236,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3283,8 +3283,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3319,8 +3319,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3366,8 +3366,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3402,8 +3402,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3446,8 +3446,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3489,8 +3489,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3532,8 +3532,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3575,8 +3575,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3618,8 +3618,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3664,8 +3664,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3698,8 +3698,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3743,8 +3743,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3777,8 +3777,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3822,8 +3822,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3856,8 +3856,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3901,8 +3901,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3935,8 +3935,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3980,8 +3980,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4014,8 +4014,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4059,8 +4059,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4093,8 +4093,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4138,8 +4138,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4172,8 +4172,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4218,8 +4218,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4252,8 +4252,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4286,8 +4286,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4320,8 +4320,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4367,8 +4367,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4401,8 +4401,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4435,8 +4435,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4469,8 +4469,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4516,8 +4516,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4550,8 +4550,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4584,8 +4584,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4618,8 +4618,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4665,8 +4665,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4699,8 +4699,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4733,8 +4733,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4767,8 +4767,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4814,8 +4814,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4848,8 +4848,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4882,8 +4882,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4916,8 +4916,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4963,8 +4963,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4997,8 +4997,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5031,8 +5031,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5065,8 +5065,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5112,8 +5112,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5146,8 +5146,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5180,8 +5180,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5214,8 +5214,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPBlockArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5244,7 +5244,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34; pulumi-lang-hcl=&#34; datacenter_id &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -5259,8 +5259,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPFailoverArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5289,7 +5289,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34; pulumi-lang-hcl=&#34; datacenter_id &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -5304,8 +5304,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPFailoverArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5334,7 +5334,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34; pulumi-lang-hcl=&#34; datacenter_id &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -5349,8 +5349,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPFailoverArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5379,7 +5379,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34; pulumi-lang-hcl=&#34; datacenter_id &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -5394,8 +5394,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPFailoverArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5424,7 +5424,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **IP Failover data source** can be used to search for and return an existing IP Failover object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; datacenterId &#34; pulumi-lang-dotnet=&#34; DatacenterId &#34; pulumi-lang-go=&#34; datacenterId &#34; pulumi-lang-python=&#34; datacenter_id &#34; pulumi-lang-yaml=&#34; datacenterId &#34; pulumi-lang-java=&#34; datacenterId &#34; pulumi-lang-hcl=&#34; datacenter_id &#34;&gt; datacenterId &lt;/span&gt;and the id of the lan to get the ip failover object for the provided datacenter.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * 
      * ## Example Usage
@@ -5439,8 +5439,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetIPFailoverArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5483,8 +5483,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5508,7 +5508,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -5522,8 +5522,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5560,8 +5560,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5607,8 +5607,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5632,7 +5632,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -5646,8 +5646,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5684,8 +5684,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5731,8 +5731,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5756,7 +5756,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -5770,8 +5770,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5808,8 +5808,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5855,8 +5855,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5880,7 +5880,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -5894,8 +5894,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5932,8 +5932,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5979,8 +5979,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6004,7 +6004,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -6018,8 +6018,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6056,8 +6056,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6103,8 +6103,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6128,7 +6128,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -6142,8 +6142,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6180,8 +6180,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6227,8 +6227,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6252,7 +6252,7 @@ public final class ComputeFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
+     * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support &lt;span pulumi-lang-nodejs=&#34;`cloudInit`&#34; pulumi-lang-dotnet=&#34;`CloudInit`&#34; pulumi-lang-go=&#34;`cloudInit`&#34; pulumi-lang-python=&#34;`cloud_init`&#34; pulumi-lang-yaml=&#34;`cloudInit`&#34; pulumi-lang-java=&#34;`cloudInit`&#34; pulumi-lang-hcl=&#34;`cloud_init`&#34;&gt;`cloudInit`&lt;/span&gt; and is of type `CDROM`.
      * 
      * ### Additional Examples
      * 
@@ -6266,8 +6266,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6304,8 +6304,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetImageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6353,8 +6353,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6388,8 +6388,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6434,8 +6434,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6469,8 +6469,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6515,8 +6515,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6550,8 +6550,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6596,8 +6596,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6631,8 +6631,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6677,8 +6677,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6712,8 +6712,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLanArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6757,8 +6757,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6802,8 +6802,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6847,8 +6847,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6892,8 +6892,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6937,8 +6937,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6982,8 +6982,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7027,8 +7027,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetLocationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7073,8 +7073,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7108,8 +7108,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7154,8 +7154,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7189,8 +7189,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7235,8 +7235,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7270,8 +7270,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7316,8 +7316,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7351,8 +7351,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7397,8 +7397,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7432,8 +7432,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7478,8 +7478,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7514,8 +7514,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7561,8 +7561,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7597,8 +7597,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7644,8 +7644,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7680,8 +7680,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7727,8 +7727,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7763,8 +7763,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7810,8 +7810,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7846,8 +7846,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNatGatewayRuleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7893,8 +7893,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7929,8 +7929,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7976,8 +7976,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8012,8 +8012,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8059,8 +8059,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8095,8 +8095,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8142,8 +8142,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8178,8 +8178,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8225,8 +8225,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8261,8 +8261,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetNicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8309,8 +8309,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8343,8 +8343,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8377,8 +8377,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8424,8 +8424,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8458,8 +8458,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8492,8 +8492,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8539,8 +8539,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8573,8 +8573,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8607,8 +8607,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8654,8 +8654,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8688,8 +8688,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8722,8 +8722,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8769,8 +8769,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8803,8 +8803,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8837,8 +8837,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8884,8 +8884,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8918,8 +8918,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8952,8 +8952,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8999,8 +8999,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9033,8 +9033,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9067,8 +9067,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetResourceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9113,8 +9113,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetS3KeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9159,8 +9159,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetS3KeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9205,8 +9205,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetS3KeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9251,8 +9251,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetS3KeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9297,8 +9297,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetS3KeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9343,8 +9343,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9378,8 +9378,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9424,8 +9424,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9459,8 +9459,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9505,8 +9505,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9540,8 +9540,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9586,8 +9586,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9621,8 +9621,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9667,8 +9667,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9702,8 +9702,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9746,8 +9746,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9784,8 +9785,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9822,8 +9824,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9874,8 +9877,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9912,8 +9916,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9950,8 +9955,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10002,8 +10008,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10040,8 +10047,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10078,8 +10086,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10130,8 +10139,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10168,8 +10178,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10206,8 +10217,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10258,8 +10270,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10296,8 +10309,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10334,8 +10348,9 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetServersArgs;
-     * import java.util.List;
+     * import com.pulumi.ionoscloud.compute.inputs.GetServersFilterArgs;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10372,7 +10387,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34; pulumi-lang-hcl=&#34; group_id &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34; pulumi-lang-hcl=&#34; resource_id &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -10388,8 +10403,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10418,7 +10433,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34; pulumi-lang-hcl=&#34; group_id &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34; pulumi-lang-hcl=&#34; resource_id &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -10434,8 +10449,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10464,7 +10479,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34; pulumi-lang-hcl=&#34; group_id &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34; pulumi-lang-hcl=&#34; resource_id &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -10480,8 +10495,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10510,7 +10525,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34; pulumi-lang-hcl=&#34; group_id &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34; pulumi-lang-hcl=&#34; resource_id &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -10526,8 +10541,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10556,7 +10571,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Share data source** can be used to search for and return an existing share object.
-     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
+     * You need to provide the&lt;span pulumi-lang-nodejs=&#34; groupId &#34; pulumi-lang-dotnet=&#34; GroupId &#34; pulumi-lang-go=&#34; groupId &#34; pulumi-lang-python=&#34; group_id &#34; pulumi-lang-yaml=&#34; groupId &#34; pulumi-lang-java=&#34; groupId &#34; pulumi-lang-hcl=&#34; group_id &#34;&gt; groupId &lt;/span&gt;and&lt;span pulumi-lang-nodejs=&#34; resourceId &#34; pulumi-lang-dotnet=&#34; ResourceId &#34; pulumi-lang-go=&#34; resourceId &#34; pulumi-lang-python=&#34; resource_id &#34; pulumi-lang-yaml=&#34; resourceId &#34; pulumi-lang-java=&#34; resourceId &#34; pulumi-lang-hcl=&#34; resource_id &#34;&gt; resourceId &lt;/span&gt;to get the group resources for the shared resource.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
      * 
@@ -10572,8 +10587,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10616,8 +10631,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10650,8 +10665,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10696,8 +10711,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10730,8 +10745,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10776,8 +10791,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10810,8 +10825,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10856,8 +10871,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10890,8 +10905,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10936,8 +10951,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10970,8 +10985,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11016,8 +11031,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11050,8 +11065,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11096,8 +11111,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11130,8 +11145,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11179,8 +11194,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11213,8 +11228,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11247,8 +11262,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11294,8 +11309,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11328,8 +11343,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11362,8 +11377,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11409,8 +11424,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11443,8 +11458,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11477,8 +11492,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11524,8 +11539,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11558,8 +11573,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11592,8 +11607,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11639,8 +11654,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11673,8 +11688,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11707,8 +11722,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11754,8 +11769,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11788,8 +11803,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11822,8 +11837,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11869,8 +11884,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11903,8 +11918,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11937,8 +11952,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTargetGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11983,8 +11998,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12017,8 +12032,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12031,7 +12046,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12051,8 +12066,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12065,7 +12080,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12085,8 +12100,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12099,7 +12114,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12130,8 +12145,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12164,8 +12179,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12178,7 +12193,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12198,8 +12213,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12212,7 +12227,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12232,8 +12247,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12246,7 +12261,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12277,8 +12292,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12311,8 +12326,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12325,7 +12340,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12345,8 +12360,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12359,7 +12374,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12379,8 +12394,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12393,7 +12408,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12424,8 +12439,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12458,8 +12473,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12472,7 +12487,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12492,8 +12507,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12506,7 +12521,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12526,8 +12541,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12540,7 +12555,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12571,8 +12586,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12605,8 +12620,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12619,7 +12634,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12639,8 +12654,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12653,7 +12668,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12673,8 +12688,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12687,7 +12702,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12718,8 +12733,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12752,8 +12767,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12766,7 +12781,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12786,8 +12801,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12800,7 +12815,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12820,8 +12835,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12834,7 +12849,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -12865,8 +12880,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12899,8 +12914,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12913,7 +12928,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .cores(6)
+     *             .cores(6.0)
      *             .build());
      * 
      *     }
@@ -12933,8 +12948,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12947,7 +12962,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .ram(49152)
+     *             .ram(49152.0)
      *             .build());
      * 
      *     }
@@ -12967,8 +12982,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetTemplateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12981,7 +12996,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getTemplate(GetTemplateArgs.builder()
-     *             .storageSize(80)
+     *             .storageSize(80.0)
      *             .build());
      * 
      *     }
@@ -13012,8 +13027,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13046,8 +13061,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13070,7 +13085,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13095,8 +13110,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13129,8 +13144,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13153,7 +13168,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13178,8 +13193,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13212,8 +13227,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13236,7 +13251,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13261,8 +13276,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13295,8 +13310,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13319,7 +13334,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13344,8 +13359,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13378,8 +13393,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13402,7 +13417,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13427,8 +13442,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13461,8 +13476,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13485,7 +13500,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13510,8 +13525,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13544,8 +13559,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13568,7 +13583,7 @@ public final class ComputeFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### By Email from Env Variables - Current User
-     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
+     * data &lt;span pulumi-lang-nodejs=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-dotnet=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-go=&#34;&#34;compute.User&#34;&#34; pulumi-lang-python=&#34;&#34;compute.User&#34;&#34; pulumi-lang-yaml=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-java=&#34;&#34;ionoscloud.compute.User&#34;&#34; pulumi-lang-hcl=&#34;&#34;ionoscloud_user&#34;&#34;&gt;&#34;ionoscloud.compute.User&#34;&lt;/span&gt; &#34;example&#34; {
      * }
      * 
      */
@@ -13593,8 +13608,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13628,8 +13643,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13674,8 +13689,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13709,8 +13724,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13755,8 +13770,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13790,8 +13805,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13836,8 +13851,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13871,8 +13886,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13917,8 +13932,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13952,8 +13967,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVCPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13998,8 +14013,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14033,8 +14048,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14079,8 +14094,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14114,8 +14129,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14160,8 +14175,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14195,8 +14210,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14241,8 +14256,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14276,8 +14291,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14322,8 +14337,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14357,8 +14372,8 @@ public final class ComputeFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

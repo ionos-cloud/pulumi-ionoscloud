@@ -26,7 +26,7 @@ class GroupArgs:
                  min_replica_count: pulumi.Input[_builtins.int],
                  policy: pulumi.Input['GroupPolicyArgs'],
                  replica_configuration: pulumi.Input['GroupReplicaConfigurationArgs'],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
 
@@ -107,27 +107,27 @@ class GroupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _GroupState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy: Optional[pulumi.Input['GroupPolicyArgs']] = None,
-                 replica_configuration: Optional[pulumi.Input['GroupReplicaConfigurationArgs']] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy: pulumi.Input[Optional['GroupPolicyArgs']] = None,
+                 replica_configuration: pulumi.Input[Optional['GroupReplicaConfigurationArgs']] = None):
         """
         Input properties used for looking up and filtering Group resources.
 
@@ -156,86 +156,86 @@ class _GroupState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Unique identifier for the resource
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location of the data center.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maxReplicaCount")
-    def max_replica_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_replica_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         """
         return pulumi.get(self, "max_replica_count")
 
     @max_replica_count.setter
-    def max_replica_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_replica_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_replica_count", value)
 
     @_builtins.property
     @pulumi.getter(name="minReplicaCount")
-    def min_replica_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_replica_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         """
         return pulumi.get(self, "min_replica_count")
 
     @min_replica_count.setter
-    def min_replica_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_replica_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_replica_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def policy(self) -> Optional[pulumi.Input['GroupPolicyArgs']]:
+    def policy(self) -> pulumi.Input[Optional['GroupPolicyArgs']]:
         """
         [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
         """
         return pulumi.get(self, "policy")
 
     @policy.setter
-    def policy(self, value: Optional[pulumi.Input['GroupPolicyArgs']]):
+    def policy(self, value: pulumi.Input[Optional['GroupPolicyArgs']]):
         pulumi.set(self, "policy", value)
 
     @_builtins.property
     @pulumi.getter(name="replicaConfiguration")
-    def replica_configuration(self) -> Optional[pulumi.Input['GroupReplicaConfigurationArgs']]:
+    def replica_configuration(self) -> pulumi.Input[Optional['GroupReplicaConfigurationArgs']]:
         """
         [List]
         """
         return pulumi.get(self, "replica_configuration")
 
     @replica_configuration.setter
-    def replica_configuration(self, value: Optional[pulumi.Input['GroupReplicaConfigurationArgs']]):
+    def replica_configuration(self, value: pulumi.Input[Optional['GroupReplicaConfigurationArgs']]):
         pulumi.set(self, "replica_configuration", value)
 
 
@@ -245,12 +245,12 @@ class Group(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-                 replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         """
         Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
@@ -312,12 +312,12 @@ class Group(pulumi.CustomResource):
                 "ram": 2048,
                 "nics": [
                     {
-                        "lan": lan_example1.id,
+                        "lan": lan_example1.id.apply(lambda x: int(x)),
                         "name": "nic_example_1",
                         "dhcp": True,
                     },
                     {
-                        "lan": lan_example2.id,
+                        "lan": lan_example2.id.apply(lambda x: int(x)),
                         "name": "nic_example_2",
                         "dhcp": True,
                         "firewall_active": True,
@@ -430,12 +430,12 @@ class Group(pulumi.CustomResource):
                 "ram": 2048,
                 "nics": [
                     {
-                        "lan": lan_example1.id,
+                        "lan": lan_example1.id.apply(lambda x: int(x)),
                         "name": "nic_example_1",
                         "dhcp": True,
                     },
                     {
-                        "lan": lan_example2.id,
+                        "lan": lan_example2.id.apply(lambda x: int(x)),
                         "name": "nic_example_2",
                         "dhcp": True,
                         "firewall_active": True,
@@ -488,12 +488,12 @@ class Group(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-                 replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -530,13 +530,13 @@ class Group(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            max_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-            min_replica_count: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-            replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None) -> 'Group':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+            min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+            replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

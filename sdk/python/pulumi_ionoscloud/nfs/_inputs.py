@@ -102,7 +102,7 @@ class ClusterConnectionsArgs:
 
 
 class ClusterNfsArgsDict(TypedDict):
-    min_version: NotRequired[pulumi.Input[_builtins.str]]
+    min_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
     """
@@ -110,7 +110,7 @@ class ClusterNfsArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterNfsArgs:
     def __init__(__self__, *,
-                 min_version: Optional[pulumi.Input[_builtins.str]] = None):
+                 min_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] min_version: The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         """
@@ -119,14 +119,14 @@ class ClusterNfsArgs:
 
     @_builtins.property
     @pulumi.getter(name="minVersion")
-    def min_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         """
         return pulumi.get(self, "min_version")
 
     @min_version.setter
-    def min_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_version", value)
 
 
@@ -139,11 +139,11 @@ class ShareClientGroupArgsDict(TypedDict):
     """
     The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
     """
-    description: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional description for the clients groups.
     """
-    nfs: NotRequired[pulumi.Input['ShareClientGroupNfsArgsDict']]
+    nfs: NotRequired[pulumi.Input[Optional['ShareClientGroupNfsArgsDict']]]
     """
     NFS specific configurations. Each configuration includes:
     """
@@ -153,8 +153,8 @@ class ShareClientGroupArgs:
     def __init__(__self__, *,
                  hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  ip_networks: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 nfs: Optional[pulumi.Input['ShareClientGroupNfsArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 nfs: pulumi.Input[Optional['ShareClientGroupNfsArgs']] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_networks: The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
@@ -194,31 +194,31 @@ class ShareClientGroupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional description for the clients groups.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def nfs(self) -> Optional[pulumi.Input['ShareClientGroupNfsArgs']]:
+    def nfs(self) -> pulumi.Input[Optional['ShareClientGroupNfsArgs']]:
         """
         NFS specific configurations. Each configuration includes:
         """
         return pulumi.get(self, "nfs")
 
     @nfs.setter
-    def nfs(self, value: Optional[pulumi.Input['ShareClientGroupNfsArgs']]):
+    def nfs(self, value: pulumi.Input[Optional['ShareClientGroupNfsArgs']]):
         pulumi.set(self, "nfs", value)
 
 
 class ShareClientGroupNfsArgsDict(TypedDict):
-    squash: NotRequired[pulumi.Input[_builtins.str]]
+    squash: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The squash mode for the export. The squash mode can be:
     """
@@ -226,7 +226,7 @@ class ShareClientGroupNfsArgsDict(TypedDict):
 @pulumi.input_type
 class ShareClientGroupNfsArgs:
     def __init__(__self__, *,
-                 squash: Optional[pulumi.Input[_builtins.str]] = None):
+                 squash: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] squash: The squash mode for the export. The squash mode can be:
         """
@@ -235,14 +235,14 @@ class ShareClientGroupNfsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def squash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def squash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The squash mode for the export. The squash mode can be:
         """
         return pulumi.get(self, "squash")
 
     @squash.setter
-    def squash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def squash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "squash", value)
 
 

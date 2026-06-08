@@ -29,9 +29,9 @@ class MariaDBClusterArgs:
                  mariadb_version: pulumi.Input[_builtins.str],
                  ram: pulumi.Input[_builtins.int],
                  storage_size: pulumi.Input[_builtins.int],
-                 backup: Optional[pulumi.Input['MariaDBClusterBackupArgs']] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']] = None):
+                 backup: pulumi.Input[Optional['MariaDBClusterBackupArgs']] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']] = None):
         """
         The set of arguments for constructing a MariaDBCluster resource.
 
@@ -160,56 +160,56 @@ class MariaDBClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backup(self) -> Optional[pulumi.Input['MariaDBClusterBackupArgs']]:
+    def backup(self) -> pulumi.Input[Optional['MariaDBClusterBackupArgs']]:
         """
         Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         """
         return pulumi.get(self, "backup")
 
     @backup.setter
-    def backup(self, value: Optional[pulumi.Input['MariaDBClusterBackupArgs']]):
+    def backup(self, value: pulumi.Input[Optional['MariaDBClusterBackupArgs']]):
         pulumi.set(self, "backup", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
 
 @pulumi.input_type
 class _MariaDBClusterState:
     def __init__(__self__, *,
-                 backup: Optional[pulumi.Input['MariaDBClusterBackupArgs']] = None,
-                 connections: Optional[pulumi.Input['MariaDBClusterConnectionsArgs']] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input['MariaDBClusterCredentialsArgs']] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']] = None,
-                 mariadb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None):
+                 backup: pulumi.Input[Optional['MariaDBClusterBackupArgs']] = None,
+                 connections: pulumi.Input[Optional['MariaDBClusterConnectionsArgs']] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional['MariaDBClusterCredentialsArgs']] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']] = None,
+                 mariadb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MariaDBCluster resources.
 
@@ -255,67 +255,67 @@ class _MariaDBClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def backup(self) -> Optional[pulumi.Input['MariaDBClusterBackupArgs']]:
+    def backup(self) -> pulumi.Input[Optional['MariaDBClusterBackupArgs']]:
         """
         Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         """
         return pulumi.get(self, "backup")
 
     @backup.setter
-    def backup(self, value: Optional[pulumi.Input['MariaDBClusterBackupArgs']]):
+    def backup(self, value: pulumi.Input[Optional['MariaDBClusterBackupArgs']]):
         pulumi.set(self, "backup", value)
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input['MariaDBClusterConnectionsArgs']]:
+    def connections(self) -> pulumi.Input[Optional['MariaDBClusterConnectionsArgs']]:
         """
         The network connection for your cluster. Only one connection is allowed.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input['MariaDBClusterConnectionsArgs']]):
+    def connections(self, value: pulumi.Input[Optional['MariaDBClusterConnectionsArgs']]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
     @cores.setter
-    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input['MariaDBClusterCredentialsArgs']]:
+    def credentials(self) -> pulumi.Input[Optional['MariaDBClusterCredentialsArgs']]:
         """
         Credentials for the database user to be created.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input['MariaDBClusterCredentialsArgs']]):
+    def credentials(self, value: pulumi.Input[Optional['MariaDBClusterCredentialsArgs']]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The friendly name of your cluster.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsName")
-    def dns_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The DNS name pointing to your cluster.
 
@@ -324,79 +324,79 @@ class _MariaDBClusterState:
         return pulumi.get(self, "dns_name")
 
     @dns_name.setter
-    def dns_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The total number of instances in the cluster (one primary and n-1 secondary).
         """
         return pulumi.get(self, "instances")
 
     @instances.setter
-    def instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['MariaDBClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter(name="mariadbVersion")
-    def mariadb_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mariadb_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The MariaDB version of your cluster. Cannot be downgraded.
         """
         return pulumi.get(self, "mariadb_version")
 
     @mariadb_version.setter
-    def mariadb_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mariadb_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mariadb_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def ram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
     @ram.setter
-    def ram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSize")
-    def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The amount of storage per instance in gigabytes (GB).
         """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
-    def storage_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size", value)
 
 
@@ -406,17 +406,17 @@ class MariaDBCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
-                 mariadb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 backup: pulumi.Input[Optional[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
+                 mariadb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages a [DBaaS MariaDB Cluster](https://docs.ionos.com/cloud/databases/mariadb/overview).
@@ -477,17 +477,17 @@ class MariaDBCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
-                 mariadb_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 backup: pulumi.Input[Optional[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
+                 mariadb_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -535,18 +535,18 @@ class MariaDBCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup: Optional[pulumi.Input[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
-            connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
-            cores: Optional[pulumi.Input[_builtins.int]] = None,
-            credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-            instances: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
-            mariadb_version: Optional[pulumi.Input[_builtins.str]] = None,
-            ram: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_size: Optional[pulumi.Input[_builtins.int]] = None) -> 'MariaDBCluster':
+            backup: pulumi.Input[Optional[Union['MariaDBClusterBackupArgs', 'MariaDBClusterBackupArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
+            cores: pulumi.Input[Optional[_builtins.int]] = None,
+            credentials: pulumi.Input[Optional[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+            instances: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
+            mariadb_version: pulumi.Input[Optional[_builtins.str]] = None,
+            ram: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_size: pulumi.Input[Optional[_builtins.int]] = None) -> 'MariaDBCluster':
         """
         Get an existing MariaDBCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

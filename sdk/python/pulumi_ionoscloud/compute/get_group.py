@@ -455,9 +455,9 @@ def get_group(get_users_data: Optional[_builtins.bool] = None,
         reserve_ip=pulumi.get(__ret__, 'reserve_ip'),
         s3_privilege=pulumi.get(__ret__, 's3_privilege'),
         users=pulumi.get(__ret__, 'users'))
-def get_group_output(get_users_data: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                     id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_group_output(get_users_data: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                     id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     The **Group data source** can be used to search for and return existing groups.

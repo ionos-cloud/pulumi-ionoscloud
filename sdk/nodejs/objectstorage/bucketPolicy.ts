@@ -126,11 +126,11 @@ export interface BucketPolicyState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [string] The policy document. This is a JSON formatted string.
      */
-    policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string | undefined>;
 }
 
 /**

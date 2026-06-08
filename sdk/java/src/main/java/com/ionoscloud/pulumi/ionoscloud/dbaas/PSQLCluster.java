@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterCredentialsArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DbaaS Postgres Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
+ * Resource DbaaS Postgres Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
  * 
  * ```sh
  * terraform import ionoscloud_pg_cluster.mycluser cluster uuid
@@ -119,7 +119,7 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
     /**
      * [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
      * 
-     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      * 
      */
     @Export(name="allowReplace", refs={Boolean.class}, tree="[0]")
@@ -128,21 +128,21 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster.&#34;
      * 
-     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
+     * **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
      * 
      */
     public Output<Optional<Boolean>> allowReplace() {
         return Codegen.optional(this.allowReplace);
     }
     /**
-     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34; pulumi-lang-hcl=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Export(name="backupLocation", refs={String.class}, tree="[0]")
     private Output<String> backupLocation;
 
     /**
-     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
+     * @return (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34; pulumi-lang-hcl=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Output<String> backupLocation() {
@@ -398,7 +398,7 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -79,7 +79,7 @@ class ClusterMaintenanceWindowArgs:
 
 
 class ClusterS3BucketArgsDict(TypedDict):
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The name of the Kubernetes Cluster.
     """
@@ -87,7 +87,7 @@ class ClusterS3BucketArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterS3BucketArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster.
         """
@@ -96,14 +96,14 @@ class ClusterS3BucketArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Kubernetes Cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -159,11 +159,11 @@ class NodePoolLanArgsDict(TypedDict):
     """
     [int] The LAN ID of an existing LAN at the related datacenter
     """
-    dhcp: NotRequired[pulumi.Input[_builtins.bool]]
+    dhcp: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
     """
-    routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgsDict']]]]
+    routes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanRouteArgsDict']]]]]
     """
     An array of additional LANs attached to worker nodes
     """
@@ -172,8 +172,8 @@ class NodePoolLanArgsDict(TypedDict):
 class NodePoolLanArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[_builtins.int],
-                 dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]] = None):
+                 dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 routes: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.int] id: [int] The LAN ID of an existing LAN at the related datacenter
         :param pulumi.Input[_builtins.bool] dhcp: [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
@@ -199,26 +199,26 @@ class NodePoolLanArgs:
 
     @_builtins.property
     @pulumi.getter
-    def dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
-    def dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcp", value)
 
     @_builtins.property
     @pulumi.getter
-    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]]:
+    def routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]]:
         """
         An array of additional LANs attached to worker nodes
         """
         return pulumi.get(self, "routes")
 
     @routes.setter
-    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]]):
+    def routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]]):
         pulumi.set(self, "routes", value)
 
 

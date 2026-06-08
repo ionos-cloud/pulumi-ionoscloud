@@ -135,23 +135,23 @@ export interface WebsiteConfigurationState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
      */
-    errorDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationErrorDocument>;
+    errorDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationErrorDocument | undefined>;
     /**
      * Container for the Suffix element.
      */
-    indexDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationIndexDocument>;
+    indexDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationIndexDocument | undefined>;
     /**
      * Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
      */
-    redirectAllRequestsTo?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRedirectAllRequestsTo>;
+    redirectAllRequestsTo?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRedirectAllRequestsTo | undefined>;
     /**
      * A container for describing a condition that must be met for the specified redirect to apply.
      */
-    routingRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRule>[]>;
+    routingRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRule>[] | undefined>;
 }
 
 /**
@@ -165,17 +165,17 @@ export interface WebsiteConfigurationArgs {
     /**
      * The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
      */
-    errorDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationErrorDocument>;
+    errorDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationErrorDocument | undefined>;
     /**
      * Container for the Suffix element.
      */
-    indexDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationIndexDocument>;
+    indexDocument?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationIndexDocument | undefined>;
     /**
      * Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
      */
-    redirectAllRequestsTo?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRedirectAllRequestsTo>;
+    redirectAllRequestsTo?: pulumi.Input<inputs.objectstorage.WebsiteConfigurationRedirectAllRequestsTo | undefined>;
     /**
      * A container for describing a condition that must be met for the specified redirect to apply.
      */
-    routingRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRule>[]>;
+    routingRules?: pulumi.Input<pulumi.Input<inputs.objectstorage.WebsiteConfigurationRoutingRule>[] | undefined>;
 }

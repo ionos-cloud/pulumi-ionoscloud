@@ -200,25 +200,25 @@ export interface GetTemplateOutputArgs {
      *
      * Any of the arguments ca be provided. If none, the datasource will return an error.
      */
-    category?: pulumi.Input<string>;
+    category?: pulumi.Input<string | undefined>;
     /**
      * The CPU cores count.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * List of GPUs in the template
      */
-    gpuses?: pulumi.Input<pulumi.Input<inputs.compute.GetTemplateGpusArgs>[]>;
+    gpuses?: pulumi.Input<pulumi.Input<inputs.compute.GetTemplateGpusArgs>[] | undefined>;
     /**
      * A name of that resource.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The RAM size in MB.
      */
-    ram?: pulumi.Input<number>;
+    ram?: pulumi.Input<number | undefined>;
     /**
      * The storage size in GB.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
 }

@@ -2,5 +2,5 @@
   "resource": true,
   "name": "ionoscloud",
   "version": "1.0.0-alpha.0+dev",
-  "server": "github://api.github.com/ionos-cloud"
+  "server": "github://api.github.com/ionos-cloud/pulumi-ionoscloud"
 }

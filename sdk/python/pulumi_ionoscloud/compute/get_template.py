@@ -150,7 +150,7 @@ def get_template(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(cores=6)
+    example = ionoscloud.compute.get_template(cores=float(6))
     ```
 
     ### By Ram
@@ -158,7 +158,7 @@ def get_template(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(ram=49152)
+    example = ionoscloud.compute.get_template(ram=float(49152))
     ```
 
     ### By Storage Size
@@ -166,7 +166,7 @@ def get_template(category: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(storage_size=80)
+    example = ionoscloud.compute.get_template(storage_size=float(80))
     ```
 
 
@@ -197,12 +197,12 @@ def get_template(category: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         ram=pulumi.get(__ret__, 'ram'),
         storage_size=pulumi.get(__ret__, 'storage_size'))
-def get_template_output(category: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        cores: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
-                        gpuses: Optional[pulumi.Input[Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        ram: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
-                        storage_size: Optional[pulumi.Input[Optional[_builtins.float]]] = None,
+def get_template_output(category: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        cores: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
+                        gpuses: pulumi.Input[Optional[Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        ram: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
+                        storage_size: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTemplateResult]:
     """
     The **Template data source** can be used to search for and return existing templates by providing any of template properties (name, cores, ram, storage_size).
@@ -224,7 +224,7 @@ def get_template_output(category: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(cores=6)
+    example = ionoscloud.compute.get_template(cores=float(6))
     ```
 
     ### By Ram
@@ -232,7 +232,7 @@ def get_template_output(category: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(ram=49152)
+    example = ionoscloud.compute.get_template(ram=float(49152))
     ```
 
     ### By Storage Size
@@ -240,7 +240,7 @@ def get_template_output(category: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_template(storage_size=80)
+    example = ionoscloud.compute.get_template(storage_size=float(80))
     ```
 
 

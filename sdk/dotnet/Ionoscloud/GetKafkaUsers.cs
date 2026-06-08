@@ -25,7 +25,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUsersDs = Ionoscloud.Index.GetKafkaUsers.Invoke(new()
+        ///     var kafkaUsersDs = Ionoscloud.GetKafkaUsers.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Location = "kafka_cluster_location",
@@ -54,7 +54,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUsersDs = Ionoscloud.Index.GetKafkaUsers.Invoke(new()
+        ///     var kafkaUsersDs = Ionoscloud.GetKafkaUsers.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Location = "kafka_cluster_location",
@@ -83,7 +83,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUsersDs = Ionoscloud.Index.GetKafkaUsers.Invoke(new()
+        ///     var kafkaUsersDs = Ionoscloud.GetKafkaUsers.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Location = "kafka_cluster_location",
