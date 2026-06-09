@@ -30,7 +30,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def endpoint(self) -> Optional[str]:
         """
-        IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         """
         return __config__.get('endpoint')
 
@@ -44,7 +44,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def password(self) -> Optional[str]:
         """
-        IonosCloud password for API operations. If token is provided, token is preferred
+        IONOS CLOUD password for API operations. If token is provided, token is preferred
         """
         return __config__.get('password')
 
@@ -62,7 +62,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def s3_region(self) -> Optional[str]:
         """
-        Region for IONOS Object Storage operations.
+        Region for IONOS Contract Owned Object Storage operations.
         """
         return __config__.get('s3Region')
 
@@ -76,14 +76,14 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def token(self) -> Optional[str]:
         """
-        IonosCloud bearer token for API operations.
+        IONOS CLOUD bearer token for API operations.
         """
         return __config__.get('token')
 
     @_builtins.property
     def username(self) -> Optional[str]:
         """
-        IonosCloud username for API operations. If token is provided, token is preferred
+        IONOS CLOUD username for API operations. If token is provided, token is preferred
         """
         return __config__.get('username')
 

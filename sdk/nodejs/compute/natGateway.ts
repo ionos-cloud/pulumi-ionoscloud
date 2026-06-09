@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+ * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
  *
  * ## Example Usage
  *

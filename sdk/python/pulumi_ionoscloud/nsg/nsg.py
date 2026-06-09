@@ -188,7 +188,7 @@ class Nsg(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
+        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -230,7 +230,7 @@ class Nsg(pulumi.CustomResource):
                  args: NsgArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IonosCloud.
+        Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IONOS CLOUD.
 
         ## Example Usage
 

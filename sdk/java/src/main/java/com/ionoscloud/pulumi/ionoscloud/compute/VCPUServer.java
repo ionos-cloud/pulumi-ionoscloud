@@ -21,7 +21,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS&#39; physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+ * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS&#39; physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
  * 
  * These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
  * 
@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VCPUServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerNicArgs;
+ * import com.pulumi.ionoscloud.compute.inputs.VCPUServerNicFirewallArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerLabelArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
@@ -120,16 +121,16 @@ import javax.annotation.Nullable;
  *                 .ips(                
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
- *                 .firewall(Map.ofEntries(
- *                     Map.entry("protocol", "TCP"),
- *                     Map.entry("name", "SSH"),
- *                     Map.entry("portRangeStart", 22),
- *                     Map.entry("portRangeEnd", 22),
- *                     Map.entry("sourceMac", "00:0a:95:9d:68:17"),
- *                     Map.entry("sourceIp", exampleIPBlock.ips().applyValue(_ips -> _ips[2])),
- *                     Map.entry("targetIp", exampleIPBlock.ips().applyValue(_ips -> _ips[3])),
- *                     Map.entry("type", "EGRESS")
- *                 ))
+ *                 .firewalls(VCPUServerNicFirewallArgs.builder()
+ *                     .protocol("TCP")
+ *                     .name("SSH")
+ *                     .portRangeStart(22)
+ *                     .portRangeEnd(22)
+ *                     .sourceMac("00:0a:95:9d:68:17")
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .type("EGRESS")
+ *                     .build())
  *                 .build())
  *             .labels(            
  *                 VCPUServerLabelArgs.builder()
@@ -486,14 +487,14 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.securityGroupsIds);
     }
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      */
     @Export(name="sshKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeys;
 
     /**
-     * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      */
     public Output<Optional<List<String>>> sshKeys() {

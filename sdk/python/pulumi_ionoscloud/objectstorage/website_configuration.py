@@ -208,9 +208,7 @@ class WebsiteConfiguration(pulumi.CustomResource):
                  routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages Website Configuration for Buckets on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages Website Configuration for Buckets on IONOS CLOUD.
 
         ## Example Usage
 
@@ -261,9 +259,7 @@ class WebsiteConfiguration(pulumi.CustomResource):
                  args: WebsiteConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Website Configuration for Buckets on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages Website Configuration for Buckets on IONOS CLOUD.
 
         ## Example Usage
 

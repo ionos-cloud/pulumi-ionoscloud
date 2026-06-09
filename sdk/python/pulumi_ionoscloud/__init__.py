@@ -15,8 +15,10 @@ from .get_gpu_server import *
 from .get_gpus import *
 from .get_kafka_user_credentials import *
 from .get_kafka_users import *
+from .get_user_object_storage_bucket import *
 from .gpu_server import *
 from .provider import *
+from .user_object_storage_bucket import *
 from ._inputs import *
 from . import outputs
 
@@ -382,6 +384,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dbaas/pSQLClusterV2",
+  "fqn": "pulumi_ionoscloud.dbaas",
+  "classes": {
+   "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": "PSQLClusterV2"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/pSQLDatabase",
   "fqn": "pulumi_ionoscloud.dbaas",
   "classes": {
@@ -426,6 +436,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud",
   "classes": {
    "ionoscloud:index/gpuServer:GpuServer": "GpuServer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/userObjectStorageBucket",
+  "fqn": "pulumi_ionoscloud",
+  "classes": {
+   "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket": "UserObjectStorageBucket"
   }
  },
  {

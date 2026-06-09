@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
 /**
  * ## Overview
  *
- * The `ionoscloud.vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+ * The `ionoscloud.vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS CLOUD infrastructure.
  * This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
  *
  * ## Example Usage

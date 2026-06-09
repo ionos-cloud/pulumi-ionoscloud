@@ -183,7 +183,7 @@ export class GPUServer extends pulumi.CustomResource {
      */
     declare public readonly securityGroupsIds: pulumi.Output<string[] | undefined>;
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
      */
     declare public readonly sshKeyPaths: pulumi.Output<string[]>;
     /**
@@ -348,7 +348,7 @@ export interface GPUServerState {
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -420,7 +420,7 @@ export interface GPUServerArgs {
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**

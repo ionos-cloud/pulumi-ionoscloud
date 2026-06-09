@@ -192,7 +192,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages the selection of a boot device for IonosCloud Servers.
+        Manages the selection of a boot device for IONOS CLOUD Servers.
 
         ## Example Usage
 
@@ -385,7 +385,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                  args: BootDeviceSelectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the selection of a boot device for IonosCloud Servers.
+        Manages the selection of a boot device for IONOS CLOUD Servers.
 
         ## Example Usage
 

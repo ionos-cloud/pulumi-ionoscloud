@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+ * Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -30,7 +30,8 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.nfs.Cluster("example", {
  *     name: "test",
  *     location: "de/txl",
- *     size: 2,
+ *     size: 2048,
+ *     sizeUnit: "GiB",
  *     nfs: {
  *         minVersion: "4.2",
  *     },

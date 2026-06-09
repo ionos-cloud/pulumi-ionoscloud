@@ -339,6 +339,26 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLVersions"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_versions.md"},
 			},
+			"ionoscloud_pg_cluster_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_cluster_v2.md"},
+			},
+			"ionoscloud_pg_clusters_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLClustersV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_clusters_v2.md"},
+			},
+			"ionoscloud_pg_backups_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLBackupsV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_backups_v2.md"},
+			},
+			"ionoscloud_pg_versions_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLVersionsV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_versions_v2.md"},
+			},
+			"ionoscloud_pg_backup_location_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLBackupLocationV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_backup_location.md"},
+			},
 			"ionoscloud_mongo_cluster": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoCluster"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_cluster.md"},
@@ -553,6 +573,10 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_pg_database": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLDatabase"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_database.md"},
+			},
+			"ionoscloud_pg_cluster_v2": {
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_cluster_v2.md"},
 			},
 			"ionoscloud_mongo_cluster": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MongoCluster"),

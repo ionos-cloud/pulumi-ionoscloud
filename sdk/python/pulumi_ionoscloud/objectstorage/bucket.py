@@ -242,9 +242,7 @@ class Bucket(pulumi.CustomResource):
                  timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -264,6 +262,15 @@ class Bucket(pulumi.CustomResource):
         ```
 
         ## Import
+
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) Name of the bucket.
+        * `region` (String) Region where the bucket is located.
+
+        ***
 
         A bucket can be imported using the `bucket name` and the `region`:
 
@@ -294,9 +301,7 @@ class Bucket(pulumi.CustomResource):
                  args: Optional[BucketArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -316,6 +321,15 @@ class Bucket(pulumi.CustomResource):
         ```
 
         ## Import
+
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) Name of the bucket.
+        * `region` (String) Region where the bucket is located.
+
+        ***
 
         A bucket can be imported using the `bucket name` and the `region`:
 

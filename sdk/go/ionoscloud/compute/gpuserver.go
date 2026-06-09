@@ -160,7 +160,7 @@ type GPUServer struct {
 	PrimaryNic pulumi.StringOutput `pulumi:"primaryNic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayOutput `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template used for creating a GPU server.
 	TemplateUuid pulumi.StringOutput `pulumi:"templateUuid"`
@@ -260,7 +260,7 @@ type gpuserverState struct {
 	PrimaryNic *string `pulumi:"primaryNic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template used for creating a GPU server.
 	TemplateUuid *string `pulumi:"templateUuid"`
@@ -309,7 +309,7 @@ type GPUServerState struct {
 	PrimaryNic pulumi.StringPtrInput
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayInput
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayInput
 	// [string] The UUID of the template used for creating a GPU server.
 	TemplateUuid pulumi.StringPtrInput
@@ -352,7 +352,7 @@ type gpuserverArgs struct {
 	Nic *GPUServerNic `pulumi:"nic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template used for creating a GPU server.
 	TemplateUuid string `pulumi:"templateUuid"`
@@ -392,7 +392,7 @@ type GPUServerArgs struct {
 	Nic GPUServerNicPtrInput
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayInput
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayInput
 	// [string] The UUID of the template used for creating a GPU server.
 	TemplateUuid pulumi.StringInput
@@ -575,7 +575,7 @@ func (o GPUServerOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GPUServer) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
-// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 func (o GPUServerOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GPUServer) pulumi.StringArrayOutput { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
 }

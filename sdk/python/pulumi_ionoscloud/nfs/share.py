@@ -289,7 +289,7 @@ class Share(pulumi.CustomResource):
                  uid: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+        Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
 
         ## Example Usage
 
@@ -310,7 +310,8 @@ class Share(pulumi.CustomResource):
         example = ionoscloud.nfs.Cluster("example",
             name="test",
             location="de/txl",
-            size=2,
+            size=2048,
+            size_unit="GiB",
             nfs={
                 "min_version": "4.2",
             },
@@ -362,7 +363,7 @@ class Share(pulumi.CustomResource):
                  args: ShareArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+        Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
 
         ## Example Usage
 
@@ -383,7 +384,8 @@ class Share(pulumi.CustomResource):
         example = ionoscloud.nfs.Cluster("example",
             name="test",
             location="de/txl",
-            size=2,
+            size=2048,
+            size_unit="GiB",
             nfs={
                 "min_version": "4.2",
             },

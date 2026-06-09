@@ -500,7 +500,7 @@ class Firewall(pulumi.CustomResource):
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a set of **Firewall Rules** on IonosCloud.
+        Manages a set of **Firewall Rules** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -592,7 +592,7 @@ class Firewall(pulumi.CustomResource):
                  args: FirewallArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a set of **Firewall Rules** on IonosCloud.
+        Manages a set of **Firewall Rules** on IONOS CLOUD.
 
         ## Example Usage
 

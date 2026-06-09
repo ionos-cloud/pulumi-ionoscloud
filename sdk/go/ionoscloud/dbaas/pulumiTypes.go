@@ -3068,6 +3068,1216 @@ func (o PSQLClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type PSQLClusterV2Backup struct {
+	// [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+	Location string `pulumi:"location"`
+	// [int] How many days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// PSQLClusterV2BackupInput is an input type that accepts PSQLClusterV2BackupArgs and PSQLClusterV2BackupOutput values.
+// You can construct a concrete instance of `PSQLClusterV2BackupInput` via:
+//
+//	PSQLClusterV2BackupArgs{...}
+type PSQLClusterV2BackupInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2BackupOutput() PSQLClusterV2BackupOutput
+	ToPSQLClusterV2BackupOutputWithContext(context.Context) PSQLClusterV2BackupOutput
+}
+
+type PSQLClusterV2BackupArgs struct {
+	// [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+	Location pulumi.StringInput `pulumi:"location"`
+	// [int] How many days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (PSQLClusterV2BackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (i PSQLClusterV2BackupArgs) ToPSQLClusterV2BackupOutput() PSQLClusterV2BackupOutput {
+	return i.ToPSQLClusterV2BackupOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2BackupArgs) ToPSQLClusterV2BackupOutputWithContext(ctx context.Context) PSQLClusterV2BackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2BackupOutput)
+}
+
+func (i PSQLClusterV2BackupArgs) ToPSQLClusterV2BackupPtrOutput() PSQLClusterV2BackupPtrOutput {
+	return i.ToPSQLClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2BackupArgs) ToPSQLClusterV2BackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2BackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2BackupOutput).ToPSQLClusterV2BackupPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2BackupPtrInput is an input type that accepts PSQLClusterV2BackupArgs, PSQLClusterV2BackupPtr and PSQLClusterV2BackupPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2BackupPtrInput` via:
+//
+//	        PSQLClusterV2BackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2BackupPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2BackupPtrOutput() PSQLClusterV2BackupPtrOutput
+	ToPSQLClusterV2BackupPtrOutputWithContext(context.Context) PSQLClusterV2BackupPtrOutput
+}
+
+type psqlclusterV2BackupPtrType PSQLClusterV2BackupArgs
+
+func PSQLClusterV2BackupPtr(v *PSQLClusterV2BackupArgs) PSQLClusterV2BackupPtrInput {
+	return (*psqlclusterV2BackupPtrType)(v)
+}
+
+func (*psqlclusterV2BackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (i *psqlclusterV2BackupPtrType) ToPSQLClusterV2BackupPtrOutput() PSQLClusterV2BackupPtrOutput {
+	return i.ToPSQLClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2BackupPtrType) ToPSQLClusterV2BackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2BackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2BackupPtrOutput)
+}
+
+type PSQLClusterV2BackupOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2BackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (o PSQLClusterV2BackupOutput) ToPSQLClusterV2BackupOutput() PSQLClusterV2BackupOutput {
+	return o
+}
+
+func (o PSQLClusterV2BackupOutput) ToPSQLClusterV2BackupOutputWithContext(ctx context.Context) PSQLClusterV2BackupOutput {
+	return o
+}
+
+func (o PSQLClusterV2BackupOutput) ToPSQLClusterV2BackupPtrOutput() PSQLClusterV2BackupPtrOutput {
+	return o.ToPSQLClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2BackupOutput) ToPSQLClusterV2BackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2BackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2Backup) *PSQLClusterV2Backup {
+		return &v
+	}).(PSQLClusterV2BackupPtrOutput)
+}
+
+// [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+func (o PSQLClusterV2BackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Backup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// [int] How many days cluster backups are retained.
+func (o PSQLClusterV2BackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v PSQLClusterV2Backup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type PSQLClusterV2BackupPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2BackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (o PSQLClusterV2BackupPtrOutput) ToPSQLClusterV2BackupPtrOutput() PSQLClusterV2BackupPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2BackupPtrOutput) ToPSQLClusterV2BackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2BackupPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2BackupPtrOutput) Elem() PSQLClusterV2BackupOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Backup) PSQLClusterV2Backup {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2Backup
+		return ret
+	}).(PSQLClusterV2BackupOutput)
+}
+
+// [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+func (o PSQLClusterV2BackupPtrOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Backup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Location
+	}).(pulumi.StringPtrOutput)
+}
+
+// [int] How many days cluster backups are retained.
+func (o PSQLClusterV2BackupPtrOutput) RetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Backup) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type PSQLClusterV2Connections struct {
+	// [string] The datacenter to connect your instance to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID to connect your instance to.
+	LanId string `pulumi:"lanId"`
+	// [string] The IP and netmask that will be assigned to the cluster primary instance.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// PSQLClusterV2ConnectionsInput is an input type that accepts PSQLClusterV2ConnectionsArgs and PSQLClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `PSQLClusterV2ConnectionsInput` via:
+//
+//	PSQLClusterV2ConnectionsArgs{...}
+type PSQLClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2ConnectionsOutput() PSQLClusterV2ConnectionsOutput
+	ToPSQLClusterV2ConnectionsOutputWithContext(context.Context) PSQLClusterV2ConnectionsOutput
+}
+
+type PSQLClusterV2ConnectionsArgs struct {
+	// [string] The datacenter to connect your instance to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID to connect your instance to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// [string] The IP and netmask that will be assigned to the cluster primary instance.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (PSQLClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (i PSQLClusterV2ConnectionsArgs) ToPSQLClusterV2ConnectionsOutput() PSQLClusterV2ConnectionsOutput {
+	return i.ToPSQLClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2ConnectionsArgs) ToPSQLClusterV2ConnectionsOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2ConnectionsOutput)
+}
+
+func (i PSQLClusterV2ConnectionsArgs) ToPSQLClusterV2ConnectionsPtrOutput() PSQLClusterV2ConnectionsPtrOutput {
+	return i.ToPSQLClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2ConnectionsArgs) ToPSQLClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2ConnectionsOutput).ToPSQLClusterV2ConnectionsPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2ConnectionsPtrInput is an input type that accepts PSQLClusterV2ConnectionsArgs, PSQLClusterV2ConnectionsPtr and PSQLClusterV2ConnectionsPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2ConnectionsPtrInput` via:
+//
+//	        PSQLClusterV2ConnectionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2ConnectionsPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2ConnectionsPtrOutput() PSQLClusterV2ConnectionsPtrOutput
+	ToPSQLClusterV2ConnectionsPtrOutputWithContext(context.Context) PSQLClusterV2ConnectionsPtrOutput
+}
+
+type psqlclusterV2ConnectionsPtrType PSQLClusterV2ConnectionsArgs
+
+func PSQLClusterV2ConnectionsPtr(v *PSQLClusterV2ConnectionsArgs) PSQLClusterV2ConnectionsPtrInput {
+	return (*psqlclusterV2ConnectionsPtrType)(v)
+}
+
+func (*psqlclusterV2ConnectionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (i *psqlclusterV2ConnectionsPtrType) ToPSQLClusterV2ConnectionsPtrOutput() PSQLClusterV2ConnectionsPtrOutput {
+	return i.ToPSQLClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2ConnectionsPtrType) ToPSQLClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2ConnectionsPtrOutput)
+}
+
+type PSQLClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (o PSQLClusterV2ConnectionsOutput) ToPSQLClusterV2ConnectionsOutput() PSQLClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o PSQLClusterV2ConnectionsOutput) ToPSQLClusterV2ConnectionsOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o PSQLClusterV2ConnectionsOutput) ToPSQLClusterV2ConnectionsPtrOutput() PSQLClusterV2ConnectionsPtrOutput {
+	return o.ToPSQLClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2ConnectionsOutput) ToPSQLClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2Connections) *PSQLClusterV2Connections {
+		return &v
+	}).(PSQLClusterV2ConnectionsPtrOutput)
+}
+
+// [string] The datacenter to connect your instance to.
+func (o PSQLClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// [string] The numeric LAN ID to connect your instance to.
+func (o PSQLClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// [string] The IP and netmask that will be assigned to the cluster primary instance.
+func (o PSQLClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type PSQLClusterV2ConnectionsPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2ConnectionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (o PSQLClusterV2ConnectionsPtrOutput) ToPSQLClusterV2ConnectionsPtrOutput() PSQLClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2ConnectionsPtrOutput) ToPSQLClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) PSQLClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2ConnectionsPtrOutput) Elem() PSQLClusterV2ConnectionsOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Connections) PSQLClusterV2Connections {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2Connections
+		return ret
+	}).(PSQLClusterV2ConnectionsOutput)
+}
+
+// [string] The datacenter to connect your instance to.
+func (o PSQLClusterV2ConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DatacenterId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The numeric LAN ID to connect your instance to.
+func (o PSQLClusterV2ConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LanId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The IP and netmask that will be assigned to the cluster primary instance.
+func (o PSQLClusterV2ConnectionsPtrOutput) PrimaryInstanceAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrimaryInstanceAddress
+	}).(pulumi.StringPtrOutput)
+}
+
+type PSQLClusterV2Credentials struct {
+	// [string] The name of the initial database to be created.
+	Database string `pulumi:"database"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+	Password string `pulumi:"password"`
+	// [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+	PasswordVersion string `pulumi:"passwordVersion"`
+	// [string] The username of the master database user.
+	Username string `pulumi:"username"`
+}
+
+// PSQLClusterV2CredentialsInput is an input type that accepts PSQLClusterV2CredentialsArgs and PSQLClusterV2CredentialsOutput values.
+// You can construct a concrete instance of `PSQLClusterV2CredentialsInput` via:
+//
+//	PSQLClusterV2CredentialsArgs{...}
+type PSQLClusterV2CredentialsInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2CredentialsOutput() PSQLClusterV2CredentialsOutput
+	ToPSQLClusterV2CredentialsOutputWithContext(context.Context) PSQLClusterV2CredentialsOutput
+}
+
+type PSQLClusterV2CredentialsArgs struct {
+	// [string] The name of the initial database to be created.
+	Database pulumi.StringInput `pulumi:"database"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+	Password pulumi.StringInput `pulumi:"password"`
+	// [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+	PasswordVersion pulumi.StringInput `pulumi:"passwordVersion"`
+	// [string] The username of the master database user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (PSQLClusterV2CredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Credentials)(nil)).Elem()
+}
+
+func (i PSQLClusterV2CredentialsArgs) ToPSQLClusterV2CredentialsOutput() PSQLClusterV2CredentialsOutput {
+	return i.ToPSQLClusterV2CredentialsOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2CredentialsArgs) ToPSQLClusterV2CredentialsOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2CredentialsOutput)
+}
+
+func (i PSQLClusterV2CredentialsArgs) ToPSQLClusterV2CredentialsPtrOutput() PSQLClusterV2CredentialsPtrOutput {
+	return i.ToPSQLClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2CredentialsArgs) ToPSQLClusterV2CredentialsPtrOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2CredentialsOutput).ToPSQLClusterV2CredentialsPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2CredentialsPtrInput is an input type that accepts PSQLClusterV2CredentialsArgs, PSQLClusterV2CredentialsPtr and PSQLClusterV2CredentialsPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2CredentialsPtrInput` via:
+//
+//	        PSQLClusterV2CredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2CredentialsPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2CredentialsPtrOutput() PSQLClusterV2CredentialsPtrOutput
+	ToPSQLClusterV2CredentialsPtrOutputWithContext(context.Context) PSQLClusterV2CredentialsPtrOutput
+}
+
+type psqlclusterV2CredentialsPtrType PSQLClusterV2CredentialsArgs
+
+func PSQLClusterV2CredentialsPtr(v *PSQLClusterV2CredentialsArgs) PSQLClusterV2CredentialsPtrInput {
+	return (*psqlclusterV2CredentialsPtrType)(v)
+}
+
+func (*psqlclusterV2CredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Credentials)(nil)).Elem()
+}
+
+func (i *psqlclusterV2CredentialsPtrType) ToPSQLClusterV2CredentialsPtrOutput() PSQLClusterV2CredentialsPtrOutput {
+	return i.ToPSQLClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2CredentialsPtrType) ToPSQLClusterV2CredentialsPtrOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2CredentialsPtrOutput)
+}
+
+type PSQLClusterV2CredentialsOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2CredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Credentials)(nil)).Elem()
+}
+
+func (o PSQLClusterV2CredentialsOutput) ToPSQLClusterV2CredentialsOutput() PSQLClusterV2CredentialsOutput {
+	return o
+}
+
+func (o PSQLClusterV2CredentialsOutput) ToPSQLClusterV2CredentialsOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsOutput {
+	return o
+}
+
+func (o PSQLClusterV2CredentialsOutput) ToPSQLClusterV2CredentialsPtrOutput() PSQLClusterV2CredentialsPtrOutput {
+	return o.ToPSQLClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2CredentialsOutput) ToPSQLClusterV2CredentialsPtrOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2Credentials) *PSQLClusterV2Credentials {
+		return &v
+	}).(PSQLClusterV2CredentialsPtrOutput)
+}
+
+// [string] The name of the initial database to be created.
+func (o PSQLClusterV2CredentialsOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Credentials) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+func (o PSQLClusterV2CredentialsOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Credentials) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+func (o PSQLClusterV2CredentialsOutput) PasswordVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Credentials) string { return v.PasswordVersion }).(pulumi.StringOutput)
+}
+
+// [string] The username of the master database user.
+func (o PSQLClusterV2CredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Credentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type PSQLClusterV2CredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2CredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Credentials)(nil)).Elem()
+}
+
+func (o PSQLClusterV2CredentialsPtrOutput) ToPSQLClusterV2CredentialsPtrOutput() PSQLClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2CredentialsPtrOutput) ToPSQLClusterV2CredentialsPtrOutputWithContext(ctx context.Context) PSQLClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2CredentialsPtrOutput) Elem() PSQLClusterV2CredentialsOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Credentials) PSQLClusterV2Credentials {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2Credentials
+		return ret
+	}).(PSQLClusterV2CredentialsOutput)
+}
+
+// [string] The name of the initial database to be created.
+func (o PSQLClusterV2CredentialsPtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+func (o PSQLClusterV2CredentialsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+func (o PSQLClusterV2CredentialsPtrOutput) PasswordVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PasswordVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The username of the master database user.
+func (o PSQLClusterV2CredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type PSQLClusterV2Instances struct {
+	// [int] The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+	Count int `pulumi:"count"`
+	// [int] The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// [int] The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// PSQLClusterV2InstancesInput is an input type that accepts PSQLClusterV2InstancesArgs and PSQLClusterV2InstancesOutput values.
+// You can construct a concrete instance of `PSQLClusterV2InstancesInput` via:
+//
+//	PSQLClusterV2InstancesArgs{...}
+type PSQLClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2InstancesOutput() PSQLClusterV2InstancesOutput
+	ToPSQLClusterV2InstancesOutputWithContext(context.Context) PSQLClusterV2InstancesOutput
+}
+
+type PSQLClusterV2InstancesArgs struct {
+	// [int] The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+	Count pulumi.IntInput `pulumi:"count"`
+	// [int] The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// [int] The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (PSQLClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (i PSQLClusterV2InstancesArgs) ToPSQLClusterV2InstancesOutput() PSQLClusterV2InstancesOutput {
+	return i.ToPSQLClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2InstancesArgs) ToPSQLClusterV2InstancesOutputWithContext(ctx context.Context) PSQLClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2InstancesOutput)
+}
+
+func (i PSQLClusterV2InstancesArgs) ToPSQLClusterV2InstancesPtrOutput() PSQLClusterV2InstancesPtrOutput {
+	return i.ToPSQLClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2InstancesArgs) ToPSQLClusterV2InstancesPtrOutputWithContext(ctx context.Context) PSQLClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2InstancesOutput).ToPSQLClusterV2InstancesPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2InstancesPtrInput is an input type that accepts PSQLClusterV2InstancesArgs, PSQLClusterV2InstancesPtr and PSQLClusterV2InstancesPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2InstancesPtrInput` via:
+//
+//	        PSQLClusterV2InstancesArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2InstancesPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2InstancesPtrOutput() PSQLClusterV2InstancesPtrOutput
+	ToPSQLClusterV2InstancesPtrOutputWithContext(context.Context) PSQLClusterV2InstancesPtrOutput
+}
+
+type psqlclusterV2InstancesPtrType PSQLClusterV2InstancesArgs
+
+func PSQLClusterV2InstancesPtr(v *PSQLClusterV2InstancesArgs) PSQLClusterV2InstancesPtrInput {
+	return (*psqlclusterV2InstancesPtrType)(v)
+}
+
+func (*psqlclusterV2InstancesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (i *psqlclusterV2InstancesPtrType) ToPSQLClusterV2InstancesPtrOutput() PSQLClusterV2InstancesPtrOutput {
+	return i.ToPSQLClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2InstancesPtrType) ToPSQLClusterV2InstancesPtrOutputWithContext(ctx context.Context) PSQLClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2InstancesPtrOutput)
+}
+
+type PSQLClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (o PSQLClusterV2InstancesOutput) ToPSQLClusterV2InstancesOutput() PSQLClusterV2InstancesOutput {
+	return o
+}
+
+func (o PSQLClusterV2InstancesOutput) ToPSQLClusterV2InstancesOutputWithContext(ctx context.Context) PSQLClusterV2InstancesOutput {
+	return o
+}
+
+func (o PSQLClusterV2InstancesOutput) ToPSQLClusterV2InstancesPtrOutput() PSQLClusterV2InstancesPtrOutput {
+	return o.ToPSQLClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2InstancesOutput) ToPSQLClusterV2InstancesPtrOutputWithContext(ctx context.Context) PSQLClusterV2InstancesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2Instances) *PSQLClusterV2Instances {
+		return &v
+	}).(PSQLClusterV2InstancesPtrOutput)
+}
+
+// [int] The number of CPU cores per instance.
+func (o PSQLClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v PSQLClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+func (o PSQLClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v PSQLClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// [int] The amount of memory per instance in gigabytes (GB).
+func (o PSQLClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v PSQLClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// [int] The amount of storage per instance in gigabytes (GB).
+func (o PSQLClusterV2InstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v PSQLClusterV2Instances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type PSQLClusterV2InstancesPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2InstancesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (o PSQLClusterV2InstancesPtrOutput) ToPSQLClusterV2InstancesPtrOutput() PSQLClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2InstancesPtrOutput) ToPSQLClusterV2InstancesPtrOutputWithContext(ctx context.Context) PSQLClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2InstancesPtrOutput) Elem() PSQLClusterV2InstancesOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Instances) PSQLClusterV2Instances {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2Instances
+		return ret
+	}).(PSQLClusterV2InstancesOutput)
+}
+
+// [int] The number of CPU cores per instance.
+func (o PSQLClusterV2InstancesPtrOutput) Cores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Cores
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+func (o PSQLClusterV2InstancesPtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The amount of memory per instance in gigabytes (GB).
+func (o PSQLClusterV2InstancesPtrOutput) Ram() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Ram
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The amount of storage per instance in gigabytes (GB).
+func (o PSQLClusterV2InstancesPtrOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.StorageSize
+	}).(pulumi.IntPtrOutput)
+}
+
+type PSQLClusterV2MaintenanceWindow struct {
+	// [string] The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// PSQLClusterV2MaintenanceWindowInput is an input type that accepts PSQLClusterV2MaintenanceWindowArgs and PSQLClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `PSQLClusterV2MaintenanceWindowInput` via:
+//
+//	PSQLClusterV2MaintenanceWindowArgs{...}
+type PSQLClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2MaintenanceWindowOutput() PSQLClusterV2MaintenanceWindowOutput
+	ToPSQLClusterV2MaintenanceWindowOutputWithContext(context.Context) PSQLClusterV2MaintenanceWindowOutput
+}
+
+type PSQLClusterV2MaintenanceWindowArgs struct {
+	// [string] The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (PSQLClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i PSQLClusterV2MaintenanceWindowArgs) ToPSQLClusterV2MaintenanceWindowOutput() PSQLClusterV2MaintenanceWindowOutput {
+	return i.ToPSQLClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2MaintenanceWindowArgs) ToPSQLClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2MaintenanceWindowOutput)
+}
+
+func (i PSQLClusterV2MaintenanceWindowArgs) ToPSQLClusterV2MaintenanceWindowPtrOutput() PSQLClusterV2MaintenanceWindowPtrOutput {
+	return i.ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2MaintenanceWindowArgs) ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2MaintenanceWindowOutput).ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2MaintenanceWindowPtrInput is an input type that accepts PSQLClusterV2MaintenanceWindowArgs, PSQLClusterV2MaintenanceWindowPtr and PSQLClusterV2MaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2MaintenanceWindowPtrInput` via:
+//
+//	        PSQLClusterV2MaintenanceWindowArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2MaintenanceWindowPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2MaintenanceWindowPtrOutput() PSQLClusterV2MaintenanceWindowPtrOutput
+	ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(context.Context) PSQLClusterV2MaintenanceWindowPtrOutput
+}
+
+type psqlclusterV2MaintenanceWindowPtrType PSQLClusterV2MaintenanceWindowArgs
+
+func PSQLClusterV2MaintenanceWindowPtr(v *PSQLClusterV2MaintenanceWindowArgs) PSQLClusterV2MaintenanceWindowPtrInput {
+	return (*psqlclusterV2MaintenanceWindowPtrType)(v)
+}
+
+func (*psqlclusterV2MaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i *psqlclusterV2MaintenanceWindowPtrType) ToPSQLClusterV2MaintenanceWindowPtrOutput() PSQLClusterV2MaintenanceWindowPtrOutput {
+	return i.ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2MaintenanceWindowPtrType) ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2MaintenanceWindowPtrOutput)
+}
+
+type PSQLClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o PSQLClusterV2MaintenanceWindowOutput) ToPSQLClusterV2MaintenanceWindowOutput() PSQLClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o PSQLClusterV2MaintenanceWindowOutput) ToPSQLClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o PSQLClusterV2MaintenanceWindowOutput) ToPSQLClusterV2MaintenanceWindowPtrOutput() PSQLClusterV2MaintenanceWindowPtrOutput {
+	return o.ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2MaintenanceWindowOutput) ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2MaintenanceWindow) *PSQLClusterV2MaintenanceWindow {
+		return &v
+	}).(PSQLClusterV2MaintenanceWindowPtrOutput)
+}
+
+// [string] The name of the week day.
+func (o PSQLClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o PSQLClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type PSQLClusterV2MaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2MaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o PSQLClusterV2MaintenanceWindowPtrOutput) ToPSQLClusterV2MaintenanceWindowPtrOutput() PSQLClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2MaintenanceWindowPtrOutput) ToPSQLClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) PSQLClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2MaintenanceWindowPtrOutput) Elem() PSQLClusterV2MaintenanceWindowOutput {
+	return o.ApplyT(func(v *PSQLClusterV2MaintenanceWindow) PSQLClusterV2MaintenanceWindow {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2MaintenanceWindow
+		return ret
+	}).(PSQLClusterV2MaintenanceWindowOutput)
+}
+
+// [string] The name of the week day.
+func (o PSQLClusterV2MaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DayOfTheWeek
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Start of the maintenance window in UTC time.
+func (o PSQLClusterV2MaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
+type PSQLClusterV2RestoreFromBackup struct {
+	// [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	RecoveryTargetDatetime *string `pulumi:"recoveryTargetDatetime"`
+	// [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+	SourceBackupId string `pulumi:"sourceBackupId"`
+}
+
+// PSQLClusterV2RestoreFromBackupInput is an input type that accepts PSQLClusterV2RestoreFromBackupArgs and PSQLClusterV2RestoreFromBackupOutput values.
+// You can construct a concrete instance of `PSQLClusterV2RestoreFromBackupInput` via:
+//
+//	PSQLClusterV2RestoreFromBackupArgs{...}
+type PSQLClusterV2RestoreFromBackupInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2RestoreFromBackupOutput() PSQLClusterV2RestoreFromBackupOutput
+	ToPSQLClusterV2RestoreFromBackupOutputWithContext(context.Context) PSQLClusterV2RestoreFromBackupOutput
+}
+
+type PSQLClusterV2RestoreFromBackupArgs struct {
+	// [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	RecoveryTargetDatetime pulumi.StringPtrInput `pulumi:"recoveryTargetDatetime"`
+	// [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+	SourceBackupId pulumi.StringInput `pulumi:"sourceBackupId"`
+}
+
+func (PSQLClusterV2RestoreFromBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (i PSQLClusterV2RestoreFromBackupArgs) ToPSQLClusterV2RestoreFromBackupOutput() PSQLClusterV2RestoreFromBackupOutput {
+	return i.ToPSQLClusterV2RestoreFromBackupOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2RestoreFromBackupArgs) ToPSQLClusterV2RestoreFromBackupOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2RestoreFromBackupOutput)
+}
+
+func (i PSQLClusterV2RestoreFromBackupArgs) ToPSQLClusterV2RestoreFromBackupPtrOutput() PSQLClusterV2RestoreFromBackupPtrOutput {
+	return i.ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2RestoreFromBackupArgs) ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2RestoreFromBackupOutput).ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2RestoreFromBackupPtrInput is an input type that accepts PSQLClusterV2RestoreFromBackupArgs, PSQLClusterV2RestoreFromBackupPtr and PSQLClusterV2RestoreFromBackupPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2RestoreFromBackupPtrInput` via:
+//
+//	        PSQLClusterV2RestoreFromBackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2RestoreFromBackupPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2RestoreFromBackupPtrOutput() PSQLClusterV2RestoreFromBackupPtrOutput
+	ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(context.Context) PSQLClusterV2RestoreFromBackupPtrOutput
+}
+
+type psqlclusterV2RestoreFromBackupPtrType PSQLClusterV2RestoreFromBackupArgs
+
+func PSQLClusterV2RestoreFromBackupPtr(v *PSQLClusterV2RestoreFromBackupArgs) PSQLClusterV2RestoreFromBackupPtrInput {
+	return (*psqlclusterV2RestoreFromBackupPtrType)(v)
+}
+
+func (*psqlclusterV2RestoreFromBackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (i *psqlclusterV2RestoreFromBackupPtrType) ToPSQLClusterV2RestoreFromBackupPtrOutput() PSQLClusterV2RestoreFromBackupPtrOutput {
+	return i.ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2RestoreFromBackupPtrType) ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2RestoreFromBackupPtrOutput)
+}
+
+type PSQLClusterV2RestoreFromBackupOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2RestoreFromBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (o PSQLClusterV2RestoreFromBackupOutput) ToPSQLClusterV2RestoreFromBackupOutput() PSQLClusterV2RestoreFromBackupOutput {
+	return o
+}
+
+func (o PSQLClusterV2RestoreFromBackupOutput) ToPSQLClusterV2RestoreFromBackupOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupOutput {
+	return o
+}
+
+func (o PSQLClusterV2RestoreFromBackupOutput) ToPSQLClusterV2RestoreFromBackupPtrOutput() PSQLClusterV2RestoreFromBackupPtrOutput {
+	return o.ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2RestoreFromBackupOutput) ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2RestoreFromBackup) *PSQLClusterV2RestoreFromBackup {
+		return &v
+	}).(PSQLClusterV2RestoreFromBackupPtrOutput)
+}
+
+// [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+func (o PSQLClusterV2RestoreFromBackupOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PSQLClusterV2RestoreFromBackup) *string { return v.RecoveryTargetDatetime }).(pulumi.StringPtrOutput)
+}
+
+// [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+func (o PSQLClusterV2RestoreFromBackupOutput) SourceBackupId() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2RestoreFromBackup) string { return v.SourceBackupId }).(pulumi.StringOutput)
+}
+
+type PSQLClusterV2RestoreFromBackupPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2RestoreFromBackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (o PSQLClusterV2RestoreFromBackupPtrOutput) ToPSQLClusterV2RestoreFromBackupPtrOutput() PSQLClusterV2RestoreFromBackupPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2RestoreFromBackupPtrOutput) ToPSQLClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) PSQLClusterV2RestoreFromBackupPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2RestoreFromBackupPtrOutput) Elem() PSQLClusterV2RestoreFromBackupOutput {
+	return o.ApplyT(func(v *PSQLClusterV2RestoreFromBackup) PSQLClusterV2RestoreFromBackup {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2RestoreFromBackup
+		return ret
+	}).(PSQLClusterV2RestoreFromBackupOutput)
+}
+
+// [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+func (o PSQLClusterV2RestoreFromBackupPtrOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2RestoreFromBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecoveryTargetDatetime
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+func (o PSQLClusterV2RestoreFromBackupPtrOutput) SourceBackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2RestoreFromBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SourceBackupId
+	}).(pulumi.StringPtrOutput)
+}
+
+type PSQLClusterV2Timeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// PSQLClusterV2TimeoutsInput is an input type that accepts PSQLClusterV2TimeoutsArgs and PSQLClusterV2TimeoutsOutput values.
+// You can construct a concrete instance of `PSQLClusterV2TimeoutsInput` via:
+//
+//	PSQLClusterV2TimeoutsArgs{...}
+type PSQLClusterV2TimeoutsInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2TimeoutsOutput() PSQLClusterV2TimeoutsOutput
+	ToPSQLClusterV2TimeoutsOutputWithContext(context.Context) PSQLClusterV2TimeoutsOutput
+}
+
+type PSQLClusterV2TimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (PSQLClusterV2TimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i PSQLClusterV2TimeoutsArgs) ToPSQLClusterV2TimeoutsOutput() PSQLClusterV2TimeoutsOutput {
+	return i.ToPSQLClusterV2TimeoutsOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2TimeoutsArgs) ToPSQLClusterV2TimeoutsOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2TimeoutsOutput)
+}
+
+func (i PSQLClusterV2TimeoutsArgs) ToPSQLClusterV2TimeoutsPtrOutput() PSQLClusterV2TimeoutsPtrOutput {
+	return i.ToPSQLClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2TimeoutsArgs) ToPSQLClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2TimeoutsOutput).ToPSQLClusterV2TimeoutsPtrOutputWithContext(ctx)
+}
+
+// PSQLClusterV2TimeoutsPtrInput is an input type that accepts PSQLClusterV2TimeoutsArgs, PSQLClusterV2TimeoutsPtr and PSQLClusterV2TimeoutsPtrOutput values.
+// You can construct a concrete instance of `PSQLClusterV2TimeoutsPtrInput` via:
+//
+//	        PSQLClusterV2TimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PSQLClusterV2TimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2TimeoutsPtrOutput() PSQLClusterV2TimeoutsPtrOutput
+	ToPSQLClusterV2TimeoutsPtrOutputWithContext(context.Context) PSQLClusterV2TimeoutsPtrOutput
+}
+
+type psqlclusterV2TimeoutsPtrType PSQLClusterV2TimeoutsArgs
+
+func PSQLClusterV2TimeoutsPtr(v *PSQLClusterV2TimeoutsArgs) PSQLClusterV2TimeoutsPtrInput {
+	return (*psqlclusterV2TimeoutsPtrType)(v)
+}
+
+func (*psqlclusterV2TimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i *psqlclusterV2TimeoutsPtrType) ToPSQLClusterV2TimeoutsPtrOutput() PSQLClusterV2TimeoutsPtrOutput {
+	return i.ToPSQLClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *psqlclusterV2TimeoutsPtrType) ToPSQLClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2TimeoutsPtrOutput)
+}
+
+type PSQLClusterV2TimeoutsOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2TimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o PSQLClusterV2TimeoutsOutput) ToPSQLClusterV2TimeoutsOutput() PSQLClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o PSQLClusterV2TimeoutsOutput) ToPSQLClusterV2TimeoutsOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o PSQLClusterV2TimeoutsOutput) ToPSQLClusterV2TimeoutsPtrOutput() PSQLClusterV2TimeoutsPtrOutput {
+	return o.ToPSQLClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o PSQLClusterV2TimeoutsOutput) ToPSQLClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PSQLClusterV2Timeouts) *PSQLClusterV2Timeouts {
+		return &v
+	}).(PSQLClusterV2TimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PSQLClusterV2TimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PSQLClusterV2Timeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PSQLClusterV2TimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PSQLClusterV2Timeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PSQLClusterV2TimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PSQLClusterV2Timeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type PSQLClusterV2TimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2TimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PSQLClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o PSQLClusterV2TimeoutsPtrOutput) ToPSQLClusterV2TimeoutsPtrOutput() PSQLClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2TimeoutsPtrOutput) ToPSQLClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) PSQLClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o PSQLClusterV2TimeoutsPtrOutput) Elem() PSQLClusterV2TimeoutsOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Timeouts) PSQLClusterV2Timeouts {
+		if v != nil {
+			return *v
+		}
+		var ret PSQLClusterV2Timeouts
+		return ret
+	}).(PSQLClusterV2TimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PSQLClusterV2TimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PSQLClusterV2TimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PSQLClusterV2TimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PSQLClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetInMemoryDBReplicaSetConnection struct {
 	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr string `pulumi:"cidr"`
@@ -4749,6 +5959,112 @@ func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOu
 	}).(GetMongoUserRoleOutput)
 }
 
+type GetPSQLBackupLocationV2BackupLocation struct {
+	// The ID (UUID) of the backup location.
+	Id string `pulumi:"id"`
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+}
+
+// GetPSQLBackupLocationV2BackupLocationInput is an input type that accepts GetPSQLBackupLocationV2BackupLocationArgs and GetPSQLBackupLocationV2BackupLocationOutput values.
+// You can construct a concrete instance of `GetPSQLBackupLocationV2BackupLocationInput` via:
+//
+//	GetPSQLBackupLocationV2BackupLocationArgs{...}
+type GetPSQLBackupLocationV2BackupLocationInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupLocationV2BackupLocationOutput() GetPSQLBackupLocationV2BackupLocationOutput
+	ToGetPSQLBackupLocationV2BackupLocationOutputWithContext(context.Context) GetPSQLBackupLocationV2BackupLocationOutput
+}
+
+type GetPSQLBackupLocationV2BackupLocationArgs struct {
+	// The ID (UUID) of the backup location.
+	Id pulumi.StringInput `pulumi:"id"`
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+}
+
+func (GetPSQLBackupLocationV2BackupLocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupLocationV2BackupLocation)(nil)).Elem()
+}
+
+func (i GetPSQLBackupLocationV2BackupLocationArgs) ToGetPSQLBackupLocationV2BackupLocationOutput() GetPSQLBackupLocationV2BackupLocationOutput {
+	return i.ToGetPSQLBackupLocationV2BackupLocationOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupLocationV2BackupLocationArgs) ToGetPSQLBackupLocationV2BackupLocationOutputWithContext(ctx context.Context) GetPSQLBackupLocationV2BackupLocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupLocationV2BackupLocationOutput)
+}
+
+// GetPSQLBackupLocationV2BackupLocationArrayInput is an input type that accepts GetPSQLBackupLocationV2BackupLocationArray and GetPSQLBackupLocationV2BackupLocationArrayOutput values.
+// You can construct a concrete instance of `GetPSQLBackupLocationV2BackupLocationArrayInput` via:
+//
+//	GetPSQLBackupLocationV2BackupLocationArray{ GetPSQLBackupLocationV2BackupLocationArgs{...} }
+type GetPSQLBackupLocationV2BackupLocationArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupLocationV2BackupLocationArrayOutput() GetPSQLBackupLocationV2BackupLocationArrayOutput
+	ToGetPSQLBackupLocationV2BackupLocationArrayOutputWithContext(context.Context) GetPSQLBackupLocationV2BackupLocationArrayOutput
+}
+
+type GetPSQLBackupLocationV2BackupLocationArray []GetPSQLBackupLocationV2BackupLocationInput
+
+func (GetPSQLBackupLocationV2BackupLocationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupLocationV2BackupLocation)(nil)).Elem()
+}
+
+func (i GetPSQLBackupLocationV2BackupLocationArray) ToGetPSQLBackupLocationV2BackupLocationArrayOutput() GetPSQLBackupLocationV2BackupLocationArrayOutput {
+	return i.ToGetPSQLBackupLocationV2BackupLocationArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupLocationV2BackupLocationArray) ToGetPSQLBackupLocationV2BackupLocationArrayOutputWithContext(ctx context.Context) GetPSQLBackupLocationV2BackupLocationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupLocationV2BackupLocationArrayOutput)
+}
+
+type GetPSQLBackupLocationV2BackupLocationOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupLocationV2BackupLocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupLocationV2BackupLocation)(nil)).Elem()
+}
+
+func (o GetPSQLBackupLocationV2BackupLocationOutput) ToGetPSQLBackupLocationV2BackupLocationOutput() GetPSQLBackupLocationV2BackupLocationOutput {
+	return o
+}
+
+func (o GetPSQLBackupLocationV2BackupLocationOutput) ToGetPSQLBackupLocationV2BackupLocationOutputWithContext(ctx context.Context) GetPSQLBackupLocationV2BackupLocationOutput {
+	return o
+}
+
+// The ID (UUID) of the backup location.
+func (o GetPSQLBackupLocationV2BackupLocationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupLocationV2BackupLocation) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetPSQLBackupLocationV2BackupLocationOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupLocationV2BackupLocation) string { return v.Location }).(pulumi.StringOutput)
+}
+
+type GetPSQLBackupLocationV2BackupLocationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupLocationV2BackupLocationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupLocationV2BackupLocation)(nil)).Elem()
+}
+
+func (o GetPSQLBackupLocationV2BackupLocationArrayOutput) ToGetPSQLBackupLocationV2BackupLocationArrayOutput() GetPSQLBackupLocationV2BackupLocationArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupLocationV2BackupLocationArrayOutput) ToGetPSQLBackupLocationV2BackupLocationArrayOutputWithContext(ctx context.Context) GetPSQLBackupLocationV2BackupLocationArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupLocationV2BackupLocationArrayOutput) Index(i pulumi.IntInput) GetPSQLBackupLocationV2BackupLocationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLBackupLocationV2BackupLocation {
+		return vs[0].([]GetPSQLBackupLocationV2BackupLocation)[vs[1].(int)]
+	}).(GetPSQLBackupLocationV2BackupLocationOutput)
+}
+
 type GetPSQLBackupsClusterBackup struct {
 	// The unique ID of the cluster.
 	//
@@ -5016,6 +6332,157 @@ func (o GetPSQLBackupsClusterBackupMetadataArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLBackupsClusterBackupMetadata {
 		return vs[0].([]GetPSQLBackupsClusterBackupMetadata)[vs[1].(int)]
 	}).(GetPSQLBackupsClusterBackupMetadataOutput)
+}
+
+type GetPSQLBackupsV2Backup struct {
+	// [string] The ID (UUID) of the cluster to filter backups by.
+	ClusterId string `pulumi:"clusterId"`
+	// The earliest point in time to which the cluster can be restored.
+	EarliestRecoveryTargetTime string `pulumi:"earliestRecoveryTargetTime"`
+	// The ID (UUID) of the backup.
+	Id string `pulumi:"id"`
+	// Whether the backup is active.
+	IsActive bool `pulumi:"isActive"`
+	// The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+	LatestRecoveryTargetTime string `pulumi:"latestRecoveryTargetTime"`
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// The PostgreSQL version of the cluster when the backup was created.
+	PostgresClusterVersion string `pulumi:"postgresClusterVersion"`
+}
+
+// GetPSQLBackupsV2BackupInput is an input type that accepts GetPSQLBackupsV2BackupArgs and GetPSQLBackupsV2BackupOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsV2BackupInput` via:
+//
+//	GetPSQLBackupsV2BackupArgs{...}
+type GetPSQLBackupsV2BackupInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsV2BackupOutput() GetPSQLBackupsV2BackupOutput
+	ToGetPSQLBackupsV2BackupOutputWithContext(context.Context) GetPSQLBackupsV2BackupOutput
+}
+
+type GetPSQLBackupsV2BackupArgs struct {
+	// [string] The ID (UUID) of the cluster to filter backups by.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The earliest point in time to which the cluster can be restored.
+	EarliestRecoveryTargetTime pulumi.StringInput `pulumi:"earliestRecoveryTargetTime"`
+	// The ID (UUID) of the backup.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether the backup is active.
+	IsActive pulumi.BoolInput `pulumi:"isActive"`
+	// The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+	LatestRecoveryTargetTime pulumi.StringInput `pulumi:"latestRecoveryTargetTime"`
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The PostgreSQL version of the cluster when the backup was created.
+	PostgresClusterVersion pulumi.StringInput `pulumi:"postgresClusterVersion"`
+}
+
+func (GetPSQLBackupsV2BackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsV2Backup)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsV2BackupArgs) ToGetPSQLBackupsV2BackupOutput() GetPSQLBackupsV2BackupOutput {
+	return i.ToGetPSQLBackupsV2BackupOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsV2BackupArgs) ToGetPSQLBackupsV2BackupOutputWithContext(ctx context.Context) GetPSQLBackupsV2BackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsV2BackupOutput)
+}
+
+// GetPSQLBackupsV2BackupArrayInput is an input type that accepts GetPSQLBackupsV2BackupArray and GetPSQLBackupsV2BackupArrayOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsV2BackupArrayInput` via:
+//
+//	GetPSQLBackupsV2BackupArray{ GetPSQLBackupsV2BackupArgs{...} }
+type GetPSQLBackupsV2BackupArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsV2BackupArrayOutput() GetPSQLBackupsV2BackupArrayOutput
+	ToGetPSQLBackupsV2BackupArrayOutputWithContext(context.Context) GetPSQLBackupsV2BackupArrayOutput
+}
+
+type GetPSQLBackupsV2BackupArray []GetPSQLBackupsV2BackupInput
+
+func (GetPSQLBackupsV2BackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsV2Backup)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsV2BackupArray) ToGetPSQLBackupsV2BackupArrayOutput() GetPSQLBackupsV2BackupArrayOutput {
+	return i.ToGetPSQLBackupsV2BackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsV2BackupArray) ToGetPSQLBackupsV2BackupArrayOutputWithContext(ctx context.Context) GetPSQLBackupsV2BackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsV2BackupArrayOutput)
+}
+
+type GetPSQLBackupsV2BackupOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsV2BackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsV2Backup)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsV2BackupOutput) ToGetPSQLBackupsV2BackupOutput() GetPSQLBackupsV2BackupOutput {
+	return o
+}
+
+func (o GetPSQLBackupsV2BackupOutput) ToGetPSQLBackupsV2BackupOutputWithContext(ctx context.Context) GetPSQLBackupsV2BackupOutput {
+	return o
+}
+
+// [string] The ID (UUID) of the cluster to filter backups by.
+func (o GetPSQLBackupsV2BackupOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The earliest point in time to which the cluster can be restored.
+func (o GetPSQLBackupsV2BackupOutput) EarliestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.EarliestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the backup.
+func (o GetPSQLBackupsV2BackupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the backup is active.
+func (o GetPSQLBackupsV2BackupOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) bool { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+func (o GetPSQLBackupsV2BackupOutput) LatestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.LatestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetPSQLBackupsV2BackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The PostgreSQL version of the cluster when the backup was created.
+func (o GetPSQLBackupsV2BackupOutput) PostgresClusterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.PostgresClusterVersion }).(pulumi.StringOutput)
+}
+
+type GetPSQLBackupsV2BackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsV2BackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsV2Backup)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsV2BackupArrayOutput) ToGetPSQLBackupsV2BackupArrayOutput() GetPSQLBackupsV2BackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsV2BackupArrayOutput) ToGetPSQLBackupsV2BackupArrayOutputWithContext(ctx context.Context) GetPSQLBackupsV2BackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsV2BackupArrayOutput) Index(i pulumi.IntInput) GetPSQLBackupsV2BackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLBackupsV2Backup {
+		return vs[0].([]GetPSQLBackupsV2Backup)[vs[1].(int)]
+	}).(GetPSQLBackupsV2BackupOutput)
 }
 
 type GetPSQLClusterConnection struct {
@@ -5442,6 +6909,768 @@ func (o GetPSQLClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetPSQLClusterMaintenanceWindowOutput)
 }
 
+type GetPSQLClusterV2Backup struct {
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location string `pulumi:"location"`
+	// How many days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// GetPSQLClusterV2BackupInput is an input type that accepts GetPSQLClusterV2BackupArgs and GetPSQLClusterV2BackupOutput values.
+// You can construct a concrete instance of `GetPSQLClusterV2BackupInput` via:
+//
+//	GetPSQLClusterV2BackupArgs{...}
+type GetPSQLClusterV2BackupInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterV2BackupOutput() GetPSQLClusterV2BackupOutput
+	ToGetPSQLClusterV2BackupOutputWithContext(context.Context) GetPSQLClusterV2BackupOutput
+}
+
+type GetPSQLClusterV2BackupArgs struct {
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location pulumi.StringInput `pulumi:"location"`
+	// How many days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (GetPSQLClusterV2BackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (i GetPSQLClusterV2BackupArgs) ToGetPSQLClusterV2BackupOutput() GetPSQLClusterV2BackupOutput {
+	return i.ToGetPSQLClusterV2BackupOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterV2BackupArgs) ToGetPSQLClusterV2BackupOutputWithContext(ctx context.Context) GetPSQLClusterV2BackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterV2BackupOutput)
+}
+
+type GetPSQLClusterV2BackupOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterV2BackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Backup)(nil)).Elem()
+}
+
+func (o GetPSQLClusterV2BackupOutput) ToGetPSQLClusterV2BackupOutput() GetPSQLClusterV2BackupOutput {
+	return o
+}
+
+func (o GetPSQLClusterV2BackupOutput) ToGetPSQLClusterV2BackupOutputWithContext(ctx context.Context) GetPSQLClusterV2BackupOutput {
+	return o
+}
+
+// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+//
+// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+func (o GetPSQLClusterV2BackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Backup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// How many days cluster backups are retained.
+func (o GetPSQLClusterV2BackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Backup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type GetPSQLClusterV2Connections struct {
+	// The datacenter the cluster is connected to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId string `pulumi:"lanId"`
+	// The IP and netmask assigned to the cluster primary instance.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetPSQLClusterV2ConnectionsInput is an input type that accepts GetPSQLClusterV2ConnectionsArgs and GetPSQLClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `GetPSQLClusterV2ConnectionsInput` via:
+//
+//	GetPSQLClusterV2ConnectionsArgs{...}
+type GetPSQLClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterV2ConnectionsOutput() GetPSQLClusterV2ConnectionsOutput
+	ToGetPSQLClusterV2ConnectionsOutputWithContext(context.Context) GetPSQLClusterV2ConnectionsOutput
+}
+
+type GetPSQLClusterV2ConnectionsArgs struct {
+	// The datacenter the cluster is connected to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The IP and netmask assigned to the cluster primary instance.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetPSQLClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (i GetPSQLClusterV2ConnectionsArgs) ToGetPSQLClusterV2ConnectionsOutput() GetPSQLClusterV2ConnectionsOutput {
+	return i.ToGetPSQLClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterV2ConnectionsArgs) ToGetPSQLClusterV2ConnectionsOutputWithContext(ctx context.Context) GetPSQLClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterV2ConnectionsOutput)
+}
+
+type GetPSQLClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Connections)(nil)).Elem()
+}
+
+func (o GetPSQLClusterV2ConnectionsOutput) ToGetPSQLClusterV2ConnectionsOutput() GetPSQLClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o GetPSQLClusterV2ConnectionsOutput) ToGetPSQLClusterV2ConnectionsOutputWithContext(ctx context.Context) GetPSQLClusterV2ConnectionsOutput {
+	return o
+}
+
+// The datacenter the cluster is connected to.
+func (o GetPSQLClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID the cluster is connected to.
+func (o GetPSQLClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The IP and netmask assigned to the cluster primary instance.
+func (o GetPSQLClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetPSQLClusterV2Instances struct {
+	// The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count int `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// GetPSQLClusterV2InstancesInput is an input type that accepts GetPSQLClusterV2InstancesArgs and GetPSQLClusterV2InstancesOutput values.
+// You can construct a concrete instance of `GetPSQLClusterV2InstancesInput` via:
+//
+//	GetPSQLClusterV2InstancesArgs{...}
+type GetPSQLClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterV2InstancesOutput() GetPSQLClusterV2InstancesOutput
+	ToGetPSQLClusterV2InstancesOutputWithContext(context.Context) GetPSQLClusterV2InstancesOutput
+}
+
+type GetPSQLClusterV2InstancesArgs struct {
+	// The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count pulumi.IntInput `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (GetPSQLClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (i GetPSQLClusterV2InstancesArgs) ToGetPSQLClusterV2InstancesOutput() GetPSQLClusterV2InstancesOutput {
+	return i.ToGetPSQLClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterV2InstancesArgs) ToGetPSQLClusterV2InstancesOutputWithContext(ctx context.Context) GetPSQLClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterV2InstancesOutput)
+}
+
+type GetPSQLClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2Instances)(nil)).Elem()
+}
+
+func (o GetPSQLClusterV2InstancesOutput) ToGetPSQLClusterV2InstancesOutput() GetPSQLClusterV2InstancesOutput {
+	return o
+}
+
+func (o GetPSQLClusterV2InstancesOutput) ToGetPSQLClusterV2InstancesOutputWithContext(ctx context.Context) GetPSQLClusterV2InstancesOutput {
+	return o
+}
+
+// The number of CPU cores per instance.
+func (o GetPSQLClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The total number of instances in the cluster (one primary and n-1 secondary).
+func (o GetPSQLClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The amount of memory per instance in gigabytes (GB).
+func (o GetPSQLClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The amount of storage per instance in gigabytes (GB).
+func (o GetPSQLClusterV2InstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2Instances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type GetPSQLClusterV2MaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetPSQLClusterV2MaintenanceWindowInput is an input type that accepts GetPSQLClusterV2MaintenanceWindowArgs and GetPSQLClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetPSQLClusterV2MaintenanceWindowInput` via:
+//
+//	GetPSQLClusterV2MaintenanceWindowArgs{...}
+type GetPSQLClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterV2MaintenanceWindowOutput() GetPSQLClusterV2MaintenanceWindowOutput
+	ToGetPSQLClusterV2MaintenanceWindowOutputWithContext(context.Context) GetPSQLClusterV2MaintenanceWindowOutput
+}
+
+type GetPSQLClusterV2MaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetPSQLClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetPSQLClusterV2MaintenanceWindowArgs) ToGetPSQLClusterV2MaintenanceWindowOutput() GetPSQLClusterV2MaintenanceWindowOutput {
+	return i.ToGetPSQLClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterV2MaintenanceWindowArgs) ToGetPSQLClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterV2MaintenanceWindowOutput)
+}
+
+type GetPSQLClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetPSQLClusterV2MaintenanceWindowOutput) ToGetPSQLClusterV2MaintenanceWindowOutput() GetPSQLClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o GetPSQLClusterV2MaintenanceWindowOutput) ToGetPSQLClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetPSQLClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetPSQLClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetPSQLClustersV2Cluster struct {
+	// Backup configuration of the cluster.
+	Backup GetPSQLClustersV2ClusterBackup `pulumi:"backup"`
+	// How database connections are managed and reused.
+	ConnectionPooler string `pulumi:"connectionPooler"`
+	// Connection information of the PostgreSQL cluster.
+	Connections GetPSQLClustersV2ClusterConnections `pulumi:"connections"`
+	// Human-readable description of the cluster.
+	Description string `pulumi:"description"`
+	// The DNS name used to access the cluster.
+	DnsName string `pulumi:"dnsName"`
+	// The ID (UUID) of the cluster.
+	Id string `pulumi:"id"`
+	// The instance configuration for the PostgreSQL cluster.
+	Instances GetPSQLClustersV2ClusterInstances `pulumi:"instances"`
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// Whether the collection and reporting of logs is enabled for this cluster.
+	LogsEnabled bool `pulumi:"logsEnabled"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow GetPSQLClustersV2ClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// Whether the collection and reporting of metrics is enabled for this cluster.
+	MetricsEnabled bool `pulumi:"metricsEnabled"`
+	// [string] Filters clusters by name. Matches cluster names that contain the provided string.
+	Name string `pulumi:"name"`
+	// Replication mode across the instances.
+	ReplicationMode string `pulumi:"replicationMode"`
+	// The PostgreSQL version of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetPSQLClustersV2ClusterInput is an input type that accepts GetPSQLClustersV2ClusterArgs and GetPSQLClustersV2ClusterOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterInput` via:
+//
+//	GetPSQLClustersV2ClusterArgs{...}
+type GetPSQLClustersV2ClusterInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterOutput() GetPSQLClustersV2ClusterOutput
+	ToGetPSQLClustersV2ClusterOutputWithContext(context.Context) GetPSQLClustersV2ClusterOutput
+}
+
+type GetPSQLClustersV2ClusterArgs struct {
+	// Backup configuration of the cluster.
+	Backup GetPSQLClustersV2ClusterBackupInput `pulumi:"backup"`
+	// How database connections are managed and reused.
+	ConnectionPooler pulumi.StringInput `pulumi:"connectionPooler"`
+	// Connection information of the PostgreSQL cluster.
+	Connections GetPSQLClustersV2ClusterConnectionsInput `pulumi:"connections"`
+	// Human-readable description of the cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The DNS name used to access the cluster.
+	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// The ID (UUID) of the cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The instance configuration for the PostgreSQL cluster.
+	Instances GetPSQLClustersV2ClusterInstancesInput `pulumi:"instances"`
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Whether the collection and reporting of logs is enabled for this cluster.
+	LogsEnabled pulumi.BoolInput `pulumi:"logsEnabled"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow GetPSQLClustersV2ClusterMaintenanceWindowInput `pulumi:"maintenanceWindow"`
+	// Whether the collection and reporting of metrics is enabled for this cluster.
+	MetricsEnabled pulumi.BoolInput `pulumi:"metricsEnabled"`
+	// [string] Filters clusters by name. Matches cluster names that contain the provided string.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Replication mode across the instances.
+	ReplicationMode pulumi.StringInput `pulumi:"replicationMode"`
+	// The PostgreSQL version of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetPSQLClustersV2ClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2Cluster)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterArgs) ToGetPSQLClustersV2ClusterOutput() GetPSQLClustersV2ClusterOutput {
+	return i.ToGetPSQLClustersV2ClusterOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterArgs) ToGetPSQLClustersV2ClusterOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterOutput)
+}
+
+// GetPSQLClustersV2ClusterArrayInput is an input type that accepts GetPSQLClustersV2ClusterArray and GetPSQLClustersV2ClusterArrayOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterArrayInput` via:
+//
+//	GetPSQLClustersV2ClusterArray{ GetPSQLClustersV2ClusterArgs{...} }
+type GetPSQLClustersV2ClusterArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterArrayOutput() GetPSQLClustersV2ClusterArrayOutput
+	ToGetPSQLClustersV2ClusterArrayOutputWithContext(context.Context) GetPSQLClustersV2ClusterArrayOutput
+}
+
+type GetPSQLClustersV2ClusterArray []GetPSQLClustersV2ClusterInput
+
+func (GetPSQLClustersV2ClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClustersV2Cluster)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterArray) ToGetPSQLClustersV2ClusterArrayOutput() GetPSQLClustersV2ClusterArrayOutput {
+	return i.ToGetPSQLClustersV2ClusterArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterArray) ToGetPSQLClustersV2ClusterArrayOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterArrayOutput)
+}
+
+type GetPSQLClustersV2ClusterOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2Cluster)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterOutput) ToGetPSQLClustersV2ClusterOutput() GetPSQLClustersV2ClusterOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterOutput) ToGetPSQLClustersV2ClusterOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterOutput {
+	return o
+}
+
+// Backup configuration of the cluster.
+func (o GetPSQLClustersV2ClusterOutput) Backup() GetPSQLClustersV2ClusterBackupOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) GetPSQLClustersV2ClusterBackup { return v.Backup }).(GetPSQLClustersV2ClusterBackupOutput)
+}
+
+// How database connections are managed and reused.
+func (o GetPSQLClustersV2ClusterOutput) ConnectionPooler() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.ConnectionPooler }).(pulumi.StringOutput)
+}
+
+// Connection information of the PostgreSQL cluster.
+func (o GetPSQLClustersV2ClusterOutput) Connections() GetPSQLClustersV2ClusterConnectionsOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) GetPSQLClustersV2ClusterConnections { return v.Connections }).(GetPSQLClustersV2ClusterConnectionsOutput)
+}
+
+// Human-readable description of the cluster.
+func (o GetPSQLClustersV2ClusterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The DNS name used to access the cluster.
+func (o GetPSQLClustersV2ClusterOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.DnsName }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the cluster.
+func (o GetPSQLClustersV2ClusterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The instance configuration for the PostgreSQL cluster.
+func (o GetPSQLClustersV2ClusterOutput) Instances() GetPSQLClustersV2ClusterInstancesOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) GetPSQLClustersV2ClusterInstances { return v.Instances }).(GetPSQLClustersV2ClusterInstancesOutput)
+}
+
+// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetPSQLClustersV2ClusterOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Whether the collection and reporting of logs is enabled for this cluster.
+func (o GetPSQLClustersV2ClusterOutput) LogsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) bool { return v.LogsEnabled }).(pulumi.BoolOutput)
+}
+
+// A weekly 4 hour-long window, during which maintenance might occur.
+func (o GetPSQLClustersV2ClusterOutput) MaintenanceWindow() GetPSQLClustersV2ClusterMaintenanceWindowOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) GetPSQLClustersV2ClusterMaintenanceWindow { return v.MaintenanceWindow }).(GetPSQLClustersV2ClusterMaintenanceWindowOutput)
+}
+
+// Whether the collection and reporting of metrics is enabled for this cluster.
+func (o GetPSQLClustersV2ClusterOutput) MetricsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) bool { return v.MetricsEnabled }).(pulumi.BoolOutput)
+}
+
+// [string] Filters clusters by name. Matches cluster names that contain the provided string.
+func (o GetPSQLClustersV2ClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Replication mode across the instances.
+func (o GetPSQLClustersV2ClusterOutput) ReplicationMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.ReplicationMode }).(pulumi.StringOutput)
+}
+
+// The PostgreSQL version of the cluster.
+func (o GetPSQLClustersV2ClusterOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetPSQLClustersV2ClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClustersV2Cluster)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterArrayOutput) ToGetPSQLClustersV2ClusterArrayOutput() GetPSQLClustersV2ClusterArrayOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterArrayOutput) ToGetPSQLClustersV2ClusterArrayOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterArrayOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterArrayOutput) Index(i pulumi.IntInput) GetPSQLClustersV2ClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLClustersV2Cluster {
+		return vs[0].([]GetPSQLClustersV2Cluster)[vs[1].(int)]
+	}).(GetPSQLClustersV2ClusterOutput)
+}
+
+type GetPSQLClustersV2ClusterBackup struct {
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// How many days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// GetPSQLClustersV2ClusterBackupInput is an input type that accepts GetPSQLClustersV2ClusterBackupArgs and GetPSQLClustersV2ClusterBackupOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterBackupInput` via:
+//
+//	GetPSQLClustersV2ClusterBackupArgs{...}
+type GetPSQLClustersV2ClusterBackupInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterBackupOutput() GetPSQLClustersV2ClusterBackupOutput
+	ToGetPSQLClustersV2ClusterBackupOutputWithContext(context.Context) GetPSQLClustersV2ClusterBackupOutput
+}
+
+type GetPSQLClustersV2ClusterBackupArgs struct {
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// How many days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (GetPSQLClustersV2ClusterBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterBackup)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterBackupArgs) ToGetPSQLClustersV2ClusterBackupOutput() GetPSQLClustersV2ClusterBackupOutput {
+	return i.ToGetPSQLClustersV2ClusterBackupOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterBackupArgs) ToGetPSQLClustersV2ClusterBackupOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterBackupOutput)
+}
+
+type GetPSQLClustersV2ClusterBackupOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterBackup)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterBackupOutput) ToGetPSQLClustersV2ClusterBackupOutput() GetPSQLClustersV2ClusterBackupOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterBackupOutput) ToGetPSQLClustersV2ClusterBackupOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterBackupOutput {
+	return o
+}
+
+// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetPSQLClustersV2ClusterBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// How many days cluster backups are retained.
+func (o GetPSQLClustersV2ClusterBackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterBackup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type GetPSQLClustersV2ClusterConnections struct {
+	// The datacenter the cluster is connected to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId string `pulumi:"lanId"`
+	// The IP and netmask assigned to the cluster primary instance.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetPSQLClustersV2ClusterConnectionsInput is an input type that accepts GetPSQLClustersV2ClusterConnectionsArgs and GetPSQLClustersV2ClusterConnectionsOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterConnectionsInput` via:
+//
+//	GetPSQLClustersV2ClusterConnectionsArgs{...}
+type GetPSQLClustersV2ClusterConnectionsInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterConnectionsOutput() GetPSQLClustersV2ClusterConnectionsOutput
+	ToGetPSQLClustersV2ClusterConnectionsOutputWithContext(context.Context) GetPSQLClustersV2ClusterConnectionsOutput
+}
+
+type GetPSQLClustersV2ClusterConnectionsArgs struct {
+	// The datacenter the cluster is connected to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The IP and netmask assigned to the cluster primary instance.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetPSQLClustersV2ClusterConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterConnections)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterConnectionsArgs) ToGetPSQLClustersV2ClusterConnectionsOutput() GetPSQLClustersV2ClusterConnectionsOutput {
+	return i.ToGetPSQLClustersV2ClusterConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterConnectionsArgs) ToGetPSQLClustersV2ClusterConnectionsOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterConnectionsOutput)
+}
+
+type GetPSQLClustersV2ClusterConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterConnections)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterConnectionsOutput) ToGetPSQLClustersV2ClusterConnectionsOutput() GetPSQLClustersV2ClusterConnectionsOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterConnectionsOutput) ToGetPSQLClustersV2ClusterConnectionsOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterConnectionsOutput {
+	return o
+}
+
+// The datacenter the cluster is connected to.
+func (o GetPSQLClustersV2ClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID the cluster is connected to.
+func (o GetPSQLClustersV2ClusterConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterConnections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The IP and netmask assigned to the cluster primary instance.
+func (o GetPSQLClustersV2ClusterConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterConnections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetPSQLClustersV2ClusterInstances struct {
+	// The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count int `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// GetPSQLClustersV2ClusterInstancesInput is an input type that accepts GetPSQLClustersV2ClusterInstancesArgs and GetPSQLClustersV2ClusterInstancesOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterInstancesInput` via:
+//
+//	GetPSQLClustersV2ClusterInstancesArgs{...}
+type GetPSQLClustersV2ClusterInstancesInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterInstancesOutput() GetPSQLClustersV2ClusterInstancesOutput
+	ToGetPSQLClustersV2ClusterInstancesOutputWithContext(context.Context) GetPSQLClustersV2ClusterInstancesOutput
+}
+
+type GetPSQLClustersV2ClusterInstancesArgs struct {
+	// The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count pulumi.IntInput `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (GetPSQLClustersV2ClusterInstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterInstances)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterInstancesArgs) ToGetPSQLClustersV2ClusterInstancesOutput() GetPSQLClustersV2ClusterInstancesOutput {
+	return i.ToGetPSQLClustersV2ClusterInstancesOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterInstancesArgs) ToGetPSQLClustersV2ClusterInstancesOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterInstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterInstancesOutput)
+}
+
+type GetPSQLClustersV2ClusterInstancesOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterInstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterInstances)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterInstancesOutput) ToGetPSQLClustersV2ClusterInstancesOutput() GetPSQLClustersV2ClusterInstancesOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterInstancesOutput) ToGetPSQLClustersV2ClusterInstancesOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterInstancesOutput {
+	return o
+}
+
+// The number of CPU cores per instance.
+func (o GetPSQLClustersV2ClusterInstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterInstances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The total number of instances in the cluster (one primary and n-1 secondary).
+func (o GetPSQLClustersV2ClusterInstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterInstances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The amount of memory per instance in gigabytes (GB).
+func (o GetPSQLClustersV2ClusterInstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterInstances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The amount of storage per instance in gigabytes (GB).
+func (o GetPSQLClustersV2ClusterInstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterInstances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type GetPSQLClustersV2ClusterMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetPSQLClustersV2ClusterMaintenanceWindowInput is an input type that accepts GetPSQLClustersV2ClusterMaintenanceWindowArgs and GetPSQLClustersV2ClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetPSQLClustersV2ClusterMaintenanceWindowInput` via:
+//
+//	GetPSQLClustersV2ClusterMaintenanceWindowArgs{...}
+type GetPSQLClustersV2ClusterMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetPSQLClustersV2ClusterMaintenanceWindowOutput() GetPSQLClustersV2ClusterMaintenanceWindowOutput
+	ToGetPSQLClustersV2ClusterMaintenanceWindowOutputWithContext(context.Context) GetPSQLClustersV2ClusterMaintenanceWindowOutput
+}
+
+type GetPSQLClustersV2ClusterMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetPSQLClustersV2ClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetPSQLClustersV2ClusterMaintenanceWindowArgs) ToGetPSQLClustersV2ClusterMaintenanceWindowOutput() GetPSQLClustersV2ClusterMaintenanceWindowOutput {
+	return i.ToGetPSQLClustersV2ClusterMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClustersV2ClusterMaintenanceWindowArgs) ToGetPSQLClustersV2ClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClustersV2ClusterMaintenanceWindowOutput)
+}
+
+type GetPSQLClustersV2ClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClustersV2ClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClustersV2ClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetPSQLClustersV2ClusterMaintenanceWindowOutput) ToGetPSQLClustersV2ClusterMaintenanceWindowOutput() GetPSQLClustersV2ClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetPSQLClustersV2ClusterMaintenanceWindowOutput) ToGetPSQLClustersV2ClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClustersV2ClusterMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetPSQLClustersV2ClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetPSQLClustersV2ClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClustersV2ClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
 type GetPSQLDatabasesDatabase struct {
 	// [string] The ID of the database.
 	Id string `pulumi:"id"`
@@ -5557,6 +7786,139 @@ func (o GetPSQLDatabasesDatabaseArrayOutput) Index(i pulumi.IntInput) GetPSQLDat
 	}).(GetPSQLDatabasesDatabaseOutput)
 }
 
+type GetPSQLVersionsV2Version struct {
+	// List of versions that this version can be upgraded to.
+	CanUpgradeTos []string `pulumi:"canUpgradeTos"`
+	// Additional information about the version status.
+	Comment string `pulumi:"comment"`
+	// The ID (UUID) of the PostgreSQL version.
+	Id string `pulumi:"id"`
+	// The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+	Status string `pulumi:"status"`
+	// The PostgreSQL version string.
+	Version string `pulumi:"version"`
+}
+
+// GetPSQLVersionsV2VersionInput is an input type that accepts GetPSQLVersionsV2VersionArgs and GetPSQLVersionsV2VersionOutput values.
+// You can construct a concrete instance of `GetPSQLVersionsV2VersionInput` via:
+//
+//	GetPSQLVersionsV2VersionArgs{...}
+type GetPSQLVersionsV2VersionInput interface {
+	pulumi.Input
+
+	ToGetPSQLVersionsV2VersionOutput() GetPSQLVersionsV2VersionOutput
+	ToGetPSQLVersionsV2VersionOutputWithContext(context.Context) GetPSQLVersionsV2VersionOutput
+}
+
+type GetPSQLVersionsV2VersionArgs struct {
+	// List of versions that this version can be upgraded to.
+	CanUpgradeTos pulumi.StringArrayInput `pulumi:"canUpgradeTos"`
+	// Additional information about the version status.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// The ID (UUID) of the PostgreSQL version.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+	Status pulumi.StringInput `pulumi:"status"`
+	// The PostgreSQL version string.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetPSQLVersionsV2VersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLVersionsV2Version)(nil)).Elem()
+}
+
+func (i GetPSQLVersionsV2VersionArgs) ToGetPSQLVersionsV2VersionOutput() GetPSQLVersionsV2VersionOutput {
+	return i.ToGetPSQLVersionsV2VersionOutputWithContext(context.Background())
+}
+
+func (i GetPSQLVersionsV2VersionArgs) ToGetPSQLVersionsV2VersionOutputWithContext(ctx context.Context) GetPSQLVersionsV2VersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLVersionsV2VersionOutput)
+}
+
+// GetPSQLVersionsV2VersionArrayInput is an input type that accepts GetPSQLVersionsV2VersionArray and GetPSQLVersionsV2VersionArrayOutput values.
+// You can construct a concrete instance of `GetPSQLVersionsV2VersionArrayInput` via:
+//
+//	GetPSQLVersionsV2VersionArray{ GetPSQLVersionsV2VersionArgs{...} }
+type GetPSQLVersionsV2VersionArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLVersionsV2VersionArrayOutput() GetPSQLVersionsV2VersionArrayOutput
+	ToGetPSQLVersionsV2VersionArrayOutputWithContext(context.Context) GetPSQLVersionsV2VersionArrayOutput
+}
+
+type GetPSQLVersionsV2VersionArray []GetPSQLVersionsV2VersionInput
+
+func (GetPSQLVersionsV2VersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLVersionsV2Version)(nil)).Elem()
+}
+
+func (i GetPSQLVersionsV2VersionArray) ToGetPSQLVersionsV2VersionArrayOutput() GetPSQLVersionsV2VersionArrayOutput {
+	return i.ToGetPSQLVersionsV2VersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLVersionsV2VersionArray) ToGetPSQLVersionsV2VersionArrayOutputWithContext(ctx context.Context) GetPSQLVersionsV2VersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLVersionsV2VersionArrayOutput)
+}
+
+type GetPSQLVersionsV2VersionOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLVersionsV2VersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLVersionsV2Version)(nil)).Elem()
+}
+
+func (o GetPSQLVersionsV2VersionOutput) ToGetPSQLVersionsV2VersionOutput() GetPSQLVersionsV2VersionOutput {
+	return o
+}
+
+func (o GetPSQLVersionsV2VersionOutput) ToGetPSQLVersionsV2VersionOutputWithContext(ctx context.Context) GetPSQLVersionsV2VersionOutput {
+	return o
+}
+
+// List of versions that this version can be upgraded to.
+func (o GetPSQLVersionsV2VersionOutput) CanUpgradeTos() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPSQLVersionsV2Version) []string { return v.CanUpgradeTos }).(pulumi.StringArrayOutput)
+}
+
+// Additional information about the version status.
+func (o GetPSQLVersionsV2VersionOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLVersionsV2Version) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the PostgreSQL version.
+func (o GetPSQLVersionsV2VersionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLVersionsV2Version) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+func (o GetPSQLVersionsV2VersionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLVersionsV2Version) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The PostgreSQL version string.
+func (o GetPSQLVersionsV2VersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLVersionsV2Version) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetPSQLVersionsV2VersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLVersionsV2VersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLVersionsV2Version)(nil)).Elem()
+}
+
+func (o GetPSQLVersionsV2VersionArrayOutput) ToGetPSQLVersionsV2VersionArrayOutput() GetPSQLVersionsV2VersionArrayOutput {
+	return o
+}
+
+func (o GetPSQLVersionsV2VersionArrayOutput) ToGetPSQLVersionsV2VersionArrayOutputWithContext(ctx context.Context) GetPSQLVersionsV2VersionArrayOutput {
+	return o
+}
+
+func (o GetPSQLVersionsV2VersionArrayOutput) Index(i pulumi.IntInput) GetPSQLVersionsV2VersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLVersionsV2Version {
+		return vs[0].([]GetPSQLVersionsV2Version)[vs[1].(int)]
+	}).(GetPSQLVersionsV2VersionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsPtrInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
@@ -5596,6 +7958,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterFromBackupPtrInput)(nil)).Elem(), PSQLClusterFromBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterMaintenanceWindowInput)(nil)).Elem(), PSQLClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterMaintenanceWindowPtrInput)(nil)).Elem(), PSQLClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2BackupInput)(nil)).Elem(), PSQLClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2BackupPtrInput)(nil)).Elem(), PSQLClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2ConnectionsInput)(nil)).Elem(), PSQLClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2ConnectionsPtrInput)(nil)).Elem(), PSQLClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2CredentialsInput)(nil)).Elem(), PSQLClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2CredentialsPtrInput)(nil)).Elem(), PSQLClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2InstancesInput)(nil)).Elem(), PSQLClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2InstancesPtrInput)(nil)).Elem(), PSQLClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2MaintenanceWindowInput)(nil)).Elem(), PSQLClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2MaintenanceWindowPtrInput)(nil)).Elem(), PSQLClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2RestoreFromBackupInput)(nil)).Elem(), PSQLClusterV2RestoreFromBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2RestoreFromBackupPtrInput)(nil)).Elem(), PSQLClusterV2RestoreFromBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2TimeoutsInput)(nil)).Elem(), PSQLClusterV2TimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2TimeoutsPtrInput)(nil)).Elem(), PSQLClusterV2TimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetCredentialInput)(nil)).Elem(), GetInMemoryDBReplicaSetCredentialArgs{})
@@ -5626,10 +8002,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleInput)(nil)).Elem(), GetMongoUserRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleArrayInput)(nil)).Elem(), GetMongoUserRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupLocationV2BackupLocationInput)(nil)).Elem(), GetPSQLBackupLocationV2BackupLocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupLocationV2BackupLocationArrayInput)(nil)).Elem(), GetPSQLBackupLocationV2BackupLocationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupInput)(nil)).Elem(), GetPSQLBackupsClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupArrayInput)(nil)).Elem(), GetPSQLBackupsClusterBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadataInput)(nil)).Elem(), GetPSQLBackupsClusterBackupMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadataArrayInput)(nil)).Elem(), GetPSQLBackupsClusterBackupMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsV2BackupInput)(nil)).Elem(), GetPSQLBackupsV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsV2BackupArrayInput)(nil)).Elem(), GetPSQLBackupsV2BackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionInput)(nil)).Elem(), GetPSQLClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionArrayInput)(nil)).Elem(), GetPSQLClusterConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionPoolerInput)(nil)).Elem(), GetPSQLClusterConnectionPoolerArgs{})
@@ -5638,8 +8018,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterFromBackupArrayInput)(nil)).Elem(), GetPSQLClusterFromBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterV2BackupInput)(nil)).Elem(), GetPSQLClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterV2ConnectionsInput)(nil)).Elem(), GetPSQLClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterV2InstancesInput)(nil)).Elem(), GetPSQLClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterV2MaintenanceWindowInput)(nil)).Elem(), GetPSQLClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterInput)(nil)).Elem(), GetPSQLClustersV2ClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterArrayInput)(nil)).Elem(), GetPSQLClustersV2ClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterBackupInput)(nil)).Elem(), GetPSQLClustersV2ClusterBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterConnectionsInput)(nil)).Elem(), GetPSQLClustersV2ClusterConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterInstancesInput)(nil)).Elem(), GetPSQLClustersV2ClusterInstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClustersV2ClusterMaintenanceWindowInput)(nil)).Elem(), GetPSQLClustersV2ClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLDatabasesDatabaseInput)(nil)).Elem(), GetPSQLDatabasesDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLDatabasesDatabaseArrayInput)(nil)).Elem(), GetPSQLDatabasesDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLVersionsV2VersionInput)(nil)).Elem(), GetPSQLVersionsV2VersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLVersionsV2VersionArrayInput)(nil)).Elem(), GetPSQLVersionsV2VersionArray{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetCredentialsOutput{})
@@ -5678,6 +8070,20 @@ func init() {
 	pulumi.RegisterOutputType(PSQLClusterFromBackupPtrOutput{})
 	pulumi.RegisterOutputType(PSQLClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(PSQLClusterMaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2BackupOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2BackupPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2ConnectionsPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2CredentialsOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2CredentialsPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2InstancesPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2MaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2RestoreFromBackupOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2RestoreFromBackupPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2TimeoutsOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2TimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetCredentialOutput{})
@@ -5708,10 +8114,14 @@ func init() {
 	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoUserRoleOutput{})
 	pulumi.RegisterOutputType(GetMongoUserRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupLocationV2BackupLocationOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupLocationV2BackupLocationArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupOutput{})
 	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupMetadataOutput{})
 	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsV2BackupOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsV2BackupArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionPoolerOutput{})
@@ -5720,6 +8130,18 @@ func init() {
 	pulumi.RegisterOutputType(GetPSQLClusterFromBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterV2BackupOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterBackupOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterConnectionsOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterInstancesOutput{})
+	pulumi.RegisterOutputType(GetPSQLClustersV2ClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetPSQLDatabasesDatabaseOutput{})
 	pulumi.RegisterOutputType(GetPSQLDatabasesDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLVersionsV2VersionOutput{})
+	pulumi.RegisterOutputType(GetPSQLVersionsV2VersionArrayOutput{})
 }

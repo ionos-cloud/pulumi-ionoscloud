@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Kafka Cluster Topic** on IonosCloud.
+ * Manages a **Kafka Cluster Topic** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

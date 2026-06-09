@@ -206,7 +206,7 @@ class NatGateway(pulumi.CustomResource):
                  public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -264,7 +264,7 @@ class NatGateway(pulumi.CustomResource):
                  args: NatGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
 
         ## Example Usage
 

@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
     public static class GetWireguardGateway
     {
         /// <summary>
-        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
         /// 
         /// ## Example Usage
         /// 
@@ -42,7 +42,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWireguardGatewayResult>("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args ?? new GetWireguardGatewayArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
         /// 
         /// ## Example Usage
         /// 
@@ -71,7 +71,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
             => global::Pulumi.Deployment.Instance.Invoke<GetWireguardGatewayResult>("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args ?? new GetWireguardGatewayInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
         /// 
         /// ## Example Usage
         /// 

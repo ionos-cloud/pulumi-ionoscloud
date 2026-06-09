@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a Load Balancer on IonosCloud.
+ * Manages a Load Balancer on IONOS CLOUD.
  *
  * ## Example Usage
  *

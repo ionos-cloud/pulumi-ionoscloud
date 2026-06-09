@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
 {
     /// <summary>
-    /// Manages a **Kafka Cluster Topic** on IonosCloud.
+    /// Manages a **Kafka Cluster Topic** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

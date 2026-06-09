@@ -359,7 +359,7 @@ class ForwardingRule(pulumi.CustomResource):
                  targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+        Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -490,7 +490,7 @@ class ForwardingRule(pulumi.CustomResource):
                  args: ForwardingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+        Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 

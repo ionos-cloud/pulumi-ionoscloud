@@ -739,7 +739,7 @@ public final class VpnFunctions {
      * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34; pulumi-lang-hcl=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
      *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34; pulumi-lang-hcl=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
      * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`cloud_network_cidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
+     *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`peer_network_cidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
@@ -853,7 +853,7 @@ public final class VpnFunctions {
      * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34; pulumi-lang-hcl=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
      *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34; pulumi-lang-hcl=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
      * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`cloud_network_cidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
+     *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`peer_network_cidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
@@ -967,7 +967,7 @@ public final class VpnFunctions {
      * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34; pulumi-lang-hcl=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
      *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34; pulumi-lang-hcl=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
      * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`cloud_network_cidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
+     *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`peer_network_cidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
@@ -1081,7 +1081,7 @@ public final class VpnFunctions {
      * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34; pulumi-lang-hcl=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
      *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34; pulumi-lang-hcl=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
      * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`cloud_network_cidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
+     *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`peer_network_cidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
@@ -1195,7 +1195,7 @@ public final class VpnFunctions {
      * * &lt;span pulumi-lang-nodejs=&#34;`auth`&#34; pulumi-lang-dotnet=&#34;`Auth`&#34; pulumi-lang-go=&#34;`auth`&#34; pulumi-lang-python=&#34;`auth`&#34; pulumi-lang-yaml=&#34;`auth`&#34; pulumi-lang-java=&#34;`auth`&#34; pulumi-lang-hcl=&#34;`auth`&#34;&gt;`auth`&lt;/span&gt; - Properties with all data needed to define IPSec Authentication.
      *     * &lt;span pulumi-lang-nodejs=&#34;`method`&#34; pulumi-lang-dotnet=&#34;`Method`&#34; pulumi-lang-go=&#34;`method`&#34; pulumi-lang-python=&#34;`method`&#34; pulumi-lang-yaml=&#34;`method`&#34; pulumi-lang-java=&#34;`method`&#34; pulumi-lang-hcl=&#34;`method`&#34;&gt;`method`&lt;/span&gt; - The authentication method to use for IPSec Authentication.
      * * &lt;span pulumi-lang-nodejs=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`CloudNetworkCidrs`&#34; pulumi-lang-go=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-python=&#34;`cloud_network_cidrs`&#34; pulumi-lang-yaml=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-java=&#34;`cloudNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`cloud_network_cidrs`&#34;&gt;`cloudNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
+     *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * * &lt;span pulumi-lang-nodejs=&#34;`peerNetworkCidrs`&#34; pulumi-lang-dotnet=&#34;`PeerNetworkCidrs`&#34; pulumi-lang-go=&#34;`peerNetworkCidrs`&#34; pulumi-lang-python=&#34;`peer_network_cidrs`&#34; pulumi-lang-yaml=&#34;`peerNetworkCidrs`&#34; pulumi-lang-java=&#34;`peerNetworkCidrs`&#34; pulumi-lang-hcl=&#34;`peer_network_cidrs`&#34;&gt;`peerNetworkCidrs`&lt;/span&gt; - The network CIDRs on the &#34;Right&#34; side that are allowed to connect to the IPSec
      *   tunnel. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses.
      * 
@@ -1204,7 +1204,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel", TypeShape.of(GetIpsecTunnelResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1248,7 +1248,7 @@ public final class VpnFunctions {
         return getWireguardGateway(GetWireguardGatewayArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1292,7 +1292,7 @@ public final class VpnFunctions {
         return getWireguardGatewayPlain(GetWireguardGatewayPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1336,7 +1336,7 @@ public final class VpnFunctions {
         return getWireguardGateway(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1380,7 +1380,7 @@ public final class VpnFunctions {
         return getWireguardGatewayPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1424,7 +1424,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1468,7 +1468,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1512,7 +1512,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", TypeShape.of(GetWireguardGatewayResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1557,7 +1557,7 @@ public final class VpnFunctions {
         return getWireguardPeer(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1602,7 +1602,7 @@ public final class VpnFunctions {
         return getWireguardPeerPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1647,7 +1647,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", TypeShape.of(GetWireguardPeerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 
@@ -1692,7 +1692,7 @@ public final class VpnFunctions {
         return Deployment.getInstance().invoke("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", TypeShape.of(GetWireguardPeerResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
      * 
      * ## Example Usage
      * 

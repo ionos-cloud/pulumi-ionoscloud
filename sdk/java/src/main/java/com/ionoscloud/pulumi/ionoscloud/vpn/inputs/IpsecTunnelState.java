@@ -38,7 +38,7 @@ public final class IpsecTunnelState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
      * Maximum items: 20.
      * 
      */
@@ -47,7 +47,7 @@ public final class IpsecTunnelState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
      * Maximum items: 20.
      * 
      */
@@ -235,7 +235,7 @@ public final class IpsecTunnelState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cloudNetworkCidrs [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-         * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+         * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
          * Maximum items: 20.
          * 
          * @return builder
@@ -248,7 +248,7 @@ public final class IpsecTunnelState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cloudNetworkCidrs [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-         * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+         * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
          * Maximum items: 20.
          * 
          * @return builder
@@ -260,7 +260,7 @@ public final class IpsecTunnelState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param cloudNetworkCidrs [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-         * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+         * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
          * Maximum items: 20.
          * 
          * @return builder

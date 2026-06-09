@@ -26,13 +26,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Output<string?> ContractNumber { get; private set; } = null!;
 
         /// <summary>
-        /// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        /// IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         /// </summary>
         [Output("endpoint")]
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// IonosCloud password for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD password for API operations. If token is provided, token is preferred
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -44,7 +44,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Output<string?> S3AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// Region for IONOS Object Storage operations.
+        /// Region for IONOS Contract Owned Object Storage operations.
         /// </summary>
         [Output("s3Region")]
         public Output<string?> S3Region { get; private set; } = null!;
@@ -56,13 +56,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Output<string?> S3SecretKey { get; private set; } = null!;
 
         /// <summary>
-        /// IonosCloud bearer token for API operations.
+        /// IONOS CLOUD bearer token for API operations.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
 
         /// <summary>
-        /// IonosCloud username for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD username for API operations. If token is provided, token is preferred
         /// </summary>
         [Output("username")]
         public Output<string?> Username { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Input<string>? ContractNumber { get; set; }
 
         /// <summary>
-        /// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        /// IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -121,7 +121,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Input<bool>? Insecure { get; set; }
 
         /// <summary>
-        /// IonosCloud password for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD password for API operations. If token is provided, token is preferred
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
@@ -136,7 +136,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Input<string>? S3AccessKey { get; set; }
 
         /// <summary>
-        /// Region for IONOS Object Storage operations.
+        /// Region for IONOS Contract Owned Object Storage operations.
         /// </summary>
         [Input("s3Region")]
         public Input<string>? S3Region { get; set; }
@@ -148,13 +148,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Input<string>? S3SecretKey { get; set; }
 
         /// <summary>
-        /// IonosCloud bearer token for API operations.
+        /// IONOS CLOUD bearer token for API operations.
         /// </summary>
         [Input("token")]
         public Input<string>? Token { get; set; }
 
         /// <summary>
-        /// IonosCloud username for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD username for API operations. If token is provided, token is preferred
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

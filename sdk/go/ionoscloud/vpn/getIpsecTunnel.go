@@ -100,7 +100,7 @@ import (
 // * `auth` - Properties with all data needed to define IPSec Authentication.
 //   - `method` - The authentication method to use for IPSec Authentication.
 //   - `cloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-//     tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+//     tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
 //   - `peerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
 //     tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
 func LookupIpsecTunnel(ctx *pulumi.Context, args *LookupIpsecTunnelArgs, opts ...pulumi.InvokeOption) (*LookupIpsecTunnelResult, error) {

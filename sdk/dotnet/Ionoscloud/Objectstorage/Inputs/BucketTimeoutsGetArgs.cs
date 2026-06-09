@@ -20,7 +20,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage.Inputs
         public Input<string>? Create { get; set; }
 
         /// <summary>
-        /// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        /// [string] Time to wait for the bucket to be deleted. Default is `60m`.
         /// </summary>
         [Input("delete")]
         public Input<string>? Delete { get; set; }

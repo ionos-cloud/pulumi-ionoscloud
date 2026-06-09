@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
+ * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -30,7 +30,8 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.nfs.Cluster("example", {
  *     name: "test",
  *     location: "de/txl",
- *     size: 2,
+ *     size: 2048,
+ *     sizeUnit: "GiB",
  *     nfs: {
  *         minVersion: "4.2",
  *     },
@@ -94,9 +95,13 @@ export class Cluster extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public readonly nfs: pulumi.Output<outputs.nfs.ClusterNfs | undefined>;
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      */
     declare public readonly size: pulumi.Output<number>;
+    /**
+     * The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+     */
+    declare public readonly sizeUnit: pulumi.Output<string>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -116,6 +121,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["nfs"] = state?.nfs;
             resourceInputs["size"] = state?.size;
+            resourceInputs["sizeUnit"] = state?.sizeUnit;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
             if (args?.connections === undefined && !opts.urn) {
@@ -129,6 +135,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["nfs"] = args?.nfs;
             resourceInputs["size"] = args?.size;
+            resourceInputs["sizeUnit"] = args?.sizeUnit;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Cluster.__pulumiType, name, resourceInputs, opts);
@@ -155,9 +162,13 @@ export interface ClusterState {
     name?: pulumi.Input<string | undefined>;
     nfs?: pulumi.Input<inputs.nfs.ClusterNfs | undefined>;
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      */
     size?: pulumi.Input<number | undefined>;
+    /**
+     * The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+     */
+    sizeUnit?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -180,7 +191,11 @@ export interface ClusterArgs {
     name?: pulumi.Input<string | undefined>;
     nfs?: pulumi.Input<inputs.nfs.ClusterNfs | undefined>;
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      */
     size: pulumi.Input<number>;
+    /**
+     * The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+     */
+    sizeUnit?: pulumi.Input<string | undefined>;
 }

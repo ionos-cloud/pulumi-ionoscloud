@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 {
     /// <summary>
-    /// Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+    /// Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
     /// 
     /// ## Import
     /// 

@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages **Groups** and **Group Privileges** on IonosCloud.
+ * Manages **Groups** and **Group Privileges** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

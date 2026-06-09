@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages **IP Failover** groups on IonosCloud.
+ * Manages **IP Failover** groups on IONOS CLOUD.
  *
  * ## Example Usage
  *

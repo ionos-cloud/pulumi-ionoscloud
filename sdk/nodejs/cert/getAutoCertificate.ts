@@ -68,7 +68,7 @@ export interface GetAutoCertificateArgs {
  */
 export interface GetAutoCertificateResult {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     readonly commonName: string;
     readonly id: string;
@@ -84,7 +84,7 @@ export interface GetAutoCertificateResult {
     readonly name: string;
     readonly providerId: string;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     readonly subjectAlternativeNames: string[];
 }

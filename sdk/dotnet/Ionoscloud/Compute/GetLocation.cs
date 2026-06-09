@@ -14,8 +14,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     {
         /// <summary>
         /// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
         /// 
         /// ## Example Usage
         /// 
@@ -41,8 +40,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
         /// 
         /// ## Example Usage
         /// 
@@ -68,8 +66,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
         /// 
         /// ## Example Usage
         /// 
@@ -99,6 +96,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     {
         /// <summary>
         /// A desired feature that the location must be able to provide.
+        /// 
+        /// Either `Name` or `Feature` must be provided. If none is provided, the datasource will return an error.
         /// </summary>
         [Input("feature")]
         public string? Feature { get; set; }
@@ -119,6 +118,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     {
         /// <summary>
         /// A desired feature that the location must be able to provide.
+        /// 
+        /// Either `Name` or `Feature` must be provided. If none is provided, the datasource will return an error.
         /// </summary>
         [Input("feature")]
         public Input<string>? Feature { get; set; }

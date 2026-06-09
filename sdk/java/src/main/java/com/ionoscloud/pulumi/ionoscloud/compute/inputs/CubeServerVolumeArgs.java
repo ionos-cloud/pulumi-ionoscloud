@@ -218,7 +218,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      * @deprecated
      * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34; pulumi-lang-hcl=&#34; ssh_key_path &#34;&gt; sshKeyPath &lt;/span&gt;under server level
@@ -229,7 +229,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
     private @Nullable Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * @return [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      * @deprecated
      * Please use&lt;span pulumi-lang-nodejs=&#34; sshKeyPath &#34; pulumi-lang-dotnet=&#34; SshKeyPath &#34; pulumi-lang-go=&#34; sshKeyPath &#34; pulumi-lang-python=&#34; ssh_key_path &#34; pulumi-lang-yaml=&#34; sshKeyPath &#34; pulumi-lang-java=&#34; sshKeyPath &#34; pulumi-lang-hcl=&#34; ssh_key_path &#34;&gt; sshKeyPath &lt;/span&gt;under server level
@@ -565,7 +565,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -580,7 +580,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -594,7 +594,7 @@ public final class CubeServerVolumeArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 

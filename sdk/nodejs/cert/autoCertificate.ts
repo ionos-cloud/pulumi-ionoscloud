@@ -70,7 +70,7 @@ export class AutoCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     declare public readonly commonName: pulumi.Output<string>;
     /**
@@ -94,7 +94,7 @@ export class AutoCertificate extends pulumi.CustomResource {
      */
     declare public readonly providerId: pulumi.Output<string>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     declare public readonly subjectAlternativeNames: pulumi.Output<string[] | undefined>;
 
@@ -150,7 +150,7 @@ export class AutoCertificate extends pulumi.CustomResource {
  */
 export interface AutoCertificateState {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     commonName?: pulumi.Input<string | undefined>;
     /**
@@ -174,7 +174,7 @@ export interface AutoCertificateState {
      */
     providerId?: pulumi.Input<string | undefined>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -184,7 +184,7 @@ export interface AutoCertificateState {
  */
 export interface AutoCertificateArgs {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     commonName: pulumi.Input<string>;
     /**
@@ -204,7 +204,7 @@ export interface AutoCertificateArgs {
      */
     providerId: pulumi.Input<string>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

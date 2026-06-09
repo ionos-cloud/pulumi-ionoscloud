@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Nat Gateway Rule** on IonosCloud.
+ * Manages a **Nat Gateway Rule** on IONOS CLOUD.
  *
  * ## Example Usage
  *

@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **LAN** on IonosCloud.
+ * Manages a **LAN** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

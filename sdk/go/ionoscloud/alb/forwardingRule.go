@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+// Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
 //
 // ## Example Usage
 //

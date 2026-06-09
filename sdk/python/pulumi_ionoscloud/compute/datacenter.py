@@ -239,7 +239,7 @@ class Datacenter(pulumi.CustomResource):
                  sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -310,7 +310,7 @@ class Datacenter(pulumi.CustomResource):
                  args: DatacenterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IONOS CLOUD.
 
         ## Example Usage
 

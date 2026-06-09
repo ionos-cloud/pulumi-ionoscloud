@@ -18,12 +18,16 @@ public final class GetLocationArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * A desired feature that the location must be able to provide.
      * 
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`feature`&#34; pulumi-lang-dotnet=&#34;`Feature`&#34; pulumi-lang-go=&#34;`feature`&#34; pulumi-lang-python=&#34;`feature`&#34; pulumi-lang-yaml=&#34;`feature`&#34; pulumi-lang-java=&#34;`feature`&#34; pulumi-lang-hcl=&#34;`feature`&#34;&gt;`feature`&lt;/span&gt; must be provided. If none is provided, the datasource will return an error.
+     * 
      */
     @Import(name="feature")
     private @Nullable Output<String> feature;
 
     /**
      * @return A desired feature that the location must be able to provide.
+     * 
+     * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`feature`&#34; pulumi-lang-dotnet=&#34;`Feature`&#34; pulumi-lang-go=&#34;`feature`&#34; pulumi-lang-python=&#34;`feature`&#34; pulumi-lang-yaml=&#34;`feature`&#34; pulumi-lang-java=&#34;`feature`&#34; pulumi-lang-hcl=&#34;`feature`&#34;&gt;`feature`&lt;/span&gt; must be provided. If none is provided, the datasource will return an error.
      * 
      */
     public Optional<Output<String>> feature() {
@@ -73,6 +77,8 @@ public final class GetLocationArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param feature A desired feature that the location must be able to provide.
          * 
+         * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`feature`&#34; pulumi-lang-dotnet=&#34;`Feature`&#34; pulumi-lang-go=&#34;`feature`&#34; pulumi-lang-python=&#34;`feature`&#34; pulumi-lang-yaml=&#34;`feature`&#34; pulumi-lang-java=&#34;`feature`&#34; pulumi-lang-hcl=&#34;`feature`&#34;&gt;`feature`&lt;/span&gt; must be provided. If none is provided, the datasource will return an error.
+         * 
          * @return builder
          * 
          */
@@ -83,6 +89,8 @@ public final class GetLocationArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param feature A desired feature that the location must be able to provide.
+         * 
+         * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`feature`&#34; pulumi-lang-dotnet=&#34;`Feature`&#34; pulumi-lang-go=&#34;`feature`&#34; pulumi-lang-python=&#34;`feature`&#34; pulumi-lang-yaml=&#34;`feature`&#34; pulumi-lang-java=&#34;`feature`&#34; pulumi-lang-hcl=&#34;`feature`&#34;&gt;`feature`&lt;/span&gt; must be provided. If none is provided, the datasource will return an error.
          * 
          * @return builder
          * 

@@ -16,7 +16,7 @@ func GetContractNumber(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:contractNumber")
 }
 
-// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+// IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 func GetEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:endpoint")
 }
@@ -26,7 +26,7 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "ionoscloud:insecure")
 }
 
-// IonosCloud password for API operations. If token is provided, token is preferred
+// IONOS CLOUD password for API operations. If token is provided, token is preferred
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:password")
 }
@@ -41,7 +41,7 @@ func GetS3AccessKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:s3AccessKey")
 }
 
-// Region for IONOS Object Storage operations.
+// Region for IONOS Contract Owned Object Storage operations.
 func GetS3Region(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:s3Region")
 }
@@ -51,12 +51,12 @@ func GetS3SecretKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:s3SecretKey")
 }
 
-// IonosCloud bearer token for API operations.
+// IONOS CLOUD bearer token for API operations.
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:token")
 }
 
-// IonosCloud username for API operations. If token is provided, token is preferred
+// IONOS CLOUD username for API operations. If token is provided, token is preferred
 func GetUsername(ctx *pulumi.Context) string {
 	return config.Get(ctx, "ionoscloud:username")
 }

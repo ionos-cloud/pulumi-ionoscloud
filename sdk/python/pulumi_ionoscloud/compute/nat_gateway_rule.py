@@ -362,7 +362,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Nat Gateway Rule** on IonosCloud.
+        Manages a **Nat Gateway Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -437,7 +437,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  args: NatGatewayRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Nat Gateway Rule** on IonosCloud.
+        Manages a **Nat Gateway Rule** on IONOS CLOUD.
 
         ## Example Usage
 

@@ -80,8 +80,8 @@ class ServerArgs:
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
@@ -377,7 +377,7 @@ class ServerArgs:
     @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -389,7 +389,7 @@ class ServerArgs:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -518,8 +518,8 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
@@ -886,7 +886,7 @@ class _ServerState:
     @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -898,7 +898,7 @@ class _ServerState:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -1048,16 +1048,16 @@ class Server(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -1139,16 +1139,16 @@ class Server(pulumi.CustomResource):
                             netnum=24)["result"],
                         host=30)["result"],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": webserver_ipblock.ips[2],
-                    "targetIp": webserver_ipblock.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": webserver_ipblock.ips[2],
+                    "target_ip": webserver_ipblock.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         ```
 
@@ -1275,8 +1275,8 @@ class Server(pulumi.CustomResource):
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
@@ -1350,16 +1350,16 @@ class Server(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -1441,16 +1441,16 @@ class Server(pulumi.CustomResource):
                             netnum=24)["result"],
                         host=30)["result"],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": webserver_ipblock.ips[2],
-                    "targetIp": webserver_ipblock.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": webserver_ipblock.ips[2],
+                    "target_ip": webserver_ipblock.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         ```
 
@@ -1707,8 +1707,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] type: (Computed)[string] Server usages: * `type` - Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-services/compute-engine/dedicated-core) now named dedicated core, [CUBE](https://docs.ionos.com/cloud/compute-services/cubes) or [VCPU](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server). This property is immutable.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise(dedicated core).
@@ -1953,7 +1953,7 @@ class Server(pulumi.CustomResource):
     @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -1961,7 +1961,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 

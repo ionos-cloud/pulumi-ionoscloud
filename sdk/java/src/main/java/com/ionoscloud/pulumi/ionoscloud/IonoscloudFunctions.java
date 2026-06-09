@@ -18,6 +18,8 @@ import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
 import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
 import com.ionoscloud.pulumi.ionoscloud.inputs.GetKafkaUsersPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+import com.ionoscloud.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetContractsResult;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetDnsReverseRecordResult;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetDnsReverseRecordsResult;
@@ -26,6 +28,7 @@ import com.ionoscloud.pulumi.ionoscloud.outputs.GetGpuServerResult;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetGpusResult;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetKafkaUserCredentialsResult;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetKafkaUsersResult;
+import com.ionoscloud.pulumi.ionoscloud.outputs.GetUserObjectStorageBucketResult;
 import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
@@ -36,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class IonoscloudFunctions {
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -111,7 +114,7 @@ public final class IonoscloudFunctions {
         return getContracts(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -186,7 +189,7 @@ public final class IonoscloudFunctions {
         return getContractsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -261,7 +264,7 @@ public final class IonoscloudFunctions {
         return getContracts(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -336,7 +339,7 @@ public final class IonoscloudFunctions {
         return getContractsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -411,7 +414,7 @@ public final class IonoscloudFunctions {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -486,7 +489,7 @@ public final class IonoscloudFunctions {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -4270,5 +4273,230 @@ public final class IonoscloudFunctions {
      */
     public static CompletableFuture<GetKafkaUsersResult> getKafkaUsersPlain(GetKafkaUsersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:index/getKafkaUsers:getKafkaUsers", TypeShape.of(GetKafkaUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserObjectStorageBucketResult> getUserObjectStorageBucket(GetUserObjectStorageBucketArgs args) {
+        return getUserObjectStorageBucket(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUserObjectStorageBucketResult> getUserObjectStorageBucketPlain(GetUserObjectStorageBucketPlainArgs args) {
+        return getUserObjectStorageBucketPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserObjectStorageBucketResult> getUserObjectStorageBucket(GetUserObjectStorageBucketArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", TypeShape.of(GetUserObjectStorageBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserObjectStorageBucketResult> getUserObjectStorageBucket(GetUserObjectStorageBucketArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", TypeShape.of(GetUserObjectStorageBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.IonoscloudFunctions;
+     * import com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUserObjectStorageBucketResult> getUserObjectStorageBucketPlain(GetUserObjectStorageBucketPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", TypeShape.of(GetUserObjectStorageBucketResult.class), args, Utilities.withVersion(options));
     }
 }

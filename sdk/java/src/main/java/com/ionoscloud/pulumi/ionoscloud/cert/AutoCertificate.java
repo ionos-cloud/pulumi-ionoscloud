@@ -84,14 +84,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ionoscloud:cert/autoCertificate:AutoCertificate")
 public class AutoCertificate extends com.pulumi.resources.CustomResource {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     @Export(name="commonName", refs={String.class}, tree="[0]")
     private Output<String> commonName;
 
     /**
-     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public Output<String> commonName() {
@@ -168,14 +168,14 @@ public class AutoCertificate extends com.pulumi.resources.CustomResource {
         return this.providerId;
     }
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     @Export(name="subjectAlternativeNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> subjectAlternativeNames;
 
     /**
-     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public Output<Optional<List<String>>> subjectAlternativeNames() {

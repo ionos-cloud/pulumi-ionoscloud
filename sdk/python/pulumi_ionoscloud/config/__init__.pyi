@@ -21,7 +21,7 @@ To be set only for reseller accounts. Allows to run terraform on a contract numb
 
 endpoint: Optional[str]
 """
-IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 """
 
 insecure: Optional[bool]
@@ -31,7 +31,7 @@ This field is to be set only for testing purposes. It is not recommended to set 
 
 password: Optional[str]
 """
-IonosCloud password for API operations. If token is provided, token is preferred
+IONOS CLOUD password for API operations. If token is provided, token is preferred
 """
 
 retries: Optional[int]
@@ -43,7 +43,7 @@ Access key for IONOS Object Storage operations.
 
 s3Region: Optional[str]
 """
-Region for IONOS Object Storage operations.
+Region for IONOS Contract Owned Object Storage operations.
 """
 
 s3SecretKey: Optional[str]
@@ -53,11 +53,11 @@ Secret key for IONOS Object Storage operations.
 
 token: Optional[str]
 """
-IonosCloud bearer token for API operations.
+IONOS CLOUD bearer token for API operations.
 """
 
 username: Optional[str]
 """
-IonosCloud username for API operations. If token is provided, token is preferred
+IONOS CLOUD username for API operations. If token is provided, token is preferred
 """
 

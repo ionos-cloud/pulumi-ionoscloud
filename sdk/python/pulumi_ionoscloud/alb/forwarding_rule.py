@@ -369,7 +369,7 @@ class ForwardingRule(pulumi.CustomResource):
                  server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+        Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -475,7 +475,7 @@ class ForwardingRule(pulumi.CustomResource):
                  args: ForwardingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+        Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 

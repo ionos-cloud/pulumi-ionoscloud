@@ -61,7 +61,7 @@ class AwaitableGetContractsResult(GetContractsResult):
 
 def get_contracts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContractsResult:
     """
-    The `contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+    The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
 
     ## Example Usage
 
@@ -117,7 +117,7 @@ def get_contracts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCo
         id=pulumi.get(__ret__, 'id'))
 def get_contracts_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContractsResult]:
     """
-    The `contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+    The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
 
     ## Example Usage
 

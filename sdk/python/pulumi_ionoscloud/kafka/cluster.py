@@ -226,7 +226,7 @@ class Cluster(pulumi.CustomResource):
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
+        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -284,7 +284,7 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
+        Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IONOS CLOUD.
 
         ## Example Usage
 

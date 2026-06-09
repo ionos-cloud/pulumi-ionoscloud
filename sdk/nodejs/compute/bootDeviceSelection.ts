@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages the selection of a boot device for IonosCloud Servers.
+ * Manages the selection of a boot device for IONOS CLOUD Servers.
  *
  * ## Example Usage
  *

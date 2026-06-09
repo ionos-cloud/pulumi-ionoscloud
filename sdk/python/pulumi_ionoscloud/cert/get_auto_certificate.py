@@ -56,7 +56,7 @@ class GetAutoCertificateResult:
     @pulumi.getter(name="commonName")
     def common_name(self) -> _builtins.str:
         """
-        [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         """
         return pulumi.get(self, "common_name")
 
@@ -100,7 +100,7 @@ class GetAutoCertificateResult:
     @pulumi.getter(name="subjectAlternativeNames")
     def subject_alternative_names(self) -> Sequence[_builtins.str]:
         """
-        [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         """
         return pulumi.get(self, "subject_alternative_names")
 

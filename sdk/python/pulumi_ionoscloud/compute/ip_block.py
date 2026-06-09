@@ -190,7 +190,7 @@ class IPBlock(pulumi.CustomResource):
                  size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+        Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
 
         ## Example Usage
 
@@ -227,7 +227,7 @@ class IPBlock(pulumi.CustomResource):
                  args: IPBlockArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+        Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
 
         ## Example Usage
 

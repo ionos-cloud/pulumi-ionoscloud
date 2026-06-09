@@ -196,6 +196,8 @@ class Share(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Share a Datacenter with a Group
+
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
@@ -221,6 +223,32 @@ class Share(pulumi.CustomResource):
             resource_id=example.id,
             edit_privilege=True,
             share_privilege=False)
+        ```
+
+        ### Share a Kubernetes Cluster with Multiple Groups
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.k8s.Cluster("example", name="k8s-example")
+        group1 = ionoscloud.compute.Group("group1",
+            name="Group 1",
+            create_k8s_cluster=True)
+        group2 = ionoscloud.compute.Group("group2",
+            name="Group 2",
+            create_k8s_cluster=True)
+        k8s_share_group1 = ionoscloud.compute.Share("k8s_share_group1",
+            group_id=group1.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=False)
+        k8s_share_group2 = ionoscloud.compute.Share("k8s_share_group2",
+            group_id=group2.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=True,
+            opts = pulumi.ResourceOptions(depends_on=[k8s_share_group1]))
         ```
 
         ## Import
@@ -255,6 +283,8 @@ class Share(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Share a Datacenter with a Group
+
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
@@ -280,6 +310,32 @@ class Share(pulumi.CustomResource):
             resource_id=example.id,
             edit_privilege=True,
             share_privilege=False)
+        ```
+
+        ### Share a Kubernetes Cluster with Multiple Groups
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.k8s.Cluster("example", name="k8s-example")
+        group1 = ionoscloud.compute.Group("group1",
+            name="Group 1",
+            create_k8s_cluster=True)
+        group2 = ionoscloud.compute.Group("group2",
+            name="Group 2",
+            create_k8s_cluster=True)
+        k8s_share_group1 = ionoscloud.compute.Share("k8s_share_group1",
+            group_id=group1.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=False)
+        k8s_share_group2 = ionoscloud.compute.Share("k8s_share_group2",
+            group_id=group2.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=True,
+            opts = pulumi.ResourceOptions(depends_on=[k8s_share_group1]))
         ```
 
         ## Import

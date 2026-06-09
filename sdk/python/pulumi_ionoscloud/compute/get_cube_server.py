@@ -190,7 +190,7 @@ class GetCubeServerResult:
 
     @_builtins.property
     @pulumi.getter(name="templateUuid")
-    def template_uuid(self) -> Optional[_builtins.str]:
+    def template_uuid(self) -> _builtins.str:
         """
         The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         """
@@ -249,7 +249,6 @@ def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
                     id: Optional[_builtins.str] = None,
                     location: Optional[_builtins.str] = None,
                     name: Optional[_builtins.str] = None,
-                    template_uuid: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCubeServerResult:
     """
     The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
@@ -283,14 +282,12 @@ def get_cube_server(datacenter_id: Optional[_builtins.str] = None,
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
-    :param _builtins.str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
     __args__['location'] = location
     __args__['name'] = name
-    __args__['templateUuid'] = template_uuid
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ionoscloud:compute/getCubeServer:getCubeServer', __args__, opts=opts, typ=GetCubeServerResult).value
 
@@ -318,7 +315,6 @@ def get_cube_server_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] 
                            id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                           template_uuid: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCubeServerResult]:
     """
     The [Cube Server data source](https://docs.ionos.com/cloud/compute-services/cubes/overview) can be used to search for and return existing servers.
@@ -352,14 +348,12 @@ def get_cube_server_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] 
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     :param _builtins.str location: Location of that image/snapshot
     :param _builtins.str name: Name of an existing server that you want to search for.
-    :param _builtins.str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
     __args__['id'] = id
     __args__['location'] = location
     __args__['name'] = name
-    __args__['templateUuid'] = template_uuid
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:compute/getCubeServer:getCubeServer', __args__, opts=opts, typ=GetCubeServerResult)
     return __ret__.apply(lambda __response__: GetCubeServerResult(

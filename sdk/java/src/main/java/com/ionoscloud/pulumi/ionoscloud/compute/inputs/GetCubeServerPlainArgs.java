@@ -79,21 +79,6 @@ public final class GetCubeServerPlainArgs extends com.pulumi.resources.InvokeArg
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     * 
-     */
-    @Import(name="templateUuid")
-    private @Nullable String templateUuid;
-
-    /**
-     * @return The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     * 
-     */
-    public Optional<String> templateUuid() {
-        return Optional.ofNullable(this.templateUuid);
-    }
-
     private GetCubeServerPlainArgs() {}
 
     private GetCubeServerPlainArgs(GetCubeServerPlainArgs $) {
@@ -101,7 +86,6 @@ public final class GetCubeServerPlainArgs extends com.pulumi.resources.InvokeArg
         this.id = $.id;
         this.location = $.location;
         this.name = $.name;
-        this.templateUuid = $.templateUuid;
     }
 
     public static Builder builder() {
@@ -165,17 +149,6 @@ public final class GetCubeServerPlainArgs extends com.pulumi.resources.InvokeArg
          */
         public Builder name(@Nullable String name) {
             $.name = name;
-            return this;
-        }
-
-        /**
-         * @param templateUuid The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-         * 
-         * @return builder
-         * 
-         */
-        public Builder templateUuid(@Nullable String templateUuid) {
-            $.templateUuid = templateUuid;
             return this;
         }
 

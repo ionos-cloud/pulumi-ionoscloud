@@ -238,7 +238,7 @@ class Balancer(pulumi.CustomResource):
                  nic_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages a Load Balancer on IonosCloud.
+        Manages a Load Balancer on IONOS CLOUD.
 
         ## Example Usage
 
@@ -318,7 +318,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Load Balancer on IonosCloud.
+        Manages a Load Balancer on IONOS CLOUD.
 
         ## Example Usage
 

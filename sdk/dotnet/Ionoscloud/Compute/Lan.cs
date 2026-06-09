@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **LAN** on IonosCloud.
+    /// Manages a **LAN** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

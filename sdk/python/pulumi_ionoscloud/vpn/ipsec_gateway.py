@@ -318,7 +318,7 @@ class IpsecGateway(pulumi.CustomResource):
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS CLOUD
         infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
         network resources.
 
@@ -383,7 +383,7 @@ class IpsecGateway(pulumi.CustomResource):
                  args: IpsecGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+        An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS CLOUD
         infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
         network resources.
 

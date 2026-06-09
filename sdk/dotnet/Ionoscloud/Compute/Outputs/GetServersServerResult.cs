@@ -28,6 +28,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetServersServerLabelResult> Labels;
         public readonly string? Name;
+        public readonly bool NicMultiQueue;
         public readonly ImmutableArray<Outputs.GetServersServerNicResult> Nics;
         public readonly int Ram;
         public readonly string? TemplateUuid;
@@ -60,6 +61,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             string? name,
 
+            bool nicMultiQueue,
+
             ImmutableArray<Outputs.GetServersServerNicResult> nics,
 
             int ram,
@@ -85,6 +88,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             Id = id;
             Labels = labels;
             Name = name;
+            NicMultiQueue = nicMultiQueue;
             Nics = nics;
             Ram = ram;
             TemplateUuid = templateUuid;

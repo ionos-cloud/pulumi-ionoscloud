@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 /**
  * An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
- * IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+ * IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
  * connections between your network resources.
  * 
  * ## Usage example
@@ -152,7 +152,7 @@ public class IpsecTunnel extends com.pulumi.resources.CustomResource {
     }
     /**
      * [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
      * Maximum items: 20.
      * 
      */
@@ -161,7 +161,7 @@ public class IpsecTunnel extends com.pulumi.resources.CustomResource {
 
     /**
      * @return [list] The network CIDRs on the &#34;Left&#34; side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify &#34;0.0.0.0/0&#34; or &#34;::/0&#34; for all addresses. Minimum items: 1.
      * Maximum items: 20.
      * 
      */

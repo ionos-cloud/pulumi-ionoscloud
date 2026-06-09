@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+ * Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

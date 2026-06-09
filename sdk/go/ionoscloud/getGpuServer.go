@@ -92,8 +92,6 @@ type LookupGpuServerArgs struct {
 	Location *string `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name *string `pulumi:"name"`
-	// The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-	TemplateUuid *string `pulumi:"templateUuid"`
 }
 
 // A collection of values returned by getGpuServer.
@@ -121,8 +119,8 @@ type LookupGpuServerResult struct {
 	Ram               int               `pulumi:"ram"`
 	SecurityGroupsIds []string          `pulumi:"securityGroupsIds"`
 	// The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-	TemplateUuid *string `pulumi:"templateUuid"`
-	Token        string  `pulumi:"token"`
+	TemplateUuid string `pulumi:"templateUuid"`
+	Token        string `pulumi:"token"`
 	// Status of the virtual Machine
 	VmState string `pulumi:"vmState"`
 	// list of
@@ -150,8 +148,6 @@ type LookupGpuServerOutputArgs struct {
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-	TemplateUuid pulumi.StringPtrInput `pulumi:"templateUuid"`
 }
 
 func (LookupGpuServerOutputArgs) ElementType() reflect.Type {
@@ -241,8 +237,8 @@ func (o LookupGpuServerResultOutput) SecurityGroupsIds() pulumi.StringArrayOutpu
 }
 
 // The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-func (o LookupGpuServerResultOutput) TemplateUuid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGpuServerResult) *string { return v.TemplateUuid }).(pulumi.StringPtrOutput)
+func (o LookupGpuServerResultOutput) TemplateUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGpuServerResult) string { return v.TemplateUuid }).(pulumi.StringOutput)
 }
 
 func (o LookupGpuServerResultOutput) Token() pulumi.StringOutput {

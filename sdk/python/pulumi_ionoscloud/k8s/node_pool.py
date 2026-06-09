@@ -739,7 +739,7 @@ class NodePool(pulumi.CustomResource):
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
 
         ## Import
 
@@ -798,7 +798,7 @@ class NodePool(pulumi.CustomResource):
                  args: NodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
 
         ## Import
 

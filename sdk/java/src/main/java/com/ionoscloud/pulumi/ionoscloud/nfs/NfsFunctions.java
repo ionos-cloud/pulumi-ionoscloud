@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class NfsFunctions {
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -62,7 +62,7 @@ public final class NfsFunctions {
         return getCluster(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -105,7 +105,7 @@ public final class NfsFunctions {
         return getClusterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -148,7 +148,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -191,7 +191,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -234,7 +234,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -278,7 +278,7 @@ public final class NfsFunctions {
         return getShare(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -322,7 +322,7 @@ public final class NfsFunctions {
         return getSharePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -366,7 +366,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -410,7 +410,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 

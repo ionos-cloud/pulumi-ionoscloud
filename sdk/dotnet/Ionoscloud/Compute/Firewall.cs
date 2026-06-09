@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a set of **Firewall Rules** on IonosCloud.
+    /// Manages a set of **Firewall Rules** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

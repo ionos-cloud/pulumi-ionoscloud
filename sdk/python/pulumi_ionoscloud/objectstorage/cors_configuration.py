@@ -109,9 +109,7 @@ class CorsConfiguration(pulumi.CustomResource):
                  cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CorsConfigurationCorsRuleArgs', 'CorsConfigurationCorsRuleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages Object Lock Configuration for Buckets on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages Object Lock Configuration for Buckets on IONOS CLOUD.
 
         ## Example Usage
 
@@ -156,9 +154,7 @@ class CorsConfiguration(pulumi.CustomResource):
                  args: CorsConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages Object Lock Configuration for Buckets on IonosCloud.
-
-        ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+        Manages Object Lock Configuration for Buckets on IONOS CLOUD.
 
         ## Example Usage
 

@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Nat Gateway Rule** on IonosCloud.
+ * Manages a **Nat Gateway Rule** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
+// Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IONOS CLOUD.
 //
 // ## Example Usage
 //
@@ -50,7 +50,8 @@ import (
 //			_, err = nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
 //				Name:     pulumi.String("test"),
 //				Location: pulumi.String("de/txl"),
-//				Size:     pulumi.Int(2),
+//				Size:     pulumi.Int(2048),
+//				SizeUnit: pulumi.String("GiB"),
 //				Nfs: &nfs.ClusterNfsArgs{
 //					MinVersion: pulumi.String("4.2"),
 //				},
@@ -88,8 +89,10 @@ type Cluster struct {
 	// The name of the Network File Storage cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	Nfs  ClusterNfsPtrOutput `pulumi:"nfs"`
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+	SizeUnit pulumi.StringOutput `pulumi:"sizeUnit"`
 }
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
@@ -137,8 +140,10 @@ type clusterState struct {
 	// The name of the Network File Storage cluster.
 	Name *string     `pulumi:"name"`
 	Nfs  *ClusterNfs `pulumi:"nfs"`
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size *int `pulumi:"size"`
+	// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+	SizeUnit *string `pulumi:"sizeUnit"`
 }
 
 type ClusterState struct {
@@ -151,8 +156,10 @@ type ClusterState struct {
 	// The name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput
 	Nfs  ClusterNfsPtrInput
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size pulumi.IntPtrInput
+	// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+	SizeUnit pulumi.StringPtrInput
 }
 
 func (ClusterState) ElementType() reflect.Type {
@@ -169,8 +176,10 @@ type clusterArgs struct {
 	// The name of the Network File Storage cluster.
 	Name *string     `pulumi:"name"`
 	Nfs  *ClusterNfs `pulumi:"nfs"`
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size int `pulumi:"size"`
+	// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+	SizeUnit *string `pulumi:"sizeUnit"`
 }
 
 // The set of arguments for constructing a Cluster resource.
@@ -184,8 +193,10 @@ type ClusterArgs struct {
 	// The name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput
 	Nfs  ClusterNfsPtrInput
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size pulumi.IntInput
+	// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+	SizeUnit pulumi.StringPtrInput
 }
 
 func (ClusterArgs) ElementType() reflect.Type {
@@ -296,9 +307,14 @@ func (o ClusterOutput) Nfs() ClusterNfsPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterNfsPtrOutput { return v.Nfs }).(ClusterNfsPtrOutput)
 }
 
-// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 func (o ClusterOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+// The unit of the `size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+func (o ClusterOutput) SizeUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.SizeUnit }).(pulumi.StringOutput)
 }
 
 type ClusterArrayOutput struct{ *pulumi.OutputState }

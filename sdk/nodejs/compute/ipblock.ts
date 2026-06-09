@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+ * Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
  *
  * ## Example Usage
  *

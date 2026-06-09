@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  *             exampleIPBlock.ips[0],
  *             exampleIPBlock.ips[1],
  *         ],
- *         firewall: {
+ *         firewalls: [{
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -83,7 +83,7 @@ import * as utilities from "../utilities";
  *             sourceIp: exampleIPBlock.ips[2],
  *             targetIp: exampleIPBlock.ips[3],
  *             type: "EGRESS",
- *         },
+ *         }],
  *     },
  *     labels: [
  *         {
@@ -186,7 +186,7 @@ import * as utilities from "../utilities";
  *                 host: 30,
  *             }).result,
  *         ],
- *         firewall: {
+ *         firewalls: [{
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -195,7 +195,7 @@ import * as utilities from "../utilities";
  *             sourceIp: webserverIpblock.ips[2],
  *             targetIp: webserverIpblock.ips[3],
  *             type: "EGRESS",
- *         },
+ *         }],
  *     },
  * });
  * ```
@@ -436,13 +436,13 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly securityGroupsIds: pulumi.Output<string[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     declare public readonly sshKeyPaths: pulumi.Output<string[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
     declare public readonly sshKeys: pulumi.Output<string[] | undefined>;
     /**
@@ -659,13 +659,13 @@ export interface ServerState {
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -779,13 +779,13 @@ export interface ServerArgs {
      */
     securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**

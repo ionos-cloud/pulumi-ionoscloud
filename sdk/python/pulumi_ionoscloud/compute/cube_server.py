@@ -66,7 +66,7 @@ class CubeServerArgs:
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -286,7 +286,7 @@ class CubeServerArgs:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -363,7 +363,7 @@ class _CubeServerState:
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input['CubeServerVolumeArgs'] volume: See the Volume section.
@@ -635,7 +635,7 @@ class _CubeServerState:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -704,7 +704,7 @@ class CubeServer(pulumi.CustomResource):
                  volume: pulumi.Input[Optional[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS CLOUD products.
 
         Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
 
@@ -856,7 +856,7 @@ class CubeServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']] volume: See the Volume section.
@@ -868,7 +868,7 @@ class CubeServer(pulumi.CustomResource):
                  args: CubeServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+        A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS CLOUD products.
 
         Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
 
@@ -1132,7 +1132,7 @@ class CubeServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']] volume: See the Volume section.
@@ -1317,7 +1317,7 @@ class CubeServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 

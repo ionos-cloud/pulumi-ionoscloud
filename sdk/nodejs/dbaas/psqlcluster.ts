@@ -159,7 +159,7 @@ export class PSQLCluster extends pulumi.CustomResource {
      */
     declare public readonly storageType: pulumi.Output<string>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      */
     declare public readonly synchronizationMode: pulumi.Output<string>;
 
@@ -319,7 +319,7 @@ export interface PSQLClusterState {
      */
     storageType?: pulumi.Input<string | undefined>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      */
     synchronizationMode?: pulumi.Input<string | undefined>;
 }
@@ -391,7 +391,7 @@ export interface PSQLClusterArgs {
      */
     storageType: pulumi.Input<string>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      */
     synchronizationMode: pulumi.Input<string>;
 }

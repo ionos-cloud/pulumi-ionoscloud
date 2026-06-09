@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+// Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
 //
 // ## Example Usage
 //

@@ -33,14 +33,14 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
 
         :param pulumi.Input[_builtins.str] contract_number: To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        :param pulumi.Input[_builtins.str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        :param pulumi.Input[_builtins.str] endpoint: IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         :param pulumi.Input[_builtins.bool] insecure: This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
-        :param pulumi.Input[_builtins.str] password: IonosCloud password for API operations. If token is provided, token is preferred
+        :param pulumi.Input[_builtins.str] password: IONOS CLOUD password for API operations. If token is provided, token is preferred
         :param pulumi.Input[_builtins.str] s3_access_key: Access key for IONOS Object Storage operations.
-        :param pulumi.Input[_builtins.str] s3_region: Region for IONOS Object Storage operations.
+        :param pulumi.Input[_builtins.str] s3_region: Region for IONOS Contract Owned Object Storage operations.
         :param pulumi.Input[_builtins.str] s3_secret_key: Secret key for IONOS Object Storage operations.
-        :param pulumi.Input[_builtins.str] token: IonosCloud bearer token for API operations.
-        :param pulumi.Input[_builtins.str] username: IonosCloud username for API operations. If token is provided, token is preferred
+        :param pulumi.Input[_builtins.str] token: IONOS CLOUD bearer token for API operations.
+        :param pulumi.Input[_builtins.str] username: IONOS CLOUD username for API operations. If token is provided, token is preferred
         """
         if contract_number is not None:
             pulumi.set(__self__, "contract_number", contract_number)
@@ -82,7 +82,7 @@ class ProviderArgs:
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         """
         return pulumi.get(self, "endpoint")
 
@@ -106,7 +106,7 @@ class ProviderArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        IonosCloud password for API operations. If token is provided, token is preferred
+        IONOS CLOUD password for API operations. If token is provided, token is preferred
         """
         return pulumi.get(self, "password")
 
@@ -140,7 +140,7 @@ class ProviderArgs:
     @pulumi.getter(name="s3Region")
     def s3_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Region for IONOS Object Storage operations.
+        Region for IONOS Contract Owned Object Storage operations.
         """
         return pulumi.get(self, "s3_region")
 
@@ -164,7 +164,7 @@ class ProviderArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        IonosCloud bearer token for API operations.
+        IONOS CLOUD bearer token for API operations.
         """
         return pulumi.get(self, "token")
 
@@ -176,7 +176,7 @@ class ProviderArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        IonosCloud username for API operations. If token is provided, token is preferred
+        IONOS CLOUD username for API operations. If token is provided, token is preferred
         """
         return pulumi.get(self, "username")
 
@@ -212,14 +212,14 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] contract_number: To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        :param pulumi.Input[_builtins.str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        :param pulumi.Input[_builtins.str] endpoint: IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         :param pulumi.Input[_builtins.bool] insecure: This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
-        :param pulumi.Input[_builtins.str] password: IonosCloud password for API operations. If token is provided, token is preferred
+        :param pulumi.Input[_builtins.str] password: IONOS CLOUD password for API operations. If token is provided, token is preferred
         :param pulumi.Input[_builtins.str] s3_access_key: Access key for IONOS Object Storage operations.
-        :param pulumi.Input[_builtins.str] s3_region: Region for IONOS Object Storage operations.
+        :param pulumi.Input[_builtins.str] s3_region: Region for IONOS Contract Owned Object Storage operations.
         :param pulumi.Input[_builtins.str] s3_secret_key: Secret key for IONOS Object Storage operations.
-        :param pulumi.Input[_builtins.str] token: IonosCloud bearer token for API operations.
-        :param pulumi.Input[_builtins.str] username: IonosCloud username for API operations. If token is provided, token is preferred
+        :param pulumi.Input[_builtins.str] token: IONOS CLOUD bearer token for API operations.
+        :param pulumi.Input[_builtins.str] username: IONOS CLOUD username for API operations. If token is provided, token is preferred
         """
         ...
     @overload
@@ -296,7 +296,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         """
         return pulumi.get(self, "endpoint")
 
@@ -304,7 +304,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        IonosCloud password for API operations. If token is provided, token is preferred
+        IONOS CLOUD password for API operations. If token is provided, token is preferred
         """
         return pulumi.get(self, "password")
 
@@ -320,7 +320,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="s3Region")
     def s3_region(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Region for IONOS Object Storage operations.
+        Region for IONOS Contract Owned Object Storage operations.
         """
         return pulumi.get(self, "s3_region")
 
@@ -336,7 +336,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        IonosCloud bearer token for API operations.
+        IONOS CLOUD bearer token for API operations.
         """
         return pulumi.get(self, "token")
 
@@ -344,7 +344,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        IonosCloud username for API operations. If token is provided, token is preferred
+        IONOS CLOUD username for API operations. If token is provided, token is preferred
         """
         return pulumi.get(self, "username")
 

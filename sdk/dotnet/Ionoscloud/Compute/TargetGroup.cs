@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
+    /// Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

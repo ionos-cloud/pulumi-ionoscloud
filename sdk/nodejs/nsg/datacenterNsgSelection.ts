@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Links a Network Security Group to a IonosCloud datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
+ * Links a Network Security Group to a IONOS CLOUD datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
  *
  * ## Example Usage
  *

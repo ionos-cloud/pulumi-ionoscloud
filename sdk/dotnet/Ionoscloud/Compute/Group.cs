@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages **Groups** and **Group Privileges** on IonosCloud.
+    /// Manages **Groups** and **Group Privileges** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

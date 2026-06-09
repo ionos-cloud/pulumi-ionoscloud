@@ -50,6 +50,11 @@ export const getKafkaUsers: typeof import("./getKafkaUsers").getKafkaUsers = nul
 export const getKafkaUsersOutput: typeof import("./getKafkaUsers").getKafkaUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getKafkaUsers","getKafkaUsersOutput"], () => require("./getKafkaUsers"));
 
+export { GetUserObjectStorageBucketArgs, GetUserObjectStorageBucketResult, GetUserObjectStorageBucketOutputArgs } from "./getUserObjectStorageBucket";
+export const getUserObjectStorageBucket: typeof import("./getUserObjectStorageBucket").getUserObjectStorageBucket = null as any;
+export const getUserObjectStorageBucketOutput: typeof import("./getUserObjectStorageBucket").getUserObjectStorageBucketOutput = null as any;
+utilities.lazyLoad(exports, ["getUserObjectStorageBucket","getUserObjectStorageBucketOutput"], () => require("./getUserObjectStorageBucket"));
+
 export { GpuServerArgs, GpuServerState } from "./gpuServer";
 export type GpuServer = import("./gpuServer").GpuServer;
 export const GpuServer: typeof import("./gpuServer").GpuServer = null as any;
@@ -57,6 +62,11 @@ utilities.lazyLoad(exports, ["GpuServer"], () => require("./gpuServer"));
 
 export * from "./provider";
 import { Provider } from "./provider";
+
+export { UserObjectStorageBucketArgs, UserObjectStorageBucketState } from "./userObjectStorageBucket";
+export type UserObjectStorageBucket = import("./userObjectStorageBucket").UserObjectStorageBucket;
+export const UserObjectStorageBucket: typeof import("./userObjectStorageBucket").UserObjectStorageBucket = null as any;
+utilities.lazyLoad(exports, ["UserObjectStorageBucket"], () => require("./userObjectStorageBucket"));
 
 
 // Export sub-modules:
@@ -112,6 +122,8 @@ const _module = {
                 return new DnsReverseRecord(name, <any>undefined, { urn })
             case "ionoscloud:index/gpuServer:GpuServer":
                 return new GpuServer(name, <any>undefined, { urn })
+            case "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket":
+                return new UserObjectStorageBucket(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -119,6 +131,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsReverseRecord", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/gpuServer", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/userObjectStorageBucket", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

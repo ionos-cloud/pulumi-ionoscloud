@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+ * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -135,7 +135,7 @@ export class Balancer extends pulumi.CustomResource {
     /**
      * Specifies the format of the logs.
      */
-    declare public readonly loggingFormat: pulumi.Output<string | undefined>;
+    declare public readonly loggingFormat: pulumi.Output<string>;
     /**
      * [string] A name of that Network Load Balancer.
      */

@@ -95,7 +95,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
+        /// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
         [Obsolete(@"Please use SshKeyPath under server level")]
         public InputList<string> SshKeyPaths

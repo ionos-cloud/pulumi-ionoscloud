@@ -1029,7 +1029,7 @@ class Group(pulumi.CustomResource):
                  user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
+        Manages **Groups** and **Group Privileges** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -1140,7 +1140,7 @@ class Group(pulumi.CustomResource):
                  args: Optional[GroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
+        Manages **Groups** and **Group Privileges** on IONOS CLOUD.
 
         ## Example Usage
 

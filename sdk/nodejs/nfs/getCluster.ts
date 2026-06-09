@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *
@@ -79,12 +79,16 @@ export interface GetClusterResult {
     readonly nfs: outputs.nfs.GetClusterNf[];
     readonly partialMatch?: boolean;
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      */
     readonly size: number;
+    /**
+     * The unit of the `size` attribute. Possible values: `TiB`, `GiB`.
+     */
+    readonly sizeUnit: string;
 }
 /**
- * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *

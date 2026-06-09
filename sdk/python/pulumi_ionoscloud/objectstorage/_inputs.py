@@ -425,7 +425,7 @@ class BucketTimeoutsArgsDict(TypedDict):
     """
     delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    [string] Time to wait for the bucket to be deleted. Default is `10m`.
+    [string] Time to wait for the bucket to be deleted. Default is `60m`.
     """
     read: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -445,7 +445,7 @@ class BucketTimeoutsArgs:
                  update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: [string] Time to wait for the bucket to be created. Default is `10m`.
-        :param pulumi.Input[_builtins.str] delete: [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        :param pulumi.Input[_builtins.str] delete: [string] Time to wait for the bucket to be deleted. Default is `60m`.
         :param pulumi.Input[_builtins.str] read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
@@ -474,7 +474,7 @@ class BucketTimeoutsArgs:
     @pulumi.getter
     def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        [string] Time to wait for the bucket to be deleted. Default is `60m`.
         """
         return pulumi.get(self, "delete")
 

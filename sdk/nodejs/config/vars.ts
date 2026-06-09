@@ -19,7 +19,7 @@ Object.defineProperty(exports, "contractNumber", {
 });
 
 /**
- * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+ * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
  */
 export declare const endpoint: string | undefined;
 Object.defineProperty(exports, "endpoint", {
@@ -41,7 +41,7 @@ Object.defineProperty(exports, "insecure", {
 });
 
 /**
- * IonosCloud password for API operations. If token is provided, token is preferred
+ * IONOS CLOUD password for API operations. If token is provided, token is preferred
  */
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
@@ -71,7 +71,7 @@ Object.defineProperty(exports, "s3AccessKey", {
 });
 
 /**
- * Region for IONOS Object Storage operations.
+ * Region for IONOS Contract Owned Object Storage operations.
  */
 export declare const s3Region: string | undefined;
 Object.defineProperty(exports, "s3Region", {
@@ -93,7 +93,7 @@ Object.defineProperty(exports, "s3SecretKey", {
 });
 
 /**
- * IonosCloud bearer token for API operations.
+ * IONOS CLOUD bearer token for API operations.
  */
 export declare const token: string | undefined;
 Object.defineProperty(exports, "token", {
@@ -104,7 +104,7 @@ Object.defineProperty(exports, "token", {
 });
 
 /**
- * IonosCloud username for API operations. If token is provided, token is preferred
+ * IONOS CLOUD username for API operations. If token is provided, token is preferred
  */
 export declare const username: string | undefined;
 Object.defineProperty(exports, "username", {

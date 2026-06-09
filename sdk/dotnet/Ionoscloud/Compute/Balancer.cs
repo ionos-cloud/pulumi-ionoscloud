@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a Load Balancer on IonosCloud.
+    /// Manages a Load Balancer on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

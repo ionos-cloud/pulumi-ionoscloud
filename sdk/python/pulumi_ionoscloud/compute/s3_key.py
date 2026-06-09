@@ -123,7 +123,7 @@ class S3Key(pulumi.CustomResource):
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an **IONOS Object Storage Key** on IonosCloud.
+        Manages an **IONOS Object Storage Key** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -154,7 +154,7 @@ class S3Key(pulumi.CustomResource):
 
         This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
 
-        ⚠️ **Note:** Due to eventual consistency in the IONOS Cloud API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
+        ⚠️ **Note:** Due to eventual consistency in the IONOS CLOUD API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
         To mitigate this, set the environment variable `IONOS_S3_KEY_CREATION_RETRY=true` to enable automatic retries during S3 key creation. The provider will retry the creation until it succeeds or the configured timeout is reached.
         This is a temporary workaround until the API consistency issue is resolved.
 
@@ -171,7 +171,7 @@ class S3Key(pulumi.CustomResource):
                  args: S3KeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **IONOS Object Storage Key** on IonosCloud.
+        Manages an **IONOS Object Storage Key** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -202,7 +202,7 @@ class S3Key(pulumi.CustomResource):
 
         This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
 
-        ⚠️ **Note:** Due to eventual consistency in the IONOS Cloud API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
+        ⚠️ **Note:** Due to eventual consistency in the IONOS CLOUD API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
         To mitigate this, set the environment variable `IONOS_S3_KEY_CREATION_RETRY=true` to enable automatic retries during S3 key creation. The provider will retry the creation until it succeeds or the configured timeout is reached.
         This is a temporary workaround until the API consistency issue is resolved.
 

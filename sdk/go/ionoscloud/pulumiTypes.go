@@ -1091,6 +1091,181 @@ func (o GpuServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type UserObjectStorageBucketTimeouts struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create *string `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+	Delete *string `pulumi:"delete"`
+	// [string] Time to wait for the bucket read operations. Default is `10m`.
+	Read *string `pulumi:"read"`
+}
+
+// UserObjectStorageBucketTimeoutsInput is an input type that accepts UserObjectStorageBucketTimeoutsArgs and UserObjectStorageBucketTimeoutsOutput values.
+// You can construct a concrete instance of `UserObjectStorageBucketTimeoutsInput` via:
+//
+//	UserObjectStorageBucketTimeoutsArgs{...}
+type UserObjectStorageBucketTimeoutsInput interface {
+	pulumi.Input
+
+	ToUserObjectStorageBucketTimeoutsOutput() UserObjectStorageBucketTimeoutsOutput
+	ToUserObjectStorageBucketTimeoutsOutputWithContext(context.Context) UserObjectStorageBucketTimeoutsOutput
+}
+
+type UserObjectStorageBucketTimeoutsArgs struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// [string] Time to wait for the bucket read operations. Default is `10m`.
+	Read pulumi.StringPtrInput `pulumi:"read"`
+}
+
+func (UserObjectStorageBucketTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserObjectStorageBucketTimeouts)(nil)).Elem()
+}
+
+func (i UserObjectStorageBucketTimeoutsArgs) ToUserObjectStorageBucketTimeoutsOutput() UserObjectStorageBucketTimeoutsOutput {
+	return i.ToUserObjectStorageBucketTimeoutsOutputWithContext(context.Background())
+}
+
+func (i UserObjectStorageBucketTimeoutsArgs) ToUserObjectStorageBucketTimeoutsOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserObjectStorageBucketTimeoutsOutput)
+}
+
+func (i UserObjectStorageBucketTimeoutsArgs) ToUserObjectStorageBucketTimeoutsPtrOutput() UserObjectStorageBucketTimeoutsPtrOutput {
+	return i.ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i UserObjectStorageBucketTimeoutsArgs) ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserObjectStorageBucketTimeoutsOutput).ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(ctx)
+}
+
+// UserObjectStorageBucketTimeoutsPtrInput is an input type that accepts UserObjectStorageBucketTimeoutsArgs, UserObjectStorageBucketTimeoutsPtr and UserObjectStorageBucketTimeoutsPtrOutput values.
+// You can construct a concrete instance of `UserObjectStorageBucketTimeoutsPtrInput` via:
+//
+//	        UserObjectStorageBucketTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type UserObjectStorageBucketTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToUserObjectStorageBucketTimeoutsPtrOutput() UserObjectStorageBucketTimeoutsPtrOutput
+	ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(context.Context) UserObjectStorageBucketTimeoutsPtrOutput
+}
+
+type userObjectStorageBucketTimeoutsPtrType UserObjectStorageBucketTimeoutsArgs
+
+func UserObjectStorageBucketTimeoutsPtr(v *UserObjectStorageBucketTimeoutsArgs) UserObjectStorageBucketTimeoutsPtrInput {
+	return (*userObjectStorageBucketTimeoutsPtrType)(v)
+}
+
+func (*userObjectStorageBucketTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserObjectStorageBucketTimeouts)(nil)).Elem()
+}
+
+func (i *userObjectStorageBucketTimeoutsPtrType) ToUserObjectStorageBucketTimeoutsPtrOutput() UserObjectStorageBucketTimeoutsPtrOutput {
+	return i.ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *userObjectStorageBucketTimeoutsPtrType) ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserObjectStorageBucketTimeoutsPtrOutput)
+}
+
+type UserObjectStorageBucketTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (UserObjectStorageBucketTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserObjectStorageBucketTimeouts)(nil)).Elem()
+}
+
+func (o UserObjectStorageBucketTimeoutsOutput) ToUserObjectStorageBucketTimeoutsOutput() UserObjectStorageBucketTimeoutsOutput {
+	return o
+}
+
+func (o UserObjectStorageBucketTimeoutsOutput) ToUserObjectStorageBucketTimeoutsOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsOutput {
+	return o
+}
+
+func (o UserObjectStorageBucketTimeoutsOutput) ToUserObjectStorageBucketTimeoutsPtrOutput() UserObjectStorageBucketTimeoutsPtrOutput {
+	return o.ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o UserObjectStorageBucketTimeoutsOutput) ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserObjectStorageBucketTimeouts) *UserObjectStorageBucketTimeouts {
+		return &v
+	}).(UserObjectStorageBucketTimeoutsPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o UserObjectStorageBucketTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserObjectStorageBucketTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+func (o UserObjectStorageBucketTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserObjectStorageBucketTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket read operations. Default is `10m`.
+func (o UserObjectStorageBucketTimeoutsOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserObjectStorageBucketTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
+}
+
+type UserObjectStorageBucketTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (UserObjectStorageBucketTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserObjectStorageBucketTimeouts)(nil)).Elem()
+}
+
+func (o UserObjectStorageBucketTimeoutsPtrOutput) ToUserObjectStorageBucketTimeoutsPtrOutput() UserObjectStorageBucketTimeoutsPtrOutput {
+	return o
+}
+
+func (o UserObjectStorageBucketTimeoutsPtrOutput) ToUserObjectStorageBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserObjectStorageBucketTimeoutsPtrOutput {
+	return o
+}
+
+func (o UserObjectStorageBucketTimeoutsPtrOutput) Elem() UserObjectStorageBucketTimeoutsOutput {
+	return o.ApplyT(func(v *UserObjectStorageBucketTimeouts) UserObjectStorageBucketTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret UserObjectStorageBucketTimeouts
+		return ret
+	}).(UserObjectStorageBucketTimeoutsOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o UserObjectStorageBucketTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserObjectStorageBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+func (o UserObjectStorageBucketTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserObjectStorageBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket read operations. Default is `10m`.
+func (o UserObjectStorageBucketTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserObjectStorageBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetContractsContract struct {
 	// The contract number.
 	ContractNumber int `pulumi:"contractNumber"`
@@ -3049,6 +3224,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GpuServerNicFirewallPtrInput)(nil)).Elem(), GpuServerNicFirewallArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GpuServerVolumeInput)(nil)).Elem(), GpuServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GpuServerVolumePtrInput)(nil)).Elem(), GpuServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserObjectStorageBucketTimeoutsInput)(nil)).Elem(), UserObjectStorageBucketTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserObjectStorageBucketTimeoutsPtrInput)(nil)).Elem(), UserObjectStorageBucketTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContractsContractInput)(nil)).Elem(), GetContractsContractArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContractsContractArrayInput)(nil)).Elem(), GetContractsContractArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContractsContractResourceLimitsInput)(nil)).Elem(), GetContractsContractResourceLimitsArgs{})
@@ -3076,6 +3253,8 @@ func init() {
 	pulumi.RegisterOutputType(GpuServerNicFirewallPtrOutput{})
 	pulumi.RegisterOutputType(GpuServerVolumeOutput{})
 	pulumi.RegisterOutputType(GpuServerVolumePtrOutput{})
+	pulumi.RegisterOutputType(UserObjectStorageBucketTimeoutsOutput{})
+	pulumi.RegisterOutputType(UserObjectStorageBucketTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(GetContractsContractOutput{})
 	pulumi.RegisterOutputType(GetContractsContractArrayOutput{})
 	pulumi.RegisterOutputType(GetContractsContractResourceLimitsOutput{})

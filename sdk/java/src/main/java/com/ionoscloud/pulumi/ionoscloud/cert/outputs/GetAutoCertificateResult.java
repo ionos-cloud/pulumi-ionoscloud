@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAutoCertificateResult {
     /**
-     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     private String commonName;
@@ -31,14 +31,14 @@ public final class GetAutoCertificateResult {
     private String name;
     private String providerId;
     /**
-     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     private List<String> subjectAlternativeNames;
 
     private GetAutoCertificateResult() {}
     /**
-     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public String commonName() {
@@ -71,7 +71,7 @@ public final class GetAutoCertificateResult {
         return this.providerId;
     }
     /**
-     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public List<String> subjectAlternativeNames() {
