@@ -7383,23 +7383,6 @@
                 }
             }
         },
-        "ionoscloud:index/UserObjectStorageBucketTimeouts:UserObjectStorageBucketTimeouts": {
-            "properties": {
-                "create": {
-                    "type": "string",
-                    "description": "[string] Time to wait for the bucket to be created. Default is \u003cspan pulumi-lang-nodejs=\"`10m`\" pulumi-lang-dotnet=\"`10m`\" pulumi-lang-go=\"`10m`\" pulumi-lang-python=\"`10m`\" pulumi-lang-yaml=\"`10m`\" pulumi-lang-java=\"`10m`\" pulumi-lang-hcl=\"`10m`\"\u003e`10m`\u003c/span\u003e.\n"
-                },
-                "delete": {
-                    "type": "string",
-                    "description": "[string] Time to wait for the bucket to be deleted. Default is \u003cspan pulumi-lang-nodejs=\"`60m`\" pulumi-lang-dotnet=\"`60m`\" pulumi-lang-go=\"`60m`\" pulumi-lang-python=\"`60m`\" pulumi-lang-yaml=\"`60m`\" pulumi-lang-java=\"`60m`\" pulumi-lang-hcl=\"`60m`\"\u003e`60m`\u003c/span\u003e.\n"
-                },
-                "read": {
-                    "type": "string",
-                    "description": "[string] Time to wait for the bucket read operations. Default is \u003cspan pulumi-lang-nodejs=\"`10m`\" pulumi-lang-dotnet=\"`10m`\" pulumi-lang-go=\"`10m`\" pulumi-lang-python=\"`10m`\" pulumi-lang-yaml=\"`10m`\" pulumi-lang-java=\"`10m`\" pulumi-lang-hcl=\"`10m`\"\u003e`10m`\u003c/span\u003e.\n"
-                }
-            },
-            "type": "object"
-        },
         "ionoscloud:index/getContractsContract:getContractsContract": {
             "properties": {
                 "contractNumber": {
@@ -9709,6 +9692,23 @@
                 "years": {
                     "type": "integer",
                     "description": "[int] The default retention period of the bucket in years.\n\nDays and years are mutually exclusive. You can only specify one of them.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:objectstorage/UserBucketTimeouts:UserBucketTimeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "[string] Time to wait for the bucket to be created. Default is \u003cspan pulumi-lang-nodejs=\"`10m`\" pulumi-lang-dotnet=\"`10m`\" pulumi-lang-go=\"`10m`\" pulumi-lang-python=\"`10m`\" pulumi-lang-yaml=\"`10m`\" pulumi-lang-java=\"`10m`\" pulumi-lang-hcl=\"`10m`\"\u003e`10m`\u003c/span\u003e.\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "[string] Time to wait for the bucket to be deleted. Default is \u003cspan pulumi-lang-nodejs=\"`60m`\" pulumi-lang-dotnet=\"`60m`\" pulumi-lang-go=\"`60m`\" pulumi-lang-python=\"`60m`\" pulumi-lang-yaml=\"`60m`\" pulumi-lang-java=\"`60m`\" pulumi-lang-hcl=\"`60m`\"\u003e`60m`\u003c/span\u003e.\n"
+                },
+                "read": {
+                    "type": "string",
+                    "description": "[string] Time to wait for the bucket read operations. Default is \u003cspan pulumi-lang-nodejs=\"`10m`\" pulumi-lang-dotnet=\"`10m`\" pulumi-lang-go=\"`10m`\" pulumi-lang-python=\"`10m`\" pulumi-lang-yaml=\"`10m`\" pulumi-lang-java=\"`10m`\" pulumi-lang-hcl=\"`10m`\"\u003e`10m`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -17646,109 +17646,6 @@
             },
             "deprecationMessage": "ionoscloud.index/gpuserver.GpuServer has been deprecated in favor of ionoscloud.compute/gpuserver.GPUServer"
         },
-        "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket": {
-            "description": "Manages user-owned IONOS Object Storage Buckets on IonosCloud.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (\u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.UserObjectStorageBucket(\"example\", {\n    name: \"example-user-bucket\",\n    region: \"de\",\n    forceDestroy: true,\n    tags: {\n        environment: \"production\",\n        team: \"platform\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.UserObjectStorageBucket(\"example\",\n    name=\"example-user-bucket\",\n    region=\"de\",\n    force_destroy=True,\n    tags={\n        \"environment\": \"production\",\n        \"team\": \"platform\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.UserObjectStorageBucket(\"example\", new()\n    {\n        Name = \"example-user-bucket\",\n        Region = \"de\",\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"environment\", \"production\" },\n            { \"team\", \"platform\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewUserObjectStorageBucket(ctx, \"example\", \u0026ionoscloud.UserObjectStorageBucketArgs{\n\t\t\tName:         pulumi.String(\"example-user-bucket\"),\n\t\t\tRegion:       pulumi.String(\"de\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"production\"),\n\t\t\t\t\"team\":        pulumi.String(\"platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_userobjectstoragebucket\" \"example\" {\n  name          = \"example-user-bucket\"\n  region        = \"de\"\n  force_destroy = true\n  tags = {\n    \"environment\" = \"production\"\n    \"team\"        = \"platform\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.UserObjectStorageBucket;\nimport com.ionoscloud.pulumi.ionoscloud.UserObjectStorageBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new UserObjectStorageBucket(\"example\", UserObjectStorageBucketArgs.builder()\n            .name(\"example-user-bucket\")\n            .region(\"de\")\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"environment\", \"production\"),\n                Map.entry(\"team\", \"platform\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:UserObjectStorageBucket\n    properties:\n      name: example-user-bucket\n      region: de\n      forceDestroy: true\n      tags:\n        environment: production\n        team: platform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Limitations\n\n- **Region cannot be read back from the API** after import due to a known SDK generator issue with the `GetBucketLocation` response XML model. The region defaults to \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e when importing by bucket name alone. Use the `region:name` import format to specify the correct region explicitly.\n- Tags and sub-resources (versioning, lifecycle, CORS, SSE, website, policy) are not currently supported for user-owned buckets. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e and its associated resources for full feature coverage.\n\n## Import\n\nA bucket must be imported using `region:bucket_name`:\n\n```sh\n$ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example de:my-bucket\n$ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example eu-central-2:my-bucket\n```\n\n",
-            "properties": {
-                "forceDestroy": {
-                    "type": "boolean",
-                    "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
-                },
-                "objectLockEnabled": {
-                    "type": "boolean",
-                    "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
-                },
-                "region": {
-                    "type": "string",
-                    "description": "[string] The region where the bucket is created. Available regions:\n"
-                },
-                "tags": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "A mapping of tags to assign to the bucket.\n"
-                },
-                "timeouts": {
-                    "$ref": "#/types/ionoscloud:index/UserObjectStorageBucketTimeouts:UserObjectStorageBucketTimeouts",
-                    "description": "Timeouts for this resource.\n"
-                }
-            },
-            "required": [
-                "forceDestroy",
-                "name",
-                "objectLockEnabled",
-                "region"
-            ],
-            "inputProperties": {
-                "forceDestroy": {
-                    "type": "boolean",
-                    "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
-                },
-                "objectLockEnabled": {
-                    "type": "boolean",
-                    "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
-                },
-                "region": {
-                    "type": "string",
-                    "description": "[string] The region where the bucket is created. Available regions:\n"
-                },
-                "tags": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "A mapping of tags to assign to the bucket.\n"
-                },
-                "timeouts": {
-                    "$ref": "#/types/ionoscloud:index/UserObjectStorageBucketTimeouts:UserObjectStorageBucketTimeouts",
-                    "description": "Timeouts for this resource.\n"
-                }
-            },
-            "requiredInputs": [
-                "region"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering UserObjectStorageBucket resources.\n",
-                "properties": {
-                    "forceDestroy": {
-                        "type": "boolean",
-                        "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
-                    },
-                    "objectLockEnabled": {
-                        "type": "boolean",
-                        "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
-                    },
-                    "region": {
-                        "type": "string",
-                        "description": "[string] The region where the bucket is created. Available regions:\n"
-                    },
-                    "tags": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "A mapping of tags to assign to the bucket.\n"
-                    },
-                    "timeouts": {
-                        "$ref": "#/types/ionoscloud:index/UserObjectStorageBucketTimeouts:UserObjectStorageBucketTimeouts",
-                        "description": "Timeouts for this resource.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:k8s/cluster:Cluster": {
             "description": "Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.\n\n## Example Usage\n\n### Public cluster\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.k8s.Cluster(\"example\", {\n    name: \"k8sClusterExample\",\n    k8sVersion: \"1.31.2\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00Z\",\n    },\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    s3Buckets: [{\n        name: \"globally_unique_bucket_name\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.k8s.Cluster(\"example\",\n    name=\"k8sClusterExample\",\n    k8s_version=\"1.31.2\",\n    maintenance_window={\n        \"day_of_the_week\": \"Sunday\",\n        \"time\": \"09:00:00Z\",\n    },\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    s3_buckets=[{\n        \"name\": \"globally_unique_bucket_name\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.K8s.Cluster(\"example\", new()\n    {\n        Name = \"k8sClusterExample\",\n        K8sVersion = \"1.31.2\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00Z\",\n        },\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        S3Buckets = new[]\n        {\n            new Ionoscloud.K8s.Inputs.ClusterS3BucketArgs\n            {\n                Name = \"globally_unique_bucket_name\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.NewCluster(ctx, \"example\", \u0026k8s.ClusterArgs{\n\t\t\tName:       pulumi.String(\"k8sClusterExample\"),\n\t\t\tK8sVersion: pulumi.String(\"1.31.2\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00Z\"),\n\t\t\t},\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tS3Buckets: k8s.ClusterS3BucketArray{\n\t\t\t\t\u0026k8s.ClusterS3BucketArgs{\n\t\t\t\t\tName: pulumi.String(\"globally_unique_bucket_name\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_k8s_cluster\" \"example\" {\n  name        = \"k8sClusterExample\"\n  k8s_version = \"1.31.2\"\n  maintenance_window = {\n    day_of_the_week = \"Sunday\"\n    time            = \"09:00:00Z\"\n  }\n  api_subnet_allow_lists = [\"1.2.3.4/32\"]\n  s3_buckets {\n    name = \"globally_unique_bucket_name\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Cluster(\"example\", ClusterArgs.builder()\n            .name(\"k8sClusterExample\")\n            .k8sVersion(\"1.31.2\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00Z\")\n                .build())\n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .s3Buckets(ClusterS3BucketArgs.builder()\n                .name(\"globally_unique_bucket_name\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:k8s:Cluster\n    properties:\n      name: k8sClusterExample\n      k8sVersion: 1.31.2\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00Z\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      s3Buckets:\n        - name: globally_unique_bucket_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Private Cluster\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst testdatacenter = new ionoscloud.compute.Datacenter(\"testdatacenter\", {\n    name: \"example\",\n    location: \"de/fra\",\n    description: \"Test datacenter\",\n});\nconst k8sip = new ionoscloud.compute.IPBlock(\"k8sip\", {\n    location: \"de/fra\",\n    size: 1,\n    name: \"IP Block Private K8s\",\n});\nconst example = new ionoscloud.k8s.Cluster(\"example\", {\n    name: \"k8sClusterExample\",\n    k8sVersion: \"1.31.2\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00Z\",\n    },\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    s3Buckets: [{\n        name: \"globally_unique_bucket_name\",\n    }],\n    location: \"de/fra\",\n    natGatewayIp: k8sip.ips[0],\n    nodeSubnet: \"192.168.0.0/16\",\n    \"public\": false,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\ntestdatacenter = ionoscloud.compute.Datacenter(\"testdatacenter\",\n    name=\"example\",\n    location=\"de/fra\",\n    description=\"Test datacenter\")\nk8sip = ionoscloud.compute.IPBlock(\"k8sip\",\n    location=\"de/fra\",\n    size=1,\n    name=\"IP Block Private K8s\")\nexample = ionoscloud.k8s.Cluster(\"example\",\n    name=\"k8sClusterExample\",\n    k8s_version=\"1.31.2\",\n    maintenance_window={\n        \"day_of_the_week\": \"Sunday\",\n        \"time\": \"09:00:00Z\",\n    },\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    s3_buckets=[{\n        \"name\": \"globally_unique_bucket_name\",\n    }],\n    location=\"de/fra\",\n    nat_gateway_ip=k8sip.ips[0],\n    node_subnet=\"192.168.0.0/16\",\n    public=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testdatacenter = new Ionoscloud.Compute.Datacenter(\"testdatacenter\", new()\n    {\n        Name = \"example\",\n        Location = \"de/fra\",\n        Description = \"Test datacenter\",\n    });\n\n    var k8sip = new Ionoscloud.Compute.IPBlock(\"k8sip\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n        Name = \"IP Block Private K8s\",\n    });\n\n    var example = new Ionoscloud.K8s.Cluster(\"example\", new()\n    {\n        Name = \"k8sClusterExample\",\n        K8sVersion = \"1.31.2\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00Z\",\n        },\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        S3Buckets = new[]\n        {\n            new Ionoscloud.K8s.Inputs.ClusterS3BucketArgs\n            {\n                Name = \"globally_unique_bucket_name\",\n            },\n        },\n        Location = \"de/fra\",\n        NatGatewayIp = k8sip.Ips.Apply(ips =\u003e ips[0]),\n        NodeSubnet = \"192.168.0.0/16\",\n        Public = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := compute.NewDatacenter(ctx, \"testdatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tDescription: pulumi.String(\"Test datacenter\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk8sip, err := compute.NewIPBlock(ctx, \"k8sip\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t\tName:     pulumi.String(\"IP Block Private K8s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k8s.NewCluster(ctx, \"example\", \u0026k8s.ClusterArgs{\n\t\t\tName:       pulumi.String(\"k8sClusterExample\"),\n\t\t\tK8sVersion: pulumi.String(\"1.31.2\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00Z\"),\n\t\t\t},\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tS3Buckets: k8s.ClusterS3BucketArray{\n\t\t\t\t\u0026k8s.ClusterS3BucketArgs{\n\t\t\t\t\tName: pulumi.String(\"globally_unique_bucket_name\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tNatGatewayIp: k8sip.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tNodeSubnet: pulumi.String(\"192.168.0.0/16\"),\n\t\t\tPublic:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_compute_datacenter\" \"testdatacenter\" {\n  name        = \"example\"\n  location    = \"de/fra\"\n  description = \"Test datacenter\"\n}\nresource \"ionoscloud_compute_ipblock\" \"k8sip\" {\n  location = \"de/fra\"\n  size     = 1\n  name     = \"IP Block Private K8s\"\n}\nresource \"ionoscloud_k8s_cluster\" \"example\" {\n  name        = \"k8sClusterExample\"\n  k8s_version = \"1.31.2\"\n  maintenance_window = {\n    day_of_the_week = \"Sunday\"\n    time            = \"09:00:00Z\"\n  }\n  api_subnet_allow_lists = [\"1.2.3.4/32\"]\n  s3_buckets {\n    name = \"globally_unique_bucket_name\"\n  }\n  location       = \"de/fra\"\n  nat_gateway_ip = ionoscloud_compute_ipblock.k8sip.ips[0]\n  node_subnet    = \"192.168.0.0/16\"\n  public         = false\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;\nimport com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;\nimport com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testdatacenter = new Datacenter(\"testdatacenter\", DatacenterArgs.builder()\n            .name(\"example\")\n            .location(\"de/fra\")\n            .description(\"Test datacenter\")\n            .build());\n\n        var k8sip = new IPBlock(\"k8sip\", IPBlockArgs.builder()\n            .location(\"de/fra\")\n            .size(1)\n            .name(\"IP Block Private K8s\")\n            .build());\n\n        var example = new Cluster(\"example\", ClusterArgs.builder()\n            .name(\"k8sClusterExample\")\n            .k8sVersion(\"1.31.2\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00Z\")\n                .build())\n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .s3Buckets(ClusterS3BucketArgs.builder()\n                .name(\"globally_unique_bucket_name\")\n                .build())\n            .location(\"de/fra\")\n            .natGatewayIp(k8sip.ips().applyValue(_ips -\u003e _ips[0]))\n            .nodeSubnet(\"192.168.0.0/16\")\n            .public_(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testdatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      name: example\n      location: de/fra\n      description: Test datacenter\n  k8sip:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n      name: IP Block Private K8s\n  example:\n    type: ionoscloud:k8s:Cluster\n    properties:\n      name: k8sClusterExample\n      k8sVersion: 1.31.2\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00Z\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      s3Buckets:\n        - name: globally_unique_bucket_name\n      location: de/fra\n      natGatewayIp: ${k8sip.ips[0]}\n      nodeSubnet: 192.168.0.0/16\n      public: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Kubernetes Cluster resource can be imported using its `resource id`, e.g.\n\n```sh\nterraform import ionoscloud_k8s_cluster.demo k8s_cluster uuid\n```\n\nThis can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.\n\n⚠️ **_Warning: **During a maintenance window, k8s can update your \u003cspan pulumi-lang-nodejs=\"`k8sVersion`\" pulumi-lang-dotnet=\"`K8sVersion`\" pulumi-lang-go=\"`k8sVersion`\" pulumi-lang-python=\"`k8s_version`\" pulumi-lang-yaml=\"`k8sVersion`\" pulumi-lang-java=\"`k8sVersion`\" pulumi-lang-hcl=\"`k8s_version`\"\u003e`k8sVersion`\u003c/span\u003e if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent\nterraform from doing a downgrade, as downgrading \u003cspan pulumi-lang-nodejs=\"`k8sVersion`\" pulumi-lang-dotnet=\"`K8sVersion`\" pulumi-lang-go=\"`k8sVersion`\" pulumi-lang-python=\"`k8s_version`\" pulumi-lang-yaml=\"`k8sVersion`\" pulumi-lang-java=\"`k8sVersion`\" pulumi-lang-hcl=\"`k8s_version`\"\u003e`k8sVersion`\u003c/span\u003e is not supported._**\n\n",
             "properties": {
@@ -20851,6 +20748,109 @@
                     "restrictPublicBuckets": {
                         "type": "boolean",
                         "description": "[bool] Restricts access to buckets that have public policies. Buckets with policies that grant public access will have their access restricted.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:objectstorage/userBucket:UserBucket": {
+            "description": "Manages user-owned IONOS Object Storage Buckets on IonosCloud.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (\u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstorage.UserBucket(\"example\", {\n    name: \"example-user-bucket\",\n    region: \"de\",\n    forceDestroy: true,\n    tags: {\n        environment: \"production\",\n        team: \"platform\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.UserBucket(\"example\",\n    name=\"example-user-bucket\",\n    region=\"de\",\n    force_destroy=True,\n    tags={\n        \"environment\": \"production\",\n        \"team\": \"platform\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.UserBucket(\"example\", new()\n    {\n        Name = \"example-user-bucket\",\n        Region = \"de\",\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"environment\", \"production\" },\n            { \"team\", \"platform\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.NewUserBucket(ctx, \"example\", \u0026objectstorage.UserBucketArgs{\n\t\t\tName:         pulumi.String(\"example-user-bucket\"),\n\t\t\tRegion:       pulumi.String(\"de\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"production\"),\n\t\t\t\t\"team\":        pulumi.String(\"platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstorage_userbucket\" \"example\" {\n  name          = \"example-user-bucket\"\n  region        = \"de\"\n  force_destroy = true\n  tags = {\n    \"environment\" = \"production\"\n    \"team\"        = \"platform\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucket;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new UserBucket(\"example\", UserBucketArgs.builder()\n            .name(\"example-user-bucket\")\n            .region(\"de\")\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"environment\", \"production\"),\n                Map.entry(\"team\", \"platform\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:UserBucket\n    properties:\n      name: example-user-bucket\n      region: de\n      forceDestroy: true\n      tags:\n        environment: production\n        team: platform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Limitations\n\n- **Region cannot be read back from the API** after import due to a known SDK generator issue with the `GetBucketLocation` response XML model. The region defaults to \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e when importing by bucket name alone. Use the `region:name` import format to specify the correct region explicitly.\n- Tags and sub-resources (versioning, lifecycle, CORS, SSE, website, policy) are not currently supported for user-owned buckets. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e and its associated resources for full feature coverage.\n\n## Import\n\nA bucket must be imported using `region:bucket_name`:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket\n```\n\n",
+            "properties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
+                },
+                "objectLockEnabled": {
+                    "type": "boolean",
+                    "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "[string] The region where the bucket is created. Available regions:\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A mapping of tags to assign to the bucket.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:objectstorage/UserBucketTimeouts:UserBucketTimeouts",
+                    "description": "Timeouts for this resource.\n"
+                }
+            },
+            "required": [
+                "forceDestroy",
+                "name",
+                "objectLockEnabled",
+                "region"
+            ],
+            "inputProperties": {
+                "forceDestroy": {
+                    "type": "boolean",
+                    "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
+                },
+                "objectLockEnabled": {
+                    "type": "boolean",
+                    "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "[string] The region where the bucket is created. Available regions:\n"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A mapping of tags to assign to the bucket.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:objectstorage/UserBucketTimeouts:UserBucketTimeouts",
+                    "description": "Timeouts for this resource.\n"
+                }
+            },
+            "requiredInputs": [
+                "region"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserBucket resources.\n",
+                "properties": {
+                    "forceDestroy": {
+                        "type": "boolean",
+                        "description": "[bool] Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The bucket name. Must be between 3 and 63 characters.\n"
+                    },
+                    "objectLockEnabled": {
+                        "type": "boolean",
+                        "description": "[bool] Whether Object Lock is enabled for the bucket. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e. **Cannot be changed after creation** — changing this value forces a new resource.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "[string] The region where the bucket is created. Available regions:\n"
+                    },
+                    "tags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A mapping of tags to assign to the bucket.\n"
+                    },
+                    "timeouts": {
+                        "$ref": "#/types/ionoscloud:objectstorage/UserBucketTimeouts:UserBucketTimeouts",
+                        "description": "Timeouts for this resource.\n"
                     }
                 },
                 "type": "object"
@@ -26934,63 +26934,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket": {
-            "description": "The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e (contract-owned) for new workloads.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.getUserObjectStorageBucket({\n    name: \"my-bucket\",\n    region: \"de\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_user_object_storage_bucket(name=\"my-bucket\",\n    region=\"de\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetUserObjectStorageBucket.Invoke(new()\n    {\n        Name = \"my-bucket\",\n        Region = \"de\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetUserObjectStorageBucket(ctx, \u0026ionoscloud.LookupUserObjectStorageBucketArgs{\n\t\t\tName:   \"my-bucket\",\n\t\t\tRegion: \"de\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_getuserobjectstoragebucket\" \"example\" {\n  name   = \"my-bucket\"\n  region = \"de\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetUserObjectStorageBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getUserObjectStorageBucket(GetUserObjectStorageBucketArgs.builder()\n            .name(\"my-bucket\")\n            .region(\"de\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:getUserObjectStorageBucket\n      arguments:\n        name: my-bucket\n        region: de\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getUserObjectStorageBucket.\n",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the bucket.\n"
-                    },
-                    "region": {
-                        "type": "string",
-                        "description": "[string] The region where the bucket resides. Valid values: \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e (Frankfurt), `eu-central-2` (Berlin), `eu-south-2` (Logroño). Must match the bucket's actual region.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "name",
-                    "region"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getUserObjectStorageBucket.\n",
-                "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "The name of the bucket.\n",
-                        "type": "string"
-                    },
-                    "objectLockEnabled": {
-                        "description": "Whether Object Lock is enabled for the bucket.\n",
-                        "type": "boolean"
-                    },
-                    "region": {
-                        "description": "The region of the bucket.\n",
-                        "type": "string"
-                    },
-                    "tags": {
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "Tags assigned to the bucket.\n",
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "name",
-                    "objectLockEnabled",
-                    "region",
-                    "tags",
-                    "id"
-                ],
-                "type": "object"
-            }
-        },
         "ionoscloud:k8s/getCluster:getCluster": {
             "description": "The **k8s Cluster data source** can be used to search for and return existing k8s clusters.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n### By ID\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.k8s.getCluster({\n    id: \"cluster_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.k8s.get_cluster(id=\"cluster_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.K8s.GetCluster.Invoke(new()\n    {\n        Id = \"cluster_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.LookupCluster(ctx, \u0026k8s.LookupClusterArgs{\n\t\t\tId: pulumi.StringRef(\"cluster_id\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_k8s_getcluster\" \"example\" {\n  id = \"cluster_id\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.k8s.K8sFunctions;\nimport com.pulumi.ionoscloud.k8s.inputs.GetClusterArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = K8sFunctions.getCluster(GetClusterArgs.builder()\n            .id(\"cluster_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:k8s:getCluster\n      arguments:\n        id: cluster_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.k8s.getCluster({\n    name: \"K8s Cluster Example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.k8s.get_cluster(name=\"K8s Cluster Example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.K8s.GetCluster.Invoke(new()\n    {\n        Name = \"K8s Cluster Example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.LookupCluster(ctx, \u0026k8s.LookupClusterArgs{\n\t\t\tName: pulumi.StringRef(\"K8s Cluster Example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_k8s_getcluster\" \"example\" {\n  name = \"K8s Cluster Example\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.k8s.K8sFunctions;\nimport com.pulumi.ionoscloud.k8s.inputs.GetClusterArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = K8sFunctions.getCluster(GetClusterArgs.builder()\n            .name(\"K8s Cluster Example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:k8s:getCluster\n      arguments:\n        name: K8s Cluster Example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Example of accessing a kubernetes cluster using the user's token\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst testCluster = new ionoscloud.k8s.Cluster(\"test\", {\n    name: \"test_cluster\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Saturday\",\n        time: \"03:58:25Z\",\n    },\n});\nconst test = ionoscloud.k8s.getCluster({\n    name: \"test_cluster\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\ntest_cluster = ionoscloud.k8s.Cluster(\"test\",\n    name=\"test_cluster\",\n    maintenance_window={\n        \"day_of_the_week\": \"Saturday\",\n        \"time\": \"03:58:25Z\",\n    })\ntest = ionoscloud.k8s.get_cluster(name=\"test_cluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testCluster = new Ionoscloud.K8s.Cluster(\"test\", new()\n    {\n        Name = \"test_cluster\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Saturday\",\n            Time = \"03:58:25Z\",\n        },\n    });\n\n    var test = Ionoscloud.K8s.GetCluster.Invoke(new()\n    {\n        Name = \"test_cluster\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.NewCluster(ctx, \"test\", \u0026k8s.ClusterArgs{\n\t\t\tName: pulumi.String(\"test_cluster\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Saturday\"),\n\t\t\t\tTime:         pulumi.String(\"03:58:25Z\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k8s.LookupCluster(ctx, \u0026k8s.LookupClusterArgs{\n\t\t\tName: pulumi.StringRef(\"test_cluster\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_k8s_getcluster\" \"test\" {\n  name = \"test_cluster\"\n}\n\nresource \"ionoscloud_k8s_cluster\" \"test\" {\n  name = \"test_cluster\"\n  maintenance_window = {\n    day_of_the_week = \"Saturday\"\n    time            = \"03:58:25Z\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.K8sFunctions;\nimport com.pulumi.ionoscloud.k8s.inputs.GetClusterArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testCluster = new Cluster(\"testCluster\", ClusterArgs.builder()\n            .name(\"test_cluster\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Saturday\")\n                .time(\"03:58:25Z\")\n                .build())\n            .build());\n\n        final var test = K8sFunctions.getCluster(GetClusterArgs.builder()\n            .name(\"test_cluster\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testCluster:\n    type: ionoscloud:k8s:Cluster\n    name: test\n    properties:\n      name: test_cluster\n      maintenanceWindow:\n        dayOfTheWeek: Saturday\n        time: 03:58:25Z\nvariables:\n  test:\n    fn::invoke:\n      function: ionoscloud:k8s:getCluster\n      arguments:\n        name: test_cluster\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Example of accessing a kubernetes cluster using the token from the config\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst testCluster = new ionoscloud.k8s.Cluster(\"test\", {\n    name: \"test_cluster\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Saturday\",\n        time: \"03:58:25Z\",\n    },\n});\nconst test = ionoscloud.k8s.getCluster({\n    name: \"test_cluster\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\ntest_cluster = ionoscloud.k8s.Cluster(\"test\",\n    name=\"test_cluster\",\n    maintenance_window={\n        \"day_of_the_week\": \"Saturday\",\n        \"time\": \"03:58:25Z\",\n    })\ntest = ionoscloud.k8s.get_cluster(name=\"test_cluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testCluster = new Ionoscloud.K8s.Cluster(\"test\", new()\n    {\n        Name = \"test_cluster\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Saturday\",\n            Time = \"03:58:25Z\",\n        },\n    });\n\n    var test = Ionoscloud.K8s.GetCluster.Invoke(new()\n    {\n        Name = \"test_cluster\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.NewCluster(ctx, \"test\", \u0026k8s.ClusterArgs{\n\t\t\tName: pulumi.String(\"test_cluster\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Saturday\"),\n\t\t\t\tTime:         pulumi.String(\"03:58:25Z\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k8s.LookupCluster(ctx, \u0026k8s.LookupClusterArgs{\n\t\t\tName: pulumi.StringRef(\"test_cluster\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_k8s_getcluster\" \"test\" {\n  name = \"test_cluster\"\n}\n\nresource \"ionoscloud_k8s_cluster\" \"test\" {\n  name = \"test_cluster\"\n  maintenance_window = {\n    day_of_the_week = \"Saturday\"\n    time            = \"03:58:25Z\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;\nimport com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.K8sFunctions;\nimport com.pulumi.ionoscloud.k8s.inputs.GetClusterArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testCluster = new Cluster(\"testCluster\", ClusterArgs.builder()\n            .name(\"test_cluster\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Saturday\")\n                .time(\"03:58:25Z\")\n                .build())\n            .build());\n\n        final var test = K8sFunctions.getCluster(GetClusterArgs.builder()\n            .name(\"test_cluster\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testCluster:\n    type: ionoscloud:k8s:Cluster\n    name: test\n    properties:\n      name: test_cluster\n      maintenanceWindow:\n        dayOfTheWeek: Saturday\n        time: 03:58:25Z\nvariables:\n  test:\n    fn::invoke:\n      function: ionoscloud:k8s:getCluster\n      arguments:\n        name: test_cluster\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\n",
             "inputs": {
@@ -28498,6 +28441,63 @@
                     "commonPrefixes",
                     "keys",
                     "owners",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "ionoscloud:objectstorage/getUserBucket:getUserBucket": {
+            "description": "The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e (contract-owned) for new workloads.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.objectstorage.getUserBucket({\n    name: \"my-bucket\",\n    region: \"de\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.get_user_bucket(name=\"my-bucket\",\n    region=\"de\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.Objectstorage.GetUserBucket.Invoke(new()\n    {\n        Name = \"my-bucket\",\n        Region = \"de\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.LookupUserBucket(ctx, \u0026objectstorage.LookupUserBucketArgs{\n\t\t\tName:   \"my-bucket\",\n\t\t\tRegion: \"de\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_objectstorage_getuserbucket\" \"example\" {\n  name   = \"my-bucket\"\n  region = \"de\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;\nimport com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()\n            .name(\"my-bucket\")\n            .region(\"de\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:objectstorage:getUserBucket\n      arguments:\n        name: my-bucket\n        region: de\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUserBucket.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the bucket.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "[string] The region where the bucket resides. Valid values: \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e (Frankfurt), `eu-central-2` (Berlin), `eu-south-2` (Logroño). Must match the bucket's actual region.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "region"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUserBucket.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The name of the bucket.\n",
+                        "type": "string"
+                    },
+                    "objectLockEnabled": {
+                        "description": "Whether Object Lock is enabled for the bucket.\n",
+                        "type": "boolean"
+                    },
+                    "region": {
+                        "description": "The region of the bucket.\n",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Tags assigned to the bucket.\n",
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "name",
+                    "objectLockEnabled",
+                    "region",
+                    "tags",
                     "id"
                 ],
                 "type": "object"

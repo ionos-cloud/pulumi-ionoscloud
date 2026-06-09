@@ -12,10 +12,13 @@ import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetObjectArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetObjectPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetObjectsArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetObjectsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+import com.ionoscloud.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.GetBucketPolicyResult;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.GetBucketResult;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.GetObjectResult;
 import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.GetObjectsResult;
+import com.ionoscloud.pulumi.ionoscloud.objectstorage.outputs.GetUserBucketResult;
 import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
@@ -918,5 +921,230 @@ public final class ObjectstorageFunctions {
      */
     public static CompletableFuture<GetObjectsResult> getObjectsPlain(GetObjectsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:objectstorage/getObjects:getObjects", TypeShape.of(GetObjectsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
+     * import com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserBucketResult> getUserBucket(GetUserBucketArgs args) {
+        return getUserBucket(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
+     * import com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUserBucketResult> getUserBucketPlain(GetUserBucketPlainArgs args) {
+        return getUserBucketPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
+     * import com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserBucketResult> getUserBucket(GetUserBucketArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:objectstorage/getUserBucket:getUserBucket", TypeShape.of(GetUserBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
+     * import com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUserBucketResult> getUserBucket(GetUserBucketArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:objectstorage/getUserBucket:getUserBucket", TypeShape.of(GetUserBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
+     * 
+     * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. Use &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt; (contract-owned) for new workloads.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.objectstorage.ObjectstorageFunctions;
+     * import com.pulumi.ionoscloud.objectstorage.inputs.GetUserBucketArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = ObjectstorageFunctions.getUserBucket(GetUserBucketArgs.builder()
+     *             .name("my-bucket")
+     *             .region("de")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUserBucketResult> getUserBucketPlain(GetUserBucketPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:objectstorage/getUserBucket:getUserBucket", TypeShape.of(GetUserBucketResult.class), args, Utilities.withVersion(options));
     }
 }

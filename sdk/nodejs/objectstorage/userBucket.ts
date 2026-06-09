@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages user-owned IONOS Object Storage Buckets on IonosCloud.
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
- * const example = new ionoscloud.UserObjectStorageBucket("example", {
+ * const example = new ionoscloud.objectstorage.UserBucket("example", {
  *     name: "example-user-bucket",
  *     region: "de",
  *     forceDestroy: true,
@@ -38,13 +38,13 @@ import * as utilities from "./utilities";
  * A bucket must be imported using `region:bucket_name`:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example de:my-bucket
- * $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example eu-central-2:my-bucket
+ * $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket
+ * $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket
  * ```
  */
-export class UserObjectStorageBucket extends pulumi.CustomResource {
+export class UserBucket extends pulumi.CustomResource {
     /**
-     * Get an existing UserObjectStorageBucket resource's state with the given name, ID, and optional extra
+     * Get an existing UserBucket resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -52,22 +52,22 @@ export class UserObjectStorageBucket extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserObjectStorageBucketState, opts?: pulumi.CustomResourceOptions): UserObjectStorageBucket {
-        return new UserObjectStorageBucket(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UserBucketState, opts?: pulumi.CustomResourceOptions): UserBucket {
+        return new UserBucket(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket';
+    public static readonly __pulumiType = 'ionoscloud:objectstorage/userBucket:UserBucket';
 
     /**
-     * Returns true if the given object is an instance of UserObjectStorageBucket.  This is designed to work even
+     * Returns true if the given object is an instance of UserBucket.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is UserObjectStorageBucket {
+    public static isInstance(obj: any): obj is UserBucket {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === UserObjectStorageBucket.__pulumiType;
+        return obj['__pulumiType'] === UserBucket.__pulumiType;
     }
 
     /**
@@ -93,21 +93,21 @@ export class UserObjectStorageBucket extends pulumi.CustomResource {
     /**
      * Timeouts for this resource.
      */
-    declare public readonly timeouts: pulumi.Output<outputs.UserObjectStorageBucketTimeouts | undefined>;
+    declare public readonly timeouts: pulumi.Output<outputs.objectstorage.UserBucketTimeouts | undefined>;
 
     /**
-     * Create a UserObjectStorageBucket resource with the given unique name, arguments, and options.
+     * Create a UserBucket resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: UserObjectStorageBucketArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: UserObjectStorageBucketArgs | UserObjectStorageBucketState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: UserBucketArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: UserBucketArgs | UserBucketState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as UserObjectStorageBucketState | undefined;
+            const state = argsOrState as UserBucketState | undefined;
             resourceInputs["forceDestroy"] = state?.forceDestroy;
             resourceInputs["name"] = state?.name;
             resourceInputs["objectLockEnabled"] = state?.objectLockEnabled;
@@ -115,7 +115,7 @@ export class UserObjectStorageBucket extends pulumi.CustomResource {
             resourceInputs["tags"] = state?.tags;
             resourceInputs["timeouts"] = state?.timeouts;
         } else {
-            const args = argsOrState as UserObjectStorageBucketArgs | undefined;
+            const args = argsOrState as UserBucketArgs | undefined;
             if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
@@ -127,14 +127,14 @@ export class UserObjectStorageBucket extends pulumi.CustomResource {
             resourceInputs["timeouts"] = args?.timeouts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(UserObjectStorageBucket.__pulumiType, name, resourceInputs, opts);
+        super(UserBucket.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering UserObjectStorageBucket resources.
+ * Input properties used for looking up and filtering UserBucket resources.
  */
-export interface UserObjectStorageBucketState {
+export interface UserBucketState {
     /**
      * [bool] Defaults to `false`. When set to `true`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
      */
@@ -158,13 +158,13 @@ export interface UserObjectStorageBucketState {
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.UserObjectStorageBucketTimeouts | undefined>;
+    timeouts?: pulumi.Input<inputs.objectstorage.UserBucketTimeouts | undefined>;
 }
 
 /**
- * The set of arguments for constructing a UserObjectStorageBucket resource.
+ * The set of arguments for constructing a UserBucket resource.
  */
-export interface UserObjectStorageBucketArgs {
+export interface UserBucketArgs {
     /**
      * [bool] Defaults to `false`. When set to `true`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
      */
@@ -188,5 +188,5 @@ export interface UserObjectStorageBucketArgs {
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.UserObjectStorageBucketTimeouts | undefined>;
+    timeouts?: pulumi.Input<inputs.objectstorage.UserBucketTimeouts | undefined>;
 }

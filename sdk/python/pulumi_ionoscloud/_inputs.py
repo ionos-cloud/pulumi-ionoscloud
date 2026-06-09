@@ -21,8 +21,6 @@ __all__ = [
     'GpuServerNicFirewallArgsDict',
     'GpuServerVolumeArgs',
     'GpuServerVolumeArgsDict',
-    'UserObjectStorageBucketTimeoutsArgs',
-    'UserObjectStorageBucketTimeoutsArgsDict',
     'GetKafkaUserCredentialsTimeoutsArgs',
     'GetKafkaUserCredentialsTimeoutsArgsDict',
     'GetKafkaUsersTimeoutsArgs',
@@ -736,75 +734,6 @@ class GpuServerVolumeArgs:
     @user_data.setter
     def user_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_data", value)
-
-
-class UserObjectStorageBucketTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    """
-    [string] Time to wait for the bucket to be created. Default is `10m`.
-    """
-    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    """
-    [string] Time to wait for the bucket to be deleted. Default is `60m`.
-    """
-    read: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    """
-    [string] Time to wait for the bucket read operations. Default is `10m`.
-    """
-
-@pulumi.input_type
-class UserObjectStorageBucketTimeoutsArgs:
-    def __init__(__self__, *,
-                 create: pulumi.Input[Optional[_builtins.str]] = None,
-                 delete: pulumi.Input[Optional[_builtins.str]] = None,
-                 read: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] create: [string] Time to wait for the bucket to be created. Default is `10m`.
-        :param pulumi.Input[_builtins.str] delete: [string] Time to wait for the bucket to be deleted. Default is `60m`.
-        :param pulumi.Input[_builtins.str] read: [string] Time to wait for the bucket read operations. Default is `10m`.
-        """
-        if create is not None:
-            pulumi.set(__self__, "create", create)
-        if delete is not None:
-            pulumi.set(__self__, "delete", delete)
-        if read is not None:
-            pulumi.set(__self__, "read", read)
-
-    @_builtins.property
-    @pulumi.getter
-    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        [string] Time to wait for the bucket to be created. Default is `10m`.
-        """
-        return pulumi.get(self, "create")
-
-    @create.setter
-    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "create", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        [string] Time to wait for the bucket to be deleted. Default is `60m`.
-        """
-        return pulumi.get(self, "delete")
-
-    @delete.setter
-    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "delete", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def read(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        [string] Time to wait for the bucket read operations. Default is `10m`.
-        """
-        return pulumi.get(self, "read")
-
-    @read.setter
-    def read(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "read", value)
 
 
 class GetKafkaUserCredentialsTimeoutsArgsDict(TypedDict):

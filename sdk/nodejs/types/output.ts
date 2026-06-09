@@ -521,21 +521,6 @@ export interface GpuServerVolume {
     userData: string;
 }
 
-export interface UserObjectStorageBucketTimeouts {
-    /**
-     * [string] Time to wait for the bucket to be created. Default is `10m`.
-     */
-    create?: string;
-    /**
-     * [string] Time to wait for the bucket to be deleted. Default is `60m`.
-     */
-    delete?: string;
-    /**
-     * [string] Time to wait for the bucket read operations. Default is `10m`.
-     */
-    read?: string;
-}
-
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -5367,6 +5352,21 @@ export namespace objectstorage {
          * Days and years are mutually exclusive. You can only specify one of them.
          */
         years?: number;
+    }
+
+    export interface UserBucketTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: string;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
+         */
+        delete?: string;
+        /**
+         * [string] Time to wait for the bucket read operations. Default is `10m`.
+         */
+        read?: string;
     }
 
     export interface WebsiteConfigurationErrorDocument {

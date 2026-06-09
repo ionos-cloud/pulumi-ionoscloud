@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Ionoscloud.Pulumi.Ionoscloud.Outputs
+namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage.Outputs
 {
 
     [OutputType]
-    public sealed class UserObjectStorageBucketTimeouts
+    public sealed class UserBucketTimeouts
     {
         /// <summary>
         /// [string] Time to wait for the bucket to be created. Default is `10m`.
@@ -28,7 +28,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Outputs
         public readonly string? Read;
 
         [OutputConstructor]
-        private UserObjectStorageBucketTimeouts(
+        private UserBucketTimeouts(
             string? create,
 
             string? delete,

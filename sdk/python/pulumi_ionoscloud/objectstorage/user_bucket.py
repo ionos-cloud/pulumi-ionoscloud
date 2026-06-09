@@ -12,30 +12,30 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['UserObjectStorageBucketArgs', 'UserObjectStorageBucket']
+__all__ = ['UserBucketArgs', 'UserBucket']
 
 @pulumi.input_type
-class UserObjectStorageBucketArgs:
+class UserBucketArgs:
     def __init__(__self__, *,
                  region: pulumi.Input[_builtins.str],
                  force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']] = None):
+                 timeouts: pulumi.Input[Optional['UserBucketTimeoutsArgs']] = None):
         """
-        The set of arguments for constructing a UserObjectStorageBucket resource.
+        The set of arguments for constructing a UserBucket resource.
 
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Defaults to `false`. When set to `true`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. Must be between 3 and 63 characters.
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input['UserObjectStorageBucketTimeoutsArgs'] timeouts: Timeouts for this resource.
+        :param pulumi.Input['UserBucketTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
         pulumi.set(__self__, "region", region)
         if force_destroy is not None:
@@ -111,35 +111,35 @@ class UserObjectStorageBucketArgs:
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['UserBucketTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['UserBucketTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
-class _UserObjectStorageBucketState:
+class _UserBucketState:
     def __init__(__self__, *,
                  force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']] = None):
+                 timeouts: pulumi.Input[Optional['UserBucketTimeoutsArgs']] = None):
         """
-        Input properties used for looking up and filtering UserObjectStorageBucket resources.
+        Input properties used for looking up and filtering UserBucket resources.
 
         :param pulumi.Input[_builtins.bool] force_destroy: [bool] Defaults to `false`. When set to `true`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
         :param pulumi.Input[_builtins.str] name: [string] The bucket name. Must be between 3 and 63 characters.
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input['UserObjectStorageBucketTimeoutsArgs'] timeouts: Timeouts for this resource.
+        :param pulumi.Input['UserBucketTimeoutsArgs'] timeouts: Timeouts for this resource.
         """
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
@@ -216,19 +216,19 @@ class _UserObjectStorageBucketState:
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['UserBucketTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: pulumi.Input[Optional['UserObjectStorageBucketTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['UserBucketTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
-@pulumi.type_token("ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket")
-class UserObjectStorageBucket(pulumi.CustomResource):
+@pulumi.type_token("ionoscloud:objectstorage/userBucket:UserBucket")
+class UserBucket(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -238,7 +238,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['UserObjectStorageBucketTimeoutsArgs', 'UserObjectStorageBucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         Manages user-owned IONOS Object Storage Buckets on IonosCloud.
@@ -251,7 +251,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
 
-        example = ionoscloud.UserObjectStorageBucket("example",
+        example = ionoscloud.objectstorage.UserBucket("example",
             name="example-user-bucket",
             region="de",
             force_destroy=True,
@@ -271,8 +271,8 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         A bucket must be imported using `region:bucket_name`:
 
         ```sh
-        $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example de:my-bucket
-        $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example eu-central-2:my-bucket
+        $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket
+        $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket
         ```
 
 
@@ -283,13 +283,13 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['UserObjectStorageBucketTimeoutsArgs', 'UserObjectStorageBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: UserObjectStorageBucketArgs,
+                 args: UserBucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages user-owned IONOS Object Storage Buckets on IonosCloud.
@@ -302,7 +302,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         import pulumi
         import pulumi_ionoscloud as ionoscloud
 
-        example = ionoscloud.UserObjectStorageBucket("example",
+        example = ionoscloud.objectstorage.UserBucket("example",
             name="example-user-bucket",
             region="de",
             force_destroy=True,
@@ -322,18 +322,18 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         A bucket must be imported using `region:bucket_name`:
 
         ```sh
-        $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example de:my-bucket
-        $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example eu-central-2:my-bucket
+        $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket
+        $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket
         ```
 
 
         :param str resource_name: The name of the resource.
-        :param UserObjectStorageBucketArgs args: The arguments to use to populate this resource's properties.
+        :param UserBucketArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(UserObjectStorageBucketArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(UserBucketArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -347,7 +347,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['UserObjectStorageBucketTimeoutsArgs', 'UserObjectStorageBucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -355,7 +355,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = UserObjectStorageBucketArgs.__new__(UserObjectStorageBucketArgs)
+            __props__ = UserBucketArgs.__new__(UserBucketArgs)
 
             __props__.__dict__["force_destroy"] = force_destroy
             __props__.__dict__["name"] = name
@@ -365,8 +365,8 @@ class UserObjectStorageBucket(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["timeouts"] = timeouts
-        super(UserObjectStorageBucket, __self__).__init__(
-            'ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket',
+        super(UserBucket, __self__).__init__(
+            'ionoscloud:objectstorage/userBucket:UserBucket',
             resource_name,
             __props__,
             opts)
@@ -380,9 +380,9 @@ class UserObjectStorageBucket(pulumi.CustomResource):
             object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            timeouts: pulumi.Input[Optional[Union['UserObjectStorageBucketTimeoutsArgs', 'UserObjectStorageBucketTimeoutsArgsDict']]] = None) -> 'UserObjectStorageBucket':
+            timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None) -> 'UserBucket':
         """
-        Get an existing UserObjectStorageBucket resource's state with the given name, id, and optional extra
+        Get an existing UserBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -393,11 +393,11 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['UserObjectStorageBucketTimeoutsArgs', 'UserObjectStorageBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _UserObjectStorageBucketState.__new__(_UserObjectStorageBucketState)
+        __props__ = _UserBucketState.__new__(_UserBucketState)
 
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["name"] = name
@@ -405,7 +405,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["tags"] = tags
         __props__.__dict__["timeouts"] = timeouts
-        return UserObjectStorageBucket(resource_name, opts=opts, __props__=__props__)
+        return UserBucket(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
@@ -449,7 +449,7 @@ class UserObjectStorageBucket(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> pulumi.Output[Optional['outputs.UserObjectStorageBucketTimeouts']]:
+    def timeouts(self) -> pulumi.Output[Optional['outputs.UserBucketTimeouts']]:
         """
         Timeouts for this resource.
         """

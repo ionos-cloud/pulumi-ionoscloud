@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Ionoscloud.Pulumi.Ionoscloud
+namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 {
-    public static class GetUserObjectStorageBucket
+    public static class GetUserBucket
     {
         /// <summary>
         /// The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
@@ -27,7 +27,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.GetUserObjectStorageBucket.Invoke(new()
+        ///     var example = Ionoscloud.Objectstorage.GetUserBucket.Invoke(new()
         ///     {
         ///         Name = "my-bucket",
         ///         Region = "de",
@@ -36,8 +36,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// });
         /// ```
         /// </summary>
-        public static Task<GetUserObjectStorageBucketResult> InvokeAsync(GetUserObjectStorageBucketArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserObjectStorageBucketResult>("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", args ?? new GetUserObjectStorageBucketArgs(), options.WithDefaults());
+        public static Task<GetUserBucketResult> InvokeAsync(GetUserBucketArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserBucketResult>("ionoscloud:objectstorage/getUserBucket:getUserBucket", args ?? new GetUserBucketArgs(), options.WithDefaults());
 
         /// <summary>
         /// The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
@@ -54,7 +54,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.GetUserObjectStorageBucket.Invoke(new()
+        ///     var example = Ionoscloud.Objectstorage.GetUserBucket.Invoke(new()
         ///     {
         ///         Name = "my-bucket",
         ///         Region = "de",
@@ -63,8 +63,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// });
         /// ```
         /// </summary>
-        public static Output<GetUserObjectStorageBucketResult> Invoke(GetUserObjectStorageBucketInvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUserObjectStorageBucketResult>("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", args ?? new GetUserObjectStorageBucketInvokeArgs(), options.WithDefaults());
+        public static Output<GetUserBucketResult> Invoke(GetUserBucketInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserBucketResult>("ionoscloud:objectstorage/getUserBucket:getUserBucket", args ?? new GetUserBucketInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
@@ -81,7 +81,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.GetUserObjectStorageBucket.Invoke(new()
+        ///     var example = Ionoscloud.Objectstorage.GetUserBucket.Invoke(new()
         ///     {
         ///         Name = "my-bucket",
         ///         Region = "de",
@@ -90,12 +90,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// });
         /// ```
         /// </summary>
-        public static Output<GetUserObjectStorageBucketResult> Invoke(GetUserObjectStorageBucketInvokeArgs args, InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetUserObjectStorageBucketResult>("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", args ?? new GetUserObjectStorageBucketInvokeArgs(), options.WithDefaults());
+        public static Output<GetUserBucketResult> Invoke(GetUserBucketInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserBucketResult>("ionoscloud:objectstorage/getUserBucket:getUserBucket", args ?? new GetUserBucketInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetUserObjectStorageBucketArgs : global::Pulumi.InvokeArgs
+    public sealed class GetUserBucketArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// [string] The name of the bucket.
@@ -109,13 +109,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         [Input("region", required: true)]
         public string Region { get; set; } = null!;
 
-        public GetUserObjectStorageBucketArgs()
+        public GetUserBucketArgs()
         {
         }
-        public static new GetUserObjectStorageBucketArgs Empty => new GetUserObjectStorageBucketArgs();
+        public static new GetUserBucketArgs Empty => new GetUserBucketArgs();
     }
 
-    public sealed class GetUserObjectStorageBucketInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetUserBucketInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// [string] The name of the bucket.
@@ -129,15 +129,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
-        public GetUserObjectStorageBucketInvokeArgs()
+        public GetUserBucketInvokeArgs()
         {
         }
-        public static new GetUserObjectStorageBucketInvokeArgs Empty => new GetUserObjectStorageBucketInvokeArgs();
+        public static new GetUserBucketInvokeArgs Empty => new GetUserBucketInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetUserObjectStorageBucketResult
+    public sealed class GetUserBucketResult
     {
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -161,7 +161,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public readonly ImmutableDictionary<string, string> Tags;
 
         [OutputConstructor]
-        private GetUserObjectStorageBucketResult(
+        private GetUserBucketResult(
             string id,
 
             string name,

@@ -1928,6 +1928,181 @@ func (o ObjectLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
+type UserBucketTimeouts struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create *string `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+	Delete *string `pulumi:"delete"`
+	// [string] Time to wait for the bucket read operations. Default is `10m`.
+	Read *string `pulumi:"read"`
+}
+
+// UserBucketTimeoutsInput is an input type that accepts UserBucketTimeoutsArgs and UserBucketTimeoutsOutput values.
+// You can construct a concrete instance of `UserBucketTimeoutsInput` via:
+//
+//	UserBucketTimeoutsArgs{...}
+type UserBucketTimeoutsInput interface {
+	pulumi.Input
+
+	ToUserBucketTimeoutsOutput() UserBucketTimeoutsOutput
+	ToUserBucketTimeoutsOutputWithContext(context.Context) UserBucketTimeoutsOutput
+}
+
+type UserBucketTimeoutsArgs struct {
+	// [string] Time to wait for the bucket to be created. Default is `10m`.
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// [string] Time to wait for the bucket read operations. Default is `10m`.
+	Read pulumi.StringPtrInput `pulumi:"read"`
+}
+
+func (UserBucketTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserBucketTimeouts)(nil)).Elem()
+}
+
+func (i UserBucketTimeoutsArgs) ToUserBucketTimeoutsOutput() UserBucketTimeoutsOutput {
+	return i.ToUserBucketTimeoutsOutputWithContext(context.Background())
+}
+
+func (i UserBucketTimeoutsArgs) ToUserBucketTimeoutsOutputWithContext(ctx context.Context) UserBucketTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserBucketTimeoutsOutput)
+}
+
+func (i UserBucketTimeoutsArgs) ToUserBucketTimeoutsPtrOutput() UserBucketTimeoutsPtrOutput {
+	return i.ToUserBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i UserBucketTimeoutsArgs) ToUserBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserBucketTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserBucketTimeoutsOutput).ToUserBucketTimeoutsPtrOutputWithContext(ctx)
+}
+
+// UserBucketTimeoutsPtrInput is an input type that accepts UserBucketTimeoutsArgs, UserBucketTimeoutsPtr and UserBucketTimeoutsPtrOutput values.
+// You can construct a concrete instance of `UserBucketTimeoutsPtrInput` via:
+//
+//	        UserBucketTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type UserBucketTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToUserBucketTimeoutsPtrOutput() UserBucketTimeoutsPtrOutput
+	ToUserBucketTimeoutsPtrOutputWithContext(context.Context) UserBucketTimeoutsPtrOutput
+}
+
+type userBucketTimeoutsPtrType UserBucketTimeoutsArgs
+
+func UserBucketTimeoutsPtr(v *UserBucketTimeoutsArgs) UserBucketTimeoutsPtrInput {
+	return (*userBucketTimeoutsPtrType)(v)
+}
+
+func (*userBucketTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserBucketTimeouts)(nil)).Elem()
+}
+
+func (i *userBucketTimeoutsPtrType) ToUserBucketTimeoutsPtrOutput() UserBucketTimeoutsPtrOutput {
+	return i.ToUserBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *userBucketTimeoutsPtrType) ToUserBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserBucketTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserBucketTimeoutsPtrOutput)
+}
+
+type UserBucketTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (UserBucketTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserBucketTimeouts)(nil)).Elem()
+}
+
+func (o UserBucketTimeoutsOutput) ToUserBucketTimeoutsOutput() UserBucketTimeoutsOutput {
+	return o
+}
+
+func (o UserBucketTimeoutsOutput) ToUserBucketTimeoutsOutputWithContext(ctx context.Context) UserBucketTimeoutsOutput {
+	return o
+}
+
+func (o UserBucketTimeoutsOutput) ToUserBucketTimeoutsPtrOutput() UserBucketTimeoutsPtrOutput {
+	return o.ToUserBucketTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o UserBucketTimeoutsOutput) ToUserBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserBucketTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UserBucketTimeouts) *UserBucketTimeouts {
+		return &v
+	}).(UserBucketTimeoutsPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o UserBucketTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserBucketTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+func (o UserBucketTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserBucketTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket read operations. Default is `10m`.
+func (o UserBucketTimeoutsOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserBucketTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
+}
+
+type UserBucketTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (UserBucketTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UserBucketTimeouts)(nil)).Elem()
+}
+
+func (o UserBucketTimeoutsPtrOutput) ToUserBucketTimeoutsPtrOutput() UserBucketTimeoutsPtrOutput {
+	return o
+}
+
+func (o UserBucketTimeoutsPtrOutput) ToUserBucketTimeoutsPtrOutputWithContext(ctx context.Context) UserBucketTimeoutsPtrOutput {
+	return o
+}
+
+func (o UserBucketTimeoutsPtrOutput) Elem() UserBucketTimeoutsOutput {
+	return o.ApplyT(func(v *UserBucketTimeouts) UserBucketTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret UserBucketTimeouts
+		return ret
+	}).(UserBucketTimeoutsOutput)
+}
+
+// [string] Time to wait for the bucket to be created. Default is `10m`.
+func (o UserBucketTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket to be deleted. Default is `60m`.
+func (o UserBucketTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Time to wait for the bucket read operations. Default is `10m`.
+func (o UserBucketTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserBucketTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(pulumi.StringPtrOutput)
+}
+
 type WebsiteConfigurationErrorDocument struct {
 	// The object key
 	Key *string `pulumi:"key"`
@@ -2860,6 +3035,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRulePtrInput)(nil)).Elem(), ObjectLockConfigurationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRuleDefaultRetentionInput)(nil)).Elem(), ObjectLockConfigurationRuleDefaultRetentionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectLockConfigurationRuleDefaultRetentionPtrInput)(nil)).Elem(), ObjectLockConfigurationRuleDefaultRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserBucketTimeoutsInput)(nil)).Elem(), UserBucketTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserBucketTimeoutsPtrInput)(nil)).Elem(), UserBucketTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationErrorDocumentInput)(nil)).Elem(), WebsiteConfigurationErrorDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationErrorDocumentPtrInput)(nil)).Elem(), WebsiteConfigurationErrorDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebsiteConfigurationIndexDocumentInput)(nil)).Elem(), WebsiteConfigurationIndexDocumentArgs{})
@@ -2898,6 +3075,8 @@ func init() {
 	pulumi.RegisterOutputType(ObjectLockConfigurationRulePtrOutput{})
 	pulumi.RegisterOutputType(ObjectLockConfigurationRuleDefaultRetentionOutput{})
 	pulumi.RegisterOutputType(ObjectLockConfigurationRuleDefaultRetentionPtrOutput{})
+	pulumi.RegisterOutputType(UserBucketTimeoutsOutput{})
+	pulumi.RegisterOutputType(UserBucketTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(WebsiteConfigurationErrorDocumentOutput{})
 	pulumi.RegisterOutputType(WebsiteConfigurationErrorDocumentPtrOutput{})
 	pulumi.RegisterOutputType(WebsiteConfigurationIndexDocumentOutput{})

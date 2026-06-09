@@ -15,10 +15,8 @@ from .get_gpu_server import *
 from .get_gpus import *
 from .get_kafka_user_credentials import *
 from .get_kafka_users import *
-from .get_user_object_storage_bucket import *
 from .gpu_server import *
 from .provider import *
-from .user_object_storage_bucket import *
 from ._inputs import *
 from . import outputs
 
@@ -440,14 +438,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/userObjectStorageBucket",
-  "fqn": "pulumi_ionoscloud",
-  "classes": {
-   "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket": "UserObjectStorageBucket"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "pulumi_ionoscloud.k8s",
   "classes": {
@@ -628,6 +618,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.objectstorage",
   "classes": {
    "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": "PublicAccessBlock"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/userBucket",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/userBucket:UserBucket": "UserBucket"
   }
  },
  {

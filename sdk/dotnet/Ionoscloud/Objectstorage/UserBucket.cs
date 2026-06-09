@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Ionoscloud.Pulumi.Ionoscloud
+namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 {
     /// <summary>
     /// Manages user-owned IONOS Object Storage Buckets on IonosCloud.
@@ -25,7 +25,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.UserObjectStorageBucket("example", new()
+    ///     var example = new Ionoscloud.Objectstorage.UserBucket("example", new()
     ///     {
     ///         Name = "example-user-bucket",
     ///         Region = "de",
@@ -50,12 +50,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     /// A bucket must be imported using `region:bucket_name`:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example de:my-bucket
-    /// $ pulumi import ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket example eu-central-2:my-bucket
+    /// $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket
+    /// $ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket")]
-    public partial class UserObjectStorageBucket : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:objectstorage/userBucket:UserBucket")]
+    public partial class UserBucket : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [bool] Defaults to `False`. When set to `True`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
@@ -91,23 +91,23 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// Timeouts for this resource.
         /// </summary>
         [Output("timeouts")]
-        public Output<Outputs.UserObjectStorageBucketTimeouts?> Timeouts { get; private set; } = null!;
+        public Output<Outputs.UserBucketTimeouts?> Timeouts { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a UserObjectStorageBucket resource with the given unique name, arguments, and options.
+        /// Create a UserBucket resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public UserObjectStorageBucket(string name, UserObjectStorageBucketArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket", name, args ?? new UserObjectStorageBucketArgs(), MakeResourceOptions(options, ""))
+        public UserBucket(string name, UserBucketArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:objectstorage/userBucket:UserBucket", name, args ?? new UserBucketArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private UserObjectStorageBucket(string name, Input<string> id, UserObjectStorageBucketState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket", name, state, MakeResourceOptions(options, id))
+        private UserBucket(string name, Input<string> id, UserBucketState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:objectstorage/userBucket:UserBucket", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -124,7 +124,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing UserObjectStorageBucket resource's state with the given name, ID, and optional extra
+        /// Get an existing UserBucket resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -132,13 +132,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static UserObjectStorageBucket Get(string name, Input<string> id, UserObjectStorageBucketState? state = null, CustomResourceOptions? options = null)
+        public static UserBucket Get(string name, Input<string> id, UserBucketState? state = null, CustomResourceOptions? options = null)
         {
-            return new UserObjectStorageBucket(name, id, state, options);
+            return new UserBucket(name, id, state, options);
         }
     }
 
-    public sealed class UserObjectStorageBucketArgs : global::Pulumi.ResourceArgs
+    public sealed class UserBucketArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Defaults to `False`. When set to `True`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
@@ -180,15 +180,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// Timeouts for this resource.
         /// </summary>
         [Input("timeouts")]
-        public Input<Inputs.UserObjectStorageBucketTimeoutsArgs>? Timeouts { get; set; }
+        public Input<Inputs.UserBucketTimeoutsArgs>? Timeouts { get; set; }
 
-        public UserObjectStorageBucketArgs()
+        public UserBucketArgs()
         {
         }
-        public static new UserObjectStorageBucketArgs Empty => new UserObjectStorageBucketArgs();
+        public static new UserBucketArgs Empty => new UserBucketArgs();
     }
 
-    public sealed class UserObjectStorageBucketState : global::Pulumi.ResourceArgs
+    public sealed class UserBucketState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Defaults to `False`. When set to `True`, all objects in the bucket are deleted before the bucket itself is destroyed, allowing Terraform to remove a non-empty bucket. **Use with caution** — this irreversibly deletes all bucket contents.
@@ -230,11 +230,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// Timeouts for this resource.
         /// </summary>
         [Input("timeouts")]
-        public Input<Inputs.UserObjectStorageBucketTimeoutsGetArgs>? Timeouts { get; set; }
+        public Input<Inputs.UserBucketTimeoutsGetArgs>? Timeouts { get; set; }
 
-        public UserObjectStorageBucketState()
+        public UserBucketState()
         {
         }
-        public static new UserObjectStorageBucketState Empty => new UserObjectStorageBucketState();
+        public static new UserBucketState Empty => new UserBucketState();
     }
 }

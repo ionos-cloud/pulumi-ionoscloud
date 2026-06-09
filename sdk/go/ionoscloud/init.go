@@ -25,8 +25,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsReverseRecord{}
 	case "ionoscloud:index/gpuServer:GpuServer":
 		r = &GpuServer{}
-	case "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket":
-		r = &UserObjectStorageBucket{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -66,11 +64,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/gpuServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/userObjectStorageBucket",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

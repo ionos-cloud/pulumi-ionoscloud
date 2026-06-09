@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Ionoscloud.Pulumi.Ionoscloud.Inputs
+namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage.Inputs
 {
 
-    public sealed class UserObjectStorageBucketTimeoutsArgs : global::Pulumi.ResourceArgs
+    public sealed class UserBucketTimeoutsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] Time to wait for the bucket to be created. Default is `10m`.
@@ -31,9 +31,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Inputs
         [Input("read")]
         public Input<string>? Read { get; set; }
 
-        public UserObjectStorageBucketTimeoutsArgs()
+        public UserBucketTimeoutsArgs()
         {
         }
-        public static new UserObjectStorageBucketTimeoutsArgs Empty => new UserObjectStorageBucketTimeoutsArgs();
+        public static new UserBucketTimeoutsArgs Empty => new UserBucketTimeoutsArgs();
     }
 }

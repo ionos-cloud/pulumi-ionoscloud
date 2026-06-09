@@ -12,19 +12,19 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
-from . import _utilities
+from .. import _utilities
 
 __all__ = [
-    'GetUserObjectStorageBucketResult',
-    'AwaitableGetUserObjectStorageBucketResult',
-    'get_user_object_storage_bucket',
-    'get_user_object_storage_bucket_output',
+    'GetUserBucketResult',
+    'AwaitableGetUserBucketResult',
+    'get_user_bucket',
+    'get_user_bucket_output',
 ]
 
 @pulumi.output_type
-class GetUserObjectStorageBucketResult:
+class GetUserBucketResult:
     """
-    A collection of values returned by getUserObjectStorageBucket.
+    A collection of values returned by getUserBucket.
     """
     def __init__(__self__, id=None, name=None, object_lock_enabled=None, region=None, tags=None):
         if id and not isinstance(id, str):
@@ -84,12 +84,12 @@ class GetUserObjectStorageBucketResult:
         return pulumi.get(self, "tags")
 
 
-class AwaitableGetUserObjectStorageBucketResult(GetUserObjectStorageBucketResult):
+class AwaitableGetUserBucketResult(GetUserBucketResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetUserObjectStorageBucketResult(
+        return GetUserBucketResult(
             id=self.id,
             name=self.name,
             object_lock_enabled=self.object_lock_enabled,
@@ -97,9 +97,9 @@ class AwaitableGetUserObjectStorageBucketResult(GetUserObjectStorageBucketResult
             tags=self.tags)
 
 
-def get_user_object_storage_bucket(name: Optional[_builtins.str] = None,
-                                   region: Optional[_builtins.str] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserObjectStorageBucketResult:
+def get_user_bucket(name: Optional[_builtins.str] = None,
+                    region: Optional[_builtins.str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserBucketResult:
     """
     The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
 
@@ -111,7 +111,7 @@ def get_user_object_storage_bucket(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_user_object_storage_bucket(name="my-bucket",
+    example = ionoscloud.objectstorage.get_user_bucket(name="my-bucket",
         region="de")
     ```
 
@@ -123,17 +123,17 @@ def get_user_object_storage_bucket(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket', __args__, opts=opts, typ=GetUserObjectStorageBucketResult).value
+    __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getUserBucket:getUserBucket', __args__, opts=opts, typ=GetUserBucketResult).value
 
-    return AwaitableGetUserObjectStorageBucketResult(
+    return AwaitableGetUserBucketResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         object_lock_enabled=pulumi.get(__ret__, 'object_lock_enabled'),
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'))
-def get_user_object_storage_bucket_output(name: pulumi.Input[Optional[_builtins.str]] = None,
-                                          region: pulumi.Input[Optional[_builtins.str]] = None,
-                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserObjectStorageBucketResult]:
+def get_user_bucket_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                           region: pulumi.Input[Optional[_builtins.str]] = None,
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserBucketResult]:
     """
     The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
 
@@ -145,7 +145,7 @@ def get_user_object_storage_bucket_output(name: pulumi.Input[Optional[_builtins.
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_user_object_storage_bucket(name="my-bucket",
+    example = ionoscloud.objectstorage.get_user_bucket(name="my-bucket",
         region="de")
     ```
 
@@ -157,8 +157,8 @@ def get_user_object_storage_bucket_output(name: pulumi.Input[Optional[_builtins.
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket', __args__, opts=opts, typ=GetUserObjectStorageBucketResult)
-    return __ret__.apply(lambda __response__: GetUserObjectStorageBucketResult(
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getUserBucket:getUserBucket', __args__, opts=opts, typ=GetUserBucketResult)
+    return __ret__.apply(lambda __response__: GetUserBucketResult(
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         object_lock_enabled=pulumi.get(__response__, 'object_lock_enabled'),

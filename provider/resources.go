@@ -471,6 +471,9 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucket"),
 			},
+			"ionoscloud_user_object_storage_bucket": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getUserBucket"),
+			},
 			"ionoscloud_s3_object": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObject"),
 			},
@@ -684,6 +687,9 @@ func Provider() tfbridge.ProviderInfo {
 			// plugin-framework resources: object storage (S3-compatible)
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "Bucket"),
+			},
+			"ionoscloud_user_object_storage_bucket": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "UserBucket"),
 			},
 			"ionoscloud_s3_bucket_policy": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketPolicy"),

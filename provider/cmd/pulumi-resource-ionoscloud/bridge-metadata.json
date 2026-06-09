@@ -877,7 +877,7 @@
                 }
             },
             "ionoscloud_user_object_storage_bucket": {
-                "current": "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket",
+                "current": "ionoscloud:objectstorage/userBucket:UserBucket",
                 "majorVersion": 1
             },
             "ionoscloud_vcpu_server": {
@@ -2173,7 +2173,7 @@
                 }
             },
             "ionoscloud_user_object_storage_bucket": {
-                "current": "ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket",
+                "current": "ionoscloud:objectstorage/getUserBucket:getUserBucket",
                 "majorVersion": 1
             },
             "ionoscloud_vcpu_server": {
@@ -2362,7 +2362,6 @@
             "ionoscloud:dns/zone:Zone": 0,
             "ionoscloud:index/dnsReverseRecord:DnsReverseRecord": 0,
             "ionoscloud:index/gpuServer:GpuServer": 0,
-            "ionoscloud:index/userObjectStorageBucket:UserObjectStorageBucket": 1,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
             "ionoscloud:kafka/cluster:Cluster": 0,
@@ -2386,6 +2385,7 @@
             "ionoscloud:objectstorage/objectCopy:ObjectCopy": 1,
             "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": 1,
             "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": 1,
+            "ionoscloud:objectstorage/userBucket:UserBucket": 1,
             "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration": 1,
             "ionoscloud:objectstoragemanagement/accesskey:Accesskey": 1,
             "ionoscloud:vpn/ipsecGateway:IpsecGateway": 0,
@@ -2461,7 +2461,6 @@
             "ionoscloud:index/getGpus:getGpus": 0,
             "ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials": 1,
             "ionoscloud:index/getKafkaUsers:getKafkaUsers": 1,
-            "ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket": 1,
             "ionoscloud:k8s/getCluster:getCluster": 0,
             "ionoscloud:k8s/getClusters:getClusters": 0,
             "ionoscloud:k8s/getNodePool:getNodePool": 0,
@@ -2479,6 +2478,7 @@
             "ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy": 1,
             "ionoscloud:objectstorage/getObject:getObject": 1,
             "ionoscloud:objectstorage/getObjects:getObjects": 1,
+            "ionoscloud:objectstorage/getUserBucket:getUserBucket": 1,
             "ionoscloud:objectstoragemanagement/getAccesskey:getAccesskey": 1,
             "ionoscloud:objectstoragemanagement/getRegion:getRegion": 1,
             "ionoscloud:vpn/getIpsecGateway:getIpsecGateway": 0,

@@ -133,21 +133,6 @@ export interface GpuServerVolume {
      */
     userData?: pulumi.Input<string | undefined>;
 }
-
-export interface UserObjectStorageBucketTimeouts {
-    /**
-     * [string] Time to wait for the bucket to be created. Default is `10m`.
-     */
-    create?: pulumi.Input<string | undefined>;
-    /**
-     * [string] Time to wait for the bucket to be deleted. Default is `60m`.
-     */
-    delete?: pulumi.Input<string | undefined>;
-    /**
-     * [string] Time to wait for the bucket read operations. Default is `10m`.
-     */
-    read?: pulumi.Input<string | undefined>;
-}
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -2208,6 +2193,21 @@ export namespace objectstorage {
          * Days and years are mutually exclusive. You can only specify one of them.
          */
         years?: pulumi.Input<number | undefined>;
+    }
+
+    export interface UserBucketTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * [string] Time to wait for the bucket read operations. Default is `10m`.
+         */
+        read?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationErrorDocument {

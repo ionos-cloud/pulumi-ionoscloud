@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * The **User Object Storage Bucket data source** can be used to look up an existing user-owned bucket by name and region.
@@ -15,24 +15,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
- * const example = ionoscloud.getUserObjectStorageBucket({
+ * const example = ionoscloud.objectstorage.getUserBucket({
  *     name: "my-bucket",
  *     region: "de",
  * });
  * ```
  */
-export function getUserObjectStorageBucket(args: GetUserObjectStorageBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetUserObjectStorageBucketResult> {
+export function getUserBucket(args: GetUserBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetUserBucketResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", {
+    return pulumi.runtime.invoke("ionoscloud:objectstorage/getUserBucket:getUserBucket", {
         "name": args.name,
         "region": args.region,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getUserObjectStorageBucket.
+ * A collection of arguments for invoking getUserBucket.
  */
-export interface GetUserObjectStorageBucketArgs {
+export interface GetUserBucketArgs {
     /**
      * [string] The name of the bucket.
      */
@@ -44,9 +44,9 @@ export interface GetUserObjectStorageBucketArgs {
 }
 
 /**
- * A collection of values returned by getUserObjectStorageBucket.
+ * A collection of values returned by getUserBucket.
  */
-export interface GetUserObjectStorageBucketResult {
+export interface GetUserBucketResult {
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -79,24 +79,24 @@ export interface GetUserObjectStorageBucketResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
  *
- * const example = ionoscloud.getUserObjectStorageBucket({
+ * const example = ionoscloud.objectstorage.getUserBucket({
  *     name: "my-bucket",
  *     region: "de",
  * });
  * ```
  */
-export function getUserObjectStorageBucketOutput(args: GetUserObjectStorageBucketOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserObjectStorageBucketResult> {
+export function getUserBucketOutput(args: GetUserBucketOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserBucketResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invokeOutput("ionoscloud:index/getUserObjectStorageBucket:getUserObjectStorageBucket", {
+    return pulumi.runtime.invokeOutput("ionoscloud:objectstorage/getUserBucket:getUserBucket", {
         "name": args.name,
         "region": args.region,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getUserObjectStorageBucket.
+ * A collection of arguments for invoking getUserBucket.
  */
-export interface GetUserObjectStorageBucketOutputArgs {
+export interface GetUserBucketOutputArgs {
     /**
      * [string] The name of the bucket.
      */
