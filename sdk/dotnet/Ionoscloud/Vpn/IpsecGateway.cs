@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
 {
     /// <summary>
-    /// An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+    /// An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS CLOUD
     /// infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
     /// network resources.
     /// 
@@ -152,7 +152,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

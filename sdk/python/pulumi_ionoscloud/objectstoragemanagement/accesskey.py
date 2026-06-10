@@ -21,8 +21,8 @@ __all__ = ['AccesskeyArgs', 'Accesskey']
 @pulumi.input_type
 class AccesskeyArgs:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['AccesskeyTimeoutsArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['AccesskeyTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a Accesskey resource.
 
@@ -36,38 +36,38 @@ class AccesskeyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Description of the Access key.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['AccesskeyTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['AccesskeyTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['AccesskeyTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['AccesskeyTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
 class _AccesskeyState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 contract_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 secretkey: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['AccesskeyTimeoutsArgs']] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 canonical_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 contract_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 secretkey: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['AccesskeyTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering Accesskey resources.
 
@@ -93,74 +93,74 @@ class _AccesskeyState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Access key metadata is a string of 92 characters.
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="canonicalUserId")
-    def canonical_user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def canonical_user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The canonical user ID which is valid for user-owned buckets.
         """
         return pulumi.get(self, "canonical_user_id")
 
     @canonical_user_id.setter
-    def canonical_user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def canonical_user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "canonical_user_id", value)
 
     @_builtins.property
     @pulumi.getter(name="contractUserId")
-    def contract_user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def contract_user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The contract user ID which is valid for contract-owned buckets
         """
         return pulumi.get(self, "contract_user_id")
 
     @contract_user_id.setter
-    def contract_user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def contract_user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "contract_user_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Description of the Access key.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def secretkey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secretkey(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key of the Access key.
         """
         return pulumi.get(self, "secretkey")
 
     @secretkey.setter
-    def secretkey(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secretkey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secretkey", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['AccesskeyTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['AccesskeyTimeoutsArgs']]:
         """
         Timeouts for this resource.
         """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['AccesskeyTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['AccesskeyTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
@@ -170,11 +170,11 @@ class Accesskey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
+        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -186,6 +186,14 @@ class Accesskey(pulumi.CustomResource):
         ```
 
         ## Import
+
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) The ID (UUID) of the AccessKey.
+
+        ***
 
         An object storage accesskey resource can be imported using its `resource id`, e.g.
 
@@ -208,7 +216,7 @@ class Accesskey(pulumi.CustomResource):
                  args: Optional[AccesskeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
+        Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -220,6 +228,14 @@ class Accesskey(pulumi.CustomResource):
         ```
 
         ## Import
+
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) The ID (UUID) of the AccessKey.
+
+        ***
 
         An object storage accesskey resource can be imported using its `resource id`, e.g.
 
@@ -245,8 +261,8 @@ class Accesskey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,12 +288,12 @@ class Accesskey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            canonical_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-            contract_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            secretkey: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None) -> 'Accesskey':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            canonical_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            contract_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            secretkey: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None) -> 'Accesskey':
         """
         Get an existing Accesskey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

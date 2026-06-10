@@ -189,6 +189,6 @@ export interface GetServersOutputArgs {
      *
      * **NOTE:** You cannot search by `imageName` by providing an alias like `ubuntu`.
      */
-    filters?: pulumi.Input<pulumi.Input<inputs.compute.GetServersFilterArgs>[]>;
-    location?: pulumi.Input<string>;
+    filters?: pulumi.Input<pulumi.Input<inputs.compute.GetServersFilterArgs>[] | undefined>;
+    location?: pulumi.Input<string | undefined>;
 }

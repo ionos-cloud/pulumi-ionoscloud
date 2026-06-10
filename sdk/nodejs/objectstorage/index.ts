@@ -60,6 +60,11 @@ export const getObjects: typeof import("./getObjects").getObjects = null as any;
 export const getObjectsOutput: typeof import("./getObjects").getObjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getObjects","getObjectsOutput"], () => require("./getObjects"));
 
+export { GetUserBucketArgs, GetUserBucketResult, GetUserBucketOutputArgs } from "./getUserBucket";
+export const getUserBucket: typeof import("./getUserBucket").getUserBucket = null as any;
+export const getUserBucketOutput: typeof import("./getUserBucket").getUserBucketOutput = null as any;
+utilities.lazyLoad(exports, ["getUserBucket","getUserBucketOutput"], () => require("./getUserBucket"));
+
 export { ObjectCopyArgs, ObjectCopyState } from "./objectCopy";
 export type ObjectCopy = import("./objectCopy").ObjectCopy;
 export const ObjectCopy: typeof import("./objectCopy").ObjectCopy = null as any;
@@ -74,6 +79,11 @@ export { PublicAccessBlockArgs, PublicAccessBlockState } from "./publicAccessBlo
 export type PublicAccessBlock = import("./publicAccessBlock").PublicAccessBlock;
 export const PublicAccessBlock: typeof import("./publicAccessBlock").PublicAccessBlock = null as any;
 utilities.lazyLoad(exports, ["PublicAccessBlock"], () => require("./publicAccessBlock"));
+
+export { UserBucketArgs, UserBucketState } from "./userBucket";
+export type UserBucket = import("./userBucket").UserBucket;
+export const UserBucket: typeof import("./userBucket").UserBucket = null as any;
+utilities.lazyLoad(exports, ["UserBucket"], () => require("./userBucket"));
 
 export { WebsiteConfigurationArgs, WebsiteConfigurationState } from "./websiteConfiguration";
 export type WebsiteConfiguration = import("./websiteConfiguration").WebsiteConfiguration;
@@ -105,6 +115,8 @@ const _module = {
                 return new ObjectLockConfiguration(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock":
                 return new PublicAccessBlock(name, <any>undefined, { urn })
+            case "ionoscloud:objectstorage/userBucket:UserBucket":
+                return new UserBucket(name, <any>undefined, { urn })
             case "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration":
                 return new WebsiteConfiguration(name, <any>undefined, { urn })
             default:
@@ -122,4 +134,5 @@ pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/corsConfigura
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectCopy", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/objectLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/publicAccessBlock", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/userBucket", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "objectstorage/websiteConfiguration", _module)

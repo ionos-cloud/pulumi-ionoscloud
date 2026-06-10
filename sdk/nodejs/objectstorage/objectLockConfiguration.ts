@@ -7,9 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages Object Lock Configuration for Buckets on IonosCloud.
- *
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages Object Lock Configuration for Buckets on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -119,15 +117,15 @@ export interface ObjectLockConfigurationState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
      */
-    objectLockEnabled?: pulumi.Input<string>;
+    objectLockEnabled?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of rule as defined below.
      */
-    rule?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRule>;
+    rule?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRule | undefined>;
 }
 
 /**
@@ -141,9 +139,9 @@ export interface ObjectLockConfigurationArgs {
     /**
      * [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
      */
-    objectLockEnabled?: pulumi.Input<string>;
+    objectLockEnabled?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of rule as defined below.
      */
-    rule?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRule>;
+    rule?: pulumi.Input<inputs.objectstorage.ObjectLockConfigurationRule | undefined>;
 }

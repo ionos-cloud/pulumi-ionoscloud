@@ -167,9 +167,9 @@ def get_servers(datacenter_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         servers=pulumi.get(__ret__, 'servers'))
-def get_servers_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                       filters: Optional[pulumi.Input[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]]]] = None,
-                       location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_servers_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       filters: pulumi.Input[Optional[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]]]] = None,
+                       location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
     The **Servers data source** can be used to search for and return existing servers based on filters used.

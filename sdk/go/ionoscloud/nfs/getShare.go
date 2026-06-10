@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Returns information about shares of Network File Storage (NFS) on IonosCloud.
+// Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
 //
 // ## By ID
 //

@@ -126,9 +126,9 @@ def get_gpus(datacenter_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         server_id=pulumi.get(__ret__, 'server_id'))
-def get_gpus_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                    location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    server_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_gpus_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                    location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    server_id: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGpusResult]:
     """
     The **GPUs data source** can be used to retrieve a list of all GPUs attached to a specific server within a datacenter.

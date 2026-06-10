@@ -24,13 +24,13 @@ class BalancerArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  listener_lan: pulumi.Input[_builtins.int],
                  target_lan: pulumi.Input[_builtins.int],
-                 central_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 flowlog: Optional[pulumi.Input['BalancerFlowlogArgs']] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 logging_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 flowlog: pulumi.Input[Optional['BalancerFlowlogArgs']] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 logging_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Balancer resource.
 
@@ -101,102 +101,102 @@ class BalancerArgs:
 
     @_builtins.property
     @pulumi.getter(name="centralLogging")
-    def central_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def central_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Turn logging on and off for this product. Default value is 'false'.
         """
         return pulumi.get(self, "central_logging")
 
     @central_logging.setter
-    def central_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def central_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "central_logging", value)
 
     @_builtins.property
     @pulumi.getter
-    def flowlog(self) -> Optional[pulumi.Input['BalancerFlowlogArgs']]:
+    def flowlog(self) -> pulumi.Input[Optional['BalancerFlowlogArgs']]:
         """
         [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
     @flowlog.setter
-    def flowlog(self, value: Optional[pulumi.Input['BalancerFlowlogArgs']]):
+    def flowlog(self, value: pulumi.Input[Optional['BalancerFlowlogArgs']]):
         pulumi.set(self, "flowlog", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter(name="lbPrivateIps")
-    def lb_private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def lb_private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         """
         return pulumi.get(self, "lb_private_ips")
 
     @lb_private_ips.setter
-    def lb_private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def lb_private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "lb_private_ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFormat")
-    def logging_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logging_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the format of the logs.
         """
         return pulumi.get(self, "logging_format")
 
     @logging_format.setter
-    def logging_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logging_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logging_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A name of that Network Load Balancer.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _BalancerState:
     def __init__(__self__, *,
-                 central_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input['BalancerFlowlogArgs']] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 logging_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_lan: Optional[pulumi.Input[_builtins.int]] = None):
+                 central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional['BalancerFlowlogArgs']] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 logging_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_lan: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Balancer resources.
 
@@ -234,122 +234,122 @@ class _BalancerState:
 
     @_builtins.property
     @pulumi.getter(name="centralLogging")
-    def central_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def central_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Turn logging on and off for this product. Default value is 'false'.
         """
         return pulumi.get(self, "central_logging")
 
     @central_logging.setter
-    def central_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def central_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "central_logging", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A Datacenter's UUID.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def flowlog(self) -> Optional[pulumi.Input['BalancerFlowlogArgs']]:
+    def flowlog(self) -> pulumi.Input[Optional['BalancerFlowlogArgs']]:
         """
         [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
     @flowlog.setter
-    def flowlog(self, value: Optional[pulumi.Input['BalancerFlowlogArgs']]):
+    def flowlog(self, value: pulumi.Input[Optional['BalancerFlowlogArgs']]):
         pulumi.set(self, "flowlog", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter(name="lbPrivateIps")
-    def lb_private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def lb_private_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         """
         return pulumi.get(self, "lb_private_ips")
 
     @lb_private_ips.setter
-    def lb_private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def lb_private_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "lb_private_ips", value)
 
     @_builtins.property
     @pulumi.getter(name="listenerLan")
-    def listener_lan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def listener_lan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Id of the listening LAN. (inbound)
         """
         return pulumi.get(self, "listener_lan")
 
     @listener_lan.setter
-    def listener_lan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def listener_lan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "listener_lan", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFormat")
-    def logging_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logging_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the format of the logs.
         """
         return pulumi.get(self, "logging_format")
 
     @logging_format.setter
-    def logging_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logging_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logging_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A name of that Network Load Balancer.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="targetLan")
-    def target_lan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def target_lan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Id of the balanced private target LAN. (outbound)
         """
         return pulumi.get(self, "target_lan")
 
     @target_lan.setter
-    def target_lan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def target_lan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "target_lan", value)
 
 
@@ -359,19 +359,19 @@ class Balancer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 central_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 logging_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 logging_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_lan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -395,8 +395,8 @@ class Balancer(pulumi.CustomResource):
         example_balancer = ionoscloud.nlb.Balancer("example",
             datacenter_id=example.id,
             name="example",
-            listener_lan=example1.id,
-            target_lan=example2.id,
+            listener_lan=example1.id.apply(lambda x: int(x)),
+            target_lan=example2.id.apply(lambda x: int(x)),
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             central_logging=True,
@@ -412,8 +412,8 @@ class Balancer(pulumi.CustomResource):
         example = ionoscloud.nlb.Balancer("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
             name="nlb with flowlog",
-            listener_lan=example1["id"],
-            target_lan=example2["id"],
+            listener_lan=int(example1["id"]),
+            target_lan=int(example2["id"]),
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             flowlog={
@@ -456,7 +456,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -480,8 +480,8 @@ class Balancer(pulumi.CustomResource):
         example_balancer = ionoscloud.nlb.Balancer("example",
             datacenter_id=example.id,
             name="example",
-            listener_lan=example1.id,
-            target_lan=example2.id,
+            listener_lan=example1.id.apply(lambda x: int(x)),
+            target_lan=example2.id.apply(lambda x: int(x)),
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             central_logging=True,
@@ -497,8 +497,8 @@ class Balancer(pulumi.CustomResource):
         example = ionoscloud.nlb.Balancer("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
             name="nlb with flowlog",
-            listener_lan=example1["id"],
-            target_lan=example2["id"],
+            listener_lan=int(example1["id"]),
+            target_lan=int(example2["id"]),
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             flowlog={
@@ -536,16 +536,16 @@ class Balancer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 central_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 logging_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_lan: Optional[pulumi.Input[_builtins.int]] = None,
+                 central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 logging_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_lan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -581,16 +581,16 @@ class Balancer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            central_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
-            ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            listener_lan: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            logging_format: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            target_lan: Optional[pulumi.Input[_builtins.int]] = None) -> 'Balancer':
+            central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            logging_format: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            target_lan: pulumi.Input[Optional[_builtins.int]] = None) -> 'Balancer':
         """
         Get an existing Balancer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -683,7 +683,7 @@ class Balancer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="loggingFormat")
-    def logging_format(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def logging_format(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the format of the logs.
         """

@@ -175,15 +175,15 @@ export interface GetPSQLClusterOutputArgs {
     /**
      * Display Name of an existing cluster that you want to search for.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * ID of the cluster you want to search for.
      *
      * Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The physical location where the cluster will be created. This will be where all of your instances live.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

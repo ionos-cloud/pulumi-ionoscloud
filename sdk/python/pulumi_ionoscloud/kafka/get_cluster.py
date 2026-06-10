@@ -186,10 +186,10 @@ def get_cluster(id: Optional[_builtins.str] = None,
         partial_match=pulumi.get(__ret__, 'partial_match'),
         size=pulumi.get(__ret__, 'size'),
         version=pulumi.get(__ret__, 'version'))
-def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       location: Optional[pulumi.Input[_builtins.str]] = None,
-                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_cluster_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       location: pulumi.Input[Optional[_builtins.str]] = None,
+                       name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.

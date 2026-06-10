@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class NfsFunctions {
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -33,8 +33,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -62,7 +62,7 @@ public final class NfsFunctions {
         return getCluster(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -76,8 +76,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -105,7 +105,7 @@ public final class NfsFunctions {
         return getClusterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -119,8 +119,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -148,7 +148,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -162,8 +162,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -191,7 +191,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+     * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -205,8 +205,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -234,7 +234,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:nfs/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -248,8 +248,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -278,7 +278,7 @@ public final class NfsFunctions {
         return getShare(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -292,8 +292,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -322,7 +322,7 @@ public final class NfsFunctions {
         return getSharePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -336,8 +336,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -366,7 +366,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -380,8 +380,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -410,7 +410,7 @@ public final class NfsFunctions {
         return Deployment.getInstance().invoke("ionoscloud:nfs/getShare:getShare", TypeShape.of(GetShareResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+     * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
      * 
      * ## By ID
      * 
@@ -424,8 +424,8 @@ public final class NfsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.nfs.NfsFunctions;
      * import com.pulumi.ionoscloud.nfs.inputs.GetShareArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

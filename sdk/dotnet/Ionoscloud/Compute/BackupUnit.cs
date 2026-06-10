@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IonosCloud.
+    /// Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -24,7 +24,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backupUnitPassword = new Random.Index.Password("backup_unit_password", new()
+    ///     var backupUnitPassword = new Random.Password("backup_unit_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -106,7 +106,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "password",

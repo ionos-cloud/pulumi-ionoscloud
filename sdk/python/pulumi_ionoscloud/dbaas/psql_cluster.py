@@ -31,12 +31,12 @@ class PSQLClusterArgs:
                  storage_size: pulumi.Input[_builtins.int],
                  storage_type: pulumi.Input[_builtins.str],
                  synchronization_mode: pulumi.Input[_builtins.str],
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_location: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_pooler: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']] = None,
-                 connections: Optional[pulumi.Input['PSQLClusterConnectionsArgs']] = None,
-                 from_backup: Optional[pulumi.Input['PSQLClusterFromBackupArgs']] = None,
-                 maintenance_window: Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_location: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_pooler: pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']] = None,
+                 connections: pulumi.Input[Optional['PSQLClusterConnectionsArgs']] = None,
+                 from_backup: pulumi.Input[Optional['PSQLClusterFromBackupArgs']] = None,
+                 maintenance_window: pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']] = None):
         """
         The set of arguments for constructing a PSQLCluster resource.
 
@@ -49,7 +49,7 @@ class PSQLClusterArgs:
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
                
                **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
@@ -194,7 +194,7 @@ class PSQLClusterArgs:
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         return pulumi.get(self, "synchronization_mode")
 
@@ -204,7 +204,7 @@ class PSQLClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
 
@@ -213,90 +213,90 @@ class PSQLClusterArgs:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="backupLocation")
-    def backup_location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backup_location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "backup_location")
 
     @backup_location.setter
-    def backup_location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backup_location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backup_location", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionPooler")
-    def connection_pooler(self) -> Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']]:
+    def connection_pooler(self) -> pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']]:
         """
         [object]
         """
         return pulumi.get(self, "connection_pooler")
 
     @connection_pooler.setter
-    def connection_pooler(self, value: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']]):
+    def connection_pooler(self, value: pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']]):
         pulumi.set(self, "connection_pooler", value)
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input['PSQLClusterConnectionsArgs']]:
+    def connections(self) -> pulumi.Input[Optional['PSQLClusterConnectionsArgs']]:
         """
         [string] Details about the network connection for your cluster.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input['PSQLClusterConnectionsArgs']]):
+    def connections(self, value: pulumi.Input[Optional['PSQLClusterConnectionsArgs']]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter(name="fromBackup")
-    def from_backup(self) -> Optional[pulumi.Input['PSQLClusterFromBackupArgs']]:
+    def from_backup(self) -> pulumi.Input[Optional['PSQLClusterFromBackupArgs']]:
         """
         [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         """
         return pulumi.get(self, "from_backup")
 
     @from_backup.setter
-    def from_backup(self, value: Optional[pulumi.Input['PSQLClusterFromBackupArgs']]):
+    def from_backup(self, value: pulumi.Input[Optional['PSQLClusterFromBackupArgs']]):
         pulumi.set(self, "from_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
 
 @pulumi.input_type
 class _PSQLClusterState:
     def __init__(__self__, *,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_location: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_pooler: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']] = None,
-                 connections: Optional[pulumi.Input['PSQLClusterConnectionsArgs']] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input['PSQLClusterCredentialsArgs']] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 from_backup: Optional[pulumi.Input['PSQLClusterFromBackupArgs']] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']] = None,
-                 postgres_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 synchronization_mode: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_location: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_pooler: pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']] = None,
+                 connections: pulumi.Input[Optional['PSQLClusterConnectionsArgs']] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional['PSQLClusterCredentialsArgs']] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_backup: pulumi.Input[Optional['PSQLClusterFromBackupArgs']] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']] = None,
+                 postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 synchronization_mode: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PSQLCluster resources.
 
@@ -318,7 +318,7 @@ class _PSQLClusterState:
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
@@ -357,7 +357,7 @@ class _PSQLClusterState:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
 
@@ -366,199 +366,199 @@ class _PSQLClusterState:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="backupLocation")
-    def backup_location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backup_location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "backup_location")
 
     @backup_location.setter
-    def backup_location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backup_location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backup_location", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionPooler")
-    def connection_pooler(self) -> Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']]:
+    def connection_pooler(self) -> pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']]:
         """
         [object]
         """
         return pulumi.get(self, "connection_pooler")
 
     @connection_pooler.setter
-    def connection_pooler(self, value: Optional[pulumi.Input['PSQLClusterConnectionPoolerArgs']]):
+    def connection_pooler(self, value: pulumi.Input[Optional['PSQLClusterConnectionPoolerArgs']]):
         pulumi.set(self, "connection_pooler", value)
 
     @_builtins.property
     @pulumi.getter
-    def connections(self) -> Optional[pulumi.Input['PSQLClusterConnectionsArgs']]:
+    def connections(self) -> pulumi.Input[Optional['PSQLClusterConnectionsArgs']]:
         """
         [string] Details about the network connection for your cluster.
         """
         return pulumi.get(self, "connections")
 
     @connections.setter
-    def connections(self, value: Optional[pulumi.Input['PSQLClusterConnectionsArgs']]):
+    def connections(self, value: pulumi.Input[Optional['PSQLClusterConnectionsArgs']]):
         pulumi.set(self, "connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of CPU cores per replica.
         """
         return pulumi.get(self, "cores")
 
     @cores.setter
-    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input['PSQLClusterCredentialsArgs']]:
+    def credentials(self) -> pulumi.Input[Optional['PSQLClusterCredentialsArgs']]:
         """
         [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input['PSQLClusterCredentialsArgs']]):
+    def credentials(self, value: pulumi.Input[Optional['PSQLClusterCredentialsArgs']]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The friendly name of your cluster.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsName")
-    def dns_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The DNS name pointing to your cluster.
         """
         return pulumi.get(self, "dns_name")
 
     @dns_name.setter
-    def dns_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_name", value)
 
     @_builtins.property
     @pulumi.getter(name="fromBackup")
-    def from_backup(self) -> Optional[pulumi.Input['PSQLClusterFromBackupArgs']]:
+    def from_backup(self) -> pulumi.Input[Optional['PSQLClusterFromBackupArgs']]:
         """
         [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         """
         return pulumi.get(self, "from_backup")
 
     @from_backup.setter
-    def from_backup(self, value: Optional[pulumi.Input['PSQLClusterFromBackupArgs']]):
+    def from_backup(self, value: pulumi.Input[Optional['PSQLClusterFromBackupArgs']]):
         pulumi.set(self, "from_backup", value)
 
     @_builtins.property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def instances(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The total number of instances in the cluster (one master and n-1 standbys)
         """
         return pulumi.get(self, "instances")
 
     @instances.setter
-    def instances(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def instances(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instances", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']]:
         """
         (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['PSQLClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['PSQLClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter(name="postgresVersion")
-    def postgres_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def postgres_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The PostgreSQL version of your cluster.
         """
         return pulumi.get(self, "postgres_version")
 
     @postgres_version.setter
-    def postgres_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def postgres_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postgres_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def ram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         """
         return pulumi.get(self, "ram")
 
     @ram.setter
-    def ram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSize")
-    def storage_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
-    def storage_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         """
         return pulumi.get(self, "storage_type")
 
     @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
     @_builtins.property
     @pulumi.getter(name="synchronizationMode")
-    def synchronization_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def synchronization_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         return pulumi.get(self, "synchronization_mode")
 
     @synchronization_mode.setter
-    def synchronization_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def synchronization_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "synchronization_mode", value)
 
 
@@ -568,22 +568,22 @@ class PSQLCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_location: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
-                 postgres_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 synchronization_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_location: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+                 postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 synchronization_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).
@@ -660,7 +660,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         ...
     @overload
@@ -739,22 +739,22 @@ class PSQLCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backup_location: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-                 connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
-                 instances: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
-                 postgres_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 synchronization_mode: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backup_location: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+                 postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 synchronization_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -811,23 +811,23 @@ class PSQLCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-            backup_location: Optional[pulumi.Input[_builtins.str]] = None,
-            connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-            connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
-            cores: Optional[pulumi.Input[_builtins.int]] = None,
-            credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-            from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
-            instances: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
-            postgres_version: Optional[pulumi.Input[_builtins.str]] = None,
-            ram: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_size: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_type: Optional[pulumi.Input[_builtins.str]] = None,
-            synchronization_mode: Optional[pulumi.Input[_builtins.str]] = None) -> 'PSQLCluster':
+            allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            backup_location: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+            cores: pulumi.Input[Optional[_builtins.int]] = None,
+            credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_name: pulumi.Input[Optional[_builtins.str]] = None,
+            from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+            instances: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+            postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
+            ram: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_size: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+            synchronization_mode: pulumi.Input[Optional[_builtins.str]] = None) -> 'PSQLCluster':
         """
         Get an existing PSQLCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -853,7 +853,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1012,7 +1012,7 @@ class PSQLCluster(pulumi.CustomResource):
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         """
         return pulumi.get(self, "synchronization_mode")
 

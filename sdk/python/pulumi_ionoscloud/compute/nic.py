@@ -24,18 +24,18 @@ class NicArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  lan: pulumi.Input[_builtins.int],
                  server_id: pulumi.Input[_builtins.str],
-                 dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcpv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input['NicFlowlogArgs']] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcpv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional['NicFlowlogArgs']] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Nic resource.
 
@@ -123,139 +123,139 @@ class NicArgs:
 
     @_builtins.property
     @pulumi.getter
-    def dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
         """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
-    def dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcp", value)
 
     @_builtins.property
     @pulumi.getter
-    def dhcpv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcpv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
         """
         return pulumi.get(self, "dhcpv6")
 
     @dhcpv6.setter
-    def dhcpv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcpv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcpv6", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallActive")
-    def firewall_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
         """
         return pulumi.get(self, "firewall_active")
 
     @firewall_active.setter
-    def firewall_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall_active", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallType")
-    def firewall_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
         """
         return pulumi.get(self, "firewall_type")
 
     @firewall_type.setter
-    def firewall_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def flowlog(self) -> Optional[pulumi.Input['NicFlowlogArgs']]:
+    def flowlog(self) -> pulumi.Input[Optional['NicFlowlogArgs']]:
         """
         Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
     @flowlog.setter
-    def flowlog(self, value: Optional[pulumi.Input['NicFlowlogArgs']]):
+    def flowlog(self, value: pulumi.Input[Optional['NicFlowlogArgs']]):
         pulumi.set(self, "flowlog", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
-    def ipv6_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @ipv6_cidr_block.setter
-    def ipv6_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Ips")
-    def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv6_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         """
         return pulumi.get(self, "ipv6_ips")
 
     @ipv6_ips.setter
-    def ipv6_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv6_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv6_ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def mac(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         """
         return pulumi.get(self, "mac")
 
     @mac.setter
-    def mac(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the LAN.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource. 
 
@@ -264,30 +264,30 @@ class NicArgs:
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
 
 @pulumi.input_type
 class _NicState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 device_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcpv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input['NicFlowlogArgs']] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 device_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcpv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional['NicFlowlogArgs']] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pci_slot: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Nic resources.
 
@@ -348,187 +348,187 @@ class _NicState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deviceNumber")
-    def device_number(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def device_number(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
         """
         return pulumi.get(self, "device_number")
 
     @device_number.setter
-    def device_number(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def device_number(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "device_number", value)
 
     @_builtins.property
     @pulumi.getter
-    def dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
         """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
-    def dhcp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcp", value)
 
     @_builtins.property
     @pulumi.getter
-    def dhcpv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def dhcpv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
         """
         return pulumi.get(self, "dhcpv6")
 
     @dhcpv6.setter
-    def dhcpv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def dhcpv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "dhcpv6", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallActive")
-    def firewall_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def firewall_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
         """
         return pulumi.get(self, "firewall_active")
 
     @firewall_active.setter
-    def firewall_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def firewall_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "firewall_active", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallType")
-    def firewall_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewall_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
         """
         return pulumi.get(self, "firewall_type")
 
     @firewall_type.setter
-    def firewall_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewall_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewall_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def flowlog(self) -> Optional[pulumi.Input['NicFlowlogArgs']]:
+    def flowlog(self) -> pulumi.Input[Optional['NicFlowlogArgs']]:
         """
         Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
     @flowlog.setter
-    def flowlog(self, value: Optional[pulumi.Input['NicFlowlogArgs']]):
+    def flowlog(self, value: pulumi.Input[Optional['NicFlowlogArgs']]):
         pulumi.set(self, "flowlog", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
-    def ipv6_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @ipv6_cidr_block.setter
-    def ipv6_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Ips")
-    def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ipv6_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         """
         return pulumi.get(self, "ipv6_ips")
 
     @ipv6_ips.setter
-    def ipv6_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ipv6_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ipv6_ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def lan(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lan(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] The LAN ID the NIC will sit on.
         """
         return pulumi.get(self, "lan")
 
     @lan.setter
-    def lan(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lan(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lan", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def mac(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mac(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
         """
         return pulumi.get(self, "mac")
 
     @mac.setter
-    def mac(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mac(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mac", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the LAN.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="pciSlot")
-    def pci_slot(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def pci_slot(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The PCI slot number of the Nic.
         """
         return pulumi.get(self, "pci_slot")
 
     @pci_slot.setter
-    def pci_slot(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def pci_slot(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "pci_slot", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource. 
 
@@ -537,19 +537,19 @@ class _NicState:
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a server.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
 
@@ -559,24 +559,24 @@ class Nic(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcpv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcpv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -621,7 +621,7 @@ class Nic(pulumi.CustomResource):
         example_nic = ionoscloud.compute.Nic("example",
             datacenter_id=example.id,
             server_id=example_server.id,
-            lan=example_lan.id,
+            lan=example_lan.id.apply(lambda x: int(x)),
             name="NIC",
             dhcp=True,
             firewall_active=True,
@@ -675,7 +675,7 @@ class Nic(pulumi.CustomResource):
         example_nic = ionoscloud.compute.Nic("example",
             datacenter_id=example.id,
             server_id=example_server.id,
-            lan=example_lan.id,
+            lan=example_lan.id.apply(lambda x: int(x)),
             name="IPv6 Enabled NIC",
             dhcp=True,
             firewall_active=True,
@@ -709,7 +709,7 @@ class Nic(pulumi.CustomResource):
         example = ionoscloud.compute.Nic("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
             server_id=example_ionoscloud_server["id"],
-            lan=example_ionoscloud_lan["id"],
+            lan=int(example_ionoscloud_lan["id"]),
             name="IPV6 and Flowlog Enabled NIC",
             dhcp=True,
             firewall_active=True,
@@ -802,7 +802,7 @@ class Nic(pulumi.CustomResource):
                  args: NicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -847,7 +847,7 @@ class Nic(pulumi.CustomResource):
         example_nic = ionoscloud.compute.Nic("example",
             datacenter_id=example.id,
             server_id=example_server.id,
-            lan=example_lan.id,
+            lan=example_lan.id.apply(lambda x: int(x)),
             name="NIC",
             dhcp=True,
             firewall_active=True,
@@ -901,7 +901,7 @@ class Nic(pulumi.CustomResource):
         example_nic = ionoscloud.compute.Nic("example",
             datacenter_id=example.id,
             server_id=example_server.id,
-            lan=example_lan.id,
+            lan=example_lan.id.apply(lambda x: int(x)),
             name="IPv6 Enabled NIC",
             dhcp=True,
             firewall_active=True,
@@ -935,7 +935,7 @@ class Nic(pulumi.CustomResource):
         example = ionoscloud.compute.Nic("example",
             datacenter_id=example_ionoscloud_datacenter["id"],
             server_id=example_ionoscloud_server["id"],
-            lan=example_ionoscloud_lan["id"],
+            lan=int(example_ionoscloud_lan["id"]),
             name="IPV6 and Flowlog Enabled NIC",
             dhcp=True,
             firewall_active=True,
@@ -1016,21 +1016,21 @@ class Nic(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dhcpv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 firewall_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 lan: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 mac: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dhcpv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 firewall_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 flowlog: pulumi.Input[Optional[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 lan: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 mac: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1073,23 +1073,23 @@ class Nic(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            device_number: Optional[pulumi.Input[_builtins.int]] = None,
-            dhcp: Optional[pulumi.Input[_builtins.bool]] = None,
-            dhcpv6: Optional[pulumi.Input[_builtins.bool]] = None,
-            firewall_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            firewall_type: Optional[pulumi.Input[_builtins.str]] = None,
-            flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
-            ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-            ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            lan: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            mac: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
-            security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Nic':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            device_number: pulumi.Input[Optional[_builtins.int]] = None,
+            dhcp: pulumi.Input[Optional[_builtins.bool]] = None,
+            dhcpv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            firewall_type: pulumi.Input[Optional[_builtins.str]] = None,
+            flowlog: pulumi.Input[Optional[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            ipv6_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            lan: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            mac: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            pci_slot: pulumi.Input[Optional[_builtins.int]] = None,
+            security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Nic':
         """
         Get an existing Nic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

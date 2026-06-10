@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
- * IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+ * IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
  * connections between your network resources.
  *
  * ## Usage example
@@ -114,7 +114,7 @@ export class IpsecTunnel extends pulumi.CustomResource {
     declare public readonly auth: pulumi.Output<outputs.vpn.IpsecTunnelAuth>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
     declare public readonly cloudNetworkCidrs: pulumi.Output<string[]>;
@@ -222,46 +222,46 @@ export interface IpsecTunnelState {
      * [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
      * items: 1.
      */
-    auth?: pulumi.Input<inputs.vpn.IpsecTunnelAuth>;
+    auth?: pulumi.Input<inputs.vpn.IpsecTunnelAuth | undefined>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
-    cloudNetworkCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    cloudNetworkCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The human-readable description of your IPSec Gateway Tunnel.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
      */
-    esps?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecTunnelEsp>[]>;
+    esps?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecTunnelEsp>[] | undefined>;
     /**
      * [string] The ID of the IPSec Gateway that the tunnel belongs to.
      */
-    gatewayId?: pulumi.Input<string>;
+    gatewayId?: pulumi.Input<string | undefined>;
     /**
      * [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
      */
-    ike?: pulumi.Input<inputs.vpn.IpsecTunnelIke>;
+    ike?: pulumi.Input<inputs.vpn.IpsecTunnelIke | undefined>;
     /**
      * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the IPSec Gateway Tunnel.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
      * tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
      */
-    peerNetworkCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    peerNetworkCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
      */
-    remoteHost?: pulumi.Input<string>;
+    remoteHost?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -275,14 +275,14 @@ export interface IpsecTunnelArgs {
     auth: pulumi.Input<inputs.vpn.IpsecTunnelAuth>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
     cloudNetworkCidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * [string] The human-readable description of your IPSec Gateway Tunnel.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
      */
@@ -298,11 +298,11 @@ export interface IpsecTunnelArgs {
     /**
      * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the IPSec Gateway Tunnel.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
      * tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.

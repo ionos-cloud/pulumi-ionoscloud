@@ -176,37 +176,37 @@ export interface InMemoryDBReplicaSetState {
     /**
      * [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
      */
-    connections?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetConnections>;
+    connections?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetConnections | undefined>;
     /**
      * [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
      */
-    credentials?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentials>;
+    credentials?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentials | undefined>;
     /**
      * [string] The human-readable name of your replica set.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      *
      * > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
-    dnsName?: pulumi.Input<string>;
+    dnsName?: pulumi.Input<string | undefined>;
     /**
      * [string] The eviction policy for the replica set, possible values are:
      */
-    evictionPolicy?: pulumi.Input<string>;
+    evictionPolicy?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
      */
-    initialSnapshotId?: pulumi.Input<string>;
+    initialSnapshotId?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow | undefined>;
     /**
      * [string] Specifies How and If data is persisted, possible values are:
      * * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
@@ -214,19 +214,19 @@ export interface InMemoryDBReplicaSetState {
      * * `RDB` - RDB persistence performs snapshots of the current in memory state.
      * * `RDB_AOF` - Both RDB and AOF persistence are enabled.
      */
-    persistenceMode?: pulumi.Input<string>;
+    persistenceMode?: pulumi.Input<string | undefined>;
     /**
      * [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
      */
-    replicas?: pulumi.Input<number>;
+    replicas?: pulumi.Input<number | undefined>;
     /**
      * [object] The resources of the individual replicas.
      */
-    resources?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetResources>;
+    resources?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetResources | undefined>;
     /**
      * [string] The InMemoryDB version of your replica set.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -252,15 +252,15 @@ export interface InMemoryDBReplicaSetArgs {
     /**
      * [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
      */
-    initialSnapshotId?: pulumi.Input<string>;
+    initialSnapshotId?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow | undefined>;
     /**
      * [string] Specifies How and If data is persisted, possible values are:
      * * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.

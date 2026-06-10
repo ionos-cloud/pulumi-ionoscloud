@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+    /// Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -56,7 +56,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         Name = "IP Block Example",
     ///     });
     /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
+    ///     var serverImagePassword = new Random.Password("server_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -92,21 +92,24 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewall = 
+    ///             Firewalls = new[]
     ///             {
-    ///                 { "protocol", "TCP" },
-    ///                 { "name", "SSH" },
-    ///                 { "portRangeStart", 22 },
-    ///                 { "portRangeEnd", 22 },
-    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
-    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
-    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
-    ///                 { "type", "EGRESS" },
+    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
+    ///                 {
+    ///                     Protocol = "TCP",
+    ///                     Name = "SSH",
+    ///                     PortRangeStart = 22,
+    ///                     PortRangeEnd = 22,
+    ///                     SourceMac = "00:0a:95:9d:68:17",
+    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
+    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
+    ///                     Type = "EGRESS",
+    ///                 },
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var volumeImagePassword = new Random.Index.Password("volume_image_password", new()
+    ///     var volumeImagePassword = new Random.Password("volume_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -305,13 +308,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         [Output("sshKeyPaths")]
         public Output<ImmutableArray<string>> SshKeyPaths { get; private set; } = null!;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         [Output("sshKeys")]
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
@@ -351,7 +354,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -468,7 +471,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         public InputList<string> SshKeyPaths
         {
@@ -480,7 +483,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         public InputList<string> SshKeys
         {
@@ -658,7 +661,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         public InputList<string> SshKeyPaths
         {
@@ -670,7 +673,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. This property is immutable.
         /// </summary>
         public InputList<string> SshKeys
         {

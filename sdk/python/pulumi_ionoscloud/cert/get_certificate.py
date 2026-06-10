@@ -135,10 +135,10 @@ def get_certificate(certificate: Optional[_builtins.str] = None,
         certificate_chain=pulumi.get(__ret__, 'certificate_chain'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
-def get_certificate_output(certificate: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           certificate_chain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_certificate_output(certificate: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           certificate_chain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCertificateResult]:
     """
     The **Certificate data source** can be used to search for and return an existing certificate.

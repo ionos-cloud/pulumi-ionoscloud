@@ -25,21 +25,21 @@ class VCPUServerArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  ram: pulumi.Input[_builtins.int],
                  volume: pulumi.Input['VCPUServerVolumeArgs'],
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input['VCPUServerNicArgs']] = None,
-                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None):
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional['VCPUServerNicArgs']] = None,
+                 nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a VCPUServer resource.
 
@@ -65,7 +65,7 @@ class VCPUServerArgs:
                >
                > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         """
         pulumi.set(__self__, "cores", cores)
@@ -156,140 +156,140 @@ class VCPUServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="bootCdrom")
     @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-    def boot_cdrom(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_cdrom(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         """
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
-    def boot_cdrom(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_cdrom(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_cdrom", value)
 
     @_builtins.property
     @pulumi.getter(name="bootImage")
-    def boot_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
-    def boot_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_image", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleIds")
-    def firewallrule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def firewallrule_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The associated firewall rules.
         """
         return pulumi.get(self, "firewallrule_ids")
 
     @firewallrule_ids.setter
-    def firewallrule_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def firewallrule_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "firewallrule_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The password for the image.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]:
         """
         A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nic(self) -> Optional[pulumi.Input['VCPUServerNicArgs']]:
+    def nic(self) -> pulumi.Input[Optional['VCPUServerNicArgs']]:
         """
         See the Nic section.
         """
         return pulumi.get(self, "nic")
 
     @nic.setter
-    def nic(self, value: Optional[pulumi.Input['VCPUServerNicArgs']]):
+    def nic(self, value: pulumi.Input[Optional['VCPUServerNicArgs']]):
         pulumi.set(self, "nic", value)
 
     @_builtins.property
     @pulumi.getter(name="nicMultiQueue")
-    def nic_multi_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_multi_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
 
@@ -301,75 +301,75 @@ class VCPUServerArgs:
         return pulumi.get(self, "nic_multi_queue")
 
     @nic_multi_queue.setter
-    def nic_multi_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_multi_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_multi_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource.
         """
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="vmState")
-    def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vm_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         """
         return pulumi.get(self, "vm_state")
 
     @vm_state.setter
-    def vm_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vm_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vm_state", value)
 
 
 @pulumi.input_type
 class _VCPUServerState:
     def __init__(__self__, *,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_volume: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input['VCPUServerNicArgs']] = None,
-                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input['VCPUServerVolumeArgs']] = None):
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional['VCPUServerNicArgs']] = None,
+                 nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional['VCPUServerVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering VCPUServer resources.
 
@@ -399,7 +399,7 @@ class _VCPUServerState:
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input['VCPUServerVolumeArgs'] volume: See the Volume section.
         """
@@ -461,209 +461,209 @@ class _VCPUServerState:
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="bootCdrom")
     @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-    def boot_cdrom(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_cdrom(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         """
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
-    def boot_cdrom(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_cdrom(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_cdrom", value)
 
     @_builtins.property
     @pulumi.getter(name="bootImage")
-    def boot_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
-    def boot_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_image", value)
 
     @_builtins.property
     @pulumi.getter(name="bootVolume")
-    def boot_volume(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_volume(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated boot volume.
         """
         return pulumi.get(self, "boot_volume")
 
     @boot_volume.setter
-    def boot_volume(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_volume(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_volume", value)
 
     @_builtins.property
     @pulumi.getter
-    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] Number of server CPU cores.
         """
         return pulumi.get(self, "cores")
 
     @cores.setter
-    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cores(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cpu_family(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cpu_family")
 
     @cpu_family.setter
-    def cpu_family(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cpu_family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cpu_family", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")
-    def firewallrule_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewallrule_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated firewall rule.
         """
         return pulumi.get(self, "firewallrule_id")
 
     @firewallrule_id.setter
-    def firewallrule_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewallrule_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewallrule_id", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleIds")
-    def firewallrule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def firewallrule_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The associated firewall rules.
         """
         return pulumi.get(self, "firewallrule_ids")
 
     @firewallrule_ids.setter
-    def firewallrule_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def firewallrule_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "firewallrule_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The password for the image.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter(name="inlineVolumeIds")
-    def inline_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def inline_volume_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list with the IDs for the volumes that are defined inside the server resource.
         """
         return pulumi.get(self, "inline_volume_ids")
 
     @inline_volume_ids.setter
-    def inline_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def inline_volume_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "inline_volume_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]:
         """
         A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VCPUServerLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nic(self) -> Optional[pulumi.Input['VCPUServerNicArgs']]:
+    def nic(self) -> pulumi.Input[Optional['VCPUServerNicArgs']]:
         """
         See the Nic section.
         """
         return pulumi.get(self, "nic")
 
     @nic.setter
-    def nic(self, value: Optional[pulumi.Input['VCPUServerNicArgs']]):
+    def nic(self, value: pulumi.Input[Optional['VCPUServerNicArgs']]):
         pulumi.set(self, "nic", value)
 
     @_builtins.property
     @pulumi.getter(name="nicMultiQueue")
-    def nic_multi_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_multi_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
 
@@ -675,100 +675,100 @@ class _VCPUServerState:
         return pulumi.get(self, "nic_multi_queue")
 
     @nic_multi_queue.setter
-    def nic_multi_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_multi_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_multi_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryIp")
-    def primary_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def primary_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated IP address.
         """
         return pulumi.get(self, "primary_ip")
 
     @primary_ip.setter
-    def primary_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def primary_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "primary_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryNic")
-    def primary_nic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def primary_nic(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated NIC.
         """
         return pulumi.get(self, "primary_nic")
 
     @primary_nic.setter
-    def primary_nic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def primary_nic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "primary_nic", value)
 
     @_builtins.property
     @pulumi.getter
-    def ram(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] The amount of memory for the server in MB.
         """
         return pulumi.get(self, "ram")
 
     @ram.setter
-    def ram(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ram(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ram", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource.
         """
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="vmState")
-    def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vm_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         """
         return pulumi.get(self, "vm_state")
 
     @vm_state.setter
-    def vm_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vm_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vm_state", value)
 
     @_builtins.property
     @pulumi.getter
-    def volume(self) -> Optional[pulumi.Input['VCPUServerVolumeArgs']]:
+    def volume(self) -> pulumi.Input[Optional['VCPUServerVolumeArgs']]:
         """
         See the Volume section.
         """
         return pulumi.get(self, "volume")
 
     @volume.setter
-    def volume(self, value: Optional[pulumi.Input['VCPUServerVolumeArgs']]):
+    def volume(self, value: pulumi.Input[Optional['VCPUServerVolumeArgs']]):
         pulumi.set(self, "volume", value)
 
 
@@ -778,28 +778,28 @@ class VCPUServer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
-                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+                 nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
 
         These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
 
@@ -848,7 +848,7 @@ class VCPUServer(pulumi.CustomResource):
                 "bus": "VIRTIO",
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -857,16 +857,16 @@ class VCPUServer(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -926,7 +926,7 @@ class VCPUServer(pulumi.CustomResource):
                > ssh_keys field is immutable.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
@@ -937,7 +937,7 @@ class VCPUServer(pulumi.CustomResource):
                  args: VCPUServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
 
         These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
 
@@ -986,7 +986,7 @@ class VCPUServer(pulumi.CustomResource):
                 "bus": "VIRTIO",
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -995,16 +995,16 @@ class VCPUServer(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -1056,25 +1056,25 @@ class VCPUServer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 cores: Optional[pulumi.Input[_builtins.int]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
-                 nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram: Optional[pulumi.Input[_builtins.int]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 cores: pulumi.Input[Optional[_builtins.int]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+                 nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram: pulumi.Input[Optional[_builtins.int]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1130,32 +1130,32 @@ class VCPUServer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_cdrom: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_volume: Optional[pulumi.Input[_builtins.str]] = None,
-            cores: Optional[pulumi.Input[_builtins.int]] = None,
-            cpu_family: Optional[pulumi.Input[_builtins.str]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            firewallrule_id: Optional[pulumi.Input[_builtins.str]] = None,
-            firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            image_name: Optional[pulumi.Input[_builtins.str]] = None,
-            image_password: Optional[pulumi.Input[_builtins.str]] = None,
-            inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
-            nic_multi_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-            primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
-            ram: Optional[pulumi.Input[_builtins.int]] = None,
-            security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-            volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None) -> 'VCPUServer':
+            availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+            cores: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
+            firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            image_name: pulumi.Input[Optional[_builtins.str]] = None,
+            image_password: pulumi.Input[Optional[_builtins.str]] = None,
+            inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+            nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+            primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
+            ram: pulumi.Input[Optional[_builtins.int]] = None,
+            security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+            volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None) -> 'VCPUServer':
         """
         Get an existing VCPUServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1189,7 +1189,7 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
@@ -1408,7 +1408,7 @@ class VCPUServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 

@@ -24,8 +24,8 @@ class NatGatewayArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  lans: pulumi.Input[Sequence[pulumi.Input['NatGatewayLanArgs']]],
                  public_ips: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NatGateway resource.
 
@@ -81,37 +81,37 @@ class NatGatewayArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the NAT gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _NatGatewayState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input['NatGatewayLanArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input['NatGatewayLanArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering NatGateway resources.
 
@@ -134,62 +134,62 @@ class _NatGatewayState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A Datacenter's UUID.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def lans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NatGatewayLanArgs']]]]:
+    def lans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NatGatewayLanArgs']]]]:
         """
         [list] A list of Local Area Networks the node pool should be part of.
         """
         return pulumi.get(self, "lans")
 
     @lans.setter
-    def lans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NatGatewayLanArgs']]]]):
+    def lans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NatGatewayLanArgs']]]]):
         pulumi.set(self, "lans", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the NAT gateway.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
-    def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def public_ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
         """
         return pulumi.get(self, "public_ips")
 
     @public_ips.setter
-    def public_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def public_ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "public_ips", value)
 
 
@@ -199,14 +199,14 @@ class NatGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -235,7 +235,7 @@ class NatGateway(pulumi.CustomResource):
                 example_ip_block.ips[1],
             ],
             lans=[{
-                "id": example_lan.id,
+                "id": example_lan.id.apply(lambda x: int(x)),
                 "gateway_ips": ["10.11.2.5"],
             }])
         ```
@@ -264,7 +264,7 @@ class NatGateway(pulumi.CustomResource):
                  args: NatGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+        Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -293,7 +293,7 @@ class NatGateway(pulumi.CustomResource):
                 example_ip_block.ips[1],
             ],
             lans=[{
-                "id": example_lan.id,
+                "id": example_lan.id.apply(lambda x: int(x)),
                 "gateway_ips": ["10.11.2.5"],
             }])
         ```
@@ -322,11 +322,11 @@ class NatGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -357,11 +357,11 @@ class NatGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'NatGateway':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'NatGateway':
         """
         Get an existing NatGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -143,10 +143,10 @@ def get_ip_failover(datacenter_id: Optional[_builtins.str] = None,
         lan_id=pulumi.get(__ret__, 'lan_id'),
         location=pulumi.get(__ret__, 'location'),
         nicuuid=pulumi.get(__ret__, 'nicuuid'))
-def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           ip: Optional[pulumi.Input[_builtins.str]] = None,
-                           lan_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_ip_failover_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           ip: pulumi.Input[Optional[_builtins.str]] = None,
+                           lan_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIPFailoverResult]:
     """
     The **IP Failover data source** can be used to search for and return an existing IP Failover object.

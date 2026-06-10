@@ -143,8 +143,7 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		// You may host a logo on a domain you control or add an PNG logo (100x100) for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL: "https://raw.githubusercontent.com/ionos-cloud/pulumi-ionoscloud" +
-			"/refs/heads/main/.github/LOGO_IONOS_Blue_RGB.png",
+		LogoURL: "https://raw.githubusercontent.com/ionos-cloud/pulumi-ionoscloud/refs/heads/main/.github/LOGO_IONOS_Blue_RGB.png", //nolint:lll
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		PluginDownloadURL: "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
@@ -340,6 +339,26 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLVersions"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_versions.md"},
 			},
+			"ionoscloud_pg_cluster_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_cluster_v2.md"},
+			},
+			"ionoscloud_pg_clusters_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLClustersV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_clusters_v2.md"},
+			},
+			"ionoscloud_pg_backups_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLBackupsV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_backups_v2.md"},
+			},
+			"ionoscloud_pg_versions_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLVersionsV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_versions_v2.md"},
+			},
+			"ionoscloud_pg_backup_location_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLBackupLocationV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_backup_location.md"},
+			},
 			"ionoscloud_mongo_cluster": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoCluster"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_cluster.md"},
@@ -452,6 +471,9 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getBucket"),
 			},
+			"ionoscloud_user_object_storage_bucket": {
+				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getUserBucket"),
+			},
 			"ionoscloud_s3_object": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getObject"),
 			},
@@ -554,6 +576,10 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_pg_database": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLDatabase"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_database.md"},
+			},
+			"ionoscloud_pg_cluster_v2": {
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "pg_cluster_v2.md"},
 			},
 			"ionoscloud_mongo_cluster": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MongoCluster"),
@@ -661,6 +687,9 @@ func Provider() tfbridge.ProviderInfo {
 			// plugin-framework resources: object storage (S3-compatible)
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "Bucket"),
+			},
+			"ionoscloud_user_object_storage_bucket": {
+				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "UserBucket"),
 			},
 			"ionoscloud_s3_bucket_policy": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "BucketPolicy"),

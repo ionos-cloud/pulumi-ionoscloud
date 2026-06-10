@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *
@@ -79,12 +79,16 @@ export interface GetClusterResult {
     readonly nfs: outputs.nfs.GetClusterNf[];
     readonly partialMatch?: boolean;
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      */
     readonly size: number;
+    /**
+     * The unit of the `size` attribute. Possible values: `TiB`, `GiB`.
+     */
+    readonly sizeUnit: string;
 }
 /**
- * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+ * Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *
@@ -115,7 +119,7 @@ export interface GetClusterOutputArgs {
     /**
      * ID of the Network File Storage cluster.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
@@ -123,9 +127,9 @@ export interface GetClusterOutputArgs {
     /**
      * Name of the Network File Storage cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

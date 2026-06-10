@@ -46,7 +46,7 @@ class IpsecGatewayConnectionArgsDict(TypedDict):
     """
     [string] The numeric LAN ID to connect your VPN Gateway to.
     """
-    ipv6_cidr: NotRequired[pulumi.Input[_builtins.str]]
+    ipv6_cidr: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
     """
@@ -57,7 +57,7 @@ class IpsecGatewayConnectionArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  ipv4_cidr: pulumi.Input[_builtins.str],
                  lan_id: pulumi.Input[_builtins.str],
-                 ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None):
+                 ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The datacenter to connect your VPN Gateway to.
         :param pulumi.Input[_builtins.str] ipv4_cidr: [string] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
@@ -108,14 +108,14 @@ class IpsecGatewayConnectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipv6Cidr")
-    def ipv6_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 
     @ipv6_cidr.setter
-    def ipv6_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr", value)
 
 
@@ -167,12 +167,12 @@ class IpsecGatewayMaintenanceWindowArgs:
 
 
 class IpsecTunnelAuthArgsDict(TypedDict):
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
     Default value: `PSK`.
     """
-    psk_key: NotRequired[pulumi.Input[_builtins.str]]
+    psk_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
     PSK.
@@ -181,8 +181,8 @@ class IpsecTunnelAuthArgsDict(TypedDict):
 @pulumi.input_type
 class IpsecTunnelAuthArgs:
     def __init__(__self__, *,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 psk_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 psk_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] method: [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
                Default value: `PSK`.
@@ -196,7 +196,7 @@ class IpsecTunnelAuthArgs:
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
         Default value: `PSK`.
@@ -204,12 +204,12 @@ class IpsecTunnelAuthArgs:
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter(name="pskKey")
-    def psk_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def psk_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
         PSK.
@@ -217,29 +217,29 @@ class IpsecTunnelAuthArgs:
         return pulumi.get(self, "psk_key")
 
     @psk_key.setter
-    def psk_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def psk_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "psk_key", value)
 
 
 class IpsecTunnelEspArgsDict(TypedDict):
-    diffie_hellman_group: NotRequired[pulumi.Input[_builtins.str]]
+    diffie_hellman_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
     values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
     Default value: `16-MODP4096`.
     """
-    encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    encryption_algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The encryption algorithm to use for IPSec Encryption. Possible
     values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
     `AES256-CCM-12`. Default value: `AES256`.
     """
-    integrity_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    integrity_algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The integrity algorithm to use for IPSec Encryption. Possible
     values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
     """
-    lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
     Default value: `86400`.
@@ -248,10 +248,10 @@ class IpsecTunnelEspArgsDict(TypedDict):
 @pulumi.input_type
 class IpsecTunnelEspArgs:
     def __init__(__self__, *,
-                 diffie_hellman_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 integrity_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 lifetime: Optional[pulumi.Input[_builtins.int]] = None):
+                 diffie_hellman_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 integrity_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 lifetime: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] diffie_hellman_group: [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
                values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
@@ -275,7 +275,7 @@ class IpsecTunnelEspArgs:
 
     @_builtins.property
     @pulumi.getter(name="diffieHellmanGroup")
-    def diffie_hellman_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def diffie_hellman_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
         values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
@@ -284,12 +284,12 @@ class IpsecTunnelEspArgs:
         return pulumi.get(self, "diffie_hellman_group")
 
     @diffie_hellman_group.setter
-    def diffie_hellman_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def diffie_hellman_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "diffie_hellman_group", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAlgorithm")
-    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The encryption algorithm to use for IPSec Encryption. Possible
         values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
@@ -298,12 +298,12 @@ class IpsecTunnelEspArgs:
         return pulumi.get(self, "encryption_algorithm")
 
     @encryption_algorithm.setter
-    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="integrityAlgorithm")
-    def integrity_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integrity_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The integrity algorithm to use for IPSec Encryption. Possible
         values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
@@ -311,12 +311,12 @@ class IpsecTunnelEspArgs:
         return pulumi.get(self, "integrity_algorithm")
 
     @integrity_algorithm.setter
-    def integrity_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integrity_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integrity_algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
         Default value: `86400`.
@@ -324,29 +324,29 @@ class IpsecTunnelEspArgs:
         return pulumi.get(self, "lifetime")
 
     @lifetime.setter
-    def lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lifetime", value)
 
 
 class IpsecTunnelIkeArgsDict(TypedDict):
-    diffie_hellman_group: NotRequired[pulumi.Input[_builtins.str]]
+    diffie_hellman_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
     values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
     Default value: `16-MODP4096`.
     """
-    encryption_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    encryption_algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The encryption algorithm to use for IPSec Encryption. Possible
     values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
     `AES256-CCM-12`. Default value: `AES256`.
     """
-    integrity_algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    integrity_algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The integrity algorithm to use for IPSec Encryption. Possible
     values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
     """
-    lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
     Default value: `86400`.
@@ -355,10 +355,10 @@ class IpsecTunnelIkeArgsDict(TypedDict):
 @pulumi.input_type
 class IpsecTunnelIkeArgs:
     def __init__(__self__, *,
-                 diffie_hellman_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 integrity_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 lifetime: Optional[pulumi.Input[_builtins.int]] = None):
+                 diffie_hellman_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 integrity_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 lifetime: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] diffie_hellman_group: [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
                values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
@@ -382,7 +382,7 @@ class IpsecTunnelIkeArgs:
 
     @_builtins.property
     @pulumi.getter(name="diffieHellmanGroup")
-    def diffie_hellman_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def diffie_hellman_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
         values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
@@ -391,12 +391,12 @@ class IpsecTunnelIkeArgs:
         return pulumi.get(self, "diffie_hellman_group")
 
     @diffie_hellman_group.setter
-    def diffie_hellman_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def diffie_hellman_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "diffie_hellman_group", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAlgorithm")
-    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The encryption algorithm to use for IPSec Encryption. Possible
         values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
@@ -405,12 +405,12 @@ class IpsecTunnelIkeArgs:
         return pulumi.get(self, "encryption_algorithm")
 
     @encryption_algorithm.setter
-    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="integrityAlgorithm")
-    def integrity_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integrity_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The integrity algorithm to use for IPSec Encryption. Possible
         values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
@@ -418,12 +418,12 @@ class IpsecTunnelIkeArgs:
         return pulumi.get(self, "integrity_algorithm")
 
     @integrity_algorithm.setter
-    def integrity_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integrity_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integrity_algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
         Default value: `86400`.
@@ -431,7 +431,7 @@ class IpsecTunnelIkeArgs:
         return pulumi.get(self, "lifetime")
 
     @lifetime.setter
-    def lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lifetime", value)
 
 
@@ -444,11 +444,11 @@ class WireguardGatewayConnectionArgsDict(TypedDict):
     """
     [String] The ID of the LAN where the WireGuard Gateway is connected.
     """
-    ipv4_cidr: NotRequired[pulumi.Input[_builtins.str]]
+    ipv4_cidr: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
     """
-    ipv6_cidr: NotRequired[pulumi.Input[_builtins.str]]
+    ipv6_cidr: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
     """
@@ -458,8 +458,8 @@ class WireguardGatewayConnectionArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
                  lan_id: pulumi.Input[_builtins.str],
-                 ipv4_cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 ipv6_cidr: Optional[pulumi.Input[_builtins.str]] = None):
+                 ipv4_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv6_cidr: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] datacenter_id: [String] The ID of the datacenter where the WireGuard Gateway is located.
         :param pulumi.Input[_builtins.str] lan_id: [String] The ID of the LAN where the WireGuard Gateway is connected.
@@ -499,26 +499,26 @@ class WireguardGatewayConnectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipv4Cidr")
-    def ipv4_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv4_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] A LAN IPv4 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv4_cidr")
 
     @ipv4_cidr.setter
-    def ipv4_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv4_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv4_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6Cidr")
-    def ipv6_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [String] A LAN IPv6 address in CIDR notation that will be assigned to the VPN Gateway. This will be the private gateway address for LAN clients to route traffic over the VPN Gateway, this should be within the subnet already assigned to the LAN.
         """
         return pulumi.get(self, "ipv6_cidr")
 
     @ipv6_cidr.setter
-    def ipv6_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr", value)
 
 
@@ -574,7 +574,7 @@ class WireguardPeerEndpointArgsDict(TypedDict):
     """
     [string] The hostname or IPV4 address that the WireGuard Server will connect to.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
     """
@@ -583,7 +583,7 @@ class WireguardPeerEndpointArgsDict(TypedDict):
 class WireguardPeerEndpointArgs:
     def __init__(__self__, *,
                  host: pulumi.Input[_builtins.str],
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] host: [string] The hostname or IPV4 address that the WireGuard Server will connect to.
         :param pulumi.Input[_builtins.int] port: [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
@@ -606,14 +606,14 @@ class WireguardPeerEndpointArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 

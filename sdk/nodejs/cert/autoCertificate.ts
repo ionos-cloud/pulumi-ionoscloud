@@ -70,7 +70,7 @@ export class AutoCertificate extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     declare public readonly commonName: pulumi.Output<string>;
     /**
@@ -94,7 +94,7 @@ export class AutoCertificate extends pulumi.CustomResource {
      */
     declare public readonly providerId: pulumi.Output<string>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     declare public readonly subjectAlternativeNames: pulumi.Output<string[] | undefined>;
 
@@ -150,33 +150,33 @@ export class AutoCertificate extends pulumi.CustomResource {
  */
 export interface AutoCertificateState {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * [string] The key algorithm used to generate the certificate.
      */
-    keyAlgorithm?: pulumi.Input<string>;
+    keyAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of the last certificate that was issued.
      */
-    lastIssuedCertificateId?: pulumi.Input<string>;
+    lastIssuedCertificateId?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] A certificate name used for management purposes.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate provider used to issue the certificates.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
-    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -184,7 +184,7 @@ export interface AutoCertificateState {
  */
 export interface AutoCertificateArgs {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     commonName: pulumi.Input<string>;
     /**
@@ -198,13 +198,13 @@ export interface AutoCertificateArgs {
     /**
      * [string] A certificate name used for management purposes.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The certificate provider used to issue the certificates.
      */
     providerId: pulumi.Input<string>;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
-    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
+    subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

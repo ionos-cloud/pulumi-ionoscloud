@@ -8,8 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
+ * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
  *
  * ## Example Usage
  *
@@ -38,6 +37,8 @@ export function getLocation(args?: GetLocationArgs, opts?: pulumi.InvokeOptions)
 export interface GetLocationArgs {
     /**
      * A desired feature that the location must be able to provide.
+     *
+     * Either `name` or `feature` must be provided. If none is provided, the datasource will return an error.
      */
     feature?: string;
     /**
@@ -67,8 +68,7 @@ export interface GetLocationResult {
 }
 /**
  * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
+ * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
  *
  * ## Example Usage
  *
@@ -97,10 +97,12 @@ export function getLocationOutput(args?: GetLocationOutputArgs, opts?: pulumi.In
 export interface GetLocationOutputArgs {
     /**
      * A desired feature that the location must be able to provide.
+     *
+     * Either `name` or `feature` must be provided. If none is provided, the datasource will return an error.
      */
-    feature?: pulumi.Input<string>;
+    feature?: pulumi.Input<string | undefined>;
     /**
      * Name of the location to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

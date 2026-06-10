@@ -152,9 +152,9 @@ def get_auto_certificate_provider(id: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         server=pulumi.get(__ret__, 'server'))
-def get_auto_certificate_provider_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                         location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_auto_certificate_provider_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                         location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                         name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateProviderResult]:
     """
     The **CM Provider data source** can be used to search for and return an existing certificate manager provider.

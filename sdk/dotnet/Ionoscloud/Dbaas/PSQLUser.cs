@@ -27,7 +27,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userPassword = new Random.Index.Password("user_password", new()
+    ///     var userPassword = new Random.Password("user_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -123,7 +123,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "password",

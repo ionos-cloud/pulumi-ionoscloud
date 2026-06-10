@@ -36,7 +36,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class IonoscloudFunctions {
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -49,8 +49,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -74,44 +74,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static Output<GetContractsResult> getContracts() {
         return getContracts(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -124,8 +124,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -149,44 +149,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static CompletableFuture<GetContractsResult> getContractsPlain() {
         return getContractsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -199,8 +199,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -224,44 +224,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static Output<GetContractsResult> getContracts(InvokeArgs args) {
         return getContracts(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -274,8 +274,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -299,44 +299,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static CompletableFuture<GetContractsResult> getContractsPlain(InvokeArgs args) {
         return getContractsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -349,8 +349,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -374,44 +374,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static Output<GetContractsResult> getContracts(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -424,8 +424,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -449,44 +449,44 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static Output<GetContractsResult> getContracts(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -499,8 +499,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -524,37 +524,37 @@ public final class IonoscloudFunctions {
      * 
      * Sure! Here&#39;s the list of attributes formatted as requested:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
-     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
-     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34;&gt;`resourceLimits`&lt;/span&gt;
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
-     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
+     * * &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt;
+     *   * &lt;span pulumi-lang-nodejs=&#34;`contractNumber`&#34; pulumi-lang-dotnet=&#34;`ContractNumber`&#34; pulumi-lang-go=&#34;`contractNumber`&#34; pulumi-lang-python=&#34;`contract_number`&#34; pulumi-lang-yaml=&#34;`contractNumber`&#34; pulumi-lang-java=&#34;`contractNumber`&#34; pulumi-lang-hcl=&#34;`contract_number`&#34;&gt;`contractNumber`&lt;/span&gt; - The contract number.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`owner`&#34; pulumi-lang-dotnet=&#34;`Owner`&#34; pulumi-lang-go=&#34;`owner`&#34; pulumi-lang-python=&#34;`owner`&#34; pulumi-lang-yaml=&#34;`owner`&#34; pulumi-lang-java=&#34;`owner`&#34; pulumi-lang-hcl=&#34;`owner`&#34;&gt;`owner`&lt;/span&gt; - The contract owner&#39;s user name.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`status`&#34; pulumi-lang-dotnet=&#34;`Status`&#34; pulumi-lang-go=&#34;`status`&#34; pulumi-lang-python=&#34;`status`&#34; pulumi-lang-yaml=&#34;`status`&#34; pulumi-lang-java=&#34;`status`&#34; pulumi-lang-hcl=&#34;`status`&#34;&gt;`status`&lt;/span&gt; - The contract status.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`regDomain`&#34; pulumi-lang-dotnet=&#34;`RegDomain`&#34; pulumi-lang-go=&#34;`regDomain`&#34; pulumi-lang-python=&#34;`reg_domain`&#34; pulumi-lang-yaml=&#34;`regDomain`&#34; pulumi-lang-java=&#34;`regDomain`&#34; pulumi-lang-hcl=&#34;`reg_domain`&#34;&gt;`regDomain`&lt;/span&gt; - The registration domain of the contract.
+     *   * &lt;span pulumi-lang-nodejs=&#34;`resourceLimits`&#34; pulumi-lang-dotnet=&#34;`ResourceLimits`&#34; pulumi-lang-go=&#34;`resourceLimits`&#34; pulumi-lang-python=&#34;`resource_limits`&#34; pulumi-lang-yaml=&#34;`resourceLimits`&#34; pulumi-lang-java=&#34;`resourceLimits`&#34; pulumi-lang-hcl=&#34;`resource_limits`&#34;&gt;`resourceLimits`&lt;/span&gt;
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerServer`&#34; pulumi-lang-dotnet=&#34;`CoresPerServer`&#34; pulumi-lang-go=&#34;`coresPerServer`&#34; pulumi-lang-python=&#34;`cores_per_server`&#34; pulumi-lang-yaml=&#34;`coresPerServer`&#34; pulumi-lang-java=&#34;`coresPerServer`&#34; pulumi-lang-hcl=&#34;`cores_per_server`&#34;&gt;`coresPerServer`&lt;/span&gt; - The maximum number of cores per server.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerServer`&#34; pulumi-lang-dotnet=&#34;`RamPerServer`&#34; pulumi-lang-go=&#34;`ramPerServer`&#34; pulumi-lang-python=&#34;`ram_per_server`&#34; pulumi-lang-yaml=&#34;`ramPerServer`&#34; pulumi-lang-java=&#34;`ramPerServer`&#34; pulumi-lang-hcl=&#34;`ram_per_server`&#34;&gt;`ramPerServer`&lt;/span&gt; - The maximum RAM per server in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramPerContract`&#34; pulumi-lang-dotnet=&#34;`RamPerContract`&#34; pulumi-lang-go=&#34;`ramPerContract`&#34; pulumi-lang-python=&#34;`ram_per_contract`&#34; pulumi-lang-yaml=&#34;`ramPerContract`&#34; pulumi-lang-java=&#34;`ramPerContract`&#34; pulumi-lang-hcl=&#34;`ram_per_contract`&#34;&gt;`ramPerContract`&lt;/span&gt; - The maximum RAM per contract in MB.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresPerContract`&#34; pulumi-lang-dotnet=&#34;`CoresPerContract`&#34; pulumi-lang-go=&#34;`coresPerContract`&#34; pulumi-lang-python=&#34;`cores_per_contract`&#34; pulumi-lang-yaml=&#34;`coresPerContract`&#34; pulumi-lang-java=&#34;`coresPerContract`&#34; pulumi-lang-hcl=&#34;`cores_per_contract`&#34;&gt;`coresPerContract`&lt;/span&gt; - The maximum number of cores per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`coresProvisioned`&#34; pulumi-lang-dotnet=&#34;`CoresProvisioned`&#34; pulumi-lang-go=&#34;`coresProvisioned`&#34; pulumi-lang-python=&#34;`cores_provisioned`&#34; pulumi-lang-yaml=&#34;`coresProvisioned`&#34; pulumi-lang-java=&#34;`coresProvisioned`&#34; pulumi-lang-hcl=&#34;`cores_provisioned`&#34;&gt;`coresProvisioned`&lt;/span&gt; - The number of cores provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`DasVolumeProvisioned`&#34; pulumi-lang-go=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-python=&#34;`das_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-java=&#34;`dasVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`das_volume_provisioned`&#34;&gt;`dasVolumeProvisioned`&lt;/span&gt; - The DAS volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerContract`&#34; pulumi-lang-go=&#34;`hddLimitPerContract`&#34; pulumi-lang-python=&#34;`hdd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`hddLimitPerContract`&#34; pulumi-lang-java=&#34;`hddLimitPerContract`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_contract`&#34;&gt;`hddLimitPerContract`&lt;/span&gt; - The HDD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`HddLimitPerVolume`&#34; pulumi-lang-go=&#34;`hddLimitPerVolume`&#34; pulumi-lang-python=&#34;`hdd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`hddLimitPerVolume`&#34; pulumi-lang-java=&#34;`hddLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`hdd_limit_per_volume`&#34;&gt;`hddLimitPerVolume`&lt;/span&gt; - The HDD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`HddVolumeProvisioned`&#34; pulumi-lang-go=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-python=&#34;`hdd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-java=&#34;`hddVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`hdd_volume_provisioned`&#34;&gt;`hddVolumeProvisioned`&lt;/span&gt; - The HDD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-dotnet=&#34;`K8sClusterLimitTotal`&#34; pulumi-lang-go=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-python=&#34;`k8s_cluster_limit_total`&#34; pulumi-lang-yaml=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-java=&#34;`k8sClusterLimitTotal`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_limit_total`&#34;&gt;`k8sClusterLimitTotal`&lt;/span&gt; - The total Kubernetes cluster limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-dotnet=&#34;`K8sClustersProvisioned`&#34; pulumi-lang-go=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-python=&#34;`k8s_clusters_provisioned`&#34; pulumi-lang-yaml=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-java=&#34;`k8sClustersProvisioned`&#34; pulumi-lang-hcl=&#34;`k8s_clusters_provisioned`&#34;&gt;`k8sClustersProvisioned`&lt;/span&gt; - The number of Kubernetes clusters provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NatGatewayLimitTotal`&#34; pulumi-lang-go=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-python=&#34;`nat_gateway_limit_total`&#34; pulumi-lang-yaml=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-java=&#34;`natGatewayLimitTotal`&#34; pulumi-lang-hcl=&#34;`nat_gateway_limit_total`&#34;&gt;`natGatewayLimitTotal`&lt;/span&gt; - The total NAT gateway limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`natGatewayProvisioned`&#34; pulumi-lang-dotnet=&#34;`NatGatewayProvisioned`&#34; pulumi-lang-go=&#34;`natGatewayProvisioned`&#34; pulumi-lang-python=&#34;`nat_gateway_provisioned`&#34; pulumi-lang-yaml=&#34;`natGatewayProvisioned`&#34; pulumi-lang-java=&#34;`natGatewayProvisioned`&#34; pulumi-lang-hcl=&#34;`nat_gateway_provisioned`&#34;&gt;`natGatewayProvisioned`&lt;/span&gt; - The number of NAT gateways provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbLimitTotal`&#34; pulumi-lang-dotnet=&#34;`NlbLimitTotal`&#34; pulumi-lang-go=&#34;`nlbLimitTotal`&#34; pulumi-lang-python=&#34;`nlb_limit_total`&#34; pulumi-lang-yaml=&#34;`nlbLimitTotal`&#34; pulumi-lang-java=&#34;`nlbLimitTotal`&#34; pulumi-lang-hcl=&#34;`nlb_limit_total`&#34;&gt;`nlbLimitTotal`&lt;/span&gt; - The total NLB limit.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`nlbProvisioned`&#34; pulumi-lang-dotnet=&#34;`NlbProvisioned`&#34; pulumi-lang-go=&#34;`nlbProvisioned`&#34; pulumi-lang-python=&#34;`nlb_provisioned`&#34; pulumi-lang-yaml=&#34;`nlbProvisioned`&#34; pulumi-lang-java=&#34;`nlbProvisioned`&#34; pulumi-lang-hcl=&#34;`nlb_provisioned`&#34;&gt;`nlbProvisioned`&lt;/span&gt; - The number of NLBs provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ramProvisioned`&#34; pulumi-lang-dotnet=&#34;`RamProvisioned`&#34; pulumi-lang-go=&#34;`ramProvisioned`&#34; pulumi-lang-python=&#34;`ram_provisioned`&#34; pulumi-lang-yaml=&#34;`ramProvisioned`&#34; pulumi-lang-java=&#34;`ramProvisioned`&#34; pulumi-lang-hcl=&#34;`ram_provisioned`&#34;&gt;`ramProvisioned`&lt;/span&gt; - The RAM provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservableIps`&#34; pulumi-lang-dotnet=&#34;`ReservableIps`&#34; pulumi-lang-go=&#34;`reservableIps`&#34; pulumi-lang-python=&#34;`reservable_ips`&#34; pulumi-lang-yaml=&#34;`reservableIps`&#34; pulumi-lang-java=&#34;`reservableIps`&#34; pulumi-lang-hcl=&#34;`reservable_ips`&#34;&gt;`reservableIps`&lt;/span&gt; - The number of reservable IPs.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsInUse`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsInUse`&#34; pulumi-lang-go=&#34;`reservedIpsInUse`&#34; pulumi-lang-python=&#34;`reserved_ips_in_use`&#34; pulumi-lang-yaml=&#34;`reservedIpsInUse`&#34; pulumi-lang-java=&#34;`reservedIpsInUse`&#34; pulumi-lang-hcl=&#34;`reserved_ips_in_use`&#34;&gt;`reservedIpsInUse`&lt;/span&gt; - The number of reserved IPs in use.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`reservedIpsOnContract`&#34; pulumi-lang-dotnet=&#34;`ReservedIpsOnContract`&#34; pulumi-lang-go=&#34;`reservedIpsOnContract`&#34; pulumi-lang-python=&#34;`reserved_ips_on_contract`&#34; pulumi-lang-yaml=&#34;`reservedIpsOnContract`&#34; pulumi-lang-java=&#34;`reservedIpsOnContract`&#34; pulumi-lang-hcl=&#34;`reserved_ips_on_contract`&#34;&gt;`reservedIpsOnContract`&lt;/span&gt; - The number of reserved IPs on the contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerContract`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerContract`&#34; pulumi-lang-go=&#34;`ssdLimitPerContract`&#34; pulumi-lang-python=&#34;`ssd_limit_per_contract`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerContract`&#34; pulumi-lang-java=&#34;`ssdLimitPerContract`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_contract`&#34;&gt;`ssdLimitPerContract`&lt;/span&gt; - The SSD limit per contract.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-dotnet=&#34;`SsdLimitPerVolume`&#34; pulumi-lang-go=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-python=&#34;`ssd_limit_per_volume`&#34; pulumi-lang-yaml=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-java=&#34;`ssdLimitPerVolume`&#34; pulumi-lang-hcl=&#34;`ssd_limit_per_volume`&#34;&gt;`ssdLimitPerVolume`&lt;/span&gt; - The SSD limit per volume.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-dotnet=&#34;`SsdVolumeProvisioned`&#34; pulumi-lang-go=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-python=&#34;`ssd_volume_provisioned`&#34; pulumi-lang-yaml=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-java=&#34;`ssdVolumeProvisioned`&#34; pulumi-lang-hcl=&#34;`ssd_volume_provisioned`&#34;&gt;`ssdVolumeProvisioned`&lt;/span&gt; - The SSD volume provisioned.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerVdc`&#34; pulumi-lang-go=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-python=&#34;`security_groups_per_vdc`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-java=&#34;`securityGroupsPerVdc`&#34; pulumi-lang-hcl=&#34;`security_groups_per_vdc`&#34;&gt;`securityGroupsPerVdc`&lt;/span&gt; - The number of security groups per VDC.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`securityGroupsPerResource`&#34; pulumi-lang-dotnet=&#34;`SecurityGroupsPerResource`&#34; pulumi-lang-go=&#34;`securityGroupsPerResource`&#34; pulumi-lang-python=&#34;`security_groups_per_resource`&#34; pulumi-lang-yaml=&#34;`securityGroupsPerResource`&#34; pulumi-lang-java=&#34;`securityGroupsPerResource`&#34; pulumi-lang-hcl=&#34;`security_groups_per_resource`&#34;&gt;`securityGroupsPerResource`&lt;/span&gt; - The number of security groups per resource.
+     *     * &lt;span pulumi-lang-nodejs=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-dotnet=&#34;`RulesPerSecurityGroup`&#34; pulumi-lang-go=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-python=&#34;`rules_per_security_group`&#34; pulumi-lang-yaml=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-java=&#34;`rulesPerSecurityGroup`&#34; pulumi-lang-hcl=&#34;`rules_per_security_group`&#34;&gt;`rulesPerSecurityGroup`&lt;/span&gt; - The number of rules per security group.
      * 
      */
     public static CompletableFuture<GetContractsResult> getContractsPlain(InvokeArgs args, InvokeOptions options) {
@@ -581,8 +581,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -615,8 +615,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -649,8 +649,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -684,8 +684,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -732,8 +732,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -766,8 +766,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -800,8 +800,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -835,8 +835,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -883,8 +883,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -917,8 +917,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -951,8 +951,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -986,8 +986,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1034,8 +1034,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1068,8 +1068,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1102,8 +1102,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1137,8 +1137,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1185,8 +1185,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1219,8 +1219,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1253,8 +1253,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1288,8 +1288,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1336,8 +1336,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1370,8 +1370,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1404,8 +1404,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1439,8 +1439,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1487,8 +1487,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1521,8 +1521,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1555,8 +1555,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1590,8 +1590,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1636,8 +1636,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1670,8 +1670,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1705,8 +1705,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1753,8 +1753,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1787,8 +1787,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1822,8 +1822,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1870,8 +1870,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1904,8 +1904,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1939,8 +1939,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1987,8 +1987,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2021,8 +2021,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2056,8 +2056,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2104,8 +2104,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2138,8 +2138,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2173,8 +2173,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2221,8 +2221,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2255,8 +2255,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2290,8 +2290,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2338,8 +2338,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2372,8 +2372,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2407,8 +2407,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetDnsReverseRecordsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2454,8 +2454,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2490,8 +2490,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2541,8 +2541,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2577,8 +2577,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2628,8 +2628,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2664,8 +2664,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2715,8 +2715,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2751,8 +2751,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2802,8 +2802,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2838,8 +2838,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpuArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2889,8 +2889,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2924,8 +2924,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2974,8 +2974,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3009,8 +3009,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3059,8 +3059,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3094,8 +3094,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3144,8 +3144,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3179,8 +3179,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3229,8 +3229,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3264,8 +3264,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGPUServerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3311,8 +3311,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3358,8 +3358,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3405,8 +3405,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3452,8 +3452,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3499,8 +3499,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.compute.ComputeFunctions;
      * import com.pulumi.ionoscloud.compute.inputs.GetGpusArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3550,8 +3550,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3590,8 +3590,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3622,11 +3622,11 @@ public final class IonoscloudFunctions {
      * 
      * The following attributes are returned by the data source:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
-     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34; pulumi-lang-hcl=&#34;`certificate_authority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34; pulumi-lang-hcl=&#34;`private_key`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34; pulumi-lang-hcl=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
      * 
      */
     public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args) {
@@ -3651,8 +3651,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3691,8 +3691,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3723,11 +3723,11 @@ public final class IonoscloudFunctions {
      * 
      * The following attributes are returned by the data source:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
-     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34; pulumi-lang-hcl=&#34;`certificate_authority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34; pulumi-lang-hcl=&#34;`private_key`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34; pulumi-lang-hcl=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
      * 
      */
     public static CompletableFuture<GetKafkaUserCredentialsResult> getKafkaUserCredentialsPlain(GetKafkaUserCredentialsPlainArgs args) {
@@ -3752,8 +3752,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3792,8 +3792,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3824,11 +3824,11 @@ public final class IonoscloudFunctions {
      * 
      * The following attributes are returned by the data source:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
-     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34; pulumi-lang-hcl=&#34;`certificate_authority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34; pulumi-lang-hcl=&#34;`private_key`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34; pulumi-lang-hcl=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
      * 
      */
     public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args, InvokeOptions options) {
@@ -3853,8 +3853,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3893,8 +3893,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3925,11 +3925,11 @@ public final class IonoscloudFunctions {
      * 
      * The following attributes are returned by the data source:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
-     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34; pulumi-lang-hcl=&#34;`certificate_authority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34; pulumi-lang-hcl=&#34;`private_key`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34; pulumi-lang-hcl=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
      * 
      */
     public static Output<GetKafkaUserCredentialsResult> getKafkaUserCredentials(GetKafkaUserCredentialsArgs args, InvokeOutputOptions options) {
@@ -3954,8 +3954,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3994,8 +3994,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUserCredentialsTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4026,11 +4026,11 @@ public final class IonoscloudFunctions {
      * 
      * The following attributes are returned by the data source:
      * 
-     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
-     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
-     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
+     * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; - the ID of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`username`&#34; pulumi-lang-dotnet=&#34;`Username`&#34; pulumi-lang-go=&#34;`username`&#34; pulumi-lang-python=&#34;`username`&#34; pulumi-lang-yaml=&#34;`username`&#34; pulumi-lang-java=&#34;`username`&#34; pulumi-lang-hcl=&#34;`username`&#34;&gt;`username`&lt;/span&gt; - the name of the user;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificateAuthority`&#34; pulumi-lang-dotnet=&#34;`CertificateAuthority`&#34; pulumi-lang-go=&#34;`certificateAuthority`&#34; pulumi-lang-python=&#34;`certificate_authority`&#34; pulumi-lang-yaml=&#34;`certificateAuthority`&#34; pulumi-lang-java=&#34;`certificateAuthority`&#34; pulumi-lang-hcl=&#34;`certificate_authority`&#34;&gt;`certificateAuthority`&lt;/span&gt; - PEM for the certificate authority;
+     * * &lt;span pulumi-lang-nodejs=&#34;`privateKey`&#34; pulumi-lang-dotnet=&#34;`PrivateKey`&#34; pulumi-lang-go=&#34;`privateKey`&#34; pulumi-lang-python=&#34;`private_key`&#34; pulumi-lang-yaml=&#34;`privateKey`&#34; pulumi-lang-java=&#34;`privateKey`&#34; pulumi-lang-hcl=&#34;`private_key`&#34;&gt;`privateKey`&lt;/span&gt; - PEM for the private key;
+     * * &lt;span pulumi-lang-nodejs=&#34;`certificate`&#34; pulumi-lang-dotnet=&#34;`Certificate`&#34; pulumi-lang-go=&#34;`certificate`&#34; pulumi-lang-python=&#34;`certificate`&#34; pulumi-lang-yaml=&#34;`certificate`&#34; pulumi-lang-java=&#34;`certificate`&#34; pulumi-lang-hcl=&#34;`certificate`&#34;&gt;`certificate`&lt;/span&gt; - PEM for the certificate;
      * 
      */
     public static CompletableFuture<GetKafkaUserCredentialsResult> getKafkaUserCredentialsPlain(GetKafkaUserCredentialsPlainArgs args, InvokeOptions options) {
@@ -4052,8 +4052,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4099,8 +4099,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4146,8 +4146,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4193,8 +4193,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4240,8 +4240,8 @@ public final class IonoscloudFunctions {
      * import com.pulumi.ionoscloud.IonoscloudFunctions;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersArgs;
      * import com.pulumi.ionoscloud.inputs.GetKafkaUsersTimeoutsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

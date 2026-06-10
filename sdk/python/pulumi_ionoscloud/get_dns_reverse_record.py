@@ -164,10 +164,10 @@ def get_dns_reverse_record(id: Optional[_builtins.str] = None,
         ip=pulumi.get(__ret__, 'ip'),
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'))
-def get_dns_reverse_record_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  ip: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_dns_reverse_record_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  ip: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDnsReverseRecordResult]:
     """
     The **DNS Reverse Record** can be used to search for and return an existing DNS Reverse Record.

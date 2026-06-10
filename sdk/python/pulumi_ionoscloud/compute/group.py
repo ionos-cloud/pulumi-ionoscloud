@@ -21,35 +21,35 @@ __all__ = ['GroupArgs', 'Group']
 @pulumi.input_type
 class GroupArgs:
     def __init__(__self__, *,
-                 access_activity_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_ai_model_hub: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_api_gateway: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_cdn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_dns: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_iam_resources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_kaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_monitoring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_network_file_storage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_vpn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_backup_unit: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_datacenter: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_flow_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_internet_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_k8s_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_network_security_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_pcc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 get_users_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dataplatform: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dbaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_registry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 reserve_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 access_activity_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_ai_model_hub: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_api_gateway: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_cdn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_iam_resources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_kaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_monitoring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_network_file_storage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_vpn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_backup_unit: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_datacenter: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_flow_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_internet_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_k8s_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_network_security_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_pcc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_snapshot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 get_users_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dataplatform: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dbaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_registry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 reserve_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
 
@@ -147,387 +147,387 @@ class GroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessActivityLog")
-    def access_activity_log(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_activity_log(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to access the activity log.
         """
         return pulumi.get(self, "access_activity_log")
 
     @access_activity_log.setter
-    def access_activity_log(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_activity_log(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_activity_log", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageAiModelHub")
-    def access_and_manage_ai_model_hub(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_ai_model_hub(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage ai model hub.
         """
         return pulumi.get(self, "access_and_manage_ai_model_hub")
 
     @access_and_manage_ai_model_hub.setter
-    def access_and_manage_ai_model_hub(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_ai_model_hub(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_ai_model_hub", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageApiGateway")
-    def access_and_manage_api_gateway(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_api_gateway(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage api gateway.
         """
         return pulumi.get(self, "access_and_manage_api_gateway")
 
     @access_and_manage_api_gateway.setter
-    def access_and_manage_api_gateway(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_api_gateway(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_api_gateway", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageCdn")
-    def access_and_manage_cdn(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_cdn(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage cdn.
         """
         return pulumi.get(self, "access_and_manage_cdn")
 
     @access_and_manage_cdn.setter
-    def access_and_manage_cdn(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_cdn(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_cdn", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageCertificates")
-    def access_and_manage_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage certificates.
         """
         return pulumi.get(self, "access_and_manage_certificates")
 
     @access_and_manage_certificates.setter
-    def access_and_manage_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageDns")
-    def access_and_manage_dns(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_dns(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage dns records.
         """
         return pulumi.get(self, "access_and_manage_dns")
 
     @access_and_manage_dns.setter
-    def access_and_manage_dns(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_dns(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_dns", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageIamResources")
-    def access_and_manage_iam_resources(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_iam_resources(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage iam resources.
         """
         return pulumi.get(self, "access_and_manage_iam_resources")
 
     @access_and_manage_iam_resources.setter
-    def access_and_manage_iam_resources(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_iam_resources(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_iam_resources", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageKaas")
-    def access_and_manage_kaas(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_kaas(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage kaas.
         """
         return pulumi.get(self, "access_and_manage_kaas")
 
     @access_and_manage_kaas.setter
-    def access_and_manage_kaas(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_kaas(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_kaas", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageLogging")
-    def access_and_manage_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage logging.
         """
         return pulumi.get(self, "access_and_manage_logging")
 
     @access_and_manage_logging.setter
-    def access_and_manage_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_logging", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageMonitoring")
-    def access_and_manage_monitoring(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_monitoring(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage monitoring.
         """
         return pulumi.get(self, "access_and_manage_monitoring")
 
     @access_and_manage_monitoring.setter
-    def access_and_manage_monitoring(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_monitoring(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_monitoring", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageNetworkFileStorage")
-    def access_and_manage_network_file_storage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_network_file_storage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage network file storage.
         """
         return pulumi.get(self, "access_and_manage_network_file_storage")
 
     @access_and_manage_network_file_storage.setter
-    def access_and_manage_network_file_storage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_network_file_storage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_network_file_storage", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageVpn")
-    def access_and_manage_vpn(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_vpn(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage vpn.
         """
         return pulumi.get(self, "access_and_manage_vpn")
 
     @access_and_manage_vpn.setter
-    def access_and_manage_vpn(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_vpn(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_vpn", value)
 
     @_builtins.property
     @pulumi.getter(name="createBackupUnit")
-    def create_backup_unit(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_backup_unit(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create backup unit privilege.
         """
         return pulumi.get(self, "create_backup_unit")
 
     @create_backup_unit.setter
-    def create_backup_unit(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_backup_unit(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_backup_unit", value)
 
     @_builtins.property
     @pulumi.getter(name="createDatacenter")
-    def create_datacenter(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_datacenter(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create virtual data centers.
         """
         return pulumi.get(self, "create_datacenter")
 
     @create_datacenter.setter
-    def create_datacenter(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_datacenter(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_datacenter", value)
 
     @_builtins.property
     @pulumi.getter(name="createFlowLog")
-    def create_flow_log(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_flow_log(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create flow log.
         """
         return pulumi.get(self, "create_flow_log")
 
     @create_flow_log.setter
-    def create_flow_log(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_flow_log(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_flow_log", value)
 
     @_builtins.property
     @pulumi.getter(name="createInternetAccess")
-    def create_internet_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_internet_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create internet access privilege.
         """
         return pulumi.get(self, "create_internet_access")
 
     @create_internet_access.setter
-    def create_internet_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_internet_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_internet_access", value)
 
     @_builtins.property
     @pulumi.getter(name="createK8sCluster")
-    def create_k8s_cluster(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_k8s_cluster(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create kubernetes cluster privilege.
         """
         return pulumi.get(self, "create_k8s_cluster")
 
     @create_k8s_cluster.setter
-    def create_k8s_cluster(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_k8s_cluster(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_k8s_cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="createNetworkSecurityGroups")
-    def create_network_security_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_network_security_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create network security groups.
         """
         return pulumi.get(self, "create_network_security_groups")
 
     @create_network_security_groups.setter
-    def create_network_security_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_network_security_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_network_security_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="createPcc")
-    def create_pcc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_pcc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create Cross Connects privilege.
         """
         return pulumi.get(self, "create_pcc")
 
     @create_pcc.setter
-    def create_pcc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_pcc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_pcc", value)
 
     @_builtins.property
     @pulumi.getter(name="createSnapshot")
-    def create_snapshot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_snapshot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create snapshots.
         """
         return pulumi.get(self, "create_snapshot")
 
     @create_snapshot.setter
-    def create_snapshot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_snapshot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_snapshot", value)
 
     @_builtins.property
     @pulumi.getter(name="getUsersData")
-    def get_users_data(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def get_users_data(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
         """
         return pulumi.get(self, "get_users_data")
 
     @get_users_data.setter
-    def get_users_data(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def get_users_data(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "get_users_data", value)
 
     @_builtins.property
     @pulumi.getter(name="manageDataplatform")
-    def manage_dataplatform(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_dataplatform(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage the Data Platform.
         """
         return pulumi.get(self, "manage_dataplatform")
 
     @manage_dataplatform.setter
-    def manage_dataplatform(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_dataplatform(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_dataplatform", value)
 
     @_builtins.property
     @pulumi.getter(name="manageDbaas")
-    def manage_dbaas(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_dbaas(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  Privilege for a group to manage DBaaS related functionality.
         """
         return pulumi.get(self, "manage_dbaas")
 
     @manage_dbaas.setter
-    def manage_dbaas(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_dbaas(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_dbaas", value)
 
     @_builtins.property
     @pulumi.getter(name="manageRegistry")
-    def manage_registry(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_registry(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access container registry related functionality.
         """
         return pulumi.get(self, "manage_registry")
 
     @manage_registry.setter
-    def manage_registry(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_registry(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_registry", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A name for the group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="reserveIp")
-    def reserve_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reserve_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to reserve IP addresses.
         """
         return pulumi.get(self, "reserve_ip")
 
     @reserve_ip.setter
-    def reserve_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reserve_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reserve_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Privilege")
-    def s3_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def s3_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will have S3 privilege.
         """
         return pulumi.get(self, "s3_privilege")
 
     @s3_privilege.setter
-    def s3_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def s3_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "s3_privilege", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
     @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userIds")
-    def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def user_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] A list of users to add to the group.
         """
         return pulumi.get(self, "user_ids")
 
     @user_ids.setter
-    def user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def user_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "user_ids", value)
 
 
 @pulumi.input_type
 class _GroupState:
     def __init__(__self__, *,
-                 access_activity_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_ai_model_hub: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_api_gateway: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_cdn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_dns: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_iam_resources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_kaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_monitoring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_network_file_storage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_vpn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_backup_unit: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_datacenter: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_flow_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_internet_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_k8s_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_network_security_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_pcc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 get_users_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dataplatform: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dbaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_registry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 reserve_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]]] = None):
+                 access_activity_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_ai_model_hub: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_api_gateway: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_cdn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_iam_resources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_kaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_monitoring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_network_file_storage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_vpn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_backup_unit: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_datacenter: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_flow_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_internet_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_k8s_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_network_security_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_pcc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_snapshot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 get_users_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dataplatform: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dbaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_registry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 reserve_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input['GroupUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
 
@@ -630,356 +630,356 @@ class _GroupState:
 
     @_builtins.property
     @pulumi.getter(name="accessActivityLog")
-    def access_activity_log(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_activity_log(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to access the activity log.
         """
         return pulumi.get(self, "access_activity_log")
 
     @access_activity_log.setter
-    def access_activity_log(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_activity_log(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_activity_log", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageAiModelHub")
-    def access_and_manage_ai_model_hub(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_ai_model_hub(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage ai model hub.
         """
         return pulumi.get(self, "access_and_manage_ai_model_hub")
 
     @access_and_manage_ai_model_hub.setter
-    def access_and_manage_ai_model_hub(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_ai_model_hub(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_ai_model_hub", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageApiGateway")
-    def access_and_manage_api_gateway(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_api_gateway(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage api gateway.
         """
         return pulumi.get(self, "access_and_manage_api_gateway")
 
     @access_and_manage_api_gateway.setter
-    def access_and_manage_api_gateway(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_api_gateway(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_api_gateway", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageCdn")
-    def access_and_manage_cdn(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_cdn(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage cdn.
         """
         return pulumi.get(self, "access_and_manage_cdn")
 
     @access_and_manage_cdn.setter
-    def access_and_manage_cdn(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_cdn(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_cdn", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageCertificates")
-    def access_and_manage_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage certificates.
         """
         return pulumi.get(self, "access_and_manage_certificates")
 
     @access_and_manage_certificates.setter
-    def access_and_manage_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageDns")
-    def access_and_manage_dns(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_dns(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage dns records.
         """
         return pulumi.get(self, "access_and_manage_dns")
 
     @access_and_manage_dns.setter
-    def access_and_manage_dns(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_dns(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_dns", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageIamResources")
-    def access_and_manage_iam_resources(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_iam_resources(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage iam resources.
         """
         return pulumi.get(self, "access_and_manage_iam_resources")
 
     @access_and_manage_iam_resources.setter
-    def access_and_manage_iam_resources(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_iam_resources(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_iam_resources", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageKaas")
-    def access_and_manage_kaas(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_kaas(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage kaas.
         """
         return pulumi.get(self, "access_and_manage_kaas")
 
     @access_and_manage_kaas.setter
-    def access_and_manage_kaas(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_kaas(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_kaas", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageLogging")
-    def access_and_manage_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage logging.
         """
         return pulumi.get(self, "access_and_manage_logging")
 
     @access_and_manage_logging.setter
-    def access_and_manage_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_logging", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageMonitoring")
-    def access_and_manage_monitoring(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_monitoring(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage monitoring.
         """
         return pulumi.get(self, "access_and_manage_monitoring")
 
     @access_and_manage_monitoring.setter
-    def access_and_manage_monitoring(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_monitoring(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_monitoring", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageNetworkFileStorage")
-    def access_and_manage_network_file_storage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_network_file_storage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage network file storage.
         """
         return pulumi.get(self, "access_and_manage_network_file_storage")
 
     @access_and_manage_network_file_storage.setter
-    def access_and_manage_network_file_storage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_network_file_storage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_network_file_storage", value)
 
     @_builtins.property
     @pulumi.getter(name="accessAndManageVpn")
-    def access_and_manage_vpn(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def access_and_manage_vpn(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage vpn.
         """
         return pulumi.get(self, "access_and_manage_vpn")
 
     @access_and_manage_vpn.setter
-    def access_and_manage_vpn(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def access_and_manage_vpn(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "access_and_manage_vpn", value)
 
     @_builtins.property
     @pulumi.getter(name="createBackupUnit")
-    def create_backup_unit(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_backup_unit(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create backup unit privilege.
         """
         return pulumi.get(self, "create_backup_unit")
 
     @create_backup_unit.setter
-    def create_backup_unit(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_backup_unit(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_backup_unit", value)
 
     @_builtins.property
     @pulumi.getter(name="createDatacenter")
-    def create_datacenter(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_datacenter(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create virtual data centers.
         """
         return pulumi.get(self, "create_datacenter")
 
     @create_datacenter.setter
-    def create_datacenter(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_datacenter(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_datacenter", value)
 
     @_builtins.property
     @pulumi.getter(name="createFlowLog")
-    def create_flow_log(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_flow_log(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create flow log.
         """
         return pulumi.get(self, "create_flow_log")
 
     @create_flow_log.setter
-    def create_flow_log(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_flow_log(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_flow_log", value)
 
     @_builtins.property
     @pulumi.getter(name="createInternetAccess")
-    def create_internet_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_internet_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create internet access privilege.
         """
         return pulumi.get(self, "create_internet_access")
 
     @create_internet_access.setter
-    def create_internet_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_internet_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_internet_access", value)
 
     @_builtins.property
     @pulumi.getter(name="createK8sCluster")
-    def create_k8s_cluster(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_k8s_cluster(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create kubernetes cluster privilege.
         """
         return pulumi.get(self, "create_k8s_cluster")
 
     @create_k8s_cluster.setter
-    def create_k8s_cluster(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_k8s_cluster(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_k8s_cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="createNetworkSecurityGroups")
-    def create_network_security_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_network_security_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to create network security groups.
         """
         return pulumi.get(self, "create_network_security_groups")
 
     @create_network_security_groups.setter
-    def create_network_security_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_network_security_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_network_security_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="createPcc")
-    def create_pcc(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_pcc(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create Cross Connects privilege.
         """
         return pulumi.get(self, "create_pcc")
 
     @create_pcc.setter
-    def create_pcc(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_pcc(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_pcc", value)
 
     @_builtins.property
     @pulumi.getter(name="createSnapshot")
-    def create_snapshot(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def create_snapshot(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to create snapshots.
         """
         return pulumi.get(self, "create_snapshot")
 
     @create_snapshot.setter
-    def create_snapshot(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def create_snapshot(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "create_snapshot", value)
 
     @_builtins.property
     @pulumi.getter(name="getUsersData")
-    def get_users_data(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def get_users_data(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
         """
         return pulumi.get(self, "get_users_data")
 
     @get_users_data.setter
-    def get_users_data(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def get_users_data(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "get_users_data", value)
 
     @_builtins.property
     @pulumi.getter(name="manageDataplatform")
-    def manage_dataplatform(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_dataplatform(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access and manage the Data Platform.
         """
         return pulumi.get(self, "manage_dataplatform")
 
     @manage_dataplatform.setter
-    def manage_dataplatform(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_dataplatform(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_dataplatform", value)
 
     @_builtins.property
     @pulumi.getter(name="manageDbaas")
-    def manage_dbaas(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_dbaas(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  Privilege for a group to manage DBaaS related functionality.
         """
         return pulumi.get(self, "manage_dbaas")
 
     @manage_dbaas.setter
-    def manage_dbaas(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_dbaas(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_dbaas", value)
 
     @_builtins.property
     @pulumi.getter(name="manageRegistry")
-    def manage_registry(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_registry(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean]  The group will be allowed to access container registry related functionality.
         """
         return pulumi.get(self, "manage_registry")
 
     @manage_registry.setter
-    def manage_registry(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_registry(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_registry", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] A name for the group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="reserveIp")
-    def reserve_ip(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reserve_ip(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will be allowed to reserve IP addresses.
         """
         return pulumi.get(self, "reserve_ip")
 
     @reserve_ip.setter
-    def reserve_ip(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reserve_ip(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reserve_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Privilege")
-    def s3_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def s3_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group will have S3 privilege.
         """
         return pulumi.get(self, "s3_privilege")
 
     @s3_privilege.setter
-    def s3_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def s3_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "s3_privilege", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
     @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userIds")
-    def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def user_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] A list of users to add to the group.
         """
         return pulumi.get(self, "user_ids")
 
     @user_ids.setter
-    def user_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def user_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "user_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]]]:
+    def users(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GroupUserArgs']]]]:
         """
         List of users - See the User section
 
@@ -988,7 +988,7 @@ class _GroupState:
         return pulumi.get(self, "users")
 
     @users.setter
-    def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]]]):
+    def users(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GroupUserArgs']]]]):
         pulumi.set(self, "users", value)
 
 
@@ -998,38 +998,38 @@ class Group(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_activity_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_ai_model_hub: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_api_gateway: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_cdn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_dns: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_iam_resources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_kaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_monitoring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_network_file_storage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_vpn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_backup_unit: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_datacenter: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_flow_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_internet_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_k8s_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_network_security_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_pcc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 get_users_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dataplatform: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dbaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_registry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 reserve_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_activity_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_ai_model_hub: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_api_gateway: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_cdn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_iam_resources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_kaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_monitoring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_network_file_storage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_vpn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_backup_unit: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_datacenter: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_flow_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_internet_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_k8s_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_network_security_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_pcc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_snapshot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 get_users_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dataplatform: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dbaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_registry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 reserve_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
+        Manages **Groups** and **Group Privileges** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -1140,7 +1140,7 @@ class Group(pulumi.CustomResource):
                  args: Optional[GroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
+        Manages **Groups** and **Group Privileges** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -1227,35 +1227,35 @@ class Group(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_activity_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_ai_model_hub: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_api_gateway: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_cdn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_dns: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_iam_resources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_kaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_monitoring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_network_file_storage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 access_and_manage_vpn: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_backup_unit: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_datacenter: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_flow_log: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_internet_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_k8s_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_network_security_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_pcc: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
-                 get_users_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dataplatform: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_dbaas: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manage_registry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 reserve_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_activity_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_ai_model_hub: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_api_gateway: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_cdn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_iam_resources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_kaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_monitoring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_network_file_storage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 access_and_manage_vpn: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_backup_unit: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_datacenter: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_flow_log: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_internet_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_k8s_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_network_security_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_pcc: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_snapshot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 get_users_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dataplatform: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_dbaas: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manage_registry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 reserve_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1305,36 +1305,36 @@ class Group(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_activity_log: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_ai_model_hub: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_api_gateway: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_cdn: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_dns: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_iam_resources: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_kaas: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_logging: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_monitoring: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_network_file_storage: Optional[pulumi.Input[_builtins.bool]] = None,
-            access_and_manage_vpn: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_backup_unit: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_datacenter: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_flow_log: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_internet_access: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_k8s_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_network_security_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_pcc: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_snapshot: Optional[pulumi.Input[_builtins.bool]] = None,
-            get_users_data: Optional[pulumi.Input[_builtins.bool]] = None,
-            manage_dataplatform: Optional[pulumi.Input[_builtins.bool]] = None,
-            manage_dbaas: Optional[pulumi.Input[_builtins.bool]] = None,
-            manage_registry: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            reserve_ip: Optional[pulumi.Input[_builtins.bool]] = None,
-            s3_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]]] = None) -> 'Group':
+            access_activity_log: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_ai_model_hub: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_api_gateway: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_cdn: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_iam_resources: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_kaas: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_monitoring: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_network_file_storage: pulumi.Input[Optional[_builtins.bool]] = None,
+            access_and_manage_vpn: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_backup_unit: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_datacenter: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_flow_log: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_internet_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_k8s_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_network_security_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_pcc: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_snapshot: pulumi.Input[Optional[_builtins.bool]] = None,
+            get_users_data: pulumi.Input[Optional[_builtins.bool]] = None,
+            manage_dataplatform: pulumi.Input[Optional[_builtins.bool]] = None,
+            manage_dbaas: pulumi.Input[Optional[_builtins.bool]] = None,
+            manage_registry: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            reserve_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

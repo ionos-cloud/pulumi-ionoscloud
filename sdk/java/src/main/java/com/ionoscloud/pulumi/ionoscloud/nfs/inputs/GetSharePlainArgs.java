@@ -50,14 +50,14 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+     * The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     @Import(name="gid")
     private @Nullable Integer gid;
 
     /**
-     * @return The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+     * @return The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     public Optional<Integer> gid() {
@@ -110,14 +110,14 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     @Import(name="partialMatch")
     private @Nullable Boolean partialMatch;
 
     /**
-     * @return Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+     * @return Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
      * 
      */
     public Optional<Boolean> partialMatch() {
@@ -125,14 +125,14 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
+     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34; pulumi-lang-hcl=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
      * 
      */
     @Import(name="quota")
     private @Nullable Integer quota;
 
     /**
-     * @return The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
+     * @return The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34; pulumi-lang-hcl=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
      * 
      */
     public Optional<Integer> quota() {
@@ -140,14 +140,14 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+     * The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     @Import(name="uid")
     private @Nullable Integer uid;
 
     /**
-     * @return The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+     * @return The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
      * 
      */
     public Optional<Integer> uid() {
@@ -219,7 +219,7 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param gid The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+         * @param gid The group ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
          * 
          * @return builder
          * 
@@ -263,7 +263,7 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
+         * @param partialMatch Whether partial matching is allowed or not when using the name filter. Defaults to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param quota The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
+         * @param quota The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using &lt;span pulumi-lang-nodejs=&#34;`0`&#34; pulumi-lang-dotnet=&#34;`0`&#34; pulumi-lang-go=&#34;`0`&#34; pulumi-lang-python=&#34;`0`&#34; pulumi-lang-yaml=&#34;`0`&#34; pulumi-lang-java=&#34;`0`&#34; pulumi-lang-hcl=&#34;`0`&#34;&gt;`0`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class GetSharePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param uid The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
+         * @param uid The user ID that will own the exported directory. If not set, **anonymous** (&lt;span pulumi-lang-nodejs=&#34;`512`&#34; pulumi-lang-dotnet=&#34;`512`&#34; pulumi-lang-go=&#34;`512`&#34; pulumi-lang-python=&#34;`512`&#34; pulumi-lang-yaml=&#34;`512`&#34; pulumi-lang-java=&#34;`512`&#34; pulumi-lang-hcl=&#34;`512`&#34;&gt;`512`&lt;/span&gt;) will be used.
          * 
          * @return builder
          * 

@@ -186,6 +186,6 @@ export interface GetClustersOutputArgs {
      *
      * **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
      */
-    filters?: pulumi.Input<pulumi.Input<inputs.k8s.GetClustersFilterArgs>[]>;
-    location?: pulumi.Input<string>;
+    filters?: pulumi.Input<pulumi.Input<inputs.k8s.GetClustersFilterArgs>[] | undefined>;
+    location?: pulumi.Input<string | undefined>;
 }

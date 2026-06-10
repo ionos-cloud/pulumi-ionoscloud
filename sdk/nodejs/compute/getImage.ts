@@ -267,32 +267,32 @@ export interface GetImageOutputArgs {
     /**
      * Cloud init compatibility ("NONE" or "V1"). Exact match.
      */
-    cloudInit?: pulumi.Input<string>;
+    cloudInit?: pulumi.Input<string | undefined>;
     /**
      * description of the image
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Image alias of the image you are searching for. Exact match. E.g. =`centos:latest`, `ubuntu:latest`
      */
-    imageAlias?: pulumi.Input<string>;
+    imageAlias?: pulumi.Input<string | undefined>;
     /**
      * Id of the existing image's location. Exact match. Possible values: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing image that you want to search for. It will return an exact match if one exists, otherwise it will retrieve partial matches.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The image type, HDD or CD-ROM. Exact match.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The version of the image that you want to search for.
      *
      * If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version].
      * The resulting string will be used to search for an exact match. An error will be thrown if one is not found.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }

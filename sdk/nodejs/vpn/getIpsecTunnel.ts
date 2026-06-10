@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  * * `auth` - Properties with all data needed to define IPSec Authentication.
  *     * `method` - The authentication method to use for IPSec Authentication.
  * * `cloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
- *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+ *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
  * * `peerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
  *   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
  */
@@ -174,7 +174,7 @@ export interface GetIpsecTunnelResult {
  * * `auth` - Properties with all data needed to define IPSec Authentication.
  *     * `method` - The authentication method to use for IPSec Authentication.
  * * `cloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
- *   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+ *   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
  * * `peerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
  *   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
  */
@@ -199,13 +199,13 @@ export interface GetIpsecTunnelOutputArgs {
     /**
      * ID of an existing IPSec Gateway Tunnel that you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing IPSec Gateway Tunnel that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

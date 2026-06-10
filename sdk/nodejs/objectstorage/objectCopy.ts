@@ -7,8 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Creates a copy of an object that is already stored in IONOS Object Storage.
  *
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -302,135 +300,135 @@ export interface ObjectCopyState {
     /**
      * [string] The name of the bucket where the object will be stored. Must be between 3 and 63 characters.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies caching behavior along the request/reply chain.
      */
-    cacheControl?: pulumi.Input<string>;
+    cacheControl?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies presentational information for the object.
      */
-    contentDisposition?: pulumi.Input<string>;
+    contentDisposition?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies what content encodings have been applied to the object.
      */
-    contentEncoding?: pulumi.Input<string>;
+    contentEncoding?: pulumi.Input<string | undefined>;
     /**
      * [string] The natural language or languages of the intended audience for the object.
      */
-    contentLanguage?: pulumi.Input<string>;
+    contentLanguage?: pulumi.Input<string | undefined>;
     /**
      * [string] A standard MIME type describing the format of the contents.
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if its entity tag (ETag) matches the specified tag
      */
-    copyIfMatch?: pulumi.Input<string>;
+    copyIfMatch?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if it has been modified since the specified time
      */
-    copyIfModifiedSince?: pulumi.Input<string>;
+    copyIfModifiedSince?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if its entity tag (ETag) is different than the specified ETag
      */
-    copyIfNoneMatch?: pulumi.Input<string>;
+    copyIfNoneMatch?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if it hasn't been modified since the specified time
      */
-    copyIfUnmodifiedSince?: pulumi.Input<string>;
+    copyIfUnmodifiedSince?: pulumi.Input<string | undefined>;
     /**
      * [string] An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at a URL.
      */
-    etag?: pulumi.Input<string>;
+    etag?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time at which the object is no longer cacheable.
      */
-    expires?: pulumi.Input<string>;
+    expires?: pulumi.Input<string | undefined>;
     /**
      * [bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The key of the object. Must be at least 1 character long.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time at which the object was last modified.
      */
-    lastModified?: pulumi.Input<string>;
+    lastModified?: pulumi.Input<string | undefined>;
     /**
      * [map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. Valid values are `COPY` and `REPLACE`.
      */
-    metadataDirective?: pulumi.Input<string>;
+    metadataDirective?: pulumi.Input<string | undefined>;
     /**
      * [string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.
      */
-    objectLockLegalHold?: pulumi.Input<string>;
+    objectLockLegalHold?: pulumi.Input<string | undefined>;
     /**
      * [string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.
      */
-    objectLockMode?: pulumi.Input<string>;
+    objectLockMode?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time when the object lock retention expires.Must be in RFC3999 format
      */
-    objectLockRetainUntilDate?: pulumi.Input<string>;
+    objectLockRetainUntilDate?: pulumi.Input<string | undefined>;
     /**
      * [string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.
      */
-    serverSideEncryption?: pulumi.Input<string>;
+    serverSideEncryption?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.
      */
-    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string>;
+    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
      */
-    serverSideEncryptionCustomerKey?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key.
      */
-    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The source of the object to be copied
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the algorithm used for source object encryption. Valid value is AES256.
      */
-    sourceCustomerAlgorithm?: pulumi.Input<string>;
+    sourceCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key for source object encryption.
      */
-    sourceCustomerKey?: pulumi.Input<string>;
+    sourceCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key for source object encryption.
      */
-    sourceCustomerKeyMd5?: pulumi.Input<string>;
+    sourceCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies whether the object tag-set is copied from the source object or replaced with tag-set provided in the request. Valid values are `COPY` and `REPLACE`.
      */
-    taggingDirective?: pulumi.Input<string>;
+    taggingDirective?: pulumi.Input<string | undefined>;
     /**
      * [map] The tag-set for the object.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] The version of the object.
      */
-    versionId?: pulumi.Input<string>;
+    versionId?: pulumi.Input<string | undefined>;
     /**
      * [string] Redirects requests for this object to another object in the same bucket or to an external URL.
      */
-    websiteRedirect?: pulumi.Input<string>;
+    websiteRedirect?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -444,47 +442,47 @@ export interface ObjectCopyArgs {
     /**
      * [string] Specifies caching behavior along the request/reply chain.
      */
-    cacheControl?: pulumi.Input<string>;
+    cacheControl?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies presentational information for the object.
      */
-    contentDisposition?: pulumi.Input<string>;
+    contentDisposition?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies what content encodings have been applied to the object.
      */
-    contentEncoding?: pulumi.Input<string>;
+    contentEncoding?: pulumi.Input<string | undefined>;
     /**
      * [string] The natural language or languages of the intended audience for the object.
      */
-    contentLanguage?: pulumi.Input<string>;
+    contentLanguage?: pulumi.Input<string | undefined>;
     /**
      * [string] A standard MIME type describing the format of the contents.
      */
-    contentType?: pulumi.Input<string>;
+    contentType?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if its entity tag (ETag) matches the specified tag
      */
-    copyIfMatch?: pulumi.Input<string>;
+    copyIfMatch?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if it has been modified since the specified time
      */
-    copyIfModifiedSince?: pulumi.Input<string>;
+    copyIfModifiedSince?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if its entity tag (ETag) is different than the specified ETag
      */
-    copyIfNoneMatch?: pulumi.Input<string>;
+    copyIfNoneMatch?: pulumi.Input<string | undefined>;
     /**
      * Copies the object if it hasn't been modified since the specified time
      */
-    copyIfUnmodifiedSince?: pulumi.Input<string>;
+    copyIfUnmodifiedSince?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time at which the object is no longer cacheable.
      */
-    expires?: pulumi.Input<string>;
+    expires?: pulumi.Input<string | undefined>;
     /**
      * [bool] If true, the object will be destroyed if versioning is enabled then all versions will be destroyed. Default is `false`.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The key of the object. Must be at least 1 character long.
      */
@@ -492,39 +490,39 @@ export interface ObjectCopyArgs {
     /**
      * [map] A map of metadata to store with the object in IONOS Object Storage. Metadata keys must be lowercase alphanumeric characters.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request. Valid values are `COPY` and `REPLACE`.
      */
-    metadataDirective?: pulumi.Input<string>;
+    metadataDirective?: pulumi.Input<string | undefined>;
     /**
      * [string] Indicates whether a legal hold is in effect for the object. Valid values are `ON` and `OFF`.
      */
-    objectLockLegalHold?: pulumi.Input<string>;
+    objectLockLegalHold?: pulumi.Input<string | undefined>;
     /**
      * [string] The object lock mode that you want to apply to the object. Valid values are `GOVERNANCE` and `COMPLIANCE`.
      */
-    objectLockMode?: pulumi.Input<string>;
+    objectLockMode?: pulumi.Input<string | undefined>;
     /**
      * [string] The date and time when the object lock retention expires.Must be in RFC3999 format
      */
-    objectLockRetainUntilDate?: pulumi.Input<string>;
+    objectLockRetainUntilDate?: pulumi.Input<string | undefined>;
     /**
      * [string] The server-side encryption algorithm used when storing this object in IONOS Object Storage. Valid value is AES256.
      */
-    serverSideEncryption?: pulumi.Input<string>;
+    serverSideEncryption?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the algorithm to use for encrypting the object. Valid value is AES256.
      */
-    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string>;
+    serverSideEncryptionCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
      */
-    serverSideEncryptionCustomerKey?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key.
      */
-    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string>;
+    serverSideEncryptionCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The source of the object to be copied
      */
@@ -532,29 +530,29 @@ export interface ObjectCopyArgs {
     /**
      * [string] Specifies the algorithm used for source object encryption. Valid value is AES256.
      */
-    sourceCustomerAlgorithm?: pulumi.Input<string>;
+    sourceCustomerAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 256-bit, base64-encoded encryption key for source object encryption.
      */
-    sourceCustomerKey?: pulumi.Input<string>;
+    sourceCustomerKey?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies the 128-bit MD5 digest of the encryption key for source object encryption.
      */
-    sourceCustomerKeyMd5?: pulumi.Input<string>;
+    sourceCustomerKeyMd5?: pulumi.Input<string | undefined>;
     /**
      * [string] The storage class of the object. Valid value is STANDARD. Default is STANDARD.
      */
-    storageClass?: pulumi.Input<string>;
+    storageClass?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies whether the object tag-set is copied from the source object or replaced with tag-set provided in the request. Valid values are `COPY` and `REPLACE`.
      */
-    taggingDirective?: pulumi.Input<string>;
+    taggingDirective?: pulumi.Input<string | undefined>;
     /**
      * [map] The tag-set for the object.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * [string] Redirects requests for this object to another object in the same bucket or to an external URL.
      */
-    websiteRedirect?: pulumi.Input<string>;
+    websiteRedirect?: pulumi.Input<string | undefined>;
 }

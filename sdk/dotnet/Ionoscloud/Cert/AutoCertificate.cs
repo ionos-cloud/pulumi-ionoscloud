@@ -64,7 +64,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     public partial class AutoCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         [Output("commonName")]
         public Output<string> CommonName { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Output<string> ProviderId { get; private set; } = null!;
 
         /// <summary>
-        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         [Output("subjectAlternativeNames")]
         public Output<ImmutableArray<string>> SubjectAlternativeNames { get; private set; } = null!;
@@ -128,7 +128,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -153,7 +153,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         [Input("commonName", required: true)]
         public Input<string> CommonName { get; set; } = null!;
@@ -186,7 +186,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {
@@ -203,7 +203,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         [Input("commonName")]
         public Input<string>? CommonName { get; set; }
@@ -242,7 +242,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {

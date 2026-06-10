@@ -13,7 +13,7 @@ public final class GetNodePoolNodesNode {
     /**
      * @return ID of the node pool you want to search for.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_id`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34; pulumi-lang-hcl=&#34;`node_pool_id`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
      * 
      */
     private String id;
@@ -42,7 +42,7 @@ public final class GetNodePoolNodesNode {
     /**
      * @return ID of the node pool you want to search for.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
+     * &lt;span pulumi-lang-nodejs=&#34;`k8sClusterId`&#34; pulumi-lang-dotnet=&#34;`K8sClusterId`&#34; pulumi-lang-go=&#34;`k8sClusterId`&#34; pulumi-lang-python=&#34;`k8s_cluster_id`&#34; pulumi-lang-yaml=&#34;`k8sClusterId`&#34; pulumi-lang-java=&#34;`k8sClusterId`&#34; pulumi-lang-hcl=&#34;`k8s_cluster_id`&#34;&gt;`k8sClusterId`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`nodePoolId`&#34; pulumi-lang-dotnet=&#34;`NodePoolId`&#34; pulumi-lang-go=&#34;`nodePoolId`&#34; pulumi-lang-python=&#34;`node_pool_id`&#34; pulumi-lang-yaml=&#34;`nodePoolId`&#34; pulumi-lang-java=&#34;`nodePoolId`&#34; pulumi-lang-hcl=&#34;`node_pool_id`&#34;&gt;`nodePoolId`&lt;/span&gt; must be provided.
      * 
      */
     public String id() {

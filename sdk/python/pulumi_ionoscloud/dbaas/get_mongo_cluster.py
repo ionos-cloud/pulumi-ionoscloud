@@ -301,9 +301,9 @@ def get_mongo_cluster(display_name: Optional[_builtins.str] = None,
         storage_type=pulumi.get(__ret__, 'storage_type'),
         template_id=pulumi.get(__ret__, 'template_id'),
         type=pulumi.get(__ret__, 'type'))
-def get_mongo_cluster_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_mongo_cluster_output(display_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoClusterResult]:
     """
     The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.

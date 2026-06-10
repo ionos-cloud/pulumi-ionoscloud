@@ -61,7 +61,7 @@ public final class GetVolumeResult {
      */
     private String diskType;
     /**
-     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      * 
      */
     private Boolean exposeSerial;
@@ -76,7 +76,7 @@ public final class GetVolumeResult {
      */
     private String image;
     /**
-     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
+     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34; pulumi-lang-hcl=&#34;`sshkey_path`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     private String imagePassword;
@@ -195,7 +195,7 @@ public final class GetVolumeResult {
         return this.diskType;
     }
     /**
-     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
+     * @return If set to &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt; will expose the serial id of the disk attached to the server. If set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
      * 
      */
     public Boolean exposeSerial() {
@@ -216,7 +216,7 @@ public final class GetVolumeResult {
         return this.image;
     }
     /**
-     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
+     * @return Required if &lt;span pulumi-lang-nodejs=&#34;`sshkeyPath`&#34; pulumi-lang-dotnet=&#34;`SshkeyPath`&#34; pulumi-lang-go=&#34;`sshkeyPath`&#34; pulumi-lang-python=&#34;`sshkey_path`&#34; pulumi-lang-yaml=&#34;`sshkeyPath`&#34; pulumi-lang-java=&#34;`sshkeyPath`&#34; pulumi-lang-hcl=&#34;`sshkey_path`&#34;&gt;`sshkeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public String imagePassword() {

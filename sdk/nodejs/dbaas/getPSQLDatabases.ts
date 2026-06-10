@@ -118,9 +118,9 @@ export interface GetPSQLDatabasesOutputArgs {
      * [string] The ID of the cluster.
      */
     clusterId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Filter using a specific owner.
      */
-    owner?: pulumi.Input<string>;
+    owner?: pulumi.Input<string | undefined>;
 }

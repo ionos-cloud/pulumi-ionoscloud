@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+    /// A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
     /// 
     /// These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
     /// 
@@ -59,7 +59,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         Name = "IP Block Example",
     ///     });
     /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
+    ///     var serverImagePassword = new Random.Password("server_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -93,16 +93,19 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewall = 
+    ///             Firewalls = new[]
     ///             {
-    ///                 { "protocol", "TCP" },
-    ///                 { "name", "SSH" },
-    ///                 { "portRangeStart", 22 },
-    ///                 { "portRangeEnd", 22 },
-    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
-    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
-    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
-    ///                 { "type", "EGRESS" },
+    ///                 new Ionoscloud.Compute.Inputs.VCPUServerNicFirewallArgs
+    ///                 {
+    ///                     Protocol = "TCP",
+    ///                     Name = "SSH",
+    ///                     PortRangeStart = 22,
+    ///                     PortRangeEnd = 22,
+    ///                     SourceMac = "00:0a:95:9d:68:17",
+    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
+    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
+    ///                     Type = "EGRESS",
+    ///                 },
     ///             },
     ///         },
     ///         Labels = new[]
@@ -283,7 +286,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<string>> SecurityGroupsIds { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         [Output("sshKeys")]
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
@@ -326,7 +329,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "imagePassword",
@@ -487,7 +490,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         public InputList<string> SshKeys
         {
@@ -687,7 +690,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         public InputList<string> SshKeys
         {

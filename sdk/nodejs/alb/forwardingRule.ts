@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+ * Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -35,9 +35,9 @@ import * as utilities from "../utilities";
  * const exampleBalancer = new ionoscloud.alb.Balancer("example", {
  *     datacenterId: example.id,
  *     name: "ALB Example",
- *     listenerLan: example1.id,
+ *     listenerLan: example1.id.apply(x =>Number(x)),
  *     ips: ["10.12.118.224"],
- *     targetLan: example2.id,
+ *     targetLan: example2.id.apply(x =>Number(x)),
  *     lbPrivateIps: ["10.13.72.225/24"],
  * });
  * //optionally you can add a certificate to the application load balancer
@@ -236,43 +236,43 @@ export interface ForwardingRuleState {
     /**
      * [string] The ID of Application Load Balancer.
      */
-    applicationLoadbalancerId?: pulumi.Input<string>;
+    applicationLoadbalancerId?: pulumi.Input<string | undefined>;
     /**
      * [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
      */
-    clientTimeout?: pulumi.Input<number>;
+    clientTimeout?: pulumi.Input<number | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [list] Array of items in that collection
      */
-    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[]>;
+    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[] | undefined>;
     /**
      * [string] Listening (inbound) IP.
      */
-    listenerIp?: pulumi.Input<string>;
+    listenerIp?: pulumi.Input<string | undefined>;
     /**
      * [int] Listening (inbound) port number; valid range is 1 to 65535.
      */
-    listenerPort?: pulumi.Input<number>;
+    listenerPort?: pulumi.Input<number | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the Application Load Balancer forwarding rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Balancing protocol.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [list] Array of certificate ids. You can create certificates with the certificate resource.
      */
-    serverCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    serverCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -286,7 +286,7 @@ export interface ForwardingRuleArgs {
     /**
      * [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
      */
-    clientTimeout?: pulumi.Input<number>;
+    clientTimeout?: pulumi.Input<number | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
@@ -294,7 +294,7 @@ export interface ForwardingRuleArgs {
     /**
      * [list] Array of items in that collection
      */
-    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[]>;
+    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[] | undefined>;
     /**
      * [string] Listening (inbound) IP.
      */
@@ -306,11 +306,11 @@ export interface ForwardingRuleArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the Application Load Balancer forwarding rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Balancing protocol.
      */
@@ -318,5 +318,5 @@ export interface ForwardingRuleArgs {
     /**
      * [list] Array of certificate ids. You can create certificates with the certificate resource.
      */
-    serverCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    serverCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

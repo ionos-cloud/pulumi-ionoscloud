@@ -20,12 +20,12 @@ __all__ = ['TopicArgs', 'Topic']
 class TopicArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[_builtins.str],
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 number_of_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 retention_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 segment_bytes: Optional[pulumi.Input[_builtins.int]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 number_of_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 retention_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 segment_bytes: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Topic resource.
 
@@ -73,31 +73,31 @@ class TopicArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the Kafka Cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numberOfPartitions")
-    def number_of_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def number_of_partitions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of partitions of the topic. Partitions allow for parallel
         processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -106,12 +106,12 @@ class TopicArgs:
         return pulumi.get(self, "number_of_partitions")
 
     @number_of_partitions.setter
-    def number_of_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def number_of_partitions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "number_of_partitions", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def replication_factor(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of replicas of the topic. The replication factor determines how many
         copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
@@ -120,12 +120,12 @@ class TopicArgs:
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
-    def replication_factor(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def replication_factor(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "replication_factor", value)
 
     @_builtins.property
     @pulumi.getter(name="retentionTime")
-    def retention_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention_time(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] This configuration controls the maximum time we will retain a log before we will
         discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
@@ -134,12 +134,12 @@ class TopicArgs:
         return pulumi.get(self, "retention_time")
 
     @retention_time.setter
-    def retention_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention_time(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_time", value)
 
     @_builtins.property
     @pulumi.getter(name="segmentBytes")
-    def segment_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def segment_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] This configuration controls the segment file size for the log. Retention and
         cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
@@ -148,20 +148,20 @@ class TopicArgs:
         return pulumi.get(self, "segment_bytes")
 
     @segment_bytes.setter
-    def segment_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def segment_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "segment_bytes", value)
 
 
 @pulumi.input_type
 class _TopicState:
     def __init__(__self__, *,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 number_of_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 retention_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 segment_bytes: Optional[pulumi.Input[_builtins.int]] = None):
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 number_of_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 retention_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 segment_bytes: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Topic resources.
 
@@ -198,43 +198,43 @@ class _TopicState:
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] ID of the Kafka Cluster that the topic belongs to.
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Name of the Kafka Cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numberOfPartitions")
-    def number_of_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def number_of_partitions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of partitions of the topic. Partitions allow for parallel
         processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
@@ -243,12 +243,12 @@ class _TopicState:
         return pulumi.get(self, "number_of_partitions")
 
     @number_of_partitions.setter
-    def number_of_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def number_of_partitions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "number_of_partitions", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def replication_factor(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The number of replicas of the topic. The replication factor determines how many
         copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
@@ -257,12 +257,12 @@ class _TopicState:
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
-    def replication_factor(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def replication_factor(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "replication_factor", value)
 
     @_builtins.property
     @pulumi.getter(name="retentionTime")
-    def retention_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention_time(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] This configuration controls the maximum time we will retain a log before we will
         discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
@@ -271,12 +271,12 @@ class _TopicState:
         return pulumi.get(self, "retention_time")
 
     @retention_time.setter
-    def retention_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention_time(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_time", value)
 
     @_builtins.property
     @pulumi.getter(name="segmentBytes")
-    def segment_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def segment_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] This configuration controls the segment file size for the log. Retention and
         cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
@@ -285,7 +285,7 @@ class _TopicState:
         return pulumi.get(self, "segment_bytes")
 
     @segment_bytes.setter
-    def segment_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def segment_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "segment_bytes", value)
 
 
@@ -295,16 +295,16 @@ class Topic(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 number_of_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 retention_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 segment_bytes: Optional[pulumi.Input[_builtins.int]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 number_of_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 retention_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 segment_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a **Kafka Cluster Topic** on IonosCloud.
+        Manages a **Kafka Cluster Topic** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -381,7 +381,7 @@ class Topic(pulumi.CustomResource):
                  args: TopicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Kafka Cluster Topic** on IonosCloud.
+        Manages a **Kafka Cluster Topic** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -448,13 +448,13 @@ class Topic(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 number_of_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 retention_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 segment_bytes: Optional[pulumi.Input[_builtins.int]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 number_of_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 retention_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 segment_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -483,13 +483,13 @@ class Topic(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            number_of_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-            replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-            retention_time: Optional[pulumi.Input[_builtins.int]] = None,
-            segment_bytes: Optional[pulumi.Input[_builtins.int]] = None) -> 'Topic':
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            number_of_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+            replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+            retention_time: pulumi.Input[Optional[_builtins.int]] = None,
+            segment_bytes: pulumi.Input[Optional[_builtins.int]] = None) -> 'Topic':
         """
         Get an existing Topic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

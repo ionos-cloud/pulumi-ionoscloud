@@ -78,8 +78,6 @@ func LookupCrossconnect(ctx *pulumi.Context, args *LookupCrossconnectArgs, opts 
 
 // A collection of arguments for invoking getCrossconnect.
 type LookupCrossconnectArgs struct {
-	// Description of cross connect
-	Description *string `pulumi:"description"`
 	// ID of the cross connect you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -117,8 +115,6 @@ func LookupCrossconnectOutput(ctx *pulumi.Context, args LookupCrossconnectOutput
 
 // A collection of arguments for invoking getCrossconnect.
 type LookupCrossconnectOutputArgs struct {
-	// Description of cross connect
-	Description pulumi.StringPtrInput `pulumi:"description"`
 	// ID of the cross connect you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.

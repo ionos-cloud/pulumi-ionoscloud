@@ -97,8 +97,7 @@ def get_location(feature: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocationResult:
     """
     The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
+    If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
 
     ## Example Usage
 
@@ -112,6 +111,8 @@ def get_location(feature: Optional[_builtins.str] = None,
 
 
     :param _builtins.str feature: A desired feature that the location must be able to provide.
+           
+           Either `name` or `feature` must be provided. If none is provided, the datasource will return an error.
     :param _builtins.str name: Name of the location to search for.
     """
     __args__ = dict()
@@ -126,13 +127,12 @@ def get_location(feature: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         image_aliases=pulumi.get(__ret__, 'image_aliases'),
         name=pulumi.get(__ret__, 'name'))
-def get_location_output(feature: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_location_output(feature: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLocationResult]:
     """
     The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
+    If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
 
     ## Example Usage
 
@@ -146,6 +146,8 @@ def get_location_output(feature: Optional[pulumi.Input[Optional[_builtins.str]]]
 
 
     :param _builtins.str feature: A desired feature that the location must be able to provide.
+           
+           Either `name` or `feature` must be provided. If none is provided, the datasource will return an error.
     :param _builtins.str name: Name of the location to search for.
     """
     __args__ = dict()

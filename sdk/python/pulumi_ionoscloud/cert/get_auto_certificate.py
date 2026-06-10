@@ -56,7 +56,7 @@ class GetAutoCertificateResult:
     @pulumi.getter(name="commonName")
     def common_name(self) -> _builtins.str:
         """
-        [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         """
         return pulumi.get(self, "common_name")
 
@@ -100,7 +100,7 @@ class GetAutoCertificateResult:
     @pulumi.getter(name="subjectAlternativeNames")
     def subject_alternative_names(self) -> Sequence[_builtins.str]:
         """
-        [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         """
         return pulumi.get(self, "subject_alternative_names")
 
@@ -174,9 +174,9 @@ def get_auto_certificate(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         subject_alternative_names=pulumi.get(__ret__, 'subject_alternative_names'))
-def get_auto_certificate_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                location: Optional[pulumi.Input[_builtins.str]] = None,
-                                name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_auto_certificate_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                location: pulumi.Input[Optional[_builtins.str]] = None,
+                                name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateResult]:
     """
     The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.

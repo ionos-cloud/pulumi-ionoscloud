@@ -127,9 +127,9 @@ def get_kafka_users(cluster_id: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         timeouts=pulumi.get(__ret__, 'timeouts'),
         users=pulumi.get(__ret__, 'users'))
-def get_kafka_users_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           timeouts: Optional[pulumi.Input[Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict']]]] = None,
+def get_kafka_users_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict']]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaUsersResult]:
     """
     The **Kafka users** data source can be used to retrieve information about users.

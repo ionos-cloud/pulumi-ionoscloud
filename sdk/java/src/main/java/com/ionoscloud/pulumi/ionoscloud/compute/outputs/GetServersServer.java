@@ -9,6 +9,7 @@ import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetServersServerNic;
 import com.ionoscloud.pulumi.ionoscloud.compute.outputs.GetServersServerVolume;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -33,6 +34,7 @@ public final class GetServersServer {
     private String id;
     private List<GetServersServerLabel> labels;
     private @Nullable String name;
+    private Boolean nicMultiQueue;
     private List<GetServersServerNic> nics;
     private Integer ram;
     private @Nullable String templateUuid;
@@ -79,6 +81,9 @@ public final class GetServersServer {
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    public Boolean nicMultiQueue() {
+        return this.nicMultiQueue;
+    }
     public List<GetServersServerNic> nics() {
         return this.nics;
     }
@@ -121,6 +126,7 @@ public final class GetServersServer {
         private String id;
         private List<GetServersServerLabel> labels;
         private @Nullable String name;
+        private Boolean nicMultiQueue;
         private List<GetServersServerNic> nics;
         private Integer ram;
         private @Nullable String templateUuid;
@@ -142,6 +148,7 @@ public final class GetServersServer {
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
     	      this.name = defaults.name;
+    	      this.nicMultiQueue = defaults.nicMultiQueue;
     	      this.nics = defaults.nics;
     	      this.ram = defaults.ram;
     	      this.templateUuid = defaults.templateUuid;
@@ -244,6 +251,14 @@ public final class GetServersServer {
             return this;
         }
         @CustomType.Setter
+        public Builder nicMultiQueue(Boolean nicMultiQueue) {
+            if (nicMultiQueue == null) {
+              throw new MissingRequiredPropertyException("GetServersServer", "nicMultiQueue");
+            }
+            this.nicMultiQueue = nicMultiQueue;
+            return this;
+        }
+        @CustomType.Setter
         public Builder nics(List<GetServersServerNic> nics) {
             if (nics == null) {
               throw new MissingRequiredPropertyException("GetServersServer", "nics");
@@ -316,6 +331,7 @@ public final class GetServersServer {
             _resultValue.id = id;
             _resultValue.labels = labels;
             _resultValue.name = name;
+            _resultValue.nicMultiQueue = nicMultiQueue;
             _resultValue.nics = nics;
             _resultValue.ram = ram;
             _resultValue.templateUuid = templateUuid;

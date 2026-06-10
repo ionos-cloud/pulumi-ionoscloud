@@ -23,8 +23,8 @@ class IPBlockArgs:
     def __init__(__self__, *,
                  location: pulumi.Input[_builtins.str],
                  size: pulumi.Input[_builtins.int],
-                 ip_consumers: Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IPBlock resource.
 
@@ -66,37 +66,37 @@ class IPBlockArgs:
 
     @_builtins.property
     @pulumi.getter(name="ipConsumers")
-    def ip_consumers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
+    def ip_consumers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
         """
         Read-Only attribute. Lists consumption detail of an individual ip
         """
         return pulumi.get(self, "ip_consumers")
 
     @ip_consumers.setter
-    def ip_consumers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]):
+    def ip_consumers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]):
         pulumi.set(self, "ip_consumers", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of Ip Block
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _IPBlockState:
     def __init__(__self__, *,
-                 ip_consumers: Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]] = None,
-                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None):
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]] = None,
+                 ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering IPBlock resources.
 
@@ -119,62 +119,62 @@ class _IPBlockState:
 
     @_builtins.property
     @pulumi.getter(name="ipConsumers")
-    def ip_consumers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
+    def ip_consumers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
         """
         Read-Only attribute. Lists consumption detail of an individual ip
         """
         return pulumi.get(self, "ip_consumers")
 
     @ip_consumers.setter
-    def ip_consumers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]):
+    def ip_consumers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]):
         pulumi.set(self, "ip_consumers", value)
 
     @_builtins.property
     @pulumi.getter
-    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [integer] The list of IP addresses associated with this block.
         """
         return pulumi.get(self, "ips")
 
     @ips.setter
-    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ips", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of Ip Block
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] The number of IP addresses to reserve for this block.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
 
@@ -184,13 +184,13 @@ class IPBlock(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_consumers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+        Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
 
         ## Example Usage
 
@@ -227,7 +227,7 @@ class IPBlock(pulumi.CustomResource):
                  args: IPBlockArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+        Manages **IP Blocks** on IONOS CLOUD. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
 
         ## Example Usage
 
@@ -265,10 +265,10 @@ class IPBlock(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_consumers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -297,11 +297,11 @@ class IPBlock(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ip_consumers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
-            ips: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None) -> 'IPBlock':
+            ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None) -> 'IPBlock':
         """
         Get an existing IPBlock resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

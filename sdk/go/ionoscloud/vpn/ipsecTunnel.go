@@ -13,7 +13,7 @@ import (
 )
 
 // An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-// IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+// IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
 // connections between your network resources.
 //
 // ## Usage example
@@ -128,7 +128,7 @@ type IpsecTunnel struct {
 	// items: 1.
 	Auth IpsecTunnelAuthOutput `pulumi:"auth"`
 	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayOutput `pulumi:"cloudNetworkCidrs"`
 	// [string] The human-readable description of your IPSec Gateway Tunnel.
@@ -205,7 +205,7 @@ type ipsecTunnelState struct {
 	// items: 1.
 	Auth *IpsecTunnelAuth `pulumi:"auth"`
 	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 	// Maximum items: 20.
 	CloudNetworkCidrs []string `pulumi:"cloudNetworkCidrs"`
 	// [string] The human-readable description of your IPSec Gateway Tunnel.
@@ -232,7 +232,7 @@ type IpsecTunnelState struct {
 	// items: 1.
 	Auth IpsecTunnelAuthPtrInput
 	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayInput
 	// [string] The human-readable description of your IPSec Gateway Tunnel.
@@ -263,7 +263,7 @@ type ipsecTunnelArgs struct {
 	// items: 1.
 	Auth IpsecTunnelAuth `pulumi:"auth"`
 	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 	// Maximum items: 20.
 	CloudNetworkCidrs []string `pulumi:"cloudNetworkCidrs"`
 	// [string] The human-readable description of your IPSec Gateway Tunnel.
@@ -291,7 +291,7 @@ type IpsecTunnelArgs struct {
 	// items: 1.
 	Auth IpsecTunnelAuthInput
 	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayInput
 	// [string] The human-readable description of your IPSec Gateway Tunnel.
@@ -407,7 +407,7 @@ func (o IpsecTunnelOutput) Auth() IpsecTunnelAuthOutput {
 }
 
 // [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
 // Maximum items: 20.
 func (o IpsecTunnelOutput) CloudNetworkCidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringArrayOutput { return v.CloudNetworkCidrs }).(pulumi.StringArrayOutput)

@@ -26,11 +26,11 @@ class ForwardingRuleArgs:
                  listener_ip: pulumi.Input[_builtins.str],
                  listener_port: pulumi.Input[_builtins.int],
                  protocol: pulumi.Input[_builtins.str],
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ForwardingRule resource.
 
@@ -123,78 +123,78 @@ class ForwardingRuleArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientTimeout")
-    def client_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         """
         return pulumi.get(self, "client_timeout")
 
     @client_timeout.setter
-    def client_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="httpRules")
-    def http_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]:
+    def http_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]:
         """
         [list] Array of items in that collection
         """
         return pulumi.get(self, "http_rules")
 
     @http_rules.setter
-    def http_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]):
+    def http_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]):
         pulumi.set(self, "http_rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Application Load Balancer forwarding rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serverCertificates")
-    def server_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def server_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "server_certificates")
 
     @server_certificates.setter
-    def server_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def server_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "server_certificates", value)
 
 
 @pulumi.input_type
 class _ForwardingRuleState:
     def __init__(__self__, *,
-                 application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
-                 listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 listener_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]] = None,
+                 listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 listener_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ForwardingRule resources.
 
@@ -232,122 +232,122 @@ class _ForwardingRuleState:
 
     @_builtins.property
     @pulumi.getter(name="applicationLoadbalancerId")
-    def application_loadbalancer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_loadbalancer_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of Application Load Balancer.
         """
         return pulumi.get(self, "application_loadbalancer_id")
 
     @application_loadbalancer_id.setter
-    def application_loadbalancer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_loadbalancer_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_loadbalancer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientTimeout")
-    def client_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         """
         return pulumi.get(self, "client_timeout")
 
     @client_timeout.setter
-    def client_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="httpRules")
-    def http_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]:
+    def http_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]:
         """
         [list] Array of items in that collection
         """
         return pulumi.get(self, "http_rules")
 
     @http_rules.setter
-    def http_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]):
+    def http_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ForwardingRuleHttpRuleArgs']]]]):
         pulumi.set(self, "http_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="listenerIp")
-    def listener_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listener_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Listening (inbound) IP.
         """
         return pulumi.get(self, "listener_ip")
 
     @listener_ip.setter
-    def listener_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listener_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listener_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="listenerPort")
-    def listener_port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def listener_port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] Listening (inbound) port number; valid range is 1 to 65535.
         """
         return pulumi.get(self, "listener_port")
 
     @listener_port.setter
-    def listener_port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def listener_port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "listener_port", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Application Load Balancer forwarding rule.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Balancing protocol.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="serverCertificates")
-    def server_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def server_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "server_certificates")
 
     @server_certificates.setter
-    def server_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def server_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "server_certificates", value)
 
 
@@ -357,19 +357,19 @@ class ForwardingRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
-                 listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 listener_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+                 listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 listener_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+        Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -394,9 +394,9 @@ class ForwardingRule(pulumi.CustomResource):
         example_balancer = ionoscloud.alb.Balancer("example",
             datacenter_id=example.id,
             name="ALB Example",
-            listener_lan=example1.id,
+            listener_lan=example1.id.apply(lambda x: int(x)),
             ips=["10.12.118.224"],
-            target_lan=example2.id,
+            target_lan=example2.id.apply(lambda x: int(x)),
             lb_private_ips=["10.13.72.225/24"])
         #optionally you can add a certificate to the application load balancer
         cert = ionoscloud.cert.Certificate("cert",
@@ -475,7 +475,7 @@ class ForwardingRule(pulumi.CustomResource):
                  args: ForwardingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+        Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -500,9 +500,9 @@ class ForwardingRule(pulumi.CustomResource):
         example_balancer = ionoscloud.alb.Balancer("example",
             datacenter_id=example.id,
             name="ALB Example",
-            listener_lan=example1.id,
+            listener_lan=example1.id.apply(lambda x: int(x)),
             ips=["10.12.118.224"],
-            target_lan=example2.id,
+            target_lan=example2.id.apply(lambda x: int(x)),
             lb_private_ips=["10.13.72.225/24"])
         #optionally you can add a certificate to the application load balancer
         cert = ionoscloud.cert.Certificate("cert",
@@ -576,16 +576,16 @@ class ForwardingRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
-                 listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 listener_port: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+                 listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 listener_port: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -625,16 +625,16 @@ class ForwardingRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
-            listener_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            listener_port: Optional[pulumi.Input[_builtins.int]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            server_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ForwardingRule':
+            application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+            listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            listener_port: pulumi.Input[Optional[_builtins.int]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            server_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ForwardingRule':
         """
         Get an existing ForwardingRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

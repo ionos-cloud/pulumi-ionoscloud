@@ -11,9 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 {
     /// <summary>
-    /// Manages **IONOS Object Storage Objects** on IonosCloud.
-    /// 
-    /// ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+    /// Manages **IONOS Object Storage Objects** on IONOS CLOUD.
     /// 
     /// ## Import
     /// 
@@ -211,7 +209,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "serverSideEncryptionContext",

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a set of **Firewall Rules** on IonosCloud.
+ * Manages a set of **Firewall Rules** on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -231,59 +231,59 @@ export interface FirewallState {
     /**
      * [string] The Virtual Data Center ID.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
      */
-    icmpCode?: pulumi.Input<string>;
+    icmpCode?: pulumi.Input<string | undefined>;
     /**
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
-    icmpType?: pulumi.Input<string>;
+    icmpType?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the firewall rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The NIC ID.
      */
-    nicId?: pulumi.Input<string>;
+    nicId?: pulumi.Input<string | undefined>;
     /**
      * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
      */
-    portRangeEnd?: pulumi.Input<number>;
+    portRangeEnd?: pulumi.Input<number | undefined>;
     /**
      * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
      */
-    portRangeStart?: pulumi.Input<number>;
+    portRangeStart?: pulumi.Input<number | undefined>;
     /**
      * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * [string] The Server ID.
      */
-    serverId?: pulumi.Input<string>;
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
      */
-    sourceIp?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string | undefined>;
     /**
      * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
      */
-    sourceMac?: pulumi.Input<string>;
+    sourceMac?: pulumi.Input<string | undefined>;
     /**
      * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
      */
-    targetIp?: pulumi.Input<string>;
+    targetIp?: pulumi.Input<string | undefined>;
     /**
      * [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -297,19 +297,19 @@ export interface FirewallArgs {
     /**
      * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
      */
-    icmpCode?: pulumi.Input<string>;
+    icmpCode?: pulumi.Input<string | undefined>;
     /**
      * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
      */
-    icmpType?: pulumi.Input<string>;
+    icmpType?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the firewall rule.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] The NIC ID.
      */
@@ -317,11 +317,11 @@ export interface FirewallArgs {
     /**
      * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
      */
-    portRangeEnd?: pulumi.Input<number>;
+    portRangeEnd?: pulumi.Input<number | undefined>;
     /**
      * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
      */
-    portRangeStart?: pulumi.Input<number>;
+    portRangeStart?: pulumi.Input<number | undefined>;
     /**
      * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
      */
@@ -333,17 +333,17 @@ export interface FirewallArgs {
     /**
      * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
      */
-    sourceIp?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string | undefined>;
     /**
      * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
      */
-    sourceMac?: pulumi.Input<string>;
+    sourceMac?: pulumi.Input<string | undefined>;
     /**
      * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
      */
-    targetIp?: pulumi.Input<string>;
+    targetIp?: pulumi.Input<string | undefined>;
     /**
      * [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

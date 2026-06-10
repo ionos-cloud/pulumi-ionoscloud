@@ -134,8 +134,8 @@ def get_share(group_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         share_privilege=pulumi.get(__ret__, 'share_privilege'))
-def get_share_output(group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                     resource_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_share_output(group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                     resource_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
     The **Share data source** can be used to search for and return an existing share object.

@@ -159,15 +159,15 @@ export interface GetZoneOutputArgs {
     /**
      * [string] The ID of the DNS Zone you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the DNS Zone you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
      *
      * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

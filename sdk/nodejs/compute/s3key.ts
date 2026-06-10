@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages an **IONOS Object Storage Key** on IonosCloud.
+ * Manages an **IONOS Object Storage Key** on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *
  * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
  *
- * ⚠️ **Note:** Due to eventual consistency in the IONOS Cloud API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
+ * ⚠️ **Note:** Due to eventual consistency in the IONOS CLOUD API, creating an S3 key immediately after assigning S3 privileges to a user may result in the error: "The user needs to be part of a group that has ACCESS_S3_OBJECT_STORAGE privilege".
  * To mitigate this, set the environment variable `IONOS_S3_KEY_CREATION_RETRY=true` to enable automatic retries during S3 key creation. The provider will retry the creation until it succeeds or the configured timeout is reached.
  * This is a temporary workaround until the API consistency issue is resolved.
  */
@@ -120,15 +120,15 @@ export interface S3KeyState {
     /**
      * [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * The IONOS Object Storage Secret key.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * [string] The UUID of the user owning the IONOS Object Storage Key.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -138,7 +138,7 @@ export interface S3KeyArgs {
     /**
      * [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The UUID of the user owning the IONOS Object Storage Key.
      */

@@ -196,9 +196,9 @@ def get_datacenter(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         sec_auth_protection=pulumi.get(__ret__, 'sec_auth_protection'),
         version=pulumi.get(__ret__, 'version'))
-def get_datacenter_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_datacenter_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacenterResult]:
     """
     The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.

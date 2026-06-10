@@ -154,12 +154,12 @@ export interface GetGpuOutputArgs {
      *
      * `datacenterId` and `serverId` are required. Either `name` or `id` must be provided. If both `name` and `id` are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of the GPU.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the server.
      */

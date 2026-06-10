@@ -63,7 +63,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///         TemplateId = "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
     ///     });
     /// 
-    ///     var clusterPassword = new Random.Index.Password("cluster_password", new()
+    ///     var clusterPassword = new Random.Password("cluster_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -131,7 +131,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///         StorageType = "HDD",
     ///     });
     /// 
-    ///     var clusterPassword = new Random.Index.Password("cluster_password", new()
+    ///     var clusterPassword = new Random.Password("cluster_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -277,7 +277,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

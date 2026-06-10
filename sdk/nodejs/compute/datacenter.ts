@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
+ * Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -175,35 +175,35 @@ export interface DatacenterState {
     /**
      * Array of features and CPU families available in a location
      */
-    cpuArchitectures?: pulumi.Input<pulumi.Input<inputs.compute.DatacenterCpuArchitecture>[]>;
+    cpuArchitectures?: pulumi.Input<pulumi.Input<inputs.compute.DatacenterCpuArchitecture>[] | undefined>;
     /**
      * [string] Description for the Virtual Data Center.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * List of features supported by the location this data center is part of
      */
-    features?: pulumi.Input<pulumi.Input<string>[]>;
+    features?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
      */
-    ipv6CidrBlock?: pulumi.Input<string>;
+    ipv6CidrBlock?: pulumi.Input<string | undefined>;
     /**
      * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the Virtual Data Center.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
      */
-    secAuthProtection?: pulumi.Input<boolean>;
+    secAuthProtection?: pulumi.Input<boolean | undefined>;
     /**
      * The version of that Data Center. Gets incremented with every change
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -213,7 +213,7 @@ export interface DatacenterArgs {
     /**
      * [string] Description for the Virtual Data Center.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
      */
@@ -221,9 +221,9 @@ export interface DatacenterArgs {
     /**
      * [string] The name of the Virtual Data Center.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
      */
-    secAuthProtection?: pulumi.Input<boolean>;
+    secAuthProtection?: pulumi.Input<boolean | undefined>;
 }

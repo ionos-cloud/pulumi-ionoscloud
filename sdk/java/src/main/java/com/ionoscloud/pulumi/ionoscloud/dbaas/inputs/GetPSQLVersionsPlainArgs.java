@@ -17,7 +17,7 @@ public final class GetPSQLVersionsPlainArgs extends com.pulumi.resources.InvokeA
     /**
      * The unique ID of the cluster.
      * 
-     * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
+     * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
      * 
      */
     @Import(name="clusterId")
@@ -26,7 +26,7 @@ public final class GetPSQLVersionsPlainArgs extends com.pulumi.resources.InvokeA
     /**
      * @return The unique ID of the cluster.
      * 
-     * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
+     * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
      * 
      */
     public Optional<String> clusterId() {
@@ -60,7 +60,7 @@ public final class GetPSQLVersionsPlainArgs extends com.pulumi.resources.InvokeA
         /**
          * @param clusterId The unique ID of the cluster.
          * 
-         * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
+         * If &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt; is not provided the data source will return the list of postgres version for all cluster.
          * 
          * @return builder
          * 

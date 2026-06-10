@@ -129,11 +129,11 @@ export interface GetGroupOutputArgs {
     /**
      * Id of an existing Autoscaling Group that you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing Autoscaling Group that you want to search for.
      *
      * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

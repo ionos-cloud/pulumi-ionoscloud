@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
  * import com.pulumi.random.password;
  * import com.pulumi.random.passwordArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -120,8 +120,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
  * import com.pulumi.random.password;
  * import com.pulumi.random.passwordArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -185,7 +185,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Resource DbaaS MongoDb Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
+ * Resource DbaaS MongoDb Cluster can be imported using the &lt;span pulumi-lang-nodejs=&#34;`clusterId`&#34; pulumi-lang-dotnet=&#34;`ClusterId`&#34; pulumi-lang-go=&#34;`clusterId`&#34; pulumi-lang-python=&#34;`cluster_id`&#34; pulumi-lang-yaml=&#34;`clusterId`&#34; pulumi-lang-java=&#34;`clusterId`&#34; pulumi-lang-hcl=&#34;`cluster_id`&#34;&gt;`clusterId`&lt;/span&gt;, e.g.
  * 
  * ```sh
  * terraform import ionoscloud_mongo_cluster.mycluser cluster uuid
@@ -419,14 +419,14 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.templateId);
     }
     /**
-     * (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
+     * (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34; pulumi-lang-hcl=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
+     * @return (Computed)[string]The cluster type, either &lt;span pulumi-lang-nodejs=&#34;`replicaset`&#34; pulumi-lang-dotnet=&#34;`Replicaset`&#34; pulumi-lang-go=&#34;`replicaset`&#34; pulumi-lang-python=&#34;`replicaset`&#34; pulumi-lang-yaml=&#34;`replicaset`&#34; pulumi-lang-java=&#34;`replicaset`&#34; pulumi-lang-hcl=&#34;`replicaset`&#34;&gt;`replicaset`&lt;/span&gt; or `sharded-cluster`.
      * 
      */
     public Output<String> type() {
@@ -472,7 +472,7 @@ public class MongoCluster extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

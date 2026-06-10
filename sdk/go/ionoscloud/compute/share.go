@@ -16,6 +16,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Share a Datacenter with a Group
+//
 // ```go
 // package main
 //
@@ -58,6 +60,67 @@ import (
 //				EditPrivilege:  pulumi.Bool(true),
 //				SharePrivilege: pulumi.Bool(false),
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Share a Kubernetes Cluster with Multiple Groups
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
+//				Name: pulumi.String("k8s-example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group1, err := compute.NewGroup(ctx, "group1", &compute.GroupArgs{
+//				Name:             pulumi.String("Group 1"),
+//				CreateK8sCluster: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group2, err := compute.NewGroup(ctx, "group2", &compute.GroupArgs{
+//				Name:             pulumi.String("Group 2"),
+//				CreateK8sCluster: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			k8sShareGroup1, err := compute.NewShare(ctx, "k8s_share_group1", &compute.ShareArgs{
+//				GroupId:        group1.ID(),
+//				ResourceId:     example.ID(),
+//				EditPrivilege:  pulumi.Bool(true),
+//				SharePrivilege: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewShare(ctx, "k8s_share_group2", &compute.ShareArgs{
+//				GroupId:        group2.ID(),
+//				ResourceId:     example.ID(),
+//				EditPrivilege:  pulumi.Bool(true),
+//				SharePrivilege: pulumi.Bool(true),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				k8sShareGroup1,
+//			}))
 //			if err != nil {
 //				return err
 //			}

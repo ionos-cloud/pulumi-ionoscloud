@@ -174,10 +174,10 @@ export interface GetMongoClusterOutputArgs {
     /**
      * The name of your cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    displayName?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

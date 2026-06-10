@@ -196,7 +196,7 @@ def get_ipsec_tunnel(gateway_id: Optional[_builtins.str] = None,
     * `auth` - Properties with all data needed to define IPSec Authentication.
         * `method` - The authentication method to use for IPSec Authentication.
     * `cloud_network_cidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-      tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+      tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
     * `peer_network_cidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
       tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
 
@@ -226,10 +226,10 @@ def get_ipsec_tunnel(gateway_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         peer_network_cidrs=pulumi.get(__ret__, 'peer_network_cidrs'),
         remote_host=pulumi.get(__ret__, 'remote_host'))
-def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_ipsec_tunnel_output(gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                            id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecTunnelResult]:
     """
     The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
@@ -285,7 +285,7 @@ def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[_builtins.str]] = 
     * `auth` - Properties with all data needed to define IPSec Authentication.
         * `method` - The authentication method to use for IPSec Authentication.
     * `cloud_network_cidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-      tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+      tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
     * `peer_network_cidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
       tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
 

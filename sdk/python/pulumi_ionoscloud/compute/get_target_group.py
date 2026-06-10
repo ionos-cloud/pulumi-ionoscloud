@@ -204,9 +204,9 @@ def get_target_group(id: Optional[_builtins.str] = None,
         protocol=pulumi.get(__ret__, 'protocol'),
         protocol_version=pulumi.get(__ret__, 'protocol_version'),
         targets=pulumi.get(__ret__, 'targets'))
-def get_target_group_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_target_group_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTargetGroupResult]:
     """
     The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.

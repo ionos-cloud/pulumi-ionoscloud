@@ -33,14 +33,14 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+     * [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
      * 
      */
     @Import(name="id")
     private @Nullable Output<String> id;
 
     /**
-     * @return [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+     * @return [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
      * 
      */
     public Optional<Output<String>> id() {
@@ -70,14 +70,14 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+     * [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+     * @return [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
      * 
      */
     public Optional<Output<String>> username() {
@@ -134,7 +134,7 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param id [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+         * @param id [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
          * 
          * @return builder
          * 
@@ -145,7 +145,7 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param id [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+         * @param id [string] the ID of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
          * 
          * @return builder
          * 
@@ -185,7 +185,7 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param username [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+         * @param username [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
          * 
          * @return builder
          * 
@@ -196,7 +196,7 @@ public final class GetKafkaUserCredentialsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param username [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
+         * @param username [string] the name of the Kafka user, can be retrieved using &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-go=&#34;`getKafkaUsers`&#34; pulumi-lang-python=&#34;`get_kafka_users`&#34; pulumi-lang-yaml=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-java=&#34;`ionoscloud.getKafkaUsers`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_kafka_users`&#34;&gt;`ionoscloud.getKafkaUsers`&lt;/span&gt; data source;
          * 
          * @return builder
          * 

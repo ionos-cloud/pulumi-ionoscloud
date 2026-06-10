@@ -61,11 +61,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         /// </summary>
         public readonly ImmutableArray<string> SshKeyPaths;
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         public readonly ImmutableArray<string> SshKeys;
         /// <summary>

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a set of **Firewall Rules** on IonosCloud.
+// Manages a set of **Firewall Rules** on IONOS CLOUD.
 //
 // ## Example Usage
 //

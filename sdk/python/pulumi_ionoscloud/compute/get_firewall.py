@@ -274,12 +274,12 @@ def get_firewall(datacenter_id: Optional[_builtins.str] = None,
         source_mac=pulumi.get(__ret__, 'source_mac'),
         target_ip=pulumi.get(__ret__, 'target_ip'),
         type=pulumi.get(__ret__, 'type'))
-def get_firewall_output(datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                        id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        nic_id: Optional[pulumi.Input[_builtins.str]] = None,
-                        server_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_firewall_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                        id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        nic_id: pulumi.Input[Optional[_builtins.str]] = None,
+                        server_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFirewallResult]:
     """
     The **Firewall data source** can be used to search for and return an existing FirewallRules.

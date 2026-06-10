@@ -250,12 +250,12 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[_builtins.str] = N
         partial_match=pulumi.get(__ret__, 'partial_match'),
         protocol=pulumi.get(__ret__, 'protocol'),
         server_certificates=pulumi.get(__ret__, 'server_certificates'))
-def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                               datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                               id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_forwarding_rule_output(application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                               datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                               id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetForwardingRuleResult]:
     """
     The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.

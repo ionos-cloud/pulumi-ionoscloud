@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### Share a Datacenter with a Group
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
@@ -36,6 +38,37 @@ import * as utilities from "../utilities";
  *     resourceId: example.id,
  *     editPrivilege: true,
  *     sharePrivilege: false,
+ * });
+ * ```
+ *
+ * ### Share a Kubernetes Cluster with Multiple Groups
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@ionos-cloud/sdk-pulumi";
+ *
+ * const example = new ionoscloud.k8s.Cluster("example", {name: "k8s-example"});
+ * const group1 = new ionoscloud.compute.Group("group1", {
+ *     name: "Group 1",
+ *     createK8sCluster: true,
+ * });
+ * const group2 = new ionoscloud.compute.Group("group2", {
+ *     name: "Group 2",
+ *     createK8sCluster: true,
+ * });
+ * const k8sShareGroup1 = new ionoscloud.compute.Share("k8s_share_group1", {
+ *     groupId: group1.id,
+ *     resourceId: example.id,
+ *     editPrivilege: true,
+ *     sharePrivilege: false,
+ * });
+ * const k8sShareGroup2 = new ionoscloud.compute.Share("k8s_share_group2", {
+ *     groupId: group2.id,
+ *     resourceId: example.id,
+ *     editPrivilege: true,
+ *     sharePrivilege: true,
+ * }, {
+ *     dependsOn: [k8sShareGroup1],
  * });
  * ```
  *
@@ -139,15 +172,15 @@ export interface ShareState {
     /**
      * [Boolean] The group has permission to edit privileges on this resource.
      */
-    editPrivilege?: pulumi.Input<boolean>;
+    editPrivilege?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the specific group containing the resource to update.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of the specific resource to update.
      */
-    resourceId?: pulumi.Input<string>;
+    resourceId?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] The group has permission to share this resource.
      *
@@ -156,7 +189,7 @@ export interface ShareState {
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
      * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
-    sharePrivilege?: pulumi.Input<boolean>;
+    sharePrivilege?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -166,7 +199,7 @@ export interface ShareArgs {
     /**
      * [Boolean] The group has permission to edit privileges on this resource.
      */
-    editPrivilege?: pulumi.Input<boolean>;
+    editPrivilege?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the specific group containing the resource to update.
      */
@@ -183,5 +216,5 @@ export interface ShareArgs {
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
      * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
-    sharePrivilege?: pulumi.Input<boolean>;
+    sharePrivilege?: pulumi.Input<boolean | undefined>;
 }

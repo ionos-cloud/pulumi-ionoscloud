@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+ * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
  *
  * These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
  *
@@ -62,7 +62,7 @@ import * as utilities from "../utilities";
  *         bus: "VIRTIO",
  *     },
  *     nic: {
- *         lan: exampleLan.id,
+ *         lan: exampleLan.id.apply(x =>Number(x)),
  *         name: "system",
  *         dhcp: true,
  *         firewallActive: true,
@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  *             exampleIPBlock.ips[0],
  *             exampleIPBlock.ips[1],
  *         ],
- *         firewall: {
+ *         firewalls: [{
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -80,7 +80,7 @@ import * as utilities from "../utilities";
  *             sourceIp: exampleIPBlock.ips[2],
  *             targetIp: exampleIPBlock.ips[3],
  *             type: "EGRESS",
- *         },
+ *         }],
  *     },
  *     labels: [
  *         {
@@ -238,7 +238,7 @@ export class VCPUServer extends pulumi.CustomResource {
      */
     declare public readonly securityGroupsIds: pulumi.Output<string[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
     declare public readonly sshKeys: pulumi.Output<string[] | undefined>;
     declare public /*out*/ readonly type: pulumi.Output<string>;
@@ -345,70 +345,70 @@ export interface VCPUServerState {
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
-    bootCdrom?: pulumi.Input<string>;
+    bootCdrom?: pulumi.Input<string | undefined>;
     /**
      * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
      */
-    bootImage?: pulumi.Input<string>;
+    bootImage?: pulumi.Input<string | undefined>;
     /**
      * The associated boot volume.
      */
-    bootVolume?: pulumi.Input<string>;
+    bootVolume?: pulumi.Input<string | undefined>;
     /**
      * [integer] Number of server CPU cores.
      */
-    cores?: pulumi.Input<number>;
-    cpuFamily?: pulumi.Input<string>;
+    cores?: pulumi.Input<number | undefined>;
+    cpuFamily?: pulumi.Input<string | undefined>;
     /**
      * [string] The ID of a Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * The associated firewall rule.
      */
-    firewallruleId?: pulumi.Input<string>;
+    firewallruleId?: pulumi.Input<string | undefined>;
     /**
      * The associated firewall rules.
      */
-    firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
+    firewallruleIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] The password for the image.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * A list with the IDs for the volumes that are defined inside the server resource.
      */
-    inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
+    nic?: pulumi.Input<inputs.compute.VCPUServerNic | undefined>;
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
      *
@@ -417,36 +417,36 @@ export interface VCPUServerState {
      * >
      * > sshKeys field is immutable.
      */
-    nicMultiQueue?: pulumi.Input<boolean>;
+    nicMultiQueue?: pulumi.Input<boolean | undefined>;
     /**
      * The associated IP address.
      */
-    primaryIp?: pulumi.Input<string>;
+    primaryIp?: pulumi.Input<string | undefined>;
     /**
      * The associated NIC.
      */
-    primaryNic?: pulumi.Input<string>;
+    primaryNic?: pulumi.Input<string | undefined>;
     /**
      * [integer] The amount of memory for the server in MB.
      */
-    ram?: pulumi.Input<number>;
+    ram?: pulumi.Input<number | undefined>;
     /**
      * The list of Security Group IDs for the resource.
      */
-    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    type?: pulumi.Input<string>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
      */
-    vmState?: pulumi.Input<string>;
+    vmState?: pulumi.Input<string | undefined>;
     /**
      * See the Volume section.
      */
-    volume?: pulumi.Input<inputs.compute.VCPUServerVolume>;
+    volume?: pulumi.Input<inputs.compute.VCPUServerVolume | undefined>;
 }
 
 /**
@@ -456,17 +456,17 @@ export interface VCPUServerArgs {
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
-    availabilityZone?: pulumi.Input<string>;
+    availabilityZone?: pulumi.Input<string | undefined>;
     /**
      * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
-    bootCdrom?: pulumi.Input<string>;
+    bootCdrom?: pulumi.Input<string | undefined>;
     /**
      * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
      */
-    bootImage?: pulumi.Input<string>;
+    bootImage?: pulumi.Input<string | undefined>;
     /**
      * [integer] Number of server CPU cores.
      */
@@ -478,35 +478,35 @@ export interface VCPUServerArgs {
     /**
      * The associated firewall rules.
      */
-    firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
+    firewallruleIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
      */
-    imageName?: pulumi.Input<string>;
+    imageName?: pulumi.Input<string | undefined>;
     /**
      * [string] The password for the image.
      */
-    imagePassword?: pulumi.Input<string>;
+    imagePassword?: pulumi.Input<string | undefined>;
     /**
      * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the server.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
+    nic?: pulumi.Input<inputs.compute.VCPUServerNic | undefined>;
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
      *
@@ -515,7 +515,7 @@ export interface VCPUServerArgs {
      * >
      * > sshKeys field is immutable.
      */
-    nicMultiQueue?: pulumi.Input<boolean>;
+    nicMultiQueue?: pulumi.Input<boolean | undefined>;
     /**
      * [integer] The amount of memory for the server in MB.
      */
@@ -523,15 +523,15 @@ export interface VCPUServerArgs {
     /**
      * The list of Security Group IDs for the resource.
      */
-    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
      */
-    vmState?: pulumi.Input<string>;
+    vmState?: pulumi.Input<string | undefined>;
     /**
      * See the Volume section.
      */

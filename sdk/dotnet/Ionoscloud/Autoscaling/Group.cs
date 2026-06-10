@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
 {
     /// <summary>
-    /// Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
+    /// Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -52,7 +52,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
     ///         ProtocolVersion = "HTTP1",
     ///     });
     /// 
-    ///     var serverImagePassword = new Random.Index.Password("server_image_password", new()
+    ///     var serverImagePassword = new Random.Password("server_image_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = false,
@@ -223,7 +223,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
+ * Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -158,27 +158,27 @@ export interface ClusterState {
      *
      * > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
-    brokerAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    brokerAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
      */
-    connections?: pulumi.Input<inputs.kafka.ClusterConnections>;
+    connections?: pulumi.Input<inputs.kafka.ClusterConnections | undefined>;
     /**
      * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
      */
-    size?: pulumi.Input<string>;
+    size?: pulumi.Input<string | undefined>;
     /**
      * [string] Version of the Kafka Cluster. Possible values: `3.9.0`
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -192,11 +192,11 @@ export interface ClusterArgs {
     /**
      * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the Kafka Cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
      */

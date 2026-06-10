@@ -21,8 +21,8 @@ class ShareArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
                  resource_id: pulumi.Input[_builtins.str],
-                 edit_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 share_privilege: Optional[pulumi.Input[_builtins.bool]] = None):
+                 edit_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share_privilege: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Share resource.
 
@@ -69,19 +69,19 @@ class ShareArgs:
 
     @_builtins.property
     @pulumi.getter(name="editPrivilege")
-    def edit_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def edit_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group has permission to edit privileges on this resource.
         """
         return pulumi.get(self, "edit_privilege")
 
     @edit_privilege.setter
-    def edit_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def edit_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "edit_privilege", value)
 
     @_builtins.property
     @pulumi.getter(name="sharePrivilege")
-    def share_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def share_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group has permission to share this resource.
 
@@ -93,17 +93,17 @@ class ShareArgs:
         return pulumi.get(self, "share_privilege")
 
     @share_privilege.setter
-    def share_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def share_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "share_privilege", value)
 
 
 @pulumi.input_type
 class _ShareState:
     def __init__(__self__, *,
-                 edit_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_privilege: Optional[pulumi.Input[_builtins.bool]] = None):
+                 edit_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_privilege: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Share resources.
 
@@ -128,43 +128,43 @@ class _ShareState:
 
     @_builtins.property
     @pulumi.getter(name="editPrivilege")
-    def edit_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def edit_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group has permission to edit privileges on this resource.
         """
         return pulumi.get(self, "edit_privilege")
 
     @edit_privilege.setter
-    def edit_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def edit_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "edit_privilege", value)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the specific group containing the resource to update.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceId")
-    def resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the specific resource to update.
         """
         return pulumi.get(self, "resource_id")
 
     @resource_id.setter
-    def resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_id", value)
 
     @_builtins.property
     @pulumi.getter(name="sharePrivilege")
-    def share_privilege(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def share_privilege(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [Boolean] The group has permission to share this resource.
 
@@ -176,7 +176,7 @@ class _ShareState:
         return pulumi.get(self, "share_privilege")
 
     @share_privilege.setter
-    def share_privilege(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def share_privilege(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "share_privilege", value)
 
 
@@ -186,15 +186,17 @@ class Share(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 edit_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
+                 edit_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages **Shares** and list shares permissions granted to the group members for each shared resource.
 
         ## Example Usage
+
+        ### Share a Datacenter with a Group
 
         ```python
         import pulumi
@@ -221,6 +223,32 @@ class Share(pulumi.CustomResource):
             resource_id=example.id,
             edit_privilege=True,
             share_privilege=False)
+        ```
+
+        ### Share a Kubernetes Cluster with Multiple Groups
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.k8s.Cluster("example", name="k8s-example")
+        group1 = ionoscloud.compute.Group("group1",
+            name="Group 1",
+            create_k8s_cluster=True)
+        group2 = ionoscloud.compute.Group("group2",
+            name="Group 2",
+            create_k8s_cluster=True)
+        k8s_share_group1 = ionoscloud.compute.Share("k8s_share_group1",
+            group_id=group1.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=False)
+        k8s_share_group2 = ionoscloud.compute.Share("k8s_share_group2",
+            group_id=group2.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=True,
+            opts = pulumi.ResourceOptions(depends_on=[k8s_share_group1]))
         ```
 
         ## Import
@@ -255,6 +283,8 @@ class Share(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Share a Datacenter with a Group
+
         ```python
         import pulumi
         import pulumi_ionoscloud as ionoscloud
@@ -282,6 +312,32 @@ class Share(pulumi.CustomResource):
             share_privilege=False)
         ```
 
+        ### Share a Kubernetes Cluster with Multiple Groups
+
+        ```python
+        import pulumi
+        import pulumi_ionoscloud as ionoscloud
+
+        example = ionoscloud.k8s.Cluster("example", name="k8s-example")
+        group1 = ionoscloud.compute.Group("group1",
+            name="Group 1",
+            create_k8s_cluster=True)
+        group2 = ionoscloud.compute.Group("group2",
+            name="Group 2",
+            create_k8s_cluster=True)
+        k8s_share_group1 = ionoscloud.compute.Share("k8s_share_group1",
+            group_id=group1.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=False)
+        k8s_share_group2 = ionoscloud.compute.Share("k8s_share_group2",
+            group_id=group2.id,
+            resource_id=example.id,
+            edit_privilege=True,
+            share_privilege=True,
+            opts = pulumi.ResourceOptions(depends_on=[k8s_share_group1]))
+        ```
+
         ## Import
 
         Resource Share can be imported using the `resource id`, e.g.
@@ -306,10 +362,10 @@ class Share(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 edit_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
+                 edit_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -337,10 +393,10 @@ class Share(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            edit_privilege: Optional[pulumi.Input[_builtins.bool]] = None,
-            group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-            share_privilege: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Share':
+            edit_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            share_privilege: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Share':
         """
         Get an existing Share resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

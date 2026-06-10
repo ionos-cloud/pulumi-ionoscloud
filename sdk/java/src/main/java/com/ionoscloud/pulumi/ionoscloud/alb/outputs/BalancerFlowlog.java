@@ -35,7 +35,7 @@ public final class BalancerFlowlog {
     /**
      * @return [string] Specifies the name of the flow log.
      * 
-     * ⚠️ **Note:** Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the application load balancer resource.
+     * ⚠️ **Note:** Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34; pulumi-lang-hcl=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the application load balancer resource.
      * 
      */
     private String name;
@@ -72,7 +72,7 @@ public final class BalancerFlowlog {
     /**
      * @return [string] Specifies the name of the flow log.
      * 
-     * ⚠️ **Note:** Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the application load balancer resource.
+     * ⚠️ **Note:** Removing the &lt;span pulumi-lang-nodejs=&#34;`flowlog`&#34; pulumi-lang-dotnet=&#34;`Flowlog`&#34; pulumi-lang-go=&#34;`flowlog`&#34; pulumi-lang-python=&#34;`flowlog`&#34; pulumi-lang-yaml=&#34;`flowlog`&#34; pulumi-lang-java=&#34;`flowlog`&#34; pulumi-lang-hcl=&#34;`flowlog`&#34;&gt;`flowlog`&lt;/span&gt; forces re-creation of the application load balancer resource.
      * 
      */
     public String name() {

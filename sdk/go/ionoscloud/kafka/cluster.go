@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
+// Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IONOS CLOUD.
 //
 // ## Example Usage
 //

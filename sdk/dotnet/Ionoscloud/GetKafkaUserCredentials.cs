@@ -28,7 +28,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Id = "kafka_user_id",
@@ -51,7 +51,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Username = "kafka_username",
@@ -94,7 +94,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Id = "kafka_user_id",
@@ -117,7 +117,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Username = "kafka_username",
@@ -160,7 +160,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Id = "kafka_user_id",
@@ -183,7 +183,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kafkaUserCredentialsDs = Ionoscloud.Index.GetKafkaUserCredentials.Invoke(new()
+        ///     var kafkaUserCredentialsDs = Ionoscloud.GetKafkaUserCredentials.Invoke(new()
         ///     {
         ///         ClusterId = "kafka_cluster_id",
         ///         Username = "kafka_username",

@@ -162,15 +162,15 @@ export interface GetDistributionOutputArgs {
     /**
      * Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partialMatch` parameter is not set to true.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * ID of the distribution you want to search for.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether partial matching is allowed or not when using domain argument. Default value is false.
      *
      * Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

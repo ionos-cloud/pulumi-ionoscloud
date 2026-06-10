@@ -24,18 +24,18 @@ class GPUServerArgs:
                  datacenter_id: pulumi.Input[_builtins.str],
                  template_uuid: pulumi.Input[_builtins.str],
                  volume: pulumi.Input['GPUServerVolumeArgs'],
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input['GPUServerNicArgs']] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional['GPUServerNicArgs']] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GPUServer resource.
 
@@ -58,7 +58,7 @@ class GPUServerArgs:
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input['GPUServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -127,7 +127,7 @@ class GPUServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
 
@@ -140,165 +140,165 @@ class GPUServerArgs:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The availability zone in which the server should exist. This property is immutable.
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="bootImage")
-    def boot_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
-    def boot_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_image", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `ssh_key_path` is not provided.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nic(self) -> Optional[pulumi.Input['GPUServerNicArgs']]:
+    def nic(self) -> pulumi.Input[Optional['GPUServerNicArgs']]:
         """
         See the Nic section.
         """
         return pulumi.get(self, "nic")
 
     @nic.setter
-    def nic(self, value: Optional[pulumi.Input['GPUServerNicArgs']]):
+    def nic(self, value: pulumi.Input[Optional['GPUServerNicArgs']]):
         pulumi.set(self, "nic", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource.
         """
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
-    def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
-    def ssh_key_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_paths(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_paths", value)
 
     @_builtins.property
     @pulumi.getter(name="vmState")
-    def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vm_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         """
         return pulumi.get(self, "vm_state")
 
     @vm_state.setter
-    def vm_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vm_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vm_state", value)
 
 
 @pulumi.input_type
 class _GPUServerState:
     def __init__(__self__, *,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_volume: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 firewallrule_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input['GPUServerNicArgs']] = None,
-                 primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input['GPUServerVolumeArgs']] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional['GPUServerNicArgs']] = None,
+                 primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional['GPUServerVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering GPUServer resources.
 
@@ -324,7 +324,7 @@ class _GPUServerState:
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input['GPUServerVolumeArgs'] volume: See the Volume section.
@@ -372,7 +372,7 @@ class _GPUServerState:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
 
@@ -385,235 +385,235 @@ class _GPUServerState:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The availability zone in which the server should exist. This property is immutable.
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="bootImage")
-    def boot_image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
-    def boot_image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_image", value)
 
     @_builtins.property
     @pulumi.getter(name="bootVolume")
-    def boot_volume(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_volume(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated boot volume.
         """
         return pulumi.get(self, "boot_volume")
 
     @boot_volume.setter
-    def boot_volume(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_volume(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_volume", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")
-    def firewallrule_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def firewallrule_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated firewall rule.
         """
         return pulumi.get(self, "firewallrule_id")
 
     @firewallrule_id.setter
-    def firewallrule_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def firewallrule_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "firewallrule_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `ssh_key_path` is not provided.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter(name="inlineVolumeIds")
-    def inline_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def inline_volume_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list that contains the IDs for the volumes defined inside the gpu server resource.
         """
         return pulumi.get(self, "inline_volume_ids")
 
     @inline_volume_ids.setter
-    def inline_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def inline_volume_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "inline_volume_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the server.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def nic(self) -> Optional[pulumi.Input['GPUServerNicArgs']]:
+    def nic(self) -> pulumi.Input[Optional['GPUServerNicArgs']]:
         """
         See the Nic section.
         """
         return pulumi.get(self, "nic")
 
     @nic.setter
-    def nic(self, value: Optional[pulumi.Input['GPUServerNicArgs']]):
+    def nic(self, value: pulumi.Input[Optional['GPUServerNicArgs']]):
         pulumi.set(self, "nic", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryIp")
-    def primary_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def primary_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated IP address.
         """
         return pulumi.get(self, "primary_ip")
 
     @primary_ip.setter
-    def primary_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def primary_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "primary_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryNic")
-    def primary_nic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def primary_nic(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated NIC.
         """
         return pulumi.get(self, "primary_nic")
 
     @primary_nic.setter
-    def primary_nic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def primary_nic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "primary_nic", value)
 
     @_builtins.property
     @pulumi.getter(name="securityGroupsIds")
-    def security_groups_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def security_groups_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Security Group IDs for the resource.
         """
         return pulumi.get(self, "security_groups_ids")
 
     @security_groups_ids.setter
-    def security_groups_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def security_groups_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "security_groups_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
-    def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
-    def ssh_key_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_paths(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_paths", value)
 
     @_builtins.property
     @pulumi.getter(name="templateUuid")
-    def template_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The UUID of the template used for creating a GPU server.
         """
         return pulumi.get(self, "template_uuid")
 
     @template_uuid.setter
-    def template_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template_uuid", value)
 
     @_builtins.property
     @pulumi.getter(name="vmState")
-    def vm_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vm_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         """
         return pulumi.get(self, "vm_state")
 
     @vm_state.setter
-    def vm_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vm_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vm_state", value)
 
     @_builtins.property
     @pulumi.getter
-    def volume(self) -> Optional[pulumi.Input['GPUServerVolumeArgs']]:
+    def volume(self) -> pulumi.Input[Optional['GPUServerVolumeArgs']]:
         """
         See the Volume section.
         """
         return pulumi.get(self, "volume")
 
     @volume.setter
-    def volume(self, value: Optional[pulumi.Input['GPUServerVolumeArgs']]):
+    def volume(self, value: pulumi.Input[Optional['GPUServerVolumeArgs']]):
         pulumi.set(self, "volume", value)
 
 
@@ -623,21 +623,21 @@ class GPUServer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
         A GPU Server is a Virtual Machine (VM) provisioned from a GPU-enabled template.
@@ -688,7 +688,7 @@ class GPUServer(pulumi.CustomResource):
                 "require_legacy_bios": False,
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -732,7 +732,7 @@ class GPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']] volume: See the Volume section.
@@ -792,7 +792,7 @@ class GPUServer(pulumi.CustomResource):
                 "require_legacy_bios": False,
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -832,21 +832,21 @@ class GPUServer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic: Optional[pulumi.Input[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
-                 security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 template_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume: Optional[pulumi.Input[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic: pulumi.Input[Optional[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
+                 security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume: pulumi.Input[Optional[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -896,26 +896,26 @@ class GPUServer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-            availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_image: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_volume: Optional[pulumi.Input[_builtins.str]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            firewallrule_id: Optional[pulumi.Input[_builtins.str]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            image_name: Optional[pulumi.Input[_builtins.str]] = None,
-            image_password: Optional[pulumi.Input[_builtins.str]] = None,
-            inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nic: Optional[pulumi.Input[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
-            primary_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            primary_nic: Optional[pulumi.Input[_builtins.str]] = None,
-            security_groups_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            template_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            vm_state: Optional[pulumi.Input[_builtins.str]] = None,
-            volume: Optional[pulumi.Input[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None) -> 'GPUServer':
+            allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            image_name: pulumi.Input[Optional[_builtins.str]] = None,
+            image_password: pulumi.Input[Optional[_builtins.str]] = None,
+            inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nic: pulumi.Input[Optional[Union['GPUServerNicArgs', 'GPUServerNicArgsDict']]] = None,
+            primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
+            security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            vm_state: pulumi.Input[Optional[_builtins.str]] = None,
+            volume: pulumi.Input[Optional[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']]] = None) -> 'GPUServer':
         """
         Get an existing GPUServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -945,7 +945,7 @@ class GPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['GPUServerVolumeArgs', 'GPUServerVolumeArgsDict']] volume: See the Volume section.
@@ -1114,7 +1114,7 @@ class GPUServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 

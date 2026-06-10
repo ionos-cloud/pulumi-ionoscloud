@@ -23,19 +23,19 @@ class VolumeArgs:
                  disk_type: pulumi.Input[_builtins.str],
                  server_id: pulumi.Input[_builtins.str],
                  size: pulumi.Input[_builtins.int],
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 bus: Optional[pulumi.Input[_builtins.str]] = None,
-                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_unit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 bus: pulumi.Input[Optional[_builtins.str]] = None,
+                 expose_serial: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Volume resource.
 
@@ -58,8 +58,8 @@ class VolumeArgs:
                >
                > ssh_key_path and ssh_keys fields are immutable.
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -143,115 +143,115 @@ class VolumeArgs:
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="backupUnitId")
-    def backup_unit_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backup_unit_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         """
         return pulumi.get(self, "backup_unit_id")
 
     @backup_unit_id.setter
-    def backup_unit_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backup_unit_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backup_unit_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def bus(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bus(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Boolean] The bus type of the volume: VIRTIO or IDE.
         """
         return pulumi.get(self, "bus")
 
     @bus.setter
-    def bus(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bus(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bus", value)
 
     @_builtins.property
     @pulumi.getter(name="exposeSerial")
-    def expose_serial(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def expose_serial(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         """
         return pulumi.get(self, "expose_serial")
 
     @expose_serial.setter
-    def expose_serial(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def expose_serial(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "expose_serial", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `sshkey_path` is not provided.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter(name="licenceType")
-    def licence_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def licence_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `image_name` is not provided.
         """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
-    def licence_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def licence_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "licence_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the volume.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="requireLegacyBios")
-    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_legacy_bios(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
 
@@ -263,78 +263,78 @@ class VolumeArgs:
         return pulumi.get(self, "require_legacy_bios")
 
     @require_legacy_bios.setter
-    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_legacy_bios(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
-    def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
-    def ssh_key_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_paths(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_paths", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_data", value)
 
 
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 boot_server: Optional[pulumi.Input[_builtins.str]] = None,
-                 bus: Optional[pulumi.Input[_builtins.str]] = None,
-                 cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 device_number: Optional[pulumi.Input[_builtins.int]] = None,
-                 disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
-                 ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sshkey: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None):
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_unit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 boot_server: pulumi.Input[Optional[_builtins.str]] = None,
+                 bus: pulumi.Input[Optional[_builtins.str]] = None,
+                 cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 device_number: pulumi.Input[Optional[_builtins.int]] = None,
+                 disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disk_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 expose_serial: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pci_slot: pulumi.Input[Optional[_builtins.int]] = None,
+                 ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sshkey: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
 
@@ -367,8 +367,8 @@ class _VolumeState:
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] sshkey: The associated public SSH key.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
@@ -433,268 +433,268 @@ class _VolumeState:
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
         """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
-    def availability_zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "availability_zone", value)
 
     @_builtins.property
     @pulumi.getter(name="backupUnitId")
-    def backup_unit_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backup_unit_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         """
         return pulumi.get(self, "backup_unit_id")
 
     @backup_unit_id.setter
-    def backup_unit_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backup_unit_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backup_unit_id", value)
 
     @_builtins.property
     @pulumi.getter(name="bootServer")
-    def boot_server(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def boot_server(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The UUID of the attached server.
         """
         return pulumi.get(self, "boot_server")
 
     @boot_server.setter
-    def boot_server(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def boot_server(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_server", value)
 
     @_builtins.property
     @pulumi.getter
-    def bus(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bus(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Boolean] The bus type of the volume: VIRTIO or IDE.
         """
         return pulumi.get(self, "bus")
 
     @bus.setter
-    def bus(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bus(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bus", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuHotPlug")
-    def cpu_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cpu_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of CPU hot plug (no reboot required)
         """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
-    def cpu_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cpu_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cpu_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deviceNumber")
-    def device_number(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def device_number(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
         """
         return pulumi.get(self, "device_number")
 
     @device_number.setter
-    def device_number(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def device_number(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "device_number", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotPlug")
-    def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of Virt-IO drive hot plug (no reboot required)
         """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
-    def disc_virtio_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotUnplug")
-    def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
         """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
-    def disc_virtio_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="diskType")
-    def disk_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def disk_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The volume type: HDD or SSD. This property is immutable.
         """
         return pulumi.get(self, "disk_type")
 
     @disk_type.setter
-    def disk_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def disk_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "disk_type", value)
 
     @_builtins.property
     @pulumi.getter(name="exposeSerial")
-    def expose_serial(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def expose_serial(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         """
         return pulumi.get(self, "expose_serial")
 
     @expose_serial.setter
-    def expose_serial(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def expose_serial(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "expose_serial", value)
 
     @_builtins.property
     @pulumi.getter
-    def image(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The image or snapshot UUID.
         """
         return pulumi.get(self, "image")
 
     @image.setter
-    def image(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image", value)
 
     @_builtins.property
     @pulumi.getter(name="imageId")
-    def image_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "image_id")
 
     @image_id.setter
-    def image_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_id", value)
 
     @_builtins.property
     @pulumi.getter(name="imageName")
-    def image_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
-    def image_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_name", value)
 
     @_builtins.property
     @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def image_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `sshkey_path` is not provided.
         """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def image_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "image_password", value)
 
     @_builtins.property
     @pulumi.getter(name="licenceType")
-    def licence_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def licence_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Required if `image_name` is not provided.
         """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
-    def licence_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def licence_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "licence_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the volume.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotPlug")
-    def nic_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of nic hot plug (no reboot required)
         """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
-    def nic_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotUnplug")
-    def nic_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of nic hot unplug (no reboot required)
         """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
-    def nic_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="pciSlot")
-    def pci_slot(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def pci_slot(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
         """
         return pulumi.get(self, "pci_slot")
 
     @pci_slot.setter
-    def pci_slot(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def pci_slot(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "pci_slot", value)
 
     @_builtins.property
     @pulumi.getter(name="ramHotPlug")
-    def ram_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ram_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [string] Is capable of memory hot plug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
-    def ram_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ram_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ram_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="requireLegacyBios")
-    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_legacy_bios(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
 
@@ -706,79 +706,79 @@ class _VolumeState:
         return pulumi.get(self, "require_legacy_bios")
 
     @require_legacy_bios.setter
-    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_legacy_bios(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="serverId")
-    def server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a server.
         """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
-    def server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] The size of the volume in GB.
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeyPaths")
-    def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
-    def ssh_key_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_key_paths(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_key_paths", value)
 
     @_builtins.property
     @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ssh_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ssh_keys", value)
 
     @_builtins.property
     @pulumi.getter
-    def sshkey(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sshkey(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The associated public SSH key.
         """
         return pulumi.get(self, "sshkey")
 
     @sshkey.setter
-    def sshkey(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sshkey(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sshkey", value)
 
     @_builtins.property
     @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_data(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_data(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_data", value)
 
 
@@ -788,26 +788,26 @@ class Volume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 bus: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_unit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 bus: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 expose_serial: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -855,7 +855,7 @@ class Volume(pulumi.CustomResource):
                 "availability_zone": "ZONE_1",
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -864,16 +864,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -930,8 +930,8 @@ class Volume(pulumi.CustomResource):
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         ...
@@ -941,7 +941,7 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -989,7 +989,7 @@ class Volume(pulumi.CustomResource):
                 "availability_zone": "ZONE_1",
             },
             nic={
-                "lan": example_lan.id,
+                "lan": example_lan.id.apply(lambda x: int(x)),
                 "name": "system",
                 "dhcp": True,
                 "firewall_active": True,
@@ -998,16 +998,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -1058,23 +1058,23 @@ class Volume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 bus: Optional[pulumi.Input[_builtins.str]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 image_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_data: Optional[pulumi.Input[_builtins.str]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_unit_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 bus: pulumi.Input[Optional[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 expose_serial: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 image_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_data: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1131,35 +1131,35 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            availability_zone: Optional[pulumi.Input[_builtins.str]] = None,
-            backup_unit_id: Optional[pulumi.Input[_builtins.str]] = None,
-            boot_server: Optional[pulumi.Input[_builtins.str]] = None,
-            bus: Optional[pulumi.Input[_builtins.str]] = None,
-            cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            device_number: Optional[pulumi.Input[_builtins.int]] = None,
-            disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            disk_type: Optional[pulumi.Input[_builtins.str]] = None,
-            expose_serial: Optional[pulumi.Input[_builtins.bool]] = None,
-            image: Optional[pulumi.Input[_builtins.str]] = None,
-            image_id: Optional[pulumi.Input[_builtins.str]] = None,
-            image_name: Optional[pulumi.Input[_builtins.str]] = None,
-            image_password: Optional[pulumi.Input[_builtins.str]] = None,
-            licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            pci_slot: Optional[pulumi.Input[_builtins.int]] = None,
-            ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-            server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
-            ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            sshkey: Optional[pulumi.Input[_builtins.str]] = None,
-            user_data: Optional[pulumi.Input[_builtins.str]] = None) -> 'Volume':
+            availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            backup_unit_id: pulumi.Input[Optional[_builtins.str]] = None,
+            boot_server: pulumi.Input[Optional[_builtins.str]] = None,
+            bus: pulumi.Input[Optional[_builtins.str]] = None,
+            cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            device_number: pulumi.Input[Optional[_builtins.int]] = None,
+            disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            disk_type: pulumi.Input[Optional[_builtins.str]] = None,
+            expose_serial: pulumi.Input[Optional[_builtins.bool]] = None,
+            image: pulumi.Input[Optional[_builtins.str]] = None,
+            image_id: pulumi.Input[Optional[_builtins.str]] = None,
+            image_name: pulumi.Input[Optional[_builtins.str]] = None,
+            image_password: pulumi.Input[Optional[_builtins.str]] = None,
+            licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            pci_slot: pulumi.Input[Optional[_builtins.int]] = None,
+            ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sshkey: pulumi.Input[Optional[_builtins.str]] = None,
+            user_data: pulumi.Input[Optional[_builtins.str]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1196,8 +1196,8 @@ class Volume(pulumi.CustomResource):
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] sshkey: The associated public SSH key.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
@@ -1442,7 +1442,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -1450,7 +1450,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 

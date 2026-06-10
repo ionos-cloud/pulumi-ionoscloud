@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **LAN** on IonosCloud.
+ * Manages a **LAN** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -36,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CrossconnectArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -88,8 +88,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -222,14 +222,14 @@ public class Lan extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-hcl=&#34;`ionoscloud_private_crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      * 
      */
     @Export(name="pcc", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pcc;
 
     /**
-     * @return [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * @return [String] The unique id of a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-go=&#34;`compute.Crossconnect`&#34; pulumi-lang-python=&#34;`compute.Crossconnect`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Crossconnect`&#34; pulumi-lang-hcl=&#34;`ionoscloud_private_crossconnect`&#34;&gt;`ionoscloud.compute.Crossconnect`&lt;/span&gt; resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      * 
      */
     public Output<Optional<String>> pcc() {
@@ -289,7 +289,7 @@ public class Lan extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

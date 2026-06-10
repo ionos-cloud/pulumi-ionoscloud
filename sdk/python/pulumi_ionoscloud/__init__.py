@@ -382,6 +382,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dbaas/pSQLClusterV2",
+  "fqn": "pulumi_ionoscloud.dbaas",
+  "classes": {
+   "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": "PSQLClusterV2"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/pSQLDatabase",
   "fqn": "pulumi_ionoscloud.dbaas",
   "classes": {
@@ -610,6 +618,14 @@ _utilities.register(
   "fqn": "pulumi_ionoscloud.objectstorage",
   "classes": {
    "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": "PublicAccessBlock"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "objectstorage/userBucket",
+  "fqn": "pulumi_ionoscloud.objectstorage",
+  "classes": {
+   "ionoscloud:objectstorage/userBucket:UserBucket": "UserBucket"
   }
  },
  {

@@ -180,12 +180,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        /// </summary>
-        [Input("templateUuid")]
-        public string? TemplateUuid { get; set; }
-
         public GetCubeServerArgs()
         {
         }
@@ -219,12 +213,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        /// </summary>
-        [Input("templateUuid")]
-        public Input<string>? TemplateUuid { get; set; }
 
         public GetCubeServerInvokeArgs()
         {
@@ -281,7 +269,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// <summary>
         /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         /// </summary>
-        public readonly string? TemplateUuid;
+        public readonly string TemplateUuid;
         public readonly string Token;
         /// <summary>
         /// Status of the virtual Machine
@@ -324,7 +312,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             ImmutableArray<string> securityGroupsIds,
 
-            string? templateUuid,
+            string templateUuid,
 
             string token,
 

@@ -7,9 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Cross Connect](https://docs.ionos.com/cloud/network-services/cross-connect/overview) on IonosCloud.
+ * Manages a [Cross Connect](https://docs.ionos.com/cloud/network-services/cross-connect/overview) on IONOS CLOUD.
  * Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
- * The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
+ * The VDCs to be connected need to belong to the same IONOS CLOUD contract and location.
  * You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
  *
  * The IP addresses of the NICs used for the Cross Connect connection may not be used in more than one NIC and they need to belong to the same IP range.
@@ -146,24 +146,24 @@ export interface CrossconnectState {
     /**
      * A list containing all the connectable datacenters
      */
-    connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[]>;
+    connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[] | undefined>;
     /**
      * [string] A short description for the cross-connection.
      * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the cross-connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Lists LAN's joined to this cross connect
      */
-    peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[]>;
+    peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[] | undefined>;
 }
 
 /**
@@ -173,22 +173,22 @@ export interface CrossconnectArgs {
     /**
      * A list containing all the connectable datacenters
      */
-    connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[]>;
+    connectableDatacenters?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectConnectableDatacenter>[] | undefined>;
     /**
      * [string] A short description for the cross-connection.
      * - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the cross-connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Lists LAN's joined to this cross connect
      */
-    peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[]>;
+    peers?: pulumi.Input<pulumi.Input<inputs.compute.CrossconnectPeer>[] | undefined>;
 }

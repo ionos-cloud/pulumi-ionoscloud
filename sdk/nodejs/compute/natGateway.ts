@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+ * Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  *         exampleIPBlock.ips[1],
  *     ],
  *     lans: [{
- *         id: exampleLan.id,
+ *         id: exampleLan.id.apply(x =>Number(x)),
  *         gatewayIps: ["10.11.2.5"],
  *     }],
  * });
@@ -149,23 +149,23 @@ export interface NatGatewayState {
     /**
      * [string] A Datacenter's UUID.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * [list] A list of Local Area Networks the node pool should be part of.
      */
-    lans?: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
+    lans?: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[] | undefined>;
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the NAT gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
      */
-    publicIps?: pulumi.Input<pulumi.Input<string>[]>;
+    publicIps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -183,11 +183,11 @@ export interface NatGatewayArgs {
     /**
      * The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of the NAT gateway.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
      */

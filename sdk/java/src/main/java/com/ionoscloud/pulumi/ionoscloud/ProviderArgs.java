@@ -33,14 +33,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      * 
      */
     @Import(name="endpoint")
     private @Nullable Output<String> endpoint;
 
     /**
-     * @return IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * @return IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      * 
      */
     public Optional<Output<String>> endpoint() {
@@ -63,14 +63,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return IonosCloud password for API operations. If token is provided, token is preferred
+     * @return IONOS CLOUD password for API operations. If token is provided, token is preferred
      * 
      */
     public Optional<Output<String>> password() {
@@ -112,14 +112,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      * 
      */
     @Import(name="s3Region")
     private @Nullable Output<String> s3Region;
 
     /**
-     * @return Region for IONOS Object Storage operations.
+     * @return Region for IONOS Contract Owned Object Storage operations.
      * 
      */
     public Optional<Output<String>> s3Region() {
@@ -142,14 +142,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return IonosCloud bearer token for API operations.
+     * @return IONOS CLOUD bearer token for API operations.
      * 
      */
     public Optional<Output<String>> token() {
@@ -157,14 +157,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return IonosCloud username for API operations. If token is provided, token is preferred
+     * @return IONOS CLOUD username for API operations. If token is provided, token is preferred
      * 
      */
     public Optional<Output<String>> username() {
@@ -226,7 +226,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoint IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+         * @param endpoint IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
          * 
          * @return builder
          * 
@@ -237,7 +237,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoint IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+         * @param endpoint IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
          * 
          * @return builder
          * 
@@ -268,7 +268,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password IonosCloud password for API operations. If token is provided, token is preferred
+         * @param password IONOS CLOUD password for API operations. If token is provided, token is preferred
          * 
          * @return builder
          * 
@@ -279,7 +279,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password IonosCloud password for API operations. If token is provided, token is preferred
+         * @param password IONOS CLOUD password for API operations. If token is provided, token is preferred
          * 
          * @return builder
          * 
@@ -335,7 +335,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param s3Region Region for IONOS Object Storage operations.
+         * @param s3Region Region for IONOS Contract Owned Object Storage operations.
          * 
          * @return builder
          * 
@@ -346,7 +346,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param s3Region Region for IONOS Object Storage operations.
+         * @param s3Region Region for IONOS Contract Owned Object Storage operations.
          * 
          * @return builder
          * 
@@ -377,7 +377,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token IonosCloud bearer token for API operations.
+         * @param token IONOS CLOUD bearer token for API operations.
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token IonosCloud bearer token for API operations.
+         * @param token IONOS CLOUD bearer token for API operations.
          * 
          * @return builder
          * 
@@ -398,7 +398,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username IonosCloud username for API operations. If token is provided, token is preferred
+         * @param username IONOS CLOUD username for API operations. If token is provided, token is preferred
          * 
          * @return builder
          * 
@@ -409,7 +409,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param username IonosCloud username for API operations. If token is provided, token is preferred
+         * @param username IONOS CLOUD username for API operations. If token is provided, token is preferred
          * 
          * @return builder
          * 

@@ -285,71 +285,71 @@ export interface MongoClusterState {
     /**
      * [list]
      */
-    backup?: pulumi.Input<inputs.dbaas.MongoClusterBackup>;
+    backup?: pulumi.Input<inputs.dbaas.MongoClusterBackup | undefined>;
     /**
      * (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
      */
-    biConnector?: pulumi.Input<inputs.dbaas.MongoClusterBiConnector>;
+    biConnector?: pulumi.Input<inputs.dbaas.MongoClusterBiConnector | undefined>;
     /**
      * [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
      */
-    connectionString?: pulumi.Input<string>;
+    connectionString?: pulumi.Input<string | undefined>;
     /**
      * [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    connections?: pulumi.Input<inputs.dbaas.MongoClusterConnections>;
+    connections?: pulumi.Input<inputs.dbaas.MongoClusterConnections | undefined>;
     /**
      * (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Cluster edition. Playground, business or enterprise.
      */
-    edition?: pulumi.Input<string>;
+    edition?: pulumi.Input<string | undefined>;
     /**
      * [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
      */
-    instances?: pulumi.Input<number>;
+    instances?: pulumi.Input<number | undefined>;
     /**
      * [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow | undefined>;
     /**
      * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      */
-    mongodbVersion?: pulumi.Input<string>;
+    mongodbVersion?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
      */
-    ram?: pulumi.Input<number>;
+    ram?: pulumi.Input<number | undefined>;
     /**
      * [int]The total number of shards in the cluster.
      */
-    shards?: pulumi.Input<number>;
+    shards?: pulumi.Input<number | undefined>;
     /**
      * (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
     /**
      * (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
      */
-    storageType?: pulumi.Input<string>;
+    storageType?: pulumi.Input<string | undefined>;
     /**
      * [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
      */
-    templateId?: pulumi.Input<string>;
+    templateId?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -359,11 +359,11 @@ export interface MongoClusterArgs {
     /**
      * [list]
      */
-    backup?: pulumi.Input<inputs.dbaas.MongoClusterBackup>;
+    backup?: pulumi.Input<inputs.dbaas.MongoClusterBackup | undefined>;
     /**
      * (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
      */
-    biConnector?: pulumi.Input<inputs.dbaas.MongoClusterBiConnector>;
+    biConnector?: pulumi.Input<inputs.dbaas.MongoClusterBiConnector | undefined>;
     /**
      * [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
      */
@@ -371,7 +371,7 @@ export interface MongoClusterArgs {
     /**
      * (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
      */
@@ -379,7 +379,7 @@ export interface MongoClusterArgs {
     /**
      * (Computed)[string] Cluster edition. Playground, business or enterprise.
      */
-    edition?: pulumi.Input<string>;
+    edition?: pulumi.Input<string | undefined>;
     /**
      * [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
      */
@@ -391,7 +391,7 @@ export interface MongoClusterArgs {
     /**
      * (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
      */
-    maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow>;
+    maintenanceWindow?: pulumi.Input<inputs.dbaas.MongoClusterMaintenanceWindow | undefined>;
     /**
      * [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
      */
@@ -399,25 +399,25 @@ export interface MongoClusterArgs {
     /**
      * (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
      */
-    ram?: pulumi.Input<number>;
+    ram?: pulumi.Input<number | undefined>;
     /**
      * [int]The total number of shards in the cluster.
      */
-    shards?: pulumi.Input<number>;
+    shards?: pulumi.Input<number | undefined>;
     /**
      * (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
      */
-    storageSize?: pulumi.Input<number>;
+    storageSize?: pulumi.Input<number | undefined>;
     /**
      * (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
      */
-    storageType?: pulumi.Input<string>;
+    storageType?: pulumi.Input<string | undefined>;
     /**
      * [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
      */
-    templateId?: pulumi.Input<string>;
+    templateId?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

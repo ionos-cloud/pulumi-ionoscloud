@@ -41,6 +41,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectLockConfiguration{}
 	case "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock":
 		r = &PublicAccessBlock{}
+	case "ionoscloud:objectstorage/userBucket:UserBucket":
+		r = &UserBucket{}
 	case "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration":
 		r = &WebsiteConfiguration{}
 	default:
@@ -104,6 +106,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"objectstorage/publicAccessBlock",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"objectstorage/userBucket",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

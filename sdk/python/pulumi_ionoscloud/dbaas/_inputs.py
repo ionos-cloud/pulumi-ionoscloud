@@ -53,6 +53,20 @@ __all__ = [
     'PSQLClusterFromBackupArgsDict',
     'PSQLClusterMaintenanceWindowArgs',
     'PSQLClusterMaintenanceWindowArgsDict',
+    'PSQLClusterV2BackupArgs',
+    'PSQLClusterV2BackupArgsDict',
+    'PSQLClusterV2ConnectionsArgs',
+    'PSQLClusterV2ConnectionsArgsDict',
+    'PSQLClusterV2CredentialsArgs',
+    'PSQLClusterV2CredentialsArgsDict',
+    'PSQLClusterV2InstancesArgs',
+    'PSQLClusterV2InstancesArgsDict',
+    'PSQLClusterV2MaintenanceWindowArgs',
+    'PSQLClusterV2MaintenanceWindowArgsDict',
+    'PSQLClusterV2RestoreFromBackupArgs',
+    'PSQLClusterV2RestoreFromBackupArgsDict',
+    'PSQLClusterV2TimeoutsArgs',
+    'PSQLClusterV2TimeoutsArgsDict',
     'GetMongoUserRoleArgs',
     'GetMongoUserRoleArgsDict',
 ]
@@ -128,11 +142,11 @@ class InMemoryDBReplicaSetCredentialsArgsDict(TypedDict):
     """
     [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
     """
-    hashed_password: NotRequired[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict']]
+    hashed_password: NotRequired[pulumi.Input[Optional['InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict']]]
     """
     [object] The hashed password for a InMemoryDB user.
     """
-    plain_text_password: NotRequired[pulumi.Input[_builtins.str]]
+    plain_text_password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
     """
@@ -141,8 +155,8 @@ class InMemoryDBReplicaSetCredentialsArgsDict(TypedDict):
 class InMemoryDBReplicaSetCredentialsArgs:
     def __init__(__self__, *,
                  username: pulumi.Input[_builtins.str],
-                 hashed_password: Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']] = None,
-                 plain_text_password: Optional[pulumi.Input[_builtins.str]] = None):
+                 hashed_password: pulumi.Input[Optional['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']] = None,
+                 plain_text_password: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] username: [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         :param pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs'] hashed_password: [object] The hashed password for a InMemoryDB user.
@@ -168,26 +182,26 @@ class InMemoryDBReplicaSetCredentialsArgs:
 
     @_builtins.property
     @pulumi.getter(name="hashedPassword")
-    def hashed_password(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']]:
+    def hashed_password(self) -> pulumi.Input[Optional['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']]:
         """
         [object] The hashed password for a InMemoryDB user.
         """
         return pulumi.get(self, "hashed_password")
 
     @hashed_password.setter
-    def hashed_password(self, value: Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']]):
+    def hashed_password(self, value: pulumi.Input[Optional['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']]):
         pulumi.set(self, "hashed_password", value)
 
     @_builtins.property
     @pulumi.getter(name="plainTextPassword")
-    def plain_text_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plain_text_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
         return pulumi.get(self, "plain_text_password")
 
     @plain_text_password.setter
-    def plain_text_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plain_text_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plain_text_password", value)
 
 
@@ -294,7 +308,7 @@ class InMemoryDBReplicaSetResourcesArgsDict(TypedDict):
     """
     [int] The amount of memory per instance in gigabytes (GB).
     """
-    storage: NotRequired[pulumi.Input[_builtins.int]]
+    storage: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
     """
@@ -304,7 +318,7 @@ class InMemoryDBReplicaSetResourcesArgs:
     def __init__(__self__, *,
                  cores: pulumi.Input[_builtins.int],
                  ram: pulumi.Input[_builtins.int],
-                 storage: Optional[pulumi.Input[_builtins.int]] = None):
+                 storage: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
@@ -341,14 +355,14 @@ class InMemoryDBReplicaSetResourcesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def storage(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
 
     @storage.setter
-    def storage(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage", value)
 
 
@@ -541,15 +555,15 @@ class MariaDBClusterMaintenanceWindowArgs:
 
 
 class MongoClusterBackupArgsDict(TypedDict):
-    location: NotRequired[pulumi.Input[_builtins.str]]
+    location: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
     """
-    point_in_time_window_hours: NotRequired[pulumi.Input[_builtins.int]]
+    point_in_time_window_hours: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of hours in the past for which a point-in-time snapshot can be created.
     """
-    snapshot_interval_hours: NotRequired[pulumi.Input[_builtins.int]]
+    snapshot_interval_hours: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of hours between snapshots.
     """
@@ -557,9 +571,9 @@ class MongoClusterBackupArgsDict(TypedDict):
 @pulumi.input_type
 class MongoClusterBackupArgs:
     def __init__(__self__, *,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 point_in_time_window_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_interval_hours: Optional[pulumi.Input[_builtins.int]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 point_in_time_window_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_interval_hours: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] location: [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         :param pulumi.Input[_builtins.int] point_in_time_window_hours: Number of hours in the past for which a point-in-time snapshot can be created.
@@ -574,51 +588,51 @@ class MongoClusterBackupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="pointInTimeWindowHours")
-    def point_in_time_window_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def point_in_time_window_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of hours in the past for which a point-in-time snapshot can be created.
         """
         return pulumi.get(self, "point_in_time_window_hours")
 
     @point_in_time_window_hours.setter
-    def point_in_time_window_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def point_in_time_window_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "point_in_time_window_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotIntervalHours")
-    def snapshot_interval_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def snapshot_interval_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of hours between snapshots.
         """
         return pulumi.get(self, "snapshot_interval_hours")
 
     @snapshot_interval_hours.setter
-    def snapshot_interval_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def snapshot_interval_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "snapshot_interval_hours", value)
 
 
 class MongoClusterBiConnectorArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
     """
-    host: NotRequired[pulumi.Input[_builtins.str]]
+    host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] - The host where this new BI Connector is installed.
     """
-    port: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] - Port number used when connecting to this new BI Connector.
     """
@@ -626,9 +640,9 @@ class MongoClusterBiConnectorArgsDict(TypedDict):
 @pulumi.input_type
 class MongoClusterBiConnectorArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.str]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         :param pulumi.Input[_builtins.str] host: [string] - The host where this new BI Connector is installed.
@@ -643,38 +657,38 @@ class MongoClusterBiConnectorArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] - The host where this new BI Connector is installed.
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] - Port number used when connecting to this new BI Connector.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port", value)
 
 
@@ -792,13 +806,13 @@ class MongoClusterMaintenanceWindowArgs:
 
 
 class MongoUserRoleArgsDict(TypedDict):
-    database: NotRequired[pulumi.Input[_builtins.str]]
+    database: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [true] Database on which to apply the role.
 
     **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
     """
-    role: NotRequired[pulumi.Input[_builtins.str]]
+    role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
     """
@@ -806,8 +820,8 @@ class MongoUserRoleArgsDict(TypedDict):
 @pulumi.input_type
 class MongoUserRoleArgs:
     def __init__(__self__, *,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None):
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] database: [true] Database on which to apply the role.
                
@@ -821,7 +835,7 @@ class MongoUserRoleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [true] Database on which to apply the role.
 
@@ -830,19 +844,19 @@ class MongoUserRoleArgs:
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
 
@@ -1011,7 +1025,7 @@ class PSQLClusterFromBackupArgsDict(TypedDict):
     """
     [string] The unique ID of the backup you want to restore.
     """
-    recovery_target_time: NotRequired[pulumi.Input[_builtins.str]]
+    recovery_target_time: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
     """
@@ -1020,7 +1034,7 @@ class PSQLClusterFromBackupArgsDict(TypedDict):
 class PSQLClusterFromBackupArgs:
     def __init__(__self__, *,
                  backup_id: pulumi.Input[_builtins.str],
-                 recovery_target_time: Optional[pulumi.Input[_builtins.str]] = None):
+                 recovery_target_time: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] backup_id: [string] The unique ID of the backup you want to restore.
         :param pulumi.Input[_builtins.str] recovery_target_time: [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
@@ -1043,14 +1057,14 @@ class PSQLClusterFromBackupArgs:
 
     @_builtins.property
     @pulumi.getter(name="recoveryTargetTime")
-    def recovery_target_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def recovery_target_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
         return pulumi.get(self, "recovery_target_time")
 
     @recovery_target_time.setter
-    def recovery_target_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def recovery_target_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "recovery_target_time", value)
 
 
@@ -1099,6 +1113,456 @@ class PSQLClusterMaintenanceWindowArgs:
     @time.setter
     def time(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "time", value)
+
+
+class PSQLClusterV2BackupArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas_get_psql_backup_location_v2` data source. Immutable — changing this forces a new cluster.
+    """
+    retention_days: pulumi.Input[_builtins.int]
+    """
+    [int] How many days cluster backups are retained.
+    """
+
+@pulumi.input_type
+class PSQLClusterV2BackupArgs:
+    def __init__(__self__, *,
+                 location: pulumi.Input[_builtins.str],
+                 retention_days: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.str] location: [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas_get_psql_backup_location_v2` data source. Immutable — changing this forces a new cluster.
+        :param pulumi.Input[_builtins.int] retention_days: [int] How many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas_get_psql_backup_location_v2` data source. Immutable — changing this forces a new cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] How many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "retention_days", value)
+
+
+class PSQLClusterV2ConnectionsArgsDict(TypedDict):
+    datacenter_id: pulumi.Input[_builtins.str]
+    """
+    [string] The datacenter to connect your instance to.
+    """
+    lan_id: pulumi.Input[_builtins.str]
+    """
+    [string] The numeric LAN ID to connect your instance to.
+    """
+    primary_instance_address: pulumi.Input[_builtins.str]
+    """
+    [string] The IP and netmask that will be assigned to the cluster primary instance.
+    """
+
+@pulumi.input_type
+class PSQLClusterV2ConnectionsArgs:
+    def __init__(__self__, *,
+                 datacenter_id: pulumi.Input[_builtins.str],
+                 lan_id: pulumi.Input[_builtins.str],
+                 primary_instance_address: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The datacenter to connect your instance to.
+        :param pulumi.Input[_builtins.str] lan_id: [string] The numeric LAN ID to connect your instance to.
+        :param pulumi.Input[_builtins.str] primary_instance_address: [string] The IP and netmask that will be assigned to the cluster primary instance.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The datacenter to connect your instance to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @datacenter_id.setter
+    def datacenter_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The numeric LAN ID to connect your instance to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @lan_id.setter
+    def lan_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "lan_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The IP and netmask that will be assigned to the cluster primary instance.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+    @primary_instance_address.setter
+    def primary_instance_address(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "primary_instance_address", value)
+
+
+class PSQLClusterV2CredentialsArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    [string] The name of the initial database to be created.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+    """
+    password_version: pulumi.Input[_builtins.str]
+    """
+    [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    [string] The username of the master database user.
+    """
+
+@pulumi.input_type
+class PSQLClusterV2CredentialsArgs:
+    def __init__(__self__, *,
+                 database: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[_builtins.str],
+                 password_version: pulumi.Input[_builtins.str],
+                 username: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] database: [string] The name of the initial database to be created.
+        :param pulumi.Input[_builtins.str] password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+        :param pulumi.Input[_builtins.str] password_version: [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+        :param pulumi.Input[_builtins.str] username: [string] The username of the master database user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "password_version", password_version)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The name of the initial database to be created.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "database", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordVersion")
+    def password_version(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+        """
+        return pulumi.get(self, "password_version")
+
+    @password_version.setter
+    def password_version(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "password_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The username of the master database user.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "username", value)
+
+
+class PSQLClusterV2InstancesArgsDict(TypedDict):
+    cores: pulumi.Input[_builtins.int]
+    """
+    [int] The number of CPU cores per instance.
+    """
+    count: pulumi.Input[_builtins.int]
+    """
+    [int] The total number of instances in the cluster (one primary and n-1 secondary).
+    """
+    ram: pulumi.Input[_builtins.int]
+    """
+    [int] The amount of memory per instance in gigabytes (GB).
+    """
+    storage_size: pulumi.Input[_builtins.int]
+    """
+    [int] The amount of storage per instance in gigabytes (GB).
+    """
+
+@pulumi.input_type
+class PSQLClusterV2InstancesArgs:
+    def __init__(__self__, *,
+                 cores: pulumi.Input[_builtins.int],
+                 count: pulumi.Input[_builtins.int],
+                 ram: pulumi.Input[_builtins.int],
+                 storage_size: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
+        :param pulumi.Input[_builtins.int] count: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "cores", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @ram.setter
+    def ram(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "ram", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+    @storage_size.setter
+    def storage_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "storage_size", value)
+
+
+class PSQLClusterV2MaintenanceWindowArgsDict(TypedDict):
+    day_of_the_week: pulumi.Input[_builtins.str]
+    """
+    [string] The name of the week day.
+    """
+    time: pulumi.Input[_builtins.str]
+    """
+    [string] Start of the maintenance window in UTC time.
+    """
+
+@pulumi.input_type
+class PSQLClusterV2MaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day_of_the_week: pulumi.Input[_builtins.str],
+                 time: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[_builtins.str] time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @day_of_the_week.setter
+    def day_of_the_week(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "day_of_the_week", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "time", value)
+
+
+class PSQLClusterV2RestoreFromBackupArgsDict(TypedDict):
+    source_backup_id: pulumi.Input[_builtins.str]
+    """
+    [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+    """
+    recovery_target_datetime: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+    """
+
+@pulumi.input_type
+class PSQLClusterV2RestoreFromBackupArgs:
+    def __init__(__self__, *,
+                 source_backup_id: pulumi.Input[_builtins.str],
+                 recovery_target_datetime: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] source_backup_id: [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+        :param pulumi.Input[_builtins.str] recovery_target_datetime: [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        pulumi.set(__self__, "source_backup_id", source_backup_id)
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceBackupId")
+    def source_backup_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+        """
+        return pulumi.get(self, "source_backup_id")
+
+    @source_backup_id.setter
+    def source_backup_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source_backup_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+    @recovery_target_datetime.setter
+    def recovery_target_datetime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "recovery_target_datetime", value)
+
+
+class PSQLClusterV2TimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+    """
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+
+@pulumi.input_type
+class PSQLClusterV2TimeoutsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "update", value)
 
 
 class GetMongoUserRoleArgsDict(TypedDict):

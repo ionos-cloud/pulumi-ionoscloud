@@ -28,6 +28,7 @@ __all__ = [
     'CorsConfigurationCorsRule',
     'ObjectLockConfigurationRule',
     'ObjectLockConfigurationRuleDefaultRetention',
+    'UserBucketTimeouts',
     'WebsiteConfigurationErrorDocument',
     'WebsiteConfigurationIndexDocument',
     'WebsiteConfigurationRedirectAllRequestsTo',
@@ -377,7 +378,7 @@ class BucketTimeouts(dict):
                  update: Optional[_builtins.str] = None):
         """
         :param _builtins.str create: [string] Time to wait for the bucket to be created. Default is `10m`.
-        :param _builtins.str delete: [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        :param _builtins.str delete: [string] Time to wait for the bucket to be deleted. Default is `60m`.
         :param _builtins.str read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
@@ -402,7 +403,7 @@ class BucketTimeouts(dict):
     @pulumi.getter
     def delete(self) -> Optional[_builtins.str]:
         """
-        [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        [string] Time to wait for the bucket to be deleted. Default is `60m`.
         """
         return pulumi.get(self, "delete")
 
@@ -657,6 +658,49 @@ class ObjectLockConfigurationRuleDefaultRetention(dict):
         Days and years are mutually exclusive. You can only specify one of them.
         """
         return pulumi.get(self, "years")
+
+
+@pulumi.output_type
+class UserBucketTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 read: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: [string] Time to wait for the bucket to be created. Default is `10m`.
+        :param _builtins.str delete: [string] Time to wait for the bucket to be deleted. Default is `60m`.
+        :param _builtins.str read: [string] Time to wait for the bucket read operations. Default is `10m`.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        [string] Time to wait for the bucket to be created. Default is `10m`.
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        [string] Time to wait for the bucket to be deleted. Default is `60m`.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> Optional[_builtins.str]:
+        """
+        [string] Time to wait for the bucket read operations. Default is `10m`.
+        """
+        return pulumi.get(self, "read")
 
 
 @pulumi.output_type

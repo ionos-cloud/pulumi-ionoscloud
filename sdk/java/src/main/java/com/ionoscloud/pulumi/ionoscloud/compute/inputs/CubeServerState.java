@@ -22,11 +22,11 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     /**
      * [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
      * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
@@ -39,11 +39,11 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
      * 
-     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+     * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
@@ -70,7 +70,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -81,7 +81,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> bootCdrom;
 
     /**
-     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -93,14 +93,14 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="bootImage")
     private @Nullable Output<String> bootImage;
 
     /**
-     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<String>> bootImage() {
@@ -168,14 +168,14 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Import(name="imageName")
     private @Nullable Output<String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Optional<Output<String>> imageName() {
@@ -183,14 +183,14 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+     * [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="imagePassword")
     private @Nullable Output<String> imagePassword;
 
     /**
-     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+     * @return [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<String>> imagePassword() {
@@ -303,14 +303,14 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      */
     @Import(name="sshKeyPaths")
     private @Nullable Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * @return [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      */
     public Optional<Output<List<String>>> sshKeyPaths() {
@@ -409,11 +409,11 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
          * 
-         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
@@ -430,11 +430,11 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param allowReplace [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the server.
          * 
-         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+         * ⚠️ **_Warning: &lt;span pulumi-lang-nodejs=&#34;`allowReplace`&#34; pulumi-lang-dotnet=&#34;`AllowReplace`&#34; pulumi-lang-go=&#34;`allowReplace`&#34; pulumi-lang-python=&#34;`allow_replace`&#34; pulumi-lang-yaml=&#34;`allowReplace`&#34; pulumi-lang-java=&#34;`allowReplace`&#34; pulumi-lang-hcl=&#34;`allow_replace`&#34;&gt;`allowReplace`&lt;/span&gt; - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
-         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34;&gt; imageName &lt;/span&gt;under server level
+         * &gt; Image_name under volume level is deprecated, please use&lt;span pulumi-lang-nodejs=&#34; imageName &#34; pulumi-lang-dotnet=&#34; ImageName &#34; pulumi-lang-go=&#34; imageName &#34; pulumi-lang-python=&#34; image_name &#34; pulumi-lang-yaml=&#34; imageName &#34; pulumi-lang-java=&#34; imageName &#34; pulumi-lang-hcl=&#34; image_name &#34;&gt; imageName &lt;/span&gt;under server level
          * 
          * &gt; **⚠ WARNING**
          * &gt; 
@@ -469,7 +469,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -484,7 +484,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+         * @param bootCdrom ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
          * 
          * @return builder
          * 
@@ -498,7 +498,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -509,7 +509,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+         * @param bootImage [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -603,7 +603,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -614,7 +614,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+         * @param imageName [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
          * 
          * @return builder
          * 
@@ -624,7 +624,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -635,7 +635,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
+         * @param imagePassword [string] Required if &lt;span pulumi-lang-nodejs=&#34;`sshKeyPath`&#34; pulumi-lang-dotnet=&#34;`SshKeyPath`&#34; pulumi-lang-go=&#34;`sshKeyPath`&#34; pulumi-lang-python=&#34;`ssh_key_path`&#34; pulumi-lang-yaml=&#34;`sshKeyPath`&#34; pulumi-lang-java=&#34;`sshKeyPath`&#34; pulumi-lang-hcl=&#34;`ssh_key_path`&#34;&gt;`sshKeyPath`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -812,7 +812,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -823,7 +823,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 
@@ -833,7 +833,7 @@ public final class CubeServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+         * @param sshKeyPaths [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
          * 
          * @return builder
          * 

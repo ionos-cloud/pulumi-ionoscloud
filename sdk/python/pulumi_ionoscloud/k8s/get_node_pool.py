@@ -379,10 +379,10 @@ def get_node_pool(id: Optional[_builtins.str] = None,
         state=pulumi.get(__ret__, 'state'),
         storage_size=pulumi.get(__ret__, 'storage_size'),
         storage_type=pulumi.get(__ret__, 'storage_type'))
-def get_node_pool_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                         location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_node_pool_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                         location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
     """
     The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.

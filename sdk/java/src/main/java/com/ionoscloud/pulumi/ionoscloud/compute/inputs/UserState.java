@@ -95,8 +95,8 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * [Set] The groups that this user will be a member of
-     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-     * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34; pulumi-lang-hcl=&#34; user_ids &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
      * 
      */
     @Import(name="groupIds")
@@ -104,8 +104,8 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return [Set] The groups that this user will be a member of
-     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-     * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
+     * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34; pulumi-lang-hcl=&#34; user_ids &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
      * 
      */
     public Optional<Output<List<String>>> groupIds() {
@@ -128,14 +128,14 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
+     * A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34; pulumi-lang-hcl=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
+     * @return A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34; pulumi-lang-hcl=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
      * 
      */
     public Optional<Output<String>> password() {
@@ -144,7 +144,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+     * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34; pulumi-lang-hcl=&#34;`password_wo_version`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
      * 
      */
     @Import(name="passwordWo")
@@ -152,7 +152,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+     * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34; pulumi-lang-hcl=&#34;`password_wo_version`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
      * 
      */
     public Optional<Output<String>> passwordWo() {
@@ -160,14 +160,14 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
+     * Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
      * 
      */
     @Import(name="passwordWoVersion")
     private @Nullable Output<Integer> passwordWoVersion;
 
     /**
-     * @return Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
+     * @return Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
      * 
      */
     public Optional<Output<Integer>> passwordWoVersion() {
@@ -346,8 +346,8 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param groupIds [Set] The groups that this user will be a member of
-         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34; pulumi-lang-hcl=&#34; user_ids &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
          * 
          * @return builder
          * 
@@ -359,8 +359,8 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param groupIds [Set] The groups that this user will be a member of
-         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34; pulumi-lang-hcl=&#34; user_ids &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
          * 
          * @return builder
          * 
@@ -371,8 +371,8 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param groupIds [Set] The groups that this user will be a member of
-         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
+         * **NOTE:** Group_ids field cannot be used at the same time with&lt;span pulumi-lang-nodejs=&#34; userIds &#34; pulumi-lang-dotnet=&#34; UserIds &#34; pulumi-lang-go=&#34; userIds &#34; pulumi-lang-python=&#34; user_ids &#34; pulumi-lang-yaml=&#34; userIds &#34; pulumi-lang-java=&#34; userIds &#34; pulumi-lang-hcl=&#34; user_ids &#34;&gt; userIds &lt;/span&gt;field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+         * **NOTE:** &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; requires Teraform 1.11 or higher.
          * 
          * @return builder
          * 
@@ -403,7 +403,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
+         * @param password A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34; pulumi-lang-hcl=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
          * 
          * @return builder
          * 
@@ -414,7 +414,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
+         * @param password A password for the user. If you are using terraform 1.11 or higher, you can use &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; instead of &lt;span pulumi-lang-nodejs=&#34;`password`&#34; pulumi-lang-dotnet=&#34;`Password`&#34; pulumi-lang-go=&#34;`password`&#34; pulumi-lang-python=&#34;`password`&#34; pulumi-lang-yaml=&#34;`password`&#34; pulumi-lang-java=&#34;`password`&#34; pulumi-lang-hcl=&#34;`password`&#34;&gt;`password`&lt;/span&gt; to avoid storing the password in the state file.
          * 
          * @return builder
          * 
@@ -425,7 +425,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+         * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34; pulumi-lang-hcl=&#34;`password_wo_version`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
          * 
          * @return builder
          * 
@@ -437,7 +437,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
+         * user password. This value is always marked as sensitive in the plan output, regardless of &lt;span pulumi-lang-nodejs=&#34;`type`&#34; pulumi-lang-dotnet=&#34;`Type`&#34; pulumi-lang-go=&#34;`type`&#34; pulumi-lang-python=&#34;`type`&#34; pulumi-lang-yaml=&#34;`type`&#34; pulumi-lang-java=&#34;`type`&#34; pulumi-lang-hcl=&#34;`type`&#34;&gt;`type`&lt;/span&gt;. Additionally, `write-only` values are never stored to state. &lt;span pulumi-lang-nodejs=&#34;`passwordWoVersion`&#34; pulumi-lang-dotnet=&#34;`PasswordWoVersion`&#34; pulumi-lang-go=&#34;`passwordWoVersion`&#34; pulumi-lang-python=&#34;`password_wo_version`&#34; pulumi-lang-yaml=&#34;`passwordWoVersion`&#34; pulumi-lang-java=&#34;`passwordWoVersion`&#34; pulumi-lang-hcl=&#34;`password_wo_version`&#34;&gt;`passwordWoVersion`&lt;/span&gt; can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
          * 
          * @return builder
          * 
@@ -447,7 +447,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param passwordWoVersion Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
+         * @param passwordWoVersion Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
          * 
          * @return builder
          * 
@@ -458,7 +458,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param passwordWoVersion Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
+         * @param passwordWoVersion Used together with &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; to trigger an update. Increment this value when an update to the &lt;span pulumi-lang-nodejs=&#34;`passwordWo`&#34; pulumi-lang-dotnet=&#34;`PasswordWo`&#34; pulumi-lang-go=&#34;`passwordWo`&#34; pulumi-lang-python=&#34;`password_wo`&#34; pulumi-lang-yaml=&#34;`passwordWo`&#34; pulumi-lang-java=&#34;`passwordWo`&#34; pulumi-lang-hcl=&#34;`password_wo`&#34;&gt;`passwordWo`&lt;/span&gt; is required.
          * 
          * @return builder
          * 

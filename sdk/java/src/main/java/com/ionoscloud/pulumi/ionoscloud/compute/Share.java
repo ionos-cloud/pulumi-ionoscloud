@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### Share a Datacenter with a Group
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -34,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Share;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ShareArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -73,6 +75,72 @@ import javax.annotation.Nullable;
  *             .editPrivilege(true)
  *             .sharePrivilege(false)
  *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Share a Kubernetes Cluster with Multiple Groups
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Share;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ShareArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Cluster("example", ClusterArgs.builder()
+ *             .name("k8s-example")
+ *             .build());
+ * 
+ *         var group1 = new Group("group1", GroupArgs.builder()
+ *             .name("Group 1")
+ *             .createK8sCluster(true)
+ *             .build());
+ * 
+ *         var group2 = new Group("group2", GroupArgs.builder()
+ *             .name("Group 2")
+ *             .createK8sCluster(true)
+ *             .build());
+ * 
+ *         var k8sShareGroup1 = new Share("k8sShareGroup1", ShareArgs.builder()
+ *             .groupId(group1.id())
+ *             .resourceId(example.id())
+ *             .editPrivilege(true)
+ *             .sharePrivilege(false)
+ *             .build());
+ * 
+ *         var k8sShareGroup2 = new Share("k8sShareGroup2", ShareArgs.builder()
+ *             .groupId(group2.id())
+ *             .resourceId(example.id())
+ *             .editPrivilege(true)
+ *             .sharePrivilege(true)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(k8sShareGroup1)
+ *                 .build());
  * 
  *     }
  * }
@@ -138,8 +206,8 @@ public class Share extends com.pulumi.resources.CustomResource {
      * 
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
-     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
+     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt;
+     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-hcl=&#34;`ionoscloud_share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
      * 
      */
     @Export(name="sharePrivilege", refs={Boolean.class}, tree="[0]")
@@ -150,8 +218,8 @@ public class Share extends com.pulumi.resources.CustomResource {
      * 
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34;&gt;`dependsOn`&lt;/span&gt;
-     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
+     * to create the resources in a sequential manner. Another solution involves the usage of &lt;span pulumi-lang-nodejs=&#34;`dependsOn`&#34; pulumi-lang-dotnet=&#34;`DependsOn`&#34; pulumi-lang-go=&#34;`dependsOn`&#34; pulumi-lang-python=&#34;`depends_on`&#34; pulumi-lang-yaml=&#34;`dependsOn`&#34; pulumi-lang-java=&#34;`dependsOn`&#34; pulumi-lang-hcl=&#34;`depends_on`&#34;&gt;`dependsOn`&lt;/span&gt;
+     * attributes inside the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-go=&#34;`compute.Share`&#34; pulumi-lang-python=&#34;`compute.Share`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Share`&#34; pulumi-lang-hcl=&#34;`ionoscloud_share`&#34;&gt;`ionoscloud.compute.Share`&lt;/span&gt; resource to enforce the sequential creation of the shares.
      * 
      */
     public Output<Optional<Boolean>> sharePrivilege() {
@@ -197,7 +265,7 @@ public class Share extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

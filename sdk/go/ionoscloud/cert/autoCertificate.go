@@ -70,7 +70,7 @@ import (
 type AutoCertificate struct {
 	pulumi.CustomResourceState
 
-	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 	CommonName pulumi.StringOutput `pulumi:"commonName"`
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm pulumi.StringOutput `pulumi:"keyAlgorithm"`
@@ -82,7 +82,7 @@ type AutoCertificate struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] The certificate provider used to issue the certificates.
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
-	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 	SubjectAlternativeNames pulumi.StringArrayOutput `pulumi:"subjectAlternativeNames"`
 }
 
@@ -128,7 +128,7 @@ func GetAutoCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AutoCertificate resources.
 type autoCertificateState struct {
-	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 	CommonName *string `pulumi:"commonName"`
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
@@ -140,12 +140,12 @@ type autoCertificateState struct {
 	Name *string `pulumi:"name"`
 	// [string] The certificate provider used to issue the certificates.
 	ProviderId *string `pulumi:"providerId"`
-	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
 type AutoCertificateState struct {
-	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 	CommonName pulumi.StringPtrInput
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm pulumi.StringPtrInput
@@ -157,7 +157,7 @@ type AutoCertificateState struct {
 	Name pulumi.StringPtrInput
 	// [string] The certificate provider used to issue the certificates.
 	ProviderId pulumi.StringPtrInput
-	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 	SubjectAlternativeNames pulumi.StringArrayInput
 }
 
@@ -166,7 +166,7 @@ func (AutoCertificateState) ElementType() reflect.Type {
 }
 
 type autoCertificateArgs struct {
-	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 	CommonName string `pulumi:"commonName"`
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm string `pulumi:"keyAlgorithm"`
@@ -176,13 +176,13 @@ type autoCertificateArgs struct {
 	Name *string `pulumi:"name"`
 	// [string] The certificate provider used to issue the certificates.
 	ProviderId string `pulumi:"providerId"`
-	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
 // The set of arguments for constructing a AutoCertificate resource.
 type AutoCertificateArgs struct {
-	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 	CommonName pulumi.StringInput
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm pulumi.StringInput
@@ -192,7 +192,7 @@ type AutoCertificateArgs struct {
 	Name pulumi.StringPtrInput
 	// [string] The certificate provider used to issue the certificates.
 	ProviderId pulumi.StringInput
-	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 	SubjectAlternativeNames pulumi.StringArrayInput
 }
 
@@ -283,7 +283,7 @@ func (o AutoCertificateOutput) ToAutoCertificateOutputWithContext(ctx context.Co
 	return o
 }
 
-// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
 func (o AutoCertificateOutput) CommonName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificate) pulumi.StringOutput { return v.CommonName }).(pulumi.StringOutput)
 }
@@ -313,7 +313,7 @@ func (o AutoCertificateOutput) ProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificate) pulumi.StringOutput { return v.ProviderId }).(pulumi.StringOutput)
 }
 
-// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
 func (o AutoCertificateOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AutoCertificate) pulumi.StringArrayOutput { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }

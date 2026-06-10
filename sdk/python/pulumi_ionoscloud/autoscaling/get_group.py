@@ -183,8 +183,8 @@ def get_group(id: Optional[_builtins.str] = None,
         policies=pulumi.get(__ret__, 'policies'),
         replica_configurations=pulumi.get(__ret__, 'replica_configurations'),
         target_replica_count=pulumi.get(__ret__, 'target_replica_count'))
-def get_group_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_group_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.

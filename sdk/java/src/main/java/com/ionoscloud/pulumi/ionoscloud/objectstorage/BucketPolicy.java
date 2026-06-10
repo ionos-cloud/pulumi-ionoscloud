@@ -14,9 +14,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages **Buckets policies** on IonosCloud.
- * 
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages **Buckets policies** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -33,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketPolicy;
  * import com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketPolicyArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -81,7 +79,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ⚠️ **Note:** For more information about the bucket policy or the policy format, please see the [IonosCloud Object Storage documentation](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/settings/bucket-policy#policy-format).
+ * ⚠️ **Note:** For more information about the bucket policy or the policy format, please see the [IONOS CLOUD Object Storage documentation](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/settings/bucket-policy#policy-format).
  * 
  * ## Import
  * 
@@ -162,7 +160,7 @@ public class BucketPolicy extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

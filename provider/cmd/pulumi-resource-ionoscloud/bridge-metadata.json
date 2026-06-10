@@ -676,6 +676,10 @@
                     }
                 }
             },
+            "ionoscloud_pg_cluster_v2": {
+                "current": "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2",
+                "majorVersion": 1
+            },
             "ionoscloud_pg_database": {
                 "current": "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase",
                 "majorVersion": 1
@@ -871,6 +875,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "ionoscloud_user_object_storage_bucket": {
+                "current": "ionoscloud:objectstorage/userBucket:UserBucket",
+                "majorVersion": 1
             },
             "ionoscloud_vcpu_server": {
                 "current": "ionoscloud:compute/vCPUServer:VCPUServer",
@@ -1860,6 +1868,15 @@
                     }
                 }
             },
+            "ionoscloud_pg_backup_location_v2": {
+                "current": "ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2",
+                "majorVersion": 1,
+                "fields": {
+                    "backup_locations": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_pg_backups": {
                 "current": "ionoscloud:dbaas/getPSQLBackups:getPSQLBackups",
                 "majorVersion": 1,
@@ -1873,6 +1890,15 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "ionoscloud_pg_backups_v2": {
+                "current": "ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "backups": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1890,6 +1916,19 @@
                         "maxItemsOne": false
                     },
                     "maintenance_window": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_pg_cluster_v2": {
+                "current": "ionoscloud:dbaas/getPSQLClusterV2:getPSQLClusterV2",
+                "majorVersion": 1
+            },
+            "ionoscloud_pg_clusters_v2": {
+                "current": "ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2",
+                "majorVersion": 1,
+                "fields": {
+                    "clusters": {
                         "maxItemsOne": false
                     }
                 }
@@ -1917,6 +1956,22 @@
                 "fields": {
                     "postgres_versions": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_pg_versions_v2": {
+                "current": "ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "versions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "can_upgrade_to": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2117,6 +2172,10 @@
                     }
                 }
             },
+            "ionoscloud_user_object_storage_bucket": {
+                "current": "ionoscloud:objectstorage/getUserBucket:getUserBucket",
+                "majorVersion": 1
+            },
             "ionoscloud_vcpu_server": {
                 "current": "ionoscloud:compute/getVCPUServer:getVCPUServer",
                 "majorVersion": 1,
@@ -2237,16 +2296,6 @@
                 "aliases": [
                     "ionoscloud:index/gpuServer:GpuServer"
                 ]
-            },
-            "ionoscloud_server": {
-                "maxItemsOneOverrides": {
-                    "nic.$.firewall": false
-                }
-            },
-            "ionoscloud_vcpu_server": {
-                "maxItemsOneOverrides": {
-                    "nic.$.firewall": false
-                }
             }
         },
         "datasources": {
@@ -2306,6 +2355,7 @@
             "ionoscloud:dbaas/mongoCluster:MongoCluster": 0,
             "ionoscloud:dbaas/mongoUser:MongoUser": 0,
             "ionoscloud:dbaas/pSQLCluster:PSQLCluster": 0,
+            "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": 1,
             "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase": 0,
             "ionoscloud:dbaas/pSQLUser:PSQLUser": 0,
             "ionoscloud:dns/record:Record": 0,
@@ -2335,6 +2385,7 @@
             "ionoscloud:objectstorage/objectCopy:ObjectCopy": 1,
             "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration": 1,
             "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock": 1,
+            "ionoscloud:objectstorage/userBucket:UserBucket": 1,
             "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration": 1,
             "ionoscloud:objectstoragemanagement/accesskey:Accesskey": 1,
             "ionoscloud:vpn/ipsecGateway:IpsecGateway": 0,
@@ -2389,12 +2440,17 @@
             "ionoscloud:dbaas/getMongoCluster:getMongoCluster": 0,
             "ionoscloud:dbaas/getMongoTemplate:getMongoTemplate": 0,
             "ionoscloud:dbaas/getMongoUser:getMongoUser": 0,
+            "ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2": 1,
             "ionoscloud:dbaas/getPSQLBackups:getPSQLBackups": 0,
+            "ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2": 1,
             "ionoscloud:dbaas/getPSQLCluster:getPSQLCluster": 0,
+            "ionoscloud:dbaas/getPSQLClusterV2:getPSQLClusterV2": 1,
+            "ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2": 1,
             "ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase": 0,
             "ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases": 0,
             "ionoscloud:dbaas/getPSQLUser:getPSQLUser": 0,
             "ionoscloud:dbaas/getPSQLVersions:getPSQLVersions": 0,
+            "ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2": 1,
             "ionoscloud:dns/getRecord:getRecord": 0,
             "ionoscloud:dns/getZone:getZone": 0,
             "ionoscloud:index/getContracts:getContracts": 1,
@@ -2422,12 +2478,17 @@
             "ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy": 1,
             "ionoscloud:objectstorage/getObject:getObject": 1,
             "ionoscloud:objectstorage/getObjects:getObjects": 1,
+            "ionoscloud:objectstorage/getUserBucket:getUserBucket": 1,
             "ionoscloud:objectstoragemanagement/getAccesskey:getAccesskey": 1,
             "ionoscloud:objectstoragemanagement/getRegion:getRegion": 1,
             "ionoscloud:vpn/getIpsecGateway:getIpsecGateway": 0,
             "ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel": 0,
             "ionoscloud:vpn/getWireguardGateway:getWireguardGateway": 0,
             "ionoscloud:vpn/getWireguardPeer:getWireguardPeer": 0
+        },
+        "listResources": {
+            "ionoscloud:objectstorage/bucket:Bucket": 1,
+            "ionoscloud:objectstoragemanagement/accesskey:Accesskey": 1
         }
     }
 }

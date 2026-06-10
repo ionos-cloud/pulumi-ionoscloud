@@ -236,9 +236,9 @@ def get_maria_db_cluster(display_name: Optional[_builtins.str] = None,
         mariadb_version=pulumi.get(__ret__, 'mariadb_version'),
         ram=pulumi.get(__ret__, 'ram'),
         storage_size=pulumi.get(__ret__, 'storage_size'))
-def get_maria_db_cluster_output(display_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_maria_db_cluster_output(display_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMariaDBClusterResult]:
     """
     The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.

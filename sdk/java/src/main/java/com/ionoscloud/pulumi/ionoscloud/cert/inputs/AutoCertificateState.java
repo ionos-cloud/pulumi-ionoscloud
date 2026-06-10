@@ -17,14 +17,14 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
     public static final AutoCertificateState Empty = new AutoCertificateState();
 
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     @Import(name="commonName")
     private @Nullable Output<String> commonName;
 
     /**
-     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * @return [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public Optional<Output<String>> commonName() {
@@ -107,14 +107,14 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     @Import(name="subjectAlternativeNames")
     private @Nullable Output<List<String>> subjectAlternativeNames;
 
     /**
-     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * @return [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      * 
      */
     public Optional<Output<List<String>>> subjectAlternativeNames() {
@@ -152,7 +152,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param commonName [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+         * @param commonName [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
          * 
          * @return builder
          * 
@@ -163,7 +163,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param commonName [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+         * @param commonName [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
          * 
          * @return builder
          * 
@@ -278,7 +278,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
          * 
          * @return builder
          * 
@@ -299,7 +299,7 @@ public final class AutoCertificateState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+         * @param subjectAlternativeNames [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
          * 
          * @return builder
          * 

@@ -7,9 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages **Buckets versioning** on IonosCloud.
- *
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages **Buckets versioning** on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -106,11 +104,11 @@ export interface BucketVersioningState {
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [block] A block of versioningConfiguration as defined below.
      */
-    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration>;
+    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration | undefined>;
 }
 
 /**
@@ -124,5 +122,5 @@ export interface BucketVersioningArgs {
     /**
      * [block] A block of versioningConfiguration as defined below.
      */
-    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration>;
+    versioningConfiguration?: pulumi.Input<inputs.objectstorage.BucketVersioningVersioningConfiguration | undefined>;
 }

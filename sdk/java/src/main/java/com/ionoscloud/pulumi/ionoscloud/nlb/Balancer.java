@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+ * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -37,8 +37,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.ionoscloud.pulumi.ionoscloud.nlb.Balancer;
  * import com.ionoscloud.pulumi.ionoscloud.nlb.BalancerArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -99,8 +99,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.nlb.Balancer;
  * import com.ionoscloud.pulumi.ionoscloud.nlb.BalancerArgs;
  * import com.pulumi.ionoscloud.nlb.inputs.BalancerFlowlogArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -134,7 +134,7 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
- * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force nic re-creation.
+ * &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; will. Deleting a flowlog will also force nic re-creation.
  * 
  * ## Import
  * 
@@ -250,14 +250,14 @@ public class Balancer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="loggingFormat", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> loggingFormat;
+    private Output<String> loggingFormat;
 
     /**
      * @return Specifies the format of the logs.
      * 
      */
-    public Output<Optional<String>> loggingFormat() {
-        return Codegen.optional(this.loggingFormat);
+    public Output<String> loggingFormat() {
+        return this.loggingFormat;
     }
     /**
      * [string] A name of that Network Load Balancer.
@@ -327,7 +327,7 @@ public class Balancer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

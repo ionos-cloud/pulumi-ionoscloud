@@ -102,7 +102,7 @@ def get_servers(group_id: Optional[_builtins.str] = None,
         group_id=pulumi.get(__ret__, 'group_id'),
         id=pulumi.get(__ret__, 'id'),
         servers=pulumi.get(__ret__, 'servers'))
-def get_servers_output(group_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_servers_output(group_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
     The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.

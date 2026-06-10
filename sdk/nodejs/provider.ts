@@ -30,11 +30,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly contractNumber: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      */
     declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
@@ -42,7 +42,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly s3AccessKey: pulumi.Output<string | undefined>;
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      */
     declare public readonly s3Region: pulumi.Output<string | undefined>;
     /**
@@ -50,11 +50,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly s3SecretKey: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      */
     declare public readonly token: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      */
     declare public readonly username: pulumi.Output<string | undefined>;
 
@@ -101,43 +101,43 @@ export interface ProviderArgs {
     /**
      * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
      */
-    contractNumber?: pulumi.Input<string>;
+    contractNumber?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      */
-    endpoint?: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string | undefined>;
     /**
      * This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
      */
-    insecure?: pulumi.Input<boolean>;
+    insecure?: pulumi.Input<boolean | undefined>;
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * @deprecated Timeout is used instead of this functionality
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
     /**
      * Access key for IONOS Object Storage operations.
      */
-    s3AccessKey?: pulumi.Input<string>;
+    s3AccessKey?: pulumi.Input<string | undefined>;
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      */
-    s3Region?: pulumi.Input<string>;
+    s3Region?: pulumi.Input<string | undefined>;
     /**
      * Secret key for IONOS Object Storage operations.
      */
-    s3SecretKey?: pulumi.Input<string>;
+    s3SecretKey?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

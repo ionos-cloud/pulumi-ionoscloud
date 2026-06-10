@@ -38,8 +38,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -64,7 +64,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -77,8 +77,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -125,8 +125,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -151,7 +151,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -164,8 +164,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -212,8 +212,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -238,7 +238,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -251,8 +251,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -299,8 +299,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -325,7 +325,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -338,8 +338,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -386,8 +386,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -412,7 +412,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -425,8 +425,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -473,8 +473,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -500,7 +500,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -513,8 +513,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -562,8 +562,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -589,7 +589,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -602,8 +602,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -651,8 +651,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -678,7 +678,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -691,8 +691,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -740,8 +740,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -767,7 +767,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -780,8 +780,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -829,8 +829,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -856,7 +856,7 @@ public final class KafkaFunctions {
      * 
      * ### By Name
      * 
-     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
+     * Needs to have the resource be previously created, or a&lt;span pulumi-lang-nodejs=&#34; dependsOn &#34; pulumi-lang-dotnet=&#34; DependsOn &#34; pulumi-lang-go=&#34; dependsOn &#34; pulumi-lang-python=&#34; depends_on &#34; pulumi-lang-yaml=&#34; dependsOn &#34; pulumi-lang-java=&#34; dependsOn &#34; pulumi-lang-hcl=&#34; depends_on &#34;&gt; dependsOn &lt;/span&gt;clause to ensure that the resource is created before
      * this data source is called.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -869,8 +869,8 @@ public final class KafkaFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.kafka.KafkaFunctions;
      * import com.pulumi.ionoscloud.kafka.inputs.GetTopicArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

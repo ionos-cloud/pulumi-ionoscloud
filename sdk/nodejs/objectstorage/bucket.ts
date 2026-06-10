@@ -7,9 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
- *
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -30,6 +28,15 @@ import * as utilities from "../utilities";
  * ```
  *
  * ## Import
+ *
+ * ### Identity Schema
+ *
+ * #### Required
+ *
+ * * `id` (String) Name of the bucket.
+ * * `region` (String) Region where the bucket is located.
+ *
+ * ***
  *
  * A bucket can be imported using the `bucket name` and the `region`:
  *
@@ -136,27 +143,27 @@ export interface BucketState {
     /**
      * [bool] Default is `false`.By setting forceDestroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If forceDestroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The bucket name. [ 3 .. 63 ] characters
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
      */
-    objectLockEnabled?: pulumi.Input<boolean>;
+    objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3Region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A mapping of tags to assign to the bucket.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.objectstorage.BucketTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstorage.BucketTimeouts | undefined>;
 }
 
 /**
@@ -166,25 +173,25 @@ export interface BucketArgs {
     /**
      * [bool] Default is `false`.By setting forceDestroy to true, you instruct Terraform to delete the bucket and all its contents during the terraform destroy process. This is particularly useful when dealing with buckets that contain objects, as it allows for automatic cleanup without requiring the manual deletion of objects beforehand. If forceDestroy is not set or is set to false, Terraform will refuse to delete a bucket that still contains objects. You must manually empty the bucket before Terraform can remove it.There is a significant risk of accidental data loss when using this attribute, as it irreversibly deletes all contents of the bucket. It's crucial to ensure that the bucket does not contain critical data before using force_destroy.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The bucket name. [ 3 .. 63 ] characters
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
      */
-    objectLockEnabled?: pulumi.Input<boolean>;
+    objectLockEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3Region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * A mapping of tags to assign to the bucket.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Timeouts for this resource.
      */
-    timeouts?: pulumi.Input<inputs.objectstorage.BucketTimeouts>;
+    timeouts?: pulumi.Input<inputs.objectstorage.BucketTimeouts | undefined>;
 }

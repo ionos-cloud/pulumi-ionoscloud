@@ -21,16 +21,16 @@ __all__ = ['ClusterArgs', 'Cluster']
 @pulumi.input_type
 class ClusterArgs:
     def __init__(__self__, *,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 api_subnet_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['ClusterMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nat_gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['ClusterMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -70,7 +70,7 @@ class ClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
 
@@ -79,132 +79,132 @@ class ClusterArgs:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="apiSubnetAllowLists")
-    def api_subnet_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def api_subnet_allow_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
         """
         return pulumi.get(self, "api_subnet_allow_lists")
 
     @api_subnet_allow_lists.setter
-    def api_subnet_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def api_subnet_allow_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "api_subnet_allow_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="k8sVersion")
-    def k8s_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def k8s_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
     @k8s_version.setter
-    def k8s_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def k8s_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "k8s_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['ClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['ClusterMaintenanceWindowArgs']]:
         """
         A maintenance window comprise of a day of the week and a time for maintenance to be allowed
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['ClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['ClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Kubernetes Cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="natGatewayIp")
-    def nat_gateway_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nat_gateway_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
         """
         return pulumi.get(self, "nat_gateway_ip")
 
     @nat_gateway_ip.setter
-    def nat_gateway_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nat_gateway_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nat_gateway_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeSubnet")
-    def node_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
         """
         return pulumi.get(self, "node_subnet")
 
     @node_subnet.setter
-    def node_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_subnet", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [boolean] Indicates if the cluster is public or private. This attribute is immutable.
         """
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Buckets")
-    def s3_buckets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]:
+    def s3_buckets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]:
         """
         [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
         """
         return pulumi.get(self, "s3_buckets")
 
     @s3_buckets.setter
-    def s3_buckets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]):
+    def s3_buckets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]):
         pulumi.set(self, "s3_buckets", value)
 
 
 @pulumi.input_type
 class _ClusterState:
     def __init__(__self__, *,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 api_subnet_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input['ClusterMaintenanceWindowArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nat_gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]] = None,
-                 viable_node_pool_versions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional['ClusterMaintenanceWindowArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]] = None,
+                 viable_node_pool_versions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
 
@@ -247,7 +247,7 @@ class _ClusterState:
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
-    def allow_replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] When set to true, allows the update of immutable fields by first destroying and then re-creating the cluster.
 
@@ -256,127 +256,127 @@ class _ClusterState:
         return pulumi.get(self, "allow_replace")
 
     @allow_replace.setter
-    def allow_replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace", value)
 
     @_builtins.property
     @pulumi.getter(name="apiSubnetAllowLists")
-    def api_subnet_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def api_subnet_allow_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
         """
         return pulumi.get(self, "api_subnet_allow_lists")
 
     @api_subnet_allow_lists.setter
-    def api_subnet_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def api_subnet_allow_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "api_subnet_allow_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="k8sVersion")
-    def k8s_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def k8s_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
     @k8s_version.setter
-    def k8s_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def k8s_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "k8s_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maintenanceWindow")
-    def maintenance_window(self) -> Optional[pulumi.Input['ClusterMaintenanceWindowArgs']]:
+    def maintenance_window(self) -> pulumi.Input[Optional['ClusterMaintenanceWindowArgs']]:
         """
         A maintenance window comprise of a day of the week and a time for maintenance to be allowed
         """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
-    def maintenance_window(self, value: Optional[pulumi.Input['ClusterMaintenanceWindowArgs']]):
+    def maintenance_window(self, value: pulumi.Input[Optional['ClusterMaintenanceWindowArgs']]):
         pulumi.set(self, "maintenance_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Kubernetes Cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="natGatewayIp")
-    def nat_gateway_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nat_gateway_ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
         """
         return pulumi.get(self, "nat_gateway_ip")
 
     @nat_gateway_ip.setter
-    def nat_gateway_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nat_gateway_ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nat_gateway_ip", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeSubnet")
-    def node_subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
         """
         return pulumi.get(self, "node_subnet")
 
     @node_subnet.setter
-    def node_subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_subnet", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [boolean] Indicates if the cluster is public or private. This attribute is immutable.
         """
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "public", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Buckets")
-    def s3_buckets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]:
+    def s3_buckets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]:
         """
         [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
         """
         return pulumi.get(self, "s3_buckets")
 
     @s3_buckets.setter
-    def s3_buckets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]):
+    def s3_buckets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterS3BucketArgs']]]]):
         pulumi.set(self, "s3_buckets", value)
 
     @_builtins.property
     @pulumi.getter(name="viableNodePoolVersions")
-    def viable_node_pool_versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def viable_node_pool_versions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] List of versions that may be used for node pools under this cluster
         """
         return pulumi.get(self, "viable_node_pool_versions")
 
     @viable_node_pool_versions.setter
-    def viable_node_pool_versions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def viable_node_pool_versions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "viable_node_pool_versions", value)
 
 
@@ -386,19 +386,19 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 api_subnet_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nat_gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -488,7 +488,7 @@ class Cluster(pulumi.CustomResource):
                  args: Optional[ClusterArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -571,16 +571,16 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 api_subnet_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintenance_window: Optional[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nat_gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.bool]] = None,
-                 s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+                 allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -611,17 +611,17 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_replace: Optional[pulumi.Input[_builtins.bool]] = None,
-            api_subnet_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            k8s_version: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            maintenance_window: Optional[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nat_gateway_ip: Optional[pulumi.Input[_builtins.str]] = None,
-            node_subnet: Optional[pulumi.Input[_builtins.str]] = None,
-            public: Optional[pulumi.Input[_builtins.bool]] = None,
-            s3_buckets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
-            viable_node_pool_versions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Cluster':
+            allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
+            public: pulumi.Input[Optional[_builtins.bool]] = None,
+            s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+            viable_node_pool_versions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

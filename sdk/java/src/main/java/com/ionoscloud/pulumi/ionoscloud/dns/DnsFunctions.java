@@ -39,8 +39,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -74,8 +74,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -109,8 +109,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -159,8 +159,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -194,8 +194,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -229,8 +229,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -279,8 +279,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -314,8 +314,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -349,8 +349,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -399,8 +399,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -434,8 +434,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -469,8 +469,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -519,8 +519,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -554,8 +554,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -589,8 +589,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetRecordArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -639,8 +639,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -673,8 +673,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -707,8 +707,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -756,8 +756,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -790,8 +790,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -824,8 +824,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -873,8 +873,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -907,8 +907,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -941,8 +941,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -990,8 +990,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1024,8 +1024,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1058,8 +1058,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1107,8 +1107,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1141,8 +1141,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1175,8 +1175,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1224,8 +1224,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1258,8 +1258,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1292,8 +1292,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1341,8 +1341,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1375,8 +1375,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1409,8 +1409,8 @@ public final class DnsFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.dns.DnsFunctions;
      * import com.pulumi.ionoscloud.dns.inputs.GetZoneArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

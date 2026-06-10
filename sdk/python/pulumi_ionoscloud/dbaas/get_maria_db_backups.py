@@ -138,9 +138,9 @@ def get_maria_db_backups(backup_id: Optional[_builtins.str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'))
-def get_maria_db_backups_output(backup_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                cluster_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_maria_db_backups_output(backup_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                cluster_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMariaDBBackupsResult]:
     """
     The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.

@@ -112,13 +112,13 @@ export interface GetMongoUserOutputArgs {
     /**
      * [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
      */
-    database?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.GetMongoUserRoleArgs>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.dbaas.GetMongoUserRoleArgs>[] | undefined>;
     /**
      * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
      */

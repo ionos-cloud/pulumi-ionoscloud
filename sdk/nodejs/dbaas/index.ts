@@ -40,15 +40,35 @@ export const getMongoUser: typeof import("./getMongoUser").getMongoUser = null a
 export const getMongoUserOutput: typeof import("./getMongoUser").getMongoUserOutput = null as any;
 utilities.lazyLoad(exports, ["getMongoUser","getMongoUserOutput"], () => require("./getMongoUser"));
 
+export { GetPSQLBackupLocationV2Args, GetPSQLBackupLocationV2Result, GetPSQLBackupLocationV2OutputArgs } from "./getPSQLBackupLocationV2";
+export const getPSQLBackupLocationV2: typeof import("./getPSQLBackupLocationV2").getPSQLBackupLocationV2 = null as any;
+export const getPSQLBackupLocationV2Output: typeof import("./getPSQLBackupLocationV2").getPSQLBackupLocationV2Output = null as any;
+utilities.lazyLoad(exports, ["getPSQLBackupLocationV2","getPSQLBackupLocationV2Output"], () => require("./getPSQLBackupLocationV2"));
+
 export { GetPSQLBackupsArgs, GetPSQLBackupsResult, GetPSQLBackupsOutputArgs } from "./getPSQLBackups";
 export const getPSQLBackups: typeof import("./getPSQLBackups").getPSQLBackups = null as any;
 export const getPSQLBackupsOutput: typeof import("./getPSQLBackups").getPSQLBackupsOutput = null as any;
 utilities.lazyLoad(exports, ["getPSQLBackups","getPSQLBackupsOutput"], () => require("./getPSQLBackups"));
 
+export { GetPSQLBackupsV2Args, GetPSQLBackupsV2Result, GetPSQLBackupsV2OutputArgs } from "./getPSQLBackupsV2";
+export const getPSQLBackupsV2: typeof import("./getPSQLBackupsV2").getPSQLBackupsV2 = null as any;
+export const getPSQLBackupsV2Output: typeof import("./getPSQLBackupsV2").getPSQLBackupsV2Output = null as any;
+utilities.lazyLoad(exports, ["getPSQLBackupsV2","getPSQLBackupsV2Output"], () => require("./getPSQLBackupsV2"));
+
 export { GetPSQLClusterArgs, GetPSQLClusterResult, GetPSQLClusterOutputArgs } from "./getPSQLCluster";
 export const getPSQLCluster: typeof import("./getPSQLCluster").getPSQLCluster = null as any;
 export const getPSQLClusterOutput: typeof import("./getPSQLCluster").getPSQLClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getPSQLCluster","getPSQLClusterOutput"], () => require("./getPSQLCluster"));
+
+export { GetPSQLClusterV2Args, GetPSQLClusterV2Result, GetPSQLClusterV2OutputArgs } from "./getPSQLClusterV2";
+export const getPSQLClusterV2: typeof import("./getPSQLClusterV2").getPSQLClusterV2 = null as any;
+export const getPSQLClusterV2Output: typeof import("./getPSQLClusterV2").getPSQLClusterV2Output = null as any;
+utilities.lazyLoad(exports, ["getPSQLClusterV2","getPSQLClusterV2Output"], () => require("./getPSQLClusterV2"));
+
+export { GetPSQLClustersV2Args, GetPSQLClustersV2Result, GetPSQLClustersV2OutputArgs } from "./getPSQLClustersV2";
+export const getPSQLClustersV2: typeof import("./getPSQLClustersV2").getPSQLClustersV2 = null as any;
+export const getPSQLClustersV2Output: typeof import("./getPSQLClustersV2").getPSQLClustersV2Output = null as any;
+utilities.lazyLoad(exports, ["getPSQLClustersV2","getPSQLClustersV2Output"], () => require("./getPSQLClustersV2"));
 
 export { GetPSQLDatabaseArgs, GetPSQLDatabaseResult, GetPSQLDatabaseOutputArgs } from "./getPSQLDatabase";
 export const getPSQLDatabase: typeof import("./getPSQLDatabase").getPSQLDatabase = null as any;
@@ -69,6 +89,11 @@ export { GetPSQLVersionsArgs, GetPSQLVersionsResult, GetPSQLVersionsOutputArgs }
 export const getPSQLVersions: typeof import("./getPSQLVersions").getPSQLVersions = null as any;
 export const getPSQLVersionsOutput: typeof import("./getPSQLVersions").getPSQLVersionsOutput = null as any;
 utilities.lazyLoad(exports, ["getPSQLVersions","getPSQLVersionsOutput"], () => require("./getPSQLVersions"));
+
+export { GetPSQLVersionsV2Args, GetPSQLVersionsV2Result, GetPSQLVersionsV2OutputArgs } from "./getPSQLVersionsV2";
+export const getPSQLVersionsV2: typeof import("./getPSQLVersionsV2").getPSQLVersionsV2 = null as any;
+export const getPSQLVersionsV2Output: typeof import("./getPSQLVersionsV2").getPSQLVersionsV2Output = null as any;
+utilities.lazyLoad(exports, ["getPSQLVersionsV2","getPSQLVersionsV2Output"], () => require("./getPSQLVersionsV2"));
 
 export { InMemoryDBReplicaSetArgs, InMemoryDBReplicaSetState } from "./inMemoryDBReplicaSet";
 export type InMemoryDBReplicaSet = import("./inMemoryDBReplicaSet").InMemoryDBReplicaSet;
@@ -95,6 +120,11 @@ export type PSQLCluster = import("./psqlcluster").PSQLCluster;
 export const PSQLCluster: typeof import("./psqlcluster").PSQLCluster = null as any;
 utilities.lazyLoad(exports, ["PSQLCluster"], () => require("./psqlcluster"));
 
+export { PSQLClusterV2Args, PSQLClusterV2State } from "./psqlclusterV2";
+export type PSQLClusterV2 = import("./psqlclusterV2").PSQLClusterV2;
+export const PSQLClusterV2: typeof import("./psqlclusterV2").PSQLClusterV2 = null as any;
+utilities.lazyLoad(exports, ["PSQLClusterV2"], () => require("./psqlclusterV2"));
+
 export { PSQLDatabaseArgs, PSQLDatabaseState } from "./psqldatabase";
 export type PSQLDatabase = import("./psqldatabase").PSQLDatabase;
 export const PSQLDatabase: typeof import("./psqldatabase").PSQLDatabase = null as any;
@@ -120,6 +150,8 @@ const _module = {
                 return new MongoUser(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/pSQLCluster:PSQLCluster":
                 return new PSQLCluster(name, <any>undefined, { urn })
+            case "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2":
+                return new PSQLClusterV2(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase":
                 return new PSQLDatabase(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/pSQLUser:PSQLUser":
@@ -134,5 +166,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mariaDBCluster", _mod
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mongoCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mongoUser", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/pSQLCluster", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/pSQLClusterV2", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/pSQLDatabase", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/pSQLUser", _module)

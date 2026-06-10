@@ -207,11 +207,11 @@ def get_topic(cluster_id: Optional[_builtins.str] = None,
         replication_factor=pulumi.get(__ret__, 'replication_factor'),
         retention_time=pulumi.get(__ret__, 'retention_time'),
         segment_bytes=pulumi.get(__ret__, 'segment_bytes'))
-def get_topic_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                     id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     location: Optional[pulumi.Input[_builtins.str]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_topic_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                     id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     location: pulumi.Input[Optional[_builtins.str]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTopicResult]:
     """
     The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.

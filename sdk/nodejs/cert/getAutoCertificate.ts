@@ -68,7 +68,7 @@ export interface GetAutoCertificateArgs {
  */
 export interface GetAutoCertificateResult {
     /**
-     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+     * [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
      */
     readonly commonName: string;
     readonly id: string;
@@ -84,7 +84,7 @@ export interface GetAutoCertificateResult {
     readonly name: string;
     readonly providerId: string;
     /**
-     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+     * [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
      */
     readonly subjectAlternativeNames: string[];
 }
@@ -136,7 +136,7 @@ export interface GetAutoCertificateOutputArgs {
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
      */
@@ -144,5 +144,5 @@ export interface GetAutoCertificateOutputArgs {
     /**
      * [string] Name of an existing auto-certificate that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

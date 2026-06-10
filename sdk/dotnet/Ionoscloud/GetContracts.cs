@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     public static class GetContracts
     {
         /// <summary>
-        /// The `Contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+        /// The `Contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
         /// 
         /// ## Example Usage
         /// 
@@ -25,7 +25,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -73,7 +73,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContractsResult>("ionoscloud:index/getContracts:getContracts", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The `Contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+        /// The `Contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
         /// 
         /// ## Example Usage
         /// 
@@ -85,7 +85,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -133,7 +133,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             => global::Pulumi.Deployment.Instance.Invoke<GetContractsResult>("ionoscloud:index/getContracts:getContracts", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The `Contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+        /// The `Contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
         /// 
         /// ## Example Usage
         /// 
@@ -145,7 +145,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetContracts.Invoke();
+        ///     var example = Ionoscloud.GetContracts.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

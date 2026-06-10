@@ -235,54 +235,54 @@ export interface UserState {
     /**
      * [Boolean] Indicates if the user is active
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
      */
-    administrator?: pulumi.Input<boolean>;
+    administrator?: pulumi.Input<boolean | undefined>;
     /**
      * [string] An e-mail address for the user.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * [string] A first name for the user.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
      */
-    forceSecAuth?: pulumi.Input<boolean>;
+    forceSecAuth?: pulumi.Input<boolean | undefined>;
     /**
      * [Set] The groups that this user will be a member of
      * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * **NOTE:** `passwordWo` requires Teraform 1.11 or higher.
      */
-    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] A last name for the user.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * A password for the user. If you are using terraform 1.11 or higher, you can use `passwordWo` instead of `password` to avoid storing the password in the state file.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `passwordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Used together with `passwordWo` to trigger an update. Increment this value when an update to the `passwordWo` is required.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Canonical (IONOS Object Storage) id of the user for a given identity
      */
-    s3CanonicalUserId?: pulumi.Input<string>;
+    s3CanonicalUserId?: pulumi.Input<string | undefined>;
     /**
      * [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
      */
-    secAuthActive?: pulumi.Input<boolean>;
+    secAuthActive?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -292,11 +292,11 @@ export interface UserArgs {
     /**
      * [Boolean] Indicates if the user is active
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
      */
-    administrator?: pulumi.Input<boolean>;
+    administrator?: pulumi.Input<boolean | undefined>;
     /**
      * [string] An e-mail address for the user.
      */
@@ -308,13 +308,13 @@ export interface UserArgs {
     /**
      * [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
      */
-    forceSecAuth?: pulumi.Input<boolean>;
+    forceSecAuth?: pulumi.Input<boolean | undefined>;
     /**
      * [Set] The groups that this user will be a member of
      * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
      * **NOTE:** `passwordWo` requires Teraform 1.11 or higher.
      */
-    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] A last name for the user.
      */
@@ -322,14 +322,14 @@ export interface UserArgs {
     /**
      * A password for the user. If you are using terraform 1.11 or higher, you can use `passwordWo` instead of `password` to avoid storing the password in the state file.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * user password. This value is always marked as sensitive in the plan output, regardless of `type`. Additionally, `write-only` values are never stored to state. `passwordWoVersion` can be used to trigger an update and is required with this argument. In Terraform CLI version 0.15 and later, this may require additional configuration handling for certain scenarios. For more information, see the Terraform v0.15 Upgrade Guide.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Used together with `passwordWo` to trigger an update. Increment this value when an update to the `passwordWo` is required.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
 }

@@ -146,7 +146,7 @@ def get_wireguard_peer(gateway_id: Optional[_builtins.str] = None,
                        name: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWireguardPeerResult:
     """
-    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+    The `vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 
     ## Example Usage
 
@@ -184,13 +184,13 @@ def get_wireguard_peer(gateway_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         public_key=pulumi.get(__ret__, 'public_key'),
         status=pulumi.get(__ret__, 'status'))
-def get_wireguard_peer_output(gateway_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_wireguard_peer_output(gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardPeerResult]:
     """
-    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+    The `vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 
     ## Example Usage
 

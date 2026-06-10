@@ -17,7 +17,7 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * The unique ID of the autoscaling group.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34; pulumi-lang-hcl=&#34;`group_id`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
      * 
      */
     @Import(name="groupId", required=true)
@@ -26,7 +26,7 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return The unique ID of the autoscaling group.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34; pulumi-lang-hcl=&#34;`group_id`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
      * 
      */
     public Output<String> groupId() {
@@ -60,7 +60,7 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param groupId The unique ID of the autoscaling group.
          * 
-         * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34; pulumi-lang-hcl=&#34;`group_id`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -73,7 +73,7 @@ public final class GetServersArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param groupId The unique ID of the autoscaling group.
          * 
-         * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`groupId`&#34; pulumi-lang-dotnet=&#34;`GroupId`&#34; pulumi-lang-go=&#34;`groupId`&#34; pulumi-lang-python=&#34;`group_id`&#34; pulumi-lang-yaml=&#34;`groupId`&#34; pulumi-lang-java=&#34;`groupId`&#34; pulumi-lang-hcl=&#34;`group_id`&#34;&gt;`groupId`&lt;/span&gt; must be provided. If it is not provided, the datasource will return an error.
          * 
          * @return builder
          * 

@@ -15,14 +15,14 @@ public final class RegistryTokenCredentialArgs extends com.pulumi.resources.Reso
     public static final RegistryTokenCredentialArgs Empty = new RegistryTokenCredentialArgs();
 
     /**
-     * [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34; pulumi-lang-hcl=&#34;`save_password_to_file`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+     * @return [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34; pulumi-lang-hcl=&#34;`save_password_to_file`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
      * 
      */
     public Output<String> password() {
@@ -70,7 +70,7 @@ public final class RegistryTokenCredentialArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34; pulumi-lang-hcl=&#34;`save_password_to_file`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class RegistryTokenCredentialArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
+         * @param password [string] The password/token of the container registry token which will also be saved to a file if &lt;span pulumi-lang-nodejs=&#34;`savePasswordToFile`&#34; pulumi-lang-dotnet=&#34;`SavePasswordToFile`&#34; pulumi-lang-go=&#34;`savePasswordToFile`&#34; pulumi-lang-python=&#34;`save_password_to_file`&#34; pulumi-lang-yaml=&#34;`savePasswordToFile`&#34; pulumi-lang-java=&#34;`savePasswordToFile`&#34; pulumi-lang-hcl=&#34;`save_password_to_file`&#34;&gt;`savePasswordToFile`&lt;/span&gt; is set
          * 
          * @return builder
          * 

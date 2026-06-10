@@ -132,9 +132,9 @@ def get_accesskey(accesskey: Optional[_builtins.str] = None,
         contract_user_id=pulumi.get(__ret__, 'contract_user_id'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'))
-def get_accesskey_output(accesskey: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_accesskey_output(accesskey: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccesskeyResult]:
     """
     The **Object Storage Accesskey data source** can be used to search for and return an existing Object Storage Accesskeys.

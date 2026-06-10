@@ -70,7 +70,7 @@ def genPulumiResources = tasks.register('genPulumiResources') {
         builder {
             resource true
             name "ionoscloud"
-            server "github://api.github.com/ionos-cloud"
+            server "github://api.github.com/ionos-cloud/pulumi-ionoscloud"
             version resolvedVersion
         }
         def infoJson = builder.toPrettyString()

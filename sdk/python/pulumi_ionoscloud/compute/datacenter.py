@@ -22,9 +22,9 @@ __all__ = ['DatacenterArgs', 'Datacenter']
 class DatacenterArgs:
     def __init__(__self__, *,
                  location: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Datacenter resource.
 
@@ -55,52 +55,52 @@ class DatacenterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Description for the Virtual Data Center.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Virtual Data Center.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="secAuthProtection")
-    def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sec_auth_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
-    def sec_auth_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sec_auth_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sec_auth_protection", value)
 
 
 @pulumi.input_type
 class _DatacenterState:
     def __init__(__self__, *,
-                 cpu_architectures: Optional[pulumi.Input[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 features: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version: Optional[pulumi.Input[_builtins.int]] = None):
+                 cpu_architectures: pulumi.Input[Optional[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Datacenter resources.
 
@@ -132,98 +132,98 @@ class _DatacenterState:
 
     @_builtins.property
     @pulumi.getter(name="cpuArchitectures")
-    def cpu_architectures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]]:
+    def cpu_architectures(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]]:
         """
         Array of features and CPU families available in a location
         """
         return pulumi.get(self, "cpu_architectures")
 
     @cpu_architectures.setter
-    def cpu_architectures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]]):
+    def cpu_architectures(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]]):
         pulumi.set(self, "cpu_architectures", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Description for the Virtual Data Center.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def features(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of features supported by the location this data center is part of
         """
         return pulumi.get(self, "features")
 
     @features.setter
-    def features(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "features", value)
 
     @_builtins.property
     @pulumi.getter(name="ipv6CidrBlock")
-    def ipv6_cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ipv6_cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @ipv6_cidr_block.setter
-    def ipv6_cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ipv6_cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ipv6_cidr_block", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the Virtual Data Center.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="secAuthProtection")
-    def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sec_auth_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
-    def sec_auth_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sec_auth_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sec_auth_protection", value)
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of that Data Center. Gets incremented with every change
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "version", value)
 
 
@@ -233,13 +233,13 @@ class Datacenter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -310,7 +310,7 @@ class Datacenter(pulumi.CustomResource):
                  args: DatacenterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IonosCloud.
+        Manages a Virtual [Data Center](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -382,10 +382,10 @@ class Datacenter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -415,14 +415,14 @@ class Datacenter(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_architectures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            features: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ipv6_cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-            version: Optional[pulumi.Input[_builtins.int]] = None) -> 'Datacenter':
+            cpu_architectures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> 'Datacenter':
         """
         Get an existing Datacenter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

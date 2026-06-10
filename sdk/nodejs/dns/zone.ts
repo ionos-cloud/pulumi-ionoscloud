@@ -120,19 +120,19 @@ export interface ZoneState {
     /**
      * [string] The description for the DNS Zone.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The name of the DNS Zone. This property is immutable.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A list of available name servers.
      */
-    nameservers?: pulumi.Input<pulumi.Input<string>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -142,13 +142,13 @@ export interface ZoneArgs {
     /**
      * [string] The description for the DNS Zone.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The name of the DNS Zone. This property is immutable.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

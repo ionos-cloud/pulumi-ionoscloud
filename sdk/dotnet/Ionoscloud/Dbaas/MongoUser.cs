@@ -131,14 +131,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     ///         TemplateId = "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
     ///     });
     /// 
-    ///     var clusterPassword = new Random.Index.Password("cluster_password", new()
+    ///     var clusterPassword = new Random.Password("cluster_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
     ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
     ///     });
     /// 
-    ///     var userPassword = new Random.Index.Password("user_password", new()
+    ///     var userPassword = new Random.Password("user_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -245,7 +245,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
                 AdditionalSecretOutputs =
                 {
                     "password",

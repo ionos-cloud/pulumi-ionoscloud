@@ -35,6 +35,13 @@ __all__ = [
     'PSQLClusterCredentials',
     'PSQLClusterFromBackup',
     'PSQLClusterMaintenanceWindow',
+    'PSQLClusterV2Backup',
+    'PSQLClusterV2Connections',
+    'PSQLClusterV2Credentials',
+    'PSQLClusterV2Instances',
+    'PSQLClusterV2MaintenanceWindow',
+    'PSQLClusterV2RestoreFromBackup',
+    'PSQLClusterV2Timeouts',
     'GetInMemoryDBReplicaSetConnectionResult',
     'GetInMemoryDBReplicaSetCredentialResult',
     'GetInMemoryDBReplicaSetMaintenanceWindowResult',
@@ -50,13 +57,25 @@ __all__ = [
     'GetMongoClusterConnectionResult',
     'GetMongoClusterMaintenanceWindowResult',
     'GetMongoUserRoleResult',
+    'GetPSQLBackupLocationV2BackupLocationResult',
     'GetPSQLBackupsClusterBackupResult',
     'GetPSQLBackupsClusterBackupMetadataResult',
+    'GetPSQLBackupsV2BackupResult',
     'GetPSQLClusterConnectionResult',
     'GetPSQLClusterConnectionPoolerResult',
     'GetPSQLClusterFromBackupResult',
     'GetPSQLClusterMaintenanceWindowResult',
+    'GetPSQLClusterV2BackupResult',
+    'GetPSQLClusterV2ConnectionsResult',
+    'GetPSQLClusterV2InstancesResult',
+    'GetPSQLClusterV2MaintenanceWindowResult',
+    'GetPSQLClustersV2ClusterResult',
+    'GetPSQLClustersV2ClusterBackupResult',
+    'GetPSQLClustersV2ClusterConnectionsResult',
+    'GetPSQLClustersV2ClusterInstancesResult',
+    'GetPSQLClustersV2ClusterMaintenanceWindowResult',
     'GetPSQLDatabasesDatabaseResult',
+    'GetPSQLVersionsV2VersionResult',
 ]
 
 @pulumi.output_type
@@ -924,6 +943,389 @@ class PSQLClusterMaintenanceWindow(dict):
 
 
 @pulumi.output_type
+class PSQLClusterV2Backup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retentionDays":
+            suggest = "retention_days"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2Backup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2Backup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2Backup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas_get_psql_backup_location_v2` data source. Immutable — changing this forces a new cluster.
+        :param _builtins.int retention_days: [int] How many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The Object Storage location where the backups will be created. Supported locations are provided by the `dbaas_get_psql_backup_location_v2` data source. Immutable — changing this forces a new cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        [int] How many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class PSQLClusterV2Connections(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datacenterId":
+            suggest = "datacenter_id"
+        elif key == "lanId":
+            suggest = "lan_id"
+        elif key == "primaryInstanceAddress":
+            suggest = "primary_instance_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2Connections. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2Connections.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2Connections.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: [string] The datacenter to connect your instance to.
+        :param _builtins.str lan_id: [string] The numeric LAN ID to connect your instance to.
+        :param _builtins.str primary_instance_address: [string] The IP and netmask that will be assigned to the cluster primary instance.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        [string] The datacenter to connect your instance to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        [string] The numeric LAN ID to connect your instance to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        [string] The IP and netmask that will be assigned to the cluster primary instance.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class PSQLClusterV2Credentials(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "passwordVersion":
+            suggest = "password_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2Credentials. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2Credentials.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2Credentials.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 database: _builtins.str,
+                 password: _builtins.str,
+                 password_version: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str database: [string] The name of the initial database to be created.
+        :param _builtins.str password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+        :param _builtins.str password_version: [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+        :param _builtins.str username: [string] The username of the master database user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "password_version", password_version)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        [string] The name of the initial database to be created.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordVersion")
+    def password_version(self) -> _builtins.str:
+        """
+        [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+        """
+        return pulumi.get(self, "password_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        [string] The username of the master database user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class PSQLClusterV2Instances(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "storageSize":
+            suggest = "storage_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2Instances. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2Instances.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2Instances.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: [int] The number of CPU cores per instance.
+        :param _builtins.int count: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param _builtins.int ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        [int] The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        [int] The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        [int] The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class PSQLClusterV2MaintenanceWindow(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfTheWeek":
+            suggest = "day_of_the_week"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2MaintenanceWindow. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2MaintenanceWindow.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2MaintenanceWindow.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: [string] The name of the week day.
+        :param _builtins.str time: [string] Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        [string] Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class PSQLClusterV2RestoreFromBackup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceBackupId":
+            suggest = "source_backup_id"
+        elif key == "recoveryTargetDatetime":
+            suggest = "recovery_target_datetime"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PSQLClusterV2RestoreFromBackup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PSQLClusterV2RestoreFromBackup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PSQLClusterV2RestoreFromBackup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 source_backup_id: _builtins.str,
+                 recovery_target_datetime: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str source_backup_id: [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+        :param _builtins.str recovery_target_datetime: [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        pulumi.set(__self__, "source_backup_id", source_backup_id)
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceBackupId")
+    def source_backup_id(self) -> _builtins.str:
+        """
+        [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+        """
+        return pulumi.get(self, "source_backup_id")
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> Optional[_builtins.str]:
+        """
+        [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+
+@pulumi.output_type
+class PSQLClusterV2Timeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+
+@pulumi.output_type
 class GetInMemoryDBReplicaSetConnectionResult(dict):
     def __init__(__self__, *,
                  cidr: _builtins.str,
@@ -1448,6 +1850,35 @@ class GetMongoUserRoleResult(dict):
 
 
 @pulumi.output_type
+class GetPSQLBackupLocationV2BackupLocationResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 location: _builtins.str):
+        """
+        :param _builtins.str id: The ID (UUID) of the backup location.
+        :param _builtins.str location: [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the backup location.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
 class GetPSQLBackupsClusterBackupResult(dict):
     def __init__(__self__, *,
                  cluster_id: _builtins.str,
@@ -1572,6 +2003,90 @@ class GetPSQLBackupsClusterBackupMetadataResult(dict):
 
 
 @pulumi.output_type
+class GetPSQLBackupsV2BackupResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 earliest_recovery_target_time: _builtins.str,
+                 id: _builtins.str,
+                 is_active: _builtins.bool,
+                 latest_recovery_target_time: _builtins.str,
+                 location: _builtins.str,
+                 postgres_cluster_version: _builtins.str):
+        """
+        :param _builtins.str cluster_id: [string] The ID (UUID) of the cluster to filter backups by.
+        :param _builtins.str earliest_recovery_target_time: The earliest point in time to which the cluster can be restored.
+        :param _builtins.str id: The ID (UUID) of the backup.
+        :param _builtins.bool is_active: Whether the backup is active.
+        :param _builtins.str latest_recovery_target_time: The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+        :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str postgres_cluster_version: The PostgreSQL version of the cluster when the backup was created.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_active", is_active)
+        pulumi.set(__self__, "latest_recovery_target_time", latest_recovery_target_time)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "postgres_cluster_version", postgres_cluster_version)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        [string] The ID (UUID) of the cluster to filter backups by.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="earliestRecoveryTargetTime")
+    def earliest_recovery_target_time(self) -> _builtins.str:
+        """
+        The earliest point in time to which the cluster can be restored.
+        """
+        return pulumi.get(self, "earliest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the backup.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> _builtins.bool:
+        """
+        Whether the backup is active.
+        """
+        return pulumi.get(self, "is_active")
+
+    @_builtins.property
+    @pulumi.getter(name="latestRecoveryTargetTime")
+    def latest_recovery_target_time(self) -> _builtins.str:
+        """
+        The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+        """
+        return pulumi.get(self, "latest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="postgresClusterVersion")
+    def postgres_cluster_version(self) -> _builtins.str:
+        """
+        The PostgreSQL version of the cluster when the backup was created.
+        """
+        return pulumi.get(self, "postgres_cluster_version")
+
+
+@pulumi.output_type
 class GetPSQLClusterConnectionResult(dict):
     def __init__(__self__, *,
                  cidr: _builtins.str,
@@ -1685,6 +2200,469 @@ class GetPSQLClusterMaintenanceWindowResult(dict):
 
 
 @pulumi.output_type
+class GetPSQLClusterV2BackupResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+               
+               Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        :param _builtins.int retention_days: How many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+
+        Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        How many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetPSQLClusterV2ConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The datacenter the cluster is connected to.
+        :param _builtins.str lan_id: The numeric LAN ID the cluster is connected to.
+        :param _builtins.str primary_instance_address: The IP and netmask assigned to the cluster primary instance.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The datacenter the cluster is connected to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID the cluster is connected to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The IP and netmask assigned to the cluster primary instance.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetPSQLClusterV2InstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: The number of CPU cores per instance.
+        :param _builtins.int count: The total number of instances in the cluster (one primary and n-1 secondary).
+        :param _builtins.int ram: The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class GetPSQLClusterV2MaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: The name of the week day.
+        :param _builtins.str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetPSQLClustersV2ClusterResult(dict):
+    def __init__(__self__, *,
+                 backup: 'outputs.GetPSQLClustersV2ClusterBackupResult',
+                 connection_pooler: _builtins.str,
+                 connections: 'outputs.GetPSQLClustersV2ClusterConnectionsResult',
+                 description: _builtins.str,
+                 dns_name: _builtins.str,
+                 id: _builtins.str,
+                 instances: 'outputs.GetPSQLClustersV2ClusterInstancesResult',
+                 location: _builtins.str,
+                 logs_enabled: _builtins.bool,
+                 maintenance_window: 'outputs.GetPSQLClustersV2ClusterMaintenanceWindowResult',
+                 metrics_enabled: _builtins.bool,
+                 name: _builtins.str,
+                 replication_mode: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param 'GetPSQLClustersV2ClusterBackupArgs' backup: Backup configuration of the cluster.
+        :param _builtins.str connection_pooler: How database connections are managed and reused.
+        :param 'GetPSQLClustersV2ClusterConnectionsArgs' connections: Connection information of the PostgreSQL cluster.
+        :param _builtins.str description: Human-readable description of the cluster.
+        :param _builtins.str dns_name: The DNS name used to access the cluster.
+        :param _builtins.str id: The ID (UUID) of the cluster.
+        :param 'GetPSQLClustersV2ClusterInstancesArgs' instances: The instance configuration for the PostgreSQL cluster.
+        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.bool logs_enabled: Whether the collection and reporting of logs is enabled for this cluster.
+        :param 'GetPSQLClustersV2ClusterMaintenanceWindowArgs' maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param _builtins.bool metrics_enabled: Whether the collection and reporting of metrics is enabled for this cluster.
+        :param _builtins.str name: [string] Filters clusters by name. Matches cluster names that contain the provided string.
+        :param _builtins.str replication_mode: Replication mode across the instances.
+        :param _builtins.str version: The PostgreSQL version of the cluster.
+        """
+        pulumi.set(__self__, "backup", backup)
+        pulumi.set(__self__, "connection_pooler", connection_pooler)
+        pulumi.set(__self__, "connections", connections)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instances", instances)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "logs_enabled", logs_enabled)
+        pulumi.set(__self__, "maintenance_window", maintenance_window)
+        pulumi.set(__self__, "metrics_enabled", metrics_enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "replication_mode", replication_mode)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def backup(self) -> 'outputs.GetPSQLClustersV2ClusterBackupResult':
+        """
+        Backup configuration of the cluster.
+        """
+        return pulumi.get(self, "backup")
+
+    @_builtins.property
+    @pulumi.getter(name="connectionPooler")
+    def connection_pooler(self) -> _builtins.str:
+        """
+        How database connections are managed and reused.
+        """
+        return pulumi.get(self, "connection_pooler")
+
+    @_builtins.property
+    @pulumi.getter
+    def connections(self) -> 'outputs.GetPSQLClustersV2ClusterConnectionsResult':
+        """
+        Connection information of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "connections")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human-readable description of the cluster.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> _builtins.str:
+        """
+        The DNS name used to access the cluster.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def instances(self) -> 'outputs.GetPSQLClustersV2ClusterInstancesResult':
+        """
+        The instance configuration for the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "instances")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="logsEnabled")
+    def logs_enabled(self) -> _builtins.bool:
+        """
+        Whether the collection and reporting of logs is enabled for this cluster.
+        """
+        return pulumi.get(self, "logs_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> 'outputs.GetPSQLClustersV2ClusterMaintenanceWindowResult':
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @_builtins.property
+    @pulumi.getter(name="metricsEnabled")
+    def metrics_enabled(self) -> _builtins.bool:
+        """
+        Whether the collection and reporting of metrics is enabled for this cluster.
+        """
+        return pulumi.get(self, "metrics_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        [string] Filters clusters by name. Matches cluster names that contain the provided string.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="replicationMode")
+    def replication_mode(self) -> _builtins.str:
+        """
+        Replication mode across the instances.
+        """
+        return pulumi.get(self, "replication_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The PostgreSQL version of the cluster.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetPSQLClustersV2ClusterBackupResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.int retention_days: How many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        How many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetPSQLClustersV2ClusterConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The datacenter the cluster is connected to.
+        :param _builtins.str lan_id: The numeric LAN ID the cluster is connected to.
+        :param _builtins.str primary_instance_address: The IP and netmask assigned to the cluster primary instance.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The datacenter the cluster is connected to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID the cluster is connected to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The IP and netmask assigned to the cluster primary instance.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetPSQLClustersV2ClusterInstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: The number of CPU cores per instance.
+        :param _builtins.int count: The total number of instances in the cluster (one primary and n-1 secondary).
+        :param _builtins.int ram: The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class GetPSQLClustersV2ClusterMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: The name of the week day.
+        :param _builtins.str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
 class GetPSQLDatabasesDatabaseResult(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
@@ -1722,5 +2700,67 @@ class GetPSQLDatabasesDatabaseResult(dict):
         [string] Filter using a specific owner.
         """
         return pulumi.get(self, "owner")
+
+
+@pulumi.output_type
+class GetPSQLVersionsV2VersionResult(dict):
+    def __init__(__self__, *,
+                 can_upgrade_tos: Sequence[_builtins.str],
+                 comment: _builtins.str,
+                 id: _builtins.str,
+                 status: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param Sequence[_builtins.str] can_upgrade_tos: List of versions that this version can be upgraded to.
+        :param _builtins.str comment: Additional information about the version status.
+        :param _builtins.str id: The ID (UUID) of the PostgreSQL version.
+        :param _builtins.str status: The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+        :param _builtins.str version: The PostgreSQL version string.
+        """
+        pulumi.set(__self__, "can_upgrade_tos", can_upgrade_tos)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="canUpgradeTos")
+    def can_upgrade_tos(self) -> Sequence[_builtins.str]:
+        """
+        List of versions that this version can be upgraded to.
+        """
+        return pulumi.get(self, "can_upgrade_tos")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Additional information about the version status.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the PostgreSQL version.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The PostgreSQL version string.
+        """
+        return pulumi.get(self, "version")
 
 

@@ -81,14 +81,14 @@ public final class GroupReplicaConfigurationVolumeArgs extends com.pulumi.resour
     }
 
     /**
-     * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
+     * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34; pulumi-lang-hcl=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
      * 
      */
     @Import(name="imageAlias")
     private @Nullable Output<String> imageAlias;
 
     /**
-     * @return [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
+     * @return [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34; pulumi-lang-hcl=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
      * 
      */
     public Optional<Output<String>> imageAlias() {
@@ -306,7 +306,7 @@ public final class GroupReplicaConfigurationVolumeArgs extends com.pulumi.resour
         }
 
         /**
-         * @param imageAlias [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
+         * @param imageAlias [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34; pulumi-lang-hcl=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
          * 
          * @return builder
          * 
@@ -317,7 +317,7 @@ public final class GroupReplicaConfigurationVolumeArgs extends com.pulumi.resour
         }
 
         /**
-         * @param imageAlias [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
+         * @param imageAlias [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of &lt;span pulumi-lang-nodejs=&#34;`image`&#34; pulumi-lang-dotnet=&#34;`Image`&#34; pulumi-lang-go=&#34;`image`&#34; pulumi-lang-python=&#34;`image`&#34; pulumi-lang-yaml=&#34;`image`&#34; pulumi-lang-java=&#34;`image`&#34; pulumi-lang-hcl=&#34;`image`&#34;&gt;`image`&lt;/span&gt; or `imageAlias` must be set, but not both.
          * 
          * @return builder
          * 

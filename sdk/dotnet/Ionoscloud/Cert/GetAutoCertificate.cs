@@ -216,7 +216,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
     public sealed class GetAutoCertificateResult
     {
         /// <summary>
-        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         public readonly string CommonName;
         public readonly string Id;
@@ -232,7 +232,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public readonly string Name;
         public readonly string ProviderId;
         /// <summary>
-        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
         /// </summary>
         public readonly ImmutableArray<string> SubjectAlternativeNames;
 

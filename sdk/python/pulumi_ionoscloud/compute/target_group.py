@@ -24,10 +24,10 @@ class TargetGroupArgs:
                  algorithm: pulumi.Input[_builtins.str],
                  protocol: pulumi.Input[_builtins.str],
                  protocol_version: pulumi.Input[_builtins.str],
-                 health_check: Optional[pulumi.Input['TargetGroupHealthCheckArgs']] = None,
-                 http_health_check: Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
+                 health_check: pulumi.Input[Optional['TargetGroupHealthCheckArgs']] = None,
+                 http_health_check: pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
         """
         The set of arguments for constructing a TargetGroup resource.
 
@@ -89,63 +89,63 @@ class TargetGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="healthCheck")
-    def health_check(self) -> Optional[pulumi.Input['TargetGroupHealthCheckArgs']]:
+    def health_check(self) -> pulumi.Input[Optional['TargetGroupHealthCheckArgs']]:
         """
         Health check attributes for Target Group.
         """
         return pulumi.get(self, "health_check")
 
     @health_check.setter
-    def health_check(self, value: Optional[pulumi.Input['TargetGroupHealthCheckArgs']]):
+    def health_check(self, value: pulumi.Input[Optional['TargetGroupHealthCheckArgs']]):
         pulumi.set(self, "health_check", value)
 
     @_builtins.property
     @pulumi.getter(name="httpHealthCheck")
-    def http_health_check(self) -> Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']]:
+    def http_health_check(self) -> pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']]:
         """
         Http health check attributes for Target Group
         """
         return pulumi.get(self, "http_health_check")
 
     @http_health_check.setter
-    def http_health_check(self, value: Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']]):
+    def http_health_check(self, value: pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']]):
         pulumi.set(self, "http_health_check", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the target group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
+    def targets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
         """
         [list] Array of items in the collection
         """
         return pulumi.get(self, "targets")
 
     @targets.setter
-    def targets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]):
+    def targets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]):
         pulumi.set(self, "targets", value)
 
 
 @pulumi.input_type
 class _TargetGroupState:
     def __init__(__self__, *,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check: Optional[pulumi.Input['TargetGroupHealthCheckArgs']] = None,
-                 http_health_check: Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check: pulumi.Input[Optional['TargetGroupHealthCheckArgs']] = None,
+                 http_health_check: pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering TargetGroup resources.
 
@@ -174,86 +174,86 @@ class _TargetGroupState:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Balancing algorithm.
         """
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="healthCheck")
-    def health_check(self) -> Optional[pulumi.Input['TargetGroupHealthCheckArgs']]:
+    def health_check(self) -> pulumi.Input[Optional['TargetGroupHealthCheckArgs']]:
         """
         Health check attributes for Target Group.
         """
         return pulumi.get(self, "health_check")
 
     @health_check.setter
-    def health_check(self, value: Optional[pulumi.Input['TargetGroupHealthCheckArgs']]):
+    def health_check(self, value: pulumi.Input[Optional['TargetGroupHealthCheckArgs']]):
         pulumi.set(self, "health_check", value)
 
     @_builtins.property
     @pulumi.getter(name="httpHealthCheck")
-    def http_health_check(self) -> Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']]:
+    def http_health_check(self) -> pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']]:
         """
         Http health check attributes for Target Group
         """
         return pulumi.get(self, "http_health_check")
 
     @http_health_check.setter
-    def http_health_check(self, value: Optional[pulumi.Input['TargetGroupHttpHealthCheckArgs']]):
+    def http_health_check(self, value: pulumi.Input[Optional['TargetGroupHttpHealthCheckArgs']]):
         pulumi.set(self, "http_health_check", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the target group.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] Balancing protocol.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="protocolVersion")
-    def protocol_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         """
         return pulumi.get(self, "protocol_version")
 
     @protocol_version.setter
-    def protocol_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
+    def targets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
         """
         [list] Array of items in the collection
         """
         return pulumi.get(self, "targets")
 
     @targets.setter
-    def targets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]):
+    def targets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]):
         pulumi.set(self, "targets", value)
 
 
@@ -263,16 +263,16 @@ class TargetGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
+        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -344,7 +344,7 @@ class TargetGroup(pulumi.CustomResource):
                  args: TargetGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IonosCloud.
+        Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -414,13 +414,13 @@ class TargetGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -453,13 +453,13 @@ class TargetGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-            http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol_version: Optional[pulumi.Input[_builtins.str]] = None,
-            targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None) -> 'TargetGroup':
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+            http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
+            targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None) -> 'TargetGroup':
         """
         Get an existing TargetGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

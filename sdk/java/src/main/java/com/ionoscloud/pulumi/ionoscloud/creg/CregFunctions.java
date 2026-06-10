@@ -39,8 +39,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -73,8 +73,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -107,8 +107,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -154,8 +154,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -188,8 +188,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -222,8 +222,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -269,8 +269,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -303,8 +303,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -337,8 +337,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -384,8 +384,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -418,8 +418,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -452,8 +452,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -499,8 +499,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -533,8 +533,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -567,8 +567,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -614,8 +614,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -648,8 +648,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -682,8 +682,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -729,8 +729,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -763,8 +763,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -797,8 +797,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -839,8 +839,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -878,8 +878,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -917,8 +917,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -956,8 +956,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -995,8 +995,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1034,8 +1034,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1073,8 +1073,8 @@ public final class CregFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1117,8 +1117,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1152,8 +1152,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1187,8 +1187,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1235,8 +1235,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1270,8 +1270,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1305,8 +1305,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1353,8 +1353,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1388,8 +1388,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1423,8 +1423,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1471,8 +1471,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1506,8 +1506,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1541,8 +1541,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1589,8 +1589,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1624,8 +1624,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1659,8 +1659,8 @@ public final class CregFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.ionoscloud.creg.CregFunctions;
      * import com.pulumi.ionoscloud.creg.inputs.GetRegistryTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

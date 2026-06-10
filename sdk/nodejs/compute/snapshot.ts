@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -243,79 +243,79 @@ export interface SnapshotState {
     /**
      * (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
      */
-    cpuHotPlug?: pulumi.Input<boolean>;
+    cpuHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * Is capable of CPU hot unplug (no reboot required)
      */
-    cpuHotUnplug?: pulumi.Input<boolean>;
+    cpuHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the Virtual Data Center.
      */
-    datacenterId?: pulumi.Input<string>;
+    datacenterId?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Human readable description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Is capable of SCSI drive hot plug (no reboot required)
      */
-    discScsiHotPlug?: pulumi.Input<boolean>;
+    discScsiHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
      */
-    discScsiHotUnplug?: pulumi.Input<boolean>;
+    discScsiHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
      */
-    discVirtioHotPlug?: pulumi.Input<boolean>;
+    discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
      */
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
+    discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] OS type of this Snapshot
      */
-    licenceType?: pulumi.Input<string>;
+    licenceType?: pulumi.Input<string | undefined>;
     /**
      * Location of that image/snapshot
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the snapshot.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
      */
-    nicHotPlug?: pulumi.Input<boolean>;
+    nicHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
      */
-    nicHotUnplug?: pulumi.Input<boolean>;
+    nicHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
      */
-    ramHotPlug?: pulumi.Input<boolean>;
+    ramHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * Is capable of memory hot unplug (no reboot required)
      */
-    ramHotUnplug?: pulumi.Input<boolean>;
+    ramHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      */
-    requireLegacyBios?: pulumi.Input<boolean>;
+    requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
-    secAuthProtection?: pulumi.Input<boolean>;
+    secAuthProtection?: pulumi.Input<boolean | undefined>;
     /**
      * The size of the image in GB
      */
-    size?: pulumi.Input<number>;
+    size?: pulumi.Input<number | undefined>;
     /**
      * [string] The ID of the specific volume to take the snapshot from.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -325,7 +325,7 @@ export interface SnapshotArgs {
     /**
      * (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
      */
-    cpuHotPlug?: pulumi.Input<boolean>;
+    cpuHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the Virtual Data Center.
      */
@@ -333,47 +333,47 @@ export interface SnapshotArgs {
     /**
      * (Computed)[string] Human readable description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
      */
-    discVirtioHotPlug?: pulumi.Input<boolean>;
+    discVirtioHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
      */
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
+    discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] OS type of this Snapshot
      */
-    licenceType?: pulumi.Input<string>;
+    licenceType?: pulumi.Input<string | undefined>;
     /**
      * Location of that image/snapshot
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] The name of the snapshot.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
      */
-    nicHotPlug?: pulumi.Input<boolean>;
+    nicHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
      */
-    nicHotUnplug?: pulumi.Input<boolean>;
+    nicHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
      */
-    ramHotPlug?: pulumi.Input<boolean>;
+    ramHotPlug?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      */
-    requireLegacyBios?: pulumi.Input<boolean>;
+    requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
-    secAuthProtection?: pulumi.Input<boolean>;
+    secAuthProtection?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The ID of the specific volume to take the snapshot from.
      */

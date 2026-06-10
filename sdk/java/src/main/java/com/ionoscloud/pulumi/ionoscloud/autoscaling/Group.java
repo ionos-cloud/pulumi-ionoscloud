@@ -17,7 +17,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
+ * Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -43,8 +43,13 @@ import javax.annotation.Nullable;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyScaleInActionArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyScaleOutActionArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationArgs;
- * import java.util.List;
+ * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationNicArgs;
+ * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationNicFirewallRuleArgs;
+ * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationNicFlowLogArgs;
+ * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationNicTargetGroupArgs;
+ * import com.pulumi.ionoscloud.autoscaling.inputs.GroupReplicaConfigurationVolumeArgs;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -304,7 +309,7 @@ public class Group extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

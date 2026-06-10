@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a **Network Security Group Rule** on IonosCloud.
+ * Manages a **Network Security Group Rule** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.NsgArgs;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.Firewall;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.FirewallArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
  * $ pulumi import ionoscloud:nsg/firewall:Firewall mynsg_firewallrule datacenter_uuid/nsg_uuid/firewall_uuid
  * ```
  * 
- * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block.
+ * Or by using an &lt;span pulumi-lang-nodejs=&#34;`import`&#34; pulumi-lang-dotnet=&#34;`Import`&#34; pulumi-lang-go=&#34;`import`&#34; pulumi-lang-python=&#34;`import`&#34; pulumi-lang-yaml=&#34;`import`&#34; pulumi-lang-java=&#34;`import`&#34; pulumi-lang-hcl=&#34;`import`&#34;&gt;`import`&lt;/span&gt; block.
  * 
  */
 @ResourceType(type="ionoscloud:nsg/firewall:Firewall")
@@ -310,7 +310,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

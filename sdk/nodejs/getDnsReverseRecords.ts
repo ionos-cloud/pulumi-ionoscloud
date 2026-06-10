@@ -154,13 +154,13 @@ export interface GetDnsReverseRecordsOutputArgs {
     /**
      * [list of string] The IPs of the DNS Reverse Records you want to search for.
      */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    ips?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * [string] The name of the DNS Reverse Record you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
      */
-    partialMatch?: pulumi.Input<boolean>;
+    partialMatch?: pulumi.Input<boolean | undefined>;
 }

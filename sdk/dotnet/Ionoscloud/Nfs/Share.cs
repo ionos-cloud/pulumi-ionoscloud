@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
 {
     /// <summary>
-    /// Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+    /// Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -43,7 +43,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
     ///     {
     ///         Name = "test",
     ///         Location = "de/txl",
-    ///         Size = 2,
+    ///         Size = 2048,
+    ///         SizeUnit = "GiB",
     ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
     ///         {
     ///             MinVersion = "4.2",
@@ -170,7 +171,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

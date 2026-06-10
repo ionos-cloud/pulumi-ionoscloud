@@ -32,7 +32,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     ///         Name = "example_ipblock",
     ///     });
     /// 
-    ///     var recordexample = new Ionoscloud.Index.DnsReverseRecord("recordexample", new()
+    ///     var recordexample = new Ionoscloud.DnsReverseRecord("recordexample", new()
     ///     {
     ///         Name = "reverse.record.example.com",
     ///         Description = "example description",
@@ -53,7 +53,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.Index.DnsReverseRecord("example");
+    ///     var example = new Ionoscloud.DnsReverseRecord("example");
     /// 
     /// });
     /// ```
@@ -107,7 +107,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

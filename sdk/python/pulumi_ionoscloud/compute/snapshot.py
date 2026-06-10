@@ -21,18 +21,18 @@ class SnapshotArgs:
     def __init__(__self__, *,
                  datacenter_id: pulumi.Input[_builtins.str],
                  volume_id: pulumi.Input[_builtins.str],
-                 cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
 
@@ -104,171 +104,171 @@ class SnapshotArgs:
 
     @_builtins.property
     @pulumi.getter(name="cpuHotPlug")
-    def cpu_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cpu_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
-    def cpu_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cpu_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cpu_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Human readable description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotPlug")
-    def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
-    def disc_virtio_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotUnplug")
-    def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
         """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
-    def disc_virtio_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="licenceType")
-    def licence_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def licence_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] OS type of this Snapshot
         """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
-    def licence_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def licence_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "licence_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location of that image/snapshot
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the snapshot.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotPlug")
-    def nic_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
-    def nic_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotUnplug")
-    def nic_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
-    def nic_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="ramHotPlug")
-    def ram_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ram_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
-    def ram_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ram_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ram_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="requireLegacyBios")
-    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_legacy_bios(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         """
         return pulumi.get(self, "require_legacy_bios")
 
     @require_legacy_bios.setter
-    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_legacy_bios(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="secAuthProtection")
-    def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sec_auth_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
-    def sec_auth_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sec_auth_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sec_auth_protection", value)
 
 
 @pulumi.input_type
 class _SnapshotState:
     def __init__(__self__, *,
-                 cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cpu_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disc_scsi_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_scsi_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cpu_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disc_scsi_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_scsi_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 size: pulumi.Input[Optional[_builtins.int]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
 
@@ -333,230 +333,230 @@ class _SnapshotState:
 
     @_builtins.property
     @pulumi.getter(name="cpuHotPlug")
-    def cpu_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cpu_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
-    def cpu_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cpu_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cpu_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="cpuHotUnplug")
-    def cpu_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cpu_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is capable of CPU hot unplug (no reboot required)
         """
         return pulumi.get(self, "cpu_hot_unplug")
 
     @cpu_hot_unplug.setter
-    def cpu_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cpu_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cpu_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] Human readable description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="discScsiHotPlug")
-    def disc_scsi_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_scsi_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is capable of SCSI drive hot plug (no reboot required)
         """
         return pulumi.get(self, "disc_scsi_hot_plug")
 
     @disc_scsi_hot_plug.setter
-    def disc_scsi_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_scsi_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_scsi_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="discScsiHotUnplug")
-    def disc_scsi_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_scsi_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
         """
         return pulumi.get(self, "disc_scsi_hot_unplug")
 
     @disc_scsi_hot_unplug.setter
-    def disc_scsi_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_scsi_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_scsi_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotPlug")
-    def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
-    def disc_virtio_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="discVirtioHotUnplug")
-    def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disc_virtio_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
         """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
-    def disc_virtio_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disc_virtio_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disc_virtio_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="licenceType")
-    def licence_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def licence_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed)[string] OS type of this Snapshot
         """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
-    def licence_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def licence_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "licence_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location of that image/snapshot
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The name of the snapshot.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotPlug")
-    def nic_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
-    def nic_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="nicHotUnplug")
-    def nic_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def nic_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
-    def nic_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def nic_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "nic_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="ramHotPlug")
-    def ram_hot_plug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ram_hot_plug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
         """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
-    def ram_hot_plug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ram_hot_plug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ram_hot_plug", value)
 
     @_builtins.property
     @pulumi.getter(name="ramHotUnplug")
-    def ram_hot_unplug(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ram_hot_unplug(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Is capable of memory hot unplug (no reboot required)
         """
         return pulumi.get(self, "ram_hot_unplug")
 
     @ram_hot_unplug.setter
-    def ram_hot_unplug(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ram_hot_unplug(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ram_hot_unplug", value)
 
     @_builtins.property
     @pulumi.getter(name="requireLegacyBios")
-    def require_legacy_bios(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_legacy_bios(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
         """
         return pulumi.get(self, "require_legacy_bios")
 
     @require_legacy_bios.setter
-    def require_legacy_bios(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_legacy_bios(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_legacy_bios", value)
 
     @_builtins.property
     @pulumi.getter(name="secAuthProtection")
-    def sec_auth_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sec_auth_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
-    def sec_auth_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sec_auth_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sec_auth_protection", value)
 
     @_builtins.property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The size of the image in GB
         """
         return pulumi.get(self, "size")
 
     @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of the specific volume to take the snapshot from.
         """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
-    def volume_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_id", value)
 
 
@@ -566,23 +566,23 @@ class Snapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -661,7 +661,7 @@ class Snapshot(pulumi.CustomResource):
                  args: SnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -731,20 +731,20 @@ class Snapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-                 require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+                 require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -787,25 +787,25 @@ class Snapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            cpu_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            disc_scsi_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            disc_scsi_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            disc_virtio_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            disc_virtio_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            licence_type: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            nic_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            nic_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            ram_hot_plug: Optional[pulumi.Input[_builtins.bool]] = None,
-            ram_hot_unplug: Optional[pulumi.Input[_builtins.bool]] = None,
-            require_legacy_bios: Optional[pulumi.Input[_builtins.bool]] = None,
-            sec_auth_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
-            volume_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Snapshot':
+            cpu_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            cpu_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disc_scsi_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            disc_scsi_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            disc_virtio_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            disc_virtio_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            licence_type: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nic_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            nic_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            ram_hot_plug: pulumi.Input[Optional[_builtins.bool]] = None,
+            ram_hot_unplug: pulumi.Input[Optional[_builtins.bool]] = None,
+            require_legacy_bios: pulumi.Input[Optional[_builtins.bool]] = None,
+            sec_auth_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Snapshot':
         """
         Get an existing Snapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

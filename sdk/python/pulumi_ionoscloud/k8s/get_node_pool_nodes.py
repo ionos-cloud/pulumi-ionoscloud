@@ -122,9 +122,9 @@ def get_node_pool_nodes(k8s_cluster_id: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         node_pool_id=pulumi.get(__ret__, 'node_pool_id'),
         nodes=pulumi.get(__ret__, 'nodes'))
-def get_node_pool_nodes_output(k8s_cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                               location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               node_pool_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_node_pool_nodes_output(k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                               location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               node_pool_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolNodesResult]:
     """
     The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages **Groups** and **Group Privileges** on IonosCloud.
+    /// Manages **Groups** and **Group Privileges** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -24,7 +24,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var user1Password = new Random.Index.Password("user1_password", new()
+    ///     var user1Password = new Random.Password("user1_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -41,7 +41,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         ForceSecAuth = false,
     ///     });
     /// 
-    ///     var user2Password = new Random.Index.Password("user2_password", new()
+    ///     var user2Password = new Random.Password("user2_password", new()
     ///     {
     ///         Length = 16,
     ///         Special = true,
@@ -311,7 +311,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

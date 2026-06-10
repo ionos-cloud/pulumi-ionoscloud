@@ -116,5 +116,5 @@ export interface GetIPFailoverOutputArgs {
      * The id of the lan of which the IP failover belongs
      */
     lanId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
 }

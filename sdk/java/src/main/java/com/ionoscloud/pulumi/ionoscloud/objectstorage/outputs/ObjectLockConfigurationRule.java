@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ObjectLockConfigurationRule {
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
      * 
      */
     private @Nullable ObjectLockConfigurationRuleDefaultRetention defaultRetention;
 
     private ObjectLockConfigurationRule() {}
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
      * 
      */
     public Optional<ObjectLockConfigurationRuleDefaultRetention> defaultRetention() {

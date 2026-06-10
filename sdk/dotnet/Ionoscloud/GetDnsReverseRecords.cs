@@ -29,7 +29,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "recordexample",
         ///     });
@@ -46,7 +46,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "record",
         ///         PartialMatch = true,
@@ -64,7 +64,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Ips = new[]
         ///         {
@@ -96,7 +96,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "recordexample",
         ///     });
@@ -113,7 +113,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "record",
         ///         PartialMatch = true,
@@ -131,7 +131,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Ips = new[]
         ///         {
@@ -163,7 +163,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "recordexample",
         ///     });
@@ -180,7 +180,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Name = "record",
         ///         PartialMatch = true,
@@ -198,7 +198,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Ionoscloud.Index.GetDnsReverseRecords.Invoke(new()
+        ///     var example = Ionoscloud.GetDnsReverseRecords.Invoke(new()
         ///     {
         ///         Ips = new[]
         ///         {

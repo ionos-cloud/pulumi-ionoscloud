@@ -184,11 +184,11 @@ def get_kafka_user_credentials(cluster_id: Optional[_builtins.str] = None,
         private_key=pulumi.get(__ret__, 'private_key'),
         timeouts=pulumi.get(__ret__, 'timeouts'),
         username=pulumi.get(__ret__, 'username'))
-def get_kafka_user_credentials_output(cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                      id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      timeouts: Optional[pulumi.Input[Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict']]]] = None,
-                                      username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_kafka_user_credentials_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                      id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict']]]] = None,
+                                      username: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaUserCredentialsResult]:
     """
     The **Kafka user credentials** data source can be used to retrieve access credentials for a specific user.

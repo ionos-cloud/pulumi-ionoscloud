@@ -37,7 +37,6 @@ export function getCrossconnect(args?: GetCrossconnectArgs, opts?: pulumi.Invoke
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getCrossconnect:getCrossconnect", {
-        "description": args.description,
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -48,10 +47,6 @@ export function getCrossconnect(args?: GetCrossconnectArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getCrossconnect.
  */
 export interface GetCrossconnectArgs {
-    /**
-     * Description of cross connect
-     */
-    description?: string;
     /**
      * ID of the cross connect you want to search for.
      *
@@ -128,7 +123,6 @@ export function getCrossconnectOutput(args?: GetCrossconnectOutputArgs, opts?: p
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getCrossconnect:getCrossconnect", {
-        "description": args.description,
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -140,21 +134,17 @@ export function getCrossconnectOutput(args?: GetCrossconnectOutputArgs, opts?: p
  */
 export interface GetCrossconnectOutputArgs {
     /**
-     * Description of cross connect
-     */
-    description?: pulumi.Input<string>;
-    /**
      * ID of the cross connect you want to search for.
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The physical location of the connectable datacenter
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing cross connect that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

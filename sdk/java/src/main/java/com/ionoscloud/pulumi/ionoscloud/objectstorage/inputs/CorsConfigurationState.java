@@ -33,14 +33,14 @@ public final class CorsConfigurationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
      * 
      */
     @Import(name="corsRules")
     private @Nullable Output<List<CorsConfigurationCorsRuleArgs>> corsRules;
 
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
      * 
      */
     public Optional<Output<List<CorsConfigurationCorsRuleArgs>>> corsRules() {
@@ -94,7 +94,7 @@ public final class CorsConfigurationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 
@@ -105,7 +105,7 @@ public final class CorsConfigurationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class CorsConfigurationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34;&gt; corsRule &lt;/span&gt;as defined below.
+         * @param corsRules [block] A block of&lt;span pulumi-lang-nodejs=&#34; corsRule &#34; pulumi-lang-dotnet=&#34; CorsRule &#34; pulumi-lang-go=&#34; corsRule &#34; pulumi-lang-python=&#34; cors_rule &#34; pulumi-lang-yaml=&#34; corsRule &#34; pulumi-lang-java=&#34; corsRule &#34; pulumi-lang-hcl=&#34; cors_rule &#34;&gt; corsRule &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 

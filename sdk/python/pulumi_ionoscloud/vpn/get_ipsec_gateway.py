@@ -203,10 +203,10 @@ def get_ipsec_gateway(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         tier=pulumi.get(__ret__, 'tier'),
         version=pulumi.get(__ret__, 'version'))
-def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             version: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_ipsec_gateway_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             version: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecGatewayResult]:
     """
     The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.

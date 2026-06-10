@@ -110,8 +110,7 @@ class AwaitableGetCrossconnectResult(GetCrossconnectResult):
             peers=self.peers)
 
 
-def get_crossconnect(description: Optional[_builtins.str] = None,
-                     id: Optional[_builtins.str] = None,
+def get_crossconnect(id: Optional[_builtins.str] = None,
                      location: Optional[_builtins.str] = None,
                      name: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCrossconnectResult:
@@ -139,7 +138,6 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str description: Description of cross connect
     :param _builtins.str id: ID of the cross connect you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -147,7 +145,6 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
     :param _builtins.str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
-    __args__['description'] = description
     __args__['id'] = id
     __args__['location'] = location
     __args__['name'] = name
@@ -161,10 +158,9 @@ def get_crossconnect(description: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         peers=pulumi.get(__ret__, 'peers'))
-def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_crossconnect_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCrossconnectResult]:
     """
     The **Cross Connect data source** can be used to search for and return existing cross connects.
@@ -190,7 +186,6 @@ def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtin
     ```
 
 
-    :param _builtins.str description: Description of cross connect
     :param _builtins.str id: ID of the cross connect you want to search for.
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -198,7 +193,6 @@ def get_crossconnect_output(description: Optional[pulumi.Input[Optional[_builtin
     :param _builtins.str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
-    __args__['description'] = description
     __args__['id'] = id
     __args__['location'] = location
     __args__['name'] = name

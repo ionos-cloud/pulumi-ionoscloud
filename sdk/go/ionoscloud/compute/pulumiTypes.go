@@ -948,7 +948,7 @@ type CubeServerVolume struct {
 	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
 	// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
 	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
@@ -996,7 +996,7 @@ type CubeServerVolumeArgs struct {
 	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
 	// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
 	RequireLegacyBios pulumi.BoolPtrInput `pulumi:"requireLegacyBios"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths pulumi.StringArrayInput `pulumi:"sshKeyPaths"`
@@ -1163,7 +1163,7 @@ func (o CubeServerVolumeOutput) RequireLegacyBios() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *bool { return v.RequireLegacyBios }).(pulumi.BoolPtrOutput)
 }
 
-// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o CubeServerVolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
@@ -1371,7 +1371,7 @@ func (o CubeServerVolumePtrOutput) RequireLegacyBios() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o CubeServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
@@ -4104,11 +4104,11 @@ type ServerVolume struct {
 	RequireLegacyBios *bool `pulumi:"requireLegacyBios"`
 	// The size of the volume in GB.
 	Size *int `pulumi:"size"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+	// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
-	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	//
 	// Deprecated: Please use sshKeys under server level
 	SshKeys []string `pulumi:"sshKeys"`
@@ -4158,11 +4158,11 @@ type ServerVolumeArgs struct {
 	RequireLegacyBios pulumi.BoolPtrInput `pulumi:"requireLegacyBios"`
 	// The size of the volume in GB.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+	// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths pulumi.StringArrayInput `pulumi:"sshKeyPaths"`
-	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	//
 	// Deprecated: Please use sshKeys under server level
 	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
@@ -4334,14 +4334,14 @@ func (o ServerVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o ServerVolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerVolume) []string { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
 }
 
-// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 //
 // Deprecated: Please use sshKeys under server level
 func (o ServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
@@ -4559,7 +4559,7 @@ func (o ServerVolumePtrOutput) Size() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o ServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
@@ -4571,7 +4571,7 @@ func (o ServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 //
 // Deprecated: Please use sshKeys under server level
 func (o ServerVolumePtrOutput) SshKeys() pulumi.StringArrayOutput {
@@ -10669,16 +10669,17 @@ type GetServersServer struct {
 	CpuFamily        string                  `pulumi:"cpuFamily"`
 	Hostname         string                  `pulumi:"hostname"`
 	// The unique ID of the server.
-	Id           string                   `pulumi:"id"`
-	Labels       []GetServersServerLabel  `pulumi:"labels"`
-	Name         *string                  `pulumi:"name"`
-	Nics         []GetServersServerNic    `pulumi:"nics"`
-	Ram          int                      `pulumi:"ram"`
-	TemplateUuid *string                  `pulumi:"templateUuid"`
-	Token        string                   `pulumi:"token"`
-	Type         string                   `pulumi:"type"`
-	VmState      string                   `pulumi:"vmState"`
-	Volumes      []GetServersServerVolume `pulumi:"volumes"`
+	Id            string                   `pulumi:"id"`
+	Labels        []GetServersServerLabel  `pulumi:"labels"`
+	Name          *string                  `pulumi:"name"`
+	NicMultiQueue bool                     `pulumi:"nicMultiQueue"`
+	Nics          []GetServersServerNic    `pulumi:"nics"`
+	Ram           int                      `pulumi:"ram"`
+	TemplateUuid  *string                  `pulumi:"templateUuid"`
+	Token         string                   `pulumi:"token"`
+	Type          string                   `pulumi:"type"`
+	VmState       string                   `pulumi:"vmState"`
+	Volumes       []GetServersServerVolume `pulumi:"volumes"`
 }
 
 // GetServersServerInput is an input type that accepts GetServersServerArgs and GetServersServerOutput values.
@@ -10702,16 +10703,17 @@ type GetServersServerArgs struct {
 	CpuFamily        pulumi.StringInput              `pulumi:"cpuFamily"`
 	Hostname         pulumi.StringInput              `pulumi:"hostname"`
 	// The unique ID of the server.
-	Id           pulumi.StringInput               `pulumi:"id"`
-	Labels       GetServersServerLabelArrayInput  `pulumi:"labels"`
-	Name         pulumi.StringPtrInput            `pulumi:"name"`
-	Nics         GetServersServerNicArrayInput    `pulumi:"nics"`
-	Ram          pulumi.IntInput                  `pulumi:"ram"`
-	TemplateUuid pulumi.StringPtrInput            `pulumi:"templateUuid"`
-	Token        pulumi.StringInput               `pulumi:"token"`
-	Type         pulumi.StringInput               `pulumi:"type"`
-	VmState      pulumi.StringInput               `pulumi:"vmState"`
-	Volumes      GetServersServerVolumeArrayInput `pulumi:"volumes"`
+	Id            pulumi.StringInput               `pulumi:"id"`
+	Labels        GetServersServerLabelArrayInput  `pulumi:"labels"`
+	Name          pulumi.StringPtrInput            `pulumi:"name"`
+	NicMultiQueue pulumi.BoolInput                 `pulumi:"nicMultiQueue"`
+	Nics          GetServersServerNicArrayInput    `pulumi:"nics"`
+	Ram           pulumi.IntInput                  `pulumi:"ram"`
+	TemplateUuid  pulumi.StringPtrInput            `pulumi:"templateUuid"`
+	Token         pulumi.StringInput               `pulumi:"token"`
+	Type          pulumi.StringInput               `pulumi:"type"`
+	VmState       pulumi.StringInput               `pulumi:"vmState"`
+	Volumes       GetServersServerVolumeArrayInput `pulumi:"volumes"`
 }
 
 func (GetServersServerArgs) ElementType() reflect.Type {
@@ -10808,6 +10810,10 @@ func (o GetServersServerOutput) Labels() GetServersServerLabelArrayOutput {
 
 func (o GetServersServerOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetServersServer) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GetServersServerOutput) NicMultiQueue() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServer) bool { return v.NicMultiQueue }).(pulumi.BoolOutput)
 }
 
 func (o GetServersServerOutput) Nics() GetServersServerNicArrayOutput {

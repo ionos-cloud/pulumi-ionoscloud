@@ -5,9 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages **public acccess for Buckets** on IonosCloud.
- *
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages **public access for Buckets** on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -122,23 +120,23 @@ export interface PublicAccessBlockState {
     /**
      * [bool] Indicates that access to the bucket via Access Control Lists (ACLs) that grant public access is blocked. In other words, ACLs that allow public access are not permitted.
      */
-    blockPublicAcls?: pulumi.Input<boolean>;
+    blockPublicAcls?: pulumi.Input<boolean | undefined>;
     /**
      * [bool] Blocks public access to the bucket via bucket policies. Bucket policies that grant public access will not be allowed.
      */
-    blockPublicPolicy?: pulumi.Input<boolean>;
+    blockPublicPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The name of the bucket where the object will be stored.
      */
-    bucket?: pulumi.Input<string>;
+    bucket?: pulumi.Input<string | undefined>;
     /**
      * [bool] Instructs the system to ignore any ACLs that grant public access. Even if ACLs are set to allow public access, they will be disregarded.
      */
-    ignorePublicAcls?: pulumi.Input<boolean>;
+    ignorePublicAcls?: pulumi.Input<boolean | undefined>;
     /**
      * [bool] Restricts access to buckets that have public policies. Buckets with policies that grant public access will have their access restricted.
      */
-    restrictPublicBuckets?: pulumi.Input<boolean>;
+    restrictPublicBuckets?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -148,11 +146,11 @@ export interface PublicAccessBlockArgs {
     /**
      * [bool] Indicates that access to the bucket via Access Control Lists (ACLs) that grant public access is blocked. In other words, ACLs that allow public access are not permitted.
      */
-    blockPublicAcls?: pulumi.Input<boolean>;
+    blockPublicAcls?: pulumi.Input<boolean | undefined>;
     /**
      * [bool] Blocks public access to the bucket via bucket policies. Bucket policies that grant public access will not be allowed.
      */
-    blockPublicPolicy?: pulumi.Input<boolean>;
+    blockPublicPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * [string] The name of the bucket where the object will be stored.
      */
@@ -160,9 +158,9 @@ export interface PublicAccessBlockArgs {
     /**
      * [bool] Instructs the system to ignore any ACLs that grant public access. Even if ACLs are set to allow public access, they will be disregarded.
      */
-    ignorePublicAcls?: pulumi.Input<boolean>;
+    ignorePublicAcls?: pulumi.Input<boolean | undefined>;
     /**
      * [bool] Restricts access to buckets that have public policies. Buckets with policies that grant public access will have their access restricted.
      */
-    restrictPublicBuckets?: pulumi.Input<boolean>;
+    restrictPublicBuckets?: pulumi.Input<boolean | undefined>;
 }

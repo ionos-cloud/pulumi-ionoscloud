@@ -153,7 +153,7 @@ def get_region(id: Optional[_builtins.str] = None,
         storage_classes=pulumi.get(__ret__, 'storage_classes'),
         version=pulumi.get(__ret__, 'version'),
         website=pulumi.get(__ret__, 'website'))
-def get_region_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_region_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegionResult]:
     """
     The **Object storage region data source** can be used to search for and return an existing S3 Regions.

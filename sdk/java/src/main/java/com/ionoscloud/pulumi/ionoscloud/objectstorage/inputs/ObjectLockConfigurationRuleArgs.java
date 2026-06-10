@@ -16,14 +16,14 @@ public final class ObjectLockConfigurationRuleArgs extends com.pulumi.resources.
     public static final ObjectLockConfigurationRuleArgs Empty = new ObjectLockConfigurationRuleArgs();
 
     /**
-     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+     * [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
      * 
      */
     @Import(name="defaultRetention")
     private @Nullable Output<ObjectLockConfigurationRuleDefaultRetentionArgs> defaultRetention;
 
     /**
-     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+     * @return [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
      * 
      */
     public Optional<Output<ObjectLockConfigurationRuleDefaultRetentionArgs>> defaultRetention() {
@@ -55,7 +55,7 @@ public final class ObjectLockConfigurationRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param defaultRetention [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+         * @param defaultRetention [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class ObjectLockConfigurationRuleArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param defaultRetention [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
+         * @param defaultRetention [block] A block of&lt;span pulumi-lang-nodejs=&#34; defaultRetention &#34; pulumi-lang-dotnet=&#34; DefaultRetention &#34; pulumi-lang-go=&#34; defaultRetention &#34; pulumi-lang-python=&#34; default_retention &#34; pulumi-lang-yaml=&#34; defaultRetention &#34; pulumi-lang-java=&#34; defaultRetention &#34; pulumi-lang-hcl=&#34; default_retention &#34;&gt; defaultRetention &lt;/span&gt;as defined below.
          * 
          * @return builder
          * 

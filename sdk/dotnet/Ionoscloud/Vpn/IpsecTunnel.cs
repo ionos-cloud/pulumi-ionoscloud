@@ -12,7 +12,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
 {
     /// <summary>
     /// An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-    /// IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+    /// IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
     /// connections between your network resources.
     /// 
     /// ## Usage example
@@ -126,7 +126,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
 
         /// <summary>
         /// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        /// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        /// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         /// Maximum items: 20.
         /// </summary>
         [Output("cloudNetworkCidrs")]
@@ -204,7 +204,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/ionos-cloud",
+                PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -240,7 +240,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
 
         /// <summary>
         /// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        /// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        /// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         /// Maximum items: 20.
         /// </summary>
         public InputList<string> CloudNetworkCidrs
@@ -330,7 +330,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
 
         /// <summary>
         /// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        /// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        /// tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         /// Maximum items: 20.
         /// </summary>
         public InputList<string> CloudNetworkCidrs

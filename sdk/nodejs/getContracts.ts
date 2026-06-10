@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+ * The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
  *
  * ## Example Usage
  *
@@ -71,7 +71,7 @@ export interface GetContractsResult {
     readonly id: string;
 }
 /**
- * The `contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+ * The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
  *
  * ## Example Usage
  *

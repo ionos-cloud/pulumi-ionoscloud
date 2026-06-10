@@ -141,10 +141,10 @@ export interface GetNatGatewayOutputArgs {
      *
      * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
      */
-    id?: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Name of an existing network load balancer forwarding rule that you want to search for.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

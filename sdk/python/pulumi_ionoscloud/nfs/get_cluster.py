@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, connections=None, id=None, location=None, name=None, nfs=None, partial_match=None, size=None):
+    def __init__(__self__, connections=None, id=None, location=None, name=None, nfs=None, partial_match=None, size=None, size_unit=None):
         if connections and not isinstance(connections, list):
             raise TypeError("Expected argument 'connections' to be a list")
         pulumi.set(__self__, "connections", connections)
@@ -49,6 +49,9 @@ class GetClusterResult:
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
+        if size_unit and not isinstance(size_unit, str):
+            raise TypeError("Expected argument 'size_unit' to be a str")
+        pulumi.set(__self__, "size_unit", size_unit)
 
     @_builtins.property
     @pulumi.getter
@@ -99,9 +102,17 @@ class GetClusterResult:
     @pulumi.getter
     def size(self) -> _builtins.int:
         """
-        The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
         """
         return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter(name="sizeUnit")
+    def size_unit(self) -> _builtins.str:
+        """
+        The unit of the `size` attribute. Possible values: `TiB`, `GiB`.
+        """
+        return pulumi.get(self, "size_unit")
 
 
 class AwaitableGetClusterResult(GetClusterResult):
@@ -116,7 +127,8 @@ class AwaitableGetClusterResult(GetClusterResult):
             name=self.name,
             nfs=self.nfs,
             partial_match=self.partial_match,
-            size=self.size)
+            size=self.size,
+            size_unit=self.size_unit)
 
 
 def get_cluster(id: Optional[_builtins.str] = None,
@@ -125,7 +137,7 @@ def get_cluster(id: Optional[_builtins.str] = None,
                 partial_match: Optional[_builtins.bool] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+    Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
 
     ## By ID
 
@@ -158,14 +170,15 @@ def get_cluster(id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         nfs=pulumi.get(__ret__, 'nfs'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
-        size=pulumi.get(__ret__, 'size'))
-def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       location: Optional[pulumi.Input[_builtins.str]] = None,
-                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       partial_match: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+        size=pulumi.get(__ret__, 'size'),
+        size_unit=pulumi.get(__ret__, 'size_unit'))
+def get_cluster_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       location: pulumi.Input[Optional[_builtins.str]] = None,
+                       name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       partial_match: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
-    Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+    Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
 
     ## By ID
 
@@ -197,4 +210,5 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
         name=pulumi.get(__response__, 'name'),
         nfs=pulumi.get(__response__, 'nfs'),
         partial_match=pulumi.get(__response__, 'partial_match'),
-        size=pulumi.get(__response__, 'size')))
+        size=pulumi.get(__response__, 'size'),
+        size_unit=pulumi.get(__response__, 'size_unit')))

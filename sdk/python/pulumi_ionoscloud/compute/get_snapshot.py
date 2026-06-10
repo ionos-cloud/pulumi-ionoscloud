@@ -320,10 +320,10 @@ def get_snapshot(id: Optional[_builtins.str] = None,
         require_legacy_bios=pulumi.get(__ret__, 'require_legacy_bios'),
         sec_auth_protection=pulumi.get(__ret__, 'sec_auth_protection'),
         size=pulumi.get(__ret__, 'size'))
-def get_snapshot_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        size: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_snapshot_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        size: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnapshotResult]:
     """
     The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.

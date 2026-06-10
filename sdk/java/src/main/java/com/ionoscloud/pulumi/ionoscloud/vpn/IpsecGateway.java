@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+ * An [IPSec Gateway](https://docs.ionos.com/cloud/network-services/vpn-gateway/overview) resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS CLOUD
  * infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
  * network resources.
  * 
@@ -41,8 +41,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGateway;
  * import com.ionoscloud.pulumi.ionoscloud.vpn.IpsecGatewayArgs;
  * import com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -93,7 +93,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34;&gt;`gatewayId`&lt;/span&gt;, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`gatewayId`&#34; pulumi-lang-dotnet=&#34;`GatewayId`&#34; pulumi-lang-go=&#34;`gatewayId`&#34; pulumi-lang-python=&#34;`gateway_id`&#34; pulumi-lang-yaml=&#34;`gatewayId`&#34; pulumi-lang-java=&#34;`gatewayId`&#34; pulumi-lang-hcl=&#34;`gateway_id`&#34;&gt;`gatewayId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example location:gateway_id
@@ -260,7 +260,7 @@ public class IpsecGateway extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -72,16 +72,16 @@ public final class IpsecTunnelEspArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
      * 
      */
     @Import(name="lifetime")
     private @Nullable Output<Integer> lifetime;
 
     /**
-     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * @return [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+     * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
      * 
      */
     public Optional<Output<Integer>> lifetime() {
@@ -189,8 +189,8 @@ public final class IpsecTunnelEspArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param lifetime [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-         * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+         * @param lifetime [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+         * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
          * 
          * @return builder
          * 
@@ -201,8 +201,8 @@ public final class IpsecTunnelEspArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param lifetime [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
-         * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+         * @param lifetime [string] The phase lifetime in seconds. Minimum value: &lt;span pulumi-lang-nodejs=&#34;`3600`&#34; pulumi-lang-dotnet=&#34;`3600`&#34; pulumi-lang-go=&#34;`3600`&#34; pulumi-lang-python=&#34;`3600`&#34; pulumi-lang-yaml=&#34;`3600`&#34; pulumi-lang-java=&#34;`3600`&#34; pulumi-lang-hcl=&#34;`3600`&#34;&gt;`3600`&lt;/span&gt;. Maximum value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
+         * Default value: &lt;span pulumi-lang-nodejs=&#34;`86400`&#34; pulumi-lang-dotnet=&#34;`86400`&#34; pulumi-lang-go=&#34;`86400`&#34; pulumi-lang-python=&#34;`86400`&#34; pulumi-lang-yaml=&#34;`86400`&#34; pulumi-lang-java=&#34;`86400`&#34; pulumi-lang-hcl=&#34;`86400`&#34;&gt;`86400`&lt;/span&gt;.
          * 
          * @return builder
          * 

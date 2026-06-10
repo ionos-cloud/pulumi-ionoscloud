@@ -34,7 +34,7 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * ID of the server you want to search for.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34; pulumi-lang-hcl=&#34;`datacenter_id`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     @Import(name="id")
@@ -43,7 +43,7 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return ID of the server you want to search for.
      * 
-     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
+     * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34; pulumi-lang-hcl=&#34;`datacenter_id`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
      * 
      */
     public Optional<Output<String>> id() {
@@ -80,21 +80,6 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-     * 
-     */
-    @Import(name="templateUuid")
-    private @Nullable Output<String> templateUuid;
-
-    /**
-     * @return The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-     * 
-     */
-    public Optional<Output<String>> templateUuid() {
-        return Optional.ofNullable(this.templateUuid);
-    }
-
     private GetGPUServerArgs() {}
 
     private GetGPUServerArgs(GetGPUServerArgs $) {
@@ -102,7 +87,6 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
         this.id = $.id;
         this.location = $.location;
         this.name = $.name;
-        this.templateUuid = $.templateUuid;
     }
 
     public static Builder builder() {
@@ -147,7 +131,7 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param id ID of the server you want to search for.
          * 
-         * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34; pulumi-lang-hcl=&#34;`datacenter_id`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -160,7 +144,7 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param id ID of the server you want to search for.
          * 
-         * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
+         * &lt;span pulumi-lang-nodejs=&#34;`datacenterId`&#34; pulumi-lang-dotnet=&#34;`DatacenterId`&#34; pulumi-lang-go=&#34;`datacenterId`&#34; pulumi-lang-python=&#34;`datacenter_id`&#34; pulumi-lang-yaml=&#34;`datacenterId`&#34; pulumi-lang-java=&#34;`datacenterId`&#34; pulumi-lang-hcl=&#34;`datacenter_id`&#34;&gt;`datacenterId`&lt;/span&gt; and either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both of &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; are provided, the datasource will return an error.
          * 
          * @return builder
          * 
@@ -209,27 +193,6 @@ public final class GetGPUServerArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
-        }
-
-        /**
-         * @param templateUuid The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-         * 
-         * @return builder
-         * 
-         */
-        public Builder templateUuid(@Nullable Output<String> templateUuid) {
-            $.templateUuid = templateUuid;
-            return this;
-        }
-
-        /**
-         * @param templateUuid The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-         * 
-         * @return builder
-         * 
-         */
-        public Builder templateUuid(String templateUuid) {
-            return templateUuid(Output.of(templateUuid));
         }
 
         public GetGPUServerArgs build() {

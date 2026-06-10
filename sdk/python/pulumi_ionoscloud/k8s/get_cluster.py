@@ -388,9 +388,9 @@ def get_cluster(id: Optional[_builtins.str] = None,
         state=pulumi.get(__ret__, 'state'),
         user_tokens=pulumi.get(__ret__, 'user_tokens'),
         viable_node_pool_versions=pulumi.get(__ret__, 'viable_node_pool_versions'))
-def get_cluster_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_cluster_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     The **k8s Cluster data source** can be used to search for and return existing k8s clusters.

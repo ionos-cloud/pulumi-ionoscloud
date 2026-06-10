@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MongoUser{}
 	case "ionoscloud:dbaas/pSQLCluster:PSQLCluster":
 		r = &PSQLCluster{}
+	case "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2":
+		r = &PSQLClusterV2{}
 	case "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase":
 		r = &PSQLDatabase{}
 	case "ionoscloud:dbaas/pSQLUser:PSQLUser":
@@ -71,6 +73,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"dbaas/pSQLCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"dbaas/pSQLClusterV2",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

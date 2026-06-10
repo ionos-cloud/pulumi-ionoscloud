@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.ionoscloud.pulumi.ionoscloud.DnsReverseRecord;
  * import com.ionoscloud.pulumi.ionoscloud.DnsReverseRecordArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -76,8 +76,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.DnsReverseRecord;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`recordId`&#34; pulumi-lang-dotnet=&#34;`RecordId`&#34; pulumi-lang-go=&#34;`recordId`&#34; pulumi-lang-python=&#34;`record_id`&#34; pulumi-lang-yaml=&#34;`recordId`&#34; pulumi-lang-java=&#34;`recordId`&#34;&gt;`recordId`&lt;/span&gt;, for example:
+ * The resource can be imported using the &lt;span pulumi-lang-nodejs=&#34;`recordId`&#34; pulumi-lang-dotnet=&#34;`RecordId`&#34; pulumi-lang-go=&#34;`recordId`&#34; pulumi-lang-python=&#34;`record_id`&#34; pulumi-lang-yaml=&#34;`recordId`&#34; pulumi-lang-java=&#34;`recordId`&#34; pulumi-lang-hcl=&#34;`record_id`&#34;&gt;`recordId`&lt;/span&gt;, for example:
  * 
  * ```sh
  * $ pulumi import ionoscloud:index/dnsReverseRecord:DnsReverseRecord example record_id
@@ -187,7 +187,7 @@ public class DnsReverseRecord extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

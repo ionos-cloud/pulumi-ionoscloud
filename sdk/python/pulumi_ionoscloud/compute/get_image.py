@@ -417,13 +417,13 @@ def get_image(cloud_init: Optional[_builtins.str] = None,
         size=pulumi.get(__ret__, 'size'),
         type=pulumi.get(__ret__, 'type'),
         version=pulumi.get(__ret__, 'version'))
-def get_image_output(cloud_init: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     image_alias: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     location: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     version: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_image_output(cloud_init: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     image_alias: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     version: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetImageResult]:
     """
     The **Image data source** can be used to search for and return an existing image which can then be used to provision a server.\\

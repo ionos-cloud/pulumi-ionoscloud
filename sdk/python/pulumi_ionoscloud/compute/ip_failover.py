@@ -23,7 +23,7 @@ class IPFailoverArgs:
                  ip: pulumi.Input[_builtins.str],
                  lan_id: pulumi.Input[_builtins.str],
                  nicuuid: pulumi.Input[_builtins.str],
-                 location: Optional[pulumi.Input[_builtins.str]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IPFailover resource.
 
@@ -151,22 +151,22 @@ class IPFailoverArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
 
 @pulumi.input_type
 class _IPFailoverState:
     def __init__(__self__, *,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 lan_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nicuuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 lan_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nicuuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IPFailover resources.
 
@@ -219,52 +219,52 @@ class _IPFailoverState:
 
     @_builtins.property
     @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datacenter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
-    def datacenter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The reserved IP address to be used in the IP failover group.
         """
         return pulumi.get(self, "ip")
 
     @ip.setter
-    def ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip", value)
 
     @_builtins.property
     @pulumi.getter(name="lanId")
-    def lan_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lan_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a LAN.
         """
         return pulumi.get(self, "lan_id")
 
     @lan_id.setter
-    def lan_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lan_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lan_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def nicuuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nicuuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [string] The ID of a NIC.
 
@@ -302,7 +302,7 @@ class _IPFailoverState:
         return pulumi.get(self, "nicuuid")
 
     @nicuuid.setter
-    def nicuuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nicuuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nicuuid", value)
 
 
@@ -312,14 +312,14 @@ class IPFailover(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 lan_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nicuuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 lan_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nicuuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages **IP Failover** groups on IonosCloud.
+        Manages **IP Failover** groups on IONOS CLOUD.
 
         ## Example Usage
 
@@ -436,7 +436,7 @@ class IPFailover(pulumi.CustomResource):
                  args: IPFailoverArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IP Failover** groups on IonosCloud.
+        Manages **IP Failover** groups on IONOS CLOUD.
 
         ## Example Usage
 
@@ -523,11 +523,11 @@ class IPFailover(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip: Optional[pulumi.Input[_builtins.str]] = None,
-                 lan_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 nicuuid: Optional[pulumi.Input[_builtins.str]] = None,
+                 datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip: pulumi.Input[Optional[_builtins.str]] = None,
+                 lan_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 nicuuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -560,11 +560,11 @@ class IPFailover(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            datacenter_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ip: Optional[pulumi.Input[_builtins.str]] = None,
-            lan_id: Optional[pulumi.Input[_builtins.str]] = None,
-            location: Optional[pulumi.Input[_builtins.str]] = None,
-            nicuuid: Optional[pulumi.Input[_builtins.str]] = None) -> 'IPFailover':
+            datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ip: pulumi.Input[Optional[_builtins.str]] = None,
+            lan_id: pulumi.Input[Optional[_builtins.str]] = None,
+            location: pulumi.Input[Optional[_builtins.str]] = None,
+            nicuuid: pulumi.Input[Optional[_builtins.str]] = None) -> 'IPFailover':
         """
         Get an existing IPFailover resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

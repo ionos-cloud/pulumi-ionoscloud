@@ -21,7 +21,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS&#39; physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+ * A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS&#39; physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
  * 
  * These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
  * 
@@ -53,9 +53,10 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VCPUServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerNicArgs;
+ * import com.pulumi.ionoscloud.compute.inputs.VCPUServerNicFirewallArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerLabelArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -120,16 +121,16 @@ import javax.annotation.Nullable;
  *                 .ips(                
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
- *                 .firewall(Map.ofEntries(
- *                     Map.entry("protocol", "TCP"),
- *                     Map.entry("name", "SSH"),
- *                     Map.entry("portRangeStart", 22),
- *                     Map.entry("portRangeEnd", 22),
- *                     Map.entry("sourceMac", "00:0a:95:9d:68:17"),
- *                     Map.entry("sourceIp", exampleIPBlock.ips().applyValue(_ips -> _ips[2])),
- *                     Map.entry("targetIp", exampleIPBlock.ips().applyValue(_ips -> _ips[3])),
- *                     Map.entry("type", "EGRESS")
- *                 ))
+ *                 .firewalls(VCPUServerNicFirewallArgs.builder()
+ *                     .protocol("TCP")
+ *                     .name("SSH")
+ *                     .portRangeStart(22)
+ *                     .portRangeEnd(22)
+ *                     .sourceMac("00:0a:95:9d:68:17")
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .type("EGRESS")
+ *                     .build())
  *                 .build())
  *             .labels(            
  *                 VCPUServerLabelArgs.builder()
@@ -152,8 +153,8 @@ import javax.annotation.Nullable;
  * 
  * Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
  * 
- * ⚠️ **Note:** Important for deleting an &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
- * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. Terraform will actually modify the existing rules and delete the last one.
+ * ⚠️ **Note:** Important for deleting an &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34; pulumi-lang-hcl=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+ * from the middle of the list of &lt;span pulumi-lang-nodejs=&#34;`firewall`&#34; pulumi-lang-dotnet=&#34;`Firewall`&#34; pulumi-lang-go=&#34;`firewall`&#34; pulumi-lang-python=&#34;`firewall`&#34; pulumi-lang-yaml=&#34;`firewall`&#34; pulumi-lang-java=&#34;`firewall`&#34; pulumi-lang-hcl=&#34;`firewall`&#34;&gt;`firewall`&lt;/span&gt; rules. Terraform will actually modify the existing rules and delete the last one.
  * More details here. There is a workaround described in the issue
  * that involves moving the resources in the list prior to deletion.
  * `terraform state mv &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;i&gt;] &lt;resource-name&gt;.&lt;resource-id&gt;[&lt;j&gt;]`
@@ -165,7 +166,7 @@ import javax.annotation.Nullable;
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid
  * ```
- * Optionally, you can pass &lt;span pulumi-lang-nodejs=&#34;`primaryNic`&#34; pulumi-lang-dotnet=&#34;`PrimaryNic`&#34; pulumi-lang-go=&#34;`primaryNic`&#34; pulumi-lang-python=&#34;`primary_nic`&#34; pulumi-lang-yaml=&#34;`primaryNic`&#34; pulumi-lang-java=&#34;`primaryNic`&#34;&gt;`primaryNic`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`firewallruleId`&#34; pulumi-lang-dotnet=&#34;`FirewallruleId`&#34; pulumi-lang-go=&#34;`firewallruleId`&#34; pulumi-lang-python=&#34;`firewallrule_id`&#34; pulumi-lang-yaml=&#34;`firewallruleId`&#34; pulumi-lang-java=&#34;`firewallruleId`&#34;&gt;`firewallruleId`&lt;/span&gt; so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+ * Optionally, you can pass &lt;span pulumi-lang-nodejs=&#34;`primaryNic`&#34; pulumi-lang-dotnet=&#34;`PrimaryNic`&#34; pulumi-lang-go=&#34;`primaryNic`&#34; pulumi-lang-python=&#34;`primary_nic`&#34; pulumi-lang-yaml=&#34;`primaryNic`&#34; pulumi-lang-java=&#34;`primaryNic`&#34; pulumi-lang-hcl=&#34;`primary_nic`&#34;&gt;`primaryNic`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`firewallruleId`&#34; pulumi-lang-dotnet=&#34;`FirewallruleId`&#34; pulumi-lang-go=&#34;`firewallruleId`&#34; pulumi-lang-python=&#34;`firewallrule_id`&#34; pulumi-lang-yaml=&#34;`firewallruleId`&#34; pulumi-lang-java=&#34;`firewallruleId`&#34; pulumi-lang-hcl=&#34;`firewallrule_id`&#34;&gt;`firewallruleId`&lt;/span&gt; so terraform will know to import also the first nic and firewall rule (if it exists on the server):
  * ```sh
  * terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/primary nic id/firewall rule id
  * ```
@@ -188,7 +189,7 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return this.availabilityZone;
     }
     /**
-     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      * @deprecated
      * Please use the &#39;ionoscloud_server_boot_device_selection&#39; resource for managing the boot device of the server.
@@ -199,21 +200,21 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
     private Output<String> bootCdrom;
 
     /**
-     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
+     * @return ***DEPRECATED*** Please refer to&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-go=&#34; compute.BootDeviceSelection &#34; pulumi-lang-python=&#34; compute.BootDeviceSelection &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-java=&#34; ionoscloud.compute.BootDeviceSelection &#34; pulumi-lang-hcl=&#34; ionoscloud_server_boot_device_selection &#34;&gt; ionoscloud.compute.BootDeviceSelection &lt;/span&gt;(Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-dotnet=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-go=&#34; compute.getImage &#34; pulumi-lang-python=&#34; compute_get_image &#34; pulumi-lang-yaml=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-java=&#34; ionoscloud.compute.getImage &#34; pulumi-lang-hcl=&#34; data.ionoscloud_image &#34;&gt; ionoscloud.compute.getImage &lt;/span&gt;data source.
      * 
      */
     public Output<String> bootCdrom() {
         return this.bootCdrom;
     }
     /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="bootImage", refs={String.class}, tree="[0]")
     private Output<String> bootImage;
 
     /**
-     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
+     * @return [string] The image or snapshot UUID / name. May also be an image alias. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided.
      * 
      */
     public Output<String> bootImage() {
@@ -310,14 +311,14 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     @Export(name="imageName", refs={String.class}, tree="[0]")
     private Output<String> imageName;
 
     /**
-     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
+     * @return [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if &lt;span pulumi-lang-nodejs=&#34;`licenceType`&#34; pulumi-lang-dotnet=&#34;`LicenceType`&#34; pulumi-lang-go=&#34;`licenceType`&#34; pulumi-lang-python=&#34;`licence_type`&#34; pulumi-lang-yaml=&#34;`licenceType`&#34; pulumi-lang-java=&#34;`licenceType`&#34; pulumi-lang-hcl=&#34;`licence_type`&#34;&gt;`licenceType`&lt;/span&gt; is not provided. Attribute is immutable.
      * 
      */
     public Output<String> imageName() {
@@ -352,14 +353,14 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return this.inlineVolumeIds;
     }
     /**
-     * A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
+     * A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34; pulumi-lang-hcl=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34; pulumi-lang-hcl=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34; pulumi-lang-hcl=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34; pulumi-lang-hcl=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     @Export(name="labels", refs={List.class,VCPUServerLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<VCPUServerLabel>> labels;
 
     /**
-     * @return A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
+     * @return A label can be seen as an object with only two required fields: &lt;span pulumi-lang-nodejs=&#34;`key`&#34; pulumi-lang-dotnet=&#34;`Key`&#34; pulumi-lang-go=&#34;`key`&#34; pulumi-lang-python=&#34;`key`&#34; pulumi-lang-yaml=&#34;`key`&#34; pulumi-lang-java=&#34;`key`&#34; pulumi-lang-hcl=&#34;`key`&#34;&gt;`key`&lt;/span&gt; and &lt;span pulumi-lang-nodejs=&#34;`value`&#34; pulumi-lang-dotnet=&#34;`Value`&#34; pulumi-lang-go=&#34;`value`&#34; pulumi-lang-python=&#34;`value`&#34; pulumi-lang-yaml=&#34;`value`&#34; pulumi-lang-java=&#34;`value`&#34; pulumi-lang-hcl=&#34;`value`&#34;&gt;`value`&lt;/span&gt;, both of the &lt;span pulumi-lang-nodejs=&#34;`string`&#34; pulumi-lang-dotnet=&#34;`String`&#34; pulumi-lang-go=&#34;`string`&#34; pulumi-lang-python=&#34;`string`&#34; pulumi-lang-yaml=&#34;`string`&#34; pulumi-lang-java=&#34;`string`&#34; pulumi-lang-hcl=&#34;`string`&#34;&gt;`string`&lt;/span&gt; type. Please check the example presented above to see how a &lt;span pulumi-lang-nodejs=&#34;`label`&#34; pulumi-lang-dotnet=&#34;`Label`&#34; pulumi-lang-go=&#34;`label`&#34; pulumi-lang-python=&#34;`label`&#34; pulumi-lang-yaml=&#34;`label`&#34; pulumi-lang-java=&#34;`label`&#34; pulumi-lang-hcl=&#34;`label`&#34;&gt;`label`&lt;/span&gt; can be used in the plan. A server can have multiple labels.
      * 
      */
     public Output<Optional<List<VCPUServerLabel>>> labels() {
@@ -408,22 +409,22 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.nic);
     }
     /**
-     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34; pulumi-lang-hcl=&#34; ssh_keys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     @Export(name="nicMultiQueue", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> nicMultiQueue;
 
     /**
-     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
+     * @return [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is &lt;span pulumi-lang-nodejs=&#34;`true`&#34; pulumi-lang-dotnet=&#34;`True`&#34; pulumi-lang-go=&#34;`true`&#34; pulumi-lang-python=&#34;`true`&#34; pulumi-lang-yaml=&#34;`true`&#34; pulumi-lang-java=&#34;`true`&#34; pulumi-lang-hcl=&#34;`true`&#34;&gt;`true`&lt;/span&gt;, the feature will be activated; if it is not specified or set to &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt;, the feature will be deactivated.
      * 
      * &gt; **⚠ WARNING**
      * &gt; 
-     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
+     * &gt; &lt;span pulumi-lang-nodejs=&#34; sshKeys &#34; pulumi-lang-dotnet=&#34; SshKeys &#34; pulumi-lang-go=&#34; sshKeys &#34; pulumi-lang-python=&#34; ssh_keys &#34; pulumi-lang-yaml=&#34; sshKeys &#34; pulumi-lang-java=&#34; sshKeys &#34; pulumi-lang-hcl=&#34; ssh_keys &#34;&gt; sshKeys &lt;/span&gt;field is immutable.
      * 
      */
     public Output<Optional<Boolean>> nicMultiQueue() {
@@ -486,14 +487,14 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.securityGroupsIds);
     }
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      */
     @Export(name="sshKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeys;
 
     /**
-     * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * @return [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
      * 
      */
     public Output<Optional<List<String>>> sshKeys() {
@@ -573,7 +574,7 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
                 "imagePassword"
             ))

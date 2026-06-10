@@ -84,7 +84,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         /// * `Auth` - Properties with all data needed to define IPSec Authentication.
         ///     * `Method` - The authentication method to use for IPSec Authentication.
         /// * `CloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        ///   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        ///   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// * `PeerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
         ///   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// </summary>
@@ -163,7 +163,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         /// * `Auth` - Properties with all data needed to define IPSec Authentication.
         ///     * `Method` - The authentication method to use for IPSec Authentication.
         /// * `CloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        ///   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        ///   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// * `PeerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
         ///   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// </summary>
@@ -242,7 +242,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         /// * `Auth` - Properties with all data needed to define IPSec Authentication.
         ///     * `Method` - The authentication method to use for IPSec Authentication.
         /// * `CloudNetworkCidrs` - The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        ///   tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        ///   tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// * `PeerNetworkCidrs` - The network CIDRs on the "Right" side that are allowed to connect to the IPSec
         ///   tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses.
         /// </summary>

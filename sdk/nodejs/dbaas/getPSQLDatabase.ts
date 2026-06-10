@@ -91,7 +91,7 @@ export interface GetPSQLDatabaseOutputArgs {
      * [string] The ID of the cluster.
      */
     clusterId: pulumi.Input<string>;
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * [string] Name of an existing database that you want to search for.
      */

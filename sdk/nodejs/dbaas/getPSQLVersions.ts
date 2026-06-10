@@ -104,5 +104,5 @@ export interface GetPSQLVersionsOutputArgs {
      *
      * If `clusterId` is not provided the data source will return the list of postgres version for all cluster.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
 }

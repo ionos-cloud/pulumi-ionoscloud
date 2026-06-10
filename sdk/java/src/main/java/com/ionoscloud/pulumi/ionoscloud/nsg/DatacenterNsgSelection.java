@@ -15,11 +15,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Links a Network Security Group to a IonosCloud datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
+ * Links a Network Security Group to a IONOS CLOUD datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
  * 
  * ## Example Usage
  * 
- * A Network Security Group can be linked to a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-go=&#34;`compute.Datacenter`&#34; pulumi-lang-python=&#34;`compute.Datacenter`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Datacenter`&#34;&gt;`ionoscloud.compute.Datacenter`&lt;/span&gt; with this resource.
+ * A Network Security Group can be linked to a &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-go=&#34;`compute.Datacenter`&#34; pulumi-lang-python=&#34;`compute.Datacenter`&#34; pulumi-lang-yaml=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-java=&#34;`ionoscloud.compute.Datacenter`&#34; pulumi-lang-hcl=&#34;`ionoscloud_datacenter`&#34;&gt;`ionoscloud.compute.Datacenter`&lt;/span&gt; with this resource.
  * Deleting the resource will unlink the NSG from the datacenter.
  * 
  * ### Select an external volume
@@ -37,8 +37,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.NsgArgs;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.DatacenterNsgSelection;
  * import com.ionoscloud.pulumi.ionoscloud.nsg.DatacenterNsgSelectionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -157,7 +157,7 @@ public class DatacenterNsgSelection extends com.pulumi.resources.CustomResource 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .pluginDownloadURL("github://api.github.com/ionos-cloud")
+            .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

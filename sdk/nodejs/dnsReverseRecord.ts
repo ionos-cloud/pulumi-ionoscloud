@@ -120,15 +120,15 @@ export interface DnsReverseRecordState {
     /**
      * [string] Description stored along with the reverse DNS record to describe its usage.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies for which IP address the reverse record should be created. The IP addresses needs to be owned by the contract.
      */
-    ip?: pulumi.Input<string>;
+    ip?: pulumi.Input<string | undefined>;
     /**
      * [string] The reverse DNS record name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -138,7 +138,7 @@ export interface DnsReverseRecordArgs {
     /**
      * [string] Description stored along with the reverse DNS record to describe its usage.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * [string] Specifies for which IP address the reverse record should be created. The IP addresses needs to be owned by the contract.
      */
@@ -146,5 +146,5 @@ export interface DnsReverseRecordArgs {
     /**
      * [string] The reverse DNS record name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
