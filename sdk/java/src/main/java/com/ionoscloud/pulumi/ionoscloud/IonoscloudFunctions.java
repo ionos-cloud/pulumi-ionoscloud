@@ -36,7 +36,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class IonoscloudFunctions {
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -111,7 +111,7 @@ public final class IonoscloudFunctions {
         return getContracts(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -186,7 +186,7 @@ public final class IonoscloudFunctions {
         return getContractsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -261,7 +261,7 @@ public final class IonoscloudFunctions {
         return getContracts(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -336,7 +336,7 @@ public final class IonoscloudFunctions {
         return getContractsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -411,7 +411,7 @@ public final class IonoscloudFunctions {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 
@@ -486,7 +486,7 @@ public final class IonoscloudFunctions {
         return Deployment.getInstance().invoke("ionoscloud:index/getContracts:getContracts", TypeShape.of(GetContractsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+     * The &lt;span pulumi-lang-nodejs=&#34;`contracts`&#34; pulumi-lang-dotnet=&#34;`Contracts`&#34; pulumi-lang-go=&#34;`contracts`&#34; pulumi-lang-python=&#34;`contracts`&#34; pulumi-lang-yaml=&#34;`contracts`&#34; pulumi-lang-java=&#34;`contracts`&#34; pulumi-lang-hcl=&#34;`contracts`&#34;&gt;`contracts`&lt;/span&gt; data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
      * 
      * ## Example Usage
      * 

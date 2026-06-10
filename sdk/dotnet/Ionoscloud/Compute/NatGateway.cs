@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IonosCloud.
+    /// Manages a [Nat Gateway](https://docs.ionos.com/cloud/network-services/nat-gateway/overview) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

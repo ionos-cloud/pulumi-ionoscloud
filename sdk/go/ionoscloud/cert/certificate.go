@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
+// Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IONOS CLOUD.
 //
 // ## Example Usage
 //

@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
+ * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IONOS CLOUD.
  *
  * ## Example Usage
  *

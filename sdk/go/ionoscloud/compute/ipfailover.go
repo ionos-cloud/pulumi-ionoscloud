@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **IP Failover** groups on IonosCloud.
+// Manages **IP Failover** groups on IONOS CLOUD.
 //
 // ## Example Usage
 //

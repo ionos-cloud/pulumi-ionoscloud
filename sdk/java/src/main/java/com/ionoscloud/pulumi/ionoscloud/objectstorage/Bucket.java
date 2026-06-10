@@ -18,9 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
- * 
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -65,6 +63,15 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
+ * 
+ * ### Identity Schema
+ * 
+ * #### Required
+ * 
+ * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; (String) Name of the bucket.
+ * * &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34; pulumi-lang-hcl=&#34;`region`&#34;&gt;`region`&lt;/span&gt; (String) Region where the bucket is located.
+ * 
+ * ***
  * 
  * A bucket can be imported using the `bucket name` and the &lt;span pulumi-lang-nodejs=&#34;`region`&#34; pulumi-lang-dotnet=&#34;`Region`&#34; pulumi-lang-go=&#34;`region`&#34; pulumi-lang-python=&#34;`region`&#34; pulumi-lang-yaml=&#34;`region`&#34; pulumi-lang-java=&#34;`region`&#34; pulumi-lang-hcl=&#34;`region`&#34;&gt;`region`&lt;/span&gt;:
  * 

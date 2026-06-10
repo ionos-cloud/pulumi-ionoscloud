@@ -64,7 +64,7 @@ public final class GetGPUServerResult {
      * @return The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
      * 
      */
-    private @Nullable String templateUuid;
+    private String templateUuid;
     private String token;
     /**
      * @return Status of the virtual Machine
@@ -155,8 +155,8 @@ public final class GetGPUServerResult {
      * @return The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
      * 
      */
-    public Optional<String> templateUuid() {
-        return Optional.ofNullable(this.templateUuid);
+    public String templateUuid() {
+        return this.templateUuid;
     }
     public String token() {
         return this.token;
@@ -200,7 +200,7 @@ public final class GetGPUServerResult {
         private List<GetGPUServerNic> nics;
         private Integer ram;
         private List<String> securityGroupsIds;
-        private @Nullable String templateUuid;
+        private String templateUuid;
         private String token;
         private String vmState;
         private List<GetGPUServerVolume> volumes;
@@ -356,8 +356,10 @@ public final class GetGPUServerResult {
             return securityGroupsIds(List.of(securityGroupsIds));
         }
         @CustomType.Setter
-        public Builder templateUuid(@Nullable String templateUuid) {
-
+        public Builder templateUuid(String templateUuid) {
+            if (templateUuid == null) {
+              throw new MissingRequiredPropertyException("GetGPUServerResult", "templateUuid");
+            }
             this.templateUuid = templateUuid;
             return this;
         }

@@ -139,7 +139,7 @@ class DatacenterNsgSelection(pulumi.CustomResource):
                  nsg_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Links a Network Security Group to a IonosCloud datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
+        Links a Network Security Group to a IONOS CLOUD datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
 
         ## Example Usage
 
@@ -177,7 +177,7 @@ class DatacenterNsgSelection(pulumi.CustomResource):
                  args: DatacenterNsgSelectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Links a Network Security Group to a IonosCloud datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
+        Links a Network Security Group to a IONOS CLOUD datacenter. The datacenter can only have one linked NSG. To set a new NSG for the datacenter, the current one will be unlinked.
 
         ## Example Usage
 

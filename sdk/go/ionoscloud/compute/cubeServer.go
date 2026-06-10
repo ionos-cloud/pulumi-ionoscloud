@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+// A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS CLOUD products.
 //
 // Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
 //
@@ -295,7 +295,7 @@ type CubeServer struct {
 	PrimaryNic pulumi.StringOutput `pulumi:"primaryNic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayOutput `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid pulumi.StringOutput `pulumi:"templateUuid"`
@@ -400,7 +400,7 @@ type cubeServerState struct {
 	PrimaryNic *string `pulumi:"primaryNic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid *string `pulumi:"templateUuid"`
@@ -457,7 +457,7 @@ type CubeServerState struct {
 	PrimaryNic pulumi.StringPtrInput
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayInput
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayInput
 	// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid pulumi.StringPtrInput
@@ -508,7 +508,7 @@ type cubeServerArgs struct {
 	Nic CubeServerNic `pulumi:"nic"`
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
 	// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid string `pulumi:"templateUuid"`
@@ -556,7 +556,7 @@ type CubeServerArgs struct {
 	Nic CubeServerNicInput
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds pulumi.StringArrayInput
-	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 	SshKeyPaths pulumi.StringArrayInput
 	// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
 	TemplateUuid pulumi.StringInput
@@ -750,7 +750,7 @@ func (o CubeServerOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CubeServer) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
-// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
 func (o CubeServerOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CubeServer) pulumi.StringArrayOutput { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
 }

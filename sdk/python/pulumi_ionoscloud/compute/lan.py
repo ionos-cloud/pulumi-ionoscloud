@@ -290,7 +290,7 @@ class Lan(pulumi.CustomResource):
                  public: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
-        Manages a **LAN** on IonosCloud.
+        Manages a **LAN** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -362,7 +362,7 @@ class Lan(pulumi.CustomResource):
                  args: LanArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **LAN** on IonosCloud.
+        Manages a **LAN** on IONOS CLOUD.
 
         ## Example Usage
 

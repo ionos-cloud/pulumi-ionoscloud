@@ -90,8 +90,6 @@ type LookupCubeServerArgs struct {
 	Location *string `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name *string `pulumi:"name"`
-	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-	TemplateUuid *string `pulumi:"templateUuid"`
 }
 
 // A collection of values returned by getCubeServer.
@@ -121,8 +119,8 @@ type LookupCubeServerResult struct {
 	// The list of Security Group IDs for the resource.
 	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-	TemplateUuid *string `pulumi:"templateUuid"`
-	Token        string  `pulumi:"token"`
+	TemplateUuid string `pulumi:"templateUuid"`
+	Token        string `pulumi:"token"`
 	// Status of the virtual Machine
 	VmState string `pulumi:"vmState"`
 	// list of
@@ -150,8 +148,6 @@ type LookupCubeServerOutputArgs struct {
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of an existing server that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-	TemplateUuid pulumi.StringPtrInput `pulumi:"templateUuid"`
 }
 
 func (LookupCubeServerOutputArgs) ElementType() reflect.Type {
@@ -243,8 +239,8 @@ func (o LookupCubeServerResultOutput) SecurityGroupsIds() pulumi.StringArrayOutp
 }
 
 // The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-func (o LookupCubeServerResultOutput) TemplateUuid() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCubeServerResult) *string { return v.TemplateUuid }).(pulumi.StringPtrOutput)
+func (o LookupCubeServerResultOutput) TemplateUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCubeServerResult) string { return v.TemplateUuid }).(pulumi.StringOutput)
 }
 
 func (o LookupCubeServerResultOutput) Token() pulumi.StringOutput {

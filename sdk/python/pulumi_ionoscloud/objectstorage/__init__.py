@@ -17,9 +17,11 @@ from .get_bucket import *
 from .get_bucket_policy import *
 from .get_object import *
 from .get_objects import *
+from .get_user_bucket import *
 from .object_copy import *
 from .object_lock_configuration import *
 from .public_access_block import *
+from .user_bucket import *
 from .website_configuration import *
 from ._inputs import *
 from . import outputs

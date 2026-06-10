@@ -6742,8 +6742,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -6787,8 +6786,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -6832,8 +6830,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -6877,8 +6874,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -6922,8 +6918,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -6967,8 +6962,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -7012,8 +7006,7 @@ public final class ComputeFunctions {
     }
     /**
      * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * If a single match is found, it will be returned. If your search results in multiple matches, the first location from the list will be returned.
      * 
      * ## Example Usage
      * 
@@ -8291,7 +8284,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:compute/getNic:getNic", TypeShape.of(GetNicResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8406,7 +8399,7 @@ public final class ComputeFunctions {
         return getResource(GetResourceArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8521,7 +8514,7 @@ public final class ComputeFunctions {
         return getResourcePlain(GetResourcePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8636,7 +8629,7 @@ public final class ComputeFunctions {
         return getResource(args, InvokeOptions.Empty);
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8751,7 +8744,7 @@ public final class ComputeFunctions {
         return getResourcePlain(args, InvokeOptions.Empty);
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8866,7 +8859,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getResource:getResource", TypeShape.of(GetResourceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -8981,7 +8974,7 @@ public final class ComputeFunctions {
         return Deployment.getInstance().invoke("ionoscloud:compute/getResource:getResource", TypeShape.of(GetResourceResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+     * The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
      * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.

@@ -65,7 +65,7 @@ class VCPUServerArgs:
                >
                > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         """
         pulumi.set(__self__, "cores", cores)
@@ -320,7 +320,7 @@ class VCPUServerArgs:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -399,7 +399,7 @@ class _VCPUServerState:
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input['VCPUServerVolumeArgs'] volume: See the Volume section.
         """
@@ -730,7 +730,7 @@ class _VCPUServerState:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -799,7 +799,7 @@ class VCPUServer(pulumi.CustomResource):
                  volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
 
         These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
 
@@ -857,16 +857,16 @@ class VCPUServer(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -926,7 +926,7 @@ class VCPUServer(pulumi.CustomResource):
                > ssh_keys field is immutable.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
@@ -937,7 +937,7 @@ class VCPUServer(pulumi.CustomResource):
                  args: VCPUServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS Cloud products.
+        A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
 
         These servers are configured with virtual CPUs and distributed among multiple users sharing the same physical server. The performance of your vCPU Server relies on various factors, including the underlying CPU of the physical server, VM configurations, and the current load on the physical server.
 
@@ -995,16 +995,16 @@ class VCPUServer(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             },
             labels=[
                 {
@@ -1189,7 +1189,7 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
         :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
@@ -1408,7 +1408,7 @@ class VCPUServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
         return pulumi.get(self, "ssh_keys")
 

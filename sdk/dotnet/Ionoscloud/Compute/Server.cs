@@ -96,16 +96,19 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
     ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
     ///             },
-    ///             Firewall = 
+    ///             Firewalls = new[]
     ///             {
-    ///                 { "protocol", "TCP" },
-    ///                 { "name", "SSH" },
-    ///                 { "portRangeStart", 22 },
-    ///                 { "portRangeEnd", 22 },
-    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
-    ///                 { "sourceIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[2]) },
-    ///                 { "targetIp", exampleIPBlock.Ips.Apply(ips =&gt; ips[3]) },
-    ///                 { "type", "EGRESS" },
+    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
+    ///                 {
+    ///                     Protocol = "TCP",
+    ///                     Name = "SSH",
+    ///                     PortRangeStart = 22,
+    ///                     PortRangeEnd = 22,
+    ///                     SourceMac = "00:0a:95:9d:68:17",
+    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
+    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
+    ///                     Type = "EGRESS",
+    ///                 },
     ///             },
     ///         },
     ///         Labels = new[]
@@ -239,16 +242,19 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///                     Host = 30,
     ///                 }).Result,
     ///             },
-    ///             Firewall = 
+    ///             Firewalls = new[]
     ///             {
-    ///                 { "protocol", "TCP" },
-    ///                 { "name", "SSH" },
-    ///                 { "portRangeStart", 22 },
-    ///                 { "portRangeEnd", 22 },
-    ///                 { "sourceMac", "00:0a:95:9d:68:17" },
-    ///                 { "sourceIp", webserverIpblock.Ips.Apply(ips =&gt; ips[2]) },
-    ///                 { "targetIp", webserverIpblock.Ips.Apply(ips =&gt; ips[3]) },
-    ///                 { "type", "EGRESS" },
+    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
+    ///                 {
+    ///                     Protocol = "TCP",
+    ///                     Name = "SSH",
+    ///                     PortRangeStart = 22,
+    ///                     PortRangeEnd = 22,
+    ///                     SourceMac = "00:0a:95:9d:68:17",
+    ///                     SourceIp = webserverIpblock.Ips.Apply(ips =&gt; ips[2]),
+    ///                     TargetIp = webserverIpblock.Ips.Apply(ips =&gt; ips[3]),
+    ///                     Type = "EGRESS",
+    ///                 },
     ///             },
     ///         },
     ///     });
@@ -543,13 +549,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<string>> SecurityGroupsIds { get; private set; } = null!;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         /// </summary>
         [Output("sshKeyPaths")]
         public Output<ImmutableArray<string>> SshKeyPaths { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         [Output("sshKeys")]
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
@@ -783,7 +789,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         /// </summary>
         [Obsolete(@"Will be renamed to SshKeys in the future, to allow users to set both the ssh key path or directly the ssh key")]
         public InputList<string> SshKeyPaths
@@ -796,7 +802,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         public InputList<string> SshKeys
         {
@@ -1026,7 +1032,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         /// </summary>
         [Obsolete(@"Will be renamed to SshKeys in the future, to allow users to set both the ssh key path or directly the ssh key")]
         public InputList<string> SshKeyPaths
@@ -1039,7 +1045,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         /// </summary>
         public InputList<string> SshKeys
         {

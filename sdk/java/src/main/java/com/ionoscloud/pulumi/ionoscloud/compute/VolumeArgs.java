@@ -240,14 +240,14 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Import(name="sshKeyPaths")
     private @Nullable Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Optional<Output<List<String>>> sshKeyPaths() {
@@ -255,14 +255,14 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Import(name="sshKeys")
     private @Nullable Output<List<String>> sshKeys;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Optional<Output<List<String>>> sshKeys() {
@@ -629,7 +629,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 
@@ -640,7 +640,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 
@@ -650,7 +650,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeyPaths [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 
@@ -660,7 +660,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 
@@ -671,7 +671,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 
@@ -681,7 +681,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+         * @param sshKeys [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
          * 
          * @return builder
          * 

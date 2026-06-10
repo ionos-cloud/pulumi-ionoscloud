@@ -468,7 +468,7 @@ class Firewall(pulumi.CustomResource):
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a **Network Security Group Rule** on IonosCloud.
+        Manages a **Network Security Group Rule** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -528,7 +528,7 @@ class Firewall(pulumi.CustomResource):
                  args: FirewallArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Security Group Rule** on IonosCloud.
+        Manages a **Network Security Group Rule** on IONOS CLOUD.
 
         ## Example Usage
 

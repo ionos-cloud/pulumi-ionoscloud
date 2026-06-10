@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+ * Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -68,7 +68,7 @@ import * as utilities from "../utilities";
  *             exampleIPBlock.ips[0],
  *             exampleIPBlock.ips[1],
  *         ],
- *         firewall: {
+ *         firewalls: [{
  *             protocol: "TCP",
  *             name: "SSH",
  *             portRangeStart: 22,
@@ -77,7 +77,7 @@ import * as utilities from "../utilities";
  *             sourceIp: exampleIPBlock.ips[2],
  *             targetIp: exampleIPBlock.ips[3],
  *             type: "EGRESS",
- *         },
+ *         }],
  *     },
  * });
  * const volumeImagePassword = new random.index.Password("volume_image_password", {
@@ -247,11 +247,11 @@ export class Volume extends pulumi.CustomResource {
      */
     declare public readonly size: pulumi.Output<number>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     declare public readonly sshKeyPaths: pulumi.Output<string[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     declare public readonly sshKeys: pulumi.Output<string[] | undefined>;
     /**
@@ -461,11 +461,11 @@ export interface VolumeState {
      */
     size?: pulumi.Input<number | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -544,11 +544,11 @@ export interface VolumeArgs {
      */
     size: pulumi.Input<number>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. This property is immutable.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**

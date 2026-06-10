@@ -1,6 +1,6 @@
 module github.com/ionos-cloud/pulumi-ionoscloud/provider
 
-go 1.26.0
+go 1.26.3
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
@@ -116,7 +116,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.8 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/go-version v1.9.0 // indirect
-	github.com/hashicorp/hc-install v0.9.4 // indirect
+	github.com/hashicorp/hc-install v0.9.5 // indirect
 	github.com/hashicorp/hcl v1.0.1-vault-7 // indirect
 	github.com/hashicorp/hcl/v2 v2.24.0 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
@@ -125,14 +125,14 @@ require (
 	github.com/hashicorp/terraform-json v0.27.2 // indirect
 	github.com/hashicorp/terraform-plugin-framework v1.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework-jsontypes v0.2.0 // indirect
-	github.com/hashicorp/terraform-plugin-framework-timeouts v0.5.0 // indirect
-	github.com/hashicorp/terraform-plugin-framework-validators v0.17.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-timeouts v0.7.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.31.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.10.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.40.1 // indirect
-	github.com/hashicorp/terraform-plugin-testing v1.13.2 // indirect
+	github.com/hashicorp/terraform-plugin-testing v1.16.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.4.0 // indirect
-	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
+	github.com/hashicorp/terraform-svchost v0.2.1 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
@@ -144,18 +144,20 @@ require (
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/inmemorydb/v2 v2.0.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mariadb/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mongo/v2 v2.1.1 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v2 v2.0.5 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v2 v2.1.0 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v3 v3.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dns/v2 v2.2.2 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/kafka/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/logging/v2 v2.2.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/monitoring/v2 v2.0.0 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/products/nfs/v2 v2.0.0 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/nfs/v2 v2.0.2 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/objectstorage/v2 v2.0.3 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/objectstoragemanagement/v2 v2.0.1 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/userobjectstorage/v2 v2.0.5 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vmautoscaling/v2 v2.0.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vpn/v2 v2.0.2 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.8 // indirect
-	github.com/ionos-cloud/sdk-go/v6 v6.3.6 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.10 // indirect
+	github.com/ionos-cloud/sdk-go/v6 v6.3.7 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -182,7 +184,7 @@ require (
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/muesli/termenv v0.16.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/oklog/run v1.1.0 // indirect
+	github.com/oklog/run v1.2.0 // indirect
 	github.com/olekukonko/cat v0.0.0-20250911104152-50322a0618f6 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.1.4-0.20260115111900-9e59c2286df0 // indirect
@@ -270,6 +272,7 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260526163538-3dc84a4a5aaa // indirect
 	google.golang.org/grpc v1.81.1 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
+	gopkg.in/validator.v2 v2.0.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.5.1 // indirect

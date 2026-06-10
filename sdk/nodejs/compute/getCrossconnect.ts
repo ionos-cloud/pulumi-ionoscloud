@@ -37,7 +37,6 @@ export function getCrossconnect(args?: GetCrossconnectArgs, opts?: pulumi.Invoke
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getCrossconnect:getCrossconnect", {
-        "description": args.description,
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -48,10 +47,6 @@ export function getCrossconnect(args?: GetCrossconnectArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getCrossconnect.
  */
 export interface GetCrossconnectArgs {
-    /**
-     * Description of cross connect
-     */
-    description?: string;
     /**
      * ID of the cross connect you want to search for.
      *
@@ -128,7 +123,6 @@ export function getCrossconnectOutput(args?: GetCrossconnectOutputArgs, opts?: p
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getCrossconnect:getCrossconnect", {
-        "description": args.description,
         "id": args.id,
         "location": args.location,
         "name": args.name,
@@ -139,10 +133,6 @@ export function getCrossconnectOutput(args?: GetCrossconnectOutputArgs, opts?: p
  * A collection of arguments for invoking getCrossconnect.
  */
 export interface GetCrossconnectOutputArgs {
-    /**
-     * Description of cross connect
-     */
-    description?: pulumi.Input<string | undefined>;
     /**
      * ID of the cross connect you want to search for.
      *

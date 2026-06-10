@@ -19,7 +19,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage.Outputs
         /// </summary>
         public readonly string? Create;
         /// <summary>
-        /// [string] Time to wait for the bucket to be deleted. Default is `10m`.
+        /// [string] Time to wait for the bucket to be deleted. Default is `60m`.
         /// </summary>
         public readonly string? Delete;
         /// <summary>

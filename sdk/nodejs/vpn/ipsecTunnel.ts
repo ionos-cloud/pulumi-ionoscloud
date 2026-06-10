@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
- * IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+ * IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
  * connections between your network resources.
  *
  * ## Usage example
@@ -114,7 +114,7 @@ export class IpsecTunnel extends pulumi.CustomResource {
     declare public readonly auth: pulumi.Output<outputs.vpn.IpsecTunnelAuth>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
     declare public readonly cloudNetworkCidrs: pulumi.Output<string[]>;
@@ -225,7 +225,7 @@ export interface IpsecTunnelState {
     auth?: pulumi.Input<inputs.vpn.IpsecTunnelAuth | undefined>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
     cloudNetworkCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -275,7 +275,7 @@ export interface IpsecTunnelArgs {
     auth: pulumi.Input<inputs.vpn.IpsecTunnelAuth>;
     /**
      * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+     * tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
      * Maximum items: 20.
      */
     cloudNetworkCidrs: pulumi.Input<pulumi.Input<string>[]>;

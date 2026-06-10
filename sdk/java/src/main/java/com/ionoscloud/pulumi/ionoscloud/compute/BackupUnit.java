@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IonosCloud.
+ * Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

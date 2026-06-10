@@ -44,10 +44,15 @@ public final class GetClusterResult {
     private List<GetClusterNf> nfs;
     private @Nullable Boolean partialMatch;
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34; pulumi-lang-hcl=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
+     * @return The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      * 
      */
     private Integer size;
+    /**
+     * @return The unit of the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34; pulumi-lang-hcl=&#34;`size`&#34;&gt;`size`&lt;/span&gt; attribute. Possible values: `TiB`, `GiB`.
+     * 
+     */
+    private String sizeUnit;
 
     private GetClusterResult() {}
     /**
@@ -89,11 +94,18 @@ public final class GetClusterResult {
         return Optional.ofNullable(this.partialMatch);
     }
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34; pulumi-lang-hcl=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
+     * @return The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      * 
      */
     public Integer size() {
         return this.size;
+    }
+    /**
+     * @return The unit of the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34; pulumi-lang-hcl=&#34;`size`&#34;&gt;`size`&lt;/span&gt; attribute. Possible values: `TiB`, `GiB`.
+     * 
+     */
+    public String sizeUnit() {
+        return this.sizeUnit;
     }
 
     public static Builder builder() {
@@ -112,6 +124,7 @@ public final class GetClusterResult {
         private List<GetClusterNf> nfs;
         private @Nullable Boolean partialMatch;
         private Integer size;
+        private String sizeUnit;
         public Builder() {}
         public Builder(GetClusterResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -122,6 +135,7 @@ public final class GetClusterResult {
     	      this.nfs = defaults.nfs;
     	      this.partialMatch = defaults.partialMatch;
     	      this.size = defaults.size;
+    	      this.sizeUnit = defaults.sizeUnit;
         }
 
         @CustomType.Setter
@@ -184,6 +198,14 @@ public final class GetClusterResult {
             this.size = size;
             return this;
         }
+        @CustomType.Setter
+        public Builder sizeUnit(String sizeUnit) {
+            if (sizeUnit == null) {
+              throw new MissingRequiredPropertyException("GetClusterResult", "sizeUnit");
+            }
+            this.sizeUnit = sizeUnit;
+            return this;
+        }
         public GetClusterResult build() {
             final var _resultValue = new GetClusterResult();
             _resultValue.connections = connections;
@@ -193,6 +215,7 @@ public final class GetClusterResult {
             _resultValue.nfs = nfs;
             _resultValue.partialMatch = partialMatch;
             _resultValue.size = size;
+            _resultValue.sizeUnit = sizeUnit;
             return _resultValue;
         }
     }

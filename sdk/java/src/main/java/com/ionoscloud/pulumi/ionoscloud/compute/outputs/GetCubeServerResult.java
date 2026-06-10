@@ -72,7 +72,7 @@ public final class GetCubeServerResult {
      * @return The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      * 
      */
-    private @Nullable String templateUuid;
+    private String templateUuid;
     private String token;
     /**
      * @return Status of the virtual Machine
@@ -171,8 +171,8 @@ public final class GetCubeServerResult {
      * @return The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
      * 
      */
-    public Optional<String> templateUuid() {
-        return Optional.ofNullable(this.templateUuid);
+    public String templateUuid() {
+        return this.templateUuid;
     }
     public String token() {
         return this.token;
@@ -216,7 +216,7 @@ public final class GetCubeServerResult {
         private List<GetCubeServerNic> nics;
         private Integer ram;
         private List<String> securityGroupsIds;
-        private @Nullable String templateUuid;
+        private String templateUuid;
         private String token;
         private String vmState;
         private List<GetCubeServerVolume> volumes;
@@ -372,8 +372,10 @@ public final class GetCubeServerResult {
             return securityGroupsIds(List.of(securityGroupsIds));
         }
         @CustomType.Setter
-        public Builder templateUuid(@Nullable String templateUuid) {
-
+        public Builder templateUuid(String templateUuid) {
+            if (templateUuid == null) {
+              throw new MissingRequiredPropertyException("GetCubeServerResult", "templateUuid");
+            }
             this.templateUuid = templateUuid;
             return this;
         }

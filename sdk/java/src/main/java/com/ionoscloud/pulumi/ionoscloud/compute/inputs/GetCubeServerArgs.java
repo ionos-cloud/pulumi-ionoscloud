@@ -80,21 +80,6 @@ public final class GetCubeServerArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     * 
-     */
-    @Import(name="templateUuid")
-    private @Nullable Output<String> templateUuid;
-
-    /**
-     * @return The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     * 
-     */
-    public Optional<Output<String>> templateUuid() {
-        return Optional.ofNullable(this.templateUuid);
-    }
-
     private GetCubeServerArgs() {}
 
     private GetCubeServerArgs(GetCubeServerArgs $) {
@@ -102,7 +87,6 @@ public final class GetCubeServerArgs extends com.pulumi.resources.InvokeArgs {
         this.id = $.id;
         this.location = $.location;
         this.name = $.name;
-        this.templateUuid = $.templateUuid;
     }
 
     public static Builder builder() {
@@ -209,27 +193,6 @@ public final class GetCubeServerArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
-        }
-
-        /**
-         * @param templateUuid The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-         * 
-         * @return builder
-         * 
-         */
-        public Builder templateUuid(@Nullable Output<String> templateUuid) {
-            $.templateUuid = templateUuid;
-            return this;
-        }
-
-        /**
-         * @param templateUuid The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-         * 
-         * @return builder
-         * 
-         */
-        public Builder templateUuid(String templateUuid) {
-            return templateUuid(Output.of(templateUuid));
         }
 
         public GetCubeServerArgs build() {

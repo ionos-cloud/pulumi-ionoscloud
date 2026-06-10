@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
     public static class GetShare
     {
         /// <summary>
-        /// Returns information about shares of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 
@@ -39,7 +39,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetShareResult>("ionoscloud:nfs/getShare:getShare", args ?? new GetShareArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns information about shares of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 
@@ -65,7 +65,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:nfs/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns information about shares of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 

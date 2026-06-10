@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+// Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
 //
 // ## By ID
 //
@@ -74,8 +74,10 @@ type LookupClusterResult struct {
 	// The NFS configuration for the Network File Storage cluster. Each NFS configuration supports the following:
 	Nfs          []GetClusterNf `pulumi:"nfs"`
 	PartialMatch *bool          `pulumi:"partialMatch"`
-	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+	// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 	Size int `pulumi:"size"`
+	// The unit of the `size` attribute. Possible values: `TiB`, `GiB`.
+	SizeUnit string `pulumi:"sizeUnit"`
 }
 
 func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts ...pulumi.InvokeOption) LookupClusterResultOutput {
@@ -147,9 +149,14 @@ func (o LookupClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
 func (o LookupClusterResultOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupClusterResult) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The unit of the `size` attribute. Possible values: `TiB`, `GiB`.
+func (o LookupClusterResultOutput) SizeUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.SizeUnit }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **Groups** and **Group Privileges** on IonosCloud.
+// Manages **Groups** and **Group Privileges** on IONOS CLOUD.
 //
 // ## Example Usage
 //

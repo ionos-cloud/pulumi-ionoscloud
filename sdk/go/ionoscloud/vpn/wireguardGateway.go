@@ -14,7 +14,7 @@ import (
 
 // ## Overview
 //
-// The `vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+// The `vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS CLOUD infrastructure.
 // This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
 //
 // ## Example Usage

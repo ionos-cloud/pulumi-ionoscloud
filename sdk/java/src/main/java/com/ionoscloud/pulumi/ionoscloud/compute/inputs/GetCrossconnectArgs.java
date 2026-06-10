@@ -16,21 +16,6 @@ public final class GetCrossconnectArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetCrossconnectArgs Empty = new GetCrossconnectArgs();
 
     /**
-     * Description of cross connect
-     * 
-     */
-    @Import(name="description")
-    private @Nullable Output<String> description;
-
-    /**
-     * @return Description of cross connect
-     * 
-     */
-    public Optional<Output<String>> description() {
-        return Optional.ofNullable(this.description);
-    }
-
-    /**
      * ID of the cross connect you want to search for.
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
@@ -82,7 +67,6 @@ public final class GetCrossconnectArgs extends com.pulumi.resources.InvokeArgs {
     private GetCrossconnectArgs() {}
 
     private GetCrossconnectArgs(GetCrossconnectArgs $) {
-        this.description = $.description;
         this.id = $.id;
         this.location = $.location;
         this.name = $.name;
@@ -104,27 +88,6 @@ public final class GetCrossconnectArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetCrossconnectArgs defaults) {
             $ = new GetCrossconnectArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param description Description of cross connect
-         * 
-         * @return builder
-         * 
-         */
-        public Builder description(@Nullable Output<String> description) {
-            $.description = description;
-            return this;
-        }
-
-        /**
-         * @param description Description of cross connect
-         * 
-         * @return builder
-         * 
-         */
-        public Builder description(String description) {
-            return description(Output.of(description));
         }
 
         /**

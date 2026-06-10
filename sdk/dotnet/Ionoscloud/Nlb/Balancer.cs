@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
 {
     /// <summary>
-    /// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+    /// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -162,7 +162,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
         /// Specifies the format of the logs.
         /// </summary>
         [Output("loggingFormat")]
-        public Output<string?> LoggingFormat { get; private set; } = null!;
+        public Output<string> LoggingFormat { get; private set; } = null!;
 
         /// <summary>
         /// [string] A name of that Network Load Balancer.

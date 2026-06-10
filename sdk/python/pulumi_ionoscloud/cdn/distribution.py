@@ -189,7 +189,7 @@ class Distribution(pulumi.CustomResource):
                  routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
+        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -267,7 +267,7 @@ class Distribution(pulumi.CustomResource):
                  args: DistributionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
+        Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IONOS CLOUD.
 
         ## Example Usage
 

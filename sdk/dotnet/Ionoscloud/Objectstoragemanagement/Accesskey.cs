@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
 {
     /// <summary>
-    /// Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
+    /// Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -32,6 +32,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// ### Identity Schema
+    /// 
+    /// #### Required
+    /// 
+    /// * `Id` (String) The ID (UUID) of the AccessKey.
+    /// 
+    /// ***
     /// 
     /// An object storage accesskey resource can be imported using its `resource id`, e.g.
     /// 

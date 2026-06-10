@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IonosCloud.
+ * Manages a [Kafka Cluster](https://docs.ionos.com/cloud/data-analytics/kafka/overview) on IONOS CLOUD.
  *
  * ## Example Usage
  *

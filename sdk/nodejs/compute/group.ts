@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages **Groups** and **Group Privileges** on IonosCloud.
+ * Manages **Groups** and **Group Privileges** on IONOS CLOUD.
  *
  * ## Example Usage
  *

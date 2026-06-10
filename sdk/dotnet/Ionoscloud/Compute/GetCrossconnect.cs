@@ -149,12 +149,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     public sealed class GetCrossconnectArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Description of cross connect
-        /// </summary>
-        [Input("description")]
-        public string? Description { get; set; }
-
-        /// <summary>
         /// ID of the cross connect you want to search for.
         /// 
         /// Either `Name` or `Id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -182,12 +176,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
     public sealed class GetCrossconnectInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Description of cross connect
-        /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
-
         /// <summary>
         /// ID of the cross connect you want to search for.
         /// 

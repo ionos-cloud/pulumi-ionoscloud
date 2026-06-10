@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a set of **Firewall Rules** on IonosCloud.
+ * Manages a set of **Firewall Rules** on IONOS CLOUD.
  *
  * ## Example Usage
  *

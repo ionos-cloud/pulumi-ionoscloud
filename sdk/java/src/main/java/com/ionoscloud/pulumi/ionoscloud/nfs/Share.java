@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+ * Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -72,7 +72,8 @@ import javax.annotation.Nullable;
  *         var example = new Cluster("example", ClusterArgs.builder()
  *             .name("test")
  *             .location("de/txl")
- *             .size(2)
+ *             .size(2048)
+ *             .sizeUnit("GiB")
  *             .nfs(ClusterNfsArgs.builder()
  *                 .minVersion("4.2")
  *                 .build())

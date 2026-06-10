@@ -18,10 +18,18 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoTemplateArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoTemplatePlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoUserArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoUserPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLDatabaseArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLDatabasePlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLDatabasesArgs;
@@ -30,6 +38,8 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLUserArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLUserPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBReplicaSetResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInmemorydbSnapshotResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBBackupsResult;
@@ -37,12 +47,17 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoClusterResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoTemplateResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoUserResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLBackupLocationV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLBackupsResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLBackupsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLClusterResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLClusterV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLClustersV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLDatabaseResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLDatabasesResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLUserResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLVersionsResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetPSQLVersionsV2Result;
 import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
@@ -3549,6 +3564,221 @@ public final class DbaasFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMongoUser:getMongoUser", TypeShape.of(GetMongoUserResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * The **DBaaS PostgreSQL v2 Backup Locations data source** can be used to retrieve the list of available backup locations.
+     * Use this data source to find valid values for the &lt;span pulumi-lang-nodejs=&#34;`backupLocation`&#34; pulumi-lang-dotnet=&#34;`BackupLocation`&#34; pulumi-lang-go=&#34;`backupLocation`&#34; pulumi-lang-python=&#34;`backup_location`&#34; pulumi-lang-yaml=&#34;`backupLocation`&#34; pulumi-lang-java=&#34;`backupLocation`&#34; pulumi-lang-hcl=&#34;`backup_location`&#34;&gt;`backupLocation`&lt;/span&gt; attribute of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_pg_cluster_v2`&#34;&gt;`ionoscloud.dbaas.PSQLClusterV2`&lt;/span&gt; resource.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupLocationV2Result> getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args args) {
+        return getPSQLBackupLocationV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backup Locations data source** can be used to retrieve the list of available backup locations.
+     * Use this data source to find valid values for the &lt;span pulumi-lang-nodejs=&#34;`backupLocation`&#34; pulumi-lang-dotnet=&#34;`BackupLocation`&#34; pulumi-lang-go=&#34;`backupLocation`&#34; pulumi-lang-python=&#34;`backup_location`&#34; pulumi-lang-yaml=&#34;`backupLocation`&#34; pulumi-lang-java=&#34;`backupLocation`&#34; pulumi-lang-hcl=&#34;`backup_location`&#34;&gt;`backupLocation`&lt;/span&gt; attribute of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_pg_cluster_v2`&#34;&gt;`ionoscloud.dbaas.PSQLClusterV2`&lt;/span&gt; resource.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLBackupLocationV2Result> getPSQLBackupLocationV2Plain(GetPSQLBackupLocationV2PlainArgs args) {
+        return getPSQLBackupLocationV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backup Locations data source** can be used to retrieve the list of available backup locations.
+     * Use this data source to find valid values for the &lt;span pulumi-lang-nodejs=&#34;`backupLocation`&#34; pulumi-lang-dotnet=&#34;`BackupLocation`&#34; pulumi-lang-go=&#34;`backupLocation`&#34; pulumi-lang-python=&#34;`backup_location`&#34; pulumi-lang-yaml=&#34;`backupLocation`&#34; pulumi-lang-java=&#34;`backupLocation`&#34; pulumi-lang-hcl=&#34;`backup_location`&#34;&gt;`backupLocation`&lt;/span&gt; attribute of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_pg_cluster_v2`&#34;&gt;`ionoscloud.dbaas.PSQLClusterV2`&lt;/span&gt; resource.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupLocationV2Result> getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2", TypeShape.of(GetPSQLBackupLocationV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backup Locations data source** can be used to retrieve the list of available backup locations.
+     * Use this data source to find valid values for the &lt;span pulumi-lang-nodejs=&#34;`backupLocation`&#34; pulumi-lang-dotnet=&#34;`BackupLocation`&#34; pulumi-lang-go=&#34;`backupLocation`&#34; pulumi-lang-python=&#34;`backup_location`&#34; pulumi-lang-yaml=&#34;`backupLocation`&#34; pulumi-lang-java=&#34;`backupLocation`&#34; pulumi-lang-hcl=&#34;`backup_location`&#34;&gt;`backupLocation`&lt;/span&gt; attribute of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_pg_cluster_v2`&#34;&gt;`ionoscloud.dbaas.PSQLClusterV2`&lt;/span&gt; resource.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupLocationV2Result> getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2", TypeShape.of(GetPSQLBackupLocationV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backup Locations data source** can be used to retrieve the list of available backup locations.
+     * Use this data source to find valid values for the &lt;span pulumi-lang-nodejs=&#34;`backupLocation`&#34; pulumi-lang-dotnet=&#34;`BackupLocation`&#34; pulumi-lang-go=&#34;`backupLocation`&#34; pulumi-lang-python=&#34;`backup_location`&#34; pulumi-lang-yaml=&#34;`backupLocation`&#34; pulumi-lang-java=&#34;`backupLocation`&#34; pulumi-lang-hcl=&#34;`backup_location`&#34;&gt;`backupLocation`&lt;/span&gt; attribute of the &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.PSQLClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.PSQLClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_pg_cluster_v2`&#34;&gt;`ionoscloud.dbaas.PSQLClusterV2`&lt;/span&gt; resource.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupLocationV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupLocationV2(GetPSQLBackupLocationV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLBackupLocationV2Result> getPSQLBackupLocationV2Plain(GetPSQLBackupLocationV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2", TypeShape.of(GetPSQLBackupLocationV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
      * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
      * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
      * When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -3767,6 +3997,401 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetPSQLBackupsResult> getPSQLBackupsPlain(GetPSQLBackupsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", TypeShape.of(GetPSQLBackupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backups data source** can be used to list existing DBaaS PostgreSQL v2 Backups.
+     * An optional cluster ID filter can be used to narrow down results to backups of a specific cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all backups in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### List backups for a specific cluster
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("cluster_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupsV2Result> getPSQLBackupsV2(GetPSQLBackupsV2Args args) {
+        return getPSQLBackupsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backups data source** can be used to list existing DBaaS PostgreSQL v2 Backups.
+     * An optional cluster ID filter can be used to narrow down results to backups of a specific cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all backups in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### List backups for a specific cluster
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("cluster_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLBackupsV2Result> getPSQLBackupsV2Plain(GetPSQLBackupsV2PlainArgs args) {
+        return getPSQLBackupsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backups data source** can be used to list existing DBaaS PostgreSQL v2 Backups.
+     * An optional cluster ID filter can be used to narrow down results to backups of a specific cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all backups in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### List backups for a specific cluster
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("cluster_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupsV2Result> getPSQLBackupsV2(GetPSQLBackupsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2", TypeShape.of(GetPSQLBackupsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backups data source** can be used to list existing DBaaS PostgreSQL v2 Backups.
+     * An optional cluster ID filter can be used to narrow down results to backups of a specific cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all backups in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### List backups for a specific cluster
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("cluster_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLBackupsV2Result> getPSQLBackupsV2(GetPSQLBackupsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2", TypeShape.of(GetPSQLBackupsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Backups data source** can be used to list existing DBaaS PostgreSQL v2 Backups.
+     * An optional cluster ID filter can be used to narrow down results to backups of a specific cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all backups in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### List backups for a specific cluster
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLBackupsV2(GetPSQLBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("cluster_id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLBackupsV2Result> getPSQLBackupsV2Plain(GetPSQLBackupsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2", TypeShape.of(GetPSQLBackupsV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
@@ -4327,6 +4952,806 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetPSQLClusterResult> getPSQLClusterPlain(GetPSQLClusterPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLCluster:getPSQLCluster", TypeShape.of(GetPSQLClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Cluster data source** can be used to search for and return an existing DBaaS PostgreSQL v2 Cluster.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .id("cluster_id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .name("cluster_name")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClusterV2Result> getPSQLClusterV2(GetPSQLClusterV2Args args) {
+        return getPSQLClusterV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Cluster data source** can be used to search for and return an existing DBaaS PostgreSQL v2 Cluster.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .id("cluster_id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .name("cluster_name")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLClusterV2Result> getPSQLClusterV2Plain(GetPSQLClusterV2PlainArgs args) {
+        return getPSQLClusterV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Cluster data source** can be used to search for and return an existing DBaaS PostgreSQL v2 Cluster.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .id("cluster_id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .name("cluster_name")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClusterV2Result> getPSQLClusterV2(GetPSQLClusterV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLClusterV2:getPSQLClusterV2", TypeShape.of(GetPSQLClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Cluster data source** can be used to search for and return an existing DBaaS PostgreSQL v2 Cluster.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .id("cluster_id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .name("cluster_name")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClusterV2Result> getPSQLClusterV2(GetPSQLClusterV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLClusterV2:getPSQLClusterV2", TypeShape.of(GetPSQLClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Cluster data source** can be used to search for and return an existing DBaaS PostgreSQL v2 Cluster.
+     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+     * When this happens, please refine your search string so that it is specific enough to return only one result.
+     * 
+     * ## Example Usage
+     * 
+     * ### By ID
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .id("cluster_id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By Name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClusterV2(GetPSQLClusterV2Args.builder()
+     *             .name("cluster_name")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLClusterV2Result> getPSQLClusterV2Plain(GetPSQLClusterV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLClusterV2:getPSQLClusterV2", TypeShape.of(GetPSQLClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Clusters data source** can be used to list existing DBaaS PostgreSQL v2 Clusters in a given location.
+     * An optional name filter can be used to narrow down results.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all clusters in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Filter clusters by name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("cluster_name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClustersV2Result> getPSQLClustersV2(GetPSQLClustersV2Args args) {
+        return getPSQLClustersV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Clusters data source** can be used to list existing DBaaS PostgreSQL v2 Clusters in a given location.
+     * An optional name filter can be used to narrow down results.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all clusters in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Filter clusters by name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("cluster_name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLClustersV2Result> getPSQLClustersV2Plain(GetPSQLClustersV2PlainArgs args) {
+        return getPSQLClustersV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Clusters data source** can be used to list existing DBaaS PostgreSQL v2 Clusters in a given location.
+     * An optional name filter can be used to narrow down results.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all clusters in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Filter clusters by name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("cluster_name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClustersV2Result> getPSQLClustersV2(GetPSQLClustersV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2", TypeShape.of(GetPSQLClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Clusters data source** can be used to list existing DBaaS PostgreSQL v2 Clusters in a given location.
+     * An optional name filter can be used to narrow down results.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all clusters in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Filter clusters by name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("cluster_name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLClustersV2Result> getPSQLClustersV2(GetPSQLClustersV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2", TypeShape.of(GetPSQLClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Clusters data source** can be used to list existing DBaaS PostgreSQL v2 Clusters in a given location.
+     * An optional name filter can be used to narrow down results.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all clusters in a location
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Filter clusters by name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLClustersV2(GetPSQLClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("cluster_name")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLClustersV2Result> getPSQLClustersV2Plain(GetPSQLClustersV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2", TypeShape.of(GetPSQLClustersV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The **PgSql Database data source** can be used to search for and return an existing PgSql database.
@@ -5679,5 +7104,215 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetPSQLVersionsResult> getPSQLVersionsPlain(GetPSQLVersionsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLVersions:getPSQLVersions", TypeShape.of(GetPSQLVersionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Versions data source** can be used to retrieve the list of available PostgreSQL versions.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLVersionsV2(GetPSQLVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLVersionsV2Result> getPSQLVersionsV2(GetPSQLVersionsV2Args args) {
+        return getPSQLVersionsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Versions data source** can be used to retrieve the list of available PostgreSQL versions.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLVersionsV2(GetPSQLVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLVersionsV2Result> getPSQLVersionsV2Plain(GetPSQLVersionsV2PlainArgs args) {
+        return getPSQLVersionsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Versions data source** can be used to retrieve the list of available PostgreSQL versions.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLVersionsV2(GetPSQLVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLVersionsV2Result> getPSQLVersionsV2(GetPSQLVersionsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2", TypeShape.of(GetPSQLVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Versions data source** can be used to retrieve the list of available PostgreSQL versions.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLVersionsV2(GetPSQLVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPSQLVersionsV2Result> getPSQLVersionsV2(GetPSQLVersionsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2", TypeShape.of(GetPSQLVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The **DBaaS PostgreSQL v2 Versions data source** can be used to retrieve the list of available PostgreSQL versions.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getPSQLVersionsV2(GetPSQLVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPSQLVersionsV2Result> getPSQLVersionsV2Plain(GetPSQLVersionsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2", TypeShape.of(GetPSQLVersionsV2Result.class), args, Utilities.withVersion(options));
     }
 }

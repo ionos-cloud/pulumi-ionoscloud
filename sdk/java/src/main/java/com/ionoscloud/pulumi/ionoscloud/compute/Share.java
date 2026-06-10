@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### Share a Datacenter with a Group
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -73,6 +75,72 @@ import javax.annotation.Nullable;
  *             .editPrivilege(true)
  *             .sharePrivilege(false)
  *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Share a Kubernetes Cluster with Multiple Groups
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.Cluster;
+ * import com.ionoscloud.pulumi.ionoscloud.k8s.ClusterArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.Share;
+ * import com.ionoscloud.pulumi.ionoscloud.compute.ShareArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Cluster("example", ClusterArgs.builder()
+ *             .name("k8s-example")
+ *             .build());
+ * 
+ *         var group1 = new Group("group1", GroupArgs.builder()
+ *             .name("Group 1")
+ *             .createK8sCluster(true)
+ *             .build());
+ * 
+ *         var group2 = new Group("group2", GroupArgs.builder()
+ *             .name("Group 2")
+ *             .createK8sCluster(true)
+ *             .build());
+ * 
+ *         var k8sShareGroup1 = new Share("k8sShareGroup1", ShareArgs.builder()
+ *             .groupId(group1.id())
+ *             .resourceId(example.id())
+ *             .editPrivilege(true)
+ *             .sharePrivilege(false)
+ *             .build());
+ * 
+ *         var k8sShareGroup2 = new Share("k8sShareGroup2", ShareArgs.builder()
+ *             .groupId(group2.id())
+ *             .resourceId(example.id())
+ *             .editPrivilege(true)
+ *             .sharePrivilege(true)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(k8sShareGroup1)
+ *                 .build());
  * 
  *     }
  * }

@@ -582,7 +582,7 @@ class Snapshot(pulumi.CustomResource):
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -661,7 +661,7 @@ class Snapshot(pulumi.CustomResource):
                  args: SnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+        Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
 
         ## Example Usage
 

@@ -298,7 +298,7 @@ class RegistryToken(pulumi.CustomResource):
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
+        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -358,7 +358,7 @@ class RegistryToken(pulumi.CustomResource):
                  args: RegistryTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
+        Manages an [Container Registry Token](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IONOS CLOUD.
 
         ## Example Usage
 

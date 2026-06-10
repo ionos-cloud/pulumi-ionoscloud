@@ -15,7 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages **IP Failover** groups on IonosCloud.
+ * Manages **IP Failover** groups on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

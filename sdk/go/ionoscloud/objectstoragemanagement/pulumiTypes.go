@@ -13,6 +13,112 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AccesskeyFilter struct {
+	// The name of the field to filter on.
+	FieldName string `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue string `pulumi:"fieldValue"`
+}
+
+// AccesskeyFilterInput is an input type that accepts AccesskeyFilterArgs and AccesskeyFilterOutput values.
+// You can construct a concrete instance of `AccesskeyFilterInput` via:
+//
+//	AccesskeyFilterArgs{...}
+type AccesskeyFilterInput interface {
+	pulumi.Input
+
+	ToAccesskeyFilterOutput() AccesskeyFilterOutput
+	ToAccesskeyFilterOutputWithContext(context.Context) AccesskeyFilterOutput
+}
+
+type AccesskeyFilterArgs struct {
+	// The name of the field to filter on.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue pulumi.StringInput `pulumi:"fieldValue"`
+}
+
+func (AccesskeyFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccesskeyFilter)(nil)).Elem()
+}
+
+func (i AccesskeyFilterArgs) ToAccesskeyFilterOutput() AccesskeyFilterOutput {
+	return i.ToAccesskeyFilterOutputWithContext(context.Background())
+}
+
+func (i AccesskeyFilterArgs) ToAccesskeyFilterOutputWithContext(ctx context.Context) AccesskeyFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccesskeyFilterOutput)
+}
+
+// AccesskeyFilterArrayInput is an input type that accepts AccesskeyFilterArray and AccesskeyFilterArrayOutput values.
+// You can construct a concrete instance of `AccesskeyFilterArrayInput` via:
+//
+//	AccesskeyFilterArray{ AccesskeyFilterArgs{...} }
+type AccesskeyFilterArrayInput interface {
+	pulumi.Input
+
+	ToAccesskeyFilterArrayOutput() AccesskeyFilterArrayOutput
+	ToAccesskeyFilterArrayOutputWithContext(context.Context) AccesskeyFilterArrayOutput
+}
+
+type AccesskeyFilterArray []AccesskeyFilterInput
+
+func (AccesskeyFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccesskeyFilter)(nil)).Elem()
+}
+
+func (i AccesskeyFilterArray) ToAccesskeyFilterArrayOutput() AccesskeyFilterArrayOutput {
+	return i.ToAccesskeyFilterArrayOutputWithContext(context.Background())
+}
+
+func (i AccesskeyFilterArray) ToAccesskeyFilterArrayOutputWithContext(ctx context.Context) AccesskeyFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccesskeyFilterArrayOutput)
+}
+
+type AccesskeyFilterOutput struct{ *pulumi.OutputState }
+
+func (AccesskeyFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccesskeyFilter)(nil)).Elem()
+}
+
+func (o AccesskeyFilterOutput) ToAccesskeyFilterOutput() AccesskeyFilterOutput {
+	return o
+}
+
+func (o AccesskeyFilterOutput) ToAccesskeyFilterOutputWithContext(ctx context.Context) AccesskeyFilterOutput {
+	return o
+}
+
+// The name of the field to filter on.
+func (o AccesskeyFilterOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccesskeyFilter) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+// The value to match against.
+func (o AccesskeyFilterOutput) FieldValue() pulumi.StringOutput {
+	return o.ApplyT(func(v AccesskeyFilter) string { return v.FieldValue }).(pulumi.StringOutput)
+}
+
+type AccesskeyFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (AccesskeyFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccesskeyFilter)(nil)).Elem()
+}
+
+func (o AccesskeyFilterArrayOutput) ToAccesskeyFilterArrayOutput() AccesskeyFilterArrayOutput {
+	return o
+}
+
+func (o AccesskeyFilterArrayOutput) ToAccesskeyFilterArrayOutputWithContext(ctx context.Context) AccesskeyFilterArrayOutput {
+	return o
+}
+
+func (o AccesskeyFilterArrayOutput) Index(i pulumi.IntInput) AccesskeyFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccesskeyFilter {
+		return vs[0].([]AccesskeyFilter)[vs[1].(int)]
+	}).(AccesskeyFilterOutput)
+}
+
 type AccesskeyTimeouts struct {
 	// [string] Time to wait for the bucket to be created. Default is `10m`.
 	Create *string `pulumi:"create"`
@@ -258,9 +364,13 @@ func (o GetRegionCapabilityOutput) S3select() pulumi.BoolOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccesskeyFilterInput)(nil)).Elem(), AccesskeyFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccesskeyFilterArrayInput)(nil)).Elem(), AccesskeyFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccesskeyTimeoutsInput)(nil)).Elem(), AccesskeyTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccesskeyTimeoutsPtrInput)(nil)).Elem(), AccesskeyTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionCapabilityInput)(nil)).Elem(), GetRegionCapabilityArgs{})
+	pulumi.RegisterOutputType(AccesskeyFilterOutput{})
+	pulumi.RegisterOutputType(AccesskeyFilterArrayOutput{})
 	pulumi.RegisterOutputType(AccesskeyTimeoutsOutput{})
 	pulumi.RegisterOutputType(AccesskeyTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(GetRegionCapabilityOutput{})

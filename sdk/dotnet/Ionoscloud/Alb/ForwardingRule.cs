@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Alb
 {
     /// <summary>
-    /// Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
+    /// Manages an **Application Load Balancer Forwarding Rule** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

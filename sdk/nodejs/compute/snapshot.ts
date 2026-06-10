@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
  *
  * ## Example Usage
  *

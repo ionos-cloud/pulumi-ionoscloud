@@ -13,7 +13,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
     public static class GetCluster
     {
         /// <summary>
-        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 
@@ -38,7 +38,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 
@@ -63,7 +63,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// Returns information about clusters of Network File Storage (NFS) on IONOS CLOUD.
         /// 
         /// ## By ID
         /// 
@@ -179,9 +179,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public readonly ImmutableArray<Outputs.GetClusterNfResult> Nfs;
         public readonly bool? PartialMatch;
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
         /// </summary>
         public readonly int Size;
+        /// <summary>
+        /// The unit of the `Size` attribute. Possible values: `TiB`, `GiB`.
+        /// </summary>
+        public readonly string SizeUnit;
 
         [OutputConstructor]
         private GetClusterResult(
@@ -197,7 +201,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
 
             bool? partialMatch,
 
-            int size)
+            int size,
+
+            string sizeUnit)
         {
             Connections = connections;
             Id = id;
@@ -206,6 +212,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
             Nfs = nfs;
             PartialMatch = partialMatch;
             Size = size;
+            SizeUnit = sizeUnit;
         }
     }
 }

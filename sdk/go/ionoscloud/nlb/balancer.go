@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+// Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
 //
 // ## Example Usage
 //
@@ -146,7 +146,7 @@ type Balancer struct {
 	// The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// Specifies the format of the logs.
-	LoggingFormat pulumi.StringPtrOutput `pulumi:"loggingFormat"`
+	LoggingFormat pulumi.StringOutput `pulumi:"loggingFormat"`
 	// [string] A name of that Network Load Balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] Id of the balanced private target LAN. (outbound)
@@ -411,8 +411,8 @@ func (o BalancerOutput) Location() pulumi.StringPtrOutput {
 }
 
 // Specifies the format of the logs.
-func (o BalancerOutput) LoggingFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Balancer) pulumi.StringPtrOutput { return v.LoggingFormat }).(pulumi.StringPtrOutput)
+func (o BalancerOutput) LoggingFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *Balancer) pulumi.StringOutput { return v.LoggingFormat }).(pulumi.StringOutput)
 }
 
 // [string] A name of that Network Load Balancer.

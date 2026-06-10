@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+ * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *
@@ -122,7 +122,7 @@ export interface GetShareResult {
     readonly uid: number;
 }
 /**
- * Returns information about shares of Network File Storage (NFS) on IonosCloud.
+ * Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
  *
  * ## By ID
  *

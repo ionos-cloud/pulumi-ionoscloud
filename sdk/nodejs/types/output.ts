@@ -1496,7 +1496,7 @@ export namespace compute {
          */
         requireLegacyBios: boolean;
         /**
-         * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+         * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
          *
          * @deprecated Please use sshKeyPath under server level
          */
@@ -2626,6 +2626,7 @@ export namespace compute {
         id: string;
         labels: outputs.compute.GetServersServerLabel[];
         name?: string;
+        nicMultiQueue: boolean;
         nics: outputs.compute.GetServersServerNic[];
         ram: number;
         templateUuid?: string;
@@ -3312,13 +3313,13 @@ export namespace compute {
          */
         size: number;
         /**
-         * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+         * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          *
          * @deprecated Please use sshKeyPath under server level
          */
         sshKeyPaths?: string[];
         /**
-         * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+         * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
          *
          * @deprecated Please use sshKeys under server level
          */
@@ -3798,6 +3799,17 @@ export namespace dbaas {
         role: string;
     }
 
+    export interface GetPSQLBackupLocationV2BackupLocation {
+        /**
+         * The ID (UUID) of the backup location.
+         */
+        id: string;
+        /**
+         * [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+    }
+
     export interface GetPSQLBackupsClusterBackup {
         /**
          * The unique ID of the cluster.
@@ -3843,6 +3855,37 @@ export namespace dbaas {
         createdDate: string;
     }
 
+    export interface GetPSQLBackupsV2Backup {
+        /**
+         * [string] The ID (UUID) of the cluster to filter backups by.
+         */
+        clusterId: string;
+        /**
+         * The earliest point in time to which the cluster can be restored.
+         */
+        earliestRecoveryTargetTime: string;
+        /**
+         * The ID (UUID) of the backup.
+         */
+        id: string;
+        /**
+         * Whether the backup is active.
+         */
+        isActive: boolean;
+        /**
+         * The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
+         */
+        latestRecoveryTargetTime: string;
+        /**
+         * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * The PostgreSQL version of the cluster when the backup was created.
+         */
+        postgresClusterVersion: string;
+    }
+
     export interface GetPSQLClusterConnection {
         /**
          * The IP and subnet for the database.
@@ -3882,6 +3925,179 @@ export namespace dbaas {
         time: string;
     }
 
+    export interface GetPSQLClusterV2Backup {
+        /**
+         * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         *
+         * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         */
+        location: string;
+        /**
+         * How many days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface GetPSQLClusterV2Connections {
+        /**
+         * The datacenter the cluster is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID the cluster is connected to.
+         */
+        lanId: string;
+        /**
+         * The IP and netmask assigned to the cluster primary instance.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetPSQLClusterV2Instances {
+        /**
+         * The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: number;
+        /**
+         * The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface GetPSQLClusterV2MaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
+    export interface GetPSQLClustersV2Cluster {
+        /**
+         * Backup configuration of the cluster.
+         */
+        backup: outputs.dbaas.GetPSQLClustersV2ClusterBackup;
+        /**
+         * How database connections are managed and reused.
+         */
+        connectionPooler: string;
+        /**
+         * Connection information of the PostgreSQL cluster.
+         */
+        connections: outputs.dbaas.GetPSQLClustersV2ClusterConnections;
+        /**
+         * Human-readable description of the cluster.
+         */
+        description: string;
+        /**
+         * The DNS name used to access the cluster.
+         */
+        dnsName: string;
+        /**
+         * The ID (UUID) of the cluster.
+         */
+        id: string;
+        /**
+         * The instance configuration for the PostgreSQL cluster.
+         */
+        instances: outputs.dbaas.GetPSQLClustersV2ClusterInstances;
+        /**
+         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * Whether the collection and reporting of logs is enabled for this cluster.
+         */
+        logsEnabled: boolean;
+        /**
+         * A weekly 4 hour-long window, during which maintenance might occur.
+         */
+        maintenanceWindow: outputs.dbaas.GetPSQLClustersV2ClusterMaintenanceWindow;
+        /**
+         * Whether the collection and reporting of metrics is enabled for this cluster.
+         */
+        metricsEnabled: boolean;
+        /**
+         * [string] Filters clusters by name. Matches cluster names that contain the provided string.
+         */
+        name: string;
+        /**
+         * Replication mode across the instances.
+         */
+        replicationMode: string;
+        /**
+         * The PostgreSQL version of the cluster.
+         */
+        version: string;
+    }
+
+    export interface GetPSQLClustersV2ClusterBackup {
+        /**
+         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * How many days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface GetPSQLClustersV2ClusterConnections {
+        /**
+         * The datacenter the cluster is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID the cluster is connected to.
+         */
+        lanId: string;
+        /**
+         * The IP and netmask assigned to the cluster primary instance.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetPSQLClustersV2ClusterInstances {
+        /**
+         * The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: number;
+        /**
+         * The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface GetPSQLClustersV2ClusterMaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
     export interface GetPSQLDatabasesDatabase {
         /**
          * [string] The ID of the database.
@@ -3895,6 +4111,29 @@ export namespace dbaas {
          * [string] Filter using a specific owner.
          */
         owner: string;
+    }
+
+    export interface GetPSQLVersionsV2Version {
+        /**
+         * List of versions that this version can be upgraded to.
+         */
+        canUpgradeTos: string[];
+        /**
+         * Additional information about the version status.
+         */
+        comment: string;
+        /**
+         * The ID (UUID) of the PostgreSQL version.
+         */
+        id: string;
+        /**
+         * The support status of the version (e.g. `BETA`, `SUPPORTED`, `RECOMMENDED`, `DEPRECATED`).
+         */
+        status: string;
+        /**
+         * The PostgreSQL version string.
+         */
+        version: string;
     }
 
     export interface InMemoryDBReplicaSetConnections {
@@ -4134,6 +4373,108 @@ export namespace dbaas {
          * [string]
          */
         time: string;
+    }
+
+    export interface PSQLClusterV2Backup {
+        /**
+         * [string] The Object Storage location where the backups will be created. Supported locations are provided by the `ionoscloud.dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+         */
+        location: string;
+        /**
+         * [int] How many days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface PSQLClusterV2Connections {
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
+        /**
+         * [string] The IP and netmask that will be assigned to the cluster primary instance.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface PSQLClusterV2Credentials {
+        /**
+         * [string] The name of the initial database to be created.
+         */
+        database: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+         */
+        password: string;
+        /**
+         * [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+         */
+        passwordVersion: string;
+        /**
+         * [string] The username of the master database user.
+         */
+        username: string;
+    }
+
+    export interface PSQLClusterV2Instances {
+        /**
+         * [int] The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * [int] The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: number;
+        /**
+         * [int] The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * [int] The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface PSQLClusterV2MaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
+    export interface PSQLClusterV2RestoreFromBackup {
+        /**
+         * [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         */
+        recoveryTargetDatetime?: string;
+        /**
+         * [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+         */
+        sourceBackupId: string;
+    }
+
+    export interface PSQLClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: string;
     }
 
 }
@@ -4936,7 +5277,7 @@ export namespace objectstorage {
          */
         create?: string;
         /**
-         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
          */
         delete?: string;
         /**
@@ -5011,6 +5352,21 @@ export namespace objectstorage {
          * Days and years are mutually exclusive. You can only specify one of them.
          */
         years?: number;
+    }
+
+    export interface UserBucketTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: string;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
+         */
+        delete?: string;
+        /**
+         * [string] Time to wait for the bucket read operations. Default is `10m`.
+         */
+        read?: string;
     }
 
     export interface WebsiteConfigurationErrorDocument {

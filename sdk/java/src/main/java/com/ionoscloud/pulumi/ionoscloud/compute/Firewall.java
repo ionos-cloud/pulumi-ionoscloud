@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a set of **Firewall Rules** on IonosCloud.
+ * Manages a set of **Firewall Rules** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

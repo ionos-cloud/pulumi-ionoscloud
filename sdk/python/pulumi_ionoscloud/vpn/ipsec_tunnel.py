@@ -37,7 +37,7 @@ class IpsecTunnelArgs:
         :param pulumi.Input['IpsecTunnelAuthArgs'] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
                items: 1.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+               tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
                Maximum items: 20.
         :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
@@ -81,7 +81,7 @@ class IpsecTunnelArgs:
     def cloud_network_cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
         [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         Maximum items: 20.
         """
         return pulumi.get(self, "cloud_network_cidrs")
@@ -207,7 +207,7 @@ class _IpsecTunnelState:
         :param pulumi.Input['IpsecTunnelAuthArgs'] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
                items: 1.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+               tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
                Maximum items: 20.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
@@ -258,7 +258,7 @@ class _IpsecTunnelState:
     def cloud_network_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         Maximum items: 20.
         """
         return pulumi.get(self, "cloud_network_cidrs")
@@ -384,7 +384,7 @@ class IpsecTunnel(pulumi.CustomResource):
                  __props__=None):
         """
         An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-        IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+        IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
         connections between your network resources.
 
         ## Usage example
@@ -456,7 +456,7 @@ class IpsecTunnel(pulumi.CustomResource):
         :param pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
                items: 1.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+               tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
                Maximum items: 20.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
@@ -476,7 +476,7 @@ class IpsecTunnel(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-        IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+        IONOS CLOUD infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
         connections between your network resources.
 
         ## Usage example
@@ -631,7 +631,7 @@ class IpsecTunnel(pulumi.CustomResource):
         :param pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
                items: 1.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+               tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
                Maximum items: 20.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
@@ -673,7 +673,7 @@ class IpsecTunnel(pulumi.CustomResource):
     def cloud_network_cidrs(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+        tunnel, i.e. the CIDRs within your IONOS CLOUD LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
         Maximum items: 20.
         """
         return pulumi.get(self, "cloud_network_cidrs")

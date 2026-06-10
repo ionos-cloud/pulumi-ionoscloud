@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
+ * Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -68,7 +68,8 @@ import javax.annotation.Nullable;
  *         var example = new Cluster("example", ClusterArgs.builder()
  *             .name("test")
  *             .location("de/txl")
- *             .size(2)
+ *             .size(2048)
+ *             .sizeUnit("GiB")
  *             .nfs(ClusterNfsArgs.builder()
  *                 .minVersion("4.2")
  *                 .build())
@@ -149,18 +150,32 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.nfs);
     }
     /**
-     * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34; pulumi-lang-hcl=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
+     * The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      * 
      */
     @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
-     * @return The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt;. The minimum value is &lt;span pulumi-lang-nodejs=&#34;`2`&#34; pulumi-lang-dotnet=&#34;`2`&#34; pulumi-lang-go=&#34;`2`&#34; pulumi-lang-python=&#34;`2`&#34; pulumi-lang-yaml=&#34;`2`&#34; pulumi-lang-java=&#34;`2`&#34; pulumi-lang-hcl=&#34;`2`&#34;&gt;`2`&lt;/span&gt; and the maximum value is &lt;span pulumi-lang-nodejs=&#34;`42`&#34; pulumi-lang-dotnet=&#34;`42`&#34; pulumi-lang-go=&#34;`42`&#34; pulumi-lang-python=&#34;`42`&#34; pulumi-lang-yaml=&#34;`42`&#34; pulumi-lang-java=&#34;`42`&#34; pulumi-lang-hcl=&#34;`42`&#34;&gt;`42`&lt;/span&gt;.
+     * @return The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
      * 
      */
     public Output<Integer> size() {
         return this.size;
+    }
+    /**
+     * The unit of the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34; pulumi-lang-hcl=&#34;`size`&#34;&gt;`size`&lt;/span&gt; attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+     * 
+     */
+    @Export(name="sizeUnit", refs={String.class}, tree="[0]")
+    private Output<String> sizeUnit;
+
+    /**
+     * @return The unit of the &lt;span pulumi-lang-nodejs=&#34;`size`&#34; pulumi-lang-dotnet=&#34;`Size`&#34; pulumi-lang-go=&#34;`size`&#34; pulumi-lang-python=&#34;`size`&#34; pulumi-lang-yaml=&#34;`size`&#34; pulumi-lang-java=&#34;`size`&#34; pulumi-lang-hcl=&#34;`size`&#34;&gt;`size`&lt;/span&gt; attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+     * 
+     */
+    public Output<String> sizeUnit() {
+        return this.sizeUnit;
     }
 
     /**

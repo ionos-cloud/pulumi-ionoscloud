@@ -696,7 +696,7 @@ export namespace compute {
          */
         requireLegacyBios?: pulumi.Input<boolean | undefined>;
         /**
-         * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+         * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided.
          *
          * @deprecated Please use sshKeyPath under server level
          */
@@ -1066,13 +1066,13 @@ export namespace compute {
          */
         size?: pulumi.Input<number | undefined>;
         /**
-         * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+         * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          *
          * @deprecated Please use sshKeyPath under server level
          */
         sshKeyPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
-         * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+         * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
          *
          * @deprecated Please use sshKeys under server level
          */
@@ -1581,6 +1581,108 @@ export namespace dbaas {
          */
         time: pulumi.Input<string>;
     }
+
+    export interface PSQLClusterV2Backup {
+        /**
+         * [string] The Object Storage location where the backups will be created. Supported locations are provided by the `ionoscloud.dbaas.getPSQLBackupLocationV2` data source. Immutable — changing this forces a new cluster.
+         */
+        location: pulumi.Input<string>;
+        /**
+         * [int] How many days cluster backups are retained.
+         */
+        retentionDays: pulumi.Input<number>;
+    }
+
+    export interface PSQLClusterV2Connections {
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: pulumi.Input<string>;
+        /**
+         * [string] The IP and netmask that will be assigned to the cluster primary instance.
+         */
+        primaryInstanceAddress: pulumi.Input<string>;
+    }
+
+    export interface PSQLClusterV2Credentials {
+        /**
+         * [string] The name of the initial database to be created.
+         */
+        database: pulumi.Input<string>;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * [string] The password for the master database user. This value is never stored in Terraform state. Requires Terraform 1.11+.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * [string] An arbitrary string (e.g. `"1"`, `"2"`) stored in Terraform state solely to trigger password updates. Increment this value whenever the write-only `password` field changes so Terraform detects a diff and sends the new password to the API.
+         */
+        passwordVersion: pulumi.Input<string>;
+        /**
+         * [string] The username of the master database user.
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface PSQLClusterV2Instances {
+        /**
+         * [int] The number of CPU cores per instance.
+         */
+        cores: pulumi.Input<number>;
+        /**
+         * [int] The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: pulumi.Input<number>;
+        /**
+         * [int] The amount of memory per instance in gigabytes (GB).
+         */
+        ram: pulumi.Input<number>;
+        /**
+         * [int] The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: pulumi.Input<number>;
+    }
+
+    export interface PSQLClusterV2MaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface PSQLClusterV2RestoreFromBackup {
+        /**
+         * [string] If supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         */
+        recoveryTargetDatetime?: pulumi.Input<string | undefined>;
+        /**
+         * [string] The UUID of the backup to restore data from. Immutable — changing this forces a new cluster.
+         */
+        sourceBackupId: pulumi.Input<string>;
+    }
+
+    export interface PSQLClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: pulumi.Input<string | undefined>;
+    }
 }
 
 export namespace k8s {
@@ -2016,7 +2118,7 @@ export namespace objectstorage {
          */
         create?: pulumi.Input<string | undefined>;
         /**
-         * [string] Time to wait for the bucket to be deleted. Default is `10m`.
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
          */
         delete?: pulumi.Input<string | undefined>;
         /**
@@ -2091,6 +2193,21 @@ export namespace objectstorage {
          * Days and years are mutually exclusive. You can only specify one of them.
          */
         years?: pulumi.Input<number | undefined>;
+    }
+
+    export interface UserBucketTimeouts {
+        /**
+         * [string] Time to wait for the bucket to be created. Default is `10m`.
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * [string] Time to wait for the bucket to be deleted. Default is `60m`.
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * [string] Time to wait for the bucket read operations. Default is `10m`.
+         */
+        read?: pulumi.Input<string | undefined>;
     }
 
     export interface WebsiteConfigurationErrorDocument {

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **LAN** on IonosCloud.
+// Manages a **LAN** on IONOS CLOUD.
 //
 // ## Example Usage
 //

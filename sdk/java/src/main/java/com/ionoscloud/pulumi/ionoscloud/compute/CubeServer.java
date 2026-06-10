@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+ * A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS CLOUD products.
  * 
  * Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
  * 
@@ -514,14 +514,14 @@ public class CubeServer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.securityGroupsIds);
     }
     /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      */
     @Export(name="sshKeyPaths", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
+     * @return [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided.
      * 
      */
     public Output<List<String>> sshKeyPaths() {

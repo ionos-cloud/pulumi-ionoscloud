@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
 {
     /// <summary>
-    /// Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+    /// Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

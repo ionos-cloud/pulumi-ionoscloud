@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages the selection of a boot device for IonosCloud Servers.
+    /// Manages the selection of a boot device for IONOS CLOUD Servers.
     /// 
     /// ## Example Usage
     /// 

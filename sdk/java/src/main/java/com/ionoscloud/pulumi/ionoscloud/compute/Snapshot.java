@@ -16,7 +16,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+ * Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

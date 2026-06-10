@@ -304,7 +304,7 @@ class Topic(pulumi.CustomResource):
                  segment_bytes: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a **Kafka Cluster Topic** on IonosCloud.
+        Manages a **Kafka Cluster Topic** on IONOS CLOUD.
 
         ## Example Usage
 
@@ -381,7 +381,7 @@ class Topic(pulumi.CustomResource):
                  args: TopicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Kafka Cluster Topic** on IonosCloud.
+        Manages a **Kafka Cluster Topic** on IONOS CLOUD.
 
         ## Example Usage
 

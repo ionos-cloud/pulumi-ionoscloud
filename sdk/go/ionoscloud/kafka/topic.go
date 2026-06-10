@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Kafka Cluster Topic** on IonosCloud.
+// Manages a **Kafka Cluster Topic** on IONOS CLOUD.
 //
 // ## Example Usage
 //

@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+ * Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerNicArgs;
+ * import com.pulumi.ionoscloud.compute.inputs.ServerNicFirewallArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Volume;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VolumeArgs;
  * import java.util.ArrayList;
@@ -117,16 +118,16 @@ import javax.annotation.Nullable;
  *                 .ips(                
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
  *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
- *                 .firewall(Map.ofEntries(
- *                     Map.entry("protocol", "TCP"),
- *                     Map.entry("name", "SSH"),
- *                     Map.entry("portRangeStart", 22),
- *                     Map.entry("portRangeEnd", 22),
- *                     Map.entry("sourceMac", "00:0a:95:9d:68:17"),
- *                     Map.entry("sourceIp", exampleIPBlock.ips().applyValue(_ips -> _ips[2])),
- *                     Map.entry("targetIp", exampleIPBlock.ips().applyValue(_ips -> _ips[3])),
- *                     Map.entry("type", "EGRESS")
- *                 ))
+ *                 .firewalls(ServerNicFirewallArgs.builder()
+ *                     .protocol("TCP")
+ *                     .name("SSH")
+ *                     .portRangeStart(22)
+ *                     .portRangeEnd(22)
+ *                     .sourceMac("00:0a:95:9d:68:17")
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .type("EGRESS")
+ *                     .build())
  *                 .build())
  *             .build());
  * 
@@ -529,28 +530,28 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.size;
     }
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Export(name="sshKeyPaths", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeyPaths;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Output<Optional<List<String>>> sshKeyPaths() {
         return Codegen.optional(this.sshKeyPaths);
     }
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     @Export(name="sshKeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> sshKeys;
 
     /**
-     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
+     * @return [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if &lt;span pulumi-lang-nodejs=&#34;`imagePassword`&#34; pulumi-lang-dotnet=&#34;`ImagePassword`&#34; pulumi-lang-go=&#34;`imagePassword`&#34; pulumi-lang-python=&#34;`image_password`&#34; pulumi-lang-yaml=&#34;`imagePassword`&#34; pulumi-lang-java=&#34;`imagePassword`&#34; pulumi-lang-hcl=&#34;`image_password`&#34;&gt;`imagePassword`&lt;/span&gt; is not provided. This property is immutable.
      * 
      */
     public Output<Optional<List<String>>> sshKeys() {

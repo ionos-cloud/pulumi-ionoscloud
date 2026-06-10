@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+ * Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

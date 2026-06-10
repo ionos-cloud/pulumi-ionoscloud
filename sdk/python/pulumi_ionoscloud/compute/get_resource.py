@@ -71,7 +71,7 @@ def get_resource(resource_id: Optional[_builtins.str] = None,
                  resource_type: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceResult:
     """
-    The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+    The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
     You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
@@ -121,7 +121,7 @@ def get_resource_output(resource_id: pulumi.Input[Optional[Optional[_builtins.st
                         resource_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourceResult]:
     """
-    The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+    The **Resource data source** can be used to search for and return any existing IONOS CLOUD resource and optionally their group associations.
     You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.

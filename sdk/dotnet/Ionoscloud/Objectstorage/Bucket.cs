@@ -11,9 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 {
     /// <summary>
-    /// Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IonosCloud.
-    /// 
-    /// ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+    /// Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -42,6 +40,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// ### Identity Schema
+    /// 
+    /// #### Required
+    /// 
+    /// * `Id` (String) Name of the bucket.
+    /// * `Region` (String) Region where the bucket is located.
+    /// 
+    /// ***
     /// 
     /// A bucket can be imported using the `bucket name` and the `Region`:
     /// 

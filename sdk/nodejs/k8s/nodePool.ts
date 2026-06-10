@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+ * Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
  *
  * ## Import
  *

@@ -167,7 +167,7 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
               uid: Optional[_builtins.int] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetShareResult:
     """
-    Returns information about shares of Network File Storage (NFS) on IonosCloud.
+    Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
 
     ## By ID
 
@@ -226,7 +226,7 @@ def get_share_output(client_groups: pulumi.Input[Optional[Optional[Sequence[Unio
                      uid: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
-    Returns information about shares of Network File Storage (NFS) on IonosCloud.
+    Returns information about shares of Network File Storage (NFS) on IONOS CLOUD.
 
     ## By ID
 

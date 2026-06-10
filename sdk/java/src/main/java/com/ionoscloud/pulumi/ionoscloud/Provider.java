@@ -37,28 +37,28 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.contractNumber);
     }
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      * 
      */
     @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
     /**
-     * @return IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * @return IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      * 
      */
     public Output<Optional<String>> endpoint() {
         return Codegen.optional(this.endpoint);
     }
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
-     * @return IonosCloud password for API operations. If token is provided, token is preferred
+     * @return IONOS CLOUD password for API operations. If token is provided, token is preferred
      * 
      */
     public Output<Optional<String>> password() {
@@ -79,14 +79,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.s3AccessKey);
     }
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      * 
      */
     @Export(name="s3Region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> s3Region;
 
     /**
-     * @return Region for IONOS Object Storage operations.
+     * @return Region for IONOS Contract Owned Object Storage operations.
      * 
      */
     public Output<Optional<String>> s3Region() {
@@ -107,28 +107,28 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.s3SecretKey);
     }
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return IonosCloud bearer token for API operations.
+     * @return IONOS CLOUD bearer token for API operations.
      * 
      */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
     }
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      * 
      */
     @Export(name="username", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> username;
 
     /**
-     * @return IonosCloud username for API operations. If token is provided, token is preferred
+     * @return IONOS CLOUD username for API operations. If token is provided, token is preferred
      * 
      */
     public Output<Optional<String>> username() {

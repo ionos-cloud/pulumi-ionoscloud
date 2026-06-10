@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 {
     /// <summary>
-    /// Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+    /// Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

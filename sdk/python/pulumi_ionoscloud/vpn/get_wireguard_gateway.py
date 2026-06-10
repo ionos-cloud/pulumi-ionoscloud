@@ -188,7 +188,7 @@ def get_wireguard_gateway(description: Optional[_builtins.str] = None,
                           name: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWireguardGatewayResult:
     """
-    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+    The `vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 
     ## Example Usage
 
@@ -235,7 +235,7 @@ def get_wireguard_gateway_output(description: pulumi.Input[Optional[Optional[_bu
                                  name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardGatewayResult]:
     """
-    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+    The `vpn.WireguardGateway` data source provides information about a specific IONOS CLOUD VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 
     ## Example Usage
 

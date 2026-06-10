@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IonosCloud.
+ * Manages an [Container Registry](https://docs.ionos.com/cloud/containers/private-container-registry/overview) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

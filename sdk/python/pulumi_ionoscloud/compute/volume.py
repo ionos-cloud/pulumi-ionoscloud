@@ -58,8 +58,8 @@ class VolumeArgs:
                >
                > ssh_key_path and ssh_keys fields are immutable.
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -270,7 +270,7 @@ class VolumeArgs:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -282,7 +282,7 @@ class VolumeArgs:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -367,8 +367,8 @@ class _VolumeState:
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] sshkey: The associated public SSH key.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
@@ -737,7 +737,7 @@ class _VolumeState:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -749,7 +749,7 @@ class _VolumeState:
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 
@@ -807,7 +807,7 @@ class Volume(pulumi.CustomResource):
                  user_data: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -864,16 +864,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -930,8 +930,8 @@ class Volume(pulumi.CustomResource):
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         ...
@@ -941,7 +941,7 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IonosCloud.
+        Manages a [Volume](https://docs.ionos.com/cloud/storage-and-backup/block-storage) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -998,16 +998,16 @@ class Volume(pulumi.CustomResource):
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                "firewall": {
+                "firewalls": [{
                     "protocol": "TCP",
                     "name": "SSH",
-                    "portRangeStart": 22,
-                    "portRangeEnd": 22,
-                    "sourceMac": "00:0a:95:9d:68:17",
-                    "sourceIp": example_ip_block.ips[2],
-                    "targetIp": example_ip_block.ips[3],
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
                     "type": "EGRESS",
-                },
+                }],
             })
         volume_image_password = random.Password("volume_image_password",
             length=16,
@@ -1196,8 +1196,8 @@ class Volume(pulumi.CustomResource):
                > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] sshkey: The associated public SSH key.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
@@ -1442,7 +1442,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -1450,7 +1450,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         """
         return pulumi.get(self, "ssh_keys")
 

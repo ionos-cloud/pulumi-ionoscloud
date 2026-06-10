@@ -30,11 +30,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly contractNumber: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      */
     declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
@@ -42,7 +42,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly s3AccessKey: pulumi.Output<string | undefined>;
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      */
     declare public readonly s3Region: pulumi.Output<string | undefined>;
     /**
@@ -50,11 +50,11 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly s3SecretKey: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      */
     declare public readonly token: pulumi.Output<string | undefined>;
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      */
     declare public readonly username: pulumi.Output<string | undefined>;
 
@@ -103,7 +103,7 @@ export interface ProviderArgs {
      */
     contractNumber?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+     * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      */
     endpoint?: pulumi.Input<string | undefined>;
     /**
@@ -111,7 +111,7 @@ export interface ProviderArgs {
      */
     insecure?: pulumi.Input<boolean | undefined>;
     /**
-     * IonosCloud password for API operations. If token is provided, token is preferred
+     * IONOS CLOUD password for API operations. If token is provided, token is preferred
      */
     password?: pulumi.Input<string | undefined>;
     /**
@@ -123,7 +123,7 @@ export interface ProviderArgs {
      */
     s3AccessKey?: pulumi.Input<string | undefined>;
     /**
-     * Region for IONOS Object Storage operations.
+     * Region for IONOS Contract Owned Object Storage operations.
      */
     s3Region?: pulumi.Input<string | undefined>;
     /**
@@ -131,11 +131,11 @@ export interface ProviderArgs {
      */
     s3SecretKey?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud bearer token for API operations.
+     * IONOS CLOUD bearer token for API operations.
      */
     token?: pulumi.Input<string | undefined>;
     /**
-     * IonosCloud username for API operations. If token is provided, token is preferred
+     * IONOS CLOUD username for API operations. If token is provided, token is preferred
      */
     username?: pulumi.Input<string | undefined>;
 }

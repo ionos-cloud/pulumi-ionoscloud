@@ -15,9 +15,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Manages **public acccess for Buckets** on IonosCloud.
- * 
- * ⚠️ **Note:** The Terraform provider **only supports contract-owned buckets. User-owned buckets are not supported,** and there are no plans to introduce support for them. As a result, **user-owned buckets cannot be created, updated, deleted, read, or imported** using this provider.
+ * Manages **public access for Buckets** on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

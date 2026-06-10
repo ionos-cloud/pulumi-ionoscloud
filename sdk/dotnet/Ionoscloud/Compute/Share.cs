@@ -15,6 +15,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// 
     /// ## Example Usage
     /// 
+    /// ### Share a Datacenter with a Group
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -51,6 +53,58 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         ResourceId = example.Id,
     ///         EditPrivilege = true,
     ///         SharePrivilege = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Share a Kubernetes Cluster with Multiple Groups
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.K8s.Cluster("example", new()
+    ///     {
+    ///         Name = "k8s-example",
+    ///     });
+    /// 
+    ///     var group1 = new Ionoscloud.Compute.Group("group1", new()
+    ///     {
+    ///         Name = "Group 1",
+    ///         CreateK8sCluster = true,
+    ///     });
+    /// 
+    ///     var group2 = new Ionoscloud.Compute.Group("group2", new()
+    ///     {
+    ///         Name = "Group 2",
+    ///         CreateK8sCluster = true,
+    ///     });
+    /// 
+    ///     var k8sShareGroup1 = new Ionoscloud.Compute.Share("k8s_share_group1", new()
+    ///     {
+    ///         GroupId = group1.Id,
+    ///         ResourceId = example.Id,
+    ///         EditPrivilege = true,
+    ///         SharePrivilege = false,
+    ///     });
+    /// 
+    ///     var k8sShareGroup2 = new Ionoscloud.Compute.Share("k8s_share_group2", new()
+    ///     {
+    ///         GroupId = group2.Id,
+    ///         ResourceId = example.Id,
+    ///         EditPrivilege = true,
+    ///         SharePrivilege = true,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             k8sShareGroup1,
+    ///         },
     ///     });
     /// 
     /// });

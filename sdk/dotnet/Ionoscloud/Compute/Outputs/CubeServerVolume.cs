@@ -57,7 +57,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly bool? RequireLegacyBios;
         /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
+        /// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
         public readonly ImmutableArray<string> SshKeyPaths;
         /// <summary>

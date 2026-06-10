@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
+ * Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

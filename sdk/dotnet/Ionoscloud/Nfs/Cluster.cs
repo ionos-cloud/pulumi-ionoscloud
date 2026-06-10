@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
 {
     /// <summary>
-    /// Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IonosCloud.
+    /// Create clusters of [Network File Storage (NFS)](https://docs.ionos.com/cloud/storage-and-backup/network-file-storage) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 
@@ -43,7 +43,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
     ///     {
     ///         Name = "test",
     ///         Location = "de/txl",
-    ///         Size = 2,
+    ///         Size = 2048,
+    ///         SizeUnit = "GiB",
     ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
     ///         {
     ///             MinVersion = "4.2",
@@ -94,10 +95,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Output<Outputs.ClusterNfs?> Nfs { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
+
+        /// <summary>
+        /// The unit of the `Size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+        /// </summary>
+        [Output("sizeUnit")]
+        public Output<string> SizeUnit { get; private set; } = null!;
 
 
         /// <summary>
@@ -170,10 +177,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterNfsArgs>? Nfs { get; set; }
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
+
+        /// <summary>
+        /// The unit of the `Size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+        /// </summary>
+        [Input("sizeUnit")]
+        public Input<string>? SizeUnit { get; set; }
 
         public ClusterArgs()
         {
@@ -207,10 +220,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterNfsGetArgs>? Nfs { get; set; }
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage cluster. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
+
+        /// <summary>
+        /// The unit of the `Size` attribute. Accepted values: `TiB`, `GiB`. Defaults to `TiB`.
+        /// </summary>
+        [Input("sizeUnit")]
+        public Input<string>? SizeUnit { get; set; }
 
         public ClusterState()
         {

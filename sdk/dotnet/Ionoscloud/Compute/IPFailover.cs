@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages **IP Failover** groups on IonosCloud.
+    /// Manages **IP Failover** groups on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

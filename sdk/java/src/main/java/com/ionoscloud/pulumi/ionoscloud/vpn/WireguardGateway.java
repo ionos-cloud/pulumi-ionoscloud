@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 /**
  * ## Overview
  * 
- * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+ * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-go=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-python=&#34;`vpn.WireguardGateway`&#34; pulumi-lang-yaml=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-java=&#34;`ionoscloud.vpn.WireguardGateway`&#34; pulumi-lang-hcl=&#34;`ionoscloud_vpn_wireguard_gateway`&#34;&gt;`ionoscloud.vpn.WireguardGateway`&lt;/span&gt; resource manages a WireGuard Gateway within the IONOS CLOUD infrastructure.
  * This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
  * 
  * ## Example Usage

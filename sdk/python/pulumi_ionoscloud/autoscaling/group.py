@@ -253,7 +253,7 @@ class Group(pulumi.CustomResource):
                  replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         """
-        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
+        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -371,7 +371,7 @@ class Group(pulumi.CustomResource):
                  args: GroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IonosCloud.
+        Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IONOS CLOUD.
 
         ## Example Usage
 

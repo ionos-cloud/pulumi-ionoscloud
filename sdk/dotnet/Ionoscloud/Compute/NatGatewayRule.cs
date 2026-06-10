@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a **Nat Gateway Rule** on IonosCloud.
+    /// Manages a **Nat Gateway Rule** on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

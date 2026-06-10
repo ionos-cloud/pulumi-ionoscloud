@@ -44,7 +44,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
 
         private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint"));
         /// <summary>
-        /// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+        /// IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         /// </summary>
         public static string? Endpoint
         {
@@ -64,7 +64,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
 
         private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
         /// <summary>
-        /// IonosCloud password for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD password for API operations. If token is provided, token is preferred
         /// </summary>
         public static string? Password
         {
@@ -91,7 +91,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
 
         private static readonly __Value<string?> _s3Region = new __Value<string?>(() => __config.Get("s3Region"));
         /// <summary>
-        /// Region for IONOS Object Storage operations.
+        /// Region for IONOS Contract Owned Object Storage operations.
         /// </summary>
         public static string? S3Region
         {
@@ -111,7 +111,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
 
         private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
         /// <summary>
-        /// IonosCloud bearer token for API operations.
+        /// IONOS CLOUD bearer token for API operations.
         /// </summary>
         public static string? Token
         {
@@ -121,7 +121,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
 
         private static readonly __Value<string?> _username = new __Value<string?>(() => __config.Get("username"));
         /// <summary>
-        /// IonosCloud username for API operations. If token is provided, token is preferred
+        /// IONOS CLOUD username for API operations. If token is provided, token is preferred
         /// </summary>
         public static string? Username
         {

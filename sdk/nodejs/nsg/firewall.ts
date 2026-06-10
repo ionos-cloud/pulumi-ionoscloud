@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Network Security Group Rule** on IonosCloud.
+ * Manages a **Network Security Group Rule** on IONOS CLOUD.
  *
  * ## Example Usage
  *

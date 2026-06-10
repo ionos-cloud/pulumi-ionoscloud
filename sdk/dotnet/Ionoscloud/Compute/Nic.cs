@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+    /// Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

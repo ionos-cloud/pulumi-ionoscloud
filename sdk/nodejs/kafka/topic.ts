@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Kafka Cluster Topic** on IonosCloud.
+ * Manages a **Kafka Cluster Topic** on IONOS CLOUD.
  *
  * ## Example Usage
  *

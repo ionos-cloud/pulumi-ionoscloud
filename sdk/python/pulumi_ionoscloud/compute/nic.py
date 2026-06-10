@@ -576,7 +576,7 @@ class Nic(pulumi.CustomResource):
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -802,7 +802,7 @@ class Nic(pulumi.CustomResource):
                  args: NicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IonosCloud.
+        Manages a [NIC](https://docs.ionos.com/cloud/set-up-ionos-cloud/get-started/configure-data-center#connect-to-the-internet) on IONOS CLOUD.
 
         ## Example Usage
 

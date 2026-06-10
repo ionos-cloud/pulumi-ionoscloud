@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IonosCloud.
+    /// Manages [Snapshots](https://docs.ionos.com/cloud/storage-and-backup/images-snapshots/snapshots) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

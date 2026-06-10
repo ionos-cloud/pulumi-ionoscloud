@@ -253,14 +253,14 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      * 
      */
     @Import(name="synchronizationMode", required=true)
     private Output<String> synchronizationMode;
 
     /**
-     * @return [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * @return [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      * 
      */
     public Output<String> synchronizationMode() {
@@ -626,7 +626,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param synchronizationMode [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+         * @param synchronizationMode [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
          * 
          * @return builder
          * 
@@ -637,7 +637,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param synchronizationMode [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+         * @param synchronizationMode [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
          * 
          * @return builder
          * 

@@ -58,7 +58,7 @@ class GpuServerArgs:
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input['GpuServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -255,7 +255,7 @@ class GpuServerArgs:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -324,7 +324,7 @@ class _GpuServerState:
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input['GpuServerVolumeArgs'] volume: See the Volume section.
@@ -572,7 +572,7 @@ class _GpuServerState:
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 
@@ -737,7 +737,7 @@ class GpuServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
         :param pulumi.Input[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']] volume: See the Volume section.
@@ -949,7 +949,7 @@ class GpuServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
         :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']] volume: See the Volume section.
@@ -1118,7 +1118,7 @@ class GpuServer(pulumi.CustomResource):
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         """
         return pulumi.get(self, "ssh_key_paths")
 

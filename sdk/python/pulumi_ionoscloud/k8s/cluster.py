@@ -398,7 +398,7 @@ class Cluster(pulumi.CustomResource):
                  s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -488,7 +488,7 @@ class Cluster(pulumi.CustomResource):
                  args: Optional[ClusterArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IonosCloud.
+        Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
 
         ## Example Usage
 

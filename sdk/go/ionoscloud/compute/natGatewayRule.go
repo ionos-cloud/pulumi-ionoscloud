@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Nat Gateway Rule** on IonosCloud.
+// Manages a **Nat Gateway Rule** on IONOS CLOUD.
 //
 // ## Example Usage
 //

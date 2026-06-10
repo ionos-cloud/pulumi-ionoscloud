@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
+ * Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IONOS CLOUD.
  *
  * ## Example Usage
  *

@@ -172,7 +172,7 @@ class Certificate(pulumi.CustomResource):
                  private_key: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
+        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -228,7 +228,7 @@ class Certificate(pulumi.CustomResource):
                  args: CertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IonosCloud.
+        Manages a [Certificate](https://docs.ionos.com/cloud/network-services/certificate-manager) on IONOS CLOUD.
 
         ## Example Usage
 

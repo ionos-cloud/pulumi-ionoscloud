@@ -371,7 +371,7 @@ class Balancer(pulumi.CustomResource):
                  target_lan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -456,7 +456,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+        Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -683,7 +683,7 @@ class Balancer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="loggingFormat")
-    def logging_format(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def logging_format(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the format of the logs.
         """

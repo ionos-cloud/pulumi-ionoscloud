@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IonosCloud.
+ * Manages a [Network Load Balancer](https://docs.ionos.com/cloud/network-services/network-load-balancer/outline) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 
@@ -250,14 +250,14 @@ public class Balancer extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="loggingFormat", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> loggingFormat;
+    private Output<String> loggingFormat;
 
     /**
      * @return Specifies the format of the logs.
      * 
      */
-    public Output<Optional<String>> loggingFormat() {
-        return Codegen.optional(this.loggingFormat);
+    public Output<String> loggingFormat() {
+        return this.loggingFormat;
     }
     /**
      * [string] A name of that Network Load Balancer.

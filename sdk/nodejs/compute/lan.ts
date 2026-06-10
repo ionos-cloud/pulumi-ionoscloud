@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **LAN** on IonosCloud.
+ * Manages a **LAN** on IONOS CLOUD.
  *
  * ## Example Usage
  *

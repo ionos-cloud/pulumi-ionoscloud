@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a Load Balancer on IonosCloud.
+// Manages a Load Balancer on IONOS CLOUD.
 //
 // ## Example Usage
 //

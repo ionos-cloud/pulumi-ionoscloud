@@ -155,7 +155,7 @@ class BackupUnit(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IonosCloud.
+        Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -203,7 +203,7 @@ class BackupUnit(pulumi.CustomResource):
                  args: BackupUnitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IonosCloud.
+        Manages a [Backup Unit](https://docs.ionos.com/cloud/storage-and-backup/backup-service/overview) on IONOS CLOUD.
 
         ## Example Usage
 

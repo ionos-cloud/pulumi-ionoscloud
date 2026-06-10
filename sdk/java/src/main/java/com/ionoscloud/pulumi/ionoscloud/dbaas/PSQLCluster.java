@@ -345,14 +345,14 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
         return this.storageType;
     }
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      * 
      */
     @Export(name="synchronizationMode", refs={String.class}, tree="[0]")
     private Output<String> synchronizationMode;
 
     /**
-     * @return [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+     * @return [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
      * 
      */
     public Output<String> synchronizationMode() {

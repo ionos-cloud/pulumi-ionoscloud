@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a Load Balancer on IonosCloud.
+ * Manages a Load Balancer on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

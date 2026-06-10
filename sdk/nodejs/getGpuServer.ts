@@ -44,7 +44,6 @@ export function getGpuServer(args: GetGpuServerArgs, opts?: pulumi.InvokeOptions
         "id": args.id,
         "location": args.location,
         "name": args.name,
-        "templateUuid": args.templateUuid,
     }, opts);
 }
 
@@ -70,10 +69,6 @@ export interface GetGpuServerArgs {
      * Name of an existing server that you want to search for.
      */
     name?: string;
-    /**
-     * The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-     */
-    templateUuid?: string;
 }
 
 /**
@@ -119,7 +114,7 @@ export interface GetGpuServerResult {
     /**
      * The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
      */
-    readonly templateUuid?: string;
+    readonly templateUuid: string;
     readonly token: string;
     /**
      * Status of the virtual Machine
@@ -168,7 +163,6 @@ export function getGpuServerOutput(args: GetGpuServerOutputArgs, opts?: pulumi.I
         "id": args.id,
         "location": args.location,
         "name": args.name,
-        "templateUuid": args.templateUuid,
     }, opts);
 }
 
@@ -194,8 +188,4 @@ export interface GetGpuServerOutputArgs {
      * Name of an existing server that you want to search for.
      */
     name?: pulumi.Input<string | undefined>;
-    /**
-     * The UUID of the template for creating a GPU server; the available templates for GPU servers can be found on the templates resource
-     */
-    templateUuid?: pulumi.Input<string | undefined>;
 }

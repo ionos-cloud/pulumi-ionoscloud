@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IonosCloud.
+ * Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IONOS CLOUD.
  * 
  * ## Example Usage
  * 

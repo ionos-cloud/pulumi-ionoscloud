@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+// Creates and manages Network File Storage (NFS) Share objects on IONOS CLOUD.
 //
 // ## Example Usage
 //
@@ -50,7 +50,8 @@ import (
 //			example, err := nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
 //				Name:     pulumi.String("test"),
 //				Location: pulumi.String("de/txl"),
-//				Size:     pulumi.Int(2),
+//				Size:     pulumi.Int(2048),
+//				SizeUnit: pulumi.String("GiB"),
 //				Nfs: &nfs.ClusterNfsArgs{
 //					MinVersion: pulumi.String("4.2"),
 //				},

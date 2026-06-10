@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+ * Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
  *
  * ## Example Usage
  *

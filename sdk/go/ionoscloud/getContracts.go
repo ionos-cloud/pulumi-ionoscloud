@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The `contracts` data source provides information about the contracts available in your IONOS Cloud account, including resource limits and other contract details.
+// The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
 //
 // ## Example Usage
 //

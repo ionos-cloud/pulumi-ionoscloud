@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 {
     /// <summary>
-    /// A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS Cloud products.
+    /// A [Cube](https://docs.ionos.com/cloud/compute-services/cubes/overview) is a Virtual Machine (VM) with an attached NVMe Volume. You can use each newly created Cube as a new VM, either standalone or in combination with other IONOS CLOUD products.
     /// 
     /// Check out [Configuration templates](https://docs.ionos.com/cloud/compute-services/cubes/overview#basic-cubes)
     /// 
@@ -329,7 +329,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<string>> SecurityGroupsIds { get; private set; } = null!;
 
         /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
+        /// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
         [Output("sshKeyPaths")]
         public Output<ImmutableArray<string>> SshKeyPaths { get; private set; } = null!;
@@ -507,7 +507,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
+        /// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
         public InputList<string> SshKeyPaths
         {
@@ -681,7 +681,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `ImagePassword` is not provided.
+        /// [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `ImagePassword` is not provided.
         /// </summary>
         public InputList<string> SshKeyPaths
         {

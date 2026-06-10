@@ -319,7 +319,7 @@ class IPFailover(pulumi.CustomResource):
                  nicuuid: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Manages **IP Failover** groups on IonosCloud.
+        Manages **IP Failover** groups on IONOS CLOUD.
 
         ## Example Usage
 
@@ -436,7 +436,7 @@ class IPFailover(pulumi.CustomResource):
                  args: IPFailoverArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IP Failover** groups on IonosCloud.
+        Manages **IP Failover** groups on IONOS CLOUD.
 
         ## Example Usage
 

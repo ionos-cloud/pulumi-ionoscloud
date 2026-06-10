@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IonosCloud.
+ * Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.
  *
  * ## Example Usage
  *
@@ -19,6 +19,14 @@ import * as utilities from "../utilities";
  * ```
  *
  * ## Import
+ *
+ * ### Identity Schema
+ *
+ * #### Required
+ *
+ * * `id` (String) The ID (UUID) of the AccessKey.
+ *
+ * ***
  *
  * An object storage accesskey resource can be imported using its `resource id`, e.g.
  *

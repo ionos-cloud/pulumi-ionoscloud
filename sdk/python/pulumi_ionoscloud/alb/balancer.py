@@ -363,7 +363,7 @@ class Balancer(pulumi.CustomResource):
                  target_lan: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
+        Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IONOS CLOUD.
 
         ## Example Usage
 
@@ -423,7 +423,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IonosCloud.
+        Manages an [Application Load Balancer](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview) on IONOS CLOUD.
 
         ## Example Usage
 

@@ -185,7 +185,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string> StorageType { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         /// </summary>
         [Output("synchronizationMode")]
         public Output<string> SynchronizationMode { get; private set; } = null!;
@@ -330,7 +330,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string> StorageType { get; set; } = null!;
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         /// </summary>
         [Input("synchronizationMode", required: true)]
         public Input<string> SynchronizationMode { get; set; } = null!;
@@ -442,7 +442,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? StorageType { get; set; }
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
         /// </summary>
         [Input("synchronizationMode")]
         public Input<string>? SynchronizationMode { get; set; }

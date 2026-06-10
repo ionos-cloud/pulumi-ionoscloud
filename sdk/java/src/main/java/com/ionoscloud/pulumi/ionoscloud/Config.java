@@ -20,7 +20,7 @@ public final class Config {
         return Codegen.stringProp("contractNumber").config(config).get();
     }
 /**
- * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
+ * IONOS CLOUD REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
  * 
  */
     public Optional<String> endpoint() {
@@ -34,7 +34,7 @@ public final class Config {
         return Codegen.booleanProp("insecure").config(config).get();
     }
 /**
- * IonosCloud password for API operations. If token is provided, token is preferred
+ * IONOS CLOUD password for API operations. If token is provided, token is preferred
  * 
  */
     public Optional<String> password() {
@@ -51,7 +51,7 @@ public final class Config {
         return Codegen.stringProp("s3AccessKey").config(config).get();
     }
 /**
- * Region for IONOS Object Storage operations.
+ * Region for IONOS Contract Owned Object Storage operations.
  * 
  */
     public Optional<String> s3Region() {
@@ -65,14 +65,14 @@ public final class Config {
         return Codegen.stringProp("s3SecretKey").config(config).get();
     }
 /**
- * IonosCloud bearer token for API operations.
+ * IONOS CLOUD bearer token for API operations.
  * 
  */
     public Optional<String> token() {
         return Codegen.stringProp("token").config(config).get();
     }
 /**
- * IonosCloud username for API operations. If token is provided, token is preferred
+ * IONOS CLOUD username for API operations. If token is provided, token is preferred
  * 
  */
     public Optional<String> username() {
