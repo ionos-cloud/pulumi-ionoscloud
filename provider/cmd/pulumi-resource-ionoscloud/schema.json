@@ -5679,6 +5679,179 @@
                 }
             }
         },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Connections:InMemoryDBClusterV2Connections": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "[string] The Virtual Data Center ID to connect to.\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "[string] The numeric LAN ID within the data center.\n"
+                },
+                "primaryInstanceAddress": {
+                    "type": "string",
+                    "description": "[string] Primary instance IP in CIDR notation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "lanId",
+                "primaryInstanceAddress"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Credentials:InMemoryDBClusterV2Credentials": {
+            "properties": {
+                "password": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2CredentialsPassword:InMemoryDBClusterV2CredentialsPassword",
+                    "description": "[object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "[string] Username (2–16 alphanumeric + underscore).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2CredentialsPassword:InMemoryDBClusterV2CredentialsPassword": {
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "[string] Hash algorithm (`SHA-256`).\n"
+                },
+                "hash": {
+                    "type": "string",
+                    "description": "[string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "algorithm",
+                "hash"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Filter:InMemoryDBClusterV2Filter": {
+            "properties": {
+                "fieldName": {
+                    "type": "string",
+                    "description": "The name of the field to filter on.\n"
+                },
+                "fieldValue": {
+                    "type": "string",
+                    "description": "The value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "fieldName",
+                "fieldValue"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Instances:InMemoryDBClusterV2Instances": {
+            "properties": {
+                "cores": {
+                    "type": "integer",
+                    "description": "[int] CPU cores per instance (1–62).\n"
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "[int] Number of instances (1–5).\n"
+                },
+                "ram": {
+                    "type": "integer",
+                    "description": "[int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cores",
+                "count",
+                "ram"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2MaintenanceWindow:InMemoryDBClusterV2MaintenanceWindow": {
+            "properties": {
+                "dayOfTheWeek": {
+                    "type": "string",
+                    "description": "[string] Day of the week: `Sunday`–`Saturday`.\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "[string] Start time in UTC (`HH:MM:SS`).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dayOfTheWeek",
+                "time"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2RestoreFromSnapshot:InMemoryDBClusterV2RestoreFromSnapshot": {
+            "properties": {
+                "recoveryTargetDatetime": {
+                    "type": "string",
+                    "description": "[string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.\n\n\u003e **Note:** \u003cspan pulumi-lang-nodejs=\"`restoreFromSnapshot`\" pulumi-lang-dotnet=\"`RestoreFromSnapshot`\" pulumi-lang-go=\"`restoreFromSnapshot`\" pulumi-lang-python=\"`restore_from_snapshot`\" pulumi-lang-yaml=\"`restoreFromSnapshot`\" pulumi-lang-java=\"`restoreFromSnapshot`\" pulumi-lang-hcl=\"`restore_from_snapshot`\"\u003e`restoreFromSnapshot`\u003c/span\u003e is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.\n"
+                },
+                "sourceSnapshotId": {
+                    "type": "string",
+                    "description": "[string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Snapshot:InMemoryDBClusterV2Snapshot": {
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "[string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.\n"
+                },
+                "retentionDays": {
+                    "type": "integer",
+                    "description": "[int] Days to retain snapshots (1–365).\n"
+                },
+                "snapshotHours": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "[list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "location",
+                "retentionDays",
+                "snapshotHours"
+            ]
+        },
+        "ionoscloud:dbaas/InMemoryDBClusterV2Timeouts:InMemoryDBClusterV2Timeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.\n"
+                },
+                "update": {
+                    "type": "string",
+                    "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).\n"
+                }
+            },
+            "type": "object"
+        },
         "ionoscloud:dbaas/InMemoryDBReplicaSetConnections:InMemoryDBReplicaSetConnections": {
             "properties": {
                 "cidr": {
@@ -6117,6 +6290,28 @@
                 "username"
             ]
         },
+        "ionoscloud:dbaas/PSQLClusterV2Filter:PSQLClusterV2Filter": {
+            "properties": {
+                "fieldName": {
+                    "type": "string",
+                    "description": "The name of the field to filter on.\n"
+                },
+                "fieldValue": {
+                    "type": "string",
+                    "description": "The value to match against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "fieldName",
+                "fieldValue"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
+        },
         "ionoscloud:dbaas/PSQLClusterV2Instances:PSQLClusterV2Instances": {
             "properties": {
                 "cores": {
@@ -6193,6 +6388,339 @@
                 }
             },
             "type": "object"
+        },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2Connections:getInMemoryDBClusterV2Connections": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "The Virtual Data Center ID.\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "The numeric LAN ID.\n"
+                },
+                "primaryInstanceAddress": {
+                    "type": "string",
+                    "description": "The primary instance IP in CIDR notation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "lanId",
+                "primaryInstanceAddress"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2Credentials:getInMemoryDBClusterV2Credentials": {
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "The username for the InMemoryDB user.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2Instances:getInMemoryDBClusterV2Instances": {
+            "properties": {
+                "cores": {
+                    "type": "integer",
+                    "description": "CPU cores per instance.\n"
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "Number of instances.\n"
+                },
+                "ram": {
+                    "type": "integer",
+                    "description": "RAM per instance in GB.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cores",
+                "count",
+                "ram"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2MaintenanceWindow:getInMemoryDBClusterV2MaintenanceWindow": {
+            "properties": {
+                "dayOfTheWeek": {
+                    "type": "string",
+                    "description": "Maintenance window day of the week.\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "Maintenance window start time in UTC (HH:MM:SS).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dayOfTheWeek",
+                "time"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2Snapshot:getInMemoryDBClusterV2Snapshot": {
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the cluster.\n\n\u003e **Note:** Either \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e must be provided. If none, or both are provided, the datasource will return an error.\n"
+                },
+                "retentionDays": {
+                    "type": "integer",
+                    "description": "Days snapshots are retained.\n"
+                },
+                "snapshotHours": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "UTC hours at which snapshots are taken.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "location",
+                "retentionDays",
+                "snapshotHours"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2Item:getInMemoryDBClustersV2Item": {
+            "properties": {
+                "connections": {
+                    "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2ItemConnections:getInMemoryDBClustersV2ItemConnections",
+                    "description": "Network connection configuration for the cluster.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2ItemCredentials:getInMemoryDBClustersV2ItemCredentials",
+                    "description": "Credentials for the user with access to the cluster.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Human-readable description for the cluster.\n"
+                },
+                "dnsName": {
+                    "type": "string",
+                    "description": "The DNS name used to connect to the cluster's primary instance.\n"
+                },
+                "evictionPolicy": {
+                    "type": "string",
+                    "description": "The key eviction strategy.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID (UUID) of the cluster.\n"
+                },
+                "instances": {
+                    "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2ItemInstances:getInMemoryDBClustersV2ItemInstances",
+                    "description": "Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location to query.\n"
+                },
+                "logsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether log collection is enabled.\n"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2ItemMaintenanceWindow:getInMemoryDBClustersV2ItemMaintenanceWindow",
+                    "description": "A weekly 4-hour maintenance window.\n"
+                },
+                "metricsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether metrics collection is enabled.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] Filter by name (case-insensitive contains match).\n"
+                },
+                "persistenceMode": {
+                    "type": "string",
+                    "description": "The data persistence mode.\n"
+                },
+                "snapshot": {
+                    "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2ItemSnapshot:getInMemoryDBClustersV2ItemSnapshot",
+                    "description": "Snapshot storage and retention configuration.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The In-Memory DB version.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "connections",
+                "credentials",
+                "description",
+                "dnsName",
+                "evictionPolicy",
+                "id",
+                "instances",
+                "location",
+                "logsEnabled",
+                "maintenanceWindow",
+                "metricsEnabled",
+                "name",
+                "persistenceMode",
+                "snapshot",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2ItemConnections:getInMemoryDBClustersV2ItemConnections": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "The Virtual Data Center ID.\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "The numeric LAN ID.\n"
+                },
+                "primaryInstanceAddress": {
+                    "type": "string",
+                    "description": "The IP address and subnet mask in CIDR notation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "lanId",
+                "primaryInstanceAddress"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2ItemCredentials:getInMemoryDBClustersV2ItemCredentials": {
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "The username for the In-Memory DB user.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2ItemInstances:getInMemoryDBClustersV2ItemInstances": {
+            "properties": {
+                "cores": {
+                    "type": "integer",
+                    "description": "CPU cores per instance.\n"
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "Number of instances.\n"
+                },
+                "ram": {
+                    "type": "integer",
+                    "description": "RAM per instance in GB.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cores",
+                "count",
+                "ram"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2ItemMaintenanceWindow:getInMemoryDBClustersV2ItemMaintenanceWindow": {
+            "properties": {
+                "dayOfTheWeek": {
+                    "type": "string",
+                    "description": "Day of the week.\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "Start time in UTC (HH:MM:SS).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dayOfTheWeek",
+                "time"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2ItemSnapshot:getInMemoryDBClustersV2ItemSnapshot": {
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location to query.\n"
+                },
+                "retentionDays": {
+                    "type": "integer",
+                    "description": "Number of days snapshots are retained.\n"
+                },
+                "snapshotHours": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "UTC hours at which snapshots are taken.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "location",
+                "retentionDays",
+                "snapshotHours"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "ionoscloud:dbaas/getInMemoryDBReplicaSetConnection:getInMemoryDBReplicaSetConnection": {
             "properties": {
@@ -6280,6 +6808,135 @@
                 "cores",
                 "ram",
                 "storage"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2Item:getInMemoryDBSnapshotLocationsV2Item": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the snapshot location.\n"
+                },
+                "snapshotRegion": {
+                    "type": "string",
+                    "description": "The snapshot region identifier.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "snapshotRegion"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBSnapshotsV2Item:getInMemoryDBSnapshotsV2Item": {
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "[string] Filter snapshots by cluster UUID.\n"
+                },
+                "clusterName": {
+                    "type": "string",
+                    "description": "The name of the cluster this snapshot belongs to.\n"
+                },
+                "clusterVersion": {
+                    "type": "string",
+                    "description": "The InMemoryDB version of the cluster at the time of the snapshot.\n"
+                },
+                "datacenterId": {
+                    "type": "string",
+                    "description": "The ID of the data center where the snapshot was created.\n"
+                },
+                "earliestRecoveryTargetTime": {
+                    "type": "string",
+                    "description": "The earliest time for which a snapshot is available to restore from (RFC3339).\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The UUID of the snapshot.\n"
+                },
+                "latestRecoveryTargetTime": {
+                    "type": "string",
+                    "description": "The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location to query.\n"
+                },
+                "requiredSizeForRestore": {
+                    "type": "number",
+                    "description": "The minimum storage size in GB required to restore from this snapshot.\n"
+                },
+                "snapshotLocation": {
+                    "type": "string",
+                    "description": "The Object Storage location where the snapshot is stored.\n"
+                },
+                "snapshotSize": {
+                    "type": "number",
+                    "description": "The size of the snapshot in GB.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "clusterId",
+                "clusterName",
+                "clusterVersion",
+                "datacenterId",
+                "earliestRecoveryTargetTime",
+                "id",
+                "latestRecoveryTargetTime",
+                "location",
+                "requiredSizeForRestore",
+                "snapshotLocation",
+                "snapshotSize"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBVersionsV2Item:getInMemoryDBVersionsV2Item": {
+            "properties": {
+                "canUpgradeTos": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of versions that a cluster running this version can be upgraded to.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Additional human-readable information about the version lifecycle.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The UUID of the version.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version string (e.g. `9.0`).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "canUpgradeTos",
+                "comment",
+                "id",
+                "status",
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -15764,6 +16421,244 @@
                 "type": "object"
             }
         },
+        "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": {
+            "description": "Manages a DBaaS InMemoryDB V2 Cluster.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.compute.Datacenter(\"example\", {\n    name: \"example\",\n    location: \"de/txl\",\n});\nconst exampleLan = new ionoscloud.compute.Lan(\"example\", {\n    datacenterId: example.id,\n    \"public\": false,\n    name: \"example\",\n});\nconst exampleInMemoryDBClusterV2 = new ionoscloud.dbaas.InMemoryDBClusterV2(\"example\", {\n    location: \"de/txl\",\n    name: \"my-inmemorydb-cluster\",\n    description: \"InMemoryDB cluster\",\n    version: \"9.0\",\n    persistenceMode: \"RDB\",\n    evictionPolicy: \"allkeys-lru\",\n    logsEnabled: true,\n    metricsEnabled: true,\n    instances: {\n        count: 1,\n        cores: 1,\n        ram: 4,\n    },\n    connections: {\n        datacenter_id: example.id,\n        lan_id: exampleLan.id,\n        primary_instance_address: \"192.168.2.101/24\",\n    },\n    snapshot: {\n        location: \"eu-central-3\",\n        retention_days: 7,\n        snapshot_hours: [\n            0,\n            6,\n            12,\n            18,\n        ],\n    },\n    maintenanceWindow: {\n        time: \"09:00:00\",\n        day_of_the_week: \"Sunday\",\n    },\n    credentials: {\n        username: \"cacheuser\",\n        password: {\n            algorithm: \"SHA-256\",\n            hash: \"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.compute.Datacenter(\"example\",\n    name=\"example\",\n    location=\"de/txl\")\nexample_lan = ionoscloud.compute.Lan(\"example\",\n    datacenter_id=example.id,\n    public=False,\n    name=\"example\")\nexample_in_memory_db_cluster_v2 = ionoscloud.dbaas.InMemoryDBClusterV2(\"example\",\n    location=\"de/txl\",\n    name=\"my-inmemorydb-cluster\",\n    description=\"InMemoryDB cluster\",\n    version=\"9.0\",\n    persistence_mode=\"RDB\",\n    eviction_policy=\"allkeys-lru\",\n    logs_enabled=True,\n    metrics_enabled=True,\n    instances={\n        \"count\": 1,\n        \"cores\": 1,\n        \"ram\": 4,\n    },\n    connections={\n        \"datacenter_id\": example.id,\n        \"lan_id\": example_lan.id,\n        \"primary_instance_address\": \"192.168.2.101/24\",\n    },\n    snapshot={\n        \"location\": \"eu-central-3\",\n        \"retention_days\": 7,\n        \"snapshot_hours\": [\n            0,\n            6,\n            12,\n            18,\n        ],\n    },\n    maintenance_window={\n        \"time\": \"09:00:00\",\n        \"day_of_the_week\": \"Sunday\",\n    },\n    credentials={\n        \"username\": \"cacheuser\",\n        \"password\": {\n            \"algorithm\": \"SHA-256\",\n            \"hash\": \"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\",\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Compute.Datacenter(\"example\", new()\n    {\n        Name = \"example\",\n        Location = \"de/txl\",\n    });\n\n    var exampleLan = new Ionoscloud.Compute.Lan(\"example\", new()\n    {\n        DatacenterId = example.Id,\n        Public = false,\n        Name = \"example\",\n    });\n\n    var exampleInMemoryDBClusterV2 = new Ionoscloud.Dbaas.InMemoryDBClusterV2(\"example\", new()\n    {\n        Location = \"de/txl\",\n        Name = \"my-inmemorydb-cluster\",\n        Description = \"InMemoryDB cluster\",\n        Version = \"9.0\",\n        PersistenceMode = \"RDB\",\n        EvictionPolicy = \"allkeys-lru\",\n        LogsEnabled = true,\n        MetricsEnabled = true,\n        Instances = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2InstancesArgs\n        {\n            Count = 1,\n            Cores = 1,\n            Ram = 4,\n        },\n        Connections = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2ConnectionsArgs\n        {\n            Datacenter_id = example.Id,\n            Lan_id = exampleLan.Id,\n            Primary_instance_address = \"192.168.2.101/24\",\n        },\n        Snapshot = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2SnapshotArgs\n        {\n            Location = \"eu-central-3\",\n            Retention_days = 7,\n            Snapshot_hours = new[]\n            {\n                0,\n                6,\n                12,\n                18,\n            },\n        },\n        MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2MaintenanceWindowArgs\n        {\n            Time = \"09:00:00\",\n            Day_of_the_week = \"Sunday\",\n        },\n        Credentials = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2CredentialsArgs\n        {\n            Username = \"cacheuser\",\n            Password = new Ionoscloud.Dbaas.Inputs.InMemoryDBClusterV2CredentialsPasswordArgs\n            {\n                Algorithm = \"SHA-256\",\n                Hash = \"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := compute.NewDatacenter(ctx, \"example\", \u0026compute.DatacenterArgs{\n\t\t\tName:     pulumi.String(\"example\"),\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleLan, err := compute.NewLan(ctx, \"example\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: example.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tName:         pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbaas.NewInMemoryDBClusterV2(ctx, \"example\", \u0026dbaas.InMemoryDBClusterV2Args{\n\t\t\tLocation:        pulumi.String(\"de/txl\"),\n\t\t\tName:            pulumi.String(\"my-inmemorydb-cluster\"),\n\t\t\tDescription:     pulumi.String(\"InMemoryDB cluster\"),\n\t\t\tVersion:         pulumi.String(\"9.0\"),\n\t\t\tPersistenceMode: pulumi.String(\"RDB\"),\n\t\t\tEvictionPolicy:  pulumi.String(\"allkeys-lru\"),\n\t\t\tLogsEnabled:     pulumi.Bool(true),\n\t\t\tMetricsEnabled:  pulumi.Bool(true),\n\t\t\tInstances: \u0026dbaas.InMemoryDBClusterV2InstancesArgs{\n\t\t\t\tCount: pulumi.Int(1),\n\t\t\t\tCores: pulumi.Int(1),\n\t\t\t\tRam:   pulumi.Int(4),\n\t\t\t},\n\t\t\tConnections: \u0026dbaas.InMemoryDBClusterV2ConnectionsArgs{\n\t\t\t\tDatacenter_id:            example.ID(),\n\t\t\t\tLan_id:                   exampleLan.ID(),\n\t\t\t\tPrimary_instance_address: \"192.168.2.101/24\",\n\t\t\t},\n\t\t\tSnapshot: \u0026dbaas.InMemoryDBClusterV2SnapshotArgs{\n\t\t\t\tLocation:       pulumi.String(\"eu-central-3\"),\n\t\t\t\tRetention_days: 7,\n\t\t\t\tSnapshot_hours: []int{\n\t\t\t\t\t0,\n\t\t\t\t\t6,\n\t\t\t\t\t12,\n\t\t\t\t\t18,\n\t\t\t\t},\n\t\t\t},\n\t\t\tMaintenanceWindow: \u0026dbaas.InMemoryDBClusterV2MaintenanceWindowArgs{\n\t\t\t\tTime:            pulumi.String(\"09:00:00\"),\n\t\t\t\tDay_of_the_week: \"Sunday\",\n\t\t\t},\n\t\t\tCredentials: \u0026dbaas.InMemoryDBClusterV2CredentialsArgs{\n\t\t\t\tUsername: pulumi.String(\"cacheuser\"),\n\t\t\t\tPassword: \u0026dbaas.InMemoryDBClusterV2CredentialsPasswordArgs{\n\t\t\t\t\tAlgorithm: pulumi.String(\"SHA-256\"),\n\t\t\t\t\tHash:      pulumi.String(\"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_compute_datacenter\" \"example\" {\n  name     = \"example\"\n  location = \"de/txl\"\n}\nresource \"ionoscloud_compute_lan\" \"example\" {\n  datacenter_id = ionoscloud_compute_datacenter.example.id\n  public        = false\n  name          = \"example\"\n}\nresource \"ionoscloud_dbaas_inmemorydbclusterv2\" \"example\" {\n  location         = \"de/txl\"\n  name             = \"my-inmemorydb-cluster\"\n  description      = \"InMemoryDB cluster\"\n  version          = \"9.0\"\n  persistence_mode = \"RDB\"\n  eviction_policy  = \"allkeys-lru\"\n  logs_enabled     = true\n  metrics_enabled  = true\n  instances = {\n    count = 1\n    cores = 1\n    ram   = 4\n  }\n  connections = {\n    datacenter_id            = ionoscloud_compute_datacenter.example.id\n    lan_id                   = ionoscloud_compute_lan.example.id\n    primary_instance_address = \"192.168.2.101/24\"\n  }\n  snapshot = {\n    location       = \"eu-central-3\"\n    retention_days = 7\n    snapshot_hours = [0, 6, 12, 18]\n  }\n  maintenance_window = {\n    time            = \"09:00:00\"\n    day_of_the_week = \"Sunday\"\n  }\n  credentials = {\n    username = \"cacheuser\"\n    password = {\n      algorithm = \"SHA-256\"\n      hash      = \"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\"\n    }\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;\nimport com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Lan;\nimport com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.InMemoryDBClusterV2;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.InMemoryDBClusterV2Args;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2InstancesArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2ConnectionsArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2SnapshotArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2MaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2CredentialsArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.InMemoryDBClusterV2CredentialsPasswordArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Datacenter(\"example\", DatacenterArgs.builder()\n            .name(\"example\")\n            .location(\"de/txl\")\n            .build());\n\n        var exampleLan = new Lan(\"exampleLan\", LanArgs.builder()\n            .datacenterId(example.id())\n            .public_(false)\n            .name(\"example\")\n            .build());\n\n        var exampleInMemoryDBClusterV2 = new InMemoryDBClusterV2(\"exampleInMemoryDBClusterV2\", InMemoryDBClusterV2Args.builder()\n            .location(\"de/txl\")\n            .name(\"my-inmemorydb-cluster\")\n            .description(\"InMemoryDB cluster\")\n            .version(\"9.0\")\n            .persistenceMode(\"RDB\")\n            .evictionPolicy(\"allkeys-lru\")\n            .logsEnabled(true)\n            .metricsEnabled(true)\n            .instances(InMemoryDBClusterV2InstancesArgs.builder()\n                .count(1)\n                .cores(1)\n                .ram(4)\n                .build())\n            .connections(InMemoryDBClusterV2ConnectionsArgs.builder()\n                .datacenter_id(example.id())\n                .lan_id(exampleLan.id())\n                .primary_instance_address(\"192.168.2.101/24\")\n                .build())\n            .snapshot(InMemoryDBClusterV2SnapshotArgs.builder()\n                .location(\"eu-central-3\")\n                .retention_days(7)\n                .snapshot_hours(Arrays.asList(                \n                    0,\n                    6,\n                    12,\n                    18))\n                .build())\n            .maintenanceWindow(InMemoryDBClusterV2MaintenanceWindowArgs.builder()\n                .time(\"09:00:00\")\n                .day_of_the_week(\"Sunday\")\n                .build())\n            .credentials(InMemoryDBClusterV2CredentialsArgs.builder()\n                .username(\"cacheuser\")\n                .password(InMemoryDBClusterV2CredentialsPasswordArgs.builder()\n                    .algorithm(\"SHA-256\")\n                    .hash(\"5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      name: example\n      location: de/txl\n  exampleLan:\n    type: ionoscloud:compute:Lan\n    name: example\n    properties:\n      datacenterId: ${example.id}\n      public: false\n      name: example\n  exampleInMemoryDBClusterV2:\n    type: ionoscloud:dbaas:InMemoryDBClusterV2\n    name: example\n    properties:\n      location: de/txl\n      name: my-inmemorydb-cluster\n      description: InMemoryDB cluster\n      version: '9.0'\n      persistenceMode: RDB\n      evictionPolicy: allkeys-lru\n      logsEnabled: true\n      metricsEnabled: true\n      instances:\n        count: 1\n        cores: 1\n        ram: 4\n      connections:\n        datacenter_id: ${example.id}\n        lan_id: ${exampleLan.id}\n        primary_instance_address: 192.168.2.101/24\n      snapshot:\n        location: eu-central-3\n        retention_days: 7\n        snapshot_hours:\n          - 0\n          - 6\n          - 12\n          - 18\n      maintenanceWindow:\n        time: 09:00:00\n        day_of_the_week: Sunday\n      credentials:\n        username: cacheuser\n        password:\n          algorithm: SHA-256\n          hash: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nInMemoryDB V2 clusters can be imported using `\u003clocation\u003e:\u003ccluster_id\u003e`:\n\n```sh\n$ pulumi import ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2 example de/txl:example-id\n```\n\n",
+            "properties": {
+                "connections": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Connections:InMemoryDBClusterV2Connections",
+                    "description": "[object] The network connection for your cluster. Only one connection is allowed.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Credentials:InMemoryDBClusterV2Credentials",
+                    "description": "[object] Credentials for the InMemoryDB cluster user.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] Human-readable description.\n"
+                },
+                "dnsName": {
+                    "type": "string",
+                    "description": "The DNS name for connecting to the cluster's primary instance.\n"
+                },
+                "evictionPolicy": {
+                    "type": "string",
+                    "description": "[string] Key eviction strategy: \u003cspan pulumi-lang-nodejs=\"`noeviction`\" pulumi-lang-dotnet=\"`Noeviction`\" pulumi-lang-go=\"`noeviction`\" pulumi-lang-python=\"`noeviction`\" pulumi-lang-yaml=\"`noeviction`\" pulumi-lang-java=\"`noeviction`\" pulumi-lang-hcl=\"`noeviction`\"\u003e`noeviction`\u003c/span\u003e, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.\n"
+                },
+                "instances": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Instances:InMemoryDBClusterV2Instances",
+                    "description": "[object] The instance sizing configuration.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.\n"
+                },
+                "logsEnabled": {
+                    "type": "boolean",
+                    "description": "(Computed)[bool] Enable log collection for observability. If not set, the API default is used.\n"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2MaintenanceWindow:InMemoryDBClusterV2MaintenanceWindow",
+                    "description": "[object] A weekly 4 hour-long window, during which maintenance might occur.\n"
+                },
+                "metricsEnabled": {
+                    "type": "boolean",
+                    "description": "(Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] Cluster name (2–63 alphanumeric chars with dashes, underscores, dots).\n"
+                },
+                "persistenceMode": {
+                    "type": "string",
+                    "description": "(Computed)[string] Data persistence mode: `None`, `AOF`, `RDB`, `RDB_AOF`. If not set, the API default is used.\n"
+                },
+                "restoreFromSnapshot": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2RestoreFromSnapshot:InMemoryDBClusterV2RestoreFromSnapshot",
+                    "description": "[object] Restore configuration from a snapshot.\n"
+                },
+                "snapshot": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Snapshot:InMemoryDBClusterV2Snapshot",
+                    "description": "[object] Snapshot configuration.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Timeouts:InMemoryDBClusterV2Timeouts",
+                    "description": "Standard Terraform timeouts: \u003cspan pulumi-lang-nodejs=\"`create`\" pulumi-lang-dotnet=\"`Create`\" pulumi-lang-go=\"`create`\" pulumi-lang-python=\"`create`\" pulumi-lang-yaml=\"`create`\" pulumi-lang-java=\"`create`\" pulumi-lang-hcl=\"`create`\"\u003e`create`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`update`\" pulumi-lang-dotnet=\"`Update`\" pulumi-lang-go=\"`update`\" pulumi-lang-python=\"`update`\" pulumi-lang-yaml=\"`update`\" pulumi-lang-java=\"`update`\" pulumi-lang-hcl=\"`update`\"\u003e`update`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`delete`\" pulumi-lang-dotnet=\"`Delete`\" pulumi-lang-go=\"`delete`\" pulumi-lang-python=\"`delete`\" pulumi-lang-yaml=\"`delete`\" pulumi-lang-java=\"`delete`\" pulumi-lang-hcl=\"`delete`\"\u003e`delete`\u003c/span\u003e.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).\n"
+                }
+            },
+            "required": [
+                "connections",
+                "credentials",
+                "dnsName",
+                "evictionPolicy",
+                "instances",
+                "location",
+                "logsEnabled",
+                "maintenanceWindow",
+                "metricsEnabled",
+                "name",
+                "persistenceMode",
+                "snapshot",
+                "version"
+            ],
+            "inputProperties": {
+                "connections": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Connections:InMemoryDBClusterV2Connections",
+                    "description": "[object] The network connection for your cluster. Only one connection is allowed.\n"
+                },
+                "credentials": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Credentials:InMemoryDBClusterV2Credentials",
+                    "description": "[object] Credentials for the InMemoryDB cluster user.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] Human-readable description.\n"
+                },
+                "evictionPolicy": {
+                    "type": "string",
+                    "description": "[string] Key eviction strategy: \u003cspan pulumi-lang-nodejs=\"`noeviction`\" pulumi-lang-dotnet=\"`Noeviction`\" pulumi-lang-go=\"`noeviction`\" pulumi-lang-python=\"`noeviction`\" pulumi-lang-yaml=\"`noeviction`\" pulumi-lang-java=\"`noeviction`\" pulumi-lang-hcl=\"`noeviction`\"\u003e`noeviction`\u003c/span\u003e, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.\n"
+                },
+                "instances": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Instances:InMemoryDBClusterV2Instances",
+                    "description": "[object] The instance sizing configuration.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.\n"
+                },
+                "logsEnabled": {
+                    "type": "boolean",
+                    "description": "(Computed)[bool] Enable log collection for observability. If not set, the API default is used.\n"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2MaintenanceWindow:InMemoryDBClusterV2MaintenanceWindow",
+                    "description": "[object] A weekly 4 hour-long window, during which maintenance might occur.\n"
+                },
+                "metricsEnabled": {
+                    "type": "boolean",
+                    "description": "(Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] Cluster name (2–63 alphanumeric chars with dashes, underscores, dots).\n"
+                },
+                "persistenceMode": {
+                    "type": "string",
+                    "description": "(Computed)[string] Data persistence mode: `None`, `AOF`, `RDB`, `RDB_AOF`. If not set, the API default is used.\n"
+                },
+                "restoreFromSnapshot": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2RestoreFromSnapshot:InMemoryDBClusterV2RestoreFromSnapshot",
+                    "description": "[object] Restore configuration from a snapshot.\n"
+                },
+                "snapshot": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Snapshot:InMemoryDBClusterV2Snapshot",
+                    "description": "[object] Snapshot configuration.\n"
+                },
+                "timeouts": {
+                    "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Timeouts:InMemoryDBClusterV2Timeouts",
+                    "description": "Standard Terraform timeouts: \u003cspan pulumi-lang-nodejs=\"`create`\" pulumi-lang-dotnet=\"`Create`\" pulumi-lang-go=\"`create`\" pulumi-lang-python=\"`create`\" pulumi-lang-yaml=\"`create`\" pulumi-lang-java=\"`create`\" pulumi-lang-hcl=\"`create`\"\u003e`create`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`update`\" pulumi-lang-dotnet=\"`Update`\" pulumi-lang-go=\"`update`\" pulumi-lang-python=\"`update`\" pulumi-lang-yaml=\"`update`\" pulumi-lang-java=\"`update`\" pulumi-lang-hcl=\"`update`\"\u003e`update`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`delete`\" pulumi-lang-dotnet=\"`Delete`\" pulumi-lang-go=\"`delete`\" pulumi-lang-python=\"`delete`\" pulumi-lang-yaml=\"`delete`\" pulumi-lang-java=\"`delete`\" pulumi-lang-hcl=\"`delete`\"\u003e`delete`\u003c/span\u003e.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).\n"
+                }
+            },
+            "requiredInputs": [
+                "connections",
+                "credentials",
+                "evictionPolicy",
+                "instances",
+                "location",
+                "maintenanceWindow",
+                "snapshot",
+                "version"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering InMemoryDBClusterV2 resources.\n",
+                "properties": {
+                    "connections": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Connections:InMemoryDBClusterV2Connections",
+                        "description": "[object] The network connection for your cluster. Only one connection is allowed.\n"
+                    },
+                    "credentials": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Credentials:InMemoryDBClusterV2Credentials",
+                        "description": "[object] Credentials for the InMemoryDB cluster user.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "[string] Human-readable description.\n"
+                    },
+                    "dnsName": {
+                        "type": "string",
+                        "description": "The DNS name for connecting to the cluster's primary instance.\n"
+                    },
+                    "evictionPolicy": {
+                        "type": "string",
+                        "description": "[string] Key eviction strategy: \u003cspan pulumi-lang-nodejs=\"`noeviction`\" pulumi-lang-dotnet=\"`Noeviction`\" pulumi-lang-go=\"`noeviction`\" pulumi-lang-python=\"`noeviction`\" pulumi-lang-yaml=\"`noeviction`\" pulumi-lang-java=\"`noeviction`\" pulumi-lang-hcl=\"`noeviction`\"\u003e`noeviction`\u003c/span\u003e, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.\n"
+                    },
+                    "instances": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Instances:InMemoryDBClusterV2Instances",
+                        "description": "[object] The instance sizing configuration.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.\n"
+                    },
+                    "logsEnabled": {
+                        "type": "boolean",
+                        "description": "(Computed)[bool] Enable log collection for observability. If not set, the API default is used.\n"
+                    },
+                    "maintenanceWindow": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2MaintenanceWindow:InMemoryDBClusterV2MaintenanceWindow",
+                        "description": "[object] A weekly 4 hour-long window, during which maintenance might occur.\n"
+                    },
+                    "metricsEnabled": {
+                        "type": "boolean",
+                        "description": "(Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] Cluster name (2–63 alphanumeric chars with dashes, underscores, dots).\n"
+                    },
+                    "persistenceMode": {
+                        "type": "string",
+                        "description": "(Computed)[string] Data persistence mode: `None`, `AOF`, `RDB`, `RDB_AOF`. If not set, the API default is used.\n"
+                    },
+                    "restoreFromSnapshot": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2RestoreFromSnapshot:InMemoryDBClusterV2RestoreFromSnapshot",
+                        "description": "[object] Restore configuration from a snapshot.\n"
+                    },
+                    "snapshot": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Snapshot:InMemoryDBClusterV2Snapshot",
+                        "description": "[object] Snapshot configuration.\n"
+                    },
+                    "timeouts": {
+                        "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Timeouts:InMemoryDBClusterV2Timeouts",
+                        "description": "Standard Terraform timeouts: \u003cspan pulumi-lang-nodejs=\"`create`\" pulumi-lang-dotnet=\"`Create`\" pulumi-lang-go=\"`create`\" pulumi-lang-python=\"`create`\" pulumi-lang-yaml=\"`create`\" pulumi-lang-java=\"`create`\" pulumi-lang-hcl=\"`create`\"\u003e`create`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`update`\" pulumi-lang-dotnet=\"`Update`\" pulumi-lang-go=\"`update`\" pulumi-lang-python=\"`update`\" pulumi-lang-yaml=\"`update`\" pulumi-lang-java=\"`update`\" pulumi-lang-hcl=\"`update`\"\u003e`update`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`delete`\" pulumi-lang-dotnet=\"`Delete`\" pulumi-lang-go=\"`delete`\" pulumi-lang-python=\"`delete`\" pulumi-lang-yaml=\"`delete`\" pulumi-lang-java=\"`delete`\" pulumi-lang-hcl=\"`delete`\"\u003e`delete`\u003c/span\u003e.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "[string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).\n"
+                    }
+                },
+                "type": "object"
+            },
+            "listInputs": {
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/InMemoryDBClusterV2Filter:InMemoryDBClusterV2Filter"
+                        },
+                        "description": "Filters to apply when listing resources. All filters must match (AND logic).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet": {
             "description": "Manages a [DBaaS InMemoryDB Replica Set](https://docs.ionos.com/cloud/databases/in-memory-db/overview) Replica Set.\n\n## Import\n\nResource DBaaS InMemoryDB Replica Set can be imported using the \u003cspan pulumi-lang-nodejs=\"`replicasetId`\" pulumi-lang-dotnet=\"`ReplicasetId`\" pulumi-lang-go=\"`replicasetId`\" pulumi-lang-python=\"`replicaset_id`\" pulumi-lang-yaml=\"`replicasetId`\" pulumi-lang-java=\"`replicasetId`\" pulumi-lang-hcl=\"`replicaset_id`\"\u003e`replicasetId`\u003c/span\u003e and the \u003cspan pulumi-lang-nodejs=\"`location`\" pulumi-lang-dotnet=\"`Location`\" pulumi-lang-go=\"`location`\" pulumi-lang-python=\"`location`\" pulumi-lang-yaml=\"`location`\" pulumi-lang-java=\"`location`\" pulumi-lang-hcl=\"`location`\"\u003e`location`\u003c/span\u003e, separated by `:`, e.g:\n\n```sh\nterraform import ionoscloud_inmemorydb_replicaset.example location:replicaSet uuid\n```\n\n",
             "properties": {
@@ -16465,7 +17360,7 @@
             }
         },
         "ionoscloud:dbaas/pSQLCluster:PSQLCluster": {
-            "description": "Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\n// Basic example\nconst example = new ionoscloud.compute.Datacenter(\"example\", {\n    name: \"example\",\n    location: \"de/txl\",\n    description: \"Datacenter for testing psql cluster\",\n});\nconst exampleLan = new ionoscloud.compute.Lan(\"example\", {\n    datacenterId: example.id,\n    \"public\": false,\n    name: \"example\",\n});\nconst examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster(\"example\", {\n    postgresVersion: \"12\",\n    instances: 1,\n    cores: 4,\n    ram: 2048,\n    storageSize: 10240,\n    storageType: \"HDD\",\n    connectionPooler: {\n        enabled: true,\n        poolMode: \"session\",\n    },\n    connections: {\n        datacenterId: example.id,\n        lanId: exampleLan.id,\n        cidr: \"192.168.100.1/24\",\n    },\n    location: example.location,\n    displayName: \"PostgreSQL_cluster\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    },\n    credentials: {\n        username: \"username\",\n        password: \"strongPassword\",\n    },\n    synchronizationMode: \"ASYNCHRONOUS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\n# Basic example\nexample = ionoscloud.compute.Datacenter(\"example\",\n    name=\"example\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing psql cluster\")\nexample_lan = ionoscloud.compute.Lan(\"example\",\n    datacenter_id=example.id,\n    public=False,\n    name=\"example\")\nexample_psql_cluster = ionoscloud.dbaas.PSQLCluster(\"example\",\n    postgres_version=\"12\",\n    instances=1,\n    cores=4,\n    ram=2048,\n    storage_size=10240,\n    storage_type=\"HDD\",\n    connection_pooler={\n        \"enabled\": True,\n        \"pool_mode\": \"session\",\n    },\n    connections={\n        \"datacenter_id\": example.id,\n        \"lan_id\": example_lan.id,\n        \"cidr\": \"192.168.100.1/24\",\n    },\n    location=example.location,\n    display_name=\"PostgreSQL_cluster\",\n    maintenance_window={\n        \"day_of_the_week\": \"Sunday\",\n        \"time\": \"09:00:00\",\n    },\n    credentials={\n        \"username\": \"username\",\n        \"password\": \"strongPassword\",\n    },\n    synchronization_mode=\"ASYNCHRONOUS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var example = new Ionoscloud.Compute.Datacenter(\"example\", new()\n    {\n        Name = \"example\",\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing psql cluster\",\n    });\n\n    var exampleLan = new Ionoscloud.Compute.Lan(\"example\", new()\n    {\n        DatacenterId = example.Id,\n        Public = false,\n        Name = \"example\",\n    });\n\n    var examplePSQLCluster = new Ionoscloud.Dbaas.PSQLCluster(\"example\", new()\n    {\n        PostgresVersion = \"12\",\n        Instances = 1,\n        Cores = 4,\n        Ram = 2048,\n        StorageSize = 10240,\n        StorageType = \"HDD\",\n        ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs\n        {\n            Enabled = true,\n            PoolMode = \"session\",\n        },\n        Connections = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionsArgs\n        {\n            DatacenterId = example.Id,\n            LanId = exampleLan.Id,\n            Cidr = \"192.168.100.1/24\",\n        },\n        Location = example.Location,\n        DisplayName = \"PostgreSQL_cluster\",\n        MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.PSQLClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00\",\n        },\n        Credentials = new Ionoscloud.Dbaas.Inputs.PSQLClusterCredentialsArgs\n        {\n            Username = \"username\",\n            Password = \"strongPassword\",\n        },\n        SynchronizationMode = \"ASYNCHRONOUS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\texample, err := compute.NewDatacenter(ctx, \"example\", \u0026compute.DatacenterArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing psql cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleLan, err := compute.NewLan(ctx, \"example\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: example.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tName:         pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbaas.NewPSQLCluster(ctx, \"example\", \u0026dbaas.PSQLClusterArgs{\n\t\t\tPostgresVersion: pulumi.String(\"12\"),\n\t\t\tInstances:       pulumi.Int(1),\n\t\t\tCores:           pulumi.Int(4),\n\t\t\tRam:             pulumi.Int(2048),\n\t\t\tStorageSize:     pulumi.Int(10240),\n\t\t\tStorageType:     pulumi.String(\"HDD\"),\n\t\t\tConnectionPooler: \u0026dbaas.PSQLClusterConnectionPoolerArgs{\n\t\t\t\tEnabled:  pulumi.Bool(true),\n\t\t\t\tPoolMode: pulumi.String(\"session\"),\n\t\t\t},\n\t\t\tConnections: \u0026dbaas.PSQLClusterConnectionsArgs{\n\t\t\t\tDatacenterId: example.ID(),\n\t\t\t\tLanId:        exampleLan.ID(),\n\t\t\t\tCidr:         pulumi.String(\"192.168.100.1/24\"),\n\t\t\t},\n\t\t\tLocation:    example.Location,\n\t\t\tDisplayName: pulumi.String(\"PostgreSQL_cluster\"),\n\t\t\tMaintenanceWindow: \u0026dbaas.PSQLClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t},\n\t\t\tCredentials: \u0026dbaas.PSQLClusterCredentialsArgs{\n\t\t\t\tUsername: pulumi.String(\"username\"),\n\t\t\t\tPassword: pulumi.String(\"strongPassword\"),\n\t\t\t},\n\t\t\tSynchronizationMode: pulumi.String(\"ASYNCHRONOUS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\n# Basic example\nresource \"ionoscloud_compute_datacenter\" \"example\" {\n  name        = \"example\"\n  location    = \"de/txl\"\n  description = \"Datacenter for testing psql cluster\"\n}\nresource \"ionoscloud_compute_lan\" \"example\" {\n  datacenter_id = ionoscloud_compute_datacenter.example.id\n  public        = false\n  name          = \"example\"\n}\nresource \"ionoscloud_dbaas_psqlcluster\" \"example\" {\n  postgres_version = \"12\"\n  instances        = 1\n  cores            = 4\n  ram              = 2048\n  storage_size     = 10240\n  storage_type     = \"HDD\"\n  connection_pooler = {\n    enabled   = true\n    pool_mode = \"session\"\n  }\n  connections = {\n    datacenter_id = ionoscloud_compute_datacenter.example.id\n    lan_id        = ionoscloud_compute_lan.example.id\n    cidr          = \"192.168.100.1/24\"\n  }\n  location     = ionoscloud_compute_datacenter.example.location\n  display_name = \"PostgreSQL_cluster\"\n  maintenance_window = {\n    day_of_the_week = \"Sunday\"\n    time            = \"09:00:00\"\n  }\n  credentials = {\n    username = \"username\"\n    password = \"strongPassword\"\n  }\n  synchronization_mode = \"ASYNCHRONOUS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;\nimport com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Lan;\nimport com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLCluster;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLClusterArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionPoolerArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterCredentialsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var example = new Datacenter(\"example\", DatacenterArgs.builder()\n            .name(\"example\")\n            .location(\"de/txl\")\n            .description(\"Datacenter for testing psql cluster\")\n            .build());\n\n        var exampleLan = new Lan(\"exampleLan\", LanArgs.builder()\n            .datacenterId(example.id())\n            .public_(false)\n            .name(\"example\")\n            .build());\n\n        var examplePSQLCluster = new PSQLCluster(\"examplePSQLCluster\", PSQLClusterArgs.builder()\n            .postgresVersion(\"12\")\n            .instances(1)\n            .cores(4)\n            .ram(2048)\n            .storageSize(10240)\n            .storageType(\"HDD\")\n            .connectionPooler(PSQLClusterConnectionPoolerArgs.builder()\n                .enabled(true)\n                .poolMode(\"session\")\n                .build())\n            .connections(PSQLClusterConnectionsArgs.builder()\n                .datacenterId(example.id())\n                .lanId(exampleLan.id())\n                .cidr(\"192.168.100.1/24\")\n                .build())\n            .location(example.location())\n            .displayName(\"PostgreSQL_cluster\")\n            .maintenanceWindow(PSQLClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .credentials(PSQLClusterCredentialsArgs.builder()\n                .username(\"username\")\n                .password(\"strongPassword\")\n                .build())\n            .synchronizationMode(\"ASYNCHRONOUS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  example:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      name: example\n      location: de/txl\n      description: Datacenter for testing psql cluster\n  exampleLan:\n    type: ionoscloud:compute:Lan\n    name: example\n    properties:\n      datacenterId: ${example.id}\n      public: false\n      name: example\n  examplePSQLCluster:\n    type: ionoscloud:dbaas:PSQLCluster\n    name: example\n    properties:\n      postgresVersion: '12'\n      instances: 1\n      cores: 4\n      ram: 2048\n      storageSize: 10240\n      storageType: HDD\n      connectionPooler:\n        enabled: true\n        poolMode: session\n      connections:\n        datacenterId: ${example.id}\n        lanId: ${exampleLan.id}\n        cidr: 192.168.100.1/24\n      location: ${example.location}\n      displayName: PostgreSQL_cluster\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00\n      credentials:\n        username: username\n        password: strongPassword\n      synchronizationMode: ASYNCHRONOUS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource DbaaS Postgres Cluster can be imported using the \u003cspan pulumi-lang-nodejs=\"`clusterId`\" pulumi-lang-dotnet=\"`ClusterId`\" pulumi-lang-go=\"`clusterId`\" pulumi-lang-python=\"`cluster_id`\" pulumi-lang-yaml=\"`clusterId`\" pulumi-lang-java=\"`clusterId`\" pulumi-lang-hcl=\"`cluster_id`\"\u003e`clusterId`\u003c/span\u003e, e.g.\n\n```sh\nterraform import ionoscloud_pg_cluster.mycluser cluster uuid\n```\n\n",
+            "description": "Manages a [DbaaS PgSql Cluster](https://docs.ionos.com/cloud/databases/postgresql/overview).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\n// Basic example\nconst example = new ionoscloud.compute.Datacenter(\"example\", {\n    name: \"example\",\n    location: \"de/txl\",\n    description: \"Datacenter for testing psql cluster\",\n});\nconst exampleLan = new ionoscloud.compute.Lan(\"example\", {\n    datacenterId: example.id,\n    \"public\": false,\n    name: \"example\",\n});\nconst examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster(\"example\", {\n    postgresVersion: \"16\",\n    instances: 1,\n    cores: 4,\n    ram: 4096,\n    storageSize: 10240,\n    storageType: \"HDD\",\n    connectionPooler: {\n        enabled: true,\n        poolMode: \"session\",\n    },\n    connections: {\n        datacenterId: example.id,\n        lanId: exampleLan.id,\n        cidr: \"192.168.100.1/24\",\n    },\n    location: example.location,\n    displayName: \"PostgreSQL_cluster\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    },\n    credentials: {\n        username: \"username\",\n        password: \"strongPassword\",\n    },\n    synchronizationMode: \"ASYNCHRONOUS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\n# Basic example\nexample = ionoscloud.compute.Datacenter(\"example\",\n    name=\"example\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing psql cluster\")\nexample_lan = ionoscloud.compute.Lan(\"example\",\n    datacenter_id=example.id,\n    public=False,\n    name=\"example\")\nexample_psql_cluster = ionoscloud.dbaas.PSQLCluster(\"example\",\n    postgres_version=\"16\",\n    instances=1,\n    cores=4,\n    ram=4096,\n    storage_size=10240,\n    storage_type=\"HDD\",\n    connection_pooler={\n        \"enabled\": True,\n        \"pool_mode\": \"session\",\n    },\n    connections={\n        \"datacenter_id\": example.id,\n        \"lan_id\": example_lan.id,\n        \"cidr\": \"192.168.100.1/24\",\n    },\n    location=example.location,\n    display_name=\"PostgreSQL_cluster\",\n    maintenance_window={\n        \"day_of_the_week\": \"Sunday\",\n        \"time\": \"09:00:00\",\n    },\n    credentials={\n        \"username\": \"username\",\n        \"password\": \"strongPassword\",\n    },\n    synchronization_mode=\"ASYNCHRONOUS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var example = new Ionoscloud.Compute.Datacenter(\"example\", new()\n    {\n        Name = \"example\",\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing psql cluster\",\n    });\n\n    var exampleLan = new Ionoscloud.Compute.Lan(\"example\", new()\n    {\n        DatacenterId = example.Id,\n        Public = false,\n        Name = \"example\",\n    });\n\n    var examplePSQLCluster = new Ionoscloud.Dbaas.PSQLCluster(\"example\", new()\n    {\n        PostgresVersion = \"16\",\n        Instances = 1,\n        Cores = 4,\n        Ram = 4096,\n        StorageSize = 10240,\n        StorageType = \"HDD\",\n        ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs\n        {\n            Enabled = true,\n            PoolMode = \"session\",\n        },\n        Connections = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionsArgs\n        {\n            DatacenterId = example.Id,\n            LanId = exampleLan.Id,\n            Cidr = \"192.168.100.1/24\",\n        },\n        Location = example.Location,\n        DisplayName = \"PostgreSQL_cluster\",\n        MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.PSQLClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00\",\n        },\n        Credentials = new Ionoscloud.Dbaas.Inputs.PSQLClusterCredentialsArgs\n        {\n            Username = \"username\",\n            Password = \"strongPassword\",\n        },\n        SynchronizationMode = \"ASYNCHRONOUS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\texample, err := compute.NewDatacenter(ctx, \"example\", \u0026compute.DatacenterArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing psql cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleLan, err := compute.NewLan(ctx, \"example\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: example.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tName:         pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbaas.NewPSQLCluster(ctx, \"example\", \u0026dbaas.PSQLClusterArgs{\n\t\t\tPostgresVersion: pulumi.String(\"16\"),\n\t\t\tInstances:       pulumi.Int(1),\n\t\t\tCores:           pulumi.Int(4),\n\t\t\tRam:             pulumi.Int(4096),\n\t\t\tStorageSize:     pulumi.Int(10240),\n\t\t\tStorageType:     pulumi.String(\"HDD\"),\n\t\t\tConnectionPooler: \u0026dbaas.PSQLClusterConnectionPoolerArgs{\n\t\t\t\tEnabled:  pulumi.Bool(true),\n\t\t\t\tPoolMode: pulumi.String(\"session\"),\n\t\t\t},\n\t\t\tConnections: \u0026dbaas.PSQLClusterConnectionsArgs{\n\t\t\t\tDatacenterId: example.ID(),\n\t\t\t\tLanId:        exampleLan.ID(),\n\t\t\t\tCidr:         pulumi.String(\"192.168.100.1/24\"),\n\t\t\t},\n\t\t\tLocation:    example.Location,\n\t\t\tDisplayName: pulumi.String(\"PostgreSQL_cluster\"),\n\t\t\tMaintenanceWindow: \u0026dbaas.PSQLClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t},\n\t\t\tCredentials: \u0026dbaas.PSQLClusterCredentialsArgs{\n\t\t\t\tUsername: pulumi.String(\"username\"),\n\t\t\t\tPassword: pulumi.String(\"strongPassword\"),\n\t\t\t},\n\t\t\tSynchronizationMode: pulumi.String(\"ASYNCHRONOUS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\n# Basic example\nresource \"ionoscloud_compute_datacenter\" \"example\" {\n  name        = \"example\"\n  location    = \"de/txl\"\n  description = \"Datacenter for testing psql cluster\"\n}\nresource \"ionoscloud_compute_lan\" \"example\" {\n  datacenter_id = ionoscloud_compute_datacenter.example.id\n  public        = false\n  name          = \"example\"\n}\nresource \"ionoscloud_dbaas_psqlcluster\" \"example\" {\n  postgres_version = \"16\"\n  instances        = 1\n  cores            = 4\n  ram              = 4096\n  storage_size     = 10240\n  storage_type     = \"HDD\"\n  connection_pooler = {\n    enabled   = true\n    pool_mode = \"session\"\n  }\n  connections = {\n    datacenter_id = ionoscloud_compute_datacenter.example.id\n    lan_id        = ionoscloud_compute_lan.example.id\n    cidr          = \"192.168.100.1/24\"\n  }\n  location     = ionoscloud_compute_datacenter.example.location\n  display_name = \"PostgreSQL_cluster\"\n  maintenance_window = {\n    day_of_the_week = \"Sunday\"\n    time            = \"09:00:00\"\n  }\n  credentials = {\n    username = \"username\"\n    password = \"strongPassword\"\n  }\n  synchronization_mode = \"ASYNCHRONOUS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Datacenter;\nimport com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.ionoscloud.pulumi.ionoscloud.compute.Lan;\nimport com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLCluster;\nimport com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLClusterArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionPoolerArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterConnectionsArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.dbaas.inputs.PSQLClusterCredentialsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var example = new Datacenter(\"example\", DatacenterArgs.builder()\n            .name(\"example\")\n            .location(\"de/txl\")\n            .description(\"Datacenter for testing psql cluster\")\n            .build());\n\n        var exampleLan = new Lan(\"exampleLan\", LanArgs.builder()\n            .datacenterId(example.id())\n            .public_(false)\n            .name(\"example\")\n            .build());\n\n        var examplePSQLCluster = new PSQLCluster(\"examplePSQLCluster\", PSQLClusterArgs.builder()\n            .postgresVersion(\"16\")\n            .instances(1)\n            .cores(4)\n            .ram(4096)\n            .storageSize(10240)\n            .storageType(\"HDD\")\n            .connectionPooler(PSQLClusterConnectionPoolerArgs.builder()\n                .enabled(true)\n                .poolMode(\"session\")\n                .build())\n            .connections(PSQLClusterConnectionsArgs.builder()\n                .datacenterId(example.id())\n                .lanId(exampleLan.id())\n                .cidr(\"192.168.100.1/24\")\n                .build())\n            .location(example.location())\n            .displayName(\"PostgreSQL_cluster\")\n            .maintenanceWindow(PSQLClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .credentials(PSQLClusterCredentialsArgs.builder()\n                .username(\"username\")\n                .password(\"strongPassword\")\n                .build())\n            .synchronizationMode(\"ASYNCHRONOUS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  example:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      name: example\n      location: de/txl\n      description: Datacenter for testing psql cluster\n  exampleLan:\n    type: ionoscloud:compute:Lan\n    name: example\n    properties:\n      datacenterId: ${example.id}\n      public: false\n      name: example\n  examplePSQLCluster:\n    type: ionoscloud:dbaas:PSQLCluster\n    name: example\n    properties:\n      postgresVersion: '16'\n      instances: 1\n      cores: 4\n      ram: 4096\n      storageSize: 10240\n      storageType: HDD\n      connectionPooler:\n        enabled: true\n        poolMode: session\n      connections:\n        datacenterId: ${example.id}\n        lanId: ${exampleLan.id}\n        cidr: 192.168.100.1/24\n      location: ${example.location}\n      displayName: PostgreSQL_cluster\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00\n      credentials:\n        username: username\n        password: strongPassword\n      synchronizationMode: ASYNCHRONOUS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource DbaaS Postgres Cluster can be imported using the \u003cspan pulumi-lang-nodejs=\"`clusterId`\" pulumi-lang-dotnet=\"`ClusterId`\" pulumi-lang-go=\"`clusterId`\" pulumi-lang-python=\"`cluster_id`\" pulumi-lang-yaml=\"`clusterId`\" pulumi-lang-java=\"`clusterId`\" pulumi-lang-hcl=\"`cluster_id`\"\u003e`clusterId`\u003c/span\u003e, e.g.\n\n```sh\nterraform import ionoscloud_pg_cluster.mycluser cluster uuid\n```\n\n",
             "properties": {
                 "allowReplace": {
                     "type": "boolean",
@@ -16533,7 +17428,7 @@
                 },
                 "synchronizationMode": {
                     "type": "string",
-                    "description": "[string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.\n"
+                    "description": "[string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.\n"
                 }
             },
             "required": [
@@ -16620,7 +17515,7 @@
                 },
                 "synchronizationMode": {
                     "type": "string",
-                    "description": "[string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.\n"
+                    "description": "[string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.\n"
                 }
             },
             "requiredInputs": [
@@ -16709,14 +17604,14 @@
                     },
                     "synchronizationMode": {
                         "type": "string",
-                        "description": "[string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.\n"
+                        "description": "[string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": {
-            "description": "Manages a DBaaS PostgreSQL v2 Cluster.\n\n## Import\n\nResource DBaaS PostgreSQL v2 Cluster can be imported using the format `location:cluster_id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2 mycluster de/txl:cluster_uuid\n```\n\n",
+            "description": "Manages a DBaaS PostgreSQL v2 Cluster.\n\n#### Required\n\n* \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e (String) The UUID of the cluster.\n* \u003cspan pulumi-lang-nodejs=\"`location`\" pulumi-lang-dotnet=\"`Location`\" pulumi-lang-go=\"`location`\" pulumi-lang-python=\"`location`\" pulumi-lang-yaml=\"`location`\" pulumi-lang-java=\"`location`\" pulumi-lang-hcl=\"`location`\"\u003e`location`\u003c/span\u003e (String) The location of the cluster (e.g. `de/txl`).\n\n---\n\nA cluster can also be imported using the format `location:cluster_id`:\n\n```sh\n$ pulumi import ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2 mycluster de/txl:cluster_uuid\n```\n\n",
             "properties": {
                 "backup": {
                     "$ref": "#/types/ionoscloud:dbaas/PSQLClusterV2Backup:PSQLClusterV2Backup",
@@ -16933,6 +17828,18 @@
                     "version": {
                         "type": "string",
                         "description": "[string] The PostgreSQL version of the cluster.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "listInputs": {
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/PSQLClusterV2Filter:PSQLClusterV2Filter"
+                        },
+                        "description": "Filters to apply when listing resources. All filters must match (AND logic).\n"
                     }
                 },
                 "type": "object"
@@ -19464,7 +20371,7 @@
             }
         },
         "ionoscloud:objectstorage/bucket:Bucket": {
-            "description": "Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstorage.Bucket(\"example\", {\n    name: \"example\",\n    region: \"eu-central-3\",\n    objectLockEnabled: true,\n    forceDestroy: true,\n    tags: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.Bucket(\"example\",\n    name=\"example\",\n    region=\"eu-central-3\",\n    object_lock_enabled=True,\n    force_destroy=True,\n    tags={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.Bucket(\"example\", new()\n    {\n        Name = \"example\",\n        Region = \"eu-central-3\",\n        ObjectLockEnabled = true,\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"key1\", \"value1\" },\n            { \"key2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.NewBucket(ctx, \"example\", \u0026objectstorage.BucketArgs{\n\t\t\tName:              pulumi.String(\"example\"),\n\t\t\tRegion:            pulumi.String(\"eu-central-3\"),\n\t\t\tObjectLockEnabled: pulumi.Bool(true),\n\t\t\tForceDestroy:      pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstorage_bucket\" \"example\" {\n  name                = \"example\"\n  region              = \"eu-central-3\"\n  object_lock_enabled = true\n  force_destroy       = true\n  tags = {\n    \"key1\" = \"value1\"\n    \"key2\" = \"value2\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.Bucket;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Bucket(\"example\", BucketArgs.builder()\n            .name(\"example\")\n            .region(\"eu-central-3\")\n            .objectLockEnabled(true)\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"key1\", \"value1\"),\n                Map.entry(\"key2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:Bucket\n    properties:\n      name: example\n      region: eu-central-3\n      objectLockEnabled: true\n      forceDestroy: true\n      tags:\n        key1: value1\n        key2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n### Identity Schema\n\n#### Required\n\n* \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e (String) Name of the bucket.\n* \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e (String) Region where the bucket is located.\n\n---\n\nA bucket can be imported using the `bucket name` and the \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name\n```\n\nThe \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.\n\n```sh\n$ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name\n```\n\n",
+            "description": "Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.\n\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstorage.Bucket(\"example\", {\n    name: \"example\",\n    region: \"eu-central-3\",\n    objectLockEnabled: true,\n    forceDestroy: true,\n    tags: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.Bucket(\"example\",\n    name=\"example\",\n    region=\"eu-central-3\",\n    object_lock_enabled=True,\n    force_destroy=True,\n    tags={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.Bucket(\"example\", new()\n    {\n        Name = \"example\",\n        Region = \"eu-central-3\",\n        ObjectLockEnabled = true,\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"key1\", \"value1\" },\n            { \"key2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.NewBucket(ctx, \"example\", \u0026objectstorage.BucketArgs{\n\t\t\tName:              pulumi.String(\"example\"),\n\t\t\tRegion:            pulumi.String(\"eu-central-3\"),\n\t\t\tObjectLockEnabled: pulumi.Bool(true),\n\t\t\tForceDestroy:      pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstorage_bucket\" \"example\" {\n  name                = \"example\"\n  region              = \"eu-central-3\"\n  object_lock_enabled = true\n  force_destroy       = true\n  tags = {\n    \"key1\" = \"value1\"\n    \"key2\" = \"value2\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.Bucket;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.BucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Bucket(\"example\", BucketArgs.builder()\n            .name(\"example\")\n            .region(\"eu-central-3\")\n            .objectLockEnabled(true)\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"key1\", \"value1\"),\n                Map.entry(\"key2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:Bucket\n    properties:\n      name: example\n      region: eu-central-3\n      objectLockEnabled: true\n      forceDestroy: true\n      tags:\n        key1: value1\n        key2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n#### Required\n\n* \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e (String) Name of the bucket.\n* \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e (String) Region where the bucket is located.\n\n---\n\nA bucket can be imported using the `bucket name` and the \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/bucket:Bucket example region:bucket_name\n```\n\nThe \u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e can be omitted, in which case the bucket will be imported from the default location: `eu-central-3`.\n\n```sh\n$ pulumi import ionoscloud:objectstorage/bucket:Bucket example bucket_name\n```\n\n",
             "properties": {
                 "forceDestroy": {
                     "type": "boolean",
@@ -20754,7 +21661,7 @@
             }
         },
         "ionoscloud:objectstorage/userBucket:UserBucket": {
-            "description": "Manages user-owned IONOS Object Storage Buckets on IonosCloud.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (\u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstorage.UserBucket(\"example\", {\n    name: \"example-user-bucket\",\n    region: \"de\",\n    forceDestroy: true,\n    tags: {\n        environment: \"production\",\n        team: \"platform\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.UserBucket(\"example\",\n    name=\"example-user-bucket\",\n    region=\"de\",\n    force_destroy=True,\n    tags={\n        \"environment\": \"production\",\n        \"team\": \"platform\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.UserBucket(\"example\", new()\n    {\n        Name = \"example-user-bucket\",\n        Region = \"de\",\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"environment\", \"production\" },\n            { \"team\", \"platform\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.NewUserBucket(ctx, \"example\", \u0026objectstorage.UserBucketArgs{\n\t\t\tName:         pulumi.String(\"example-user-bucket\"),\n\t\t\tRegion:       pulumi.String(\"de\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"production\"),\n\t\t\t\t\"team\":        pulumi.String(\"platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstorage_userbucket\" \"example\" {\n  name          = \"example-user-bucket\"\n  region        = \"de\"\n  force_destroy = true\n  tags = {\n    \"environment\" = \"production\"\n    \"team\"        = \"platform\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucket;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new UserBucket(\"example\", UserBucketArgs.builder()\n            .name(\"example-user-bucket\")\n            .region(\"de\")\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"environment\", \"production\"),\n                Map.entry(\"team\", \"platform\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:UserBucket\n    properties:\n      name: example-user-bucket\n      region: de\n      forceDestroy: true\n      tags:\n        environment: production\n        team: platform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Limitations\n\n- **Region cannot be read back from the API** after import due to a known SDK generator issue with the `GetBucketLocation` response XML model. The region defaults to \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e when importing by bucket name alone. Use the `region:name` import format to specify the correct region explicitly.\n- Tags and sub-resources (versioning, lifecycle, CORS, SSE, website, policy) are not currently supported for user-owned buckets. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e and its associated resources for full feature coverage.\n\n## Import\n\nA bucket must be imported using `region:bucket_name`:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket\n```\n\n",
+            "description": "Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.\n\n\u003e ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (\u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstorage.UserBucket(\"example\", {\n    name: \"example-user-bucket\",\n    region: \"de\",\n    forceDestroy: true,\n    tags: {\n        environment: \"production\",\n        team: \"platform\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstorage.UserBucket(\"example\",\n    name=\"example-user-bucket\",\n    region=\"de\",\n    force_destroy=True,\n    tags={\n        \"environment\": \"production\",\n        \"team\": \"platform\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstorage.UserBucket(\"example\", new()\n    {\n        Name = \"example-user-bucket\",\n        Region = \"de\",\n        ForceDestroy = true,\n        Tags = \n        {\n            { \"environment\", \"production\" },\n            { \"team\", \"platform\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstorage.NewUserBucket(ctx, \"example\", \u0026objectstorage.UserBucketArgs{\n\t\t\tName:         pulumi.String(\"example-user-bucket\"),\n\t\t\tRegion:       pulumi.String(\"de\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"production\"),\n\t\t\t\t\"team\":        pulumi.String(\"platform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstorage_userbucket\" \"example\" {\n  name          = \"example-user-bucket\"\n  region        = \"de\"\n  force_destroy = true\n  tags = {\n    \"environment\" = \"production\"\n    \"team\"        = \"platform\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucket;\nimport com.ionoscloud.pulumi.ionoscloud.objectstorage.UserBucketArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new UserBucket(\"example\", UserBucketArgs.builder()\n            .name(\"example-user-bucket\")\n            .region(\"de\")\n            .forceDestroy(true)\n            .tags(Map.ofEntries(\n                Map.entry(\"environment\", \"production\"),\n                Map.entry(\"team\", \"platform\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstorage:UserBucket\n    properties:\n      name: example-user-bucket\n      region: de\n      forceDestroy: true\n      tags:\n        environment: production\n        team: platform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Limitations\n\n- **Region cannot be read back from the API** after import due to a known SDK generator issue with the `GetBucketLocation` response XML model. The region defaults to \u003cspan pulumi-lang-nodejs=\"`de`\" pulumi-lang-dotnet=\"`De`\" pulumi-lang-go=\"`de`\" pulumi-lang-python=\"`de`\" pulumi-lang-yaml=\"`de`\" pulumi-lang-java=\"`de`\" pulumi-lang-hcl=\"`de`\"\u003e`de`\u003c/span\u003e when importing by bucket name alone. Use the `region:name` import format to specify the correct region explicitly.\n- Tags and sub-resources (versioning, lifecycle, CORS, SSE, website, policy) are not currently supported for user-owned buckets. Use \u003cspan pulumi-lang-nodejs=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-dotnet=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-go=\"`objectstorage.Bucket`\" pulumi-lang-python=\"`objectstorage.Bucket`\" pulumi-lang-yaml=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-java=\"`ionoscloud.objectstorage.Bucket`\" pulumi-lang-hcl=\"`ionoscloud_s3_bucket`\"\u003e`ionoscloud.objectstorage.Bucket`\u003c/span\u003e and its associated resources for full feature coverage.\n\n## Import\n\nA bucket must be imported using `region:bucket_name`:\n\n```sh\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example de:my-bucket\n$ pulumi import ionoscloud:objectstorage/userBucket:UserBucket example eu-central-2:my-bucket\n```\n\n",
             "properties": {
                 "forceDestroy": {
                     "type": "boolean",
@@ -20945,7 +21852,7 @@
             }
         },
         "ionoscloud:objectstoragemanagement/accesskey:Accesskey": {
-            "description": "Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstoragemanagement.Accesskey(\"example\", {description: \"my description\"});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstoragemanagement.Accesskey(\"example\", description=\"my description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstoragemanagement.Accesskey(\"example\", new()\n    {\n        Description = \"my description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstoragemanagement\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstoragemanagement.NewAccesskey(ctx, \"example\", \u0026objectstoragemanagement.AccesskeyArgs{\n\t\t\tDescription: pulumi.String(\"my description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstoragemanagement_accesskey\" \"example\" {\n  description = \"my description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.Accesskey;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.AccesskeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Accesskey(\"example\", AccesskeyArgs.builder()\n            .description(\"my description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstoragemanagement:Accesskey\n    properties:\n      description: my description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\n### Identity Schema\n\n#### Required\n\n* \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e (String) The ID (UUID) of the AccessKey.\n\n---\n\nAn object storage accesskey resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:objectstoragemanagement/accesskey:Accesskey demo objectStorageAccesskeyid\n```\n\nThis can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.\n\n",
+            "description": "Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = new ionoscloud.objectstoragemanagement.Accesskey(\"example\", {description: \"my description\"});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.objectstoragemanagement.Accesskey(\"example\", description=\"my description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Objectstoragemanagement.Accesskey(\"example\", new()\n    {\n        Description = \"my description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstoragemanagement\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := objectstoragemanagement.NewAccesskey(ctx, \"example\", \u0026objectstoragemanagement.AccesskeyArgs{\n\t\t\tDescription: pulumi.String(\"my description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\nresource \"ionoscloud_objectstoragemanagement_accesskey\" \"example\" {\n  description = \"my description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.Accesskey;\nimport com.ionoscloud.pulumi.ionoscloud.objectstoragemanagement.AccesskeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Accesskey(\"example\", AccesskeyArgs.builder()\n            .description(\"my description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:objectstoragemanagement:Accesskey\n    properties:\n      description: my description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n#### Required\n\n* \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e (String) The ID (UUID) of the AccessKey.\n\n---\n\nAn object storage accesskey resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:objectstoragemanagement/accesskey:Accesskey demo objectStorageAccesskeyid\n```\n\nThis can be helpful when you want to import Object Storage Accesskeys which you have already created manually or using other means, outside of terraform.\n\n",
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -23527,6 +24434,10 @@
                         },
                         "type": "array"
                     },
+                    "metroRegion": {
+                        "description": "The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.\n",
+                        "type": "string"
+                    },
                     "name": {
                         "type": "string"
                     }
@@ -23535,6 +24446,7 @@
                     "cpuArchitectures",
                     "feature",
                     "imageAliases",
+                    "metroRegion",
                     "name",
                     "id"
                 ],
@@ -25061,6 +25973,161 @@
                 "type": "object"
             }
         },
+        "ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2": {
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.InMemoryDBClusterV2`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.InMemoryDBClusterV2`\" pulumi-lang-go=\"`dbaas.InMemoryDBClusterV2`\" pulumi-lang-python=\"`dbaas.InMemoryDBClusterV2`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.InMemoryDBClusterV2`\" pulumi-lang-java=\"`ionoscloud.dbaas.InMemoryDBClusterV2`\" pulumi-lang-hcl=\"`ionoscloud_inmemorydb_cluster_v2`\"\u003e`ionoscloud.dbaas.InMemoryDBClusterV2`\u003c/span\u003e data source can be used to retrieve information about an existing InMemoryDB V2 cluster.\n\n## Example Usage\n\n### By id\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst byId = ionoscloud.dbaas.getInMemoryDBClusterV2({\n    id: \"example-id\",\n    location: \"de/txl\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nby_id = ionoscloud.dbaas.get_in_memory_db_cluster_v2(id=\"example-id\",\n    location=\"de/txl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byId = Ionoscloud.Dbaas.GetInMemoryDBClusterV2.Invoke(new()\n    {\n        Id = \"example-id\",\n        Location = \"de/txl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.LookupInMemoryDBClusterV2(ctx, \u0026dbaas.LookupInMemoryDBClusterV2Args{\n\t\t\tId:       pulumi.StringRef(\"example-id\"),\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbclusterv2\" \"byId\" {\n  id       = \"example-id\"\n  location = \"de/txl\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()\n            .id(\"example-id\")\n            .location(\"de/txl\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byId:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBClusterV2\n      arguments:\n        id: example-id\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst byName = ionoscloud.dbaas.getInMemoryDBClusterV2({\n    name: \"my-inmemorydb-cluster\",\n    location: \"de/txl\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nby_name = ionoscloud.dbaas.get_in_memory_db_cluster_v2(name=\"my-inmemorydb-cluster\",\n    location=\"de/txl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Ionoscloud.Dbaas.GetInMemoryDBClusterV2.Invoke(new()\n    {\n        Name = \"my-inmemorydb-cluster\",\n        Location = \"de/txl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.LookupInMemoryDBClusterV2(ctx, \u0026dbaas.LookupInMemoryDBClusterV2Args{\n\t\t\tName:     pulumi.StringRef(\"my-inmemorydb-cluster\"),\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbclusterv2\" \"byName\" {\n  name     = \"my-inmemorydb-cluster\"\n  location = \"de/txl\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()\n            .name(\"my-inmemorydb-cluster\")\n            .location(\"de/txl\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byName:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBClusterV2\n      arguments:\n        name: my-inmemorydb-cluster\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getInMemoryDBClusterV2.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The UUID of the cluster.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the cluster.\n\n\u003e **Note:** Either \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e must be provided. If none, or both are provided, the datasource will return an error.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The cluster name (exact match).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "location"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInMemoryDBClusterV2.\n",
+                "properties": {
+                    "connections": {
+                        "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClusterV2Connections:getInMemoryDBClusterV2Connections",
+                        "description": "Network connection configuration:\n"
+                    },
+                    "credentials": {
+                        "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClusterV2Credentials:getInMemoryDBClusterV2Credentials",
+                        "description": "Credentials block:\n"
+                    },
+                    "description": {
+                        "description": "Human-readable description for the cluster.\n",
+                        "type": "string"
+                    },
+                    "dnsName": {
+                        "description": "The DNS name for connecting to the cluster's primary instance.\n",
+                        "type": "string"
+                    },
+                    "evictionPolicy": {
+                        "description": "The key eviction strategy.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The UUID of the cluster.\n",
+                        "type": "string"
+                    },
+                    "instances": {
+                        "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClusterV2Instances:getInMemoryDBClusterV2Instances",
+                        "description": "Instance sizing configuration:\n"
+                    },
+                    "location": {
+                        "description": "Object Storage location for snapshots.\n",
+                        "type": "string"
+                    },
+                    "logsEnabled": {
+                        "description": "Whether log collection is enabled.\n",
+                        "type": "boolean"
+                    },
+                    "maintenanceWindow": {
+                        "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClusterV2MaintenanceWindow:getInMemoryDBClusterV2MaintenanceWindow",
+                        "description": "Maintenance window configuration:\n"
+                    },
+                    "metricsEnabled": {
+                        "description": "Whether metrics collection is enabled.\n",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "description": "The name of the cluster.\n",
+                        "type": "string"
+                    },
+                    "persistenceMode": {
+                        "description": "The data persistence mode.\n",
+                        "type": "string"
+                    },
+                    "snapshot": {
+                        "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClusterV2Snapshot:getInMemoryDBClusterV2Snapshot",
+                        "description": "Snapshot configuration:\n"
+                    },
+                    "version": {
+                        "description": "The InMemoryDB version.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "connections",
+                    "credentials",
+                    "description",
+                    "dnsName",
+                    "evictionPolicy",
+                    "id",
+                    "instances",
+                    "location",
+                    "logsEnabled",
+                    "maintenanceWindow",
+                    "metricsEnabled",
+                    "name",
+                    "persistenceMode",
+                    "snapshot",
+                    "version"
+                ],
+                "type": "object"
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2": {
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.getInMemoryDBClustersV2`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.getInMemoryDBClustersV2`\" pulumi-lang-go=\"`dbaas.getInMemoryDBClustersV2`\" pulumi-lang-python=\"`dbaas_get_in_memory_db_clusters_v2`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.getInMemoryDBClustersV2`\" pulumi-lang-java=\"`ionoscloud.dbaas.getInMemoryDBClustersV2`\" pulumi-lang-hcl=\"`data.ionoscloud_inmemorydb_clusters_v2`\"\u003e`ionoscloud.dbaas.getInMemoryDBClustersV2`\u003c/span\u003e data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst all = ionoscloud.dbaas.getInMemoryDBClustersV2({\n    location: \"de/txl\",\n});\nconst filtered = ionoscloud.dbaas.getInMemoryDBClustersV2({\n    location: \"de/txl\",\n    name: \"my-cluster\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nall = ionoscloud.dbaas.get_in_memory_db_clusters_v2(location=\"de/txl\")\nfiltered = ionoscloud.dbaas.get_in_memory_db_clusters_v2(location=\"de/txl\",\n    name=\"my-cluster\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Ionoscloud.Dbaas.GetInMemoryDBClustersV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n    });\n\n    var filtered = Ionoscloud.Dbaas.GetInMemoryDBClustersV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Name = \"my-cluster\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.GetInMemoryDBClustersV2(ctx, \u0026dbaas.GetInMemoryDBClustersV2Args{\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbaas.GetInMemoryDBClustersV2(ctx, \u0026dbaas.GetInMemoryDBClustersV2Args{\n\t\t\tLocation: \"de/txl\",\n\t\t\tName:     pulumi.StringRef(\"my-cluster\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbclustersv2\" \"all\" {\n  location = \"de/txl\"\n}\ndata \"ionoscloud_dbaas_getinmemorydbclustersv2\" \"filtered\" {\n  location = \"de/txl\"\n  name     = \"my-cluster\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()\n            .location(\"de/txl\")\n            .build());\n\n        final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()\n            .location(\"de/txl\")\n            .name(\"my-cluster\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBClustersV2\n      arguments:\n        location: de/txl\n  filtered:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBClustersV2\n      arguments:\n        location: de/txl\n        name: my-cluster\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getInMemoryDBClustersV2.\n",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location to query.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] Filter by name (case-insensitive contains match).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "location"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInMemoryDBClustersV2.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "List of clusters. Each item exposes the same attributes as the\u003cspan pulumi-lang-nodejs=\" ionoscloud.dbaas.InMemoryDBClusterV2 \" pulumi-lang-dotnet=\" ionoscloud.dbaas.InMemoryDBClusterV2 \" pulumi-lang-go=\" dbaas.InMemoryDBClusterV2 \" pulumi-lang-python=\" dbaas.InMemoryDBClusterV2 \" pulumi-lang-yaml=\" ionoscloud.dbaas.InMemoryDBClusterV2 \" pulumi-lang-java=\" ionoscloud.dbaas.InMemoryDBClusterV2 \" pulumi-lang-hcl=\" ionoscloud_inmemorydb_cluster_v2 \"\u003e ionoscloud.dbaas.InMemoryDBClusterV2 \u003c/span\u003edata source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.\n",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBClustersV2Item:getInMemoryDBClustersV2Item"
+                        },
+                        "type": "array"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "items",
+                    "location",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet": {
             "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.InMemoryDBReplicaSet`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.InMemoryDBReplicaSet`\" pulumi-lang-go=\"`dbaas.InMemoryDBReplicaSet`\" pulumi-lang-python=\"`dbaas.InMemoryDBReplicaSet`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.InMemoryDBReplicaSet`\" pulumi-lang-java=\"`ionoscloud.dbaas.InMemoryDBReplicaSet`\" pulumi-lang-hcl=\"`ionoscloud_inmemorydb_replicaset`\"\u003e`ionoscloud.dbaas.InMemoryDBReplicaSet`\u003c/span\u003e data source can be used to retrieve information about an existing InMemoryDB Replica Set.\n\n## Example Usage\n\n### By id\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.dbaas.getInMemoryDBReplicaSet({\n    id: \"example-id\",\n    location: \"es/vit\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.dbaas.get_in_memory_db_replica_set(id=\"example-id\",\n    location=\"es/vit\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.Dbaas.GetInMemoryDBReplicaSet.Invoke(new()\n    {\n        Id = \"example-id\",\n        Location = \"es/vit\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.LookupInMemoryDBReplicaSet(ctx, \u0026dbaas.LookupInMemoryDBReplicaSetArgs{\n\t\t\tId:       pulumi.StringRef(\"example-id\"),\n\t\t\tLocation: pulumi.StringRef(\"es/vit\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbreplicaset\" \"example\" {\n  id       = \"example-id\"\n  location = \"es/vit\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = DbaasFunctions.getInMemoryDBReplicaSet(GetInMemoryDBReplicaSetArgs.builder()\n            .id(\"example-id\")\n            .location(\"es/vit\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBReplicaSet\n      arguments:\n        id: example-id\n        location: es/vit\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By\u003cspan pulumi-lang-nodejs=\" displayName\n\" pulumi-lang-dotnet=\" DisplayName\n\" pulumi-lang-go=\" displayName\n\" pulumi-lang-python=\" display_name\n\" pulumi-lang-yaml=\" displayName\n\" pulumi-lang-java=\" displayName\n\" pulumi-lang-hcl=\" display_name\n\"\u003e displayName\n\u003c/span\u003e```hcl\ndata \"ionoscloud_inmemorydb_replicaset\" \"example\" {\n  display_name = \"example-id\"\n  location = \"us/las\"\n}\n```\n",
             "inputs": {
@@ -25154,6 +26221,138 @@
                     "replicas",
                     "resources",
                     "version"
+                ],
+                "type": "object"
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2": {
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`\" pulumi-lang-go=\"`dbaas.getInMemoryDBSnapshotLocationsV2`\" pulumi-lang-python=\"`dbaas_get_in_memory_db_snapshot_locations_v2`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`\" pulumi-lang-java=\"`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`\" pulumi-lang-hcl=\"`data.ionoscloud_inmemorydb_snapshot_locations_v2`\"\u003e`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`\u003c/span\u003e data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2({\n    location: \"de/txl\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.dbaas.get_in_memory_db_snapshot_locations_v2(location=\"de/txl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.Dbaas.GetInMemoryDBSnapshotLocationsV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.GetInMemoryDBSnapshotLocationsV2(ctx, \u0026dbaas.GetInMemoryDBSnapshotLocationsV2Args{\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbsnapshotlocationsv2\" \"example\" {\n  location = \"de/txl\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()\n            .location(\"de/txl\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBSnapshotLocationsV2\n      arguments:\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getInMemoryDBSnapshotLocationsV2.\n",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location to query. Requests are routed to the corresponding regional InMemoryDB endpoint.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "location"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInMemoryDBSnapshotLocationsV2.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "List of snapshot location objects. Each item includes:\n",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2Item:getInMemoryDBSnapshotLocationsV2Item"
+                        },
+                        "type": "array"
+                    },
+                    "location": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "items",
+                    "location",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2": {
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`\" pulumi-lang-go=\"`dbaas.getInMemoryDBSnapshotsV2`\" pulumi-lang-python=\"`dbaas_get_in_memory_db_snapshots_v2`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`\" pulumi-lang-java=\"`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`\" pulumi-lang-hcl=\"`data.ionoscloud_inmemorydb_snapshots_v2`\"\u003e`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`\u003c/span\u003e data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst all = ionoscloud.dbaas.getInMemoryDBSnapshotsV2({\n    location: \"de/txl\",\n});\nconst forCluster = ionoscloud.dbaas.getInMemoryDBSnapshotsV2({\n    location: \"de/txl\",\n    clusterId: \"example-id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nall = ionoscloud.dbaas.get_in_memory_db_snapshots_v2(location=\"de/txl\")\nfor_cluster = ionoscloud.dbaas.get_in_memory_db_snapshots_v2(location=\"de/txl\",\n    cluster_id=\"example-id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = Ionoscloud.Dbaas.GetInMemoryDBSnapshotsV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n    });\n\n    var forCluster = Ionoscloud.Dbaas.GetInMemoryDBSnapshotsV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n        ClusterId = \"example-id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.GetInMemoryDBSnapshotsV2(ctx, \u0026dbaas.GetInMemoryDBSnapshotsV2Args{\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbaas.GetInMemoryDBSnapshotsV2(ctx, \u0026dbaas.GetInMemoryDBSnapshotsV2Args{\n\t\t\tLocation:  \"de/txl\",\n\t\t\tClusterId: pulumi.StringRef(\"example-id\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbsnapshotsv2\" \"all\" {\n  location = \"de/txl\"\n}\ndata \"ionoscloud_dbaas_getinmemorydbsnapshotsv2\" \"forCluster\" {\n  location   = \"de/txl\"\n  cluster_id = \"example-id\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()\n            .location(\"de/txl\")\n            .build());\n\n        final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()\n            .location(\"de/txl\")\n            .clusterId(\"example-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBSnapshotsV2\n      arguments:\n        location: de/txl\n  forCluster:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBSnapshotsV2\n      arguments:\n        location: de/txl\n        clusterId: example-id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getInMemoryDBSnapshotsV2.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "[string] Filter snapshots by cluster UUID.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location to query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "location"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInMemoryDBSnapshotsV2.\n",
+                "properties": {
+                    "clusterId": {
+                        "description": "The ID of the cluster this snapshot belongs to.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "List of snapshots. Each item includes:\n",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBSnapshotsV2Item:getInMemoryDBSnapshotsV2Item"
+                        },
+                        "type": "array"
+                    },
+                    "location": {
+                        "description": "The location of the snapshot.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "items",
+                    "location",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2": {
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`ionoscloud.dbaas.getInMemoryDBVersionsV2`\" pulumi-lang-dotnet=\"`ionoscloud.dbaas.getInMemoryDBVersionsV2`\" pulumi-lang-go=\"`dbaas.getInMemoryDBVersionsV2`\" pulumi-lang-python=\"`dbaas_get_in_memory_db_versions_v2`\" pulumi-lang-yaml=\"`ionoscloud.dbaas.getInMemoryDBVersionsV2`\" pulumi-lang-java=\"`ionoscloud.dbaas.getInMemoryDBVersionsV2`\" pulumi-lang-hcl=\"`data.ionoscloud_inmemorydb_versions_v2`\"\u003e`ionoscloud.dbaas.getInMemoryDBVersionsV2`\u003c/span\u003e data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@ionos-cloud/sdk-pulumi\";\n\nconst example = ionoscloud.dbaas.getInMemoryDBVersionsV2({\n    location: \"de/txl\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.dbaas.get_in_memory_db_versions_v2(location=\"de/txl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Ionoscloud.Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.Dbaas.GetInMemoryDBVersionsV2.Invoke(new()\n    {\n        Location = \"de/txl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.GetInMemoryDBVersionsV2(ctx, \u0026dbaas.GetInMemoryDBVersionsV2Args{\n\t\t\tLocation: \"de/txl\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    ionoscloud = {\n      source = \"pulumi/ionoscloud\"\n    }\n  }\n}\n\ndata \"ionoscloud_dbaas_getinmemorydbversionsv2\" \"example\" {\n  location = \"de/txl\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()\n            .location(\"de/txl\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:dbaas:getInMemoryDBVersionsV2\n      arguments:\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getInMemoryDBVersionsV2.\n",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location to query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "location"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInMemoryDBVersionsV2.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "items": {
+                        "description": "List of versions. Each item includes:\n",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dbaas/getInMemoryDBVersionsV2Item:getInMemoryDBVersionsV2Item"
+                        },
+                        "type": "array"
+                    },
+                    "location": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "items",
+                    "location",
+                    "id"
                 ],
                 "type": "object"
             }

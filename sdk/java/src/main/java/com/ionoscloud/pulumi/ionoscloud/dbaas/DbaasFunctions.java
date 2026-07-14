@@ -4,8 +4,18 @@
 package com.ionoscloud.pulumi.ionoscloud.dbaas;
 
 import com.ionoscloud.pulumi.ionoscloud.Utilities;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBReplicaSetPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInmemorydbSnapshotArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInmemorydbSnapshotPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsArgs;
@@ -40,7 +50,12 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2Args;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetPSQLVersionsV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBClusterV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBClustersV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBReplicaSetResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBSnapshotLocationsV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBSnapshotsV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBVersionsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInmemorydbSnapshotResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBBackupsResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterResult;
@@ -66,6 +81,636 @@ import com.pulumi.deployment.InvokeOutputOptions;
 import java.util.concurrent.CompletableFuture;
 
 public final class DbaasFunctions {
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.InMemoryDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .name("my-inmemorydb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClusterV2Result> getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args args) {
+        return getInMemoryDBClusterV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.InMemoryDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .name("my-inmemorydb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBClusterV2Result> getInMemoryDBClusterV2Plain(GetInMemoryDBClusterV2PlainArgs args) {
+        return getInMemoryDBClusterV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.InMemoryDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .name("my-inmemorydb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClusterV2Result> getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2", TypeShape.of(GetInMemoryDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.InMemoryDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .name("my-inmemorydb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClusterV2Result> getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2", TypeShape.of(GetInMemoryDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.InMemoryDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getInMemoryDBClusterV2(GetInMemoryDBClusterV2Args.builder()
+     *             .name("my-inmemorydb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBClusterV2Result> getInMemoryDBClusterV2Plain(GetInMemoryDBClusterV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2", TypeShape.of(GetInMemoryDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClustersV2Result> getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args args) {
+        return getInMemoryDBClustersV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBClustersV2Result> getInMemoryDBClustersV2Plain(GetInMemoryDBClustersV2PlainArgs args) {
+        return getInMemoryDBClustersV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClustersV2Result> getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2", TypeShape.of(GetInMemoryDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBClustersV2Result> getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2", TypeShape.of(GetInMemoryDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getInMemoryDBClustersV2(GetInMemoryDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBClustersV2Result> getInMemoryDBClustersV2Plain(GetInMemoryDBClustersV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2", TypeShape.of(GetInMemoryDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
     /**
      * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-go=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-python=&#34;`dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.InMemoryDBReplicaSet`&#34; pulumi-lang-hcl=&#34;`ionoscloud_inmemorydb_replicaset`&#34;&gt;`ionoscloud.dbaas.InMemoryDBReplicaSet`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Replica Set.
      * 
@@ -471,6 +1116,661 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetInMemoryDBReplicaSetResult> getInMemoryDBReplicaSetPlain(GetInMemoryDBReplicaSetPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", TypeShape.of(GetInMemoryDBReplicaSetResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshot_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot_locations_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&lt;/span&gt; data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotLocationsV2Result> getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args args) {
+        return getInMemoryDBSnapshotLocationsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshot_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot_locations_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&lt;/span&gt; data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBSnapshotLocationsV2Result> getInMemoryDBSnapshotLocationsV2Plain(GetInMemoryDBSnapshotLocationsV2PlainArgs args) {
+        return getInMemoryDBSnapshotLocationsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshot_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot_locations_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&lt;/span&gt; data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotLocationsV2Result> getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2", TypeShape.of(GetInMemoryDBSnapshotLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshot_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot_locations_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&lt;/span&gt; data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotLocationsV2Result> getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2", TypeShape.of(GetInMemoryDBSnapshotLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshot_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot_locations_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotLocationsV2`&lt;/span&gt; data source can be used to retrieve available InMemoryDB V2 snapshot locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBSnapshotLocationsV2(GetInMemoryDBSnapshotLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBSnapshotLocationsV2Result> getInMemoryDBSnapshotLocationsV2Plain(GetInMemoryDBSnapshotLocationsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2", TypeShape.of(GetInMemoryDBSnapshotLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshots_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshots_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotsV2Result> getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args args) {
+        return getInMemoryDBSnapshotsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshots_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshots_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBSnapshotsV2Result> getInMemoryDBSnapshotsV2Plain(GetInMemoryDBSnapshotsV2PlainArgs args) {
+        return getInMemoryDBSnapshotsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshots_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshots_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotsV2Result> getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2", TypeShape.of(GetInMemoryDBSnapshotsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshots_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshots_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBSnapshotsV2Result> getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2", TypeShape.of(GetInMemoryDBSnapshotsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_snapshots_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshots_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBSnapshotsV2`&lt;/span&gt; data source can be used to retrieve information about existing InMemoryDB V2 snapshots, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBSnapshotsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getInMemoryDBSnapshotsV2(GetInMemoryDBSnapshotsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBSnapshotsV2Result> getInMemoryDBSnapshotsV2Plain(GetInMemoryDBSnapshotsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2", TypeShape.of(GetInMemoryDBSnapshotsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBVersionsV2Result> getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args args) {
+        return getInMemoryDBVersionsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBVersionsV2Result> getInMemoryDBVersionsV2Plain(GetInMemoryDBVersionsV2PlainArgs args) {
+        return getInMemoryDBVersionsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBVersionsV2Result> getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2", TypeShape.of(GetInMemoryDBVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInMemoryDBVersionsV2Result> getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2", TypeShape.of(GetInMemoryDBVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_in_memory_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getInMemoryDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported InMemoryDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getInMemoryDBVersionsV2(GetInMemoryDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetInMemoryDBVersionsV2Result> getInMemoryDBVersionsV2Plain(GetInMemoryDBVersionsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2", TypeShape.of(GetInMemoryDBVersionsV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-go=&#34;`dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-python=&#34;`dbaas_get_inmemorydb_snapshot`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getInmemorydbSnapshot`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_inmemorydb_snapshot`&#34;&gt;`ionoscloud.dbaas.getInmemorydbSnapshot`&lt;/span&gt; data source can be used to retrieve information about an existing InMemoryDB Snapshot.

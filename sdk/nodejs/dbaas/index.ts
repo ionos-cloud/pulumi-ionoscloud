@@ -5,10 +5,35 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetInMemoryDBClusterV2Args, GetInMemoryDBClusterV2Result, GetInMemoryDBClusterV2OutputArgs } from "./getInMemoryDBClusterV2";
+export const getInMemoryDBClusterV2: typeof import("./getInMemoryDBClusterV2").getInMemoryDBClusterV2 = null as any;
+export const getInMemoryDBClusterV2Output: typeof import("./getInMemoryDBClusterV2").getInMemoryDBClusterV2Output = null as any;
+utilities.lazyLoad(exports, ["getInMemoryDBClusterV2","getInMemoryDBClusterV2Output"], () => require("./getInMemoryDBClusterV2"));
+
+export { GetInMemoryDBClustersV2Args, GetInMemoryDBClustersV2Result, GetInMemoryDBClustersV2OutputArgs } from "./getInMemoryDBClustersV2";
+export const getInMemoryDBClustersV2: typeof import("./getInMemoryDBClustersV2").getInMemoryDBClustersV2 = null as any;
+export const getInMemoryDBClustersV2Output: typeof import("./getInMemoryDBClustersV2").getInMemoryDBClustersV2Output = null as any;
+utilities.lazyLoad(exports, ["getInMemoryDBClustersV2","getInMemoryDBClustersV2Output"], () => require("./getInMemoryDBClustersV2"));
+
 export { GetInMemoryDBReplicaSetArgs, GetInMemoryDBReplicaSetResult, GetInMemoryDBReplicaSetOutputArgs } from "./getInMemoryDBReplicaSet";
 export const getInMemoryDBReplicaSet: typeof import("./getInMemoryDBReplicaSet").getInMemoryDBReplicaSet = null as any;
 export const getInMemoryDBReplicaSetOutput: typeof import("./getInMemoryDBReplicaSet").getInMemoryDBReplicaSetOutput = null as any;
 utilities.lazyLoad(exports, ["getInMemoryDBReplicaSet","getInMemoryDBReplicaSetOutput"], () => require("./getInMemoryDBReplicaSet"));
+
+export { GetInMemoryDBSnapshotLocationsV2Args, GetInMemoryDBSnapshotLocationsV2Result, GetInMemoryDBSnapshotLocationsV2OutputArgs } from "./getInMemoryDBSnapshotLocationsV2";
+export const getInMemoryDBSnapshotLocationsV2: typeof import("./getInMemoryDBSnapshotLocationsV2").getInMemoryDBSnapshotLocationsV2 = null as any;
+export const getInMemoryDBSnapshotLocationsV2Output: typeof import("./getInMemoryDBSnapshotLocationsV2").getInMemoryDBSnapshotLocationsV2Output = null as any;
+utilities.lazyLoad(exports, ["getInMemoryDBSnapshotLocationsV2","getInMemoryDBSnapshotLocationsV2Output"], () => require("./getInMemoryDBSnapshotLocationsV2"));
+
+export { GetInMemoryDBSnapshotsV2Args, GetInMemoryDBSnapshotsV2Result, GetInMemoryDBSnapshotsV2OutputArgs } from "./getInMemoryDBSnapshotsV2";
+export const getInMemoryDBSnapshotsV2: typeof import("./getInMemoryDBSnapshotsV2").getInMemoryDBSnapshotsV2 = null as any;
+export const getInMemoryDBSnapshotsV2Output: typeof import("./getInMemoryDBSnapshotsV2").getInMemoryDBSnapshotsV2Output = null as any;
+utilities.lazyLoad(exports, ["getInMemoryDBSnapshotsV2","getInMemoryDBSnapshotsV2Output"], () => require("./getInMemoryDBSnapshotsV2"));
+
+export { GetInMemoryDBVersionsV2Args, GetInMemoryDBVersionsV2Result, GetInMemoryDBVersionsV2OutputArgs } from "./getInMemoryDBVersionsV2";
+export const getInMemoryDBVersionsV2: typeof import("./getInMemoryDBVersionsV2").getInMemoryDBVersionsV2 = null as any;
+export const getInMemoryDBVersionsV2Output: typeof import("./getInMemoryDBVersionsV2").getInMemoryDBVersionsV2Output = null as any;
+utilities.lazyLoad(exports, ["getInMemoryDBVersionsV2","getInMemoryDBVersionsV2Output"], () => require("./getInMemoryDBVersionsV2"));
 
 export { GetInmemorydbSnapshotArgs, GetInmemorydbSnapshotResult, GetInmemorydbSnapshotOutputArgs } from "./getInmemorydbSnapshot";
 export const getInmemorydbSnapshot: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshot = null as any;
@@ -95,6 +120,11 @@ export const getPSQLVersionsV2: typeof import("./getPSQLVersionsV2").getPSQLVers
 export const getPSQLVersionsV2Output: typeof import("./getPSQLVersionsV2").getPSQLVersionsV2Output = null as any;
 utilities.lazyLoad(exports, ["getPSQLVersionsV2","getPSQLVersionsV2Output"], () => require("./getPSQLVersionsV2"));
 
+export { InMemoryDBClusterV2Args, InMemoryDBClusterV2State } from "./inMemoryDBClusterV2";
+export type InMemoryDBClusterV2 = import("./inMemoryDBClusterV2").InMemoryDBClusterV2;
+export const InMemoryDBClusterV2: typeof import("./inMemoryDBClusterV2").InMemoryDBClusterV2 = null as any;
+utilities.lazyLoad(exports, ["InMemoryDBClusterV2"], () => require("./inMemoryDBClusterV2"));
+
 export { InMemoryDBReplicaSetArgs, InMemoryDBReplicaSetState } from "./inMemoryDBReplicaSet";
 export type InMemoryDBReplicaSet = import("./inMemoryDBReplicaSet").InMemoryDBReplicaSet;
 export const InMemoryDBReplicaSet: typeof import("./inMemoryDBReplicaSet").InMemoryDBReplicaSet = null as any;
@@ -140,6 +170,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2":
+                return new InMemoryDBClusterV2(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet":
                 return new InMemoryDBReplicaSet(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster":
@@ -161,6 +193,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/inMemoryDBClusterV2", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/inMemoryDBReplicaSet", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mariaDBCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mongoCluster", _module)

@@ -16,6 +16,14 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'InMemoryDBClusterV2Connections',
+    'InMemoryDBClusterV2Credentials',
+    'InMemoryDBClusterV2CredentialsPassword',
+    'InMemoryDBClusterV2Instances',
+    'InMemoryDBClusterV2MaintenanceWindow',
+    'InMemoryDBClusterV2RestoreFromSnapshot',
+    'InMemoryDBClusterV2Snapshot',
+    'InMemoryDBClusterV2Timeouts',
     'InMemoryDBReplicaSetConnections',
     'InMemoryDBReplicaSetCredentials',
     'InMemoryDBReplicaSetCredentialsHashedPassword',
@@ -42,10 +50,24 @@ __all__ = [
     'PSQLClusterV2MaintenanceWindow',
     'PSQLClusterV2RestoreFromBackup',
     'PSQLClusterV2Timeouts',
+    'GetInMemoryDBClusterV2ConnectionsResult',
+    'GetInMemoryDBClusterV2CredentialsResult',
+    'GetInMemoryDBClusterV2InstancesResult',
+    'GetInMemoryDBClusterV2MaintenanceWindowResult',
+    'GetInMemoryDBClusterV2SnapshotResult',
+    'GetInMemoryDBClustersV2ItemResult',
+    'GetInMemoryDBClustersV2ItemConnectionsResult',
+    'GetInMemoryDBClustersV2ItemCredentialsResult',
+    'GetInMemoryDBClustersV2ItemInstancesResult',
+    'GetInMemoryDBClustersV2ItemMaintenanceWindowResult',
+    'GetInMemoryDBClustersV2ItemSnapshotResult',
     'GetInMemoryDBReplicaSetConnectionResult',
     'GetInMemoryDBReplicaSetCredentialResult',
     'GetInMemoryDBReplicaSetMaintenanceWindowResult',
     'GetInMemoryDBReplicaSetResourceResult',
+    'GetInMemoryDBSnapshotLocationsV2ItemResult',
+    'GetInMemoryDBSnapshotsV2ItemResult',
+    'GetInMemoryDBVersionsV2ItemResult',
     'GetInmemorydbSnapshotMetadataResult',
     'GetMariaDBBackupsBackupResult',
     'GetMariaDBBackupsBackupBaseBackupResult',
@@ -77,6 +99,367 @@ __all__ = [
     'GetPSQLDatabasesDatabaseResult',
     'GetPSQLVersionsV2VersionResult',
 ]
+
+@pulumi.output_type
+class InMemoryDBClusterV2Connections(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datacenterId":
+            suggest = "datacenter_id"
+        elif key == "lanId":
+            suggest = "lan_id"
+        elif key == "primaryInstanceAddress":
+            suggest = "primary_instance_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InMemoryDBClusterV2Connections. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InMemoryDBClusterV2Connections.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InMemoryDBClusterV2Connections.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: [string] The Virtual Data Center ID to connect to.
+        :param _builtins.str lan_id: [string] The numeric LAN ID within the data center.
+        :param _builtins.str primary_instance_address: [string] Primary instance IP in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        [string] The Virtual Data Center ID to connect to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        [string] The numeric LAN ID within the data center.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        [string] Primary instance IP in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2Credentials(dict):
+    def __init__(__self__, *,
+                 password: 'outputs.InMemoryDBClusterV2CredentialsPassword',
+                 username: _builtins.str):
+        """
+        :param 'InMemoryDBClusterV2CredentialsPasswordArgs' password: [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+        :param _builtins.str username: [string] Username (2–16 alphanumeric + underscore).
+        """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> 'outputs.InMemoryDBClusterV2CredentialsPassword':
+        """
+        [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        [string] Username (2–16 alphanumeric + underscore).
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2CredentialsPassword(dict):
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 hash: _builtins.str):
+        """
+        :param _builtins.str algorithm: [string] Hash algorithm (`SHA-256`).
+        :param _builtins.str hash: [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "hash", hash)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        [string] Hash algorithm (`SHA-256`).
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> _builtins.str:
+        """
+        [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+        """
+        return pulumi.get(self, "hash")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2Instances(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int):
+        """
+        :param _builtins.int cores: [int] CPU cores per instance (1–62).
+        :param _builtins.int count: [int] Number of instances (1–5).
+        :param _builtins.int ram: [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        [int] CPU cores per instance (1–62).
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        [int] Number of instances (1–5).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+        """
+        return pulumi.get(self, "ram")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2MaintenanceWindow(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfTheWeek":
+            suggest = "day_of_the_week"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InMemoryDBClusterV2MaintenanceWindow. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InMemoryDBClusterV2MaintenanceWindow.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InMemoryDBClusterV2MaintenanceWindow.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: [string] Day of the week: `Sunday`–`Saturday`.
+        :param _builtins.str time: [string] Start time in UTC (`HH:MM:SS`).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        [string] Day of the week: `Sunday`–`Saturday`.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        [string] Start time in UTC (`HH:MM:SS`).
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2RestoreFromSnapshot(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "recoveryTargetDatetime":
+            suggest = "recovery_target_datetime"
+        elif key == "sourceSnapshotId":
+            suggest = "source_snapshot_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InMemoryDBClusterV2RestoreFromSnapshot. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InMemoryDBClusterV2RestoreFromSnapshot.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InMemoryDBClusterV2RestoreFromSnapshot.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 recovery_target_datetime: Optional[_builtins.str] = None,
+                 source_snapshot_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str recovery_target_datetime: [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+               
+               > **Note:** `restore_from_snapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        :param _builtins.str source_snapshot_id: [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+        """
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+        if source_snapshot_id is not None:
+            pulumi.set(__self__, "source_snapshot_id", source_snapshot_id)
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> Optional[_builtins.str]:
+        """
+        [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+
+        > **Note:** `restore_from_snapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceSnapshotId")
+    def source_snapshot_id(self) -> Optional[_builtins.str]:
+        """
+        [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+        """
+        return pulumi.get(self, "source_snapshot_id")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2Snapshot(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retentionDays":
+            suggest = "retention_days"
+        elif key == "snapshotHours":
+            suggest = "snapshot_hours"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InMemoryDBClusterV2Snapshot. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InMemoryDBClusterV2Snapshot.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InMemoryDBClusterV2Snapshot.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int,
+                 snapshot_hours: Sequence[_builtins.int]):
+        """
+        :param _builtins.str location: [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+        :param _builtins.int retention_days: [int] Days to retain snapshots (1–365).
+        :param Sequence[_builtins.int] snapshot_hours: [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_hours", snapshot_hours)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        [int] Days to retain snapshots (1–365).
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotHours")
+    def snapshot_hours(self) -> Sequence[_builtins.int]:
+        """
+        [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+        """
+        return pulumi.get(self, "snapshot_hours")
+
+
+@pulumi.output_type
+class InMemoryDBClusterV2Timeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
 
 @pulumi.output_type
 class InMemoryDBReplicaSetConnections(dict):
@@ -1326,6 +1709,516 @@ class PSQLClusterV2Timeouts(dict):
 
 
 @pulumi.output_type
+class GetInMemoryDBClusterV2ConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The Virtual Data Center ID.
+        :param _builtins.str lan_id: The numeric LAN ID.
+        :param _builtins.str primary_instance_address: The primary instance IP in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The Virtual Data Center ID.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The primary instance IP in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetInMemoryDBClusterV2CredentialsResult(dict):
+    def __init__(__self__, *,
+                 username: _builtins.str):
+        """
+        :param _builtins.str username: The username for the InMemoryDB user.
+        """
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        The username for the InMemoryDB user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetInMemoryDBClusterV2InstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int):
+        """
+        :param _builtins.int cores: CPU cores per instance.
+        :param _builtins.int count: Number of instances.
+        :param _builtins.int ram: RAM per instance in GB.
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        Number of instances.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        RAM per instance in GB.
+        """
+        return pulumi.get(self, "ram")
+
+
+@pulumi.output_type
+class GetInMemoryDBClusterV2MaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: Maintenance window day of the week.
+        :param _builtins.str time: Maintenance window start time in UTC (HH:MM:SS).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        Maintenance window day of the week.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Maintenance window start time in UTC (HH:MM:SS).
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetInMemoryDBClusterV2SnapshotResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int,
+                 snapshot_hours: Sequence[_builtins.int]):
+        """
+        :param _builtins.str location: [string] The location of the cluster.
+               
+               > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        :param _builtins.int retention_days: Days snapshots are retained.
+        :param Sequence[_builtins.int] snapshot_hours: UTC hours at which snapshots are taken.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_hours", snapshot_hours)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location of the cluster.
+
+        > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        Days snapshots are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotHours")
+    def snapshot_hours(self) -> Sequence[_builtins.int]:
+        """
+        UTC hours at which snapshots are taken.
+        """
+        return pulumi.get(self, "snapshot_hours")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemResult(dict):
+    def __init__(__self__, *,
+                 connections: 'outputs.GetInMemoryDBClustersV2ItemConnectionsResult',
+                 credentials: 'outputs.GetInMemoryDBClustersV2ItemCredentialsResult',
+                 description: _builtins.str,
+                 dns_name: _builtins.str,
+                 eviction_policy: _builtins.str,
+                 id: _builtins.str,
+                 instances: 'outputs.GetInMemoryDBClustersV2ItemInstancesResult',
+                 location: _builtins.str,
+                 logs_enabled: _builtins.bool,
+                 maintenance_window: 'outputs.GetInMemoryDBClustersV2ItemMaintenanceWindowResult',
+                 metrics_enabled: _builtins.bool,
+                 name: _builtins.str,
+                 persistence_mode: _builtins.str,
+                 snapshot: 'outputs.GetInMemoryDBClustersV2ItemSnapshotResult',
+                 version: _builtins.str):
+        """
+        :param 'GetInMemoryDBClustersV2ItemConnectionsArgs' connections: Network connection configuration for the cluster.
+        :param 'GetInMemoryDBClustersV2ItemCredentialsArgs' credentials: Credentials for the user with access to the cluster.
+        :param _builtins.str description: Human-readable description for the cluster.
+        :param _builtins.str dns_name: The DNS name used to connect to the cluster's primary instance.
+        :param _builtins.str eviction_policy: The key eviction strategy.
+        :param _builtins.str id: The ID (UUID) of the cluster.
+        :param 'GetInMemoryDBClustersV2ItemInstancesArgs' instances: Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+        :param _builtins.str location: [string] The location to query.
+        :param _builtins.bool logs_enabled: Whether log collection is enabled.
+        :param 'GetInMemoryDBClustersV2ItemMaintenanceWindowArgs' maintenance_window: A weekly 4-hour maintenance window.
+        :param _builtins.bool metrics_enabled: Whether metrics collection is enabled.
+        :param _builtins.str name: [string] Filter by name (case-insensitive contains match).
+        :param _builtins.str persistence_mode: The data persistence mode.
+        :param 'GetInMemoryDBClustersV2ItemSnapshotArgs' snapshot: Snapshot storage and retention configuration.
+        :param _builtins.str version: The In-Memory DB version.
+        """
+        pulumi.set(__self__, "connections", connections)
+        pulumi.set(__self__, "credentials", credentials)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "eviction_policy", eviction_policy)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instances", instances)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "logs_enabled", logs_enabled)
+        pulumi.set(__self__, "maintenance_window", maintenance_window)
+        pulumi.set(__self__, "metrics_enabled", metrics_enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "persistence_mode", persistence_mode)
+        pulumi.set(__self__, "snapshot", snapshot)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def connections(self) -> 'outputs.GetInMemoryDBClustersV2ItemConnectionsResult':
+        """
+        Network connection configuration for the cluster.
+        """
+        return pulumi.get(self, "connections")
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> 'outputs.GetInMemoryDBClustersV2ItemCredentialsResult':
+        """
+        Credentials for the user with access to the cluster.
+        """
+        return pulumi.get(self, "credentials")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human-readable description for the cluster.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> _builtins.str:
+        """
+        The DNS name used to connect to the cluster's primary instance.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @_builtins.property
+    @pulumi.getter(name="evictionPolicy")
+    def eviction_policy(self) -> _builtins.str:
+        """
+        The key eviction strategy.
+        """
+        return pulumi.get(self, "eviction_policy")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def instances(self) -> 'outputs.GetInMemoryDBClustersV2ItemInstancesResult':
+        """
+        Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+        """
+        return pulumi.get(self, "instances")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="logsEnabled")
+    def logs_enabled(self) -> _builtins.bool:
+        """
+        Whether log collection is enabled.
+        """
+        return pulumi.get(self, "logs_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> 'outputs.GetInMemoryDBClustersV2ItemMaintenanceWindowResult':
+        """
+        A weekly 4-hour maintenance window.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @_builtins.property
+    @pulumi.getter(name="metricsEnabled")
+    def metrics_enabled(self) -> _builtins.bool:
+        """
+        Whether metrics collection is enabled.
+        """
+        return pulumi.get(self, "metrics_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        [string] Filter by name (case-insensitive contains match).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="persistenceMode")
+    def persistence_mode(self) -> _builtins.str:
+        """
+        The data persistence mode.
+        """
+        return pulumi.get(self, "persistence_mode")
+
+    @_builtins.property
+    @pulumi.getter
+    def snapshot(self) -> 'outputs.GetInMemoryDBClustersV2ItemSnapshotResult':
+        """
+        Snapshot storage and retention configuration.
+        """
+        return pulumi.get(self, "snapshot")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The In-Memory DB version.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The Virtual Data Center ID.
+        :param _builtins.str lan_id: The numeric LAN ID.
+        :param _builtins.str primary_instance_address: The IP address and subnet mask in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The Virtual Data Center ID.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The IP address and subnet mask in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemCredentialsResult(dict):
+    def __init__(__self__, *,
+                 username: _builtins.str):
+        """
+        :param _builtins.str username: The username for the In-Memory DB user.
+        """
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        The username for the In-Memory DB user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemInstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int):
+        """
+        :param _builtins.int cores: CPU cores per instance.
+        :param _builtins.int count: Number of instances.
+        :param _builtins.int ram: RAM per instance in GB.
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        Number of instances.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        RAM per instance in GB.
+        """
+        return pulumi.get(self, "ram")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: Day of the week.
+        :param _builtins.str time: Start time in UTC (HH:MM:SS).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        Day of the week.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Start time in UTC (HH:MM:SS).
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetInMemoryDBClustersV2ItemSnapshotResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int,
+                 snapshot_hours: Sequence[_builtins.int]):
+        """
+        :param _builtins.str location: [string] The location to query.
+        :param _builtins.int retention_days: Number of days snapshots are retained.
+        :param Sequence[_builtins.int] snapshot_hours: UTC hours at which snapshots are taken.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_hours", snapshot_hours)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        Number of days snapshots are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotHours")
+    def snapshot_hours(self) -> Sequence[_builtins.int]:
+        """
+        UTC hours at which snapshots are taken.
+        """
+        return pulumi.get(self, "snapshot_hours")
+
+
+@pulumi.output_type
 class GetInMemoryDBReplicaSetConnectionResult(dict):
     def __init__(__self__, *,
                  cidr: _builtins.str,
@@ -1450,6 +2343,225 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
         [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class GetInMemoryDBSnapshotLocationsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 snapshot_region: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the snapshot location.
+        :param _builtins.str snapshot_region: The snapshot region identifier.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "snapshot_region", snapshot_region)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the snapshot location.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotRegion")
+    def snapshot_region(self) -> _builtins.str:
+        """
+        The snapshot region identifier.
+        """
+        return pulumi.get(self, "snapshot_region")
+
+
+@pulumi.output_type
+class GetInMemoryDBSnapshotsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_version: _builtins.str,
+                 datacenter_id: _builtins.str,
+                 earliest_recovery_target_time: _builtins.str,
+                 id: _builtins.str,
+                 latest_recovery_target_time: _builtins.str,
+                 location: _builtins.str,
+                 required_size_for_restore: _builtins.float,
+                 snapshot_location: _builtins.str,
+                 snapshot_size: _builtins.float):
+        """
+        :param _builtins.str cluster_id: [string] Filter snapshots by cluster UUID.
+        :param _builtins.str cluster_name: The name of the cluster this snapshot belongs to.
+        :param _builtins.str cluster_version: The InMemoryDB version of the cluster at the time of the snapshot.
+        :param _builtins.str datacenter_id: The ID of the data center where the snapshot was created.
+        :param _builtins.str earliest_recovery_target_time: The earliest time for which a snapshot is available to restore from (RFC3339).
+        :param _builtins.str id: The UUID of the snapshot.
+        :param _builtins.str latest_recovery_target_time: The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+        :param _builtins.str location: [string] The location to query.
+        :param _builtins.float required_size_for_restore: The minimum storage size in GB required to restore from this snapshot.
+        :param _builtins.str snapshot_location: The Object Storage location where the snapshot is stored.
+        :param _builtins.float snapshot_size: The size of the snapshot in GB.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_version", cluster_version)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "latest_recovery_target_time", latest_recovery_target_time)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "required_size_for_restore", required_size_for_restore)
+        pulumi.set(__self__, "snapshot_location", snapshot_location)
+        pulumi.set(__self__, "snapshot_size", snapshot_size)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        [string] Filter snapshots by cluster UUID.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The name of the cluster this snapshot belongs to.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterVersion")
+    def cluster_version(self) -> _builtins.str:
+        """
+        The InMemoryDB version of the cluster at the time of the snapshot.
+        """
+        return pulumi.get(self, "cluster_version")
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The ID of the data center where the snapshot was created.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="earliestRecoveryTargetTime")
+    def earliest_recovery_target_time(self) -> _builtins.str:
+        """
+        The earliest time for which a snapshot is available to restore from (RFC3339).
+        """
+        return pulumi.get(self, "earliest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The UUID of the snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="latestRecoveryTargetTime")
+    def latest_recovery_target_time(self) -> _builtins.str:
+        """
+        The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+        """
+        return pulumi.get(self, "latest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="requiredSizeForRestore")
+    def required_size_for_restore(self) -> _builtins.float:
+        """
+        The minimum storage size in GB required to restore from this snapshot.
+        """
+        return pulumi.get(self, "required_size_for_restore")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotLocation")
+    def snapshot_location(self) -> _builtins.str:
+        """
+        The Object Storage location where the snapshot is stored.
+        """
+        return pulumi.get(self, "snapshot_location")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotSize")
+    def snapshot_size(self) -> _builtins.float:
+        """
+        The size of the snapshot in GB.
+        """
+        return pulumi.get(self, "snapshot_size")
+
+
+@pulumi.output_type
+class GetInMemoryDBVersionsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 can_upgrade_tos: Sequence[_builtins.str],
+                 comment: _builtins.str,
+                 id: _builtins.str,
+                 status: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param Sequence[_builtins.str] can_upgrade_tos: List of versions that a cluster running this version can be upgraded to.
+        :param _builtins.str comment: Additional human-readable information about the version lifecycle.
+        :param _builtins.str id: The UUID of the version.
+        :param _builtins.str status: The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+        :param _builtins.str version: The version string (e.g. `9.0`).
+        """
+        pulumi.set(__self__, "can_upgrade_tos", can_upgrade_tos)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="canUpgradeTos")
+    def can_upgrade_tos(self) -> Sequence[_builtins.str]:
+        """
+        List of versions that a cluster running this version can be upgraded to.
+        """
+        return pulumi.get(self, "can_upgrade_tos")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Additional human-readable information about the version lifecycle.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The UUID of the version.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The version string (e.g. `9.0`).
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type

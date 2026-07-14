@@ -6,7 +6,12 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_in_memory_db_cluster_v2 import *
+from .get_in_memory_db_clusters_v2 import *
 from .get_in_memory_db_replica_set import *
+from .get_in_memory_db_snapshot_locations_v2 import *
+from .get_in_memory_db_snapshots_v2 import *
+from .get_in_memory_db_versions_v2 import *
 from .get_inmemorydb_snapshot import *
 from .get_maria_db_backups import *
 from .get_maria_db_cluster import *
@@ -24,6 +29,7 @@ from .get_psql_databases import *
 from .get_psql_versions import *
 from .get_psql_versions_v2 import *
 from .get_psqluser import *
+from .in_memory_db_cluster_v2 import *
 from .in_memory_db_replica_set import *
 from .maria_db_cluster import *
 from .mongo_cluster import *

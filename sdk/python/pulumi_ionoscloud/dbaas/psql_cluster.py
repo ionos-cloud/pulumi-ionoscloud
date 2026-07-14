@@ -49,7 +49,7 @@ class PSQLClusterArgs:
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         :param pulumi.Input[_builtins.bool] allow_replace: [bool] When set to true, allows the update of immutable fields by destroying and re-creating the cluster."
                
                **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
@@ -194,7 +194,7 @@ class PSQLClusterArgs:
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         return pulumi.get(self, "synchronization_mode")
 
@@ -318,7 +318,7 @@ class _PSQLClusterState:
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
@@ -553,7 +553,7 @@ class _PSQLClusterState:
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         return pulumi.get(self, "synchronization_mode")
 
@@ -604,10 +604,10 @@ class PSQLCluster(pulumi.CustomResource):
             public=False,
             name="example")
         example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
-            postgres_version="12",
+            postgres_version="16",
             instances=1,
             cores=4,
-            ram=2048,
+            ram=4096,
             storage_size=10240,
             storage_type="HDD",
             connection_pooler={
@@ -660,7 +660,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         ...
     @overload
@@ -687,10 +687,10 @@ class PSQLCluster(pulumi.CustomResource):
             public=False,
             name="example")
         example_psql_cluster = ionoscloud.dbaas.PSQLCluster("example",
-            postgres_version="12",
+            postgres_version="16",
             instances=1,
             cores=4,
-            ram=2048,
+            ram=4096,
             storage_size=10240,
             storage_type="HDD",
             connection_pooler={
@@ -853,7 +853,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         :param pulumi.Input[_builtins.str] storage_type: [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
-        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        :param pulumi.Input[_builtins.str] synchronization_mode: [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1012,7 +1012,7 @@ class PSQLCluster(pulumi.CustomResource):
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         """
         return pulumi.get(self, "synchronization_mode")
 

@@ -27,10 +27,10 @@ import * as utilities from "../utilities";
  *     name: "example",
  * });
  * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("example", {
- *     postgresVersion: "12",
+ *     postgresVersion: "16",
  *     instances: 1,
  *     cores: 4,
- *     ram: 2048,
+ *     ram: 4096,
  *     storageSize: 10240,
  *     storageType: "HDD",
  *     connectionPooler: {
@@ -159,7 +159,7 @@ export class PSQLCluster extends pulumi.CustomResource {
      */
     declare public readonly storageType: pulumi.Output<string>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+     * [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
      */
     declare public readonly synchronizationMode: pulumi.Output<string>;
 
@@ -319,7 +319,7 @@ export interface PSQLClusterState {
      */
     storageType?: pulumi.Input<string | undefined>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+     * [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
      */
     synchronizationMode?: pulumi.Input<string | undefined>;
 }
@@ -391,7 +391,7 @@ export interface PSQLClusterArgs {
      */
     storageType: pulumi.Input<string>;
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+     * [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
      */
     synchronizationMode: pulumi.Input<string>;
 }

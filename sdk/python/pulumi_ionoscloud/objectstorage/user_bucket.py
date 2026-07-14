@@ -241,7 +241,7 @@ class UserBucket(pulumi.CustomResource):
                  timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        Manages user-owned IONOS Object Storage Buckets on IonosCloud.
+        Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.
 
         > ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (`objectstorage.Bucket`) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.
 
@@ -292,7 +292,7 @@ class UserBucket(pulumi.CustomResource):
                  args: UserBucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages user-owned IONOS Object Storage Buckets on IonosCloud.
+        Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.
 
         > ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (`objectstorage.Bucket`) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.
 

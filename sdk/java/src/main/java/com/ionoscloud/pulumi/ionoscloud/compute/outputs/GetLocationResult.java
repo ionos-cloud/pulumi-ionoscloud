@@ -28,6 +28,11 @@ public final class GetLocationResult {
      * 
      */
     private List<String> imageAliases;
+    /**
+     * @return The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+     * 
+     */
+    private String metroRegion;
     private String name;
 
     private GetLocationResult() {}
@@ -55,6 +60,13 @@ public final class GetLocationResult {
     public List<String> imageAliases() {
         return this.imageAliases;
     }
+    /**
+     * @return The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+     * 
+     */
+    public String metroRegion() {
+        return this.metroRegion;
+    }
     public String name() {
         return this.name;
     }
@@ -72,6 +84,7 @@ public final class GetLocationResult {
         private String feature;
         private String id;
         private List<String> imageAliases;
+        private String metroRegion;
         private String name;
         public Builder() {}
         public Builder(GetLocationResult defaults) {
@@ -80,6 +93,7 @@ public final class GetLocationResult {
     	      this.feature = defaults.feature;
     	      this.id = defaults.id;
     	      this.imageAliases = defaults.imageAliases;
+    	      this.metroRegion = defaults.metroRegion;
     	      this.name = defaults.name;
         }
 
@@ -122,6 +136,14 @@ public final class GetLocationResult {
             return imageAliases(List.of(imageAliases));
         }
         @CustomType.Setter
+        public Builder metroRegion(String metroRegion) {
+            if (metroRegion == null) {
+              throw new MissingRequiredPropertyException("GetLocationResult", "metroRegion");
+            }
+            this.metroRegion = metroRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetLocationResult", "name");
@@ -135,6 +157,7 @@ public final class GetLocationResult {
             _resultValue.feature = feature;
             _resultValue.id = id;
             _resultValue.imageAliases = imageAliases;
+            _resultValue.metroRegion = metroRegion;
             _resultValue.name = name;
             return _resultValue;
         }

@@ -342,6 +342,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dbaas/inMemoryDBClusterV2",
+  "fqn": "pulumi_ionoscloud.dbaas",
+  "classes": {
+   "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": "InMemoryDBClusterV2"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/inMemoryDBReplicaSet",
   "fqn": "pulumi_ionoscloud.dbaas",
   "classes": {

@@ -13,9 +13,14 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     /// <summary>
     /// Manages a DBaaS PostgreSQL v2 Cluster.
     /// 
-    /// ## Import
+    /// #### Required
     /// 
-    /// Resource DBaaS PostgreSQL v2 Cluster can be imported using the format `location:cluster_id`, e.g.
+    /// * `Id` (String) The UUID of the cluster.
+    /// * `Location` (String) The location of the cluster (e.g. `de/txl`).
+    /// 
+    /// ***
+    /// 
+    /// A cluster can also be imported using the format `location:cluster_id`:
     /// 
     /// ```sh
     /// $ pulumi import ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2 mycluster de/txl:cluster_uuid

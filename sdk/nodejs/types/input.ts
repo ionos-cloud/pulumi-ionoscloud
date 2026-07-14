@@ -1343,6 +1343,112 @@ export namespace dbaas {
         role?: pulumi.Input<string | undefined>;
     }
 
+    export interface InMemoryDBClusterV2Connections {
+        /**
+         * [string] The Virtual Data Center ID to connect to.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [string] The numeric LAN ID within the data center.
+         */
+        lanId: pulumi.Input<string>;
+        /**
+         * [string] Primary instance IP in CIDR notation.
+         */
+        primaryInstanceAddress: pulumi.Input<string>;
+    }
+
+    export interface InMemoryDBClusterV2Credentials {
+        /**
+         * [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+         */
+        password: pulumi.Input<inputs.dbaas.InMemoryDBClusterV2CredentialsPassword>;
+        /**
+         * [string] Username (2–16 alphanumeric + underscore).
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface InMemoryDBClusterV2CredentialsPassword {
+        /**
+         * [string] Hash algorithm (`SHA-256`).
+         */
+        algorithm: pulumi.Input<string>;
+        /**
+         * [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+         */
+        hash: pulumi.Input<string>;
+    }
+
+    export interface InMemoryDBClusterV2Instances {
+        /**
+         * [int] CPU cores per instance (1–62).
+         */
+        cores: pulumi.Input<number>;
+        /**
+         * [int] Number of instances (1–5).
+         */
+        count: pulumi.Input<number>;
+        /**
+         * [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+         */
+        ram: pulumi.Input<number>;
+    }
+
+    export interface InMemoryDBClusterV2MaintenanceWindow {
+        /**
+         * [string] Day of the week: `Sunday`–`Saturday`.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Start time in UTC (`HH:MM:SS`).
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface InMemoryDBClusterV2RestoreFromSnapshot {
+        /**
+         * [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+         *
+         * > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+         */
+        recoveryTargetDatetime?: pulumi.Input<string | undefined>;
+        /**
+         * [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+         */
+        sourceSnapshotId?: pulumi.Input<string | undefined>;
+    }
+
+    export interface InMemoryDBClusterV2Snapshot {
+        /**
+         * [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+         */
+        location: pulumi.Input<string>;
+        /**
+         * [int] Days to retain snapshots (1–365).
+         */
+        retentionDays: pulumi.Input<number>;
+        /**
+         * [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+         */
+        snapshotHours: pulumi.Input<pulumi.Input<number>[]>;
+    }
+
+    export interface InMemoryDBClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: pulumi.Input<string | undefined>;
+    }
+
     export interface InMemoryDBReplicaSetConnections {
         /**
          * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.

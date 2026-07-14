@@ -27,7 +27,7 @@ class GetLocationResult:
     """
     A collection of values returned by getLocation.
     """
-    def __init__(__self__, cpu_architectures=None, feature=None, id=None, image_aliases=None, name=None):
+    def __init__(__self__, cpu_architectures=None, feature=None, id=None, image_aliases=None, metro_region=None, name=None):
         if cpu_architectures and not isinstance(cpu_architectures, list):
             raise TypeError("Expected argument 'cpu_architectures' to be a list")
         pulumi.set(__self__, "cpu_architectures", cpu_architectures)
@@ -40,6 +40,9 @@ class GetLocationResult:
         if image_aliases and not isinstance(image_aliases, list):
             raise TypeError("Expected argument 'image_aliases' to be a list")
         pulumi.set(__self__, "image_aliases", image_aliases)
+        if metro_region and not isinstance(metro_region, str):
+            raise TypeError("Expected argument 'metro_region' to be a str")
+        pulumi.set(__self__, "metro_region", metro_region)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -74,6 +77,14 @@ class GetLocationResult:
         return pulumi.get(self, "image_aliases")
 
     @_builtins.property
+    @pulumi.getter(name="metroRegion")
+    def metro_region(self) -> _builtins.str:
+        """
+        The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+        """
+        return pulumi.get(self, "metro_region")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
@@ -89,6 +100,7 @@ class AwaitableGetLocationResult(GetLocationResult):
             feature=self.feature,
             id=self.id,
             image_aliases=self.image_aliases,
+            metro_region=self.metro_region,
             name=self.name)
 
 
@@ -126,6 +138,7 @@ def get_location(feature: Optional[_builtins.str] = None,
         feature=pulumi.get(__ret__, 'feature'),
         id=pulumi.get(__ret__, 'id'),
         image_aliases=pulumi.get(__ret__, 'image_aliases'),
+        metro_region=pulumi.get(__ret__, 'metro_region'),
         name=pulumi.get(__ret__, 'name'))
 def get_location_output(feature: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -160,4 +173,5 @@ def get_location_output(feature: pulumi.Input[Optional[Optional[_builtins.str]]]
         feature=pulumi.get(__response__, 'feature'),
         id=pulumi.get(__response__, 'id'),
         image_aliases=pulumi.get(__response__, 'image_aliases'),
+        metro_region=pulumi.get(__response__, 'metro_region'),
         name=pulumi.get(__response__, 'name')))

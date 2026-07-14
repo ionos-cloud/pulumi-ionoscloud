@@ -46,10 +46,6 @@ import (
 //
 // ```
 //
-// ## Import
-//
-// ### Identity Schema
-//
 // #### Required
 //
 // * `id` (String) Name of the bucket.

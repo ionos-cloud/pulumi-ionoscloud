@@ -185,10 +185,6 @@ class Accesskey(pulumi.CustomResource):
         example = ionoscloud.objectstoragemanagement.Accesskey("example", description="my description")
         ```
 
-        ## Import
-
-        ### Identity Schema
-
         #### Required
 
         * `id` (String) The ID (UUID) of the AccessKey.
@@ -226,10 +222,6 @@ class Accesskey(pulumi.CustomResource):
 
         example = ionoscloud.objectstoragemanagement.Accesskey("example", description="my description")
         ```
-
-        ## Import
-
-        ### Identity Schema
 
         #### Required
 

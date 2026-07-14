@@ -15,6 +15,22 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'InMemoryDBClusterV2ConnectionsArgs',
+    'InMemoryDBClusterV2ConnectionsArgsDict',
+    'InMemoryDBClusterV2CredentialsArgs',
+    'InMemoryDBClusterV2CredentialsArgsDict',
+    'InMemoryDBClusterV2CredentialsPasswordArgs',
+    'InMemoryDBClusterV2CredentialsPasswordArgsDict',
+    'InMemoryDBClusterV2InstancesArgs',
+    'InMemoryDBClusterV2InstancesArgsDict',
+    'InMemoryDBClusterV2MaintenanceWindowArgs',
+    'InMemoryDBClusterV2MaintenanceWindowArgsDict',
+    'InMemoryDBClusterV2RestoreFromSnapshotArgs',
+    'InMemoryDBClusterV2RestoreFromSnapshotArgsDict',
+    'InMemoryDBClusterV2SnapshotArgs',
+    'InMemoryDBClusterV2SnapshotArgsDict',
+    'InMemoryDBClusterV2TimeoutsArgs',
+    'InMemoryDBClusterV2TimeoutsArgsDict',
     'InMemoryDBReplicaSetConnectionsArgs',
     'InMemoryDBReplicaSetConnectionsArgsDict',
     'InMemoryDBReplicaSetCredentialsArgs',
@@ -70,6 +86,469 @@ __all__ = [
     'GetMongoUserRoleArgs',
     'GetMongoUserRoleArgsDict',
 ]
+
+class InMemoryDBClusterV2ConnectionsArgsDict(TypedDict):
+    datacenter_id: pulumi.Input[_builtins.str]
+    """
+    [string] The Virtual Data Center ID to connect to.
+    """
+    lan_id: pulumi.Input[_builtins.str]
+    """
+    [string] The numeric LAN ID within the data center.
+    """
+    primary_instance_address: pulumi.Input[_builtins.str]
+    """
+    [string] Primary instance IP in CIDR notation.
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2ConnectionsArgs:
+    def __init__(__self__, *,
+                 datacenter_id: pulumi.Input[_builtins.str],
+                 lan_id: pulumi.Input[_builtins.str],
+                 primary_instance_address: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The Virtual Data Center ID to connect to.
+        :param pulumi.Input[_builtins.str] lan_id: [string] The numeric LAN ID within the data center.
+        :param pulumi.Input[_builtins.str] primary_instance_address: [string] Primary instance IP in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The Virtual Data Center ID to connect to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @datacenter_id.setter
+    def datacenter_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The numeric LAN ID within the data center.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @lan_id.setter
+    def lan_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "lan_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Primary instance IP in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+    @primary_instance_address.setter
+    def primary_instance_address(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "primary_instance_address", value)
+
+
+class InMemoryDBClusterV2CredentialsArgsDict(TypedDict):
+    password: pulumi.Input['InMemoryDBClusterV2CredentialsPasswordArgsDict']
+    """
+    [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    [string] Username (2–16 alphanumeric + underscore).
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2CredentialsArgs:
+    def __init__(__self__, *,
+                 password: pulumi.Input['InMemoryDBClusterV2CredentialsPasswordArgs'],
+                 username: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input['InMemoryDBClusterV2CredentialsPasswordArgs'] password: [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+        :param pulumi.Input[_builtins.str] username: [string] Username (2–16 alphanumeric + underscore).
+        """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input['InMemoryDBClusterV2CredentialsPasswordArgs']:
+        """
+        [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input['InMemoryDBClusterV2CredentialsPasswordArgs']):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Username (2–16 alphanumeric + underscore).
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "username", value)
+
+
+class InMemoryDBClusterV2CredentialsPasswordArgsDict(TypedDict):
+    algorithm: pulumi.Input[_builtins.str]
+    """
+    [string] Hash algorithm (`SHA-256`).
+    """
+    hash: pulumi.Input[_builtins.str]
+    """
+    [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2CredentialsPasswordArgs:
+    def __init__(__self__, *,
+                 algorithm: pulumi.Input[_builtins.str],
+                 hash: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] algorithm: [string] Hash algorithm (`SHA-256`).
+        :param pulumi.Input[_builtins.str] hash: [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "hash", hash)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Hash algorithm (`SHA-256`).
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def hash(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+        """
+        return pulumi.get(self, "hash")
+
+    @hash.setter
+    def hash(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "hash", value)
+
+
+class InMemoryDBClusterV2InstancesArgsDict(TypedDict):
+    cores: pulumi.Input[_builtins.int]
+    """
+    [int] CPU cores per instance (1–62).
+    """
+    count: pulumi.Input[_builtins.int]
+    """
+    [int] Number of instances (1–5).
+    """
+    ram: pulumi.Input[_builtins.int]
+    """
+    [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2InstancesArgs:
+    def __init__(__self__, *,
+                 cores: pulumi.Input[_builtins.int],
+                 count: pulumi.Input[_builtins.int],
+                 ram: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] cores: [int] CPU cores per instance (1–62).
+        :param pulumi.Input[_builtins.int] count: [int] Number of instances (1–5).
+        :param pulumi.Input[_builtins.int] ram: [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] CPU cores per instance (1–62).
+        """
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "cores", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] Number of instances (1–5).
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+        """
+        return pulumi.get(self, "ram")
+
+    @ram.setter
+    def ram(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "ram", value)
+
+
+class InMemoryDBClusterV2MaintenanceWindowArgsDict(TypedDict):
+    day_of_the_week: pulumi.Input[_builtins.str]
+    """
+    [string] Day of the week: `Sunday`–`Saturday`.
+    """
+    time: pulumi.Input[_builtins.str]
+    """
+    [string] Start time in UTC (`HH:MM:SS`).
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2MaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day_of_the_week: pulumi.Input[_builtins.str],
+                 time: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] day_of_the_week: [string] Day of the week: `Sunday`–`Saturday`.
+        :param pulumi.Input[_builtins.str] time: [string] Start time in UTC (`HH:MM:SS`).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Day of the week: `Sunday`–`Saturday`.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @day_of_the_week.setter
+    def day_of_the_week(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "day_of_the_week", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Start time in UTC (`HH:MM:SS`).
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "time", value)
+
+
+class InMemoryDBClusterV2RestoreFromSnapshotArgsDict(TypedDict):
+    recovery_target_datetime: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+
+    > **Note:** `restore_from_snapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+    """
+    source_snapshot_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2RestoreFromSnapshotArgs:
+    def __init__(__self__, *,
+                 recovery_target_datetime: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_snapshot_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] recovery_target_datetime: [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+               
+               > **Note:** `restore_from_snapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        :param pulumi.Input[_builtins.str] source_snapshot_id: [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+        """
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+        if source_snapshot_id is not None:
+            pulumi.set(__self__, "source_snapshot_id", source_snapshot_id)
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+
+        > **Note:** `restore_from_snapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+    @recovery_target_datetime.setter
+    def recovery_target_datetime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "recovery_target_datetime", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceSnapshotId")
+    def source_snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+        """
+        return pulumi.get(self, "source_snapshot_id")
+
+    @source_snapshot_id.setter
+    def source_snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "source_snapshot_id", value)
+
+
+class InMemoryDBClusterV2SnapshotArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+    """
+    retention_days: pulumi.Input[_builtins.int]
+    """
+    [int] Days to retain snapshots (1–365).
+    """
+    snapshot_hours: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2SnapshotArgs:
+    def __init__(__self__, *,
+                 location: pulumi.Input[_builtins.str],
+                 retention_days: pulumi.Input[_builtins.int],
+                 snapshot_hours: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]):
+        """
+        :param pulumi.Input[_builtins.str] location: [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+        :param pulumi.Input[_builtins.int] retention_days: [int] Days to retain snapshots (1–365).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] snapshot_hours: [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "snapshot_hours", snapshot_hours)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] Days to retain snapshots (1–365).
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "retention_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotHours")
+    def snapshot_hours(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]:
+        """
+        [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+        """
+        return pulumi.get(self, "snapshot_hours")
+
+    @snapshot_hours.setter
+    def snapshot_hours(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]):
+        pulumi.set(self, "snapshot_hours", value)
+
+
+class InMemoryDBClusterV2TimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+    """
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+
+@pulumi.input_type
+class InMemoryDBClusterV2TimeoutsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "update", value)
+
 
 class InMemoryDBReplicaSetConnectionsArgsDict(TypedDict):
     cidr: pulumi.Input[_builtins.str]

@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2":
+		r = &InMemoryDBClusterV2{}
 	case "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet":
 		r = &InMemoryDBReplicaSet{}
 	case "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster":
@@ -50,6 +52,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"dbaas/inMemoryDBClusterV2",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"dbaas/inMemoryDBReplicaSet",

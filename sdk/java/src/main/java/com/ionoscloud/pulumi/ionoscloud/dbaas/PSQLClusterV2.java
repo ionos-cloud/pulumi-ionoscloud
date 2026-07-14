@@ -25,9 +25,14 @@ import javax.annotation.Nullable;
 /**
  * Manages a DBaaS PostgreSQL v2 Cluster.
  * 
- * ## Import
+ * #### Required
  * 
- * Resource DBaaS PostgreSQL v2 Cluster can be imported using the format `location:cluster_id`, e.g.
+ * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; (String) The UUID of the cluster.
+ * * &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; (String) The location of the cluster (e.g. `de/txl`).
+ * 
+ * ***
+ * 
+ * A cluster can also be imported using the format `location:cluster_id`:
  * 
  * ```sh
  * $ pulumi import ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2 mycluster de/txl:cluster_uuid

@@ -31,10 +31,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
     /// });
     /// ```
     /// 
-    /// ## Import
-    /// 
-    /// ### Identity Schema
-    /// 
     /// #### Required
     /// 
     /// * `Id` (String) The ID (UUID) of the AccessKey.
