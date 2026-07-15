@@ -1,6 +1,6 @@
-# Foo Resource Provider
+# IONOS Cloud Resource Provider
 
-The Foo Resource Provider lets you manage [Foo](http://example.com) resources.
+The IONOS Cloud Resource Provider lets you manage [IONOS Cloud](https://cloud.ionos.com/) resources.
 
 ## Installing
 
@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/foo
+npm install @ionos-cloud/sdk-pulumi
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/foo
+yarn add @ionos-cloud/sdk-pulumi
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumi/foo
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_foo
+pip install pulumi_ionoscloud
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumi_foo
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-foo/sdk/go/...
+go get github.com/ionos-cloud/pulumi-ionoscloud/sdk
 ```
 
 ### .NET
@@ -41,16 +41,17 @@ go get github.com/pulumi/pulumi-foo/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Foo
+dotnet add package Ionoscloud.Pulumi.Ionoscloud
 ```
 
 ## Configuration
 
-The following configuration points are available for the `foo` provider:
+The following configuration points are available for the `ionoscloud` provider:
 
-- `foo:apiKey` (environment: `FOO_API_KEY`) - the API key for `foo`
-- `foo:region` (environment: `FOO_REGION`) - the region in which to deploy resources
+- `ionoscloud:username` (environment: `IONOS_USERNAME`) - the username for IONOS Cloud API authentication
+- `ionoscloud:password` (environment: `IONOS_PASSWORD`) - the password for IONOS Cloud API authentication
+- `ionoscloud:token` (environment: `IONOS_TOKEN`) - the API token for authentication (alternative to username/password)
 
 ## Reference
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/foo/api-docs/).
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/ionoscloud/api-docs/).
