@@ -27,10 +27,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Import
- *
- * ### Identity Schema
- *
  * #### Required
  *
  * * `id` (String) Name of the bucket.

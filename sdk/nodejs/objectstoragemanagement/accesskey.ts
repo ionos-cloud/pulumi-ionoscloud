@@ -18,10 +18,6 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.objectstoragemanagement.Accesskey("example", {description: "my description"});
  * ```
  *
- * ## Import
- *
- * ### Identity Schema
- *
  * #### Required
  *
  * * `id` (String) The ID (UUID) of the AccessKey.

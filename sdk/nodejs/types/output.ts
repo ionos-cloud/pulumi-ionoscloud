@@ -3601,6 +3601,197 @@ export namespace creg {
 }
 
 export namespace dbaas {
+    export interface GetInMemoryDBClusterV2Connections {
+        /**
+         * The Virtual Data Center ID.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID.
+         */
+        lanId: string;
+        /**
+         * The primary instance IP in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetInMemoryDBClusterV2Credentials {
+        /**
+         * The username for the InMemoryDB user.
+         */
+        username: string;
+    }
+
+    export interface GetInMemoryDBClusterV2Instances {
+        /**
+         * CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * Number of instances.
+         */
+        count: number;
+        /**
+         * RAM per instance in GB.
+         */
+        ram: number;
+    }
+
+    export interface GetInMemoryDBClusterV2MaintenanceWindow {
+        /**
+         * Maintenance window day of the week.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Maintenance window start time in UTC (HH:MM:SS).
+         */
+        time: string;
+    }
+
+    export interface GetInMemoryDBClusterV2Snapshot {
+        /**
+         * [string] The location of the cluster.
+         *
+         * > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         */
+        location: string;
+        /**
+         * Days snapshots are retained.
+         */
+        retentionDays: number;
+        /**
+         * UTC hours at which snapshots are taken.
+         */
+        snapshotHours: number[];
+    }
+
+    export interface GetInMemoryDBClustersV2Item {
+        /**
+         * Network connection configuration for the cluster.
+         */
+        connections: outputs.dbaas.GetInMemoryDBClustersV2ItemConnections;
+        /**
+         * Credentials for the user with access to the cluster.
+         */
+        credentials: outputs.dbaas.GetInMemoryDBClustersV2ItemCredentials;
+        /**
+         * Human-readable description for the cluster.
+         */
+        description: string;
+        /**
+         * The DNS name used to connect to the cluster's primary instance.
+         */
+        dnsName: string;
+        /**
+         * The key eviction strategy.
+         */
+        evictionPolicy: string;
+        /**
+         * The ID (UUID) of the cluster.
+         */
+        id: string;
+        /**
+         * Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+         */
+        instances: outputs.dbaas.GetInMemoryDBClustersV2ItemInstances;
+        /**
+         * [string] The location to query.
+         */
+        location: string;
+        /**
+         * Whether log collection is enabled.
+         */
+        logsEnabled: boolean;
+        /**
+         * A weekly 4-hour maintenance window.
+         */
+        maintenanceWindow: outputs.dbaas.GetInMemoryDBClustersV2ItemMaintenanceWindow;
+        /**
+         * Whether metrics collection is enabled.
+         */
+        metricsEnabled: boolean;
+        /**
+         * [string] Filter by name (case-insensitive contains match).
+         */
+        name: string;
+        /**
+         * The data persistence mode.
+         */
+        persistenceMode: string;
+        /**
+         * Snapshot storage and retention configuration.
+         */
+        snapshot: outputs.dbaas.GetInMemoryDBClustersV2ItemSnapshot;
+        /**
+         * The In-Memory DB version.
+         */
+        version: string;
+    }
+
+    export interface GetInMemoryDBClustersV2ItemConnections {
+        /**
+         * The Virtual Data Center ID.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID.
+         */
+        lanId: string;
+        /**
+         * The IP address and subnet mask in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetInMemoryDBClustersV2ItemCredentials {
+        /**
+         * The username for the In-Memory DB user.
+         */
+        username: string;
+    }
+
+    export interface GetInMemoryDBClustersV2ItemInstances {
+        /**
+         * CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * Number of instances.
+         */
+        count: number;
+        /**
+         * RAM per instance in GB.
+         */
+        ram: number;
+    }
+
+    export interface GetInMemoryDBClustersV2ItemMaintenanceWindow {
+        /**
+         * Day of the week.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start time in UTC (HH:MM:SS).
+         */
+        time: string;
+    }
+
+    export interface GetInMemoryDBClustersV2ItemSnapshot {
+        /**
+         * [string] The location to query.
+         */
+        location: string;
+        /**
+         * Number of days snapshots are retained.
+         */
+        retentionDays: number;
+        /**
+         * UTC hours at which snapshots are taken.
+         */
+        snapshotHours: number[];
+    }
+
     export interface GetInMemoryDBReplicaSetConnection {
         /**
          * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
@@ -3647,6 +3838,87 @@ export namespace dbaas {
          * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage: number;
+    }
+
+    export interface GetInMemoryDBSnapshotLocationsV2Item {
+        /**
+         * The ID of the snapshot location.
+         */
+        id: string;
+        /**
+         * The snapshot region identifier.
+         */
+        snapshotRegion: string;
+    }
+
+    export interface GetInMemoryDBSnapshotsV2Item {
+        /**
+         * [string] Filter snapshots by cluster UUID.
+         */
+        clusterId: string;
+        /**
+         * The name of the cluster this snapshot belongs to.
+         */
+        clusterName: string;
+        /**
+         * The InMemoryDB version of the cluster at the time of the snapshot.
+         */
+        clusterVersion: string;
+        /**
+         * The ID of the data center where the snapshot was created.
+         */
+        datacenterId: string;
+        /**
+         * The earliest time for which a snapshot is available to restore from (RFC3339).
+         */
+        earliestRecoveryTargetTime: string;
+        /**
+         * The UUID of the snapshot.
+         */
+        id: string;
+        /**
+         * The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+         */
+        latestRecoveryTargetTime: string;
+        /**
+         * [string] The location to query.
+         */
+        location: string;
+        /**
+         * The minimum storage size in GB required to restore from this snapshot.
+         */
+        requiredSizeForRestore: number;
+        /**
+         * The Object Storage location where the snapshot is stored.
+         */
+        snapshotLocation: string;
+        /**
+         * The size of the snapshot in GB.
+         */
+        snapshotSize: number;
+    }
+
+    export interface GetInMemoryDBVersionsV2Item {
+        /**
+         * List of versions that a cluster running this version can be upgraded to.
+         */
+        canUpgradeTos: string[];
+        /**
+         * Additional human-readable information about the version lifecycle.
+         */
+        comment: string;
+        /**
+         * The UUID of the version.
+         */
+        id: string;
+        /**
+         * The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+         */
+        status: string;
+        /**
+         * The version string (e.g. `9.0`).
+         */
+        version: string;
     }
 
     export interface GetInmemorydbSnapshotMetadata {
@@ -4134,6 +4406,112 @@ export namespace dbaas {
          * The PostgreSQL version string.
          */
         version: string;
+    }
+
+    export interface InMemoryDBClusterV2Connections {
+        /**
+         * [string] The Virtual Data Center ID to connect to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID within the data center.
+         */
+        lanId: string;
+        /**
+         * [string] Primary instance IP in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface InMemoryDBClusterV2Credentials {
+        /**
+         * [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+         */
+        password: outputs.dbaas.InMemoryDBClusterV2CredentialsPassword;
+        /**
+         * [string] Username (2–16 alphanumeric + underscore).
+         */
+        username: string;
+    }
+
+    export interface InMemoryDBClusterV2CredentialsPassword {
+        /**
+         * [string] Hash algorithm (`SHA-256`).
+         */
+        algorithm: string;
+        /**
+         * [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+         */
+        hash: string;
+    }
+
+    export interface InMemoryDBClusterV2Instances {
+        /**
+         * [int] CPU cores per instance (1–62).
+         */
+        cores: number;
+        /**
+         * [int] Number of instances (1–5).
+         */
+        count: number;
+        /**
+         * [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+         */
+        ram: number;
+    }
+
+    export interface InMemoryDBClusterV2MaintenanceWindow {
+        /**
+         * [string] Day of the week: `Sunday`–`Saturday`.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start time in UTC (`HH:MM:SS`).
+         */
+        time: string;
+    }
+
+    export interface InMemoryDBClusterV2RestoreFromSnapshot {
+        /**
+         * [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+         *
+         * > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+         */
+        recoveryTargetDatetime?: string;
+        /**
+         * [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+         */
+        sourceSnapshotId?: string;
+    }
+
+    export interface InMemoryDBClusterV2Snapshot {
+        /**
+         * [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+         */
+        location: string;
+        /**
+         * [int] Days to retain snapshots (1–365).
+         */
+        retentionDays: number;
+        /**
+         * [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+         */
+        snapshotHours: number[];
+    }
+
+    export interface InMemoryDBClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: string;
     }
 
     export interface InMemoryDBReplicaSetConnections {

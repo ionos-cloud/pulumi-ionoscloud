@@ -64,6 +64,10 @@ export interface GetLocationResult {
      * List of image aliases available for the location
      */
     readonly imageAliases: string[];
+    /**
+     * The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+     */
+    readonly metroRegion: string;
     readonly name: string;
 }
 /**

@@ -39,10 +39,6 @@ import (
 //
 // ```
 //
-// ## Import
-//
-// ### Identity Schema
-//
 // #### Required
 //
 // * `id` (String) The ID (UUID) of the AccessKey.

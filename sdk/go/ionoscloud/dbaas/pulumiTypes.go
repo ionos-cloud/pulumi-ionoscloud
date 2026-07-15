@@ -13,6 +13,1444 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type InMemoryDBClusterV2Connections struct {
+	// [string] The Virtual Data Center ID to connect to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID within the data center.
+	LanId string `pulumi:"lanId"`
+	// [string] Primary instance IP in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// InMemoryDBClusterV2ConnectionsInput is an input type that accepts InMemoryDBClusterV2ConnectionsArgs and InMemoryDBClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2ConnectionsInput` via:
+//
+//	InMemoryDBClusterV2ConnectionsArgs{...}
+type InMemoryDBClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2ConnectionsOutput() InMemoryDBClusterV2ConnectionsOutput
+	ToInMemoryDBClusterV2ConnectionsOutputWithContext(context.Context) InMemoryDBClusterV2ConnectionsOutput
+}
+
+type InMemoryDBClusterV2ConnectionsArgs struct {
+	// [string] The Virtual Data Center ID to connect to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID within the data center.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// [string] Primary instance IP in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (InMemoryDBClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2ConnectionsArgs) ToInMemoryDBClusterV2ConnectionsOutput() InMemoryDBClusterV2ConnectionsOutput {
+	return i.ToInMemoryDBClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2ConnectionsArgs) ToInMemoryDBClusterV2ConnectionsOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2ConnectionsOutput)
+}
+
+func (i InMemoryDBClusterV2ConnectionsArgs) ToInMemoryDBClusterV2ConnectionsPtrOutput() InMemoryDBClusterV2ConnectionsPtrOutput {
+	return i.ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2ConnectionsArgs) ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2ConnectionsOutput).ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2ConnectionsPtrInput is an input type that accepts InMemoryDBClusterV2ConnectionsArgs, InMemoryDBClusterV2ConnectionsPtr and InMemoryDBClusterV2ConnectionsPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2ConnectionsPtrInput` via:
+//
+//	        InMemoryDBClusterV2ConnectionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2ConnectionsPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2ConnectionsPtrOutput() InMemoryDBClusterV2ConnectionsPtrOutput
+	ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(context.Context) InMemoryDBClusterV2ConnectionsPtrOutput
+}
+
+type inMemoryDBClusterV2ConnectionsPtrType InMemoryDBClusterV2ConnectionsArgs
+
+func InMemoryDBClusterV2ConnectionsPtr(v *InMemoryDBClusterV2ConnectionsArgs) InMemoryDBClusterV2ConnectionsPtrInput {
+	return (*inMemoryDBClusterV2ConnectionsPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2ConnectionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2ConnectionsPtrType) ToInMemoryDBClusterV2ConnectionsPtrOutput() InMemoryDBClusterV2ConnectionsPtrOutput {
+	return i.ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2ConnectionsPtrType) ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2ConnectionsPtrOutput)
+}
+
+type InMemoryDBClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2ConnectionsOutput) ToInMemoryDBClusterV2ConnectionsOutput() InMemoryDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2ConnectionsOutput) ToInMemoryDBClusterV2ConnectionsOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2ConnectionsOutput) ToInMemoryDBClusterV2ConnectionsPtrOutput() InMemoryDBClusterV2ConnectionsPtrOutput {
+	return o.ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2ConnectionsOutput) ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2Connections) *InMemoryDBClusterV2Connections {
+		return &v
+	}).(InMemoryDBClusterV2ConnectionsPtrOutput)
+}
+
+// [string] The Virtual Data Center ID to connect to.
+func (o InMemoryDBClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// [string] The numeric LAN ID within the data center.
+func (o InMemoryDBClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// [string] Primary instance IP in CIDR notation.
+func (o InMemoryDBClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type InMemoryDBClusterV2ConnectionsPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2ConnectionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) ToInMemoryDBClusterV2ConnectionsPtrOutput() InMemoryDBClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) ToInMemoryDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) Elem() InMemoryDBClusterV2ConnectionsOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Connections) InMemoryDBClusterV2Connections {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2Connections
+		return ret
+	}).(InMemoryDBClusterV2ConnectionsOutput)
+}
+
+// [string] The Virtual Data Center ID to connect to.
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DatacenterId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The numeric LAN ID within the data center.
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LanId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Primary instance IP in CIDR notation.
+func (o InMemoryDBClusterV2ConnectionsPtrOutput) PrimaryInstanceAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrimaryInstanceAddress
+	}).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2Credentials struct {
+	// [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+	Password InMemoryDBClusterV2CredentialsPassword `pulumi:"password"`
+	// [string] Username (2–16 alphanumeric + underscore).
+	Username string `pulumi:"username"`
+}
+
+// InMemoryDBClusterV2CredentialsInput is an input type that accepts InMemoryDBClusterV2CredentialsArgs and InMemoryDBClusterV2CredentialsOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2CredentialsInput` via:
+//
+//	InMemoryDBClusterV2CredentialsArgs{...}
+type InMemoryDBClusterV2CredentialsInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2CredentialsOutput() InMemoryDBClusterV2CredentialsOutput
+	ToInMemoryDBClusterV2CredentialsOutputWithContext(context.Context) InMemoryDBClusterV2CredentialsOutput
+}
+
+type InMemoryDBClusterV2CredentialsArgs struct {
+	// [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+	Password InMemoryDBClusterV2CredentialsPasswordInput `pulumi:"password"`
+	// [string] Username (2–16 alphanumeric + underscore).
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (InMemoryDBClusterV2CredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2CredentialsArgs) ToInMemoryDBClusterV2CredentialsOutput() InMemoryDBClusterV2CredentialsOutput {
+	return i.ToInMemoryDBClusterV2CredentialsOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2CredentialsArgs) ToInMemoryDBClusterV2CredentialsOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsOutput)
+}
+
+func (i InMemoryDBClusterV2CredentialsArgs) ToInMemoryDBClusterV2CredentialsPtrOutput() InMemoryDBClusterV2CredentialsPtrOutput {
+	return i.ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2CredentialsArgs) ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsOutput).ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2CredentialsPtrInput is an input type that accepts InMemoryDBClusterV2CredentialsArgs, InMemoryDBClusterV2CredentialsPtr and InMemoryDBClusterV2CredentialsPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2CredentialsPtrInput` via:
+//
+//	        InMemoryDBClusterV2CredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2CredentialsPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2CredentialsPtrOutput() InMemoryDBClusterV2CredentialsPtrOutput
+	ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(context.Context) InMemoryDBClusterV2CredentialsPtrOutput
+}
+
+type inMemoryDBClusterV2CredentialsPtrType InMemoryDBClusterV2CredentialsArgs
+
+func InMemoryDBClusterV2CredentialsPtr(v *InMemoryDBClusterV2CredentialsArgs) InMemoryDBClusterV2CredentialsPtrInput {
+	return (*inMemoryDBClusterV2CredentialsPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2CredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2CredentialsPtrType) ToInMemoryDBClusterV2CredentialsPtrOutput() InMemoryDBClusterV2CredentialsPtrOutput {
+	return i.ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2CredentialsPtrType) ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsPtrOutput)
+}
+
+type InMemoryDBClusterV2CredentialsOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2CredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2CredentialsOutput) ToInMemoryDBClusterV2CredentialsOutput() InMemoryDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsOutput) ToInMemoryDBClusterV2CredentialsOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsOutput) ToInMemoryDBClusterV2CredentialsPtrOutput() InMemoryDBClusterV2CredentialsPtrOutput {
+	return o.ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2CredentialsOutput) ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2Credentials) *InMemoryDBClusterV2Credentials {
+		return &v
+	}).(InMemoryDBClusterV2CredentialsPtrOutput)
+}
+
+// [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+func (o InMemoryDBClusterV2CredentialsOutput) Password() InMemoryDBClusterV2CredentialsPasswordOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Credentials) InMemoryDBClusterV2CredentialsPassword { return v.Password }).(InMemoryDBClusterV2CredentialsPasswordOutput)
+}
+
+// [string] Username (2–16 alphanumeric + underscore).
+func (o InMemoryDBClusterV2CredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Credentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type InMemoryDBClusterV2CredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2CredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2CredentialsPtrOutput) ToInMemoryDBClusterV2CredentialsPtrOutput() InMemoryDBClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPtrOutput) ToInMemoryDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPtrOutput) Elem() InMemoryDBClusterV2CredentialsOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Credentials) InMemoryDBClusterV2Credentials {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2Credentials
+		return ret
+	}).(InMemoryDBClusterV2CredentialsOutput)
+}
+
+// [object] Pre-hashed password. Not returned by the API — will be null in state after `pulumi import`.
+func (o InMemoryDBClusterV2CredentialsPtrOutput) Password() InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Credentials) *InMemoryDBClusterV2CredentialsPassword {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(InMemoryDBClusterV2CredentialsPasswordPtrOutput)
+}
+
+// [string] Username (2–16 alphanumeric + underscore).
+func (o InMemoryDBClusterV2CredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2CredentialsPassword struct {
+	// [string] Hash algorithm (`SHA-256`).
+	Algorithm string `pulumi:"algorithm"`
+	// [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+	Hash string `pulumi:"hash"`
+}
+
+// InMemoryDBClusterV2CredentialsPasswordInput is an input type that accepts InMemoryDBClusterV2CredentialsPasswordArgs and InMemoryDBClusterV2CredentialsPasswordOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2CredentialsPasswordInput` via:
+//
+//	InMemoryDBClusterV2CredentialsPasswordArgs{...}
+type InMemoryDBClusterV2CredentialsPasswordInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2CredentialsPasswordOutput() InMemoryDBClusterV2CredentialsPasswordOutput
+	ToInMemoryDBClusterV2CredentialsPasswordOutputWithContext(context.Context) InMemoryDBClusterV2CredentialsPasswordOutput
+}
+
+type InMemoryDBClusterV2CredentialsPasswordArgs struct {
+	// [string] Hash algorithm (`SHA-256`).
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+	Hash pulumi.StringInput `pulumi:"hash"`
+}
+
+func (InMemoryDBClusterV2CredentialsPasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2CredentialsPassword)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2CredentialsPasswordArgs) ToInMemoryDBClusterV2CredentialsPasswordOutput() InMemoryDBClusterV2CredentialsPasswordOutput {
+	return i.ToInMemoryDBClusterV2CredentialsPasswordOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2CredentialsPasswordArgs) ToInMemoryDBClusterV2CredentialsPasswordOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsPasswordOutput)
+}
+
+func (i InMemoryDBClusterV2CredentialsPasswordArgs) ToInMemoryDBClusterV2CredentialsPasswordPtrOutput() InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return i.ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2CredentialsPasswordArgs) ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsPasswordOutput).ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2CredentialsPasswordPtrInput is an input type that accepts InMemoryDBClusterV2CredentialsPasswordArgs, InMemoryDBClusterV2CredentialsPasswordPtr and InMemoryDBClusterV2CredentialsPasswordPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2CredentialsPasswordPtrInput` via:
+//
+//	        InMemoryDBClusterV2CredentialsPasswordArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2CredentialsPasswordPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2CredentialsPasswordPtrOutput() InMemoryDBClusterV2CredentialsPasswordPtrOutput
+	ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(context.Context) InMemoryDBClusterV2CredentialsPasswordPtrOutput
+}
+
+type inMemoryDBClusterV2CredentialsPasswordPtrType InMemoryDBClusterV2CredentialsPasswordArgs
+
+func InMemoryDBClusterV2CredentialsPasswordPtr(v *InMemoryDBClusterV2CredentialsPasswordArgs) InMemoryDBClusterV2CredentialsPasswordPtrInput {
+	return (*inMemoryDBClusterV2CredentialsPasswordPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2CredentialsPasswordPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2CredentialsPassword)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2CredentialsPasswordPtrType) ToInMemoryDBClusterV2CredentialsPasswordPtrOutput() InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return i.ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2CredentialsPasswordPtrType) ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2CredentialsPasswordPtrOutput)
+}
+
+type InMemoryDBClusterV2CredentialsPasswordOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2CredentialsPasswordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2CredentialsPassword)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) ToInMemoryDBClusterV2CredentialsPasswordOutput() InMemoryDBClusterV2CredentialsPasswordOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) ToInMemoryDBClusterV2CredentialsPasswordOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) ToInMemoryDBClusterV2CredentialsPasswordPtrOutput() InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return o.ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2CredentialsPassword) *InMemoryDBClusterV2CredentialsPassword {
+		return &v
+	}).(InMemoryDBClusterV2CredentialsPasswordPtrOutput)
+}
+
+// [string] Hash algorithm (`SHA-256`).
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2CredentialsPassword) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+func (o InMemoryDBClusterV2CredentialsPasswordOutput) Hash() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2CredentialsPassword) string { return v.Hash }).(pulumi.StringOutput)
+}
+
+type InMemoryDBClusterV2CredentialsPasswordPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2CredentialsPasswordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2CredentialsPassword)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordPtrOutput) ToInMemoryDBClusterV2CredentialsPasswordPtrOutput() InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordPtrOutput) ToInMemoryDBClusterV2CredentialsPasswordPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2CredentialsPasswordPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2CredentialsPasswordPtrOutput) Elem() InMemoryDBClusterV2CredentialsPasswordOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2CredentialsPassword) InMemoryDBClusterV2CredentialsPassword {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2CredentialsPassword
+		return ret
+	}).(InMemoryDBClusterV2CredentialsPasswordOutput)
+}
+
+// [string] Hash algorithm (`SHA-256`).
+func (o InMemoryDBClusterV2CredentialsPasswordPtrOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2CredentialsPassword) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Algorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] **Sensitive.** Hex-encoded SHA-256 hash (64 lowercase hex chars).
+func (o InMemoryDBClusterV2CredentialsPasswordPtrOutput) Hash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2CredentialsPassword) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hash
+	}).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2Filter struct {
+	// The name of the field to filter on.
+	FieldName string `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue string `pulumi:"fieldValue"`
+}
+
+// InMemoryDBClusterV2FilterInput is an input type that accepts InMemoryDBClusterV2FilterArgs and InMemoryDBClusterV2FilterOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2FilterInput` via:
+//
+//	InMemoryDBClusterV2FilterArgs{...}
+type InMemoryDBClusterV2FilterInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2FilterOutput() InMemoryDBClusterV2FilterOutput
+	ToInMemoryDBClusterV2FilterOutputWithContext(context.Context) InMemoryDBClusterV2FilterOutput
+}
+
+type InMemoryDBClusterV2FilterArgs struct {
+	// The name of the field to filter on.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue pulumi.StringInput `pulumi:"fieldValue"`
+}
+
+func (InMemoryDBClusterV2FilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Filter)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2FilterArgs) ToInMemoryDBClusterV2FilterOutput() InMemoryDBClusterV2FilterOutput {
+	return i.ToInMemoryDBClusterV2FilterOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2FilterArgs) ToInMemoryDBClusterV2FilterOutputWithContext(ctx context.Context) InMemoryDBClusterV2FilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2FilterOutput)
+}
+
+// InMemoryDBClusterV2FilterArrayInput is an input type that accepts InMemoryDBClusterV2FilterArray and InMemoryDBClusterV2FilterArrayOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2FilterArrayInput` via:
+//
+//	InMemoryDBClusterV2FilterArray{ InMemoryDBClusterV2FilterArgs{...} }
+type InMemoryDBClusterV2FilterArrayInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2FilterArrayOutput() InMemoryDBClusterV2FilterArrayOutput
+	ToInMemoryDBClusterV2FilterArrayOutputWithContext(context.Context) InMemoryDBClusterV2FilterArrayOutput
+}
+
+type InMemoryDBClusterV2FilterArray []InMemoryDBClusterV2FilterInput
+
+func (InMemoryDBClusterV2FilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InMemoryDBClusterV2Filter)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2FilterArray) ToInMemoryDBClusterV2FilterArrayOutput() InMemoryDBClusterV2FilterArrayOutput {
+	return i.ToInMemoryDBClusterV2FilterArrayOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2FilterArray) ToInMemoryDBClusterV2FilterArrayOutputWithContext(ctx context.Context) InMemoryDBClusterV2FilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2FilterArrayOutput)
+}
+
+type InMemoryDBClusterV2FilterOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2FilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Filter)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2FilterOutput) ToInMemoryDBClusterV2FilterOutput() InMemoryDBClusterV2FilterOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2FilterOutput) ToInMemoryDBClusterV2FilterOutputWithContext(ctx context.Context) InMemoryDBClusterV2FilterOutput {
+	return o
+}
+
+// The name of the field to filter on.
+func (o InMemoryDBClusterV2FilterOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Filter) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+// The value to match against.
+func (o InMemoryDBClusterV2FilterOutput) FieldValue() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Filter) string { return v.FieldValue }).(pulumi.StringOutput)
+}
+
+type InMemoryDBClusterV2FilterArrayOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2FilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InMemoryDBClusterV2Filter)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2FilterArrayOutput) ToInMemoryDBClusterV2FilterArrayOutput() InMemoryDBClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2FilterArrayOutput) ToInMemoryDBClusterV2FilterArrayOutputWithContext(ctx context.Context) InMemoryDBClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2FilterArrayOutput) Index(i pulumi.IntInput) InMemoryDBClusterV2FilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InMemoryDBClusterV2Filter {
+		return vs[0].([]InMemoryDBClusterV2Filter)[vs[1].(int)]
+	}).(InMemoryDBClusterV2FilterOutput)
+}
+
+type InMemoryDBClusterV2Instances struct {
+	// [int] CPU cores per instance (1–62).
+	Cores int `pulumi:"cores"`
+	// [int] Number of instances (1–5).
+	Count int `pulumi:"count"`
+	// [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+	Ram int `pulumi:"ram"`
+}
+
+// InMemoryDBClusterV2InstancesInput is an input type that accepts InMemoryDBClusterV2InstancesArgs and InMemoryDBClusterV2InstancesOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2InstancesInput` via:
+//
+//	InMemoryDBClusterV2InstancesArgs{...}
+type InMemoryDBClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2InstancesOutput() InMemoryDBClusterV2InstancesOutput
+	ToInMemoryDBClusterV2InstancesOutputWithContext(context.Context) InMemoryDBClusterV2InstancesOutput
+}
+
+type InMemoryDBClusterV2InstancesArgs struct {
+	// [int] CPU cores per instance (1–62).
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// [int] Number of instances (1–5).
+	Count pulumi.IntInput `pulumi:"count"`
+	// [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+	Ram pulumi.IntInput `pulumi:"ram"`
+}
+
+func (InMemoryDBClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2InstancesArgs) ToInMemoryDBClusterV2InstancesOutput() InMemoryDBClusterV2InstancesOutput {
+	return i.ToInMemoryDBClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2InstancesArgs) ToInMemoryDBClusterV2InstancesOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2InstancesOutput)
+}
+
+func (i InMemoryDBClusterV2InstancesArgs) ToInMemoryDBClusterV2InstancesPtrOutput() InMemoryDBClusterV2InstancesPtrOutput {
+	return i.ToInMemoryDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2InstancesArgs) ToInMemoryDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2InstancesOutput).ToInMemoryDBClusterV2InstancesPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2InstancesPtrInput is an input type that accepts InMemoryDBClusterV2InstancesArgs, InMemoryDBClusterV2InstancesPtr and InMemoryDBClusterV2InstancesPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2InstancesPtrInput` via:
+//
+//	        InMemoryDBClusterV2InstancesArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2InstancesPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2InstancesPtrOutput() InMemoryDBClusterV2InstancesPtrOutput
+	ToInMemoryDBClusterV2InstancesPtrOutputWithContext(context.Context) InMemoryDBClusterV2InstancesPtrOutput
+}
+
+type inMemoryDBClusterV2InstancesPtrType InMemoryDBClusterV2InstancesArgs
+
+func InMemoryDBClusterV2InstancesPtr(v *InMemoryDBClusterV2InstancesArgs) InMemoryDBClusterV2InstancesPtrInput {
+	return (*inMemoryDBClusterV2InstancesPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2InstancesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2InstancesPtrType) ToInMemoryDBClusterV2InstancesPtrOutput() InMemoryDBClusterV2InstancesPtrOutput {
+	return i.ToInMemoryDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2InstancesPtrType) ToInMemoryDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2InstancesPtrOutput)
+}
+
+type InMemoryDBClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2InstancesOutput) ToInMemoryDBClusterV2InstancesOutput() InMemoryDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2InstancesOutput) ToInMemoryDBClusterV2InstancesOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2InstancesOutput) ToInMemoryDBClusterV2InstancesPtrOutput() InMemoryDBClusterV2InstancesPtrOutput {
+	return o.ToInMemoryDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2InstancesOutput) ToInMemoryDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2Instances) *InMemoryDBClusterV2Instances {
+		return &v
+	}).(InMemoryDBClusterV2InstancesPtrOutput)
+}
+
+// [int] CPU cores per instance (1–62).
+func (o InMemoryDBClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// [int] Number of instances (1–5).
+func (o InMemoryDBClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+func (o InMemoryDBClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+type InMemoryDBClusterV2InstancesPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2InstancesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2InstancesPtrOutput) ToInMemoryDBClusterV2InstancesPtrOutput() InMemoryDBClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2InstancesPtrOutput) ToInMemoryDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2InstancesPtrOutput) Elem() InMemoryDBClusterV2InstancesOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Instances) InMemoryDBClusterV2Instances {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2Instances
+		return ret
+	}).(InMemoryDBClusterV2InstancesOutput)
+}
+
+// [int] CPU cores per instance (1–62).
+func (o InMemoryDBClusterV2InstancesPtrOutput) Cores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Cores
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] Number of instances (1–5).
+func (o InMemoryDBClusterV2InstancesPtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] RAM per instance in GB (4–240). The API does not support RAM downgrade. Storage is automatically derived from RAM and persistence mode.
+func (o InMemoryDBClusterV2InstancesPtrOutput) Ram() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Ram
+	}).(pulumi.IntPtrOutput)
+}
+
+type InMemoryDBClusterV2MaintenanceWindow struct {
+	// [string] Day of the week: `Sunday`–`Saturday`.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// [string] Start time in UTC (`HH:MM:SS`).
+	Time string `pulumi:"time"`
+}
+
+// InMemoryDBClusterV2MaintenanceWindowInput is an input type that accepts InMemoryDBClusterV2MaintenanceWindowArgs and InMemoryDBClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2MaintenanceWindowInput` via:
+//
+//	InMemoryDBClusterV2MaintenanceWindowArgs{...}
+type InMemoryDBClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2MaintenanceWindowOutput() InMemoryDBClusterV2MaintenanceWindowOutput
+	ToInMemoryDBClusterV2MaintenanceWindowOutputWithContext(context.Context) InMemoryDBClusterV2MaintenanceWindowOutput
+}
+
+type InMemoryDBClusterV2MaintenanceWindowArgs struct {
+	// [string] Day of the week: `Sunday`–`Saturday`.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// [string] Start time in UTC (`HH:MM:SS`).
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (InMemoryDBClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2MaintenanceWindowArgs) ToInMemoryDBClusterV2MaintenanceWindowOutput() InMemoryDBClusterV2MaintenanceWindowOutput {
+	return i.ToInMemoryDBClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2MaintenanceWindowArgs) ToInMemoryDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2MaintenanceWindowOutput)
+}
+
+func (i InMemoryDBClusterV2MaintenanceWindowArgs) ToInMemoryDBClusterV2MaintenanceWindowPtrOutput() InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return i.ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2MaintenanceWindowArgs) ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2MaintenanceWindowOutput).ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2MaintenanceWindowPtrInput is an input type that accepts InMemoryDBClusterV2MaintenanceWindowArgs, InMemoryDBClusterV2MaintenanceWindowPtr and InMemoryDBClusterV2MaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2MaintenanceWindowPtrInput` via:
+//
+//	        InMemoryDBClusterV2MaintenanceWindowArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2MaintenanceWindowPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2MaintenanceWindowPtrOutput() InMemoryDBClusterV2MaintenanceWindowPtrOutput
+	ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Context) InMemoryDBClusterV2MaintenanceWindowPtrOutput
+}
+
+type inMemoryDBClusterV2MaintenanceWindowPtrType InMemoryDBClusterV2MaintenanceWindowArgs
+
+func InMemoryDBClusterV2MaintenanceWindowPtr(v *InMemoryDBClusterV2MaintenanceWindowArgs) InMemoryDBClusterV2MaintenanceWindowPtrInput {
+	return (*inMemoryDBClusterV2MaintenanceWindowPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2MaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2MaintenanceWindowPtrType) ToInMemoryDBClusterV2MaintenanceWindowPtrOutput() InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return i.ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2MaintenanceWindowPtrType) ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2MaintenanceWindowPtrOutput)
+}
+
+type InMemoryDBClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) ToInMemoryDBClusterV2MaintenanceWindowOutput() InMemoryDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) ToInMemoryDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) ToInMemoryDBClusterV2MaintenanceWindowPtrOutput() InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return o.ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2MaintenanceWindow) *InMemoryDBClusterV2MaintenanceWindow {
+		return &v
+	}).(InMemoryDBClusterV2MaintenanceWindowPtrOutput)
+}
+
+// [string] Day of the week: `Sunday`–`Saturday`.
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// [string] Start time in UTC (`HH:MM:SS`).
+func (o InMemoryDBClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type InMemoryDBClusterV2MaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2MaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowPtrOutput) ToInMemoryDBClusterV2MaintenanceWindowPtrOutput() InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowPtrOutput) ToInMemoryDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2MaintenanceWindowPtrOutput) Elem() InMemoryDBClusterV2MaintenanceWindowOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2MaintenanceWindow) InMemoryDBClusterV2MaintenanceWindow {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2MaintenanceWindow
+		return ret
+	}).(InMemoryDBClusterV2MaintenanceWindowOutput)
+}
+
+// [string] Day of the week: `Sunday`–`Saturday`.
+func (o InMemoryDBClusterV2MaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DayOfTheWeek
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Start time in UTC (`HH:MM:SS`).
+func (o InMemoryDBClusterV2MaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2RestoreFromSnapshot struct {
+	// [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+	//
+	// > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+	RecoveryTargetDatetime *string `pulumi:"recoveryTargetDatetime"`
+	// [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+	SourceSnapshotId *string `pulumi:"sourceSnapshotId"`
+}
+
+// InMemoryDBClusterV2RestoreFromSnapshotInput is an input type that accepts InMemoryDBClusterV2RestoreFromSnapshotArgs and InMemoryDBClusterV2RestoreFromSnapshotOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2RestoreFromSnapshotInput` via:
+//
+//	InMemoryDBClusterV2RestoreFromSnapshotArgs{...}
+type InMemoryDBClusterV2RestoreFromSnapshotInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2RestoreFromSnapshotOutput() InMemoryDBClusterV2RestoreFromSnapshotOutput
+	ToInMemoryDBClusterV2RestoreFromSnapshotOutputWithContext(context.Context) InMemoryDBClusterV2RestoreFromSnapshotOutput
+}
+
+type InMemoryDBClusterV2RestoreFromSnapshotArgs struct {
+	// [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+	//
+	// > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+	RecoveryTargetDatetime pulumi.StringPtrInput `pulumi:"recoveryTargetDatetime"`
+	// [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+	SourceSnapshotId pulumi.StringPtrInput `pulumi:"sourceSnapshotId"`
+}
+
+func (InMemoryDBClusterV2RestoreFromSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2RestoreFromSnapshot)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2RestoreFromSnapshotArgs) ToInMemoryDBClusterV2RestoreFromSnapshotOutput() InMemoryDBClusterV2RestoreFromSnapshotOutput {
+	return i.ToInMemoryDBClusterV2RestoreFromSnapshotOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2RestoreFromSnapshotArgs) ToInMemoryDBClusterV2RestoreFromSnapshotOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2RestoreFromSnapshotOutput)
+}
+
+func (i InMemoryDBClusterV2RestoreFromSnapshotArgs) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutput() InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return i.ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2RestoreFromSnapshotArgs) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2RestoreFromSnapshotOutput).ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2RestoreFromSnapshotPtrInput is an input type that accepts InMemoryDBClusterV2RestoreFromSnapshotArgs, InMemoryDBClusterV2RestoreFromSnapshotPtr and InMemoryDBClusterV2RestoreFromSnapshotPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2RestoreFromSnapshotPtrInput` via:
+//
+//	        InMemoryDBClusterV2RestoreFromSnapshotArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2RestoreFromSnapshotPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutput() InMemoryDBClusterV2RestoreFromSnapshotPtrOutput
+	ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(context.Context) InMemoryDBClusterV2RestoreFromSnapshotPtrOutput
+}
+
+type inMemoryDBClusterV2RestoreFromSnapshotPtrType InMemoryDBClusterV2RestoreFromSnapshotArgs
+
+func InMemoryDBClusterV2RestoreFromSnapshotPtr(v *InMemoryDBClusterV2RestoreFromSnapshotArgs) InMemoryDBClusterV2RestoreFromSnapshotPtrInput {
+	return (*inMemoryDBClusterV2RestoreFromSnapshotPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2RestoreFromSnapshotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2RestoreFromSnapshot)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2RestoreFromSnapshotPtrType) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutput() InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return i.ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2RestoreFromSnapshotPtrType) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2RestoreFromSnapshotPtrOutput)
+}
+
+type InMemoryDBClusterV2RestoreFromSnapshotOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2RestoreFromSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2RestoreFromSnapshot)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) ToInMemoryDBClusterV2RestoreFromSnapshotOutput() InMemoryDBClusterV2RestoreFromSnapshotOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) ToInMemoryDBClusterV2RestoreFromSnapshotOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutput() InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return o.ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2RestoreFromSnapshot) *InMemoryDBClusterV2RestoreFromSnapshot {
+		return &v
+	}).(InMemoryDBClusterV2RestoreFromSnapshotPtrOutput)
+}
+
+// [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+//
+// > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2RestoreFromSnapshot) *string { return v.RecoveryTargetDatetime }).(pulumi.StringPtrOutput)
+}
+
+// [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+func (o InMemoryDBClusterV2RestoreFromSnapshotOutput) SourceSnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2RestoreFromSnapshot) *string { return v.SourceSnapshotId }).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2RestoreFromSnapshotPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2RestoreFromSnapshot)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutput() InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) ToInMemoryDBClusterV2RestoreFromSnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2RestoreFromSnapshotPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) Elem() InMemoryDBClusterV2RestoreFromSnapshotOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2RestoreFromSnapshot) InMemoryDBClusterV2RestoreFromSnapshot {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2RestoreFromSnapshot
+		return ret
+	}).(InMemoryDBClusterV2RestoreFromSnapshotOutput)
+}
+
+// [string] ISO 8601 timestamp to restore from the most recent snapshot at or before that time. Optional for create-time restore; must be provided for in-place restore via update.
+//
+// > **Note:** `restoreFromSnapshot` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+func (o InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2RestoreFromSnapshot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecoveryTargetDatetime
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] UUID of the snapshot to restore from. Must be provided when the block is used during cluster creation. Not applicable for in-place restore via update.
+func (o InMemoryDBClusterV2RestoreFromSnapshotPtrOutput) SourceSnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2RestoreFromSnapshot) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceSnapshotId
+	}).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2Snapshot struct {
+	// [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+	Location string `pulumi:"location"`
+	// [int] Days to retain snapshots (1–365).
+	RetentionDays int `pulumi:"retentionDays"`
+	// [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+	SnapshotHours []int `pulumi:"snapshotHours"`
+}
+
+// InMemoryDBClusterV2SnapshotInput is an input type that accepts InMemoryDBClusterV2SnapshotArgs and InMemoryDBClusterV2SnapshotOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2SnapshotInput` via:
+//
+//	InMemoryDBClusterV2SnapshotArgs{...}
+type InMemoryDBClusterV2SnapshotInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2SnapshotOutput() InMemoryDBClusterV2SnapshotOutput
+	ToInMemoryDBClusterV2SnapshotOutputWithContext(context.Context) InMemoryDBClusterV2SnapshotOutput
+}
+
+type InMemoryDBClusterV2SnapshotArgs struct {
+	// [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+	Location pulumi.StringInput `pulumi:"location"`
+	// [int] Days to retain snapshots (1–365).
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+	SnapshotHours pulumi.IntArrayInput `pulumi:"snapshotHours"`
+}
+
+func (InMemoryDBClusterV2SnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2SnapshotArgs) ToInMemoryDBClusterV2SnapshotOutput() InMemoryDBClusterV2SnapshotOutput {
+	return i.ToInMemoryDBClusterV2SnapshotOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2SnapshotArgs) ToInMemoryDBClusterV2SnapshotOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2SnapshotOutput)
+}
+
+func (i InMemoryDBClusterV2SnapshotArgs) ToInMemoryDBClusterV2SnapshotPtrOutput() InMemoryDBClusterV2SnapshotPtrOutput {
+	return i.ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2SnapshotArgs) ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2SnapshotOutput).ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2SnapshotPtrInput is an input type that accepts InMemoryDBClusterV2SnapshotArgs, InMemoryDBClusterV2SnapshotPtr and InMemoryDBClusterV2SnapshotPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2SnapshotPtrInput` via:
+//
+//	        InMemoryDBClusterV2SnapshotArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2SnapshotPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2SnapshotPtrOutput() InMemoryDBClusterV2SnapshotPtrOutput
+	ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(context.Context) InMemoryDBClusterV2SnapshotPtrOutput
+}
+
+type inMemoryDBClusterV2SnapshotPtrType InMemoryDBClusterV2SnapshotArgs
+
+func InMemoryDBClusterV2SnapshotPtr(v *InMemoryDBClusterV2SnapshotArgs) InMemoryDBClusterV2SnapshotPtrInput {
+	return (*inMemoryDBClusterV2SnapshotPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2SnapshotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2SnapshotPtrType) ToInMemoryDBClusterV2SnapshotPtrOutput() InMemoryDBClusterV2SnapshotPtrOutput {
+	return i.ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2SnapshotPtrType) ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2SnapshotPtrOutput)
+}
+
+type InMemoryDBClusterV2SnapshotOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2SnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2SnapshotOutput) ToInMemoryDBClusterV2SnapshotOutput() InMemoryDBClusterV2SnapshotOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2SnapshotOutput) ToInMemoryDBClusterV2SnapshotOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2SnapshotOutput) ToInMemoryDBClusterV2SnapshotPtrOutput() InMemoryDBClusterV2SnapshotPtrOutput {
+	return o.ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2SnapshotOutput) ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2Snapshot) *InMemoryDBClusterV2Snapshot {
+		return &v
+	}).(InMemoryDBClusterV2SnapshotPtrOutput)
+}
+
+// [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+func (o InMemoryDBClusterV2SnapshotOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Snapshot) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// [int] Days to retain snapshots (1–365).
+func (o InMemoryDBClusterV2SnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Snapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+func (o InMemoryDBClusterV2SnapshotOutput) SnapshotHours() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Snapshot) []int { return v.SnapshotHours }).(pulumi.IntArrayOutput)
+}
+
+type InMemoryDBClusterV2SnapshotPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2SnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2SnapshotPtrOutput) ToInMemoryDBClusterV2SnapshotPtrOutput() InMemoryDBClusterV2SnapshotPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2SnapshotPtrOutput) ToInMemoryDBClusterV2SnapshotPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2SnapshotPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2SnapshotPtrOutput) Elem() InMemoryDBClusterV2SnapshotOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Snapshot) InMemoryDBClusterV2Snapshot {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2Snapshot
+		return ret
+	}).(InMemoryDBClusterV2SnapshotOutput)
+}
+
+// [string] Object Storage location for snapshots. Changing this forces the re-creation of the cluster.
+func (o InMemoryDBClusterV2SnapshotPtrOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Snapshot) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Location
+	}).(pulumi.StringPtrOutput)
+}
+
+// [int] Days to retain snapshots (1–365).
+func (o InMemoryDBClusterV2SnapshotPtrOutput) RetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Snapshot) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionDays
+	}).(pulumi.IntPtrOutput)
+}
+
+// [list of int] UTC hours for scheduled snapshots (0–23). At least one hour must be specified.
+func (o InMemoryDBClusterV2SnapshotPtrOutput) SnapshotHours() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Snapshot) []int {
+		if v == nil {
+			return nil
+		}
+		return v.SnapshotHours
+	}).(pulumi.IntArrayOutput)
+}
+
+type InMemoryDBClusterV2Timeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// InMemoryDBClusterV2TimeoutsInput is an input type that accepts InMemoryDBClusterV2TimeoutsArgs and InMemoryDBClusterV2TimeoutsOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2TimeoutsInput` via:
+//
+//	InMemoryDBClusterV2TimeoutsArgs{...}
+type InMemoryDBClusterV2TimeoutsInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2TimeoutsOutput() InMemoryDBClusterV2TimeoutsOutput
+	ToInMemoryDBClusterV2TimeoutsOutputWithContext(context.Context) InMemoryDBClusterV2TimeoutsOutput
+}
+
+type InMemoryDBClusterV2TimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (InMemoryDBClusterV2TimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i InMemoryDBClusterV2TimeoutsArgs) ToInMemoryDBClusterV2TimeoutsOutput() InMemoryDBClusterV2TimeoutsOutput {
+	return i.ToInMemoryDBClusterV2TimeoutsOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2TimeoutsArgs) ToInMemoryDBClusterV2TimeoutsOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2TimeoutsOutput)
+}
+
+func (i InMemoryDBClusterV2TimeoutsArgs) ToInMemoryDBClusterV2TimeoutsPtrOutput() InMemoryDBClusterV2TimeoutsPtrOutput {
+	return i.ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i InMemoryDBClusterV2TimeoutsArgs) ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2TimeoutsOutput).ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(ctx)
+}
+
+// InMemoryDBClusterV2TimeoutsPtrInput is an input type that accepts InMemoryDBClusterV2TimeoutsArgs, InMemoryDBClusterV2TimeoutsPtr and InMemoryDBClusterV2TimeoutsPtrOutput values.
+// You can construct a concrete instance of `InMemoryDBClusterV2TimeoutsPtrInput` via:
+//
+//	        InMemoryDBClusterV2TimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type InMemoryDBClusterV2TimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToInMemoryDBClusterV2TimeoutsPtrOutput() InMemoryDBClusterV2TimeoutsPtrOutput
+	ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(context.Context) InMemoryDBClusterV2TimeoutsPtrOutput
+}
+
+type inMemoryDBClusterV2TimeoutsPtrType InMemoryDBClusterV2TimeoutsArgs
+
+func InMemoryDBClusterV2TimeoutsPtr(v *InMemoryDBClusterV2TimeoutsArgs) InMemoryDBClusterV2TimeoutsPtrInput {
+	return (*inMemoryDBClusterV2TimeoutsPtrType)(v)
+}
+
+func (*inMemoryDBClusterV2TimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i *inMemoryDBClusterV2TimeoutsPtrType) ToInMemoryDBClusterV2TimeoutsPtrOutput() InMemoryDBClusterV2TimeoutsPtrOutput {
+	return i.ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *inMemoryDBClusterV2TimeoutsPtrType) ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InMemoryDBClusterV2TimeoutsPtrOutput)
+}
+
+type InMemoryDBClusterV2TimeoutsOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2TimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InMemoryDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2TimeoutsOutput) ToInMemoryDBClusterV2TimeoutsOutput() InMemoryDBClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2TimeoutsOutput) ToInMemoryDBClusterV2TimeoutsOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2TimeoutsOutput) ToInMemoryDBClusterV2TimeoutsPtrOutput() InMemoryDBClusterV2TimeoutsPtrOutput {
+	return o.ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o InMemoryDBClusterV2TimeoutsOutput) ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InMemoryDBClusterV2Timeouts) *InMemoryDBClusterV2Timeouts {
+		return &v
+	}).(InMemoryDBClusterV2TimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o InMemoryDBClusterV2TimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Timeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o InMemoryDBClusterV2TimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Timeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o InMemoryDBClusterV2TimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InMemoryDBClusterV2Timeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type InMemoryDBClusterV2TimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (InMemoryDBClusterV2TimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InMemoryDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) ToInMemoryDBClusterV2TimeoutsPtrOutput() InMemoryDBClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) ToInMemoryDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) InMemoryDBClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) Elem() InMemoryDBClusterV2TimeoutsOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Timeouts) InMemoryDBClusterV2Timeouts {
+		if v != nil {
+			return *v
+		}
+		var ret InMemoryDBClusterV2Timeouts
+		return ret
+	}).(InMemoryDBClusterV2TimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o InMemoryDBClusterV2TimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InMemoryDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type InMemoryDBReplicaSetConnections struct {
 	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr string `pulumi:"cidr"`
@@ -3597,6 +5035,112 @@ func (o PSQLClusterV2CredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type PSQLClusterV2Filter struct {
+	// The name of the field to filter on.
+	FieldName string `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue string `pulumi:"fieldValue"`
+}
+
+// PSQLClusterV2FilterInput is an input type that accepts PSQLClusterV2FilterArgs and PSQLClusterV2FilterOutput values.
+// You can construct a concrete instance of `PSQLClusterV2FilterInput` via:
+//
+//	PSQLClusterV2FilterArgs{...}
+type PSQLClusterV2FilterInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2FilterOutput() PSQLClusterV2FilterOutput
+	ToPSQLClusterV2FilterOutputWithContext(context.Context) PSQLClusterV2FilterOutput
+}
+
+type PSQLClusterV2FilterArgs struct {
+	// The name of the field to filter on.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue pulumi.StringInput `pulumi:"fieldValue"`
+}
+
+func (PSQLClusterV2FilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Filter)(nil)).Elem()
+}
+
+func (i PSQLClusterV2FilterArgs) ToPSQLClusterV2FilterOutput() PSQLClusterV2FilterOutput {
+	return i.ToPSQLClusterV2FilterOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2FilterArgs) ToPSQLClusterV2FilterOutputWithContext(ctx context.Context) PSQLClusterV2FilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2FilterOutput)
+}
+
+// PSQLClusterV2FilterArrayInput is an input type that accepts PSQLClusterV2FilterArray and PSQLClusterV2FilterArrayOutput values.
+// You can construct a concrete instance of `PSQLClusterV2FilterArrayInput` via:
+//
+//	PSQLClusterV2FilterArray{ PSQLClusterV2FilterArgs{...} }
+type PSQLClusterV2FilterArrayInput interface {
+	pulumi.Input
+
+	ToPSQLClusterV2FilterArrayOutput() PSQLClusterV2FilterArrayOutput
+	ToPSQLClusterV2FilterArrayOutputWithContext(context.Context) PSQLClusterV2FilterArrayOutput
+}
+
+type PSQLClusterV2FilterArray []PSQLClusterV2FilterInput
+
+func (PSQLClusterV2FilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PSQLClusterV2Filter)(nil)).Elem()
+}
+
+func (i PSQLClusterV2FilterArray) ToPSQLClusterV2FilterArrayOutput() PSQLClusterV2FilterArrayOutput {
+	return i.ToPSQLClusterV2FilterArrayOutputWithContext(context.Background())
+}
+
+func (i PSQLClusterV2FilterArray) ToPSQLClusterV2FilterArrayOutputWithContext(ctx context.Context) PSQLClusterV2FilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PSQLClusterV2FilterArrayOutput)
+}
+
+type PSQLClusterV2FilterOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2FilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PSQLClusterV2Filter)(nil)).Elem()
+}
+
+func (o PSQLClusterV2FilterOutput) ToPSQLClusterV2FilterOutput() PSQLClusterV2FilterOutput {
+	return o
+}
+
+func (o PSQLClusterV2FilterOutput) ToPSQLClusterV2FilterOutputWithContext(ctx context.Context) PSQLClusterV2FilterOutput {
+	return o
+}
+
+// The name of the field to filter on.
+func (o PSQLClusterV2FilterOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Filter) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+// The value to match against.
+func (o PSQLClusterV2FilterOutput) FieldValue() pulumi.StringOutput {
+	return o.ApplyT(func(v PSQLClusterV2Filter) string { return v.FieldValue }).(pulumi.StringOutput)
+}
+
+type PSQLClusterV2FilterArrayOutput struct{ *pulumi.OutputState }
+
+func (PSQLClusterV2FilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PSQLClusterV2Filter)(nil)).Elem()
+}
+
+func (o PSQLClusterV2FilterArrayOutput) ToPSQLClusterV2FilterArrayOutput() PSQLClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o PSQLClusterV2FilterArrayOutput) ToPSQLClusterV2FilterArrayOutputWithContext(ctx context.Context) PSQLClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o PSQLClusterV2FilterArrayOutput) Index(i pulumi.IntInput) PSQLClusterV2FilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PSQLClusterV2Filter {
+		return vs[0].([]PSQLClusterV2Filter)[vs[1].(int)]
+	}).(PSQLClusterV2FilterOutput)
+}
+
 type PSQLClusterV2Instances struct {
 	// [int] The number of CPU cores per instance.
 	Cores int `pulumi:"cores"`
@@ -4278,6 +5822,883 @@ func (o PSQLClusterV2TimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetInMemoryDBClusterV2Connections struct {
+	// The Virtual Data Center ID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID.
+	LanId string `pulumi:"lanId"`
+	// The primary instance IP in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetInMemoryDBClusterV2ConnectionsInput is an input type that accepts GetInMemoryDBClusterV2ConnectionsArgs and GetInMemoryDBClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClusterV2ConnectionsInput` via:
+//
+//	GetInMemoryDBClusterV2ConnectionsArgs{...}
+type GetInMemoryDBClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClusterV2ConnectionsOutput() GetInMemoryDBClusterV2ConnectionsOutput
+	ToGetInMemoryDBClusterV2ConnectionsOutputWithContext(context.Context) GetInMemoryDBClusterV2ConnectionsOutput
+}
+
+type GetInMemoryDBClusterV2ConnectionsArgs struct {
+	// The Virtual Data Center ID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The primary instance IP in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetInMemoryDBClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClusterV2ConnectionsArgs) ToGetInMemoryDBClusterV2ConnectionsOutput() GetInMemoryDBClusterV2ConnectionsOutput {
+	return i.ToGetInMemoryDBClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClusterV2ConnectionsArgs) ToGetInMemoryDBClusterV2ConnectionsOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClusterV2ConnectionsOutput)
+}
+
+type GetInMemoryDBClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClusterV2ConnectionsOutput) ToGetInMemoryDBClusterV2ConnectionsOutput() GetInMemoryDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o GetInMemoryDBClusterV2ConnectionsOutput) ToGetInMemoryDBClusterV2ConnectionsOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2ConnectionsOutput {
+	return o
+}
+
+// The Virtual Data Center ID.
+func (o GetInMemoryDBClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID.
+func (o GetInMemoryDBClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The primary instance IP in CIDR notation.
+func (o GetInMemoryDBClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClusterV2Credentials struct {
+	// The username for the InMemoryDB user.
+	Username string `pulumi:"username"`
+}
+
+// GetInMemoryDBClusterV2CredentialsInput is an input type that accepts GetInMemoryDBClusterV2CredentialsArgs and GetInMemoryDBClusterV2CredentialsOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClusterV2CredentialsInput` via:
+//
+//	GetInMemoryDBClusterV2CredentialsArgs{...}
+type GetInMemoryDBClusterV2CredentialsInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClusterV2CredentialsOutput() GetInMemoryDBClusterV2CredentialsOutput
+	ToGetInMemoryDBClusterV2CredentialsOutputWithContext(context.Context) GetInMemoryDBClusterV2CredentialsOutput
+}
+
+type GetInMemoryDBClusterV2CredentialsArgs struct {
+	// The username for the InMemoryDB user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetInMemoryDBClusterV2CredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClusterV2CredentialsArgs) ToGetInMemoryDBClusterV2CredentialsOutput() GetInMemoryDBClusterV2CredentialsOutput {
+	return i.ToGetInMemoryDBClusterV2CredentialsOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClusterV2CredentialsArgs) ToGetInMemoryDBClusterV2CredentialsOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2CredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClusterV2CredentialsOutput)
+}
+
+type GetInMemoryDBClusterV2CredentialsOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClusterV2CredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClusterV2CredentialsOutput) ToGetInMemoryDBClusterV2CredentialsOutput() GetInMemoryDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o GetInMemoryDBClusterV2CredentialsOutput) ToGetInMemoryDBClusterV2CredentialsOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2CredentialsOutput {
+	return o
+}
+
+// The username for the InMemoryDB user.
+func (o GetInMemoryDBClusterV2CredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Credentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClusterV2Instances struct {
+	// CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// Number of instances.
+	Count int `pulumi:"count"`
+	// RAM per instance in GB.
+	Ram int `pulumi:"ram"`
+}
+
+// GetInMemoryDBClusterV2InstancesInput is an input type that accepts GetInMemoryDBClusterV2InstancesArgs and GetInMemoryDBClusterV2InstancesOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClusterV2InstancesInput` via:
+//
+//	GetInMemoryDBClusterV2InstancesArgs{...}
+type GetInMemoryDBClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClusterV2InstancesOutput() GetInMemoryDBClusterV2InstancesOutput
+	ToGetInMemoryDBClusterV2InstancesOutputWithContext(context.Context) GetInMemoryDBClusterV2InstancesOutput
+}
+
+type GetInMemoryDBClusterV2InstancesArgs struct {
+	// CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// Number of instances.
+	Count pulumi.IntInput `pulumi:"count"`
+	// RAM per instance in GB.
+	Ram pulumi.IntInput `pulumi:"ram"`
+}
+
+func (GetInMemoryDBClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClusterV2InstancesArgs) ToGetInMemoryDBClusterV2InstancesOutput() GetInMemoryDBClusterV2InstancesOutput {
+	return i.ToGetInMemoryDBClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClusterV2InstancesArgs) ToGetInMemoryDBClusterV2InstancesOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClusterV2InstancesOutput)
+}
+
+type GetInMemoryDBClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClusterV2InstancesOutput) ToGetInMemoryDBClusterV2InstancesOutput() GetInMemoryDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o GetInMemoryDBClusterV2InstancesOutput) ToGetInMemoryDBClusterV2InstancesOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2InstancesOutput {
+	return o
+}
+
+// CPU cores per instance.
+func (o GetInMemoryDBClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// Number of instances.
+func (o GetInMemoryDBClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// RAM per instance in GB.
+func (o GetInMemoryDBClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+type GetInMemoryDBClusterV2MaintenanceWindow struct {
+	// Maintenance window day of the week.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Maintenance window start time in UTC (HH:MM:SS).
+	Time string `pulumi:"time"`
+}
+
+// GetInMemoryDBClusterV2MaintenanceWindowInput is an input type that accepts GetInMemoryDBClusterV2MaintenanceWindowArgs and GetInMemoryDBClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClusterV2MaintenanceWindowInput` via:
+//
+//	GetInMemoryDBClusterV2MaintenanceWindowArgs{...}
+type GetInMemoryDBClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClusterV2MaintenanceWindowOutput() GetInMemoryDBClusterV2MaintenanceWindowOutput
+	ToGetInMemoryDBClusterV2MaintenanceWindowOutputWithContext(context.Context) GetInMemoryDBClusterV2MaintenanceWindowOutput
+}
+
+type GetInMemoryDBClusterV2MaintenanceWindowArgs struct {
+	// Maintenance window day of the week.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Maintenance window start time in UTC (HH:MM:SS).
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetInMemoryDBClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClusterV2MaintenanceWindowArgs) ToGetInMemoryDBClusterV2MaintenanceWindowOutput() GetInMemoryDBClusterV2MaintenanceWindowOutput {
+	return i.ToGetInMemoryDBClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClusterV2MaintenanceWindowArgs) ToGetInMemoryDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClusterV2MaintenanceWindowOutput)
+}
+
+type GetInMemoryDBClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClusterV2MaintenanceWindowOutput) ToGetInMemoryDBClusterV2MaintenanceWindowOutput() GetInMemoryDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o GetInMemoryDBClusterV2MaintenanceWindowOutput) ToGetInMemoryDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+// Maintenance window day of the week.
+func (o GetInMemoryDBClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Maintenance window start time in UTC (HH:MM:SS).
+func (o GetInMemoryDBClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClusterV2Snapshot struct {
+	// [string] The location of the cluster.
+	//
+	// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location string `pulumi:"location"`
+	// Days snapshots are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+	// UTC hours at which snapshots are taken.
+	SnapshotHours []int `pulumi:"snapshotHours"`
+}
+
+// GetInMemoryDBClusterV2SnapshotInput is an input type that accepts GetInMemoryDBClusterV2SnapshotArgs and GetInMemoryDBClusterV2SnapshotOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClusterV2SnapshotInput` via:
+//
+//	GetInMemoryDBClusterV2SnapshotArgs{...}
+type GetInMemoryDBClusterV2SnapshotInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClusterV2SnapshotOutput() GetInMemoryDBClusterV2SnapshotOutput
+	ToGetInMemoryDBClusterV2SnapshotOutputWithContext(context.Context) GetInMemoryDBClusterV2SnapshotOutput
+}
+
+type GetInMemoryDBClusterV2SnapshotArgs struct {
+	// [string] The location of the cluster.
+	//
+	// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Days snapshots are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// UTC hours at which snapshots are taken.
+	SnapshotHours pulumi.IntArrayInput `pulumi:"snapshotHours"`
+}
+
+func (GetInMemoryDBClusterV2SnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClusterV2SnapshotArgs) ToGetInMemoryDBClusterV2SnapshotOutput() GetInMemoryDBClusterV2SnapshotOutput {
+	return i.ToGetInMemoryDBClusterV2SnapshotOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClusterV2SnapshotArgs) ToGetInMemoryDBClusterV2SnapshotOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2SnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClusterV2SnapshotOutput)
+}
+
+type GetInMemoryDBClusterV2SnapshotOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClusterV2SnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClusterV2Snapshot)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClusterV2SnapshotOutput) ToGetInMemoryDBClusterV2SnapshotOutput() GetInMemoryDBClusterV2SnapshotOutput {
+	return o
+}
+
+func (o GetInMemoryDBClusterV2SnapshotOutput) ToGetInMemoryDBClusterV2SnapshotOutputWithContext(ctx context.Context) GetInMemoryDBClusterV2SnapshotOutput {
+	return o
+}
+
+// [string] The location of the cluster.
+//
+// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+func (o GetInMemoryDBClusterV2SnapshotOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Snapshot) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Days snapshots are retained.
+func (o GetInMemoryDBClusterV2SnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Snapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// UTC hours at which snapshots are taken.
+func (o GetInMemoryDBClusterV2SnapshotOutput) SnapshotHours() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetInMemoryDBClusterV2Snapshot) []int { return v.SnapshotHours }).(pulumi.IntArrayOutput)
+}
+
+type GetInMemoryDBClustersV2Item struct {
+	// Network connection configuration for the cluster.
+	Connections GetInMemoryDBClustersV2ItemConnections `pulumi:"connections"`
+	// Credentials for the user with access to the cluster.
+	Credentials GetInMemoryDBClustersV2ItemCredentials `pulumi:"credentials"`
+	// Human-readable description for the cluster.
+	Description string `pulumi:"description"`
+	// The DNS name used to connect to the cluster's primary instance.
+	DnsName string `pulumi:"dnsName"`
+	// The key eviction strategy.
+	EvictionPolicy string `pulumi:"evictionPolicy"`
+	// The ID (UUID) of the cluster.
+	Id string `pulumi:"id"`
+	// Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+	Instances GetInMemoryDBClustersV2ItemInstances `pulumi:"instances"`
+	// [string] The location to query.
+	Location string `pulumi:"location"`
+	// Whether log collection is enabled.
+	LogsEnabled bool `pulumi:"logsEnabled"`
+	// A weekly 4-hour maintenance window.
+	MaintenanceWindow GetInMemoryDBClustersV2ItemMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// Whether metrics collection is enabled.
+	MetricsEnabled bool `pulumi:"metricsEnabled"`
+	// [string] Filter by name (case-insensitive contains match).
+	Name string `pulumi:"name"`
+	// The data persistence mode.
+	PersistenceMode string `pulumi:"persistenceMode"`
+	// Snapshot storage and retention configuration.
+	Snapshot GetInMemoryDBClustersV2ItemSnapshot `pulumi:"snapshot"`
+	// The In-Memory DB version.
+	Version string `pulumi:"version"`
+}
+
+// GetInMemoryDBClustersV2ItemInput is an input type that accepts GetInMemoryDBClustersV2ItemArgs and GetInMemoryDBClustersV2ItemOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemInput` via:
+//
+//	GetInMemoryDBClustersV2ItemArgs{...}
+type GetInMemoryDBClustersV2ItemInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemOutput() GetInMemoryDBClustersV2ItemOutput
+	ToGetInMemoryDBClustersV2ItemOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemOutput
+}
+
+type GetInMemoryDBClustersV2ItemArgs struct {
+	// Network connection configuration for the cluster.
+	Connections GetInMemoryDBClustersV2ItemConnectionsInput `pulumi:"connections"`
+	// Credentials for the user with access to the cluster.
+	Credentials GetInMemoryDBClustersV2ItemCredentialsInput `pulumi:"credentials"`
+	// Human-readable description for the cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The DNS name used to connect to the cluster's primary instance.
+	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// The key eviction strategy.
+	EvictionPolicy pulumi.StringInput `pulumi:"evictionPolicy"`
+	// The ID (UUID) of the cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+	Instances GetInMemoryDBClustersV2ItemInstancesInput `pulumi:"instances"`
+	// [string] The location to query.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Whether log collection is enabled.
+	LogsEnabled pulumi.BoolInput `pulumi:"logsEnabled"`
+	// A weekly 4-hour maintenance window.
+	MaintenanceWindow GetInMemoryDBClustersV2ItemMaintenanceWindowInput `pulumi:"maintenanceWindow"`
+	// Whether metrics collection is enabled.
+	MetricsEnabled pulumi.BoolInput `pulumi:"metricsEnabled"`
+	// [string] Filter by name (case-insensitive contains match).
+	Name pulumi.StringInput `pulumi:"name"`
+	// The data persistence mode.
+	PersistenceMode pulumi.StringInput `pulumi:"persistenceMode"`
+	// Snapshot storage and retention configuration.
+	Snapshot GetInMemoryDBClustersV2ItemSnapshotInput `pulumi:"snapshot"`
+	// The In-Memory DB version.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInMemoryDBClustersV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemArgs) ToGetInMemoryDBClustersV2ItemOutput() GetInMemoryDBClustersV2ItemOutput {
+	return i.ToGetInMemoryDBClustersV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemArgs) ToGetInMemoryDBClustersV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemOutput)
+}
+
+// GetInMemoryDBClustersV2ItemArrayInput is an input type that accepts GetInMemoryDBClustersV2ItemArray and GetInMemoryDBClustersV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemArrayInput` via:
+//
+//	GetInMemoryDBClustersV2ItemArray{ GetInMemoryDBClustersV2ItemArgs{...} }
+type GetInMemoryDBClustersV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemArrayOutput() GetInMemoryDBClustersV2ItemArrayOutput
+	ToGetInMemoryDBClustersV2ItemArrayOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemArrayOutput
+}
+
+type GetInMemoryDBClustersV2ItemArray []GetInMemoryDBClustersV2ItemInput
+
+func (GetInMemoryDBClustersV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBClustersV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemArray) ToGetInMemoryDBClustersV2ItemArrayOutput() GetInMemoryDBClustersV2ItemArrayOutput {
+	return i.ToGetInMemoryDBClustersV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemArray) ToGetInMemoryDBClustersV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemArrayOutput)
+}
+
+type GetInMemoryDBClustersV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemOutput) ToGetInMemoryDBClustersV2ItemOutput() GetInMemoryDBClustersV2ItemOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemOutput) ToGetInMemoryDBClustersV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemOutput {
+	return o
+}
+
+// Network connection configuration for the cluster.
+func (o GetInMemoryDBClustersV2ItemOutput) Connections() GetInMemoryDBClustersV2ItemConnectionsOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) GetInMemoryDBClustersV2ItemConnections { return v.Connections }).(GetInMemoryDBClustersV2ItemConnectionsOutput)
+}
+
+// Credentials for the user with access to the cluster.
+func (o GetInMemoryDBClustersV2ItemOutput) Credentials() GetInMemoryDBClustersV2ItemCredentialsOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) GetInMemoryDBClustersV2ItemCredentials { return v.Credentials }).(GetInMemoryDBClustersV2ItemCredentialsOutput)
+}
+
+// Human-readable description for the cluster.
+func (o GetInMemoryDBClustersV2ItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The DNS name used to connect to the cluster's primary instance.
+func (o GetInMemoryDBClustersV2ItemOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.DnsName }).(pulumi.StringOutput)
+}
+
+// The key eviction strategy.
+func (o GetInMemoryDBClustersV2ItemOutput) EvictionPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.EvictionPolicy }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the cluster.
+func (o GetInMemoryDBClustersV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Compute configuration for each instance. Storage size is automatically derived from RAM and persistence mode.
+func (o GetInMemoryDBClustersV2ItemOutput) Instances() GetInMemoryDBClustersV2ItemInstancesOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) GetInMemoryDBClustersV2ItemInstances { return v.Instances }).(GetInMemoryDBClustersV2ItemInstancesOutput)
+}
+
+// [string] The location to query.
+func (o GetInMemoryDBClustersV2ItemOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Whether log collection is enabled.
+func (o GetInMemoryDBClustersV2ItemOutput) LogsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) bool { return v.LogsEnabled }).(pulumi.BoolOutput)
+}
+
+// A weekly 4-hour maintenance window.
+func (o GetInMemoryDBClustersV2ItemOutput) MaintenanceWindow() GetInMemoryDBClustersV2ItemMaintenanceWindowOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) GetInMemoryDBClustersV2ItemMaintenanceWindow {
+		return v.MaintenanceWindow
+	}).(GetInMemoryDBClustersV2ItemMaintenanceWindowOutput)
+}
+
+// Whether metrics collection is enabled.
+func (o GetInMemoryDBClustersV2ItemOutput) MetricsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) bool { return v.MetricsEnabled }).(pulumi.BoolOutput)
+}
+
+// [string] Filter by name (case-insensitive contains match).
+func (o GetInMemoryDBClustersV2ItemOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The data persistence mode.
+func (o GetInMemoryDBClustersV2ItemOutput) PersistenceMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.PersistenceMode }).(pulumi.StringOutput)
+}
+
+// Snapshot storage and retention configuration.
+func (o GetInMemoryDBClustersV2ItemOutput) Snapshot() GetInMemoryDBClustersV2ItemSnapshotOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) GetInMemoryDBClustersV2ItemSnapshot { return v.Snapshot }).(GetInMemoryDBClustersV2ItemSnapshotOutput)
+}
+
+// The In-Memory DB version.
+func (o GetInMemoryDBClustersV2ItemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2Item) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClustersV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBClustersV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemArrayOutput) ToGetInMemoryDBClustersV2ItemArrayOutput() GetInMemoryDBClustersV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemArrayOutput) ToGetInMemoryDBClustersV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBClustersV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBClustersV2Item {
+		return vs[0].([]GetInMemoryDBClustersV2Item)[vs[1].(int)]
+	}).(GetInMemoryDBClustersV2ItemOutput)
+}
+
+type GetInMemoryDBClustersV2ItemConnections struct {
+	// The Virtual Data Center ID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID.
+	LanId string `pulumi:"lanId"`
+	// The IP address and subnet mask in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetInMemoryDBClustersV2ItemConnectionsInput is an input type that accepts GetInMemoryDBClustersV2ItemConnectionsArgs and GetInMemoryDBClustersV2ItemConnectionsOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemConnectionsInput` via:
+//
+//	GetInMemoryDBClustersV2ItemConnectionsArgs{...}
+type GetInMemoryDBClustersV2ItemConnectionsInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemConnectionsOutput() GetInMemoryDBClustersV2ItemConnectionsOutput
+	ToGetInMemoryDBClustersV2ItemConnectionsOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemConnectionsOutput
+}
+
+type GetInMemoryDBClustersV2ItemConnectionsArgs struct {
+	// The Virtual Data Center ID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The IP address and subnet mask in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetInMemoryDBClustersV2ItemConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemConnections)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemConnectionsArgs) ToGetInMemoryDBClustersV2ItemConnectionsOutput() GetInMemoryDBClustersV2ItemConnectionsOutput {
+	return i.ToGetInMemoryDBClustersV2ItemConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemConnectionsArgs) ToGetInMemoryDBClustersV2ItemConnectionsOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemConnectionsOutput)
+}
+
+type GetInMemoryDBClustersV2ItemConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemConnections)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemConnectionsOutput) ToGetInMemoryDBClustersV2ItemConnectionsOutput() GetInMemoryDBClustersV2ItemConnectionsOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemConnectionsOutput) ToGetInMemoryDBClustersV2ItemConnectionsOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemConnectionsOutput {
+	return o
+}
+
+// The Virtual Data Center ID.
+func (o GetInMemoryDBClustersV2ItemConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID.
+func (o GetInMemoryDBClustersV2ItemConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemConnections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The IP address and subnet mask in CIDR notation.
+func (o GetInMemoryDBClustersV2ItemConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemConnections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClustersV2ItemCredentials struct {
+	// The username for the In-Memory DB user.
+	Username string `pulumi:"username"`
+}
+
+// GetInMemoryDBClustersV2ItemCredentialsInput is an input type that accepts GetInMemoryDBClustersV2ItemCredentialsArgs and GetInMemoryDBClustersV2ItemCredentialsOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemCredentialsInput` via:
+//
+//	GetInMemoryDBClustersV2ItemCredentialsArgs{...}
+type GetInMemoryDBClustersV2ItemCredentialsInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemCredentialsOutput() GetInMemoryDBClustersV2ItemCredentialsOutput
+	ToGetInMemoryDBClustersV2ItemCredentialsOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemCredentialsOutput
+}
+
+type GetInMemoryDBClustersV2ItemCredentialsArgs struct {
+	// The username for the In-Memory DB user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetInMemoryDBClustersV2ItemCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemCredentials)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemCredentialsArgs) ToGetInMemoryDBClustersV2ItemCredentialsOutput() GetInMemoryDBClustersV2ItemCredentialsOutput {
+	return i.ToGetInMemoryDBClustersV2ItemCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemCredentialsArgs) ToGetInMemoryDBClustersV2ItemCredentialsOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemCredentialsOutput)
+}
+
+type GetInMemoryDBClustersV2ItemCredentialsOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemCredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemCredentials)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemCredentialsOutput) ToGetInMemoryDBClustersV2ItemCredentialsOutput() GetInMemoryDBClustersV2ItemCredentialsOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemCredentialsOutput) ToGetInMemoryDBClustersV2ItemCredentialsOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemCredentialsOutput {
+	return o
+}
+
+// The username for the In-Memory DB user.
+func (o GetInMemoryDBClustersV2ItemCredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemCredentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClustersV2ItemInstances struct {
+	// CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// Number of instances.
+	Count int `pulumi:"count"`
+	// RAM per instance in GB.
+	Ram int `pulumi:"ram"`
+}
+
+// GetInMemoryDBClustersV2ItemInstancesInput is an input type that accepts GetInMemoryDBClustersV2ItemInstancesArgs and GetInMemoryDBClustersV2ItemInstancesOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemInstancesInput` via:
+//
+//	GetInMemoryDBClustersV2ItemInstancesArgs{...}
+type GetInMemoryDBClustersV2ItemInstancesInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemInstancesOutput() GetInMemoryDBClustersV2ItemInstancesOutput
+	ToGetInMemoryDBClustersV2ItemInstancesOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemInstancesOutput
+}
+
+type GetInMemoryDBClustersV2ItemInstancesArgs struct {
+	// CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// Number of instances.
+	Count pulumi.IntInput `pulumi:"count"`
+	// RAM per instance in GB.
+	Ram pulumi.IntInput `pulumi:"ram"`
+}
+
+func (GetInMemoryDBClustersV2ItemInstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemInstances)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemInstancesArgs) ToGetInMemoryDBClustersV2ItemInstancesOutput() GetInMemoryDBClustersV2ItemInstancesOutput {
+	return i.ToGetInMemoryDBClustersV2ItemInstancesOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemInstancesArgs) ToGetInMemoryDBClustersV2ItemInstancesOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemInstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemInstancesOutput)
+}
+
+type GetInMemoryDBClustersV2ItemInstancesOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemInstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemInstances)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemInstancesOutput) ToGetInMemoryDBClustersV2ItemInstancesOutput() GetInMemoryDBClustersV2ItemInstancesOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemInstancesOutput) ToGetInMemoryDBClustersV2ItemInstancesOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemInstancesOutput {
+	return o
+}
+
+// CPU cores per instance.
+func (o GetInMemoryDBClustersV2ItemInstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemInstances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// Number of instances.
+func (o GetInMemoryDBClustersV2ItemInstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemInstances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// RAM per instance in GB.
+func (o GetInMemoryDBClustersV2ItemInstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemInstances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+type GetInMemoryDBClustersV2ItemMaintenanceWindow struct {
+	// Day of the week.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start time in UTC (HH:MM:SS).
+	Time string `pulumi:"time"`
+}
+
+// GetInMemoryDBClustersV2ItemMaintenanceWindowInput is an input type that accepts GetInMemoryDBClustersV2ItemMaintenanceWindowArgs and GetInMemoryDBClustersV2ItemMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemMaintenanceWindowInput` via:
+//
+//	GetInMemoryDBClustersV2ItemMaintenanceWindowArgs{...}
+type GetInMemoryDBClustersV2ItemMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutput() GetInMemoryDBClustersV2ItemMaintenanceWindowOutput
+	ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemMaintenanceWindowOutput
+}
+
+type GetInMemoryDBClustersV2ItemMaintenanceWindowArgs struct {
+	// Day of the week.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start time in UTC (HH:MM:SS).
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetInMemoryDBClustersV2ItemMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemMaintenanceWindowArgs) ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutput() GetInMemoryDBClustersV2ItemMaintenanceWindowOutput {
+	return i.ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemMaintenanceWindowArgs) ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemMaintenanceWindowOutput)
+}
+
+type GetInMemoryDBClustersV2ItemMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemMaintenanceWindowOutput) ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutput() GetInMemoryDBClustersV2ItemMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemMaintenanceWindowOutput) ToGetInMemoryDBClustersV2ItemMaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemMaintenanceWindowOutput {
+	return o
+}
+
+// Day of the week.
+func (o GetInMemoryDBClustersV2ItemMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start time in UTC (HH:MM:SS).
+func (o GetInMemoryDBClustersV2ItemMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBClustersV2ItemSnapshot struct {
+	// [string] The location to query.
+	Location string `pulumi:"location"`
+	// Number of days snapshots are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+	// UTC hours at which snapshots are taken.
+	SnapshotHours []int `pulumi:"snapshotHours"`
+}
+
+// GetInMemoryDBClustersV2ItemSnapshotInput is an input type that accepts GetInMemoryDBClustersV2ItemSnapshotArgs and GetInMemoryDBClustersV2ItemSnapshotOutput values.
+// You can construct a concrete instance of `GetInMemoryDBClustersV2ItemSnapshotInput` via:
+//
+//	GetInMemoryDBClustersV2ItemSnapshotArgs{...}
+type GetInMemoryDBClustersV2ItemSnapshotInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBClustersV2ItemSnapshotOutput() GetInMemoryDBClustersV2ItemSnapshotOutput
+	ToGetInMemoryDBClustersV2ItemSnapshotOutputWithContext(context.Context) GetInMemoryDBClustersV2ItemSnapshotOutput
+}
+
+type GetInMemoryDBClustersV2ItemSnapshotArgs struct {
+	// [string] The location to query.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Number of days snapshots are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// UTC hours at which snapshots are taken.
+	SnapshotHours pulumi.IntArrayInput `pulumi:"snapshotHours"`
+}
+
+func (GetInMemoryDBClustersV2ItemSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemSnapshot)(nil)).Elem()
+}
+
+func (i GetInMemoryDBClustersV2ItemSnapshotArgs) ToGetInMemoryDBClustersV2ItemSnapshotOutput() GetInMemoryDBClustersV2ItemSnapshotOutput {
+	return i.ToGetInMemoryDBClustersV2ItemSnapshotOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBClustersV2ItemSnapshotArgs) ToGetInMemoryDBClustersV2ItemSnapshotOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBClustersV2ItemSnapshotOutput)
+}
+
+type GetInMemoryDBClustersV2ItemSnapshotOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBClustersV2ItemSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBClustersV2ItemSnapshot)(nil)).Elem()
+}
+
+func (o GetInMemoryDBClustersV2ItemSnapshotOutput) ToGetInMemoryDBClustersV2ItemSnapshotOutput() GetInMemoryDBClustersV2ItemSnapshotOutput {
+	return o
+}
+
+func (o GetInMemoryDBClustersV2ItemSnapshotOutput) ToGetInMemoryDBClustersV2ItemSnapshotOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ItemSnapshotOutput {
+	return o
+}
+
+// [string] The location to query.
+func (o GetInMemoryDBClustersV2ItemSnapshotOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemSnapshot) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Number of days snapshots are retained.
+func (o GetInMemoryDBClustersV2ItemSnapshotOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemSnapshot) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// UTC hours at which snapshots are taken.
+func (o GetInMemoryDBClustersV2ItemSnapshotOutput) SnapshotHours() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetInMemoryDBClustersV2ItemSnapshot) []int { return v.SnapshotHours }).(pulumi.IntArrayOutput)
+}
+
 type GetInMemoryDBReplicaSetConnection struct {
 	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr string `pulumi:"cidr"`
@@ -4709,6 +7130,432 @@ func (o GetInMemoryDBReplicaSetResourceArrayOutput) Index(i pulumi.IntInput) Get
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBReplicaSetResource {
 		return vs[0].([]GetInMemoryDBReplicaSetResource)[vs[1].(int)]
 	}).(GetInMemoryDBReplicaSetResourceOutput)
+}
+
+type GetInMemoryDBSnapshotLocationsV2Item struct {
+	// The ID of the snapshot location.
+	Id string `pulumi:"id"`
+	// The snapshot region identifier.
+	SnapshotRegion string `pulumi:"snapshotRegion"`
+}
+
+// GetInMemoryDBSnapshotLocationsV2ItemInput is an input type that accepts GetInMemoryDBSnapshotLocationsV2ItemArgs and GetInMemoryDBSnapshotLocationsV2ItemOutput values.
+// You can construct a concrete instance of `GetInMemoryDBSnapshotLocationsV2ItemInput` via:
+//
+//	GetInMemoryDBSnapshotLocationsV2ItemArgs{...}
+type GetInMemoryDBSnapshotLocationsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBSnapshotLocationsV2ItemOutput() GetInMemoryDBSnapshotLocationsV2ItemOutput
+	ToGetInMemoryDBSnapshotLocationsV2ItemOutputWithContext(context.Context) GetInMemoryDBSnapshotLocationsV2ItemOutput
+}
+
+type GetInMemoryDBSnapshotLocationsV2ItemArgs struct {
+	// The ID of the snapshot location.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The snapshot region identifier.
+	SnapshotRegion pulumi.StringInput `pulumi:"snapshotRegion"`
+}
+
+func (GetInMemoryDBSnapshotLocationsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBSnapshotLocationsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBSnapshotLocationsV2ItemArgs) ToGetInMemoryDBSnapshotLocationsV2ItemOutput() GetInMemoryDBSnapshotLocationsV2ItemOutput {
+	return i.ToGetInMemoryDBSnapshotLocationsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBSnapshotLocationsV2ItemArgs) ToGetInMemoryDBSnapshotLocationsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotLocationsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBSnapshotLocationsV2ItemOutput)
+}
+
+// GetInMemoryDBSnapshotLocationsV2ItemArrayInput is an input type that accepts GetInMemoryDBSnapshotLocationsV2ItemArray and GetInMemoryDBSnapshotLocationsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBSnapshotLocationsV2ItemArrayInput` via:
+//
+//	GetInMemoryDBSnapshotLocationsV2ItemArray{ GetInMemoryDBSnapshotLocationsV2ItemArgs{...} }
+type GetInMemoryDBSnapshotLocationsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutput() GetInMemoryDBSnapshotLocationsV2ItemArrayOutput
+	ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutputWithContext(context.Context) GetInMemoryDBSnapshotLocationsV2ItemArrayOutput
+}
+
+type GetInMemoryDBSnapshotLocationsV2ItemArray []GetInMemoryDBSnapshotLocationsV2ItemInput
+
+func (GetInMemoryDBSnapshotLocationsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBSnapshotLocationsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBSnapshotLocationsV2ItemArray) ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutput() GetInMemoryDBSnapshotLocationsV2ItemArrayOutput {
+	return i.ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBSnapshotLocationsV2ItemArray) ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotLocationsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBSnapshotLocationsV2ItemArrayOutput)
+}
+
+type GetInMemoryDBSnapshotLocationsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBSnapshotLocationsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBSnapshotLocationsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBSnapshotLocationsV2ItemOutput) ToGetInMemoryDBSnapshotLocationsV2ItemOutput() GetInMemoryDBSnapshotLocationsV2ItemOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotLocationsV2ItemOutput) ToGetInMemoryDBSnapshotLocationsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotLocationsV2ItemOutput {
+	return o
+}
+
+// The ID of the snapshot location.
+func (o GetInMemoryDBSnapshotLocationsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotLocationsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The snapshot region identifier.
+func (o GetInMemoryDBSnapshotLocationsV2ItemOutput) SnapshotRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotLocationsV2Item) string { return v.SnapshotRegion }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBSnapshotLocationsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBSnapshotLocationsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBSnapshotLocationsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBSnapshotLocationsV2ItemArrayOutput) ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutput() GetInMemoryDBSnapshotLocationsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotLocationsV2ItemArrayOutput) ToGetInMemoryDBSnapshotLocationsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotLocationsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotLocationsV2ItemArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBSnapshotLocationsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBSnapshotLocationsV2Item {
+		return vs[0].([]GetInMemoryDBSnapshotLocationsV2Item)[vs[1].(int)]
+	}).(GetInMemoryDBSnapshotLocationsV2ItemOutput)
+}
+
+type GetInMemoryDBSnapshotsV2Item struct {
+	// [string] Filter snapshots by cluster UUID.
+	ClusterId string `pulumi:"clusterId"`
+	// The name of the cluster this snapshot belongs to.
+	ClusterName string `pulumi:"clusterName"`
+	// The InMemoryDB version of the cluster at the time of the snapshot.
+	ClusterVersion string `pulumi:"clusterVersion"`
+	// The ID of the data center where the snapshot was created.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The earliest time for which a snapshot is available to restore from (RFC3339).
+	EarliestRecoveryTargetTime string `pulumi:"earliestRecoveryTargetTime"`
+	// The UUID of the snapshot.
+	Id string `pulumi:"id"`
+	// The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+	LatestRecoveryTargetTime string `pulumi:"latestRecoveryTargetTime"`
+	// [string] The location to query.
+	Location string `pulumi:"location"`
+	// The minimum storage size in GB required to restore from this snapshot.
+	RequiredSizeForRestore float64 `pulumi:"requiredSizeForRestore"`
+	// The Object Storage location where the snapshot is stored.
+	SnapshotLocation string `pulumi:"snapshotLocation"`
+	// The size of the snapshot in GB.
+	SnapshotSize float64 `pulumi:"snapshotSize"`
+}
+
+// GetInMemoryDBSnapshotsV2ItemInput is an input type that accepts GetInMemoryDBSnapshotsV2ItemArgs and GetInMemoryDBSnapshotsV2ItemOutput values.
+// You can construct a concrete instance of `GetInMemoryDBSnapshotsV2ItemInput` via:
+//
+//	GetInMemoryDBSnapshotsV2ItemArgs{...}
+type GetInMemoryDBSnapshotsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBSnapshotsV2ItemOutput() GetInMemoryDBSnapshotsV2ItemOutput
+	ToGetInMemoryDBSnapshotsV2ItemOutputWithContext(context.Context) GetInMemoryDBSnapshotsV2ItemOutput
+}
+
+type GetInMemoryDBSnapshotsV2ItemArgs struct {
+	// [string] Filter snapshots by cluster UUID.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The name of the cluster this snapshot belongs to.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// The InMemoryDB version of the cluster at the time of the snapshot.
+	ClusterVersion pulumi.StringInput `pulumi:"clusterVersion"`
+	// The ID of the data center where the snapshot was created.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The earliest time for which a snapshot is available to restore from (RFC3339).
+	EarliestRecoveryTargetTime pulumi.StringInput `pulumi:"earliestRecoveryTargetTime"`
+	// The UUID of the snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+	LatestRecoveryTargetTime pulumi.StringInput `pulumi:"latestRecoveryTargetTime"`
+	// [string] The location to query.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The minimum storage size in GB required to restore from this snapshot.
+	RequiredSizeForRestore pulumi.Float64Input `pulumi:"requiredSizeForRestore"`
+	// The Object Storage location where the snapshot is stored.
+	SnapshotLocation pulumi.StringInput `pulumi:"snapshotLocation"`
+	// The size of the snapshot in GB.
+	SnapshotSize pulumi.Float64Input `pulumi:"snapshotSize"`
+}
+
+func (GetInMemoryDBSnapshotsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBSnapshotsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBSnapshotsV2ItemArgs) ToGetInMemoryDBSnapshotsV2ItemOutput() GetInMemoryDBSnapshotsV2ItemOutput {
+	return i.ToGetInMemoryDBSnapshotsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBSnapshotsV2ItemArgs) ToGetInMemoryDBSnapshotsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBSnapshotsV2ItemOutput)
+}
+
+// GetInMemoryDBSnapshotsV2ItemArrayInput is an input type that accepts GetInMemoryDBSnapshotsV2ItemArray and GetInMemoryDBSnapshotsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBSnapshotsV2ItemArrayInput` via:
+//
+//	GetInMemoryDBSnapshotsV2ItemArray{ GetInMemoryDBSnapshotsV2ItemArgs{...} }
+type GetInMemoryDBSnapshotsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBSnapshotsV2ItemArrayOutput() GetInMemoryDBSnapshotsV2ItemArrayOutput
+	ToGetInMemoryDBSnapshotsV2ItemArrayOutputWithContext(context.Context) GetInMemoryDBSnapshotsV2ItemArrayOutput
+}
+
+type GetInMemoryDBSnapshotsV2ItemArray []GetInMemoryDBSnapshotsV2ItemInput
+
+func (GetInMemoryDBSnapshotsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBSnapshotsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBSnapshotsV2ItemArray) ToGetInMemoryDBSnapshotsV2ItemArrayOutput() GetInMemoryDBSnapshotsV2ItemArrayOutput {
+	return i.ToGetInMemoryDBSnapshotsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBSnapshotsV2ItemArray) ToGetInMemoryDBSnapshotsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBSnapshotsV2ItemArrayOutput)
+}
+
+type GetInMemoryDBSnapshotsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBSnapshotsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBSnapshotsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBSnapshotsV2ItemOutput) ToGetInMemoryDBSnapshotsV2ItemOutput() GetInMemoryDBSnapshotsV2ItemOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotsV2ItemOutput) ToGetInMemoryDBSnapshotsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotsV2ItemOutput {
+	return o
+}
+
+// [string] Filter snapshots by cluster UUID.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The name of the cluster this snapshot belongs to.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// The InMemoryDB version of the cluster at the time of the snapshot.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) ClusterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.ClusterVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the data center where the snapshot was created.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The earliest time for which a snapshot is available to restore from (RFC3339).
+func (o GetInMemoryDBSnapshotsV2ItemOutput) EarliestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.EarliestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// The UUID of the snapshot.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The most recent time for which a snapshot is available to restore from (RFC3339). Empty if available up to the current time.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) LatestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.LatestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// [string] The location to query.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The minimum storage size in GB required to restore from this snapshot.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) RequiredSizeForRestore() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) float64 { return v.RequiredSizeForRestore }).(pulumi.Float64Output)
+}
+
+// The Object Storage location where the snapshot is stored.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) SnapshotLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) string { return v.SnapshotLocation }).(pulumi.StringOutput)
+}
+
+// The size of the snapshot in GB.
+func (o GetInMemoryDBSnapshotsV2ItemOutput) SnapshotSize() pulumi.Float64Output {
+	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Item) float64 { return v.SnapshotSize }).(pulumi.Float64Output)
+}
+
+type GetInMemoryDBSnapshotsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBSnapshotsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBSnapshotsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBSnapshotsV2ItemArrayOutput) ToGetInMemoryDBSnapshotsV2ItemArrayOutput() GetInMemoryDBSnapshotsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotsV2ItemArrayOutput) ToGetInMemoryDBSnapshotsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBSnapshotsV2ItemArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBSnapshotsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBSnapshotsV2Item {
+		return vs[0].([]GetInMemoryDBSnapshotsV2Item)[vs[1].(int)]
+	}).(GetInMemoryDBSnapshotsV2ItemOutput)
+}
+
+type GetInMemoryDBVersionsV2Item struct {
+	// List of versions that a cluster running this version can be upgraded to.
+	CanUpgradeTos []string `pulumi:"canUpgradeTos"`
+	// Additional human-readable information about the version lifecycle.
+	Comment string `pulumi:"comment"`
+	// The UUID of the version.
+	Id string `pulumi:"id"`
+	// The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+	Status string `pulumi:"status"`
+	// The version string (e.g. `9.0`).
+	Version string `pulumi:"version"`
+}
+
+// GetInMemoryDBVersionsV2ItemInput is an input type that accepts GetInMemoryDBVersionsV2ItemArgs and GetInMemoryDBVersionsV2ItemOutput values.
+// You can construct a concrete instance of `GetInMemoryDBVersionsV2ItemInput` via:
+//
+//	GetInMemoryDBVersionsV2ItemArgs{...}
+type GetInMemoryDBVersionsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBVersionsV2ItemOutput() GetInMemoryDBVersionsV2ItemOutput
+	ToGetInMemoryDBVersionsV2ItemOutputWithContext(context.Context) GetInMemoryDBVersionsV2ItemOutput
+}
+
+type GetInMemoryDBVersionsV2ItemArgs struct {
+	// List of versions that a cluster running this version can be upgraded to.
+	CanUpgradeTos pulumi.StringArrayInput `pulumi:"canUpgradeTos"`
+	// Additional human-readable information about the version lifecycle.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// The UUID of the version.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+	Status pulumi.StringInput `pulumi:"status"`
+	// The version string (e.g. `9.0`).
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInMemoryDBVersionsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBVersionsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBVersionsV2ItemArgs) ToGetInMemoryDBVersionsV2ItemOutput() GetInMemoryDBVersionsV2ItemOutput {
+	return i.ToGetInMemoryDBVersionsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBVersionsV2ItemArgs) ToGetInMemoryDBVersionsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBVersionsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBVersionsV2ItemOutput)
+}
+
+// GetInMemoryDBVersionsV2ItemArrayInput is an input type that accepts GetInMemoryDBVersionsV2ItemArray and GetInMemoryDBVersionsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBVersionsV2ItemArrayInput` via:
+//
+//	GetInMemoryDBVersionsV2ItemArray{ GetInMemoryDBVersionsV2ItemArgs{...} }
+type GetInMemoryDBVersionsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBVersionsV2ItemArrayOutput() GetInMemoryDBVersionsV2ItemArrayOutput
+	ToGetInMemoryDBVersionsV2ItemArrayOutputWithContext(context.Context) GetInMemoryDBVersionsV2ItemArrayOutput
+}
+
+type GetInMemoryDBVersionsV2ItemArray []GetInMemoryDBVersionsV2ItemInput
+
+func (GetInMemoryDBVersionsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBVersionsV2Item)(nil)).Elem()
+}
+
+func (i GetInMemoryDBVersionsV2ItemArray) ToGetInMemoryDBVersionsV2ItemArrayOutput() GetInMemoryDBVersionsV2ItemArrayOutput {
+	return i.ToGetInMemoryDBVersionsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBVersionsV2ItemArray) ToGetInMemoryDBVersionsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBVersionsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBVersionsV2ItemArrayOutput)
+}
+
+type GetInMemoryDBVersionsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBVersionsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBVersionsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBVersionsV2ItemOutput) ToGetInMemoryDBVersionsV2ItemOutput() GetInMemoryDBVersionsV2ItemOutput {
+	return o
+}
+
+func (o GetInMemoryDBVersionsV2ItemOutput) ToGetInMemoryDBVersionsV2ItemOutputWithContext(ctx context.Context) GetInMemoryDBVersionsV2ItemOutput {
+	return o
+}
+
+// List of versions that a cluster running this version can be upgraded to.
+func (o GetInMemoryDBVersionsV2ItemOutput) CanUpgradeTos() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInMemoryDBVersionsV2Item) []string { return v.CanUpgradeTos }).(pulumi.StringArrayOutput)
+}
+
+// Additional human-readable information about the version lifecycle.
+func (o GetInMemoryDBVersionsV2ItemOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBVersionsV2Item) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The UUID of the version.
+func (o GetInMemoryDBVersionsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBVersionsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The support status of the version (e.g. `SUPPORTED`, `RECOMMENDED`).
+func (o GetInMemoryDBVersionsV2ItemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBVersionsV2Item) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The version string (e.g. `9.0`).
+func (o GetInMemoryDBVersionsV2ItemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBVersionsV2Item) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBVersionsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBVersionsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBVersionsV2Item)(nil)).Elem()
+}
+
+func (o GetInMemoryDBVersionsV2ItemArrayOutput) ToGetInMemoryDBVersionsV2ItemArrayOutput() GetInMemoryDBVersionsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBVersionsV2ItemArrayOutput) ToGetInMemoryDBVersionsV2ItemArrayOutputWithContext(ctx context.Context) GetInMemoryDBVersionsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBVersionsV2ItemArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBVersionsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBVersionsV2Item {
+		return vs[0].([]GetInMemoryDBVersionsV2Item)[vs[1].(int)]
+	}).(GetInMemoryDBVersionsV2ItemOutput)
 }
 
 type GetInmemorydbSnapshotMetadata struct {
@@ -7920,6 +10767,24 @@ func (o GetPSQLVersionsV2VersionArrayOutput) Index(i pulumi.IntInput) GetPSQLVer
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2ConnectionsInput)(nil)).Elem(), InMemoryDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2ConnectionsPtrInput)(nil)).Elem(), InMemoryDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2CredentialsInput)(nil)).Elem(), InMemoryDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2CredentialsPtrInput)(nil)).Elem(), InMemoryDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2CredentialsPasswordInput)(nil)).Elem(), InMemoryDBClusterV2CredentialsPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2CredentialsPasswordPtrInput)(nil)).Elem(), InMemoryDBClusterV2CredentialsPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2FilterInput)(nil)).Elem(), InMemoryDBClusterV2FilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2FilterArrayInput)(nil)).Elem(), InMemoryDBClusterV2FilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2InstancesInput)(nil)).Elem(), InMemoryDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2InstancesPtrInput)(nil)).Elem(), InMemoryDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2MaintenanceWindowInput)(nil)).Elem(), InMemoryDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2MaintenanceWindowPtrInput)(nil)).Elem(), InMemoryDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2RestoreFromSnapshotInput)(nil)).Elem(), InMemoryDBClusterV2RestoreFromSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2RestoreFromSnapshotPtrInput)(nil)).Elem(), InMemoryDBClusterV2RestoreFromSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2SnapshotInput)(nil)).Elem(), InMemoryDBClusterV2SnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2SnapshotPtrInput)(nil)).Elem(), InMemoryDBClusterV2SnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2TimeoutsInput)(nil)).Elem(), InMemoryDBClusterV2TimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBClusterV2TimeoutsPtrInput)(nil)).Elem(), InMemoryDBClusterV2TimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsPtrInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetCredentialsInput)(nil)).Elem(), InMemoryDBReplicaSetCredentialsArgs{})
@@ -7964,6 +10829,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2ConnectionsPtrInput)(nil)).Elem(), PSQLClusterV2ConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2CredentialsInput)(nil)).Elem(), PSQLClusterV2CredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2CredentialsPtrInput)(nil)).Elem(), PSQLClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2FilterInput)(nil)).Elem(), PSQLClusterV2FilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2FilterArrayInput)(nil)).Elem(), PSQLClusterV2FilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2InstancesInput)(nil)).Elem(), PSQLClusterV2InstancesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2InstancesPtrInput)(nil)).Elem(), PSQLClusterV2InstancesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2MaintenanceWindowInput)(nil)).Elem(), PSQLClusterV2MaintenanceWindowArgs{})
@@ -7972,6 +10839,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2RestoreFromBackupPtrInput)(nil)).Elem(), PSQLClusterV2RestoreFromBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2TimeoutsInput)(nil)).Elem(), PSQLClusterV2TimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterV2TimeoutsPtrInput)(nil)).Elem(), PSQLClusterV2TimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClusterV2ConnectionsInput)(nil)).Elem(), GetInMemoryDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClusterV2CredentialsInput)(nil)).Elem(), GetInMemoryDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClusterV2InstancesInput)(nil)).Elem(), GetInMemoryDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClusterV2MaintenanceWindowInput)(nil)).Elem(), GetInMemoryDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClusterV2SnapshotInput)(nil)).Elem(), GetInMemoryDBClusterV2SnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemArrayInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemConnectionsInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemCredentialsInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemInstancesInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemInstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemMaintenanceWindowInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBClustersV2ItemSnapshotInput)(nil)).Elem(), GetInMemoryDBClustersV2ItemSnapshotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetCredentialInput)(nil)).Elem(), GetInMemoryDBReplicaSetCredentialArgs{})
@@ -7980,6 +10859,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindowArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBSnapshotLocationsV2ItemInput)(nil)).Elem(), GetInMemoryDBSnapshotLocationsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBSnapshotLocationsV2ItemArrayInput)(nil)).Elem(), GetInMemoryDBSnapshotLocationsV2ItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBSnapshotsV2ItemInput)(nil)).Elem(), GetInMemoryDBSnapshotsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBSnapshotsV2ItemArrayInput)(nil)).Elem(), GetInMemoryDBSnapshotsV2ItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBVersionsV2ItemInput)(nil)).Elem(), GetInMemoryDBVersionsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBVersionsV2ItemArrayInput)(nil)).Elem(), GetInMemoryDBVersionsV2ItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataArrayInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupArgs{})
@@ -8032,6 +10917,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLDatabasesDatabaseArrayInput)(nil)).Elem(), GetPSQLDatabasesDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLVersionsV2VersionInput)(nil)).Elem(), GetPSQLVersionsV2VersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLVersionsV2VersionArrayInput)(nil)).Elem(), GetPSQLVersionsV2VersionArray{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2ConnectionsPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2CredentialsOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2CredentialsPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2CredentialsPasswordOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2CredentialsPasswordPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2FilterOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2FilterArrayOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2InstancesPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2MaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2RestoreFromSnapshotOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2RestoreFromSnapshotPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2SnapshotOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2SnapshotPtrOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2TimeoutsOutput{})
+	pulumi.RegisterOutputType(InMemoryDBClusterV2TimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetCredentialsOutput{})
@@ -8076,6 +10979,8 @@ func init() {
 	pulumi.RegisterOutputType(PSQLClusterV2ConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2CredentialsOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2CredentialsPtrOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2FilterOutput{})
+	pulumi.RegisterOutputType(PSQLClusterV2FilterArrayOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2InstancesOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2InstancesPtrOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2MaintenanceWindowOutput{})
@@ -8084,6 +10989,18 @@ func init() {
 	pulumi.RegisterOutputType(PSQLClusterV2RestoreFromBackupPtrOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2TimeoutsOutput{})
 	pulumi.RegisterOutputType(PSQLClusterV2TimeoutsPtrOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClusterV2CredentialsOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClusterV2SnapshotOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemConnectionsOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemCredentialsOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemInstancesOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBClustersV2ItemSnapshotOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetCredentialOutput{})
@@ -8092,6 +11009,12 @@ func init() {
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBSnapshotLocationsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBSnapshotLocationsV2ItemArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBSnapshotsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBSnapshotsV2ItemArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBVersionsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBVersionsV2ItemArrayOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupOutput{})

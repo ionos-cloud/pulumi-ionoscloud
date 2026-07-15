@@ -142,6 +142,7 @@ require (
 	github.com/ionos-cloud/sdk-go-bundle/products/cert/v2 v2.2.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/containerregistry/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/inmemorydb/v2 v2.0.1 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/inmemorydb/v3 v3.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mariadb/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mongo/v2 v2.1.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v2 v2.1.0 // indirect
@@ -156,8 +157,8 @@ require (
 	github.com/ionos-cloud/sdk-go-bundle/products/userobjectstorage/v2 v2.0.5 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vmautoscaling/v2 v2.0.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vpn/v2 v2.0.2 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.10 // indirect
-	github.com/ionos-cloud/sdk-go/v6 v6.3.7 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.11 // indirect
+	github.com/ionos-cloud/sdk-go/v6 v6.3.8 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

@@ -387,6 +387,26 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInmemorydbSnapshot"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_snapshot.md"},
 			},
+			"ionoscloud_inmemorydb_cluster_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_cluster_v2.md"},
+			},
+			"ionoscloud_inmemorydb_clusters_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBClustersV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_clusters_v2.md"},
+			},
+			"ionoscloud_inmemorydb_snapshots_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBSnapshotsV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_snapshots_v2.md"},
+			},
+			"ionoscloud_inmemorydb_snapshot_locations_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBSnapshotLocationsV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_snapshot_locations_v2.md"},
+			},
+			"ionoscloud_inmemorydb_versions_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBVersionsV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_versions_v2.md"},
+			},
 			"ionoscloud_k8s_cluster": {
 				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getCluster"),
 			},
@@ -596,6 +616,10 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
+			},
+			"ionoscloud_inmemorydb_cluster_v2": {
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "inmemorydb_cluster_v2.md"},
 			},
 			"ionoscloud_k8s_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "Cluster"),

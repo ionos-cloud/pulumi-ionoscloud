@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages user-owned IONOS Object Storage Buckets on IonosCloud.
+ * Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.
  *
  * > ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (`ionoscloud.objectstorage.Bucket`) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.
  *

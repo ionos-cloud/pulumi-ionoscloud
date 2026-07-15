@@ -39,10 +39,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
     /// });
     /// ```
     /// 
-    /// ## Import
-    /// 
-    /// ### Identity Schema
-    /// 
     /// #### Required
     /// 
     /// * `Id` (String) Name of the bucket.

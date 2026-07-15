@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages user-owned IONOS Object Storage Buckets on IonosCloud.
+ * Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.
  * 
  * &gt; ⚠️ **Deprecation notice:** User-owned buckets are a legacy bucket type. IONOS recommends using **contract-owned buckets** (&lt;span pulumi-lang-nodejs=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-go=&#34;`objectstorage.Bucket`&#34; pulumi-lang-python=&#34;`objectstorage.Bucket`&#34; pulumi-lang-yaml=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-java=&#34;`ionoscloud.objectstorage.Bucket`&#34; pulumi-lang-hcl=&#34;`ionoscloud_s3_bucket`&#34;&gt;`ionoscloud.objectstorage.Bucket`&lt;/span&gt;) for all new workloads. Contract-owned buckets offer broader regional availability, full Terraform sub-resource support (versioning, lifecycle, CORS, SSE, etc.), and are the actively developed offering. Migrate existing user-owned buckets to contract-owned buckets where possible.
  * 

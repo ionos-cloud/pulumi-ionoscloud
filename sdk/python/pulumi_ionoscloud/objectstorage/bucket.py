@@ -261,10 +261,6 @@ class Bucket(pulumi.CustomResource):
             })
         ```
 
-        ## Import
-
-        ### Identity Schema
-
         #### Required
 
         * `id` (String) Name of the bucket.
@@ -319,10 +315,6 @@ class Bucket(pulumi.CustomResource):
                 "key2": "value2",
             })
         ```
-
-        ## Import
-
-        ### Identity Schema
 
         #### Required
 

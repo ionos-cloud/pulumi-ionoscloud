@@ -69,7 +69,9 @@ type GetLocationResult struct {
 	Id string `pulumi:"id"`
 	// List of image aliases available for the location
 	ImageAliases []string `pulumi:"imageAliases"`
-	Name         string   `pulumi:"name"`
+	// The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+	MetroRegion string `pulumi:"metroRegion"`
+	Name        string `pulumi:"name"`
 }
 
 func GetLocationOutput(ctx *pulumi.Context, args GetLocationOutputArgs, opts ...pulumi.InvokeOption) GetLocationResultOutput {
@@ -127,6 +129,11 @@ func (o GetLocationResultOutput) Id() pulumi.StringOutput {
 // List of image aliases available for the location
 func (o GetLocationResultOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLocationResult) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
+}
+
+// The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+func (o GetLocationResultOutput) MetroRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationResult) string { return v.MetroRegion }).(pulumi.StringOutput)
 }
 
 func (o GetLocationResultOutput) Name() pulumi.StringOutput {

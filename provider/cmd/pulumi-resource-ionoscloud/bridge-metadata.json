@@ -327,6 +327,19 @@
                     }
                 }
             },
+            "ionoscloud_inmemorydb_cluster_v2": {
+                "current": "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2",
+                "majorVersion": 1,
+                "fields": {
+                    "snapshot": {
+                        "fields": {
+                            "snapshot_hours": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "ionoscloud_inmemorydb_replicaset": {
                 "current": "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet",
                 "majorVersion": 1,
@@ -1413,6 +1426,39 @@
                     }
                 }
             },
+            "ionoscloud_inmemorydb_cluster_v2": {
+                "current": "ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2",
+                "majorVersion": 1,
+                "fields": {
+                    "snapshot": {
+                        "fields": {
+                            "snapshot_hours": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "ionoscloud_inmemorydb_clusters_v2": {
+                "current": "ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "snapshot": {
+                                    "fields": {
+                                        "snapshot_hours": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "ionoscloud_inmemorydb_replicaset": {
                 "current": "ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet",
                 "majorVersion": 1,
@@ -1437,6 +1483,40 @@
                 "fields": {
                     "metadata": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_inmemorydb_snapshot_locations_v2": {
+                "current": "ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_inmemorydb_snapshots_v2": {
+                "current": "ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_inmemorydb_versions_v2": {
+                "current": "ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "can_upgrade_to": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2350,6 +2430,7 @@
             "ionoscloud:compute/volume:Volume": 0,
             "ionoscloud:creg/registry:Registry": 0,
             "ionoscloud:creg/registryToken:RegistryToken": 0,
+            "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": 1,
             "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet": 0,
             "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster": 0,
             "ionoscloud:dbaas/mongoCluster:MongoCluster": 0,
@@ -2433,7 +2514,12 @@
             "ionoscloud:creg/getRegistry:getRegistry": 0,
             "ionoscloud:creg/getRegistryLocations:getRegistryLocations": 0,
             "ionoscloud:creg/getRegistryToken:getRegistryToken": 0,
+            "ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2": 1,
+            "ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2": 1,
             "ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet": 0,
+            "ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2": 1,
+            "ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2": 1,
+            "ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2": 1,
             "ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot": 0,
             "ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups": 0,
             "ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster": 0,
@@ -2487,6 +2573,8 @@
             "ionoscloud:vpn/getWireguardPeer:getWireguardPeer": 0
         },
         "listResources": {
+            "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": 1,
+            "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": 1,
             "ionoscloud:objectstorage/bucket:Bucket": 1,
             "ionoscloud:objectstoragemanagement/accesskey:Accesskey": 1
         }

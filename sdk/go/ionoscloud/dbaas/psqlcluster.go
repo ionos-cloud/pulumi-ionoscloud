@@ -47,10 +47,10 @@ import (
 //				return err
 //			}
 //			_, err = dbaas.NewPSQLCluster(ctx, "example", &dbaas.PSQLClusterArgs{
-//				PostgresVersion: pulumi.String("12"),
+//				PostgresVersion: pulumi.String("16"),
 //				Instances:       pulumi.Int(1),
 //				Cores:           pulumi.Int(4),
-//				Ram:             pulumi.Int(2048),
+//				Ram:             pulumi.Int(4096),
 //				StorageSize:     pulumi.Int(10240),
 //				StorageType:     pulumi.String("HDD"),
 //				ConnectionPooler: &dbaas.PSQLClusterConnectionPoolerArgs{
@@ -127,7 +127,7 @@ type PSQLCluster struct {
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
-	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+	// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 	SynchronizationMode pulumi.StringOutput `pulumi:"synchronizationMode"`
 }
 
@@ -225,7 +225,7 @@ type psqlclusterState struct {
 	StorageSize *int `pulumi:"storageSize"`
 	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType *string `pulumi:"storageType"`
-	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+	// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 	SynchronizationMode *string `pulumi:"synchronizationMode"`
 }
 
@@ -264,7 +264,7 @@ type PSQLClusterState struct {
 	StorageSize pulumi.IntPtrInput
 	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringPtrInput
-	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+	// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 	SynchronizationMode pulumi.StringPtrInput
 }
 
@@ -305,7 +305,7 @@ type psqlclusterArgs struct {
 	StorageSize int `pulumi:"storageSize"`
 	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType string `pulumi:"storageType"`
-	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+	// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 	SynchronizationMode string `pulumi:"synchronizationMode"`
 }
 
@@ -343,7 +343,7 @@ type PSQLClusterArgs struct {
 	StorageSize pulumi.IntInput
 	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringInput
-	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+	// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 	SynchronizationMode pulumi.StringInput
 }
 
@@ -516,7 +516,7 @@ func (o PSQLClusterOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }
 
-// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
 func (o PSQLClusterOutput) SynchronizationMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.SynchronizationMode }).(pulumi.StringOutput)
 }

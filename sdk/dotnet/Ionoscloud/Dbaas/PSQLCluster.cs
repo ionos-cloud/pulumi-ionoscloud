@@ -40,10 +40,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     /// 
     ///     var examplePSQLCluster = new Ionoscloud.Dbaas.PSQLCluster("example", new()
     ///     {
-    ///         PostgresVersion = "12",
+    ///         PostgresVersion = "16",
     ///         Instances = 1,
     ///         Cores = 4,
-    ///         Ram = 2048,
+    ///         Ram = 4096,
     ///         StorageSize = 10240,
     ///         StorageType = "HDD",
     ///         ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs
@@ -185,7 +185,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string> StorageType { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        /// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         /// </summary>
         [Output("synchronizationMode")]
         public Output<string> SynchronizationMode { get; private set; } = null!;
@@ -330,7 +330,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string> StorageType { get; set; } = null!;
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        /// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         /// </summary>
         [Input("synchronizationMode", required: true)]
         public Input<string> SynchronizationMode { get; set; } = null!;
@@ -442,7 +442,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? StorageType { get; set; }
 
         /// <summary>
-        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+        /// [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         /// </summary>
         [Input("synchronizationMode")]
         public Input<string>? SynchronizationMode { get; set; }

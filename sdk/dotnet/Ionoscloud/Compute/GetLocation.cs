@@ -153,6 +153,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// List of image aliases available for the location
         /// </summary>
         public readonly ImmutableArray<string> ImageAliases;
+        /// <summary>
+        /// The id of the metro region this location belongs to. For a child location (e.g. `de/fra/2`) this is the parent location it inherits images and image aliases from; classic locations reference themselves.
+        /// </summary>
+        public readonly string MetroRegion;
         public readonly string Name;
 
         [OutputConstructor]
@@ -165,12 +169,15 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             ImmutableArray<string> imageAliases,
 
+            string metroRegion,
+
             string name)
         {
             CpuArchitectures = cpuArchitectures;
             Feature = feature;
             Id = id;
             ImageAliases = imageAliases;
+            MetroRegion = metroRegion;
             Name = name;
         }
     }

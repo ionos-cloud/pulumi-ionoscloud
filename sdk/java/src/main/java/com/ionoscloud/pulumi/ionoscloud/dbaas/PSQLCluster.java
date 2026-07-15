@@ -71,10 +71,10 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var examplePSQLCluster = new PSQLCluster("examplePSQLCluster", PSQLClusterArgs.builder()
- *             .postgresVersion("12")
+ *             .postgresVersion("16")
  *             .instances(1)
  *             .cores(4)
- *             .ram(2048)
+ *             .ram(4096)
  *             .storageSize(10240)
  *             .storageType("HDD")
  *             .connectionPooler(PSQLClusterConnectionPoolerArgs.builder()
@@ -345,14 +345,14 @@ public class PSQLCluster extends com.pulumi.resources.CustomResource {
         return this.storageType;
     }
     /**
-     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+     * [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
      * 
      */
     @Export(name="synchronizationMode", refs={String.class}, tree="[0]")
     private Output<String> synchronizationMode;
 
     /**
-     * @return [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, STRICTLY_SYNCHRONOUS. The SYNCHRONOUS value has been deprecated for create requests.
+     * @return [string] Represents different modes of replication. Can have one of the following values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
      * 
      */
     public Output<String> synchronizationMode() {
